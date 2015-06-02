@@ -1,33 +1,40 @@
 {% include linkrefs.html %}
 
-This is a Jekyll theme intended for documentation projects. What makes this theme unique is the approach in using Jekyll for single sourcing, that is, producing multiple outputs from the same theme. For example, you might have 3 different help systems that you're generating from the same Jekyll files. More than anything, this Jekyll theme shows you how to use Jekyll for documentation projects from the perspective of a technical writer. 
+All our Platform services are designed with publicly-facing REST API as a first-class citizen. This is the same API that our own developers use to build various products. 
 
-Note that I'm using this theme for my own technical writing projects, so this is an evolving project.
+Head over to the [API Documentation](/api/getting-started/) section to find out more about our API.
 
-## Intended audience
+### Feedback
 
-Although this theme could be used for any website, I'm assuming that my main audience involves technical writers. Very few technical writers are even aware of Jekyll as a platform, let alone how to use it for tech comm scenarios. The instructions for this theme, therefore, are extensive because they discuss a lot of Jekyll basics as well. I'm not going to assume that you're already familiar with Jekyll, or that you're a UX guru, or that you know how to do backflips in Liquid. I'll try to hold your hand as much as possible.
+We are passionate about APIs and are committed to creating a great experience for you so please don't hesitate to [contact us](mailto:apidesign@iqmetrix.com) with any feedback related to API design and usability. 
 
-## Supported features
+### Support
 
-As far as I can tell, Jekyll supports most of the features a technical writer needs to author and publish content. Most importantly, using Jekyll allows you to take full advantage of a modern web development platform. 
+Can't find what you're looking for or have any questions about our API?
+Please contact our [API support team](mailto:apisupport@iqmetrix.com) and we will get back to you as fast as we possibly can.
 
-As a quick overview, this theme specifically provides the following:
+<img src="images/rq-logo.png" alt="RQ Retail Management" style="width:100px;height:65px">
 
-* Bootstrap framework with responsive design
-* Integrated search
-* Navigation sidebar and top navigation
-* Font Awesome
-* Options for creating multiple builds for different audiences
+Learn more about RQ at [iQmetrix.com](http://www.iqmetrix.com/products/rq)
 
-See {{supported_features}} for an extensive list.
+***
 
-## Getting started
+<img src="images/xq-logo.png" alt="XQ Interactive Retail" style="width:100px;height:65px">
 
-To get started, see {{getting_started}}. It explains how to create a new project.
+Learn more about XQ at [iQmetrix.com](http://www.iqmetrix.com/products/xq)
 
-## Questions
+***
 
-Feel free to ask me a question if there's something I haven't addressed here. 
+![iQmetrix Platform](images/platform-logo.png "iQmetrix Platform")
 
-Tom Johnson <br /><a href="mailto:">tomjohnson1492@gmail.com</a>
+Learn more about iQmetrix Platform at [iQmetrix.com](http://www.iqmetrix.com/products/platform)
+
+### We're Hiring!
+
+Interested in joining iQmetrix? Check out open positions at [iQmetrix.com](http://www.iqmetrix.com/careers)
+
+***
+
+### About iQmetrix
+
+Learn more about our [company and our culture](http://www.iqmetrix.com/our-company)

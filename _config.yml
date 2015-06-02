@@ -8,17 +8,17 @@ platform: all
 
 version: all
 
-topnav_title: Jekyll for Designers
+topnav_title: iQmetrix Developer Portal
 
-topnav_version: 2.1
+topnav_version: 
 
-homepage_title: Doc theme for Jekyll 
+homepage_title: iQmetrix APIs
 
 site_title: Documentation theme for Jekyll
 
-tagline: Guide for designers
+tagline: iQmetrix Developer Portal
 
-baseurl: "/documentation-testing"
+baseurl: "/documentation-testing/"
 
 port: 4006
 
@@ -26,11 +26,11 @@ host: 127.0.0.1
 
 url: "http://tomjohnson1492.github.io"
 
-feedback_email: tomjohnson1492@gmail.com
+feedback_email: apidesign@iqmetrix.com
 
 sidebar_accordion: true
 
-disqus_shortname: idrbwjekyll
+disqus_shortname: iqmetrixdeveloperportal
 
 google_analytics:  UA-408430-5
 
