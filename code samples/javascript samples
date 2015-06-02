@@ -1,0 +1,56 @@
+
+// To use the API using jQuery and .ajax(),
+$.ajax({
+       url: "https://xqtest.iqmetrix.net/api/", //API Url
+       data: { foo: "bar" }, //Data to send with the request
+       type: "GET", //Request type (POST, PUT, GET, DELETE), default is GET
+       success: function (data, textStatus, jqXHR) {
+              //function to run when the api call is successful
+       }, 
+       error: function (jqXHR, errorCode, errorThrown) {
+              //function to run when an error occurs
+       }
+});
+
+// Some examples...
+
+// Log in and create a session key for your account
+$.ajax({
+    url: "http://xqtest.iqmetrix.net/api/sessions",
+    data: { Username: "yourUsername", Password: "yourPassword" },
+    type: "POST",
+    success: function(data) {
+        //Returns a session object which includes
+        // your session key. A cookie is also
+        // sent with the response.
+    }
+});
+
+// Returns 50 products in the logged in user's account.
+$.ajax({
+       url: "https://xqtest.iqmetrix.net/api/products",
+       success: function(data) {
+              //Do something with the results
+        $("#content").append(data.TotalProducts);
+       }
+});
+
+// Returns 20 products that contain "BlackBerry"
+$.ajax({
+       url: "https://xqtest.iqmetrix.net/api/products",
+       data: { keyword: "BlackBerry", pagesize: 20 },
+       success: function(data) {
+              //Do something with the results
+        $("#content").append(data.TotalProducts);
+       }
+});
+
+// Returns all stores associated with an account
+$.ajax({
+       url: "https://xqtest.iqmetrix.net/api/stores",
+       success: function(data) {
+              //Do something with the results
+       }
+});
+
+

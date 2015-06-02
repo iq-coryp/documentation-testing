@@ -1,0 +1,32 @@
+- text: "iQmetrix APIs"
+  url: "/api/"
+
+- text: "Rate Limiting"
+  url: "/api/ratelimiting.html"
+
+- text: "Authentication"
+  url: "/api/authentication.html"
+
+- text: "Availability"
+  url: "/api/availability.html"
+
+- text: "Catalog"
+  url : "/api/catalog.html"
+
+- text: "CRM"
+  url : "/api/crm.html"
+
+- text: "Entity Store"
+  url: "/api/entitystore.html"
+
+- text: "General Ledger"
+  url : "/api/generalledger.html"
+
+- text: "Orders"
+  url: "/api/orders.html"
+
+- text: "Product Library"
+  url: "/api/productlibrary.html"
+
+- text: "Glossary"
+  url: "/api/glossary.html"

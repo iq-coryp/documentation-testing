@@ -1,0 +1,247 @@
+/* Override some defaults */
+html, body {
+  background-color: #eee;
+}
+
+body.index {
+	background: url('../../../../images/index-body-bg.png') no-repeat center top ;
+}
+
+.container > footer p {
+  text-align: center;/* center align it with the container */
+  color: #c3c5c7; 
+}
+
+.container > footer p img {
+	margin-right: 10px;
+	margin-bottom: -3px;
+}
+
+.container {
+  width: 940px; /*UPDATE: switched to 940 from 820 to make full grid to match mockup. downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+}
+
+/* The white background content wrapper */
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 6px 6px 6px 6px;
+     -moz-border-radius: 6px 6px 6px 6px;
+          border-radius: 6px 6px 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+          box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+body.index .content {
+	 margin: 236px -20px 0px -20px; 
+}
+
+/* Page header tweaks */
+.page-header {
+  background-color: #f5f5f5;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
+}
+
+.topbar .btn {
+  border: 0;
+}
+
+/* Side Nav ======================================================== */
+
+#side-nav ul {
+	list-style: none;
+	margin-left: 0px;
+}
+
+#side-nav ul li ul {
+	margin-left: 20px;
+}
+
+#side-nav ul a {
+	color: #5a5a5a;
+}
+
+#side-nav ul a:hover {
+	color: #0096db;
+	text-decoration: none;
+}
+
+#side-nav ul a:active {
+	color: #0096db;
+}
+
+#side-nav ul li {
+	list-style: none;
+	border-bottom: 1px dotted #ccc;
+	padding: 5px 0;
+}
+
+
+
+#side-nav ul li ul li {
+	border-bottom: 0px;
+	padding: 2px 0;
+}
+
+
+
+
+.page {
+	border-left: 1px solid #ccc;
+	padding-left: 20px;
+}
+
+
+
+/* tag_box ======================================================== */
+
+.tag_box {
+	list-style:none;
+	margin:0;
+	padding:5px 0 ;
+	overflow:hidden;
+}
+.tag_box li {
+	line-height:28px;
+}
+.tag_box.inline li {
+	float:left;
+}
+.tag_box a {
+	padding: 3px 6px;
+	margin: 2px;
+	background: #eee;
+	color:#005F6B;
+	border-radius: 3px;
+	text-decoration:none;
+}
+.tag_box a span{
+	vertical-align:super;
+	font-size:0.8em;
+}
+.tag_box a.active {
+	background:#57A957;
+	border:1px solid #4C964D;
+	color:#FFF;
+}
+
+/*home columns*/
+
+.home-clear {
+	clear: both;
+}
+
+.home-box {
+	border-right: 1px solid #ccc;
+	height: 400px;
+	
+}
+
+.home-box hr {
+	margin: 10px 0;
+}
+
+.home-box h2 {
+	line-height: 22px;
+	font-size: 18px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	display: block;
+	border-bottom: 1px dotted #ccc;
+	
+}
+
+.home-box h2, .home-box h3 {
+	color: #0096db;
+	font-weight: normal;
+	
+}
+
+.home-box h3 {
+	font-size: 15px;
+}
+	
+/* Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+
+
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+	display: inline;
+	float: left;
+	/*position: relative;*/
+	margin-right: 20px;
+	padding: 10px 20px 10px 0px;
+}
+
+
+/* Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+
+.alpha {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.omega {
+	margin-right: 0;
+	padding-right: 0;
+	border-right: 0px;
+}
+
+/* Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+
+.grid_1 {
+	width:40px;
+}
+
+.grid_2 {
+	width:100px;
+}
+
+.grid_3 {
+	width:160px;
+}
+
+.grid_4 {
+	/*width:220px;*/
+	width: 200px;
+}
+
+.grid_5 {
+	width:280px;
+}
+
+.grid_6 {
+	width:340px;
+}
+
+.grid_7 {
+	width:400px;
+}
+
+.grid_8 {
+	width:460px;
+}
+
+
+
+
+.grid_12 {
+	width:700px;
+}

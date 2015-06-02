@@ -1,0 +1,11 @@
+{% if page.tags.size > 0 %}
+	<ul><li><strong>Sections</strong></li></ul>
+{% endif %}
+
+<ul>
+    {% for tag in page.tags %}
+        <li>
+        	<a href='{{page.url}}#{{ tag }}'>{{ tag }}</a>
+        </li>
+    {% endfor %}
+<ul>
