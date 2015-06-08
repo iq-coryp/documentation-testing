@@ -31,20 +31,22 @@ A **CatalogProductAvailability** resource consists of the following properties:
 ## Getting Availability By Location
 
 ### Request
+
     GET /Companies({CompanyId})/Entities({EntityId})/CatalogItems({ProductId})
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [CatalogItem](/api/catalog.html#CatalogItem)
 * `EntityId` (Required) - The Id of the [Location](/api/entitystore.html#Location) associated with this [CatalogItem](/api/catalog.html#CatalogItem)
 * `ProductId` (Required) - The Id of the [CatalogItem](/api/catalog.html#CatalogItem)
 
 ###### Example
+
     Companies(1)/Entities(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)
     Authorization: Bearer (Access Token)
     Accept: application/json

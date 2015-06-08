@@ -25,18 +25,18 @@ A Customer resource consists of the following properties:
 
 | Name  | Data Type   | Is Required?   | Description | Example |
 |:------|:------------|:---------------|:------------|:--------|
-| Id | GUID | Read-only  | Unique identifier for the Customer. This value is system-generated and read-only | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| AlternateName | String | Optional  | Alias or preferred name | `Bob` |
-| FamilyName | String | Optional  | Family name. In the U.S., the last name of a Person | `Smith` |
-| MiddleName | String | Optional  | Middle name. Could also be referred to as Additional name | `Lee` |
-| PrimaryName | String | Optional  | First name of a given person or the full name of the business, division, organization, etc| `Robert` |
-| CustomerType | String | Read-only  | The `Name` attribute associated with this Customer's [CustomerType](#CustomerType). This value is system-generated and read-only | `Company` |
-| CustomerTypeId | Integer | Required  | Identifier for the [CustomerType](#CustomerType) associated with this Customer | `3` |
-| DateOfBirth | Date | Optional  | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
-| Disabled | Boolean | Optional  | A flag to indicate whether or not the Customer is disabled. The Delete operation acts as a "Disable" operation, as a Customer can not be deleted. When the Disabled flag is set to true, the Customer can still be retrieved and updated normally, defaults to false  | `true` |
-| DoNotContact | Boolean | Optional  | A flag to indicate if the Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
-| Notes | String | Optional  | Any notes related to the customer | `Interested in iPhone 6` |
-| Title | String | Optional  | Title | `Mr` |
+| Id | GUID | Read-only | Unique identifier for the Customer. This value is system-generated and read-only | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| PrimaryName | String | Optional | First name of a given person or the full name of the business, division, organization, etc| `Robert` |
+| MiddleName | String | Optional | Middle name. Could also be referred to as Additional name | `Lee` |
+| FamilyName | String | Optional | Family name. In the U.S., the last name of a Person | `Smith` |
+| AlternateName | String | Optional | Alias or preferred name | `Bob` |
+| CustomerType | String | Read-only | The `Name` attribute associated with this Customer's [CustomerType](#CustomerType). This value is system-generated and read-only | `Company` |
+| CustomerTypeId | Integer | Required | Identifier for the [CustomerType](#CustomerType) associated with this Customer | `3` |
+| DateOfBirth | Date | Optional | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| Disabled | Boolean | Optional | A flag to indicate whether or not the Customer is disabled. The Delete operation acts as a "Disable" operation, as a Customer can not be deleted. When the Disabled flag is set to true, the Customer can still be retrieved and updated normally, defaults to false  | `true` |
+| DoNotContact | Boolean | Optional | A flag to indicate if the Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
+| Notes | String | Optional | Any notes related to the customer | `Interested in iPhone 6` |
+| Title | String | Optional | Title | `Mr` |
 
 ### Address
 
@@ -122,9 +122,9 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 
 A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) resource, it consists of all CustomerFull properties plus the following:
 
-| Name  | Data Type   | Is Required?   | Description | Example |
-|:------|:------------|:---------------|:------------|:-------|
-| Criteria | String | Required | The criteria used to seach for the Customer | |
+| Name  | Data Type   | Is Required?   | Description | 
+|:------|:------------|:---------------|:------------|
+| Criteria | String | Required | The criteria used to seach for the Customer |
 
 ### Types
 
@@ -132,9 +132,9 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 | Name  | Id |
 |:------|:---|
-| None| 1  |
-| Home | 2  |
-| Shipping| 3  |
+| None | 1 |
+| Home | 2 |
+| Shipping | 3 |
 | Office | 4 |
 | Other | 5 |
 
@@ -142,43 +142,44 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 | Name   | Id |
 |:-------|:---|
-| Phone| 1  |
-| Email | 2  |
-| Other| 3  |
+| Phone | 1 |
+| Email | 2 |
+| Other | 3 |
 
 #### ContactMethodType
 
 | Name   | Id | ContactCategoryId |
 |:-------|:---|:------------------|
-| Home   | 1  |1  |
-| Work | 2  |1  |
-| Mobile | 3  |1  |
-| Company | 4  |1  |
-| Pager | 5  |1  |
-| Home Fax| 6  |1  |
-| Work Fax| 7  |1  |
-| Other| 8  |1  |
-| Home| 9  |2  |
-| Work | 10 |2  |
-| Other| 11 |2  |
-| Website| 12  |3  |
-| Skype| 13 |3  |
-| Twitter| 14 |3  |
-| Facebook| 15 |3  |
-| LinkedIn| 16 |3  |
-| Other| 17 |3  |
+| Home | 1 | 1 |
+| Work | 2 | 1 |
+| Mobile | 3 | 1 |
+| Company | 4 | 1 |
+| Pager | 5 | 1 |
+| Home Fax | 6 | 1 |
+| Work Fax | 7 | 1 |
+| Other | 8  | 1 |
+| Home | 9  | 2 |
+| Work | 10 | 2 |
+| Other | 11 | 2 |
+| Website | 12 | 3 |
+| Skype | 13 | 3 |
+| Twitter | 14 | 3 |
+| Facebook | 15 | 3 |
+| LinkedIn | 16 | 3 |
+| Other | 17 | 3 |
 
 #### CustomerType
 
-| Name   | Id |
-|:-------|:---|
-| None   | 1  |
-| Person | 2  |
-| Company| 3  |
+| Name    | Id |
+|:--------|:---|
+| None    | 1  |
+| Person  | 2  |
+| Company | 3  |
 
 ## Creating a Customer
 
 ### Request
+
     POST /Companies({CompanyId})/Customers
     {
         {Customer}
@@ -186,13 +187,16 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Customer](#Customer)
+
+#### Request Parameters
+
 * `Customer` (Required) - See [Customer](#Customer)
  
 ###### Example
@@ -202,17 +206,16 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     Accept: application/json
     Content-Type: application/json
     {
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
         "PrimaryName": "Robert",
-        "AlternateName": "Bob",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
+        "AlternateName": "Bob",
+        "CustomerTypeId": 2,
         "DateOfBirth": "1952-07-23T12:00:00.000",
-        "Notes": "Interested in iPhone 6",
         "Disabled": true,
-        "DoNotContact": true
+        "DoNotContact": true,
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr"
     }
 
 ### Response
@@ -220,20 +223,21 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [Customer](#Customer) - The Customer that was created, if succesful
 
 ###### Example
+
     HTTP 201 Content-Type: application/json
     {
         "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
         "PrimaryName": "Robert",
-        "AlternateName": "Bob",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
+        "AlternateName": "Bob",
+        "CustomerType": "Person",
+        "CustomerTypeId": 2,
         "DateOfBirth": "1952-07-23T12:00:00.000",
-        "Notes": "Interested in iPhone 6",
         "Disabled": true,
-        "DoNotContact": true
+        "DoNotContact": true,
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr"
     }
 
 ## Updating a Customer
@@ -241,36 +245,43 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 ### Request
 
     PUT Companies({CompanyId})/Customers({CustomerId}) 
+    {
+        {Customer}
+    }
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json` 
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Customer](#Customer)
 * `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
 
+#### Request Parameters
+
+* `Customer` (Required) - See [Customer](#Customer)
+
 ###### Example
+
     PUT /Companies(1)/Customers(6ffb6e15-bcbb-4f3d-82be-b1591e64f446)
     Authorization: Bearer (Access Token)
     Accept: application/json 
     Content-Type: application/json 
     {
         "Id": "6ffb6e15-bcbb-4f3d-82be-b1591e64f446",
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Miss",
         "PrimaryName": "Sarah",
-        "AlternateName": "Jamie",
         "MiddleName": "Ann",
         "FamilyName": "Brown",
+        "AlternateName": "Jamie",
+        "CustomerTypeId": 2,
         "DateOfBirth": "2014-05-08T16:53:12.1505079+00:00",
-        "Notes": "",
         "Disabled": false,
-        "DoNotContact": true
+        "DoNotContact": true,
+        "Notes": "",
+        "Title": "Miss"
     }
 
 ### Response
@@ -278,20 +289,21 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [Customer](#Customer) - The Customer resource that was updated, if it was successful 
 
 ###### Example
+
     HTTP 200 Content-Type: application/json
     {
         "Id": "6ffb6e15-bcbb-4f3d-82be-b1591e64f446",
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Miss",
         "PrimaryName": "Sarah",
-        "AlternateName": "Jamie",
         "MiddleName": "Ann",
         "FamilyName": "Brown",
+        "AlternateName": "Jamie",
+        "CustomerType": "Person",
+        "CustomerTypeId": 2,
         "DateOfBirth": "2014-05-08T16:53:12.1505079+00:00",
-        "Notes": "",
         "Disabled": false,
-        "DoNotContact": true
+        "DoNotContact": true,
+        "Notes": "",
+        "Title": "Miss"
     }
 
 ## Creating a Full Customer
@@ -305,13 +317,16 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [CustomerFull](#CustomerFull)
+
+#### Request Parameters
+
 * `CustomerFull` (Required) - See [CustomerFull](#CustomerFull)
  
 ###### Example
@@ -321,17 +336,16 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     Accept: application/json
     Content-Type: application/json
     {
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
         "PrimaryName": "Robert",
-        "AlternateName": "Bob",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
+        "AlternateName": "Bob",
+        "CustomerTypeId": 2,
         "DateOfBirth": "1952-07-23T12:00:00.000",
-        "Notes": "Interested in iPhone 6",
         "Disabled": true,
         "DoNotContact": true,
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr",
         "Addresses": [
             {
                 "AddressTypeId": 2,
@@ -369,8 +383,8 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
                 "ExtensionType": "ExternalCustomerId"
             }
         ],
-        "RelatedCustomers": [],
-        "MemberOf": []
+        "MemberOf": [ ],
+        "RelatedCustomers": [ ]
     }
 
 ### Response
@@ -378,25 +392,24 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [CustomerFull](#CustomerFull) - The CustomerFull that was created, if succesful
 
 ###### Example
+
     HTTP 201 Content-Type: application/json
     {
 
         "Id": "7f252c18-e07a-47e7-914a-cf2a726b21b7",
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
         "PrimaryName": "Robert",
-        "AlternateName": "Bob",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
-        "DateOfBirth": "1952-07-23T12:00:00",
-        "Notes": "Interested in iPhone 6",
+        "AlternateName": "Bob",
+        "CustomerTypeId": 2,
+        "CustomerType": "Person",
+        "DateOfBirth": "1952-07-23T12:00:00.000",
         "Disabled": true,
         "DoNotContact": true,
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr",
         "Addresses": [
             {
-                "Id": "32b605ea-af20-480f-ae89-423644aad397",
-                "CustomerId": "7f252c18-e07a-47e7-914a-cf2a726b21b7",
                 "AddressTypeId": 2,
                 "AddressType": "Home",
                 "Default": false,
@@ -415,8 +428,6 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
         ],
         "ContactMethods": [
             {
-                "Id": "1f062270-f3b1-466b-b761-3365ca67bf95",
-                "CustomerId": "7f252c18-e07a-47e7-914a-cf2a726b21b7",
                 "ContactMethodCategoryId": 1,
                 "ContactMethodCategory": "Phone",
                 "ContactMethodTypeId": 5,
@@ -429,33 +440,33 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
         ],
         "CustomerExtensions": [
             {
-                "Id": "244922c4-65fd-4e6c-961f-69e0ddad6f52",
                 "Value": "4421",
-                "CustomerId": "7f252c18-e07a-47e7-914a-cf2a726b21b7",
                 "ExtensionTypeId": 1,
-                "ExtensionType": "ShoeSize"
+                "ExtensionType": "ExternalCustomerId"
             }
         ],
-        "RelatedCustomers": [ ],
-        "MemberOf": [ ]
+        "MemberOf": [ ],
+        "RelatedCustomers": [ ]
     }
 
 ## Getting a Customer
 
 ### Request
+
     GET /Companies({CompanyId})/Customers({CustomerId}) 
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Customer](#Customer)
 * `CustomerId` (Required) - The Id of the [Customer](#Customer) that was requested
 
 ###### Example
+
     GET /Companies(1)/Customer(5ce90b33-1668-46f0-b3a8-0216cef59993)
     Authorization: Bearer (Access T oken)
     Accept: application/json
@@ -465,43 +476,47 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [Customer](#Customer) - The Customer resource that was requested, if it exists
 
 ###### Example
+
+    HTTP 200 Content-Type: application/json 
     {
         "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
         "PrimaryName": "Robert",
-        "AlternateName": "Bob",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
+        "AlternateName": "Bob",
+        "CustomerType": "Person",
+        "CustomerTypeId": 2,
         "DateOfBirth": "1952-07-23T12:00:00.000",
-        "Notes": "Interested in iPhone 6",
         "Disabled": true,
-        "DoNotContact": true
+        "DoNotContact": true,
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr"
     }
 
 ### Errors
 
-| Error Code  | Message   | How To Resolve                             |
-|-------------|-------------|-----------------------------------|
-| HTTP 404    | Not Found | The Customer cannot be found|
+| Error Code | Message | How To Resolve |
+|:-----------|:--------|:---------------|
+| HTTP 404 | Not Found | The Customer cannot be found |
 
 ## Getting a Full Customer
 
 ### Request
+
     GET /Companies({CompanyId})/CustomerFull({CustomerId}) 
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [CustomerFull](#CustomerFull)
 * `CustomerId` (Required) - The Id of the [Customer](#Customer) that was requested
 
 ###### Example
+
     GET /Companies(1)/CustomerFull(5ce90b33-1668-46f0-b3a8-0216cef59993)
     Authorization: Bearer (Access Token)
     Accept: application/json
@@ -511,19 +526,21 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [CustomerFull](#CustomerFull) - The CustomerFull resource that was requested, if it exists
 
 ###### Example
+
+    HTTP 200 Content-Type: application/json 
     {
         "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
         "PrimaryName": "Robert",
-        "AlternateName": "Bob",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
+        "AlternateName": "Bob",
+        "CustomerType": "Person",
+        "CustomerTypeId": 2,
         "DateOfBirth": "1952-07-23T12:00:00.000",
-        "Notes": "Interested in iPhone 6",
         "Disabled": true,
         "DoNotContact": true
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr",
         "Addresses": [
             {
                 "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
@@ -563,52 +580,58 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
             "ExtensionTypeId": 1,
             "ExtensionType": "ExternalCustomerId"
         ],
-        "RelatedCustomers": [ ],
-        "MemberOf": [ ]
+        "MemberOf": [ ],
+        "RelatedCustomers": [ ]
     }
 
 ### Errors
 
-| Error Code  | Message   | How To Resolve                             |
-|-------------|-------------|-----------------------------------|
-| HTTP 404    | Not Found | The Customer cannot be found|
+| Error Code | Message | How To Resolve |
+|:-----------|:--------|:---------------|
+| HTTP 404 | Not Found | The Customer cannot be found |
 
 ## Adding a Customer Address
 
 ### Request
+
     POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
+    {
+        {Address}
+    }
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Address](#Address)
 * `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
 
+#### Request Parameters
+
+* `Address` (Required) - See [Address](#Address)
+
 ###### Example
+
     POST /Companies(1)/Customers(5ce90b33-1668-46f0-b3a8-0216cef59993)/Addresses
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
     {
         "AddressTypeId": 2,
-        "AddressType": "Home",
+        "CountryCode": "CA",
         "Default": false,
         "DoNotContact": true,
-        "CountryCode": "CA",
-        "Country": "Canada",
         "Locality": "Regina",
-        "StateCode": "SK",
-        "State": "Saskatchewan",
+        "Notes": "",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
+        "StateCode": "SK",
         "StreetAddress1": "2221 Cornwall Street",
-        "StreetAddress2": "",
-        "Notes": ""
+        "StreetAddress2": ""
     }
 
 ### Response
@@ -616,65 +639,75 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [Address](#Address) -  The Address resource that was requested, if it exists
 
 ###### Example
+
     HTTP 201 Content-Type: application/json
     {
         "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "AddressTypeId": 2,
         "AddressType": "Home",
+        "AddressTypeId": 2,
+        "Country": "Canada",
+        "CountryCode": "CA",
         "Default": false,
         "DoNotContact": true,
-        "CountryCode": "CA",
-        "Country": "Canada",
         "Locality": "Regina",
-        "StateCode": "SK",
-        "State": "Saskatchewan",
+        "Notes": "",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
+        "State": "Saskatchewan",
+        "StateCode": "SK",
         "StreetAddress1": "2221 Cornwall Street",
-        "StreetAddress2": "",
-        "Notes": ""
+        "StreetAddress2": ""
     }
 
 ## Updating a Customer Address
 
 ### Request
-    PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId}) 
+
+    PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+    {
+        {Address}
+    }
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json` 
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Address](#Address)
 * `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
 * `AddressId` (Required) - The Id of the [Address](#Address) being updated
 
+#### Request Parameters
+
+* `Address` (Required) - See [Address](#Address)
+
 ###### Example
+
     PUT /Companies(1)/Customers(5ce90b33-1668-46f0-b3a8-0216cef59993)/Addresses(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
     {
         "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-        "CustomerId": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-        "AddressTypeId": 2,
+        "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
         "AddressType": "Home",
+        "AddressTypeId": 2,
+        "Country": "Canada",
+        "CountryCode": "CA",
         "Default": false,
         "DoNotContact": true,
-        "CountryCode": "CA",
-        "Country": "Canada",
         "Locality": "Regina",
-        "StateCode": "SK",
-        "State": "Saskatchewan",
+        "Notes": "Adding a note",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
+        "State": "Saskatchewan",
+        "StateCode": "SK",
         "StreetAddress1": "2221 Cornwall Street",
-        "StreetAddress2": "",
-        "Notes": ""
+        "StreetAddress2": ""
     }
 
 ### Response
@@ -682,24 +715,25 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [Address](#Address) - The Address resource that was updated, if it was successful
 
 ###### Example
+
     HTTP 200 Content-Type: application/json
     {
         "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-        "CustomerId": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-        "AddressTypeId": 2,
+        "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
         "AddressType": "Home",
+        "AddressTypeId": 2,
+        "Country": "Canada",
+        "CountryCode": "CA",
         "Default": false,
         "DoNotContact": true,
-        "CountryCode": "CA",
-        "Country": "Canada",
         "Locality": "Regina",
-        "StateCode": "SK",
-        "State": "Saskatchewan",
+        "Notes": "Adding a note",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
+        "State": "Saskatchewan",
+        "StateCode": "SK",
         "StreetAddress1": "2221 Cornwall Street",
-        "StreetAddress2": "",
-        "Notes": ""
+        "StreetAddress2": ""
     }
 
 ## Adding a Customer Contact Method
@@ -707,19 +741,27 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 ### Request
 
     POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
+    {
+        {ContactMethod}
+    }
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [ContactMethod](#ContactMethod)
 * `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
 
+#### Request Parameters
+
+* `ContactMethod` (Required) - See [ContactMethod](#ContactMethod)
+
 ###### Example
+
     POST /Companies(1)/Customers(503d1d4a-c974-4286-b4a2-002699e60ad6)/ContactMethods
     Authorization: Bearer (Access Token)
     Accept: application/json
@@ -727,52 +769,60 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     {
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
         "ContactMethodCategoryId": 1,
-        "ContactMethodCategory": "Phone",
         "ContactMethodTypeId": 5,
-        "ContactMethodType": "Pager",
-        "Value": "(306) 222-3333",
-        "DoNotContact": true,
         "Default": false,
-        "Notes": ""
+        "DoNotContact": true,
+        "Notes": "",
+        "Value": "(306) 222-3333"
     }
   
 ### Response
 
-* [ContactMethod](#Contact Method) - The ContactMethod resource that was requested, if it exists
+* [ContactMethod](#ContactMethod) - The ContactMethod resource that was requested, if it exists
 
 ###### Example
+
     HTTP 201 Content-Type: application/json 
     {
         "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "ContactMethodCategoryId": 1,
         "ContactMethodCategory": "Phone",
-        "ContactMethodTypeId": 5,
+        "ContactMethodCategoryId": 1,
         "ContactMethodType": "Pager",
-        "Value": "(306) 222-3333",
-        "DoNotContact": true,
+        "ContactMethodTypeId": 5,
         "Default": false,
-        "Notes": ""
+        "DoNotContact": true,
+        "Notes": "",
+        "Value": "(306) 222-3333"
     }
 
 ## Updating a Customer Contact Method
 
 ### Request
+
     PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId} 
-    
+    {
+        {ContactMethod}
+    }
+
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [ContactMethod](#ContactMethod)
 * `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
 * `ContactMethodId` (Required) The Id of the [ContactMethod](#ContactMethod) being updated
 
+#### Request Parameters
+
+* `ContactMethod` (Required) - See [ContactMethod](#ContactMethod)
+
 ###### Example
+
     PUT /Companies(1)/Customers(5ce90b33-1668-46f0-b3a8-0216cef59993)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)
     Authorization: Bearer (Access Token)
     Accept: application/json
@@ -780,14 +830,14 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     {
         "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "ContactMethodCategoryId": 1,
         "ContactMethodCategory": "Phone",
-        "ContactMethodTypeId": 5,
+        "ContactMethodCategoryId": 1,
         "ContactMethodType": "Pager",
-        "Value": "(306) 222-3333",
-        "DoNotContact": true,
+        "ContactMethodTypeId": 5,
         "Default": false,
-        "Notes": ""
+        "DoNotContact": true,
+        "Notes": "Updating this contact method",
+        "Value": "(306) 222-3333"
     }
   
 ### Response
@@ -795,18 +845,19 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 * [ContactMethod](#ContactMethod) - The ContactMethod resource that was updated, if it was successful 
 
 ###### Example
+
     HTTP 200 Content-Type: application/json 
     {
         "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "ContactMethodCategoryId": 1,
         "ContactMethodCategory": "Phone",
-        "ContactMethodTypeId": 5,
+        "ContactMethodCategoryId": 1,
         "ContactMethodType": "Pager",
-        "Value": "(306) 222-3333",
-        "DoNotContact": true,
+        "ContactMethodTypeId": 5,
         "Default": false,
-        "Notes": ""
+        "DoNotContact": true,
+        "Notes": "Updating this contact method",
+        "Value": "(306) 222-3333"
     }
 
 # Searching
@@ -822,7 +873,7 @@ The type of filters available depend on the Data Type of the property being filt
 See the table below for available filters and the syntax of using each filter.
 
 | Keyword | Filter Description | Data Type | Examples |
-|----------------|------------|---------|
+|:--------|:-------------------|:----------|:---------|
 | `eq` | Property is equal to value | Integer, Boolean, String, Date | `ContactMethod eq 1` <br/> `DoNotContact eq true`  <br/> `Criteria eq 'Bob'` <br/> `DateOfBirth eq DateTime'1990-01-01'`|
 | `gt` | Property is greater than value(s) | Integer, Date | `ContactMethod gt 1` <br/> `DateOfBirth gt DateTime'1990-01-01'` <br/> `Criteria gt DateTime'2015-01-01'`|
 | `lt` | Property is less than value(s) | Integer, Date | `ContactMethod lt 3` <br/> `DateOfBirth lt DateTime'1990-01-01'` <br/> `Criteria lt DateTime'2015-01-01'`|
@@ -858,38 +909,41 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html)
 * `FilterQuery` (Required) - The filter to apply to the [Customer](#Customer) request
 
 ###### Example
+
     GET /Companies(1)/Customers?$filter=PrimaryName eq 'bob'
     Authorization: Bearer (Access Token)
     Accept: application/json
 
 ### Response
 
-* Array [[Customer](#Customer)] - An array of Customer resources matching filter criteria
+* Array[[Customer](#Customer)] - An array of Customer resources matching filter criteria
 
 ###### Example
+
     HTTP 200 Content-Type: application/json 
     {
         "Id": "67d75e7c-5b0e-49ed-92a8-a53dc61c22c8,
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
-        "PrimaryName": "bob",
-        "AlternateName": "rob",
+        "PrimaryName": "Robert",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
+        "AlternateName": "Bob",
+        "CustomerType": "Person",
+        "CustomerTypeId": 2,
         "DateOfBirth": "1952-07-23T12:00:00.000",
-        "Notes": "Interested in iPhone 6",
         "Disabled": true,
-        "DoNotContact": true
+        "DoNotContact": true,
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr"
+
     }
 
 ## CustomerSearch
@@ -919,39 +973,41 @@ The Criteria filter will search the properties below for the given value.
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json` **OR** `Accept: application/hal+json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html)
 * `FilterQuery` (Required) - The filter to apply to the [CustomerSearch](#CustomerSearch) request
 
 ###### Example
+
     GET /Companies(1)/CustomerSearch?$filter=Critera eq 'Bob'
     Authorization: Bearer (Access Token)
     Accept: application/hal+json
 
 ### Response
 
-* Array [[CustomerFull](#CustomerFull)] - An array of CustomerFull resources matching filter criteria
+* Array[[CustomerFull](#CustomerFull)] - An array of CustomerFull resources matching filter criteria
 
 ###### Example
+
     HTTP 200 Content-Type: application/json 
     {
         "Criteria": "Bob",
         "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "CustomerTypeId": 2,
-        "CustomerType": "Person",
-        "Title": "Mr",
         "PrimaryName": "Robert",
-        "AlternateName": "Bob",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
+        "AlternateName": "Bob",
+        "CustomerTypeId": 2,
+        "CustomerType": "Person",
         "DateOfBirth": "1952-07-23T12:00:00.000",
-        "Notes": "Interested in iPhone 6",
         "Disabled": true,
-        "DoNotContact": true
+        "DoNotContact": true,
+        "Notes": "Interested in iPhone 6",
+        "Title": "Mr",
         "Addresses": [
             {
                 "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
@@ -1031,11 +1087,11 @@ These links are _relative_, they do not include the base endpoint. It is the res
             },
             "prev": {
               "href": "Companies(1)/Customers?$skip=0&$top=10",
-              "templated": false
+              "templated": fals
             }
         },
         "_embedded": {
-            "self": []
+            "self": [ ]
         }
     }
 

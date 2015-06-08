@@ -6,29 +6,30 @@ keywords:
 audience: 
 last_updated: 
 summary: 
+metadata: false
 ---
 
 {% include linkrefs.html %}
 
-#### Access Token <a name='Access Token' />
+#### Access Token
 
 An Access Token is a string that identifies a client application and allows authenticated access to iQmetrix APIs.
 
-#### Credit Account <a name='Credit Account' />
+#### Credit Account
 
 A type of Account where debits increase the Account's balance.
 
-#### Debit Account <a name='Debit Account' />
+#### Debit Account
 
-A type of Account where credits increase the Account's balance.
+A type of Account where credits decrease the Account's balance.
 
-#### Hero Shot <a name='Hero Shot' />
+#### Hero Shot
 
 An Asset for a Product, typically an image or video.
 
-#### OAuth <a name='OAuth' />
+#### OAuth
 
-OAuth provides client applications with secure access to resources on behalf of a resource owner by allowing [Access Tokens](#Access Token) to be issued to third-party clients. 
+OAuth provides client applications with secure access to resources on behalf of a resource owner by allowing [Access Tokens](#Access-Token) to be issued to third-party clients. 
 
 ###### Example
 

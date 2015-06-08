@@ -1,1 +1,6 @@
-jekyll_platform: "an extremely fast and simple static site generator"
+Access-Token: A string that identifies a client application and allows authenticated access to iQmetrix APIs
+Credit-Account: A type of Account where debits increase the Account balance
+Debit-Account: A type of Account where credits decrease the Accounts balance
+Hero-Shot: An Asset for a Product, typically an image or video
+O-Auth: Provides client applications with secure access to resources on behalf of a resource owner by allowing Access Tokens to be issued to third-party clients
+

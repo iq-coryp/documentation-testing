@@ -6,6 +6,7 @@ keywords:
 audience: 
 last_updated: 
 summary: 
+metadata: false
 ---
 
 {% include linkrefs.html %}
@@ -16,11 +17,11 @@ iQmetrix APIs support the `JSON` and `HAL+JSON` response formats depending on th
 
 When sending an API request, you can select the format to return by defining the value in the HTTP Accept header, using the following syntax:
 
-#### JSON
+### JSON
 
     Accept: application/json
 
-#### HAL+JSON
+### HAL+JSON
 
     Accept: application/hal+json
 

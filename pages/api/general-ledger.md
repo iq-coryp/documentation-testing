@@ -37,7 +37,7 @@ An Account resource consists of the following properties:
 | DateCreatedUTC | DateTime | Auditing column showing when the Account was first created, in UTC. This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
 | DateUpdatedUTC | DateTime | Auditing column showing when the Account was last updated, in UTC.  This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
 | Description | String (1024) | Description of the Account | `This is a Canadian $ account` |
-| IsDebitAccount | Boolean | True if Account is a [Debit Account](/api/glossary.html#Debit-Account), false if it is a [Credit Account](/api/glossary.html#Credit-Account)| `true` |
+| IsDebitAccount | Boolean | True if Account is a <a href="/api/glossary.html#Debit-Account" data-toggle="tooltip" data-original-title="{{site.data.glossary.Debit-Account}}">Debit Account</a>, false if it is a <a href="/api/glossary.html#Debit-Account" data-toggle="tooltip" data-original-title="{{site.data.glossary.Credit-Account}}">Credit Account</a>| `true` |
 | IsEnabled | Boolean | True if the Account is enabled, false if it is disabled | `true` |
 | Version | Integer | The latest revision number | `1` |
 
@@ -84,7 +84,7 @@ An Entry resource consists of the following properties:
 		
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json` **OR** `Accept: application/hal+json` 
 
 #### URI Parameters
@@ -131,7 +131,7 @@ An Entry resource consists of the following properties:
 		
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/hal+json`
 
 #### URI Parameters

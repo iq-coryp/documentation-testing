@@ -17,9 +17,9 @@ summary:
 
 ## Authentication 
 
-iQmetrix APIs are protected by [**OAuth2**](/api/glossary.html#OAuth).
+iQmetrix APIs are protected by <b><a href="/api/glossary.html#OAuth" data-toggle="tooltip" data-original-title="{{site.data.glossary.O-Auth}}">OAuth2</a></b>.
 
-In order to make authorized requests to iQmetrix APIs, your application must first obtain an [Access Token](/api/glossary.html#Access Token).
+In order to make authorized requests to iQmetrix APIs, your application must first obtain an Access Token.
 
 ## Obtaining an Access Token
 
@@ -32,13 +32,19 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 
     POST /auth2/token
 
-#### Parameters
+    grant_type={GrantType}&
+    username={Username}&
+    password={Password}&
+    client_id={ClientId}&
+    client_secret={ClientSecret}
 
-*  `grant_type` (Required) - The value must be `password`
-*  `username` (Required) - The username provided to iQmetrix, usually an email address
-*  `password` (Required) - The password, provided when an account is created
-*  `client_id` (Required) The client ID powered by iQmetrix
-*  `client_secret` (Required) - The client secret
+#### Request Parameters
+
+*  `GrantType` (Required) - The value must be `password`
+*  `Username` (Required) - The username provided to iQmetrix, usually an email address
+*  `Password` (Required) - The password, provided when an account is created
+*  `ClientId` (Required) The client ID powered by iQmetrix
+*  `ClientSecret` (Required) - The client secret
 
 ###### Example
 
@@ -71,10 +77,10 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 
 The below table may help resolve problems encountered when making requests to the Authentication API.
 
-| Error Code | Message| How to Resolve|
-|:-----------|:-------|:--------------|
-| HTTP 400 | `unsupported_grant_type` | Ensure grant_type is set to `password`|
-| HTTP 400 | `invalid_client` | Ensure client_id and client_secret are correct|
+| Error Code | Message | How to Resolve |
+|:-----------|:--------|:---------------|
+| HTTP 400 | `unsupported_grant_type` | Ensure grant_type is set to `password` |
+| HTTP 400 | `invalid_client` | Ensure client_id and client_secret are correct |
 | HTTP 400 | `invalid_grant` | Ensure username and password are correct |
  
 ## Refresh Token 
@@ -91,12 +97,17 @@ Instead of always using credentials, a client application may use the refresh to
 
     POST /auth2/token
 
-#### Parameters
+    grant_type={GrantType}&
+    client_id={ClientId}&
+    client_secret={ClientSecret}&
+    refresh_token={RefreshToken}
 
-* `grant_type` (Required) - The value must be `refresh_token`
-* `client_id` (Required) The client ID powered by iQmetrix
-* `client_secret` (Required) - The client secret, should not be shared
-* `refresh_token` (Required) - The refresh token we are exchanging 
+#### Request Parameters
+
+* `GrantType` (Required) - The value must be `refresh_token`
+* `ClientId` (Required) The client ID powered by iQmetrix
+* `ClientSecret` (Required) - The client secret, should not be shared
+* `RefreshToken` (Required) - The refresh token we are exchanging 
 
 ###### Example
 
@@ -128,6 +139,6 @@ The below table may help resolve problems encountered when making requests to th
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
-| HTTP 400 | `unsupported_grant_type` | Ensure grant_type is set to `refresh_token`|
-| HTTP 400 | `invalid_client` | Ensure client_id and client_secret are correct|
-| HTTP 400 | `invalid_grant` | Ensure client credentials are the same as those used in the original request to acquire the provided refresh token  |
+| HTTP 400 | `unsupported_grant_type` | Ensure grant_type is set to `refresh_token` |
+| HTTP 400 | `invalid_client` | Ensure client_id and client_secret are correct |
+| HTTP 400 | `invalid_grant` | Ensure client credentials are the same as those used in the original request to acquire the provided refresh token |

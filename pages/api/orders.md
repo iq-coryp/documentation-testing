@@ -120,38 +120,47 @@ An **Item** resource consists of the following properties:
 ## Creating an Order
 
 ### Request
-    POST /Companies({CompanyId})/Orders
+
+    POST /Companies({CompanyId})/Orders 
+    {
+        {Order}
+    }
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Order](#Order)
 
+#### Request Parameters
+
+* `Order` (Required) - See [Order](#Order)
+
 ###### Example
+
     POST /Companies(1)/Orders
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
     {
-        "OrderTypeId": 3,
+        "Name": "iPhone 5 Order", 
+        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "EmployeeId": 15,
         "EntityId": 8,
+        "OrderTypeId": 3,
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "Name": "iPhone 5 Order", 
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "TenderId": "",
         "TenderOrigin": "",
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "EmployeeId": 15,
+        "DiscountAmount": 15.0,
         "DiscountCode": "MTRY-15",
-        "DiscountDescription": "Military discount",
-        "DiscountAmount": 15.0
+        "DiscountDescription": "Military discount"
     }
 
 ### Response
@@ -159,70 +168,80 @@ An **Item** resource consists of the following properties:
 * [Order](#Order) - The Order resource that was created, if succesful
 
 ###### Example
+
     HTTP 201 Content-Type: application/json
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-        "OrderTypeId": 3,
+        "Name": "iPhone 5 Order", 
+        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "EmployeeId": 15,
         "EntityId": 8,
+        "State": "Created",
+        "OrderExpiryDate": "2015-05-08T18:05:13.137",
+        "OrderExpiryHours": 72,
+        "OrderType": "Purchase",
+        "OrderTypeId": 3,
+        "CreatedDateUtc": "2015-05-05T18:05:13.137",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "OrderType": "Purchase",
-        "State": "Created",
-        "CreatedDateUtc": "2015-05-05T18:05:13.137",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingEntityId": "1"
-        "PrintableId": "8765-1234-987",
-        "Name": "iPhone 5 Order", 
         "TenderId": "",
         "TenderOrigin": "",
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "EmployeeId": 15,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
-        "OrderExpiryHours": 72,
-        "OrderExpiryDate": "2015-05-08T18:05:13.137"
+        "PrintableId": "8765-1234-987"
     }
 
 ## Adding Items to an Order
 
 ### Request
-    POST /Companies({CompanyId})/Orders({OrderId})/Items
+
+    POST /Companies({CompanyId})/Orders({OrderId})/Items 
+    {
+        {Item}
+    }
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Order](#Order)
 * `OrderId` (Required) - The Id of the [Order](#Order) being updated
 
+#### Request Parameters
+
+* `Item` (Required) - See [Item](#Item)
+
 ###### Example
+
     POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Items
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
     {
-        "ItemTypeId": 1,
         "ItemStatusId": 1,
+        "ItemTypeId": 1,
         "ProductId": 1,
         "SupplierEntityId": 0,
-        "Quantity": 2,
+        "SupplierReference":"10",
         "Cost": 5.99,
         "ListPrice": 12.99,
         "SellingPrice": 9.99,
         "Index": 0,
         "Description": "LG G3 phone case",
-        "SKU": "00001",
         "Notes": "",
+        "Quantity": 2,
         "SerialNumbers":  ["abc123","abc321"],
-        "SupplierReference":"10",
-        "TrackingInformation": [ ],
-        "ShoppingOptionId": ""
+        "SKU": "00001",
+        "ShoppingOptionId": "",
+        "TrackingInformation": [ ]
     }
 
 ### Response
@@ -230,28 +249,28 @@ An **Item** resource consists of the following properties:
 * [Item](#Item) - The Item that was added to the [Order](#Order), if succesful
 
 ###### Example
+
     HTTP 201 Content-Type: application/json
     {
         "Id": "2ad88692-7757-4a72-915b-dfe8f2539279",
         "OrderId": "2bafefc4-73bb-40ce-bc85-0bae1f11cd92",
         "ItemStatus": "New",
-        "ItemType": "DropShip",
-        "ItemTypeId": 1,
         "ItemStatusId": 1,
-        "ProductId": 12,
+        "ItemTypeId": 1,
+        "ProductId": 1,
         "SupplierEntityId": 0,
-        "Quantity": 2,
+        "SupplierReference":"10",
         "Cost": 5.99,
         "ListPrice": 12.99,
         "SellingPrice": 9.99,
         "Index": 0,
         "Description": "LG G3 phone case",
+        "Notes": "",
+        "Quantity": 2,
+        "SerialNumbers":  ["abc123","abc321"],
         "SKU": "00001",
-        "Notes": "Item Note",
-        "SerialNumbers":  ["abc123"],
-        "SupplierReference": "10",
-        "TrackingInformation": [ ],
-        "ShoppingOptionId": ""
+        "ShoppingOptionId": "",
+        "TrackingInformation": [ ]
     }
 
 ### Errors

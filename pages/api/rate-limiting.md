@@ -26,7 +26,7 @@ There are three rate limit policies that are applied to the APIs.
 
 The Authenticated Limit policy determines how many **Authenticated Requests** can be made during the Rate Limit Window.
 
-Authenticated Requests are made to iQmetrix APIs that require authentication, and include an [Access Token](/api/glossary.html#Access Token) in the HTTP Header.
+Authenticated Requests are made to iQmetrix APIs that require authentication, and include an [Access Token](/api/glossary.html#Access-Token) in the HTTP Header.
 
 To determine the limit, make an Authenticated Request to an iQmetrix API, then check the `X-RateLimit-Limit` HTTP Header of the response. 
 
@@ -49,7 +49,7 @@ To determine the limit, make request to an iQmetrix API, then check the `X-RateL
 All responses from the iQmetrix API's have the following headers, which provide information about how many requests are remaining.
 
 | Header Name | Description |
-|:------------|:----------------------------------------------------------------------|
+|:------------|:------------|
 | X-RateLimit-Limit | The maximum number of requests allowed in the current rate limit window |
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window | 
 | X-RateLimit-Reset | The time when the rate limit window will reset in UTC |
