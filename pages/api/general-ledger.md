@@ -27,18 +27,18 @@ An Account resource consists of the following properties:
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier for the Account. This value is system-generated and read-only | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
 | AccountName | String (128) | The name of the Account. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
-| AccountNumber | String (128 | The Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
+| AccountNumber | String (128) | The Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
 | AccountCategory  | String | Category of the Account, valid values are: **Asset, Liability, Equity, Revenue and Expense** | `Asset` |
 | SubCategory | String (256) | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
+| CreatedByUserId | Integer  | Auditing column showing User Id of whoever created this Account. This value is system-generated and read-only | `8488` |
+| UpdatedByUserId  | Integer | Auditing column showing User Id of whoever last updated this Account. This value is system-generated and read-only | `8488` |
 | CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
-| IsEnabled | Boolean | True if the Account is enabled, false if it is disabled | `true` |
-| Description | String (1024) | Description of the Account | `This is a Canadian $ account` |
-| IsDebitAccount | Boolean | True if Account is a [Debit Account](/api/glossary.html#Debit Account), false if it is a [Credit Account](/api/glossary.html#Credit Account)| `true` |
 | CustomProperties |Object (4000) | A set of key-value pairs that contain extra data to store with the Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | |
 | DateCreatedUTC | DateTime | Auditing column showing when the Account was first created, in UTC. This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
-| CreatedByUserId | Integer  | Auditing column showing User Id of whoever created this Account. This value is system-generated and read-only | `8488` |
 | DateUpdatedUTC | DateTime | Auditing column showing when the Account was last updated, in UTC.  This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
-| UpdatedByUserId  | Integer | Auditing column showing User Id of whoever last updated this Account. This value is system-generated and read-only | `8488` |
+| Description | String (1024) | Description of the Account | `This is a Canadian $ account` |
+| IsDebitAccount | Boolean | True if Account is a [Debit Account](/api/glossary.html#Debit-Account), false if it is a [Credit Account](/api/glossary.html#Credit-Account)| `true` |
+| IsEnabled | Boolean | True if the Account is enabled, false if it is disabled | `true` |
 | Version | Integer | The latest revision number | `1` |
 
 ### Transaction
@@ -60,15 +60,15 @@ An Entry resource consists of the following properties:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| LineNumber | Integer | A value indicating the sort order of this entry within the Transaction.  This value is system-generated and read-only | `1` |
 | AccountId | GUID | The Id of the Account this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` |
-| EntityId | Integer | EntityId that this Entry applies to, such as a Store Id | `25` |
-| Debit | Decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
 | Credit | Decimal | The value of the Credit side of this Entry, must be a positive value. If Credit is positive, Debit must be 0 | `0` |
+| CustomProperties | Object (4000) | Key-value pairs that contain extra data to store with the Entry, maximum length when serialized to JSON is 4000 charcters | |
+| Debit | Decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
+| EntityId | Integer | EntityId that this Entry applies to, such as a Store Id | `25` |
+| LineNumber | Integer | A value indicating the sort order of this entry within the Transaction.  This value is system-generated and read-only | `1` |
 | Memo | String (1024) | Memo string for this Entry | `Memo for debit` |
 | ReferenceId | String (128) | Reference number string, such as the invoice that caused the Transaction | `1234` |
 | ReferenceType | String (128) | String value to indicate what the ReferenceId column is refering to (Invoice, Cheque, etc.) | `Invoice Id` |
-| CustomProperties | Object (4000) | Key-value pairs that contain extra data to store with the Entry, maximum length when serialized to JSON is 4000 charcters | |
 
 #### Notes
 * A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries are the same value, this is called a Balanced Transaction
@@ -81,13 +81,13 @@ An Entry resource consists of the following properties:
 ### Request
 
 	GET /Companies({CompanyId})/Accounts
-    
+		
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
+* `Authorization: Bearer` (<a href='/api/glossary.html#Access-Token'>Access Token</a>)
 * `Accept: application/json` **OR** `Accept: application/hal+json` 
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html)
 
@@ -104,24 +104,23 @@ An Entry resource consists of the following properties:
 ###### Example
 	[
 		{
-		    "Id": "c60b922e-1454-4999-aecb-775431e56831",
-		    "AccountName": "CAD Bank Account: 518",
-		    "AccountNumber": "1518",
-		    "AccountCategory": "Asset",
-		    "SubCategory": "Current Assets",
-		    "CurrencyCode": "CAD",
-		    "IsEnabled": true,
-		    "Description": "This is a Canadian $ account",
-		    "IsDebitAccount": true,
-		    "CustomProperties": {
-		      
-		    },
-		    "DateCreatedUTC": "2015-04-23T13:14:12.997",
-		    "CreatedByUserId": 8488,
-		    "DateUpdatedUTC": "2015-04-23T13:14:12.997",
-		    "UpdatedByUserId": 8488,
-		    "Version": "1"
-		}
+			"Id": "c60b922e-1454-4999-aecb-775431e56831",
+			"AccountName": "CAD Bank Account: 518",
+			"AccountNumber": "1518",
+			"AccountCategory": "Asset",
+			"SubCategory": "Current Assets",
+			"CreatedByUserId": 8488,
+			"UpdatedByUserId": 8488,
+			"CurrencyCode": "CAD",
+			"CustomProperties": { },
+			"DateCreatedUTC": "2015-04-23T13:14:12.997",
+			"DateUpdatedUTC": "2015-04-23T13:14:12.997",
+			"Description": "This is a Canadian $ account",
+			"IsDebitAccount": true,
+			"IsEnabled": true,
+			"Version": "1"
+		},
+		...
 	]
 
 ## Get Transactions By Date
@@ -129,13 +128,13 @@ An Entry resource consists of the following properties:
 ### Request
 
 	GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top} 
-    
+		
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary.html#Access Token'>Access Token</a>)
-* `Accept: application/json`
+* `Authorization: Bearer` (<a href='/api/glossary.html#Access-Token'>Access Token</a>)
+* `Accept: application/hal+json`
 
-#### Parameters
+#### URI Parameters
 
 * `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html)
 * `StartDate` (Required) - Date at which to begin search request, in UTC
@@ -152,64 +151,113 @@ An Entry resource consists of the following properties:
 	
 ### Response
 
-* Array[[Transaction](####Transaction)] - An array of Transactions, if any were found
-	
+* Array[[Transaction](#Transaction)] - An array of Transactions matching the filter criteria, if any were found
+
 ###### Example
 
+<ul id="glTabs" class="nav nav-tabs">
+    <li class="active"><a href="#hal" data-toggle="tab">application/hal+json</a></li>
+    <li><a href="#json" data-toggle="tab">application/json</a></li>
+</ul>
+<div class="tab-content"> 
+	<div role="tabpanel" class="tab-pane active" id="hal">
+		<pre>
+HTTP 200 Content-Type: application/hal+json
+[
 	{
-	  "_links": {
-	    "self": {
-	      "href": "Companies(1)\/Transactions?$filter=TransactionDateUTC%20ge%20datetime%272015-01-01T00:00:00.000%27%20and%20TransactionDateUTC%20le%20datetime%272015-12-31T23:59:59.000%27&$skip=0&$top=-20",
-	      "templated": false
-	    }
-	  },
-	  "_embedded": {
-	    "self": [
-	      {
-	        "_links": {
-	          "self": {
-	            "href": "Companies(1)\/Transactions(2862e667-9dd7-45b0-9f6b-7e6bdaad0f61)",
-	            "templated": false
-	          }
-	        },
-	        "_embedded": {
-	          
-	        },
-	        "Id": "2862e667-9dd7-45b0-9f6b-7e6bdaad0f61",
-	        "TransactionDateUTC": "2015-04-23T13:14:34.2",
-	        "CreatedByUserId": 8488,
-	        "Entries": [
-	          {
-	            "LineNumber": 1,
-	            "AccountId": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c",
-	            "EntityId": 25,
-	            "Debit": 5000,
-	            "Credit": 0,
-	            "Memo": "Memo for debit",
-	            "ReferenceId": "1234",
-	            "ReferenceType": "1234",
-	            "CustomProperties": {
-	              
-	            }
-	          },
-	          {
-	            "LineNumber": 2,
-	            "AccountId": "c60b922e-1454-4999-aecb-775431e56831",
-	            "EntityId": null,
-	            "Debit": 0,
-	            "Credit": 5000,
-	            "Memo": "Memo for credit",
-	            "ReferenceId": "1234",
-	            "ReferenceType": "1234",
-	            "CustomProperties": {
-	              
-	            }
-	          }
-	        ]
-	      }
-	    ]
-	  }
-	}
+		"_links": {
+			"self": {
+				"href": "Companies(1)\/Transactions?$filter=TransactionDateUTC%20ge%20datetime%272015-01-01T00:00:00.000%27%20and%20TransactionDateUTC%20le%20datetime%272015-12-31T23:59:59.000%27&$skip=0&$top=1",
+				"templated": false
+			},
+			"next": {
+				"href": "Companies(1)\/Transactions?$filter=TransactionDateUTC%20ge%20datetime%272015-01-01T00:00:00.000%27%20and%20TransactionDateUTC%20le%20datetime%272015-12-31T23:59:59.000%27&$skip=1&$top=1",
+				"templated": false
+			}
+		},
+		"_embedded": {
+			"self": [
+				{
+					"_links": {
+						"self": {
+							"href": "Companies(1)\/Transactions(2862e667-9dd7-45b0-9f6b-7e6bdaad0f61)",
+							"templated": false
+						}
+					},
+					"_embedded": { },
+					"Id": "2862e667-9dd7-45b0-9f6b-7e6bdaad0f61",
+					"TransactionDateUTC": "2015-04-23T13:14:34.2",
+					"CreatedByUserId": 8488,
+					"Entries": [
+						{
+							"AccountId": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c",
+							"Credit": 0,
+							"CustomProperties": { },
+							"Debit": 5000,
+							"EntityId": 25,
+							"LineNumber": 1,
+							"Memo": "Memo for debit",
+							"ReferenceId": "1234",
+							"ReferenceType": "1234"
+						},
+						{
+							"AccountId": "c60b922e-1454-4999-aecb-775431e56831",
+							"Credit": 5000,
+							"CustomProperties": { },
+							"Debit": 0,
+							"EntityId": null,
+							"LineNumber": 2,
+							"Memo": "Memo for credit",
+							"ReferenceId": "1234",
+							"ReferenceType": "1234",
+						}
+					]
+				}
+			]
+		}
+	},
+  ...
+]
+			</pre>
+		</div>
+	<div role="tabpanel" class="tab-pane" id="json">
+		<pre>
+HTTP 200 Content-Type: application/json
+[
+	{
+		"Id": "2862e667-9dd7-45b0-9f6b-7e6bdaad0f61",
+		"TransactionDateUTC": "2015-04-23T13:14:34.2",
+		"CreatedByUserId": 8488,
+		"Entries": [
+			{
+				"AccountId": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c",
+				"Credit": 0,
+				"CustomProperties": { },
+				"Debit": 5000,
+				"EntityId": 25,
+				"LineNumber": 1,
+				"Memo": "Memo for debit",
+				"ReferenceId": "1234",
+				"ReferenceType": "1234"
+			},
+			{
+				"AccountId": "c60b922e-1454-4999-aecb-775431e56831",
+				"Credit": 5000,
+				"CustomProperties": { },
+				"Debit": 0,
+				"EntityId": null,
+				"LineNumber": 2,
+				"Memo": "Memo for credit",
+				"ReferenceId": "1234",
+				"ReferenceType": "1234",
+			}
+		]
+	},	
+  ...
+]
+		</pre>
+	</div>
+</div>
 
 ## Pagination
 
@@ -234,23 +282,23 @@ These links are _relative_, they do not include the base endpoint. It is the res
 ##### Example
 
 	{
-	    "_links": {
-	        "self": {
-	          "href": "Companies(1)/Accounts?$skip=10&$top=10",
-	          "templated": false
-	        },
-	        "next": {
-	          "href": "Companies(1)/Accounts?$skip=20&$top=10",
-	          "templated": false
-	        },
-	        "prev": {
-	          "href": "Companies(1)/Accounts?$skip=0&$top=10",
-	          "templated": false
-	        }
-	    },
-	    "_embedded": {
-	        "self": []
-	    }
+		"_links": {
+			"self": {
+				"href": "Companies(1)/Accounts?$skip=10&$top=10",
+				"templated": false
+			},
+			"next": {
+				"href": "Companies(1)/Accounts?$skip=20&$top=10",
+				"templated": false
+			},
+			"prev": {
+				"href": "Companies(1)/Accounts?$skip=0&$top=10",
+				"templated": false
+			}
+		},
+		"_embedded": {
+			"self": []
+		}
 	}
 
 In the example above, the `_links` section is included in the data returned from an API call to get General Ledger Accounts, where `$skip=10` and `$top=10`.
