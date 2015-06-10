@@ -23,10 +23,11 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 
 ## Obtaining an Access Token
 
-### Notes 
+{{note}}
 
-* Each time the endpoint is called, a **new** access token is created and returned
-* The request is made using the `application/x-www-form-urlencoded` format
+Each time the endpoint is called, a <b>new</b> access token is created and returned
+
+{{end}}
 
 ### Request
 
@@ -37,6 +38,10 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
     password={Password}&
     client_id={ClientId}&
     client_secret={ClientSecret}
+
+### Headers
+
+* Content-Type: `application/x-www-form-urlencoded`
 
 #### Request Parameters
 
@@ -87,11 +92,15 @@ The below table may help resolve problems encountered when making requests to th
 
 Instead of always using credentials, a client application may use the refresh token to obtain a new access token.
 
-### Notes
+{{note}}
 
-* The client credentials must be the same as those used in the request to acquire the provided refresh token
-* The request is made using the `application/x-www-form-urlencoded` format
-* Once a refresh token has been exchanged, the access token it was provided with is revoked
+The client credentials must be the same as those used in the request to acquire the provided refresh token.
+
+{{end}}
+
+{{note}}
+Once a refresh token has been exchanged, the access token it was provided with is revoked
+{{end}}
 
 ### Request
 
@@ -101,6 +110,11 @@ Instead of always using credentials, a client application may use the refresh to
     client_id={ClientId}&
     client_secret={ClientSecret}&
     refresh_token={RefreshToken}
+
+
+### Headers
+
+* Content-Type: `application/x-www-form-urlencoded`
 
 #### Request Parameters
 
