@@ -1,0 +1,109 @@
+body {
+    padding-top:0px;
+}
+
+#custom-footer-container {
+    background-color: #222222;
+    border-color: #222222;
+    right: 0;
+    left: 0;
+}
+
+#custom-footer {
+    min-height:50px;
+    max-width: 1170px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1170px;
+}
+
+#custom-footer span {
+    color: white;
+}
+
+#navbar-custom-front {
+    background-image: url(/documentation-testing/images/Header-Image.jpg);
+    margin-bottom:0px;
+    border: 0px;
+    padding-bottom:30px;
+}
+
+#iQmetrixPlaform {
+    text-align: center;
+}
+
+#iQmetrixPlatform > div {
+    margin-bottom: 15px;
+}
+
+#iQmetrixPlatform .header {
+    color: white;
+    font-size: 35px;
+}
+
+#iQmetrixPlatform img {
+    margin-top: 50px;
+    margin-bottom:15px;
+}
+
+#iQmetrixPlatform .blurb {
+    margin-bottom: 30px;
+    color: white;
+}
+
+.front-page-button {
+    color:white;
+    border: 1px solid white;
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right:10px;
+    padding-left:10px;
+    margin-bottom: 20px;
+}
+
+.front-page-button:hover {
+    text-decoration: none;
+    background-color: white;
+    color:#247DDD;
+}
+
+.front-page-button-black {
+    color:#61615F;
+    border: 2px solid #61615F;
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right:10px;
+    padding-left:10px;
+    margin-bottom: 20px;
+}
+
+.front-page-button-black:hover {
+    text-decoration: none;
+    background-color: #61615F;
+    color:white;
+}
+
+#iqproducts {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-image: url(/documentation-testing/images/grey-texture.png);
+}
+
+.learn-more {
+    padding-top:15px;
+}
+
+.support-header {
+    font-size:24px;
+    color:#0096DB;
+}
+
+#iqsupport {
+    padding-top:40px;
+}
+
+#iqsupport div {
+    padding-bottom: 20px;
+}

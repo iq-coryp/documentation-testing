@@ -1,0 +1,14 @@
+{% include custom/conditions.html %}
+{% for entry in topnav %}
+  {% for subcategory in entry.subcategories %}
+      {% if subcategory.audience contains audience and subcategory.product contains product and subcategory.platform contains platform and subcategory.version contains version and subcategory.web != false %}
+      {% if subcategory.external_url %}
+          <li><a href="{{subcategory.external_url}}" target="_blank">{{subcategory.title}}</a></li>
+      {% elsif page.url contains subcategory.url %}
+          <li class="active"><a href="{{subcategory.url | prepend: site.baseurl | append: site.suffix}}">{{subcategory.title}}</a></li>
+       {% else %}
+          <li><a href="{{subcategory.url | prepend: site.baseurl | append: site.suffix}}">{{subcategory.title}}</a></li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
