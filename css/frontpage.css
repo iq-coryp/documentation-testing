@@ -122,5 +122,9 @@ body {
 }
 
 .links-row span {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.hrbar {
+    border-right: 1px solid #DCDCDC;
 }

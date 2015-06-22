@@ -18,21 +18,27 @@ site_title: Documentation theme for Jekyll
 
 tagline: iQmetrix Developer Portal
 
-baseurl: "/documentation-testing/"
+baseurl: "/"
+
+fileurl: "../"
+
+pagefileurl: "../../"
 
 port: 4006
 
 host: 127.0.0.1 
 
-url: "http://tomjohnson1492.github.io"
+url: "http://developers.iqmetrix.com"
 
 feedback_email: apidesign@iqmetrix.com
+
+support_email: apisupport@iqmetrix.com
 
 sidebar_accordion: true
 
 disqus_shortname: iqmetrixdeveloperportal
 
-google_analytics:  UA-408430-5
+google_analytics:  UA-69492-17
 
 markdown: redcarpet
 

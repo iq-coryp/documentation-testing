@@ -5,14 +5,14 @@ topnav:
 - title: Topnav
   subcategories:
     - title: GETTING STARTED
-      external_url: /
+      external_url: /api/rate-limiting/
       audience: writer, designer
       platform: all
       product: all
       version: all
 
     - title: API REFERENCE
-      external_url: /
+      external_url: /api/authentication/
       audience: writer, designer
       platform: all
       product: all
