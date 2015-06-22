@@ -22,10 +22,9 @@ body {
 }
 
 #navbar-custom-front {
-    background-image: url(/documentation-testing/images/Header-Image.jpg);
+    background-image: url(/images/Header-Image.jpg);
     margin-bottom:0px;
     border: 0px;
-    padding-bottom:30px;
 }
 
 #iQmetrixPlaform {
@@ -88,7 +87,11 @@ body {
 #iqproducts {
     padding-top: 50px;
     padding-bottom: 50px;
-    background-image: url(/documentation-testing/images/grey-texture.png);
+    background-image: url(/images/grey-texture.png);
+}
+
+#iqproducts > span {
+    padding-bottom:25px;
 }
 
 .learn-more {
@@ -98,12 +101,26 @@ body {
 .support-header {
     font-size:24px;
     color:#0096DB;
+    margin-bottom:15px;
+    margin-top:15px;
 }
 
 #iqsupport {
-    padding-top:40px;
+    padding-top:20px;
 }
 
-#iqsupport div {
+#iqsupport > span {
     padding-bottom: 20px;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: white;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #0096DB;
+}
+
+.links-row span {
+    margin-bottom: 15px;
 }

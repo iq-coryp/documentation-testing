@@ -1,29 +1,63 @@
 <!-- Navigation -->
 <nav id="navbar-custom-front" class="navbar navbar-inverse navbar-static-top" role="navigation">
-    <div class="container topnavlinks">
-        <div class="navbar-header">
-            <a class="fa fa-lg navbar-brand" href="{{ site.url }}">&nbsp;<span class="projectTitle"> {{site.topnav_title}} {{site.topnav_version}}</span></a>
-        </div>
+   <div class="container topnavlinks">
+       <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="fa fa-lg navbar-brand" href="{{ site.url }}">&nbsp;<span class="projectTitle"> {{site.topnav_title}} {{site.topnav_version}}</span></a>
+       </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 {% include navcategories.html %}
+                {% for entry in topnav_dropdowns %}
+                    {% for subcategory in entry.subcategories %}
+                      {% if subcategory.audience contains audience and subcategory.product contains product and subcategory.platform contains platform and subcategory.version contains version and subcategory.web != false %}
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ subcategory.title }}<b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                            {% for subitem in subcategory.items %}
+                              {% if subitem.audience contains audience and subitem.product contains product and subitem.platform contains platform and subitem.version contains version and subitem.web != false% %}
+                                {% if subitem.external_url %}
+                                  <li><a href="{{subitem.external_url}}" target="_blank">{{subitem.title}}</a></li>
+                                {% elsif page.url contains subitem.url %}
+                                  <li class="dropdownActive"><a href="{{subitem.url | prepend: site.baseurl | append: site.suffix}}">{{subitem.title}}</a></li>
+                                {% else %}
+                                 <li><a href="{{subitem.url | prepend: site.baseurl | append: site.suffix}}">{{subitem.title}}</a></li>
+                                {% endif %}
+                              {% endif %}
+                            {% endfor %}
+                          {% endif %}
+                     </ul>
+                  </li>
+                    {% endfor %}
+                  {% endfor %}
             </ul>
         </div>
         <div id="iQmetrixPlatform" class="text-center">
             <img src="images/platform-logo.png"></img>
             <div class="header">What is the iQmetrix Platform?</div>
-            <div>
-                <div class="blurb">
+            <span class="col-xs-12">
+                <span class="blurb col-xs-12">
                     The iQmetrix Platform is built from the ground up to support omnichannel retail experiences. Our developmental philosophy considers the operational complexity retailers face every day. Whether handling in-store, e-commerce or mobile transactions, we want to provide seamless experiences to retail staff and customers.
-                </div>
-                <div class="blurb">
+                </span>
+                <span class="blurb col-xs-12">
                     All our Platform services are designed with a publicly-facing REST API as a first-class citizen. This is the same API that our own developers use to build various products. 
-                </div>
-                <div>
+                </span>
+                <span class="links-row col-xl-12">
+                  <span class="col-xl-5 col-lg-3 col-md-3 col-sm-2 col-xs-12"></span>
+                  <span class="col-xl-1 col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <a class="front-page-button" href="/">API Documentation</a>
+                  </span>
+                  <span class="col-xl-1 col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <a class="front-page-button" href="/">Learn more about Platform</a>
-                </div>
-            </div>
+                  </span>
+                  <span class="col-xl-5 col-lg-3 col-md-3 col-sm-4 col-xs-12"></span>
+                </span>
+            </span>
         </div>
     </div>
 </nav>
