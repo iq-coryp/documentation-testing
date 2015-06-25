@@ -1,5 +1,5 @@
 ---
-title:  Entity Store
+title:  Entities
 permalink: /api/entity-store/
 tags: []
 keywords: 
@@ -10,203 +10,368 @@ summary:
 
 {% include linkrefs.html %}
 
+The Entity Store helps manage your Company structure. It also manages relationships your Company has with Suppliers, Manufacturers and Carriers. 
+
 ## Endpoints
 
 * Sandbox: https://entitymanagerdemo.iqmetrix.net/v1
 * Production: https://entitymanager.iqmetrix.net/v1
 
-# Entity Store
+## Carrier
 
-The Entity Store helps manage your Company structure. It also manages relationships your Company has with Suppliers, Manufacturers and Carriers. 
-
-## Resources
-
-### Location
-
-A **Location** consists of the following properties:
+A **Carrier** consists of the following properties:
 
 | Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer  | Unique identifier for the Location | `1` |
-| Name | String  | Location Name | `SampleLocation` |
-| Description | String  | Description of the Location | `The SampleLocation is used to clear out discounted inventory` |
-| Role | String  | The Role of the Location, this value must be `Location` | `Location` |
-| Roles | Array[Object] | The Role of the Location | |
-| Roles.Name | String | The name of the Role | `Location` |
-| CreatedUTC | DateTime  | Date when the Location was created in UTC| `2015-02-26T00:03:01.372Z` |
-| LastModifiedUTC | DateTime | Date when the Location was last modified in UTC | `2015-02-27T00:03:06.392Z` |
-| Area | Object | Measurement of the floor space of the Location |  |
-| Area.Value | Integer | Value of the Area | `1100` |
-| Area.Unit | String | Unit used for the Value | `SqFt` |
-| Address | Object | Address of the location | |
-| Address.AddressLine1 | String | First line of Address | `123 Sample Street` |
-| Address.AddressLine2 | String | Second line of Address | `Unit 200` |
-| Address.City | String | City | `Regina` |
-| Address.StateCode | String | State/Province. Uses the ISO 3166-2 standard | `SK` |
-| Address.StateName | String | State/Province. Uses the ISO 3166-2 standard | `Saskatchewan` |
-| Address.CountryCode | String | Country Code. Uses the ISO 3166-1 alpha-2 standard  | `CA` |
-| Address.CountryName | String | Country | `Canada` |
-| Address.Zip | String | Zip or Postal Code | `S4P2L1` |
-| Attributes | Object  | Set of key-value pairs that contain extra data to store with the Location |  |
-| Contacts | Object | Contact information for the Location | |
-| Contacts.Name | String | Name | `John Smith` |
-| Contacts.Description | String | Description | `Store Manager` |
-| Contacts.PhoneNumbers | Object | |
-| Contacts.PhoneNumbers.Description | String | Description | `Main Line` |
-| Contacts.PhoneNumbers.Number | String | Phone Number | `5555555555` |
-| Contacts.PhoneNumbers.Extension | String | Extension | `1234` |
-| CorrelationId | String | A reference to the Location in an external RMS | `RMS123` |
-| Geography | Object | Geographic coordinates of the Location | |
-| Geography.Longitude | Decimal | Longitude | `50.443559` |
-| Geography.Latitude | Decimal | Latitude | `-104.612034` |
-| LocationType | String | Reserved for future use | `null` |
-| LocationSubType | String | Reserved for future use | `null` |
-| Logo | Object | A reference to a media asset | |
-| Relationships | Object  | An array of Relationships for a Location |  |
-| SortName | String  | A string used for sorting the Location | `samplecompany` |
-| StoreHours | Object | Store hours for the Location | |
-| StoreHours.Monday | Object | Store hours for a day of the week, such as Monday | |
-| StoreHours.Monday.Open | Object | Opening time on this day | |
-| StoreHours.Monday.Open.Hour | Integer | Opening time hour, in the range of [0-24] | `10` |
-| StoreHours.Monday.Open.Minute | Integer | Opening time minute, in the range of [0-59] | `0` | 
-| StoreHours.Monday.Close | Object | Closing time on this day | |
-| StoreHours.Monday.Close.Hour | Integer | Closing time hour, in the range of [0-24] | `18` |
-| StoreHours.Monday.Close.Minute | Integer | Closing time minute, in the range of [0-59] | `0` | 
-| StorePhoneNumbers | Array[Object] | Phone numbers for the Location |  |
-| StorePhoneNumbers.Description | String | Description  | `Main Phone` |
-| StorePhoneNumbers.Number | String | Phone Number | `5555555555` |
-| StorePhoneNumbers.Extension | String | Extension | `5555` |
-| Version | Integer | The latest revision number| `13` |
+|:-----|:----------|-------------|:--------|
+| Id | Integer | Unique identifier for the Carrier. This value is system generated and read-only | `9` |
+| Name | String | Carrier Name | `SampleCarrier` |
+| Description | String  | Description of the Carrier | `Carrier creating great experiences.` |
+| Role | String | Role. This value is system generated and read-only | `Carrier` |
+| Roles | Object | The value must be `Carrier` | `{ "Name": "Carrier" }` |
+| CreatedUTC | DateTime | Date when the Carrier was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Date when the Carrier was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data to store with the Carrier | |
+| CorrelationId | String | Identifier for the Carrier in an external RMS | `2015-05-20T23:06:29.7700813Z` |
+| Logo | Object | A reference to an optional media asset |  |
+| Relationships | Array[Object]  | Relationships for a Carrier. This value is system generated and read-only |  |
+| SortName | String  | A string used for sorting the Carrier. This value is system generated and read-only | `samplecarrier` |
+| Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
 
-## Getting All Locations For a Company
+## Manufacturer
+
+A **Manufacturer** consists of the following properties:
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|-------------|:--------|
+| Id | Integer | Unique identifier for the Manufacturer. This value is system generated and read-only | `4` |
+| Name | String | Manufacturer Name | `SampleManufacturer` |
+| Description | String  | Description of the Manufacturer | `Manufacturer creating great experiences.` |
+| Role | String | Role. This value is system generated and read-only | `Manufacturer` |
+| Roles | Object | The value must be `Manufacturer` | `{ "Name": "Manufacturer" }` |
+| CreatedUTC | DateTime | Date when the Manufacturer was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Date when the Manufacturer was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data to store with the Manufacturer | |
+| CorrelationId | String | Identifier for the Manufacturer in an external RMS | `0bee057f-150d-42b3-8abf-9e096d2b45ee` |
+| Logo | Object | A reference to an optional media asset |  |
+| Relationships | Array[Object]  | Relationships for a Manufacturer. This value is system generated and read-only |  |
+| SortName | String  | A string used for sorting the Manufacturer. This value is system generated and read-only | `samplemanufacturer` |
+| Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
+
+## Vendor
+
+A **Vendor** consists of the following properties:
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|-------------|:--------|
+| Id | Integer | Unique identifier for the Vendor. This value is system generated and read-only | `14` |
+| Name | String | Vendor Name | `SampleVendor` |
+| Description | String  | Description of the Vendor | `Vendor creating great experiences.` |
+| Role | String | Role. This value is system generated and read-only | `Vendor` |
+| Roles | Object | The value must be `Vendor` | `{ "Name": "Vendor" }` |
+| CreatedUTC | DateTime | Date when the Vendor was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Date when the Vendor was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data to store with the Vendor | |
+| CorrelationId | String | Identifier for the Vendor in an external RMS | `3a077b06-4faa-4c5d-a15b-4f0fa630f986` |
+| Logo | Object | A reference to an optional media asset|  |
+| Relationships | Array[Object]  | Relationships for a Vendor. This value is system generated and read-only |  |
+| SortName | String  | A string used for sorting the Vendor. This value is system generated and read-only | `samplevendor` |
+| Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
+
+## Getting All Carriers
 
 ### Request
 
-    GET /Companies({CompanyId})/Locations
-    
-#### URI Parameters
-
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Location](#Location)
+	GET /Carriers
 
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
 * `Accept: application/json`
 
 ###### Example
 
-    GET /Companies(1)/Locations
+	GET /Carriers
+	Authorization: Bearer (Access Token)
+	Accept: application/json
+
+### Response
+
+* Array[[Carrier](#Carrier)] - Carrier resources, if any were found
+
+###### Example
+
+	HTTP 200 Content-Type: application/json
+	[
+		{
+			"Id": 9,
+			"Name": "SampleCarrier",
+			"Description": "Carrier creating great experiences.",
+			"Role": "Carrier",
+			"Roles": [
+				{
+					"Name": "Carrier"
+				}
+			],
+			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+			"Attributes": { 
+				"Sample Attribute": "sample"
+			},
+			"CorrelationId": "db9bfc10-932e-4fbb-966d-720d688c2f42",
+			"Logo": { },
+			"Relationships": [ ],
+			"SortName": "samplecarrier",
+			"Version": 1
+		},
+		...
+	]
+
+## Getting a Carrier
+
+### Request
+
+	GET /Carriers({CarrierId})
+	
+#### URI Parameters
+
+* `CarrierId` (**Required**) - Identifier for the [Carrier](#Carrier)
+
+#### Headers
+
+* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Accept: application/json`
+
+###### Example
+
+	GET /Carriers(9)
+	Authorization: Bearer (Access Token)
+	Accept: application/json
+
+### Response
+
+* [Carrier](#Carrier) - The Carrier resource that was requested, if it exists
+
+###### Example
+
+	HTTP 200 Content-Type: application/json
+	{
+		"Id": 9,
+		"Name": "SampleCarrier",
+		"Description": "Carrier creating great experiences.",
+		"Role": "Carrier",
+		"Roles": [
+			{
+				"Name": "Carrier"
+			}
+		],
+		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+		"Attributes": { 
+			"Sample Attribute": "sample"
+		},
+		"CorrelationId": "db9bfc10-932e-4fbb-966d-720d688c2f42",
+		"Logo": { },
+		"Relationships": [ ],
+		"SortName": "samplecarrier",
+		"Version": 1
+	}
+
+## Getting All Manufacturers
+
+### Request
+
+	GET /Manufacturers
+
+#### Headers
+
+* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Accept: application/json`
+
+###### Example
+
+	GET /Manufacturers
+	Authorization: Bearer (Access Token)
+	Accept: application/json
+
+### Response
+
+* Array[[Manufacturer](#Manufacturer)] - Manufacturer resources, if any were found
+
+###### Example
+
+	HTTP 200 Content-Type: application/json
+	[
+		{
+			"Id": 4,
+			"Name": "SampleManufacturer",
+			"Description": "Manufacturer creating great experiences.",
+			"Role": "Manufacturer",
+			"Roles": [
+				{
+					"Name": "Manufacturer"
+				}
+			],
+			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+			"Attributes": { 
+			"Sample Attribute": "sample"
+			},
+			"CorrelationId": "d4c43f84-d5cf-4cc9-9dcb-deadc2251ae0",
+			"Logo": { },
+			"Relationships": [ ],
+			"SortName": "samplemanufacturer",
+			"Version": 1
+		}
+		...
+	]
+
+
+## Getting a Manufacturer
+
+### Request
+
+    GET /Manufacturers({ManufacturerId})
+
+#### URI Parameters
+
+* `ManufacturerId` (**Required**) - Identifier for the [Manufacturer](#Manufacturer)
+
+#### Headers
+
+* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Accept: application/json`
+
+###### Example
+
+    GET /Manufacturers(4)
     Authorization: Bearer (Access Token)
     Accept: application/json
 
 ### Response
 
-* Array[[Location](#Location)] - Locations in the [Company](/api/entitystore.html)
+* [Manufacturer](#Manufacturer) - The Manufacturer resource that was requested, if it exists
 
 ###### Example
 
-    HTTP 200 Content-Type: application/json
-    [
-        {
-            "Id": 1,
-            "Name": "SampleLocation",
-            "Description": "The SampleLocation is used to clear out our discounted inventory.",
-            "LocationType": "Kiosk",
-            "LocationSubType": "Mall",
-            "Role": "Location",
-            "Roles": [
-                {
-                    "Name": "Location"
-                }
-            ],
-            "CreatedUtc": "2014-04-17T03:35:31.449Z",
-            "LastModifiedUtc": "2014-07-29T15:09:14.497Z",
-            "Area": {
-                "Value": 1100,
-                "Unit": "SqFt"
-            },
-            "Address": {
-                "AddressLine1": "123 Sample Street",
-                "AddressLine2": "Unit 200",
-                "City": "Regina",
-                "StateCode": "SK",
-                "StateName": "Saskatchewan"
-                "CountryCode": "CA",
-                "CountryName": "Canada",
-                "Zip": "S4P2L1"
-            },
-            "Attributes": { },
-            "Contacts": [ ],
-            "CorrelationId": "6312d7d1-fa2d-4820-b60c-613454714c7d",
-            "Geography": {
-                "Longitude": 50.443559,
-                "Latitude": -104.612034
-            },
-            "Logo": null
-            "Relationships": [ ],
-            "SortName": "samplelocation",
-            "StoreHours": {
-                "Monday": {
-                    "Open": {
-                        "Hour": 10,
-                        "Minute": 0
-                    },
-                    "Close": {
-                        "Hour": 18,
-                        "Minute": 0
-                    }
-                },
-                "Tuesday": {
-                    "Open": {
-                        "Hour": 10,
-                        "Minute": 0
-                    },
-                    "Close": {
-                        "Hour": 18,
-                        "Minute": 0
-                    }
-                },
-                "Wednesday": {
-                    "Open": {
-                        "Hour": 10,
-                        "Minute": 0
-                    },
-                    "Close": {
-                        "Hour": 18,
-                        "Minute": 0
-                    }
-                },
-                "Thursday": {
-                    "Open": {
-                        "Hour": 10,
-                        "Minute": 0
-                    },
-                    "Close": {
-                        "Hour": 18,
-                        "Minute": 0
-                    }
-                },
-                "Friday": {
-                    "Open": {
-                        "Hour": 10,
-                        "Minute": 0
-                    },
-                    "Close": {
-                        "Hour": 18,
-                        "Minute": 0
-                    }
-                },
-                "Saturday": null,
-                "Sunday": null
-            },
-            "StorePhoneNumbers": [
-                {
-                    "Description": "Main Phone",
-                    "Number": "5555555555",
-                    "Extension": "55555"
-                }
-            ],
-            "Version": 3
-        },
-        ...
-    ]
+	HTTP 200 Content-Type: application/json
+	{
+		"Id": 4,
+		"Name": "SampleManufacturer",
+		"Description": "Manufacturer creating great experiences.",
+		"Role": "Manufacturer",
+		"Roles": [
+			{
+				"Name": "Manufacturer"
+			}
+		],
+		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+		"Attributes": { 
+			"Sample Attribute": "sample"
+		},
+		"CorrelationId": "d4c43f84-d5cf-4cc9-9dcb-deadc2251ae0",
+		"Logo": { },
+		"Relationships": [ ],
+		"SortName": "samplemanufacturer",
+		"Version": 1
+	}
+
+
+## Getting All Vendors
+
+### Request
+
+	GET /Vendors
+
+#### Headers
+
+* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Accept: application/json`
+
+###### Example
+
+	GET /Vendors
+	Authorization: Bearer (Access Token)
+	Accept: application/json
+
+### Response
+
+* Array[[Vendor](#Vendor)] - Vendor resources, if any were found
+
+###### Example
+
+	HTTP 200 Content-Type: application/json
+	[
+		{
+			"Id": 14,
+			"Name": "SampleVendor",
+			"Description": "Vendor creating great experiences.",
+			"Role": "Vendor",
+			"Roles": [
+				{
+					"Name": "Vendor"
+				}
+			],
+			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+			"Attributes": { 
+				"Sample Attribute": "sample"
+			},
+			"CorrelationId": "15380be4-9cf2-4f05-9a60-184a59f7ba5d",
+			"Logo": { },
+			"Relationships": [ ],
+			"SortName": "samplevendor",
+			"Version": 1
+		},
+		...
+	]
+
+## Getting a Vendor
+
+### Request
+
+	GET /Vendors({VendorId})
+	
+#### URI Parameters
+
+* `VendorId` (**Required**) - Identifier for the [Vendor](#Vendor)
+
+#### Headers
+
+* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Accept: application/json`
+
+###### Example
+
+	GET /Vendors(14)
+	Authorization: Bearer (Access Token)
+	Accept: application/json
+
+### Response
+
+* [Vendor](#Vendor) - The Vendor resource that was requested, if it exists
+
+###### Example
+
+	HTTP 200 Content-Type: application/json
+	{
+		"Id": 14,
+		"Name": "SampleVendor",
+		"Description": "Vendor creating great experiences.",
+		"Role": "Vendor",
+		"Roles": [
+			{
+				"Name": "Vendor"
+			}
+		],
+		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+		"Attributes": { 
+			"Sample Attribute": "sample"
+		},
+		"CorrelationId": "15380be4-9cf2-4f05-9a60-184a59f7ba5d",
+		"Logo": { },
+		"Relationships": [ ],
+		"SortName": "samplevendor",
+		"Version": 1
+	}

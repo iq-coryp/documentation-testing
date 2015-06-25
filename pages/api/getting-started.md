@@ -1,5 +1,5 @@
 ---
-title:  Getting Started
+title:  Supported Response Formats
 permalink: /api/getting-started/
 tags: []
 keywords: 
@@ -10,8 +10,6 @@ metadata: false
 ---
 
 {% include linkrefs.html %}
-
-## Supported Response Formats
 
 iQmetrix APIs support the `JSON` and `HAL+JSON` response formats depending on the type of request.
 
@@ -25,7 +23,7 @@ When sending an API request, you can select the format to return by defining the
 
     Accept: application/hal+json
 
-The response includes an HTTP Content-Type header when the same value specified in the accept header.
+The response includes an HTTP Content-Type header with the same value specified in the accept header.
 
 ### Important
 

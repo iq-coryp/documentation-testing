@@ -20,6 +20,8 @@ tagline: iQmetrix Developer Portal
 
 baseurl: "/documentation-testing/"
 
+api_baseurl: "/documentation-testing/api"
+
 port: 4006
 
 host: 127.0.0.1 

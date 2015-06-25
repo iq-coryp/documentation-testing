@@ -18,9 +18,7 @@ Request URI's in the Catalog API are <b>case sensitive</b>
 * Sandbox: https://catalogsdemo.iqmetrix.net/v1/
 * Production: https://catalogs.iqmetrix.net/v1/
 
-## Resources
-
-### CatalogItem
+## CatalogItem
 
 A **CatalogItem** consists of the following properties:
 
@@ -35,7 +33,7 @@ A **CatalogItem** consists of the following properties:
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 {{end}}
 
-### CatalogSearchResult
+## CatalogSearchResult
 
 A **CatalogSearchResult** resource is used to return information about [Product](/api/product-library/#Product) resources that match a given criteria, defined in the request.
 
@@ -96,7 +94,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -146,7 +144,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -250,7 +248,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -301,7 +299,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -361,7 +359,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -466,7 +464,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -571,7 +569,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -676,7 +674,7 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -776,7 +774,7 @@ A CatalogSearchResult resource consists of the following properties:
 ## Search for Products
 
 {{note}}
-SearchTerms specified in the URI are compared against the following <a href="/api/product-library/#Product">Product</a> fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
+SearchTerms specified in the URI are compared against the following {{product}} fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
 {{end}}
 
 ### Request
@@ -785,7 +783,7 @@ SearchTerms specified in the URI are compared against the following <a href="/ap
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -894,7 +892,7 @@ Search filters can be combined to narrow down results. The example below illustr
     
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access-Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters

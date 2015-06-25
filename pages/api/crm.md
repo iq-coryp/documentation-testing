@@ -15,9 +15,7 @@ summary:
 * Sandbox: https://crmdemo.iqmetrix.net/v1
 * Production: https://crm.iqmetrix.net/v1
 
-## Resources
-
-### Customer
+## Customer
 
 A **Customer** is a person or organization that buys goods or services from a store or business. 
 
@@ -25,7 +23,7 @@ A Customer resource consists of the following properties:
 
 | Name  | Data Type   | Is Required?   | Description | Example |
 |:------|:------------|:---------------|:------------|:--------|
-| Id | GUID | Read-only | Unique identifier for the Customer. This value is system-generated and read-only | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Read-only | Unique identifier for this Customer. This value is system-generated and read-only | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | Optional | First name of a given person or the full name of the business, division, organization, etc| `Robert` |
 | MiddleName | String | Optional | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Optional | Family name. In the U.S., the last name of a Person | `Smith` |
@@ -33,12 +31,12 @@ A Customer resource consists of the following properties:
 | CustomerType | String | Read-only | The `Name` attribute associated with this Customer's [CustomerType](#CustomerType). This value is system-generated and read-only | `Company` |
 | CustomerTypeId | Integer | Required | Identifier for the [CustomerType](#CustomerType) associated with this Customer | `3` |
 | DateOfBirth | Date | Optional | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
-| Disabled | Boolean | Optional | A flag to indicate whether or not the Customer is disabled. The Delete operation acts as a "Disable" operation, as a Customer can not be deleted. When the Disabled flag is set to true, the Customer can still be retrieved and updated normally, defaults to false  | `true` |
-| DoNotContact | Boolean | Optional | A flag to indicate if the Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
-| Notes | String | Optional | Any notes related to the customer | `Interested in iPhone 6` |
+| Disabled | Boolean | Optional | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a "Disable" operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false  | `true` |
+| DoNotContact | Boolean | Optional | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
+| Notes | String | Optional | Any notes related to this customer | `Interested in iPhone 6` |
 | Title | String | Optional | Title | `Mr` |
 
-### Address
+## Address
 
 An **Address** represents a valid address somewhere on the planet.
 
@@ -46,16 +44,16 @@ An Address resource consists of the following properties:
 
 | Name | Data Type | Is Required? | Description | Example    |
 |:-----|:----------|:-------------|:------------|:-----------|
-| Id | GUID | Read-only  | Unique identifier for the Address. This value is system-generated and read-only | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| Id | GUID | Read-only  | Unique identifier for this Address. This value is system-generated and read-only | `cb39f178-3577-40bb-a7e5-032f29325b09` |
 | CustomerId | GUID | Optional | Unique identifier for the Customer associated with this Address | `f23a104e-0ce3-409e-8b1f-37ae9d1aeaa7` |
 | AddressType | String | Read-only | The `Name` attribute associated with this Addresses [AddressType](#AddressType). This value is system-generated and read-only | `Business` |
 | AddressTypeId | Integer | Required | Identifier for the [AddressType](#AddressType) associated with this Address | `3` |
 | Country | String | Read-only | The Country. This value is system-generated and read-only | `Canada`|
 | CountryCode | String | Required | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
 | Default | Boolean | Optional | A flag to indicate if this address is the default address for the customer | `false` |
-| DoNotContact | Boolean | Optional | A flag to indicate if the address is private and not to be used by any external systems (such as a marketing system), defaults to true | `true`|
+| DoNotContact | Boolean | Optional | A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true | `true`|
 | Locality | String | Optional | City, Town, Hamlet | `Mountain View` |
-| Notes | String | Optional | Notes related to the Address | `New residence` |
+| Notes | String | Optional | Notes related to this Address | `New residence` |
 | PostalCode | String | Optional | The postal code/zip code | `94043`      |
 | PostOfficeBoxNumber | String | Optional | The post office box number for PO box addresses | `P.O. Box 1022` |
 | State | String | Read-only | The State/Province. This value is system-generated and read-only | `British Columbia` |
@@ -63,7 +61,7 @@ An Address resource consists of the following properties:
 | StreetAddress1 | String | Optional | The street address | `1600 Amphitheatre Pkwy` |
 | StreetAddress2 | String | Optional | The street address | `Suite 500`|
 
-### ContactMethod
+## ContactMethod
 
 A **Contact Method** is a method of contacting a Customer.
 
@@ -71,40 +69,40 @@ A ContactMethod resource consists of the following properties:
 
 | Name  | Data Type   | Is Required?   | Description | Example |
 |:------|:------------|:---------------|:------------|:--------|
-| Id | GUID| Read-only| Unique identifier for the ContactMethod. This value is system-generated and read-only | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
+| Id | GUID| Read-only| Unique identifier for this ContactMethod. This value is system-generated and read-only | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
 | CustomerId| GUID| Optional | Unique identifier for the [Customer](#Customer) associated with this ContactMethod | `b8b54200-4c7e-414d-93eb-a3689e473be3` |
 | ContactMethodCategory| String | Read-only | The `Name` attribute associated with this Customer's [ContactMethodCategory](#ContactMethodCategory). This value is system-generated and read-only | `Email` |
 | ContactMethodCategoryId| Integer | Optional | Identifier for the [ContactMethodCategory](#ContactMethodCategory) associated with this ContactMethod | `3` |
-| ContactMethodType| String| Read-only | The `Name` attribute associated with this Customer's [ContactMethodType](#ContactMethodType). This value is system-generated and read-only | `Work phone` |
+| ContactMethodType| String| Read-only | The `Name` attribute associated with the Customer's [ContactMethodType](#ContactMethodType). This value is system-generated and read-only | `Work phone` |
 | ContactMethodTypeId| Integer| Required | Identifier for the [ContactMethodType](#ContactMethodType) associated with this ContactMethod| `5` |
 | Default | Boolean| Optional | A flag to indicate if this is the default ContactMethod for the Customer | `true` |
-| DoNotContact| Boolean| Optional | A flag to indicate if the ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true| `true` |
-| Notes| String | Optional  | Notes related to the ContactMethod | `After 6pm` |
-| Value| String | Optional | The value representing the ContactMethod | `(306) 222-3333` |
+| DoNotContact| Boolean| Optional | A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true| `true` |
+| Notes| String | Optional  | Notes related to this ContactMethod | `After 6pm` |
+| Value| String | Optional | The value representing this ContactMethod | `(306) 222-3333` |
 
-### CustomerExtension
+## CustomerExtension
 
 A **CustomerExtension** resource is used for adding custom properties to a Customer.
 
 | Name | Data Type | Is Required? | Description | Example |
 |:-----|:----------|:-------------|:------------|:--------|
-| Id | GUID | Read-only | Unique identifier for the CustomerExtension. This value is system-generated and read-only | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
+| Id | GUID | Read-only | Unique identifier for this CustomerExtension. This value is system-generated and read-only | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
 | CustomerId | GUID | Required | Unique identifier for the [Customer](#Customer) associated with this CustomerExtension  | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ExtensionType | String | Read-only | The `Name` attribute associated with this Customer's [CustomerExtensionType](#CustomerExtensionType). This value is system-generated and read-only| `ExternalCustomerId` |
 | ExtensionTypeId | Integer | Required | Identifier for the [CustomerExtensionType](#CustomerExtensionType) associated with this CustomerExtension | `1` |
-| Value | String | Optional | The value of the CustomerExtension | `66432` |
+| Value | String | Optional | The value of this CustomerExtension | `66432` |
 
-### CustomerExtensionType
+## CustomerExtensionType
 
 **CustomerExtensionType** resources are **created by iQmetrix** and are used to provide custom properties for the CustomerExtension resource.
 
 | Name | Data Type | Is Required? | Description | Example |
 |:-----|:----------|:-------------|:------------|:--------|
-| Id | Integer | Required | Unique identifier for the CustomerExtensionType | `1` |
-| Name | String | Required | The name of the CustomerExtensionType | `ExternalCustomerId` |
-| DataType | String | Required | The type of the CustomerExtension | `Integer` |
+| Id | Integer | Required | Unique identifier for this CustomerExtensionType | `1` |
+| Name | String | Required | The name of this CustomerExtensionType | `ExternalCustomerId` |
+| DataType | String | Required | The type of this CustomerExtension | `Integer` |
 
-### CustomerFull
+## CustomerFull
 
 **CustomerFull** is an extension on the Customer resource, it consists of all Customer properties plus the following:
 
@@ -116,7 +114,7 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 | MemberOf | Array[MemberOf] | Optional | A collection of Customers that the [Customer](#Customer) is a MemberOf (parent relation)|
 | RelatedCustomers | Array[RelatedCustomer] | Optional | A collection of [Customer](#Customer) related to the [Customer](#Customer) (child relation) |
 
-### CustomerSearch
+## CustomerSearch
 
 **CustomerSearch** is used to search for CustomerFull resources based on a Criteria. 
 
@@ -187,17 +185,17 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Customer](#Customer)
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Customer](#Customer)
 
 #### Request Parameters
 
-* `Customer` (Required) - See [Customer](#Customer)
+* `Customer` (**Required**) - See [Customer](#Customer)
  
 ###### Example
 
@@ -220,7 +218,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 ### Response
 
-* [Customer](#Customer) - The Customer that was created, if succesful
+* [Customer](#Customer) - Customer that was created, if succesful
 
 ###### Example
 
@@ -251,18 +249,18 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json` 
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Customer](#Customer)
-* `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Customer](#Customer)
+* `CustomerId` (**Required**) - Unique identifier for the [Customer](#Customer) being updated
 
 #### Request Parameters
 
-* `Customer` (Required) - See [Customer](#Customer)
+* `Customer` (**Required**) - See [Customer](#Customer)
 
 ###### Example
 
@@ -286,7 +284,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 ### Response
 
-* [Customer](#Customer) - The Customer resource that was updated, if it was successful 
+* [Customer](#Customer) - Customer resource that was updated, if it was successful 
 
 ###### Example
 
@@ -317,17 +315,17 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [CustomerFull](#CustomerFull)
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [CustomerFull](#CustomerFull)
 
 #### Request Parameters
 
-* `CustomerFull` (Required) - See [CustomerFull](#CustomerFull)
+* `CustomerFull` (**Required**) - See [CustomerFull](#CustomerFull)
  
 ###### Example
 
@@ -389,7 +387,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 ### Response
 
-* [CustomerFull](#CustomerFull) - The CustomerFull that was created, if succesful
+* [CustomerFull](#CustomerFull) - CustomerFull that was created, if succesful
 
 ###### Example
 
@@ -457,13 +455,13 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Customer](#Customer)
-* `CustomerId` (Required) - The Id of the [Customer](#Customer) that was requested
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Customer](#Customer)
+* `CustomerId` (**Required**) - Unique identifier for the [Customer](#Customer) that was requested
 
 ###### Example
 
@@ -473,7 +471,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 ### Response
 
-* [Customer](#Customer) - The Customer resource that was requested, if it exists
+* [Customer](#Customer) - Customer resource that was requested, if it exists
 
 ###### Example
 
@@ -507,13 +505,13 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [CustomerFull](#CustomerFull)
-* `CustomerId` (Required) - The Id of the [Customer](#Customer) that was requested
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [CustomerFull](#CustomerFull)
+* `CustomerId` (**Required**) - Unique identifier for the [Customer](#Customer) that was requested
 
 ###### Example
 
@@ -523,7 +521,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 ### Response
 
-* [CustomerFull](#CustomerFull) - The CustomerFull resource that was requested, if it exists
+* [CustomerFull](#CustomerFull) - CustomerFull resource that was requested, if it exists
 
 ###### Example
 
@@ -601,18 +599,18 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Address](#Address)
-* `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Address](#Address)
+* `CustomerId` (**Required**) - Identifier for the [Customer](#Customer) being updated
 
 #### Request Parameters
 
-* `Address` (Required) - See [Address](#Address)
+* `Address` (**Required**) - See [Address](#Address)
 
 ###### Example
 
@@ -636,7 +634,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 ### Response
 
-* [Address](#Address) -  The Address resource that was requested, if it exists
+* [Address](#Address) -  Address resource that was requested, if it exists
 
 ###### Example
 
@@ -671,19 +669,19 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json` 
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Address](#Address)
-* `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
-* `AddressId` (Required) - The Id of the [Address](#Address) being updated
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Address](#Address)
+* `CustomerId` (**Required**) - Identifier for the [Customer](#Customer) being updated
+* `AddressId` (**Required**) - Identifier for the [Address](#Address) being updated
 
 #### Request Parameters
 
-* `Address` (Required) - See [Address](#Address)
+* `Address` (**Required**) - See [Address](#Address)
 
 ###### Example
 
@@ -712,7 +710,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 ### Response
 
-* [Address](#Address) - The Address resource that was updated, if it was successful
+* [Address](#Address) - Address resource that was updated, if it was successful
 
 ###### Example
 
@@ -747,18 +745,18 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [ContactMethod](#ContactMethod)
-* `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [ContactMethod](#ContactMethod)
+* `CustomerId` (**Required**) - Identifier for the [Customer](#Customer) being updated
 
 #### Request Parameters
 
-* `ContactMethod` (Required) - See [ContactMethod](#ContactMethod)
+* `ContactMethod` (**Required**) - See [ContactMethod](#ContactMethod)
 
 ###### Example
 
@@ -778,7 +776,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
   
 ### Response
 
-* [ContactMethod](#ContactMethod) - The ContactMethod resource that was requested, if it exists
+* [ContactMethod](#ContactMethod) - ContactMethod resource that was requested, if it exists
 
 ###### Example
 
@@ -807,19 +805,19 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [ContactMethod](#ContactMethod)
-* `CustomerId` (Required) - The Id of the [Customer](#Customer) being updated
-* `ContactMethodId` (Required) The Id of the [ContactMethod](#ContactMethod) being updated
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [ContactMethod](#ContactMethod)
+* `CustomerId` (**Required**) - Identifier for the [Customer](#Customer) being updated
+* `ContactMethodId` (**Required**) Identifier for the [ContactMethod](#ContactMethod) being updated
 
 #### Request Parameters
 
-* `ContactMethod` (Required) - See [ContactMethod](#ContactMethod)
+* `ContactMethod` (**Required**) - See [ContactMethod](#ContactMethod)
 
 ###### Example
 
@@ -842,7 +840,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
   
 ### Response
 
-* [ContactMethod](#ContactMethod) - The ContactMethod resource that was updated, if it was successful 
+* [ContactMethod](#ContactMethod) - ContactMethod resource that was updated, if it was successful 
 
 ###### Example
 
@@ -891,7 +889,7 @@ Filters can be combined using the keyword `and` as shown below.
 
 ### Case Sensitivity
 
-Filters on the [Customer](#Customer) resources are **case sensitive**.
+Filters on [Customer](#Customer) resources are **case sensitive**.
 
 Filters on [CustomerSearch](#CustomerSearch) resources are **NOT** case sensitive.
 
@@ -909,13 +907,13 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html)
-* `FilterQuery` (Required) - The filter to apply to the [Customer](#Customer) request
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `FilterQuery` (**Required**) - The filter to apply to the [Customer](#Customer) request
 
 ###### Example
 
@@ -925,7 +923,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
 ### Response
 
-* Array[[Customer](#Customer)] - An array of Customer resources matching filter criteria
+* Array[[Customer](#Customer)] - Customer resources matching filter criteria
 
 ###### Example
 
@@ -973,13 +971,13 @@ The Criteria filter will search the properties below for the given value.
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json` **OR** `Accept: application/hal+json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html)
-* `FilterQuery` (Required) - The filter to apply to the [CustomerSearch](#CustomerSearch) request
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `FilterQuery` (**Required**) - The filter to apply to the [CustomerSearch](#CustomerSearch) request
 
 ###### Example
 
@@ -989,7 +987,7 @@ The Criteria filter will search the properties below for the given value.
 
 ### Response
 
-* Array[[CustomerFull](#CustomerFull)] - An array of CustomerFull resources matching filter criteria
+* Array[[CustomerFull](#CustomerFull)] - CustomerFull resources matching filter criteria
 
 ###### Example
 

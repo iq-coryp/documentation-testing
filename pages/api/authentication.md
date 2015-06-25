@@ -17,45 +17,41 @@ summary:
 
 ## Authentication 
 
-iQmetrix APIs are protected by <b><a href="/api/glossary.html#OAuth" data-toggle="tooltip" data-original-title="{{site.data.glossary.O-Auth}}">OAuth2</a></b>.
+iQmetrix APIs are protected by {{oauth2}}.
 
-In order to make authorized requests to iQmetrix APIs, your application must first obtain an Access Token.
+In order to make authorized requests to iQmetrix APIs, your application must first obtain an {{access_token}}.
 
 ## Obtaining an Access Token
 
 {{note}}
-
 Each time the endpoint is called, a <b>new</b> access token is created and returned
-
 {{end}}
 
 ### Request
 
     POST /auth2/token
-
     grant_type={GrantType}&
     username={Username}&
     password={Password}&
     client_id={ClientId}&
     client_secret={ClientSecret}
 
-### Headers
+#### Headers
 
-* Content-Type: `application/x-www-form-urlencoded`
+* `Content-Type: application/x-www-form-urlencoded`
 
 #### Request Parameters
 
-*  `GrantType` (Required) - The value must be `password`
-*  `Username` (Required) - The username provided to iQmetrix, usually an email address
-*  `Password` (Required) - The password, provided when an account is created
-*  `ClientId` (Required) The client ID powered by iQmetrix
-*  `ClientSecret` (Required) - The client secret
+*  `GrantType` (**Required**) - The value must be `password`
+*  `Username` (**Required**) - The username provided to iQmetrix, usually an email address
+*  `Password` (**Required**) - The password, provided when an account is created
+*  `ClientId` (**Required**) The client ID provided by iQmetrix
+*  `ClientSecret` (**Required**) - The client secret
 
 ###### Example
 
     POST /oauth2/token
     Content-Type: application/x-www-form-urlencoded
-
     grant_type=password&
     username=email@example.com&
     password=examplepassword&
@@ -92,36 +88,31 @@ The below table may help resolve problems encountered when making requests to th
 
 Instead of always using credentials, a client application may use the refresh token to obtain a new access token.
 
-{{note}}
-
-The client credentials must be the same as those used in the request to acquire the provided refresh token.
-
-{{end}}
-
-{{note}}
+{{important}}
 Once a refresh token has been exchanged, the access token it was provided with is revoked
+{{end}}
+{{note}}
+The client credentials must be the same as those used in the request to acquire the provided refresh token
 {{end}}
 
 ### Request
 
     POST /auth2/token
-
     grant_type={GrantType}&
     client_id={ClientId}&
     client_secret={ClientSecret}&
     refresh_token={RefreshToken}
 
+#### Headers
 
-### Headers
-
-* Content-Type: `application/x-www-form-urlencoded`
+* `Content-Type: application/x-www-form-urlencoded`
 
 #### Request Parameters
 
-* `GrantType` (Required) - The value must be `refresh_token`
-* `ClientId` (Required) The client ID powered by iQmetrix
-* `ClientSecret` (Required) - The client secret, should not be shared
-* `RefreshToken` (Required) - The refresh token we are exchanging 
+* `GrantType` (**Required**) - The value must be `refresh_token`
+* `ClientId` (**Required**) The client ID provided by iQmetrix
+* `ClientSecret` (**Required**) - The client secret, should not be shared
+* `RefreshToken` (**Required**) - The refresh token we are exchanging 
 
 ###### Example
 

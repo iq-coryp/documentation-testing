@@ -1,2 +1,14 @@
 {% include alerts.html %}
 {% include callouts.html %}
+
+{% capture access_token %}
+<a href="{{"/glossary/#Access-Token" | prepend: site.api_baseurl}}">Access Token</a>
+{% endcapture %}
+
+{% capture oauth2 %}
+<a href="{{"/glossary/#OAuth-Token" | prepend: site.api_baseurl}}">OAuth2</a>
+{% endcapture %}
+
+{% capture product %}
+<a href="{{"/product-library/#Product" | prepend: site.api_baseurl}}">Product</a>
+{% endcapture %}

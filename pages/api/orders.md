@@ -15,44 +15,42 @@ summary:
 * Sandbox: https://orderdemo.iqmetrix.net/v1
 * Production: https://order.iqmetrix.net/v1
 
-## Resources
-
-### Order
+## Order
 
 An **Order** resource consists of the following properties:
 
 | Name | Data Type | Is Required? | Description | Example |
 |:-----|:----------|:-------------|:------------|:--------|
-| Id | GUID | Read-only | Unique identifier for the Order. This value is system-generated and read-only | `216f7424-ae18-4c69-9597-984b430d0759` |
-| Name | String | Optional | Name of the Order | `iPhone 5 Order` |
-| CustomerId | String | Optional | Unique identifier for the [Customer](/api/crm.html#Customer) who created this Order | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| EmployeeId | String | Optional | Identifier for the Employee who created the Order | `15` |
-| EntityId | Integer | Required | Identifier for the Entity associated with this Order, such as Store Id | `8` |
+| Id | GUID | Read-only | Unique identifier for this Order. This value is system-generated and read-only | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Name | String | Optional | Name of this Order | `iPhone 5 Order` |
+| CustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#Customer) who created this Order | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| EmployeeId | String | Optional | Identifier for the Employee who created this Order | `15` |
+| EntityId | Integer | Required | Identifier for the [Entity](/api/entity-store/) associated with this Order, such as Store Id | `8` |
 | State | OrderState | Read-only | The [OrderState](#OrderState) for this Order. This value is system-generated and read-only | `Created` |
-| OrderExpiryDate | DateTime | Read-only | The date and time the Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
-| OrderExpiryHours | Integer | Optional | The amount of hours before the Order expires and can no longer be updated | `20` |
+| OrderExpiryDate | DateTime | Read-only | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryHours | Integer | Optional | The amount of hours before this Order expires and can no longer be updated | `20` |
 | OrderType | String | Read-only | The Name attribute associated with this Order's [OrderType](#OrderType). This value is system-generated and read-only | `Sales` |
 | OrderTypeId | Integer | Required | Identifier for the [OrderType](#OrderType) associated with this Order | `3` |
 | CreatedDateUtc | DateTime | Read-only | The date and time the [Order](#Order) was created, in UTC. This value is system-generated and read-only | `2015-03-27T18:47:29.9012402+00:00` |
-| BillingAddressId | GUID | Optional | Unique identifier for the [Address](/api/crm.html#Address) this Order will be billed to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | GUID | Required | Unique identifier for the [Customer](/api/crm.html#Customer) this Order will be billed to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingAddressId | String | Optional | Unique identifier for the [Address](/api/crm.html#Address) this Order will be shipped to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | String | Optional | Unique identifier for the [Customer](/api/crm.html#Customer) this Order will be shipped to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| BillingAddressId | GUID | Optional | Unique identifier for the [Address](/api/crm/#Address) this Order will be billed to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Required | Unique identifier for the [Customer](/api/crm/#Customer) this Order will be billed to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingAddressId | String | Optional | Unique identifier for the [Address](/api/crm/#Address) this Order will be shipped to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#Customer) this Order will be shipped to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ShippingEntityId | Integer | Optional | Identifier for the supplier of this Item | `1` |
 | TenderId | String | Optional | Reserved for future use | `null` |
 | TenderOrigin | String | Optional | Reserved for future use | `null` |
-| DiscountAmount | Decimal | Optional | The value of the discount to be applied at the order level | `15.0` |
-| DiscountCode | String | Optional | The discount code for a discount applied to the order | `MTRY-15` |
+| DiscountAmount | Decimal | Optional | The value of the discount to be applied at the Order level | `15.0` |
+| DiscountCode | String | Optional | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | Optional | A description of the discount | `Military discount` |
-| PrintableId | String | Read-only | An identifier for the Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
+| PrintableId | String | Read-only | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
 
-### Item
+## Item
 
 An **Item** resource consists of the following properties:
 
 | Name | Data Type | Is Required? | Description | Example |
 |:-----|:----------|:-------------|:------------|:--------|
-| Id | GUID | Read-only | Unique identifier for the Item. This value is system-generated and read-only | `65a13420-5673-45cd-b455-9bbe7f27f694` |
+| Id | GUID | Read-only | Unique identifier for this Item. This value is system-generated and read-only | `65a13420-5673-45cd-b455-9bbe7f27f694` |
 | OrderId | GUID | Read-only | Unique identifier for the [Order](#Order) associated with this Item, specified by the OrderId in the URI. This value is system-generated and read-only | `216f7424-ae18-4c69-9597-984b430d0759` |
 | ItemStatus | String | Read-only | The Name attribute associated with this Item's [ItemStatus](#ItemStatus). This value is system-generated and read-only | `New` |
 | ItemStatusId | Integer | Required | Identifier for the [ItemStatus](#ItemStatus) associated with this Item | `1` |
@@ -68,7 +66,7 @@ An **Item** resource consists of the following properties:
 | Description | String | Optional | Description of this Item | `LG G3 phone case` |
 | Notes | String | Optional | Notes for this Item | `Dented corner` |
 | Quantity | Integer | Optional | Amount of this Item In Stock, defaults to 0 | `2` |
-| SerialNumbers | Array[String] | Optional | Array of serial numbers associated with this Item | `abc321` |
+| SerialNumbers | Array[String] | Optional | Serial numbers associated with this Item | `abc321` |
 | SKU | String | Optional | SKU for this Item | `00001` |
 | ShippingOptionId | String | Optional | Identifier for the ShippingOption that this Item will use | `1` |
 | TrackingInformation | Object | Optional | Tracking information in the form of key-value pairs|  |
@@ -128,17 +126,17 @@ An **Item** resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Order](#Order)
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Order](#Order)
 
 #### Request Parameters
 
-* `Order` (Required) - See [Order](#Order)
+* `Order` (**Required**) - See [Order](#Order)
 
 ###### Example
 
@@ -165,7 +163,7 @@ An **Item** resource consists of the following properties:
 
 ### Response
 
-* [Order](#Order) - The Order resource that was created, if succesful
+* [Order](#Order) - Order resource that was created, if succesful
 
 ###### Example
 
@@ -206,18 +204,18 @@ An **Item** resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (Required) - The Id of the [Company](/api/entitystore.html) associated with this [Order](#Order)
-* `OrderId` (Required) - The Id of the [Order](#Order) being updated
+* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Order](#Order)
+* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
 
 #### Request Parameters
 
-* `Item` (Required) - See [Item](#Item)
+* `Item` (**Required**) - See [Item](#Item)
 
 ###### Example
 
@@ -246,7 +244,7 @@ An **Item** resource consists of the following properties:
 
 ### Response
 
-* [Item](#Item) - The Item that was added to the [Order](#Order), if succesful
+* [Item](#Item) - Item that was added to the [Order](#Order), if succesful
 
 ###### Example
 

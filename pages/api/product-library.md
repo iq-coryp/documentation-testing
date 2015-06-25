@@ -15,9 +15,7 @@ summary:
 * Sandbox: https://productlibrarydemo.iqmetrix.net/v1/
 * Production: https://productlibrary.iqmetrix.net/v1/
 
-## Resources
-
-### Product
+## Product
 
 A **Product** consists of the following properties:
 
@@ -28,11 +26,11 @@ A **Product** consists of the following properties:
 | ShortDescription | String (450) | Short Description for this Product | `Better than iPhone 3G` |
 | LongDescription | String (20000) | Long Description for this Product | `The iPhone 4S is a gradual step over the iPhone 4 improving the internals, but keeping the look and feel.` |
 | Assets | Array[Object] | Array of Asset information for this Product |  |
-| CanonicalClassification | Object | Classification tree details for the Product |  |
+| CanonicalClassification | Object | Classification tree details for this Product |  |
 | Entity | Object | Entity information for this Product, used for Entity revisions |  |
-| HeroShotId | GUID | Unique identifier for the <a href="/api/glossary.html#Hero-Shot" data-toggle="tooltip" data-original-title="{{site.data.glossary.hero-shot}}">Hero Shot</a> resource associated with this Product | `f6642545-9136-4f44-a163-0e97e32e2e27` |
-| HeroShotUri | String (450) | A URI to a Hero Shot image resource | `https://imagehost/images/f6642545-9136-4f44-a163-0e97e32e2e27` |
-| IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of the Product is publicly accessible, instead of private | `true` |
+| HeroShotId | GUID | Unique identifier for the [Hero Shot](/api/glossary/#Hero-Shot) resource associated with this Product | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| HeroShotUri | String (450) | A URI to a Hero Shot image resource | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible, instead of private | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
 | Manufacturer | Object | Manufacturer information for this Product | |
 | Manufacturer.Id | String | Identifier for the Manufacturer | `123` | 
@@ -47,7 +45,7 @@ A **Product** consists of the following properties:
 | MSRP.CurrencyCode | Object | Currency | `USD` |
 | Owner | Object | Owner information for this Product, used for Private products and Retailer revisions |  |
 | Region | Object | Region information for this Product, for Regional revisions |  |
-| ReleaseDate | DateTime | Release Date for this Product. in UTC | `2011-10-14T12:00:00.000` |
+| ReleaseDate | DateTime | Release Date for this Product, in UTC | `2011-10-14T12:00:00.000` |
 | Specifications | Array[Object] | Details of this Product such as color, dimension, etc |  |
 | Specifications.Name | String | Name of this specification | `Color` |
 | Specifications.Fields | Object | Specification Fields | |
@@ -85,7 +83,7 @@ Query parameters are used to specify search criteria using the following format:
 
     {OptionName}={OptionValue}
 
-Multiple options are seperated with a `&` symbol.
+Multiple options are separated with a `&` symbol.
 
 ### Available Options
 
@@ -103,12 +101,12 @@ See the table below for available options and the syntax of using each one.
     
 #### Headers
 
-* `Authorization: Bearer` (<a href="/api/glossary.html#Access-Token" data-toggle="tooltip" data-original-title="{{site.data.glossary.Access-Token}}">Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `Options` (Required) - The options for the search
+* `Options` (**Required**) - The options for the search
 
 ###### Example
 
