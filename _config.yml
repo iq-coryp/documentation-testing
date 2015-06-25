@@ -16,6 +16,8 @@ homepage_title: iQmetrix APIs
 
 site_title: Documentation theme for Jekyll
 
+pagefileurl: "/documentation-testing/"
+
 tagline: iQmetrix Developer Portal
 
 baseurl: "/documentation-testing/"
