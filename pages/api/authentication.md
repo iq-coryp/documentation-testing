@@ -27,9 +27,9 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 Each time the endpoint is called, a <b>new</b> access token is created and returned
 {{end}}
 
-### Request
+#### Request
 
-    POST /auth2/token
+    POST /oauth2/token
     grant_type={GrantType}&
     username={Username}&
     password={Password}&
@@ -40,7 +40,7 @@ Each time the endpoint is called, a <b>new</b> access token is created and retur
 
 * `Content-Type: application/x-www-form-urlencoded`
 
-#### Request Parameters
+##### Request Parameters
 
 *  `GrantType` (**Required**) - The value must be `password`
 *  `Username` (**Required**) - The username provided to iQmetrix, usually an email address
@@ -58,7 +58,7 @@ Each time the endpoint is called, a <b>new</b> access token is created and retur
     client_id=exampleclient&
     client_secret=examplesecret
 
-### Response
+#### Response
 
 * `access_token` - The access token issued by the authorization server
 * `expires_in` - Seconds remaining until the access token expires, **12 hours** or less if revoked
@@ -66,15 +66,14 @@ Each time the endpoint is called, a <b>new</b> access token is created and retur
 
 ###### Example
 
-    HTTP 200
-    Content-Type: application/json
+    HTTP 200 Content-Type: application/json
     {
         "access_token": "3dae10c05e894011b5b3ae15972ffbf4",
         "expires_in": 43199,
         "refresh_token": "f8bk56n40f7gi34j49g7bh4n430gf874h" 
     }
 
-### Errors
+##### Errors
 
 The below table may help resolve problems encountered when making requests to the Authentication API.
 
@@ -95,9 +94,9 @@ Once a refresh token has been exchanged, the access token it was provided with i
 The client credentials must be the same as those used in the request to acquire the provided refresh token
 {{end}}
 
-### Request
+#### Request
 
-    POST /auth2/token
+    POST /oauth2/token
     grant_type={GrantType}&
     client_id={ClientId}&
     client_secret={ClientSecret}&
@@ -107,7 +106,7 @@ The client credentials must be the same as those used in the request to acquire 
 
 * `Content-Type: application/x-www-form-urlencoded`
 
-#### Request Parameters
+##### Request Parameters
 
 * `GrantType` (**Required**) - The value must be `refresh_token`
 * `ClientId` (**Required**) The client ID provided by iQmetrix
@@ -123,7 +122,7 @@ The client credentials must be the same as those used in the request to acquire 
     client_secret=examplesecret& 
     refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h
 
-### Response
+#### Response
 
 * `access_token` - The access token issued by the authorization server
 * `expires_in` - Seconds remaining until the access token expires, default is **12 hours**
@@ -144,6 +143,6 @@ The below table may help resolve problems encountered when making requests to th
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
-| HTTP 400 | `unsupported_grant_type` | Ensure grant_type is set to `refresh_token` |
-| HTTP 400 | `invalid_client` | Ensure client_id and client_secret are correct |
-| HTTP 400 | `invalid_grant` | Ensure client credentials are the same as those used in the original request to acquire the provided refresh token |
+| `HTTP 400` | `unsupported_grant_type` | Ensure grant_type is set to `refresh_token` |
+| `HTTP 400` | `invalid_client` | Ensure client_id and client_secret are correct |
+| `HTTP 400` | `invalid_grant` | Ensure client credentials are the same as those used in the original request to acquire the provided refresh token |

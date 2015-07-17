@@ -19,19 +19,17 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ## Carrier
 
-A **Carrier** consists of the following properties:
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
 | Id | Integer | Unique identifier for the Carrier. This value is system generated and read-only | `9` |
-| Name | String | Carrier Name | `SampleCarrier` |
-| Description | String  | Description of the Carrier | `Carrier creating great experiences.` |
+| Name | String | Name | `SampleCarrier` |
+| Description | String  | Description | `Carrier creating great experiences.` |
 | Role | String | Role. This value is system generated and read-only | `Carrier` |
 | Roles | Object | The value must be `Carrier` | `{ "Name": "Carrier" }` |
 | CreatedUTC | DateTime | Date when the Carrier was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Date when the Carrier was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the Carrier | |
-| CorrelationId | String | Identifier for the Carrier in an external RMS | `2015-05-20T23:06:29.7700813Z` |
+| CorrelationId | String | Optional unique identifier in an external inventory system| `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to an optional media asset |  |
 | Relationships | Array[Object]  | Relationships for a Carrier. This value is system generated and read-only |  |
 | SortName | String  | A string used for sorting the Carrier. This value is system generated and read-only | `samplecarrier` |
@@ -39,39 +37,35 @@ A **Carrier** consists of the following properties:
 
 ## Manufacturer
 
-A **Manufacturer** consists of the following properties:
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
 | Id | Integer | Unique identifier for the Manufacturer. This value is system generated and read-only | `4` |
-| Name | String | Manufacturer Name | `SampleManufacturer` |
-| Description | String  | Description of the Manufacturer | `Manufacturer creating great experiences.` |
+| Name | String | Name | `SampleManufacturer` |
+| Description | String  | Description | `Manufacturer creating great experiences.` |
 | Role | String | Role. This value is system generated and read-only | `Manufacturer` |
 | Roles | Object | The value must be `Manufacturer` | `{ "Name": "Manufacturer" }` |
 | CreatedUTC | DateTime | Date when the Manufacturer was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Date when the Manufacturer was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the Manufacturer | |
-| CorrelationId | String | Identifier for the Manufacturer in an external RMS | `0bee057f-150d-42b3-8abf-9e096d2b45ee` |
+| CorrelationId | String | Optional unique identifier in an external inventory system | `0bee057f-150d-42b3-8abf-9e096d2b45ee` |
 | Logo | Object | A reference to an optional media asset |  |
-| Relationships | Array[Object]  | Relationships for a Manufacturer. This value is system generated and read-only |  |
+| Relationships | Array[Object] | Relationships for a Manufacturer. This value is system generated and read-only |  |
 | SortName | String  | A string used for sorting the Manufacturer. This value is system generated and read-only | `samplemanufacturer` |
 | Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
 
 ## Vendor
 
-A **Vendor** consists of the following properties:
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
 | Id | Integer | Unique identifier for the Vendor. This value is system generated and read-only | `14` |
-| Name | String | Vendor Name | `SampleVendor` |
-| Description | String  | Description of the Vendor | `Vendor creating great experiences.` |
+| Name | String | Name | `SampleVendor` |
+| Description | String  | Description | `Vendor creating great experiences.` |
 | Role | String | Role. This value is system generated and read-only | `Vendor` |
 | Roles | Object | The value must be `Vendor` | `{ "Name": "Vendor" }` |
 | CreatedUTC | DateTime | Date when the Vendor was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Date when the Vendor was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the Vendor | |
-| CorrelationId | String | Identifier for the Vendor in an external RMS | `3a077b06-4faa-4c5d-a15b-4f0fa630f986` |
+| CorrelationId | String | Optional unique identifier in an external inventory system | `3a077b06-4faa-4c5d-a15b-4f0fa630f986` |
 | Logo | Object | A reference to an optional media asset|  |
 | Relationships | Array[Object]  | Relationships for a Vendor. This value is system generated and read-only |  |
 | SortName | String  | A string used for sorting the Vendor. This value is system generated and read-only | `samplevendor` |
@@ -79,7 +73,7 @@ A **Vendor** consists of the following properties:
 
 ## Getting All Carriers
 
-### Request
+#### Request
 
 	GET /Carriers
 
@@ -94,7 +88,7 @@ A **Vendor** consists of the following properties:
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 
-### Response
+#### Response
 
 * Array[[Carrier](#Carrier)] - Carrier resources, if any were found
 
@@ -128,7 +122,7 @@ A **Vendor** consists of the following properties:
 
 ## Getting a Carrier
 
-### Request
+#### Request
 
 	GET /Carriers({CarrierId})
 	
@@ -147,7 +141,7 @@ A **Vendor** consists of the following properties:
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 
-### Response
+#### Response
 
 * [Carrier](#Carrier) - The Carrier resource that was requested, if it exists
 
@@ -178,7 +172,7 @@ A **Vendor** consists of the following properties:
 
 ## Getting All Manufacturers
 
-### Request
+#### Request
 
 	GET /Manufacturers
 
@@ -193,7 +187,7 @@ A **Vendor** consists of the following properties:
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 
-### Response
+#### Response
 
 * Array[[Manufacturer](#Manufacturer)] - Manufacturer resources, if any were found
 
@@ -228,7 +222,7 @@ A **Vendor** consists of the following properties:
 
 ## Getting a Manufacturer
 
-### Request
+#### Request
 
     GET /Manufacturers({ManufacturerId})
 
@@ -238,7 +232,7 @@ A **Vendor** consists of the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 ###### Example
@@ -247,7 +241,7 @@ A **Vendor** consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [Manufacturer](#Manufacturer) - The Manufacturer resource that was requested, if it exists
 
@@ -279,13 +273,13 @@ A **Vendor** consists of the following properties:
 
 ## Getting All Vendors
 
-### Request
+#### Request
 
 	GET /Vendors
 
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 ###### Example
@@ -294,7 +288,7 @@ A **Vendor** consists of the following properties:
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 
-### Response
+#### Response
 
 * Array[[Vendor](#Vendor)] - Vendor resources, if any were found
 
@@ -328,7 +322,7 @@ A **Vendor** consists of the following properties:
 
 ## Getting a Vendor
 
-### Request
+#### Request
 
 	GET /Vendors({VendorId})
 	
@@ -338,7 +332,7 @@ A **Vendor** consists of the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` (<a href='/api/glossary/#Access Token'>Access Token</a>)
+* `Authorization: Bearer` ({{access_token}})
 * `Accept: application/json`
 
 ###### Example
@@ -347,7 +341,7 @@ A **Vendor** consists of the following properties:
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 
-### Response
+#### Response
 
 * [Vendor](#Vendor) - The Vendor resource that was requested, if it exists
 

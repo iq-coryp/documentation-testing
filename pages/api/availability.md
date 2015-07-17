@@ -21,14 +21,14 @@ A **InventoryAvailability** resource consists of the following properties:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem) associated with this InventoryAvailability | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
-| EntityId | Integer | Identifier for the [Company Tree Node](/api/company-tree/) associated with this InventoryAvailability | `1` |
+| Id | GUID | Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem) | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
+| EntityId | Integer | Identifier for the [Company Tree Node](/api/company-tree/) | `1` |
 | Quantity | Integer | Quantity for this [CatalogItem](/api/catalog/#CatalogItem) | `15` |
 | IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#CatalogItem) can be shipped | `true` |
 
 ## Getting Availability For a Catalog Item By Location
 
-### Request
+#### Request
 
     GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
     
@@ -39,17 +39,17 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/entity-store) associated with this [CatalogItem](/api/catalog/#CatalogItem)
-* `LocationId` (**Required**) - Identifier for the [Location](/api/company-tree/#Location) associated with this [CatalogItem](/api/catalog/#CatalogItem)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `LocationId` (**Required**) - Identifier for the {{location}}
 * `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem)
 
 ###### Example
 
-    Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)
+    GET /Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [InventoryAvailability](#InventoryAvailability) - InventoryAvailability resource that was requested, if it exists
 
@@ -65,7 +65,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 ## Getting Availability For a Catalog Item By Locations
 
-### Request
+#### Request
 
     GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
     
@@ -76,18 +76,18 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [CatalogItem](/api/catalog/#CatalogItem)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `CatalogItemId` (**Required**) - Identifier for the [CatalogItem](/api/catalog/#CatalogItem)
 
 ###### Example
 
-    Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability
+    GET /Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
-* Array[[InventoryAvailability](#InventoryAvailability)] - InventoryAvailability resources, if any were found
+* Array[[InventoryAvailability](#InventoryAvailability)] - InventoryAvailability for Locations
 
 ###### Example
 
@@ -108,11 +108,11 @@ A **InventoryAvailability** resource consists of the following properties:
         ...
     ]
 
-### Errors
+## Errors
 
 The below table may help resolve problems encountered when making requests to the Availability API.
 
 | Error Code | Message | How To Resolve |
 |:-----------|:--------|:---------------|
-| `HTTP 404` | `InventoryAvailability resource with EntityId {x} and ProductId {y} cannot be found, nor is there availability in the tree branch.` | Ensure CatalogItemId is valid and belongs to the [Location](/api/company-tree) specified in the request |
-| `HTTP 500` | `Entity is not related to company` | Ensure [Location](/api/company-tree/#Location) belongs to Company specified in request |
+| `HTTP 404` | `InventoryAvailability resource with EntityId {x}` <br/> `and ProductId {y} cannot be found, nor is there`<br> `availability in the tree branch.` | Ensure CatalogItemId is valid and belongs to the [Location](/api/company-tree/#location) specified in the request |
+| `HTTP 500` | `Entity is not related to company` | Ensure [Location](/api/company-tree/#location) belongs to Company specified in request |

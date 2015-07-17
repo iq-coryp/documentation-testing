@@ -12,23 +12,21 @@ summary:
 
 ## Endpoints
 
-* Sandbox: https://productlibrarydemo.iqmetrix.net/v1/
-* Production: https://productlibrary.iqmetrix.net/v1/
+* Sandbox: https://productlibrarydemo.iqmetrix.net/v1
+* Production: https://productlibrary.iqmetrix.net/v1
 
 ## Product
-
-A **Product** consists of the following properties:
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | String | Identifier for this Product | `M3-V1` |
-| Name | String (450) | Name of this Product | `iPhone 4S 16GB White` |
-| ShortDescription | String (450) | Short Description for this Product | `Better than iPhone 3G` |
-| LongDescription | String (20000) | Long Description for this Product | `The iPhone 4S is a gradual step over the iPhone 4 improving the internals, but keeping the look and feel.` |
+| Name | String (450) | Name | `iPhone 4S 16GB White` |
+| ShortDescription | String (450) | Short Description | `Better than iPhone 3G` |
+| LongDescription | String (20000) | Long Description  | `The iPhone 4S is a gradual step over the iPhone 4.` |
 | Assets | Array[Object] | Array of Asset information for this Product |  |
 | CanonicalClassification | Object | Classification tree details for this Product |  |
 | Entity | Object | Entity information for this Product, used for Entity revisions |  |
-| HeroShotId | GUID | Unique identifier for the [Hero Shot](/api/glossary/#Hero-Shot) resource associated with this Product | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| HeroShotId | GUID | Unique identifier for the [Hero Shot](/api/glossary/#Hero-Shot) resource | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | HeroShotUri | String (450) | A URI to a Hero Shot image resource | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible, instead of private | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
@@ -39,9 +37,9 @@ A **Product** consists of the following properties:
 | ManufacturerSkus.Value | String | Value of the SKU | `ABC123` |
 | ManufacturerSkus.Description | String | Description of the SKU | `Manufacturer SKU` |
 | ManufacturerSkus.Entity | Integer | Identifier for the SKU | `1` |
-| MasterProductId | Integer | Identifier for the Master Product associated with this Product | `3` |
-| MSRP | Object | MSRP information for this Product |  |
-| MSRP.Amount | Decimal | MSRP | `100` |
+| MasterProductId | Integer | Identifier for the Master Product | `3` |
+| MSRP | Object | Manufacturer's suggested retail price information for this Product |  |
+| MSRP.Amount | Decimal | Manufacturer's suggested retail price information | `100` |
 | MSRP.CurrencyCode | Object | Currency | `USD` |
 | Owner | Object | Owner information for this Product, used for Private products and Retailer revisions |  |
 | Region | Object | Region information for this Product, for Regional revisions |  |
@@ -60,7 +58,7 @@ A **Product** consists of the following properties:
 | UpcCodes.Value | String | Value of the UPC Code | `874688002478/16W` |
 | UpcCodes.Description | String | Description of the UPC Code | `UPC` |
 | UpcCodes.Entity | Integer | Identifier for the UPC Code | `2` |
-| VariationId | Integer | Identifier for the Variation associated with this Product | `1` |
+| VariationId | Integer | Identifier for the Variation | `1` |
 | VendorSkus | Array[Object] | Vendor SKUs for this Product | |
 | VendorSkus.Value | String | Value of the SKU | `403405` |
 | VendorSkus.Description | String | Description of the SKU | `SKU` |
@@ -95,7 +93,7 @@ See the table below for available options and the syntax of using each one.
 | `type` | Search for the given SKU where the given identifier type matches. If no value is provided, all identifiers will be searched | String, see [Searchable Identifiers](#Searchable-Identifiers) |  `value=ABC123&type=VendorSKU` <br/> `value=ABC123&type=ManufacturerSKU` <br/> `value=ABC123&type=UPC`|
 | `entityId` | Search for the given SKU where the given entityId matches and the identifier type is VendorSKU or ManufacturerSKU | Integer | `value=ABC123&type=VendorSKU&entityId=4` | 
 
-### Request
+#### Request
 
     GET /Products/FindByIdentifier?{Options}
     
@@ -114,7 +112,7 @@ See the table below for available options and the syntax of using each one.
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * Array[Object] - Array of Slug attributes for [Product](#Product)'s matching the search options
 

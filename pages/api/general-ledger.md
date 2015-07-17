@@ -19,8 +19,6 @@ summary:
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
-An Account resource consists of the following properties:
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier for this Account. This value is system-generated and read-only | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
@@ -34,7 +32,7 @@ An Account resource consists of the following properties:
 | CustomProperties |Object (4000) | A set of key-value pairs that contain extra data to store with this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | |
 | DateCreatedUTC | DateTime | Auditing column showing when this Account was first created, in UTC. This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
 | DateUpdatedUTC | DateTime | Auditing column showing when this Account was last updated, in UTC.  This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
-| Description | String (1024) | Description of this Account | `This is a Canadian $ account` |
+| Description | String (1024) | Description | `This is a Canadian $ account` |
 | IsDebitAccount | Boolean | True if Account is a [Debit Account](/api/glossary/#Debit-Account), false if it is a [Credit Account](/api/glossary/#Credit-Account)| `true` |
 | IsEnabled | Boolean | True if this Account is enabled, false if it is disabled | `true` |
 | Version | Integer | The latest revision number | `1` |
@@ -46,8 +44,6 @@ A single Transaction must have 2 or more Entries where the sum of the Debits and
 {{end}}
 
 A **Transaction** is a financial record that affects two or more **Accounts**. 
-
-An Transaction resource contains the following properties:
 
 | Name | Data Type  | Description | Example |
 |:-----|:-----------|:------------|:--------|
@@ -65,8 +61,6 @@ A Transaction is <b>immutable</b> and permanent, after it has been created it ca
 Debit and Credit are decimal values without an associated currency as all Transactions within the context of this Account will use the currency configured at the Account level
 {{end}}
 
-An Entry resource consists of the following properties:
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | AccountId | GUID | Identifier for the Account this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` |
@@ -81,7 +75,7 @@ An Entry resource consists of the following properties:
 
 ## Get Accounts
 
-### Request
+#### Request
 
 	GET /Companies({CompanyId})/Accounts
 		
@@ -92,7 +86,7 @@ An Entry resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 
 ###### Example
 
@@ -100,11 +94,13 @@ An Entry resource consists of the following properties:
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 	
-### Response
+#### Response
 
 * Array[[Account](#Account)] - Account resources, if any were found
 	
 ###### Example
+	
+    HTTP 201 Content-Type: application/json
 	[
 		{
 			"Id": "c60b922e-1454-4999-aecb-775431e56831",
@@ -128,7 +124,7 @@ An Entry resource consists of the following properties:
 
 ## Get Transactions By Date
 
-### Request
+#### Request
 
 	GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top} 
 		
@@ -139,7 +135,7 @@ An Entry resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `StartDate` (**Required**) - Date at which to begin search request, in UTC
 * `EndDate` (**Required**) - Date at which to end search request, in UTC
 * `Skip`(Optional) - The number of records to skip before starting the record, defaults to 0 if no $skip value is used
@@ -152,7 +148,7 @@ An Entry resource consists of the following properties:
 	Authorization: Bearer (Access Token)
 	Accept: application/hal+json
 	
-### Response
+#### Response
 
 * Array[[Transaction](#Transaction)] - Transaction resources matching the filter criteria, if any were found
 	

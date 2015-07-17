@@ -17,19 +17,17 @@ summary:
 
 ## Company
 
-A **Company** consists of the following properties:
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
 | Id | Integer | Unique identifier for this Company. This value is system generated and read-only | `1` |
-| Name | String | Company Name | `SampleCompany` |
-| Description | String  | Description of this Company | `Company creating great experiences.` |
+| Name | String | Name | `SampleCompany` |
+| Description | String  | Description | `Company creating great experiences.` |
 | Role | String | Role. This value is system generated and read-only | `Company` |
 | Roles | Object | The value must be `Company` | `{ "Name": "Company" }` |
 | CreatedUTC | DateTime | Date when this Company was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Date when this Company was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with this Company | |
-| CorrelationId | String | Identifier for this Company in an external RMS | `5cb8e583-6772-410d-a712-dcc8cd98f693` |
+| CorrelationId | String | Optional unique identifier in an external inventory system | `5cb8e583-6772-410d-a712-dcc8cd98f693` |
 | Logo | Object | A reference to an optional media asset |  |
 | Relationships | Array[Object] | Relationships for this Company. This value is system generated and read-only |  |
 | SortName | String  | A string used for sorting this Company. This value is system generated and read-only | `samplecompany` |
@@ -37,13 +35,11 @@ A **Company** consists of the following properties:
 
 ## Location
 
-A **Location** consists of the following properties:
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer  | Unique identifier for this Location | `2` |
-| Name | String  | Location Name | `SampleLocation` |
-| Description | String  | Description of this Location | `The SampleLocation is used to clear out discounted inventory` |
+| Name | String  | Name | `SampleLocation` |
+| Description | String  | Description | `The SampleLocation is used to clear out discounted inventory` |
 | Role | String  | The Role of this Location, this value must be `Location` | `Location` |
 | Roles | Array[Object] | The Role of this Location | |
 | Roles.Name | String | The name of the Role | `Location` |
@@ -69,12 +65,10 @@ A **Location** consists of the following properties:
 | Contacts.PhoneNumbers.Description | String | Description | `Main Line` |
 | Contacts.PhoneNumbers.Number | String | Phone Number | `5555555555` |
 | Contacts.PhoneNumbers.Extension | String | Extension | `1234` |
-| CorrelationId | String | A reference to this Location in an external RMS | `RMS123` |
+| CorrelationId | String | Optional unique identifier for this CatalogItem in an external inventory system | `RMS123` |
 | Geography | Object | Geographic coordinates of this Location | |
 | Geography.Longitude | Decimal | Longitude | `50.443559` |
 | Geography.Latitude | Decimal | Latitude | `-104.612034` |
-| LocationType | String | Reserved for future use | `null` |
-| LocationSubType | String | Reserved for future use | `null` |
 | Logo | Object | A reference to a media asset | |
 | Relationships | Array[Object] | Relationships for a Location |  |
 | SortName | String  | A string used for sorting this Location | `samplecompany` |
@@ -91,10 +85,12 @@ A **Location** consists of the following properties:
 | StorePhoneNumbers.Number | String | Phone Number | `5555555555` |
 | StorePhoneNumbers.Extension | String | Extension | `5555` |
 | Version | Integer | The latest revision number| `13` |
+| *LocationType* | *String* | *Reserved for future use* |  |
+| *LocationSubType* | *String* | *Reserved for future use* |  |
 
 ## Getting a Company
 
-### Request
+#### Request
 
     GET /Company({CompanyId})
     
@@ -113,7 +109,7 @@ A **Location** consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [Company](#Company) - Company resource that was requested, if it exists
 
@@ -144,13 +140,13 @@ A **Location** consists of the following properties:
 
 ## Getting a Location For a Company
 
-### Request
+#### Request
 
     GET /Companies({CompanyId})/Locations({LocationId})
     
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Location](#Location)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `LocationId` (**Required**) - Identifier for the [Location](#Location) 
 
 #### Headers
@@ -164,7 +160,7 @@ A **Location** consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [Location](#Location) - Location resource that was requested, if it exists
 
@@ -175,8 +171,6 @@ A **Location** consists of the following properties:
         "Id": 2,
         "Name": "SampleLocation",
         "Description": "The SampleLocation is used to clear out our discounted inventory.",
-        "LocationType": "Kiosk",
-        "LocationSubType": "Mall",
         "Role": "Location",
         "Roles": [
             {
@@ -275,13 +269,13 @@ A **Location** consists of the following properties:
 
 ## Getting All Locations For a Company
 
-### Request
+#### Request
 
     GET /Companies({CompanyId})/Locations
     
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) associated with this [Location](#Location)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 
 #### Headers
 
@@ -294,9 +288,9 @@ A **Location** consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
-* Array[[Location](#Location)] - Location resources associated with the given [Company](/api/company-tree/#Company)
+* Array[{{location}}] - Locations in the {{company}}
 
 ###### Example
 
@@ -306,8 +300,6 @@ A **Location** consists of the following properties:
             "Id": 2,
             "Name": "SampleLocation",
             "Description": "The SampleLocation is used to clear out our discounted inventory.",
-            "LocationType": "Kiosk",
-            "LocationSubType": "Mall",
             "Role": "Location",
             "Roles": [
                 {

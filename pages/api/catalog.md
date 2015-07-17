@@ -15,10 +15,12 @@ Request URI's in the Catalog API are <b>case sensitive</b>
 
 ## Endpoints
 
-* Sandbox: https://catalogsdemo.iqmetrix.net/v1/
-* Production: https://catalogs.iqmetrix.net/v1/
+* Sandbox: https://catalogsdemo.iqmetrix.net/v1
+* Production: https://catalogs.iqmetrix.net/v1
 
-## CatalogItem
+## Resources
+
+### CatalogItem
 
 A **CatalogItem** consists of the following properties:
 
@@ -26,14 +28,14 @@ A **CatalogItem** consists of the following properties:
 |:-----|:---------|:------------|:--------|
 | CatalogItemId | GUID | Unique identifier for this CatalogItem | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
-| RmsId | String | Optional unique identifier for this CatlaogItem in an external inventory system | `1` |
+| RmsId | String | Optional unique identifier for this CatalogItem in an external inventory system | `1` |
 | Slug | String | Unique identifier for a [Product](/api/product-library/#Product) in the Product Library | `M1-V2` |
 
 {{note}}
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 {{end}}
 
-## CatalogSearchResult
+### CatalogSearchResult
 
 A **CatalogSearchResult** resource is used to return information about [Product](/api/product-library/#Product) resources that match a given criteria, defined in the request.
 
@@ -43,15 +45,15 @@ A CatalogSearchResult resource consists of the following properties:
 |:-----|:---------|:------------|:--------|
 | Items | Array[Object] | Products matching the search criteria |  |
 | Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |
-| Items.ClassificationTreeId | Integer | Identifier for the Classification Tree associated with this Product | `1` |
+| Items.ClassificationTreeId | Integer | Identifier for the Classification Tree | `1` |
 | Items.CanonicalClassification | Object | Classification tree details for this Product |  |
 | Items.CanonicalClassification.Id | Integer | Identifier for the Classification/Category | `1` |
 | Items.CanonicalClassification.Name | String | Name of the Classification/Category | `Smartphones` |
-| Items.CanonicalClassification.ParentCategories | Array[Object] | List of Parent Categories associated with this Classification |  |
+| Items.CanonicalClassification.ParentCategories | Array[Object] | List of Parent Categories |  |
 | Items.CanonicalClassification.ParentCategories.Id | Integer | Identifier for this Category | `2` |
 | Items.CanonicalClassification.ParentCategories.Name | String | Name of this Category | `Cellular & Accessories` |
-| Items.CatalogItemId | GUID | Unique identifier for the CatalogItem associated with this Product | `f6642545-9136-4f44-a163-0e97e32e2e27` |
-| Items.CompanyId | Integer | Identifier for the Company associated with this Product | `1` |
+| Items.CatalogItemId | GUID | Unique identifier for the CatalogItem | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| Items.CompanyId | Integer | Identifier for the Company | `1` |
 | Items.DateAddedUtc | DateTime | Date this Product was added to the catalog in UTC format | `2011-10-14T12:00:00.000` |
 | Items.HeroShotId | GUID | An identifier for a Hero Shot image resource | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this Product is publicly accessible, instead of private | `true` |
@@ -59,7 +61,7 @@ A CatalogSearchResult resource consists of the following properties:
 | Items.Manufacturer | Object | Manufacturer information for the Product |  |
 | Items.Manufacturer.Id | Integer | Identifier for the Manufacturer | `4` |
 | Items.Manufacturer.Name | String | Name of the Manufacturer | `SampleManufacturer` |
-| Items.MasterProductId | Integer | Identifier for the Master Product associated with this Product | `3` |
+| Items.MasterProductId | Integer | Identifier for the Master Product | `3` |
 | Items.Msrp | Object | Manufacturer's suggested retail price information for the Product |  |
 | Items.Msrp.Amount | Decimal | Manufacturer suggested retail price | `100` |
 | Items.Msrp.CurrencyCode | String | The 3 letter ISO currency code for the currency of the MSRP | `CAD` |
@@ -72,12 +74,12 @@ A CatalogSearchResult resource consists of the following properties:
 | Items.Vendors.Name | String | Name of the Vendor | `SampleVendor` |
 | Facets | Object | Summary of Manufacturer and Vendor information for the Items |  |
 | Facets.Manufacturers | Array[Object] | Manufacturer information for the Items |  |
-| Facets.Manufacturers.Count | Integer | Number of Items associated with this Manufacturer | `1` |
+| Facets.Manufacturers.Count | Integer | Number of Items | `1` |
 | Facets.Manufacturers.Item | Object | Information about this Manufacturer  | |
 | Facets.Manufacturers.Item.Id | Integer | Identifier for this Manufacturer | `4` |
 | Facets.Manufacturers.Item.Name | String | Name of this Manufacturer | `SampleManufacturer` |
 | Facets.Vendors | Array[Object] | Vendor information for the Items |  |
-| Facets.Vendors.Count | Integer | Number of Items associated with this Vendor | `1` |
+| Facets.Vendors.Count | Integer | Number of Items | `1` |
 | Facets.Vendors.Item | Object | Information about this Vendor |  |
 | Facets.Vendors.Item.Id | Integer | Identifier for this Vendor | `47` |
 | Facets.Vendors.Item.Name | String | Name of this Vendor | `SampleVendor` |
@@ -88,7 +90,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting All Catalog Items
 
-### Request
+##### Request
 
     GET /companies({CompanyId})/catalog/items 
     
@@ -99,7 +101,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 
 ###### Example
 
@@ -107,9 +109,9 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
-* Array[[CatalogItem](#CatalogItem)] - CatalogItems associated with this [Company](/api/company-tree/#Company)
+* Array[[CatalogItem](#CatalogItem)] - CatalogItems, if any exist
 
 ###### Example
 
@@ -138,7 +140,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting Product Details
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/items({CatalogItemId})/productDetails
     
@@ -149,7 +151,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) 
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#CatalogItem)
 
 ###### Example
@@ -158,7 +160,7 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token) 
     Accept: application/json
 
-### Response
+#### Response
 
 * [Product](/api/product-library/#Product) - Product details
 
@@ -242,7 +244,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting Compatible Products for a Catalog Item
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/items({CatalogItemId})/compatible 
     
@@ -253,7 +255,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) 
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#CatlogItem)
 
 ###### Example
@@ -262,7 +264,7 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * `Items` (Array) - Products compatible with the provided [CatalogItem](#CatalogItem)
     * `Name` (String) - The name of the CatalogItem
@@ -293,7 +295,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting Variations for a Catalog Item
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/items({CatalogItemId})/variations 
     
@@ -304,7 +306,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company) 
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#CatalogItem)
 
 ###### Example
@@ -313,7 +315,7 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * `Items` (Array) - Variations of the provided [CatalogItem](#CatalogItem)
   * `Name` (String) - The name of the variation 
@@ -353,7 +355,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting Products By Category or Classification
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/search?CategoryOrClassificationId={CategoryOrClassificationId}&Page={Page}&PageSize={PageSize}
     
@@ -364,7 +366,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `CategoryOrClassificationId` (**Required**) - Identifier for the Category or Classification 
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
@@ -375,7 +377,7 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found in the given Category/Classification
 
@@ -458,7 +460,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting Products By Manufacturer
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/search?ManufacturerIds={ManufacturerIds}&Page={Page}&PageSize={PageSize}
     
@@ -469,7 +471,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `ManufacturerIds` (**Required**) - List of comma seperated integers representing identifiers for Manufacturers
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
@@ -480,7 +482,7 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found with the given Manufacturer(s)
 
@@ -563,7 +565,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting Products By Vendor
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/search?VendorIds={VendorIds}&Page={Page}&PageSize={PageSize}
     
@@ -574,7 +576,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `VendorIds` (**Required**) - List of comma seperated integers representing identifiers for Vendors
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
@@ -585,7 +587,7 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found with the given Vendor(s)
 
@@ -666,9 +668,55 @@ A CatalogSearchResult resource consists of the following properties:
         }
     }
 
+## Getting Products By Vendor SKU
+
+#### Request
+
+    GET /companies({CompanyId})/catalog/items/byvendorsku?vendorsku={VendorSku}&vendorid={VendorId}
+    
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `VendorSku` (**Required**) - Vendor Sku to search for
+* `VendorId` (Optional) - Identifier for a {{vendor}} to search for
+
+###### Example
+
+    GET /companies(1)/catalog/items/byvendorsku?vendorsku=403405&vendorid=47
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* Sku (String) - Vendor Sku specified in the URI
+* VendorId (Integer) - Vendor Id specified in the URI
+* Items (Array[{{catalogitem}}]) - CatalogItem resources matching the search criteria
+
+###### Example
+
+    HTTP 200 Content-Type: application/json
+    {
+        "Sku": "403405",
+        "VendorId": 47,
+        "Items": [
+            {
+                "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+                "IsArchived": false,
+                "RmsId": "1",
+                "Slug": "M3-V1"
+            },
+            ...
+        ]
+    }
+
 ## Getting Products Available for Shipping
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/search?IsDropshippable=true&Page={Page}&PageSize={PageSize}
     
@@ -679,8 +727,8 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
-* `IsDropshippable` (**Required**) - True to display Products available for shipping, false to display products not available for shipping
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `IsDropshippable` (**Required**) - True to display {{products}} available for shipping, false to display products not available for shipping
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
 
@@ -690,9 +738,9 @@ A CatalogSearchResult resource consists of the following properties:
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Product available for shipping were found
+* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any {{products}} available for shipping were found
 
 ###### Example
 
@@ -777,7 +825,7 @@ A CatalogSearchResult resource consists of the following properties:
 SearchTerms specified in the URI are compared against the following {{product}} fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
 {{end}}
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/search?SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
     
@@ -788,7 +836,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `SearchTerms` (**Required**) - Search terms for [Products](/api/product-library/#Product) we want to search for
 * `OrderBy` (Optional) - A string value representing which field to order the results by. Acceptable values are `name` or `dateAdded`. Defaults to `name` if not specified
 * `OrderDir` (Optional) - A string value representing the sort direction. Acceptable values are `asc` and `desc`. Defaults to `asc` if not specified 
@@ -801,7 +849,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found matching the `SearchTerms`
 
@@ -886,7 +934,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 
 Search filters can be combined to narrow down results. The example below illustrates a search request using every filter.
 
-### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
     
@@ -897,7 +945,7 @@ Search filters can be combined to narrow down results. The example below illustr
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the [Company](/api/company-tree/#Company)
+* `CompanyId` (**Required**) - Identifier for the {{company}}
 * `VendorIds` (Optional) - List of comma seperated integers representing identifiers for Vendors
 * `ManufacturerIds` (Optional) - Array of integers representing identifiers for Manufacturers
 * `IsDropshippable` (Optional) - True to display Products available for shipping, false to display products not available for shipping
@@ -914,7 +962,7 @@ Search filters can be combined to narrow down results. The example below illustr
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
+#### Response
 
 * [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Product available for shipping were found
 
@@ -996,7 +1044,7 @@ Search filters can be combined to narrow down results. The example below illustr
     }
 
 
-### Errors
+## Errors
 
 The below table may help resolve problems encountered when making calls to the Catalog API.
 
