@@ -15,7 +15,9 @@ summary:
 * Sandbox: https://crmdemo.iqmetrix.net/v1
 * Production: https://crm.iqmetrix.net/v1
 
-## Customer
+## Resources
+
+### Customer
 
 A **Customer** is a person or organization that buys goods or services from a store or business. 
 
@@ -34,7 +36,7 @@ A **Customer** is a person or organization that buys goods or services from a st
 | Notes | String | Optional | Any notes related to this customer | `Interested in iPhone 6` |
 | Title | String | Optional | Title | `Mr` |
 
-## Address
+### Address
 
 An **Address** represents a valid address somewhere on the planet.
 
@@ -57,7 +59,7 @@ An **Address** represents a valid address somewhere on the planet.
 | StreetAddress1 | String | Optional | The street address | `1600 Amphitheatre Pkwy` |
 | StreetAddress2 | String | Optional | The street address | `Suite 500`|
 
-## ContactMethod
+### ContactMethod
 
 A **Contact Method** is a method of contacting a Customer.
 
@@ -74,7 +76,7 @@ A **Contact Method** is a method of contacting a Customer.
 | Notes| String | Optional  | Notes related to this ContactMethod | `After 6pm` |
 | Value| String | Optional | The value representing this ContactMethod | `(306) 222-3333` |
 
-## CustomerExtension
+### CustomerExtension
 
 A **CustomerExtension** resource is used for adding custom properties to a Customer.
 
@@ -86,7 +88,7 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 | ExtensionTypeId | Integer | Required | Identifier for the [CustomerExtensionType](#CustomerExtensionType) | `1` |
 | Value | String | Optional | The value of this CustomerExtension | `66432` |
 
-## CustomerExtensionType
+### CustomerExtensionType
 
 **CustomerExtensionType** resources are **created by iQmetrix** and are used to provide custom properties for the CustomerExtension resource.
 
@@ -96,7 +98,7 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 | Name | String | Required | Name | `ExternalCustomerId` |
 | DataType | String | Required | Data type | `Integer` |
 
-## CustomerFull
+### CustomerFull
 
 **CustomerFull** is an extension on the Customer resource, it consists of all Customer properties plus the following:
 
@@ -108,7 +110,7 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 | MemberOf | Array[MemberOf] | Optional | A collection of Customers that the [Customer](#Customer) is a MemberOf (parent relation)|
 | RelatedCustomers | Array[RelatedCustomer] | Optional | A collection of [Customer](#Customer) related to the [Customer](#Customer) (child relation) |
 
-## CustomerSearch
+### CustomerSearch
 
 **CustomerSearch** is used to search for CustomerFull resources based on a Criteria. 
 
@@ -118,9 +120,9 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 |:------|:------------|:---------------|:------------|
 | Criteria | String | Required | The criteria used to seach for the Customer |
 
-### Types
+## Types
 
-#### AddressType
+### AddressType
 
 | Name  | Id |
 |:------|:---|
@@ -130,7 +132,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 | Office | 4 |
 | Other | 5 |
 
-#### ContactMethodCategory
+### ContactMethodCategory
 
 | Name   | Id |
 |:-------|:---|
@@ -138,7 +140,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 | Email | 2 |
 | Other | 3 |
 
-#### ContactMethodType
+### ContactMethodType
 
 | Name   | Id | ContactCategoryId |
 |:-------|:---|:------------------|
@@ -160,7 +162,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
 | LinkedIn | 16 | 3 |
 | Other | 17 | 3 |
 
-#### CustomerType
+### CustomerType
 
 | Name    | Id |
 |:--------|:---|

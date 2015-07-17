@@ -15,7 +15,9 @@ summary:
 * Sandbox: https://orderdemo.iqmetrix.net/v1
 * Production: https://order.iqmetrix.net/v1
 
-## Order
+## Resources
+
+### Order
 
 | Name | Data Type | Is Required? | Description | Example |
 |:-----|:----------|:-------------|:------------|:--------|
@@ -42,7 +44,7 @@ summary:
 | *TenderId* | *String* | *Optional* | *Reserved for future use* |  |
 | *TenderOrigin* | *String* | *Optional* | *Reserved for future use* |  |
 
-## Item
+### Item
 
 | Name | Data Type | Is Required? | Description | Example |
 |:-----|:----------|:-------------|:------------|:--------|
@@ -67,7 +69,7 @@ summary:
 | ShippingOptionId | String | Optional | Identifier for the ShippingOption that this Item will use | `1` |
 | TrackingInformation | Object | Optional | Tracking information in the form of key-value pairs|  |
 
-## OrderFull
+### OrderFull
 
 **OrderFull** is an extension on the Order resource, it consists of all Order properties plus the following:
 
@@ -75,9 +77,9 @@ summary:
 |:------|:------------|:---------------|:------------|
 | Items | Array[Items] | Optional | The [Items](#Items) in the [Order](#Order) |
 
-### Types
+## Types
 
-#### OrderType
+### OrderType
 
 | Name   | Id |
 |:-------|:---|
@@ -86,7 +88,7 @@ summary:
 |Purchase|3|
 |RMA|4|
 
-#### OrderState
+### OrderState
 
 | Name   |
 |:-------|
@@ -96,14 +98,14 @@ summary:
 |Processed|
 |Completed|
 
-#### ItemType
+### ItemType
 
 | Name   | Id |
 |:-------|:---|
 |DropShip|1|
 |InStock|2|
 
-#### ItemStatus
+### ItemStatus
 
 | Name | ItemTypeId | Id |
 |:-----|:-----------|:---|

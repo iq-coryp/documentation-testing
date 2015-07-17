@@ -15,7 +15,9 @@ summary:
 * Sandbox: https://entitymanagerdemo.iqmetrix.net/v1
 * Production: https://entitymanager.iqmetrix.net/v1
 
-## Company
+## Resources
+
+### Company
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
@@ -33,7 +35,7 @@ summary:
 | SortName | String  | A string used for sorting this Company. This value is system generated and read-only | `samplecompany` |
 | Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
 
-## Location
+### Location
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|

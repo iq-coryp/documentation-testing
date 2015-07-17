@@ -15,7 +15,9 @@ summary:
 * Sandbox: https://availabilitydemo.iqmetrix.net/v1
 * Production: https://availability.iqmetrix.net/v1
 
-## InventoryAvailability
+## Resources
+
+### InventoryAvailability
 
 A **InventoryAvailability** resource consists of the following properties:
 

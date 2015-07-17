@@ -12,7 +12,7 @@ summary:
 
 Pricing information for products can be retrieved and managed using the Pricing API.
 
-### Notes
+## Notes
 
 1. Two types of prices are supported: regular price and sale price
 2. Multiple currencies are not supported, default retailer currency is implied
@@ -24,7 +24,9 @@ Pricing information for products can be retrieved and managed using the Pricing 
 * Sandbox: https://pricingdemo.iqmetrix.net/v1
 * Production: https://pricing.iqmetrix.net/v1
 
-## PricingInformation
+## Resources
+
+### PricingInformation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -35,7 +37,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 | OverridePrice | Decimal | The sale price for the [CatalogItem](/api/catalog/#CatalogItem), if specified this value must be greater than 0 | `5.0` |
 | PricingTermId | Integer | Identifier for a [PricingTerm](#PricingTerm) | `20` |
 
-## PricingTerm
+### PricingTerm
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|

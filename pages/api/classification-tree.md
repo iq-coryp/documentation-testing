@@ -21,7 +21,9 @@ Classification Trees are relatively static, and rarely change.
 * Sandbox: https://productlibrarydemo.iqmetrix.net/v1
 * Production: https://productlibrary.iqmetrix.net/v1
 
-## Classification
+## Resources
+
+### Classification
 
 **Classifications** are used to group {{products}} together by similar features.
 
@@ -40,7 +42,7 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 {{products}} are associated with a single Classification.
 {{end}}
 
-## Category
+### Category
 
 A **Category** is a node in a Classification Tree that represents a logical grouping of related Classifications.
 
@@ -56,7 +58,7 @@ There is a limit to 20 levels of depth for Categories.
 | Classifications | Array[Classification] | Child Classifications | |
 | Order | Integer | Sorting order | `1` | 
 
-## Classification Tree
+### Classification Tree
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|

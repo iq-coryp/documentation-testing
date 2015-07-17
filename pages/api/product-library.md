@@ -15,7 +15,9 @@ summary:
 * Sandbox: https://productlibrarydemo.iqmetrix.net/v1
 * Production: https://productlibrary.iqmetrix.net/v1
 
-## Product
+## Resources
+
+### Product
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|

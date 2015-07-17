@@ -5,29 +5,30 @@ tags: []
 keywords: 
 audience: 
 last_updated: 
-summary: 
-metadata: false
+summary:
 ---
 
 {% include linkrefs.html %}
 
-#### Access Token
+## Terms
+
+### Access Token
 
 An Access Token is a string that identifies a client application and allows authenticated access to iQmetrix APIs.
 
-#### Credit Account
+### Credit Account
 
 A type of Account where debits increase the Account's balance.
 
-#### Debit Account
+### Debit Account
 
 A type of Account where credits decrease the Account's balance.
 
-#### Hero Shot
+### Hero Shot
 
 An Asset for a Product, typically an image or video.
 
-#### OAuth
+### OAuth
 
 OAuth provides client applications with secure access to resources on behalf of a resource owner by allowing [Access Tokens](#Access-Token) to be issued to third-party clients. 
 
@@ -37,7 +38,7 @@ OAuth provides client applications with secure access to resources on behalf of 
 
 *For more on OAuth2, see [OAuth](http://oauth.net/2/)*
 
-#### Product Template
+### Product Template
 
 A Product Template is a blueprint for creating a {{product}} in Product Library. It defines common Product Fields and how they should be organized into Field Groups for a Product that belongs to a Classification associated with the Product Template. 
 

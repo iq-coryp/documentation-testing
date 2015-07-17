@@ -15,7 +15,7 @@ summary:
 
 ## Resources
 
-## Activation
+### Activation
 
 An **Activation** contains IDs necessary to identify an activation, and all the activation details.
 
@@ -27,7 +27,7 @@ An **Activation** contains IDs necessary to identify an activation, and all the 
 | CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) making this request | `5678` |
 
-## CarrierActivationDetails
+### CarrierActivationDetails
 
 A **CarrierActivationDetails** contains all of the customer, product, and rate plan information necessary to process an activation.
 
@@ -63,7 +63,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | *UpgradeCode* | *String* | *Reserved for future use* | |
 | *UpgradeSourceNumber* | *String* | *Reserved for future use* | |
 
-## Subscriber
+### Subscriber
 
 A **Subscriber** contains all of the customer information related to an activation.
 
@@ -88,7 +88,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | *SecondName* | *String* | *Reserved for future use* | |
 | *PreferredLanguage* | *String* | *Reserved for future use* | |
 
-## Address
+### Address
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -103,14 +103,14 @@ A **Subscriber** contains all of the customer information related to an activati
 | Province | String | Province or state | `DE` |
 | SuiteNumber | String | Suite number | |
 
-## PhoneNumber
+### PhoneNumber
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String ([PhoneNumberType](#phonenumbertype)) | The type of phone number.  See [PhoneNumberType](#phonenumbertype) for the list of valid types  | `Home` |
 | Value | String | Phone number | `1234561234` |
 
-## RatePlan
+### RatePlan
  
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -125,7 +125,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 | *IsSharedPlan* | *Boolean* | *Reserved for future use* | |
 
-## RatePlanFeature
+### RatePlanFeature
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -136,7 +136,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | SOCCode | String | Carrier-specific SOC code | `XYZ5678` |
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 
-## Product 
+### Product 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -156,7 +156,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | *IsCarrierSupplied* | *Boolean* | *Reserved for future use* | |
 | *NumberPortedIn* | *Boolean* | *Reserved for future use* | |
 
-## Tab
+### Tab
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -164,7 +164,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | Commission | [VendorRebate](#vendorrebate) | | |
 | ReferenceNumber | String | | |
 
-## AdditionalFee
+### AdditionalFee
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -176,7 +176,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | ReferenceNumber | String | Carrier reference number | |
 | SOCCode | String | Carrier-specific SOC code | |
 
-## VendorRebate
+### VendorRebate
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|

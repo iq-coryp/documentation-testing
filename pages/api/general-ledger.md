@@ -15,7 +15,9 @@ summary:
 * Sandbox: https://generalledgerdemo.iqmetrix.net/v1
 * Production: https://generalledger.iqmetrix.net/v1
 
-## Account
+## Resources
+
+### Account
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
@@ -37,7 +39,7 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | IsEnabled | Boolean | True if this Account is enabled, false if it is disabled | `true` |
 | Version | Integer | The latest revision number | `1` |
 
-## Transaction
+### Transaction
 
 {{note}}
 A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries are the same value, this is called a Balanced Transaction
@@ -52,7 +54,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | CreatedByUserId | Integer | Auditing column showing the User Id of whoever created this Transaction. This value is system-generated and read-only | `3` |
 | Entries | Array[[Entry](#Entry)] | The collection of Entries for this Transaction | |
 
-## Entry
+### Entry
 
 {{important}}
 A Transaction is <b>immutable</b> and permanent, after it has been created it cannot be updated or deleted

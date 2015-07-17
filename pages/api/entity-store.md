@@ -17,7 +17,9 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 * Sandbox: https://entitymanagerdemo.iqmetrix.net/v1
 * Production: https://entitymanager.iqmetrix.net/v1
 
-## Carrier
+## Resources
+
+### Carrier
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
@@ -35,7 +37,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | SortName | String  | A string used for sorting the Carrier. This value is system generated and read-only | `samplecarrier` |
 | Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
 
-## Manufacturer
+### Manufacturer
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
@@ -53,7 +55,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | SortName | String  | A string used for sorting the Manufacturer. This value is system generated and read-only | `samplemanufacturer` |
 | Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
 
-## Vendor
+### Vendor
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
