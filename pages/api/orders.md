@@ -67,7 +67,9 @@ summary:
 | SerialNumbers | Array[String] | Optional | Serial numbers | `abc321` |
 | SKU | String | Optional | SKU for this Item | `00001` |
 | ShippingOptionId | String | Optional | Identifier for the ShippingOption that this Item will use | `1` |
-| TrackingInformation | Object | Optional | Tracking information in the form of key-value pairs|  |
+| TrackingInformation | Array[Object] | Optional | Tracking information in the form of key-value pairs|  |
+| TrackingInformation.Quantity | Integer | Required | Number of items being tracked | `1` |
+| TrackingInformation.TrackingNumber | String | Required | Tracking number | `1TTTTN4421 |
 
 ### OrderFull
 
@@ -146,7 +148,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 
 ##### Request Parameters
 
-* `Order` (**Required**) - See [Order](#Order)
+* `Order` (**Required**) - [Order](#Order) to be updated
 
 ###### Example
 
@@ -171,7 +173,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 
 #### Response
 
-* [Order](#Order) - Order resource that was created, if succesful
+* [Order](#Order) - Order resource that was created, if successful
 
 ###### Example
 
@@ -199,7 +201,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "PrintableId": "8765-1234-987"
     }
 
-## Adding Items to an Order
+## Adding an Item to an Order
 
 #### Request
 
@@ -245,12 +247,17 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "SerialNumbers":  ["abc123","abc321"],
         "SKU": "00001",
         "ShoppingOptionId": "",
-        "TrackingInformation": [ ]
+        "TrackingInformation": [ 
+            {
+                "Quantity": 1,
+                "TrackingNumber": "1TTTTN4421"
+            }
+        ]
     }
 
 #### Response
 
-* [Item](#Item) - Item that was added to the [Order](#Order), if succesful
+* [Item](#Item) - Item that was added to the [Order](#Order), if successful
 
 ###### Example
 
@@ -274,7 +281,196 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "SerialNumbers":  ["abc123","abc321"],
         "SKU": "00001",
         "ShoppingOptionId": "",
-        "TrackingInformation": [ ]
+        "TrackingInformation": [ 
+            {
+                "Quantity": 1,
+                "TrackingNumber": "1TTTTN4421"
+            }
+        ]
+    }
+
+## Updating an Order
+
+#### Request
+
+    POST /Companies({CompanyId})/Orders({OrderId}) 
+    {
+        {Order}
+    }
+    
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+
+#### Request Parameters
+
+* `Order` (**Required**) - See [Order](#Order)
+
+###### Example
+
+    POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+    Content-Type: application/json
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order", 
+        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "EmployeeId": 15,
+        "EntityId": 8,
+        "State": "Created",
+        "OrderExpiryDate": "2015-05-08T18:05:13.137",
+        "OrderExpiryHours": 72,
+        "OrderType": "Purchase",
+        "OrderTypeId": 3,
+        "CreatedDateUtc": "2015-05-05T18:05:13.137",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": "1"
+        "TenderId": "",
+        "TenderOrigin": "",
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "DiscountAmount": 15.0,
+        "PrintableId": ""
+    }
+
+#### Response
+
+* [Order](#Order) - Order that was updated, if it was successful
+
+###### Example
+
+    HTTP 201 Content-Type: application/json
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order", 
+        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "EmployeeId": 15,
+        "EntityId": 8,
+        "State": "Created",
+        "OrderExpiryDate": "2015-05-08T18:05:13.137",
+        "OrderExpiryHours": 72,
+        "OrderType": "Purchase",
+        "OrderTypeId": 3,
+        "CreatedDateUtc": "2015-05-05T18:05:13.137",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": "1"
+        "TenderId": "",
+        "TenderOrigin": "",
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "DiscountAmount": 15.0,
+        "PrintableId": ""
+    }
+
+
+## Processing an Order
+
+#### Request
+
+    POST /Companies({CompanyId})/Orders({OrderId})/Processed 
+    {
+        "OrderId": "{OrderId}"
+    }
+    
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+
+#### Request Parameters
+
+* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+
+###### Example
+
+    POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Processed
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+    Content-Type: application/json
+    {
+       "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
+    }
+
+#### Response
+
+* `Id` (Integer) - Identifier for the response, this value can be ignored
+* `OrderId` (GUID) - Identifier for the [Order](#Order)
+
+###### Example
+
+    HTTP 201 Content-Type: application/json
+    {
+        "Id": 1,
+        "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
+    }
+
+## Shipping an Order
+
+#### Request
+
+    POST /Companies({CompanyId})/Orders({OrderId})/Shipped 
+    {
+        "OrderId": "{OrderId}"
+    }
+    
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+
+#### Request Parameters
+
+* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+
+###### Example
+
+    POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Shipped
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+    Content-Type: application/json
+    {
+       "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
+    }
+
+#### Response
+
+* `Id` (Integer) - Identifier for the response, this value can be ignored
+* `OrderId` (GUID) - Identifier for the [Order](#Order)
+* `TrackingNumber` (String) - Tracking number for the [Order](#Order), placeholder that can be set in a later request
+
+###### Example
+
+    HTTP 201 Content-Type: application/json
+    {
+        "Id": 1,
+        "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
+        "TrackingNumber": null
     }
 
 ## Creating an Order With Items
@@ -300,7 +496,7 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 
-##### Request Parameters
+#### Request Parameters
 
 * `OrderFull` (**Required**) - See [OrderFull](#OrderFull)
 
@@ -341,13 +537,14 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
                 "SKU": "00001",
                 "ShoppingOptionId": "",
                 "TrackingInformation": [ ]
-            }
+            },
+            ...
         ]
     }
 
 #### Response
 
-* [OrderFull](#OrderFull) - OrderFull resource that was created, if succesful
+* [OrderFull](#OrderFull) - OrderFull resource that was created, if successful
 
 ###### Example
 
@@ -394,7 +591,8 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
                 "SKU": "00001",
                 "ShoppingOptionId": "",
                 "TrackingInformation": [ ]
-            }
+            },
+            ...
         ]
     }
 
@@ -422,7 +620,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
 
-##### Request Parameters
+#### Request Parameters
 
 * `OrderFull` (**Required**) - See [OrderFull](#OrderFull)
 
@@ -476,7 +674,8 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                 "SKU": "00001",
                 "ShoppingOptionId": "",
                 "TrackingInformation": [ ]
-            }
+            },
+            ...
         ]
     }
 
@@ -531,7 +730,8 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                 "SKU": "00001",
                 "ShoppingOptionId": "",
                 "TrackingInformation": [ ]
-            }
+            },
+            ...
         ]
     }
 
@@ -608,7 +808,8 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                 "SKU": "00001",
                 "ShoppingOptionId": "",
                 "TrackingInformation": [ ]
-            }
+            },
+            ...
         ]
     }
     
@@ -684,8 +885,66 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                     "SKU": "00001",
                     "ShoppingOptionId": "",
                     "TrackingInformation": [ ]
-                }
+                },
+                ...
             ]
+        },
+        ...
+    ]
+
+## Getting Pending Orders by Location
+
+#### Request
+
+    GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {LocationId} 
+    
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `LocationId` (**Required**) - Identifier for the {{location}}
+
+###### Example
+
+    GET /Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 8
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* Array[[Order](#order)] - Pending Order's for the {{location}}, if any were found
+
+###### Example
+
+    HTTP 200 Content-Type: application/json
+    [
+        {
+            "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+            "Name": "iPhone 5 Order", 
+            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "EmployeeId": 15,
+            "EntityId": 8,
+            "State": "Pending",
+            "OrderExpiryDate": "2015-05-08T18:05:13.137",
+            "OrderExpiryHours": 72,
+            "OrderType": "Purchase",
+            "OrderTypeId": 3,
+            "CreatedDateUtc": "2015-05-05T18:05:13.137",
+            "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+            "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+            "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ShippingEntityId": "1"
+            "TenderId": "",
+            "TenderOrigin": "",
+            "DiscountCode": "MTRY-15",
+            "DiscountDescription": "Military discount",
+            "DiscountAmount": 15.0,
+            "PrintableId": ""
         },
         ...
     ]
@@ -754,12 +1013,12 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 The below table may help resolve problems encountered when making calls to the Order API.
 
-| Error Code | Description | Reason |
-|:-----------|:------------|:-------|
+| Error Code  | Description | Reason |
+|:------------|:------------|:-------|
 | `HTTP 400` | `Bad Request` | The request could not be understood by the server. The message returned in the response body will give more details on why the request was invalid |
-| `HTTP 400` | `Attempt to create resource that is not at its initial state` | Ensure the resource is in the  | 
-| `HTTP 400` | `Entity is not realted to company` | Ensure the `EntityId` used in the request belongs to the `Company` specified in the URI |
+| `HTTP 400` | `Entity is not related to company` | Ensure the `EntityId` used in the request belongs to the `Company` specified in the URI |
 | `HTTP 400` | `The request is invalid` | Ensure the `OrderId` used in the request matches the OrderId used in the URI |
 | `HTTP 400` | `Uri parameter representing resource id and resource`<br>`id found in the request content don't match` | Ensure the `OrderId` used in the request matches the OrderId used in the URI | 
+| `HTTP 404` | `Order resource with id {x} cannot be found` | Ensure the provided OrderId is correct |
 | `HTTP 409` | `Conflict` | Order expired and can no longer be updated |
-| `HTTP 409` | `Resource state transition from {x} to {y} is invalid` | Order state can only be updated from Created to  |
+| `HTTP 409` | `Resource state transition from {x} to {y} is invalid` | Order state can only be manually updated from Created to Pending || `HTTP 500` | `An error has occurred` | Ensure the provided Tracking Number is valid |

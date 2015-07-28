@@ -717,6 +717,55 @@ A CustomerSearch resource is an extension on the [CustomerFull](#CustomerFull) r
         "StreetAddress2": ""
     }
 
+## Getting a Customer Address
+
+#### Request
+
+    GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json` 
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CustomerId` (**Required**) - Identifier for the [Customer](#Customer) 
+* `AddressId` (**Required**) - Identifier for the [Address](#Address) 
+
+###### Example
+
+    GET /Companies(1)/Customers(5ce90b33-1668-46f0-b3a8-0216cef59993)/Addresses(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* [Address](#Address) - Address resource that was requested, if it exists
+
+###### Example
+
+    HTTP 200 Content-Type: application/json
+    {
+        "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
+        "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
+        "AddressType": "Home",
+        "AddressTypeId": 2,
+        "Country": "Canada",
+        "CountryCode": "CA",
+        "Default": false,
+        "DoNotContact": true,
+        "Locality": "Regina",
+        "Notes": "Adding a note",
+        "PostalCode": "S4P 0P7",
+        "PostOfficeBoxNumber": "",
+        "State": "Saskatchewan",
+        "StateCode": "SK",
+        "StreetAddress1": "2221 Cornwall Street",
+        "StreetAddress2": ""
+    }
+
 ## Adding a Customer Contact Method
 
 #### Request

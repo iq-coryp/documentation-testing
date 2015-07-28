@@ -137,3 +137,11 @@ See the table below for available options and the syntax of using each one.
             }
         ]
     ]
+
+## Errors
+
+The below table may help resolve problems encountered when making requests to the Product Library API.
+
+| Error Code | Message | How to Resolve |
+|:-----------|:--------|:---------------|
+| `HTTP 406` | `Locale not available` | This error occurs with some browsers and apps such as Postman. To resolve, add the header `Accept-Language: en-US` |

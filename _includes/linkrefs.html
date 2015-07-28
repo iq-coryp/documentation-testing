@@ -2,13 +2,53 @@
 {% include callouts.html %}
 
 {% capture access_token %}
-<a href="{{"/glossary/#Access-Token" | prepend: site.api_baseurl}}">Access Token</a>
+<a href="{{"/glossary/#access-token" | prepend: site.api_baseurl}}">Access Token</a>
+{% endcapture %}
+
+{% capture address %}
+<a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Address</a>
+{% endcapture %}
+
+{% capture addresses %}
+<a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Addresses</a>
+{% endcapture %}
+
+{% capture carrier %}
+<a href="{{"/entity-store/#carrier" | prepend: site.api_baseurl}}">Carrier</a>
+{% endcapture %}
+
+{% capture catalogitem %}
+<a href="{{"/catalog/#catalogitem" | prepend: site.api_baseurl}}">CatalogItem</a>
+{% endcapture %}
+
+{% capture company %}
+<a href="{{"/company-tree/#company" | prepend: site.api_baseurl}}">Company</a>
+{% endcapture %}
+
+{% capture environment %}
+<a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>
+{% endcapture %}
+
+{% capture location %}
+<a href="{{"/company-tree/#location" | prepend: site.api_baseurl}}">Location</a>
 {% endcapture %}
 
 {% capture oauth2 %}
-<a href="{{"/glossary/#OAuth-Token" | prepend: site.api_baseurl}}">OAuth2</a>
+<a href="{{"/glossary/#oauth-token" | prepend: site.api_baseurl}}">OAuth2</a>
+{% endcapture %}
+
+{% capture order %}
+<a href="{{"/orders/#order" | prepend: site.api_baseurl}}">Order</a>
 {% endcapture %}
 
 {% capture product %}
-<a href="{{"/product-library/#Product" | prepend: site.api_baseurl}}">Product</a>
+<a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Product</a>
 {% endcapture %}
+
+{% capture products %}
+<a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Products</a>
+{% endcapture %}
+
+{% capture vendor %}
+<a href="{{"/entity-store/#vendor" | prepend: site.api_baseurl}}">Vendor</a>
+{% endcapture %} 

@@ -6,7 +6,8 @@ entries:
 - title: Sidebar # this title doesn't appear anywhere
   subcategories:
 
-    - title: API Documentation
+
+    - title: Getting Started
       audience: writer, designer
       platform: all
       product: all
@@ -15,17 +16,17 @@ entries:
 
       items:
 
-        - title: iQmetrix APIs
-          url: /api/getting-started/
+        - title: Environments
+          url: api/environments/
           audience: writer, designer
           platform: all
           product: all
-          version: all
+          version: all          
           print: true
           web: true
 
         - title: Rate Limiting
-          url: /api/rate-limiting/
+          url: api/rate-limiting/
           audience: writer, designer
           platform: all
           product: all
@@ -33,71 +34,8 @@ entries:
           print: true
           web: true
 
-        - title: Authentication
-          url: /api/authentication/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Availability
-          url: /api/availability/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Catalog
-          url: /api/catalog/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: CRM
-          url: /api/crm/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Entity Store
-          url: /api/entity-store/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: General Ledger
-          url: /api/general-ledger/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Orders
-          url: /api/orders/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Product Library
-          url: /api/product-library/
+        - title: Supported Response Formats
+          url: api/getting-started/
           audience: writer, designer
           platform: all
           product: all
@@ -106,7 +44,150 @@ entries:
           web: true
 
         - title: Glossary
-          url: /api/glossary/
+          url: api/glossary/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+    - title: API Reference
+      audience: writer, designer
+      platform: all
+      product: all
+      version: all
+      print: true
+
+      items:
+
+        - title: Authentication
+          url: api/authentication/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Availability
+          url: api/availability/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Catalog
+          url: api/catalog/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Classification Tree
+          url: api/classification-tree/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Company Tree
+          url: api/company-tree/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: CRM
+          url: api/crm/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Entities
+          url: api/entity-store/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: General Ledger
+          url: api/general-ledger/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Orders
+          url: api/orders/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Pricing
+          url: api/pricing/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Product Library
+          url: api/product-library/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+    - title: Wireless Services
+      audience: writer, designer
+      platform: all
+      product: all
+      version: all
+      print: true
+
+      items: 
+
+        - title: Carrier Integration
+          url: api/carrier-integration/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+
+    - title: Guides
+      audience: writer, designer
+      platform: all
+      product: all
+      version: all
+      print: true
+
+      items:
+
+        - title: Creating an Order
+          url: guides/creating-an-order/
           audience: writer, designer
           platform: all
           product: all

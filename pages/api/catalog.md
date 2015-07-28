@@ -90,7 +90,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting All Catalog Items
 
-##### Request
+#### Request
 
     GET /companies({CompanyId})/catalog/items 
     
@@ -728,7 +728,7 @@ A CatalogSearchResult resource consists of the following properties:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `IsDropshippable` (**Required**) - True to display {{products}} available for shipping, false to display products not available for shipping
+* `IsDropshippable` (**Required**) - True to display products available for shipping, false to display products not available for shipping
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
 
@@ -740,7 +740,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any {{products}} available for shipping were found
+* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Product available for shipping were found
 
 ###### Example
 
@@ -837,7 +837,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `SearchTerms` (**Required**) - Search terms for [Products](/api/product-library/#Product) we want to search for
+* `SearchTerms` (**Required**) - Search terms for products we want to search for
 * `OrderBy` (Optional) - A string value representing which field to order the results by. Acceptable values are `name` or `dateAdded`. Defaults to `name` if not specified
 * `OrderDir` (Optional) - A string value representing the sort direction. Acceptable values are `asc` and `desc`. Defaults to `asc` if not specified 
 * `Page` (Optional) - Page to display, if not specified defaults to 1
@@ -851,7 +851,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found matching the `SearchTerms`
+* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any products were found matching the `SearchTerms`
 
 ###### Example
 
@@ -948,9 +948,9 @@ Search filters can be combined to narrow down results. The example below illustr
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `VendorIds` (Optional) - List of comma seperated integers representing identifiers for Vendors
 * `ManufacturerIds` (Optional) - Array of integers representing identifiers for Manufacturers
-* `IsDropshippable` (Optional) - True to display Products available for shipping, false to display products not available for shipping
+* `IsDropshippable` (Optional) - True to display products available for shipping, false to display products not available for shipping
 * `CategoryOrClassificationId` (Optional) - Identifier for the Category or Classification 
-* `SearchTerms` (Optional) - Search terms for [Products](/api/product-library/#Product) we want to search for
+* `SearchTerms` (Optional) - Search terms for products we want to search for
 * `OrderBy` (Optional) - A string value representing which field to order the results by. Acceptable values are `name` or `dateAdded`. Defaults to `name` if not specified
 * `OrderDir` (Optional) - A string value representing the sort direction. Acceptable values are `asc` and `desc`. Defaults to `asc` if not specified 
 * `Page` (Optional) - Page to display, if not specified defaults to 1
