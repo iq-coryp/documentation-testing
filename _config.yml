@@ -28,7 +28,7 @@ port: 4006
 
 host: 127.0.0.1 
 
-url: "http://developers.iqmetrix.com"
+url: "http://melissakendall.github.io/documentation-testing"
 
 feedback_email: apidesign@iqmetrix.com
 
