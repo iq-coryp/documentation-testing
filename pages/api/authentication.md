@@ -27,14 +27,18 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 Each time the endpoint is called, a <b>new</b> access token is created and returned
 {{end}}
 
+{{tip}}
+As long as an access token is not expired, it can be used to authorize requests to <b>ANY</b> iQmetrix API. 
+{{end}}
+
 #### Request
 
     POST /oauth2/token
-    grant_type={GrantType}&
-    username={Username}&
-    password={Password}&
-    client_id={ClientId}&
-    client_secret={ClientSecret}
+    grant_type={grant_type}&
+    username={username}&
+    password={password}&
+    client_id={client_id}&
+    client_secret={client_secret}
 
 #### Headers
 
@@ -42,11 +46,11 @@ Each time the endpoint is called, a <b>new</b> access token is created and retur
 
 ##### Request Parameters
 
-*  `GrantType` (**Required**) - The value must be `password`
-*  `Username` (**Required**) - The username provided to iQmetrix, usually an email address
-*  `Password` (**Required**) - The password, provided when an account is created
-*  `ClientId` (**Required**) The client ID provided by iQmetrix
-*  `ClientSecret` (**Required**) - The client secret
+*  `grant_type` (**Required**) - The value must be `password`
+*  `username` (**Required**) - The username provided to iQmetrix, usually an email address
+*  `password` (**Required**) - The password, provided when an account is created
+*  `client_id` (**Required**) The client ID provided by iQmetrix
+*  `client_secret` (**Required**) - The client secret
 
 ###### Example
 
@@ -83,7 +87,7 @@ The below table may help resolve problems encountered when making requests to th
 | HTTP 400 | `invalid_client` | Ensure client_id and client_secret are correct |
 | HTTP 400 | `invalid_grant` | Ensure username and password are correct |
  
-## Refresh Token 
+## Refreshing an Access Token 
 
 Instead of always using credentials, a client application may use the refresh token to obtain a new access token.
 
@@ -97,9 +101,9 @@ The client credentials must be the same as those used in the request to acquire 
 #### Request
 
     POST /oauth2/token
-    grant_type={GrantType}&
-    client_id={ClientId}&
-    client_secret={ClientSecret}&
+    grant_type={grant_type}&
+    client_id={client_id}&
+    client_secret={client_secret}&
     refresh_token={RefreshToken}
 
 #### Headers
@@ -108,10 +112,10 @@ The client credentials must be the same as those used in the request to acquire 
 
 ##### Request Parameters
 
-* `GrantType` (**Required**) - The value must be `refresh_token`
-* `ClientId` (**Required**) The client ID provided by iQmetrix
-* `ClientSecret` (**Required**) - The client secret, should not be shared
-* `RefreshToken` (**Required**) - The refresh token we are exchanging 
+* `grant_type` (**Required**) - The value must be `refresh_token`
+* `client_id` (**Required**) The client ID provided by iQmetrix
+* `client_secret` (**Required**) - The client secret, should not be shared
+* `refresh_token` (**Required**) - The refresh token we are exchanging 
 
 ###### Example
 

@@ -12,23 +12,9 @@ weight: 1
 
 {% include linkrefs.html %}
 
-{% include custom/order_series.html %}
-
 This guide is intended to walk you through the process of creating an Order using the [Order API](http://developers.iqmetrix.com/api/orders).
 
-## Before You Begin
-
-Before you can create an {{order}}, you will need your onboarding package from iQmetrix, which includes the following:
-
-* Username
-* Password
-* ClientId
-* Client Secret
-* CompanyId
-
-{{note}}
-The values above are different for each <a href="http://developers.iqmetrix.com/api/environments/">Environment</a> used
-{{end}}
+{% include custom/order_series.html %}
 
 ## Step 1: Authenticate
 
@@ -39,7 +25,7 @@ See the table below for different ways of getting an Access Token.
 | If... | Then... |
 |:------|:--------|
 | You do not have an Access Token | See [Obtaining an Access Token](http://developers.iqmetrix.com/api/authentication/#obtaining-an-access-token) |
-| You have an Access Token but it is close to expiring | See [Refreshing an Access Token](http://developers.iqmetrix.com/api/authentication/#refresh-token) |
+| You have an Access Token but it is close to expiring | See [Refreshing an Access Token](http://developers.iqmetrix.com/api/authentication/#refreshing-an-access-token) |
 
 The token is placed in the `Authorization` header of requests to iQmetrix APIs, prefixed by the word `Bearer`.
 
@@ -49,7 +35,7 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
         
 ## Step 2: Determine Order Type
 
-Each {{order}} must have an associted [OrderType](http://developers.iqmetrix.com/api/orders/#ordertype).
+Each {{order}} must have an associated [OrderType](http://developers.iqmetrix.com/api/orders/#ordertype).
 
 There are a number of different OrderTypes. A short explanation of each is provided below:
 
@@ -77,6 +63,7 @@ For each Customer, a reference to the Customer in the form of its `CustomerId` i
 | If... | Then... |
 |:------|:--------|
 | You know the Customer's address or phone number | See [Customer Search](http://developers.iqmetrix.com/api/crm/#customer-search) |
+| Customer exists in the system but needs to be updated | See [Updating a Customer](http://developers.iqmetrix.com/api/crm/#updating-a-customer) |
 | Customer does not exist in the system | See [Creating a Customer](http://developers.iqmetrix.com/api/crm/#creating-a-customer) |
 
 ##### Example
@@ -96,7 +83,7 @@ A reference to the Location the form of its `EntityId` is required.
 | If... | Then... |
 |:------|:--------|
 | You know the basic store details but not the EntityId | See [Getting All Locations for a Company](http://developers.iqmetrix.com/api/company-tree/#getting-all-locations-for-a-company) |
-| Location does not exist in the system | The Location must be added to Hub before it can be used in an Order |
+| Location does not exist in the system | Contact iQmetrix to have the Location added to your Company Tree |
 
 ##### Example
 
@@ -125,12 +112,12 @@ For each Address, a reference to the Address in the form of its `AddressId` is r
 
 The following parameters can be optionally added to an {{order}}
 
-* Name - Name of the Order
-* EmployeeId - Identifier for an Employee who created the Order 
-* DiscountAmount - Value of discount to be applied at Order level
-* DiscountCode - Discount Code for a discount applied to this Order
-* DiscountDescription - Description of the discount
-* OrderExpiryHours - Amount of time in hours before the Order expires, defaults to 72
+* `Order.Name` - Name of the Order
+* `Order.EmployeeId` - Identifier for an Employee who created the Order 
+* `Order.DiscountAmount` - Value of discount to be applied at Order level
+* `Order.DiscountCode` - Discount Code for a discount applied to this Order
+* `Order.DiscountDescription` - Description of the discount
+* `Order.OrderExpiryHours` - Amount of time in hours before the Order expires, defaults to 72
 
 ##### Example
     
@@ -168,3 +155,15 @@ Now that we have all the parameters needed, we can create an {{order}}.
         "DiscountDescription": "Military discount",
         "OrderExpiryHours": 72
     }
+
+## Step 8: Record the OrderId
+
+The response to the request made in Step 7 will include an `OrderId` value, make sure to take note of this as it will be required later on!
+
+##### Example
+
+    "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
+
+## Next
+
+> <a href="{{ "/guides/adding-an-item-to-the-order" | prepend: site.url | append: site.suffix}}">Adding an Item to the Order</a>

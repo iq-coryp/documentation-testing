@@ -23,20 +23,20 @@ summary:
 |:-----|:----------|:-------------|:------------|:--------|
 | Id | GUID | Read-only | Unique identifier for this Order. This value is system-generated and read-only | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Optional | Name | `iPhone 5 Order` |
-| CustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#Customer) who created this Order | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| CustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#customer) who created this Order | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | EmployeeId | String | Optional | Identifier for the Employee who created this Order | `15` |
-| EntityId | Integer | Required | Identifier for the [Entity](/api/entity-store/), such as Store Id | `8` |
-| State | OrderState | Read-only | [OrderState](#OrderState) for this Order. This value is system-generated and read-only | `Created` |
+| EntityId | Integer | Required | Identifier for the [Location](/api/company-tree/#location) | `8` |
+| State | OrderState | Read-only | [OrderState](#orderstate) for this Order. This value is system-generated and read-only | `Created` |
 | OrderExpiryDate | DateTime | Read-only | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
-| OrderExpiryHours | Integer | Optional | The amount of hours before this Order expires and can no longer be updated | `20` |
-| OrderType | String | Read-only | Name of the [OrderType](#OrderType). This value is system-generated and read-only | `Sales` |
-| OrderTypeId | Integer | Required | Identifier for the [OrderType](#OrderType) | `3` |
-| CreatedDateUtc | DateTime | Read-only | The date and time the [Order](#Order) was created, in UTC. This value is system-generated and read-only | `2015-03-27T18:47:29.9012402+00:00` |
-| BillingAddressId | GUID | Optional | Unique identifier for the [Address](/api/crm/#Address) this Order will be billed to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | GUID | Required | Unique identifier for the [Customer](/api/crm/#Customer) this Order will be billed to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingAddressId | String | Optional | Unique identifier for the [Address](/api/crm/#Address) this Order will be shipped to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#Customer) this Order will be shipped to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingEntityId | Integer | Optional | Identifier for the supplier of this Item | `1` |
+| OrderExpiryHours | Integer | Optional | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
+| OrderType | String | Read-only | Name of the [OrderType](#ordertype). This value is system-generated and read-only | `Sales` |
+| OrderTypeId | Integer | Required | Identifier for the [OrderType](#ordertype) | `3` |
+| CreatedDateUtc | DateTime | Read-only | The date and time the [Order](#order) was created, in UTC. This value is system-generated and read-only | `2015-03-27T18:47:29.9012402+00:00` |
+| BillingAddressId | GUID | Optional | Unique identifier for the [Address](/api/crm/#address) this Order will be billed to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Required | Unique identifier for the [Customer](/api/crm/#customer) this Order will be billed to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingAddressId | String | Optional | Unique identifier for the [Address](/api/crm/#address) this Order will be shipped to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#customer) this Order will be shipped to. If this value is provided, `ShippingEntityId` must be excluded. | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingEntityId | Integer | Optional | Identifier for the Location this Order will be shipped to. If this value is provided, `ShippingCustomerId` must be excluded. | `1` |
 | DiscountAmount | Decimal | Optional | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | Optional | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | Optional | A description of the discount | `Military discount` |
@@ -52,7 +52,7 @@ summary:
 | OrderId | GUID | Read-only | Unique identifier for the [Order](#Order), specified by the OrderId in the URI. This value is system-generated and read-only | `216f7424-ae18-4c69-9597-984b430d0759` |
 | ItemStatus | String | Read-only | Name of the [ItemStatus](#ItemStatus). This value is system-generated and read-only | `New` |
 | ItemStatusId | Integer | Required | Identifier for the [ItemStatus](#ItemStatus)  | `1` |
-| ItemType | String | Required | Name of the [ItemType](#ItemType). This value is system-generated and read-only | `DropShip` |
+| ItemType | String | Read-only | Name of the [ItemType](#ItemType). This value is system-generated and read-only | `DropShip` |
 | ItemTypeId | String | Required | Identifier for the [ItemType](#ItemType)| `1` |
 | ProductId | String | Optional | Identifier for the Product | `12` |
 | SupplierEntityId | Integer | Optional | Identifier for the Supplier of this Item | `0` |
@@ -194,7 +194,6 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": "1"
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -246,7 +245,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "Quantity": 2,
         "SerialNumbers":  ["abc123","abc321"],
         "SKU": "00001",
-        "ShoppingOptionId": "",
+        "ShippingOptionId": "",
         "TrackingInformation": [ 
             {
                 "Quantity": 1,
@@ -280,7 +279,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "Quantity": 2,
         "SerialNumbers":  ["abc123","abc321"],
         "SKU": "00001",
-        "ShoppingOptionId": "",
+        "ShippingOptionId": "",
         "TrackingInformation": [ 
             {
                 "Quantity": 1,
@@ -335,7 +334,6 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": "1"
         "TenderId": "",
         "TenderOrigin": "",
         "DiscountCode": "MTRY-15",
@@ -367,7 +365,6 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": "1"
         "TenderId": "",
         "TenderOrigin": "",
         "DiscountCode": "MTRY-15",
@@ -535,7 +532,7 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
                 "Quantity": 2,
                 "SerialNumbers":  ["abc123","abc321"],
                 "SKU": "00001",
-                "ShoppingOptionId": "",
+                "ShippingOptionId": "",
                 "TrackingInformation": [ ]
             },
             ...
@@ -565,7 +562,6 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": "1"
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -589,7 +585,7 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
                 "Quantity": 2,
                 "SerialNumbers":  ["abc123","abc321"],
                 "SKU": "00001",
-                "ShoppingOptionId": "",
+                "ShippingOptionId": "",
                 "TrackingInformation": [ ]
             },
             ...
@@ -646,7 +642,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": "1"
         "TenderId": "",
         "TenderOrigin": "",
         "DiscountCode": "",
@@ -672,7 +667,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                 "Quantity": 2,
                 "SerialNumbers":  ["abc123","abc321"],
                 "SKU": "00001",
-                "ShoppingOptionId": "",
+                "ShippingOptionId": "",
                 "TrackingInformation": [ ]
             },
             ...
@@ -702,7 +697,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": "1"
         "TenderId": "",
         "TenderOrigin": "",
         "DiscountCode": "",
@@ -728,7 +722,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                 "Quantity": 2,
                 "SerialNumbers":  ["abc123","abc321"],
                 "SKU": "00001",
-                "ShoppingOptionId": "",
+                "ShippingOptionId": "",
                 "TrackingInformation": [ ]
             },
             ...
@@ -782,7 +776,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": "1"
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -806,7 +799,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                 "Quantity": 2,
                 "SerialNumbers":  ["abc123","abc321"],
                 "SKU": "00001",
-                "ShoppingOptionId": "",
+                "ShippingOptionId": "",
                 "TrackingInformation": [ ]
             },
             ...
@@ -859,7 +852,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
             "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
             "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ShippingEntityId": "1"
             "DiscountCode": "MTRY-15",
             "DiscountDescription": "Military discount",
             "DiscountAmount": 15.0,
@@ -883,7 +875,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
                     "Quantity": 2,
                     "SerialNumbers":  ["abc123","abc321"],
                     "SKU": "00001",
-                    "ShoppingOptionId": "",
+                    "ShippingOptionId": "",
                     "TrackingInformation": [ ]
                 },
                 ...
@@ -938,7 +930,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
             "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
             "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ShippingEntityId": "1"
             "TenderId": "",
             "TenderOrigin": "",
             "DiscountCode": "MTRY-15",
@@ -1000,7 +991,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
             "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
             "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ShippingEntityId": "1"
             "DiscountCode": "MTRY-15",
             "DiscountDescription": "Military discount",
             "DiscountAmount": 15.0,

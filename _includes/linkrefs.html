@@ -29,6 +29,18 @@
 <a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>
 {% endcapture %}
 
+{% capture item %}
+<a href="{{"/orders/#item" | prepend: site.api_baseurl}}">Item</a>
+{% endcapture %}
+
+{% capture item_type %}
+<a href="{{"/orders/#itemtype" | prepend: site.api_baseurl}}">ItemType</a>
+{% endcapture %}
+
+{% capture item_status %}
+<a href="{{"/orders/#itemstatus" | prepend: site.api_baseurl}}">ItemStatus</a>
+{% endcapture %}
+
 {% capture location %}
 <a href="{{"/company-tree/#location" | prepend: site.api_baseurl}}">Location</a>
 {% endcapture %}
