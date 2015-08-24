@@ -51,6 +51,7 @@ All responses from the iQmetrix API's have the following headers, which provide 
 | X-RateLimit-Limit | The maximum number of requests allowed in the current rate limit window |
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window | 
 | X-RateLimit-Reset | The time when the rate limit window will reset in UTC |
+| X-RateLimit-ResetSeconds | The number of seconds until the rate limit resets | 
 
 ## Exceeding Rate Limit
 
@@ -62,6 +63,7 @@ If the rate limit is exceeded, the response will be `429 Too Many Requests` and 
     X-RateLimit-Limit: 1000
     X-RateLimit-Remaining: 0
     X-RateLimit-Reset: 2015-04-16T17:46:00.0000000Z
+    X-RateLimit-ResetSeconds: 59
       
     rate limit exceeded
 

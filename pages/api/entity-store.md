@@ -23,55 +23,55 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
-| Id | Integer | Unique identifier for the Carrier. This value is system generated and read-only | `9` |
+| Id | Integer | Unique identifier | `9` |
 | Name | String | Name | `SampleCarrier` |
 | Description | String  | Description | `Carrier creating great experiences.` |
-| Role | String | Role. This value is system generated and read-only | `Carrier` |
+| Role | String | Role | `Carrier` |
 | Roles | Object | The value must be `Carrier` | `{ "Name": "Carrier" }` |
-| CreatedUTC | DateTime | Date when the Carrier was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Date when the Carrier was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| Attributes | Object | Set of key-value pairs that contain extra data to store with the Carrier | |
-| CorrelationId | String | Optional unique identifier in an external inventory system| `2015-05-20T23:06:29.7700813Z` |
-| Logo | Object | A reference to an optional media asset |  |
-| Relationships | Array[Object]  | Relationships for a Carrier. This value is system generated and read-only |  |
-| SortName | String  | A string used for sorting the Carrier. This value is system generated and read-only | `samplecarrier` |
-| Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data | |
+| CorrelationId | String | Identifier in an external inventory system | `2015-05-20T23:06:29.7700813Z` |
+| Logo | Object | A reference to a media asset |  |
+| Relationships | Array[Object]  | Relationships |  |
+| SortName | String  | A string used for sorting | `samplecarrier` |
+| Version | Integer | The latest revision number | `1` |
 
 ### Manufacturer
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
-| Id | Integer | Unique identifier for the Manufacturer. This value is system generated and read-only | `4` |
+| Id | Integer | Unique identifier | `4` |
 | Name | String | Name | `SampleManufacturer` |
 | Description | String  | Description | `Manufacturer creating great experiences.` |
-| Role | String | Role. This value is system generated and read-only | `Manufacturer` |
+| Role | String | Role | `Manufacturer` |
 | Roles | Object | The value must be `Manufacturer` | `{ "Name": "Manufacturer" }` |
-| CreatedUTC | DateTime | Date when the Manufacturer was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Date when the Manufacturer was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| Attributes | Object | Set of key-value pairs that contain extra data to store with the Manufacturer | |
-| CorrelationId | String | Optional unique identifier in an external inventory system | `0bee057f-150d-42b3-8abf-9e096d2b45ee` |
-| Logo | Object | A reference to an optional media asset |  |
-| Relationships | Array[Object] | Relationships for a Manufacturer. This value is system generated and read-only |  |
-| SortName | String  | A string used for sorting the Manufacturer. This value is system generated and read-only | `samplemanufacturer` |
-| Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data | |
+| CorrelationId | String | Identifier in an external inventory system | `2015-05-20T23:06:29.7700813Z` |
+| Logo | Object | A reference to a media asset |  |
+| Relationships | Array[Object]  | Relationships |  |
+| SortName | String  | A string used for sorting | `samplemanufacturer` |
+| Version | Integer | The latest revision number | `1` |
 
-### Vendor
+### Supplier
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
-| Id | Integer | Unique identifier for the Vendor. This value is system generated and read-only | `14` |
-| Name | String | Name | `SampleVendor` |
-| Description | String  | Description | `Vendor creating great experiences.` |
-| Role | String | Role. This value is system generated and read-only | `Vendor` |
-| Roles | Object | The value must be `Vendor` | `{ "Name": "Vendor" }` |
-| CreatedUTC | DateTime | Date when the Vendor was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Date when the Vendor was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| Attributes | Object | Set of key-value pairs that contain extra data to store with the Vendor | |
-| CorrelationId | String | Optional unique identifier in an external inventory system | `3a077b06-4faa-4c5d-a15b-4f0fa630f986` |
-| Logo | Object | A reference to an optional media asset|  |
-| Relationships | Array[Object]  | Relationships for a Vendor. This value is system generated and read-only |  |
-| SortName | String  | A string used for sorting the Vendor. This value is system generated and read-only | `samplevendor` |
-| Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
+| Id | Integer | Unique identifier | `14` |
+| Name | String | Name | `SampleSupplier` |
+| Description | String  | Description | `Supplier creating great experiences.` |
+| Role | String | Role | `Supplier` |
+| Roles | Object | The value must be `Supplier` | `{ "Name": "Supplier" }` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data | |
+| CorrelationId | String | Identifier in an external inventory system | `2015-05-20T23:06:29.7700813Z` |
+| Logo | Object | A reference to a media asset |  |
+| Relationships | Array[Object]  | Relationships |  |
+| SortName | String  | A string used for sorting | `samplesupplier` |
+| Version | Integer | The latest revision number | `1` |
 
 ## Getting All Carriers
 
@@ -92,7 +92,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* Array[[Carrier](#Carrier)] - Carrier resources, if any were found
+* Array[[Carrier](#Carrier)], if any were found
 
 ###### Example
 
@@ -145,7 +145,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* [Carrier](#Carrier) - The Carrier resource that was requested, if it exists
+* [Carrier](#carrier) that was requested, if it exists
 
 ###### Example
 
@@ -191,7 +191,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* Array[[Manufacturer](#Manufacturer)] - Manufacturer resources, if any were found
+* Array[[Manufacturer](#manufacturer)], if any were found
 
 ###### Example
 
@@ -230,7 +230,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### URI Parameters
 
-* `ManufacturerId` (**Required**) - Identifier for the [Manufacturer](#Manufacturer)
+* `ManufacturerId` (**Required**) - Identifier for the [Manufacturer](#manufacturer)
 
 #### Headers
 
@@ -245,7 +245,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* [Manufacturer](#Manufacturer) - The Manufacturer resource that was requested, if it exists
+* [Manufacturer](#manufacturer) that was requested, if it exists
 
 ###### Example
 
@@ -273,11 +273,11 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 	}
 
 
-## Getting All Vendors
+## Getting All Suppliers
 
 #### Request
 
-	GET /Vendors
+	GET /Suppliers
 
 #### Headers
 
@@ -286,13 +286,13 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ###### Example
 
-	GET /Vendors
+	GET /Suppliers
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 
 #### Response
 
-* Array[[Vendor](#Vendor)] - Vendor resources, if any were found
+* Array[[Supplier](#supplier)], if any were found
 
 ###### Example
 
@@ -300,8 +300,8 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 	[
 		{
 			"Id": 14,
-			"Name": "SampleVendor",
-			"Description": "Vendor creating great experiences.",
+			"Name": "SampleSupplier",
+			"Description": "Supplier creating great experiences.",
 			"Role": "Vendor",
 			"Roles": [
 				{
@@ -316,21 +316,21 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 			"CorrelationId": "15380be4-9cf2-4f05-9a60-184a59f7ba5d",
 			"Logo": { },
 			"Relationships": [ ],
-			"SortName": "samplevendor",
+			"SortName": "samplesupplier",
 			"Version": 1
 		},
 		...
 	]
 
-## Getting a Vendor
+## Getting a Supplier
 
 #### Request
 
-	GET /Vendors({VendorId})
+	GET /Suppliers({SupplierId})
 	
 #### URI Parameters
 
-* `VendorId` (**Required**) - Identifier for the [Vendor](#Vendor)
+* `SupplierId` (**Required**) - Identifier for the [Supplier](#supplier)
 
 #### Headers
 
@@ -339,21 +339,21 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ###### Example
 
-	GET /Vendors(14)
+	GET /Suppliers(14)
 	Authorization: Bearer (Access Token)
 	Accept: application/json
 
 #### Response
 
-* [Vendor](#Vendor) - The Vendor resource that was requested, if it exists
+* [Supplier](#supplier) that was requested, if it exists
 
 ###### Example
 
 	HTTP 200 Content-Type: application/json
 	{
 		"Id": 14,
-		"Name": "SampleVendor",
-		"Description": "Vendor creating great experiences.",
+		"Name": "SampleSupplier",
+		"Description": "Supplier creating great experiences.",
 		"Role": "Vendor",
 		"Roles": [
 			{
@@ -368,6 +368,6 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 		"CorrelationId": "15380be4-9cf2-4f05-9a60-184a59f7ba5d",
 		"Logo": { },
 		"Relationships": [ ],
-		"SortName": "samplevendor",
+		"SortName": "samplesupplier",
 		"Version": 1
 	}

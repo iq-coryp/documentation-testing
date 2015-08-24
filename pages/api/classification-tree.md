@@ -9,10 +9,6 @@ summary:
 ---
 {% include linkrefs.html %}
 
-{{warning}}
-Request URI's in the Classification Tree API are <b>case sensitive</b>
-{{end}}
-
 A **Classification Tree** is a hierarchical structure describing a taxonomy of {{products}}. 
 Classification Trees are relatively static, and rarely change.
 
@@ -34,7 +30,7 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 | Id | Integer | Identifier | `1` |
 | Name | String | Name | `Smartphones` |
 | Order | Integer | Sorting order | `2` |
-| ProductTemplate | Object | A reference to a [Product Template](/api/glossary/#ProductTemplate) | |
+| ProductTemplate | Object | A reference to a [ProductTemplate](/api/glossary/#producttemplate) | |
 | ProductTemplate.Id | Integer | Identifier | `60` |
 | ProductTemplate.Name | String | Name | `Wireless Device` |
 
@@ -58,7 +54,7 @@ There is a limit to 20 levels of depth for Categories.
 | Classifications | Array[Classification] | Child Classifications | |
 | Order | Integer | Sorting order | `1` | 
 
-### Classification Tree
+### ClassificationTree
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -86,7 +82,7 @@ There is a limit to 20 levels of depth for Categories.
 
 #### URI Parameters
 
-* `ClassificationTreeId` (**Required**) - Identifier for the Classification Tree
+* `ClassificationTreeId` (**Required**) - Identifier for the ClassificationTree
 
 ###### Example
 
@@ -96,7 +92,7 @@ There is a limit to 20 levels of depth for Categories.
 
 #### Response
 
-* [ClassificationTree](#ClassificationTree) - ClassificationTree that was requested, if it exists
+* [ClassificationTree](#classificationtree) that was requested, if it exists
 
 ###### Example
 

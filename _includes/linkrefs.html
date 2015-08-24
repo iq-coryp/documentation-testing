@@ -13,6 +13,10 @@
 <a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Addresses</a>
 {% endcapture %}
 
+{% capture asset %}
+<a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Asset</a>
+{% endcapture %}
+
 {% capture carrier %}
 <a href="{{"/entity-store/#carrier" | prepend: site.api_baseurl}}">Carrier</a>
 {% endcapture %}
@@ -29,6 +33,22 @@
 <a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>
 {% endcapture %}
 
+{% capture contactmethod %}
+<a href="{{"/crm/#contactmethod" | prepend: site.api_baseurl}}">ContactMethod</a>
+{% endcapture %}
+
+{% capture customer %}
+<a href="{{"/crm/#customer" | prepend: site.api_baseurl}}">Customer</a>
+{% endcapture %}
+
+{% capture customerfull %}
+<a href="{{"/crm/#customerfull" | prepend: site.api_baseurl}}">CustomerFull</a>
+{% endcapture %}
+
+{% capture field-definition %}
+<a href="{{"/api/field-definitions/#fielddefinition" | prepend: site.api_baseurl}}">FieldDefinition</a>
+{% endcapture %}
+
 {% capture item %}
 <a href="{{"/orders/#item" | prepend: site.api_baseurl}}">Item</a>
 {% endcapture %}
@@ -40,6 +60,8 @@
 {% capture item_status %}
 <a href="{{"/orders/#itemstatus" | prepend: site.api_baseurl}}">ItemStatus</a>
 {% endcapture %}
+
+
 
 {% capture location %}
 <a href="{{"/company-tree/#location" | prepend: site.api_baseurl}}">Location</a>
@@ -53,12 +75,32 @@
 <a href="{{"/orders/#order" | prepend: site.api_baseurl}}">Order</a>
 {% endcapture %}
 
+{% capture orderitem %}
+<a href="{{"/orders/#item" | prepend: site.api_baseurl}}">Item</a>
+{% endcapture %}
+
+{% capture orderfull %}
+<a href="{{"/orders/#orderfull" | prepend: site.api_baseurl}}">OrderFull</a>
+{% endcapture %}
+
+{% capture pricing %}
+<a href="{{"/pricing/#pricing" | prepend: site.api_baseurl}}">Pricing</a>
+{% endcapture %}
+
 {% capture product %}
 <a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Product</a>
 {% endcapture %}
 
 {% capture products %}
 <a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Products</a>
+{% endcapture %}
+
+{% capture user %}
+<a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">User</a>
+{% endcapture %} 
+
+{% capture supplier %}
+<a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>
 {% endcapture %}
 
 {% capture vendor %}

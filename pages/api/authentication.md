@@ -15,6 +15,19 @@ summary:
 * Sandbox: https://accountsdemo.iqmetrix.net/v1
 * Production: https://accounts.iqmetrix.net/v1
 
+## Note
+
+The code samples below use the following `OAuth2TokenResponse` object,
+
+```csharp
+public class OAuth2TokenResponse
+{
+    public string access_token { get; set; }
+    public string expires_in { get; set; }
+    public string refresh_token { get; set; }
+}
+```
+
 ## Authentication 
 
 iQmetrix APIs are protected by {{oauth2}}.
@@ -24,7 +37,7 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 ## Obtaining an Access Token
 
 {{note}}
-Each time the endpoint is called, a <b>new</b> access token is created and returned
+Each time this request is made, a <b>new</b> access token is created and returned
 {{end}}
 
 {{tip}}
@@ -44,7 +57,7 @@ As long as an access token is not expired, it can be used to authorize requests 
 
 * `Content-Type: application/x-www-form-urlencoded`
 
-##### Request Parameters
+#### Request Parameters
 
 *  `grant_type` (**Required**) - The value must be `password`
 *  `username` (**Required**) - The username provided to iQmetrix, usually an email address
@@ -61,6 +74,31 @@ As long as an access token is not expired, it can be used to authorize requests 
     password=examplepassword&
     client_id=exampleclient&
     client_secret=examplesecret
+
+###### Code Sample (C#)
+
+```c#
+using RestSharp;
+using RestSharp.Contrib;
+
+public static OAuth2TokenResponse ObtainingAnAccessToken()
+{
+    var client = new RestClient("https://accountsdemo.iqmetrix.net/v1/oauth2");
+    var request =
+        new RestRequest("token", Method.POST)
+            .AddParameter("grant_type", "password")
+            .AddParameter("username", "email@example.com")
+            .AddParameter("password", "examplepassword")
+            .AddParameter("client_id", "exampleclient")
+            .AddParameter("client_secret", "examplesecret");
+
+    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    var response = client.Execute<OAuth2TokenResponse>(request);
+
+    return response.Data;
+}
+```
 
 #### Response
 
@@ -110,7 +148,7 @@ The client credentials must be the same as those used in the request to acquire 
 
 * `Content-Type: application/x-www-form-urlencoded`
 
-##### Request Parameters
+#### Request Parameters
 
 * `grant_type` (**Required**) - The value must be `refresh_token`
 * `client_id` (**Required**) The client ID provided by iQmetrix
@@ -125,6 +163,31 @@ The client credentials must be the same as those used in the request to acquire 
     client_id=exampleclient& 
     client_secret=examplesecret& 
     refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h
+
+###### Code Sample (C#)
+
+```c#
+using RestSharp;
+using RestSharp.Contrib;
+
+public static SsoTokenResponse RefreshingAnAccessToken(string refreshToken)
+{
+
+    var client = new RestClient("https://accountsdemo.iqmetrix.net/v1/oauth2");
+    var request =
+        new RestRequest("token", Method.POST)
+            .AddParameter("refresh_token", refreshToken)
+            .AddParameter("grant_type", "refresh_token")
+            .AddParameter("client_id", "exampleclient")
+            .AddParameter("client_secret", "examplesecret");
+
+    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    var response = client.Execute<OAuth2TokenResponse>(request);
+
+    return response.Data;
+}
+```
 
 #### Response
 

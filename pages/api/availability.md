@@ -23,10 +23,10 @@ A **InventoryAvailability** resource consists of the following properties:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem) | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
+| Id | GUID | Unique identifier for the [CatalogItem](/api/catalog/#catalogitem) | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
 | EntityId | Integer | Identifier for the [Company Tree Node](/api/company-tree/) | `1` |
-| Quantity | Integer | Quantity for this [CatalogItem](/api/catalog/#CatalogItem) | `15` |
-| IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#CatalogItem) can be shipped | `true` |
+| Quantity | Integer | Quantity | `15` |
+| IsDropShippable | Boolean | A flag to indicate if the CatalogItem can be shipped | `true` |
 
 ## Getting Availability For a Catalog Item By Location
 
@@ -43,7 +43,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `LocationId` (**Required**) - Identifier for the {{location}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem)
+* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#catalogitem)
 
 ###### Example
 
@@ -53,7 +53,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### Response
 
-* [InventoryAvailability](#InventoryAvailability) - InventoryAvailability resource that was requested, if it exists
+* [InventoryAvailability](#InventoryAvailability) that was requested, if it exists
 
 ###### Example
 
@@ -79,7 +79,7 @@ A **InventoryAvailability** resource consists of the following properties:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Identifier for the [CatalogItem](/api/catalog/#CatalogItem)
+* `CatalogItemId` (**Required**) - Identifier for the [CatalogItem](/api/catalog/#catalogitem)
 
 ###### Example
 
@@ -89,7 +89,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### Response
 
-* Array[[InventoryAvailability](#InventoryAvailability)] - InventoryAvailability for Locations
+* Array[[InventoryAvailability](#InventoryAvailability)] for Locations
 
 ###### Example
 

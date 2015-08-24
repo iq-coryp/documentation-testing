@@ -21,7 +21,7 @@ An **Activation** contains IDs necessary to identify an activation, and all the 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is<br/><br/>`{fieldID}={value}[,{additionalFieldIds}={additionalValues}]`<br/><br/>There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma  | `1=35854205829867,` |
+| Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is<br/><br/>`{fieldID}={value}[,{additionalFieldIds}={additionalValues}]`<br/><br/>There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma  | `1=35854205829867` |
 | CarrierActivationDetails | [CarrierActivationDetails](#carrieractivationdetails) | The details of this [Activation](#activation) | |
 | CarrierId | Integer | Identifier of the carrier for this request.  This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
 | CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
@@ -33,7 +33,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ActivationId | Integer | Carrier-specific identifier for the [Activation](#activation) | `3023997373` |
+| ActivationId | Integer | System-generated identifier for the [Activation](#activation) | `354` |
 | ActivatedProduct | [Product](#product) | The Product that is being activated | |
 | ActivationDate | DateTime | Date the [Activation](#activation) occurred (in UTC) | `2015-06-19T05:44:39.7163989Z` |
 | ActivationState | String ([ActivationState](#activationstate)) | State of the Activation. A `Pending` [Activation](#activation) has not yet had payment taken.  A `Completed` Activation has been paid for successfully  | `Pending` |
@@ -46,7 +46,9 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | DealerCode | String | Carrier-specific dealer code | `IAPR` |
 | Deposit | [AdditionalFee](#additionalfee) | The security deposit that the [Activation](#activation) requires the Subscriber to pay | |
 | Notes | String | Free form text with any additional notes related to the [Activation](#activation) | `Notes go here!` |
+| OrderNumber | String | Carrier-specific identifier for the order this activation is associated with. Activations may have the same order number if they were part of a multi-line activation in the carrier system | `ORD1234` |
 | RatePlans | Array[[RatePlan](#rateplan)] | The Rate Plan(s) that are applied to the [Activation](#activation) | |
+| RemoteActivationID | String | Carrier-specific identifier for the [Activation](#activation) | `3023997373` |
 | Subscriber | [Subscriber](#subscriber) | The Subscriber (customer) that the [Activation](#activation) is for | |
 | TrackingNumber | String | Carrier-specific tracking number for this [Activation](#activation) | `3023997373` |
 | *BillingCode* | *String* | *Reserved for future use* | |
@@ -77,7 +79,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | AssociatedAccount.AccountId | String | Carrier-specific identifier for the associated account | `343434343` |
 | AssociatedAccount.Notes | String | Custom notes related to the associated account | | 
 | AssociatedAccount.TrackingNumber | String | Carrier-specific tracking number for the associated account | `5656565656` |
-| BirthDate | Date | Date of birth | `1/1/1980 12:00:00 AM` |
+| BirthDate | Date | Date of birth in MM/DD/YYYY format | `5/16/1980` |
 | CompanyName | String | If the Subscriber is a business, the name of the business | `Acme Inc` |
 | Email | String | Email address | `subscriber@example.com` |
 | IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (`true`) or a  business (`false`) | `true` |
@@ -187,6 +189,34 @@ A **Subscriber** contains all of the customer information related to an activati
 | ReferenceNumber | String | Carrier reference number | |
 | SOCCode | String | Carrier-specific SOC code | |
 
+### ConfirmedActivation
+
+A ConfirmedActivation resource represents a payment transaction that completed the activation of one or more phones.
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Integer | Service-generated identifier for the activation confirmation | `58` |
+| ActivationConfirmationDetails | Array[[ActivationConfirmationDetails](#activationconfirmationdetails)] | Contains details of each line that was confirmed as part of this transaction | |
+| ConfirmationDateUTC | DateTime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
+| InvoiceId | String | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
+| InvoiceSubtotal | Decimal | The subtotal amount from the invoice | `53.38` |
+| InvoiceTotal | Decimal | The total amount from the invoice | `61.54` |
+| LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) where the transaction occurred | `1` |
+| Taxes | Decimal | The taxes from the invoice | `8.16` |
+
+### ActivationConfirmationDetails
+
+An ActivationConfirmationDetails resource represents a single device that was activated as part of a [ConfirmedActivation](#confirmedactivation).
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| ActivationID | Integer | Identifier of the activation that is being confirmed (see [CarrierActivationDetails](#carrieractivationdetails).ActivationId) | `153` |
+| BAN | String | The billing account number of the account associated with this line | `681883059` |
+| IMEI | String | The IMEI of the device that was activated. | `990000862471854` |
+| OrderNumber | String | The order number of the activation that is being confirmed (see [CarrierActivationDetails](#carrieractivationdetails).OrderNumber) | `ORD1234` |
+| PhoneNumber | String | The phone number of the device that was activated. | `3023997373` |
+| RemoteActivationID | String | Carrier-specific identifier for the activation that is being confirmed (see [CarrierActivationDetails](#carrieractivationdetails).RemoteActivationID) | `3023997373` |
+
 ## Types
 
 ### ActivationState
@@ -247,21 +277,20 @@ A **Subscriber** contains all of the customer information related to an activati
 * `CarrierId` (**Required**) - Identifier for the {{carrier}}
 * `ActivationId` (**Required**) - Identifier for the [Activation](#activation)
 
-##### Request Parameters
+#### Request Parameters
 
 * [Activation](#activation) (**Required**) - Activation to be added
 
 ###### Example
    
-    PUT /Companies(1234)/Locations(5678)/Carriers(41)/Activations(3023997373)
+    PUT /Companies(1234)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
     {
-        "Id" : "1=35854205829867,",
+        "Id" : "6=1115550123",
         "CarrierActivationDetails" :
         {
-            "ActivationId" : "3023997373",
             "ActivatedProduct" :
             {
                 "ProductId" : "",
@@ -365,16 +394,16 @@ A **Subscriber** contains all of the customer information related to an activati
     
 #### Response
 
-* [Activation](#activation) - Activation that was added
+* [Activation](#activation) that was added
 
 ###### Example
 
     HTTP 201 Content-Type: application/json
     {
-        "Id" : "1=35854205829867,",
+        "Id" : "6=1115550123",
         "CarrierActivationDetails" :
         {
-            "ActivationId" : "3023997373",
+            "ActivationId" : "123",
             "ActivatedProduct" :
             {
                 "ProductId" : "",
@@ -476,3 +505,207 @@ A **Subscriber** contains all of the customer information related to an activati
         "LocationId" : 5678
     }
 
+## Retrieving Completed Activations
+
+{{warning}}
+This route is not yet published, it is being provided here for future use
+{{end}}
+
+#### Request
+
+    GET Companies({CompanyID})/Carriers({CarrierID})/ConfirmedActivations
+
+#### Headers
+
+* `Authorization: Bearer` {{access_token}}
+* `Accept: application/json` OR `Accept: application/hal+json`
+* `Content-Type: application/json` 
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CarrierId` (**Required**) - Identifier for the {{carrier}}
+
+#### Filters
+
+* `$filter=ConfirmationDateUTC ge DateTime'{date_time}` (Optional) - Limits returned records to ones that were created after the specified date
+* `$skip={skip}` (Optional) - Number of records to skip before returning.  See [Pagination](#pagination) for more details.
+* `$top={top}` (Optional) - Maximum number of records return.  See [Pagination](#pagination) for more details.
+
+###### Example
+
+    GET Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=4&top=2
+
+#### Response
+
+* Array[[ConfirmedActivation](#confirmedactivation] matching the filter criteria.
+ 
+###### Example (application/json)
+
+    [
+      {
+        "ActivationConfirmationDetails": [
+          {
+            "ActivationID": "153",
+            "BAN": "681883059",
+            "IMEI": "990000862471854",
+            "OrderNumber": "ORD1234",
+            "PhoneNumber": "3023997373",
+            "RemoteActivationID": "3023997373"
+          }
+        ],
+        "ConfirmationDateUTC": "2015-07-21T15:25:45.323",
+        "Id": 58,
+        "InvoiceId": "INV0001",
+        "InvoiceSubtotal": 54.38,
+        "InvoiceTotal": 62.54,
+        "LocationId": 1,
+        "Taxes": 8.16
+      },
+      {
+        "ActivationConfirmationDetails": [
+          {
+            "ActivationID": "155",
+            "BAN": "682497112",
+            "IMEI": "990000548972116",
+            "OrderNumber": "ORD1235",
+            "PhoneNumber": "3023996789",
+            "RemoteActivationID": "3023996789"
+          }
+        ],
+        "ConfirmationDateUTC": "2015-07-21T15:46:39.257",
+        "Id": 59,
+        "InvoiceId": "INV0002",
+        "InvoiceSubtotal": 84.62,
+        "InvoiceTotal": 94.82,
+        "LocationId": 1,
+        "Taxes": 10.20
+      }
+    ]
+
+###### Example (application/hal+json)
+
+    {
+      "_links": {
+        "self": {
+          "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC%20ge%20DateTime%272015-07-16T15:29:31.091Z%27&$skip=4&$top=2",
+          "templated": false
+        },
+        "next": {
+          "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC%20ge%20DateTime%272015-07-16T15:29:31.091Z%27&$skip=6&$top=2",
+          "templated": false
+        },
+        "prev": {
+          "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC%20ge%20DateTime%272015-07-16T15:29:31.091Z%27&$skip=2&$top=2",
+          "templated": false
+        }
+      },
+      "_embedded": {
+        "self": [
+          {
+            "_links": {
+              "self": {
+                "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations(58)",
+                "templated": false
+              }
+            },
+            "_embedded": {},
+            "ActivationConfirmationDetails": [
+              {
+                "ActivationID": "153",
+                "BAN": "681883059",
+                "IMEI": "990000862471854",
+                "OrderNumber": "ORD1234",
+                "PhoneNumber": "3023997373",
+                "RemoteActivationID": "3023997373"
+              }
+            ],
+            "ConfirmationDateUTC": "2015-07-21T15:25:45.323",
+            "DealerCode": "",
+            "Id": 58,
+            "InvoiceId": "INV0001",
+            "InvoiceSubtotal": 54.38,
+            "InvoiceTotal": 62.54,
+            "LocationId": 1,
+            "Taxes": 8.16
+          },
+          {
+            "_links": {
+              "self": {
+                "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations(59)",
+                "templated": false
+              }
+            },
+            "_embedded": {},
+            "ActivationConfirmationDetails": [
+              {
+                "ActivationID": "155",
+                "BAN": "682497112",
+                "IMEI": "990000548972116",
+                "OrderNumber": "ORD1235",
+                "PhoneNumber": "3023996789",
+                "RemoteActivationID": "3023996789"
+              }
+            ],
+            "ConfirmationDateUTC": "2015-07-21T15:46:39.257",
+            "DealerCode": "",
+            "Id": 59,
+            "InvoiceId": "INV0002",
+            "InvoiceSubtotal": 84.62,
+            "InvoiceTotal": 94.82,
+            "LocationId": 1,
+            "Taxes": 10.20
+          }
+        ]
+      }
+    }
+
+## Pagination
+
+The Carrier Integration API supports pagination of collections of resources by default.
+
+### Query Parameters
+
+Pagination is done through the use of $skip and $top query string parameters.
+
+`$skip` denotes the number of items in the collection to skip, defaults to 0 if no value is provided.
+
+`$top` denotes the number of items to take, defaults to 100 if no value is provided. 
+
+The maximum value of 200 will be used if the value provided is outside the acceptable range [0-200].
+
+### Navigation Links
+
+Pagination links for 'self', 'prev' and 'next' are returned by default when the media type is a hypermedia-enabled media type (i.e. HAL).
+
+These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to append the appropriate endpoint.
+
+##### Example
+
+	{
+		"_links": {
+			"self": {
+				"href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=10&$top=10",
+				"templated": false
+			},
+			"next": {
+				"href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=20&$top=10",
+				"templated": false
+			},
+			"prev": {
+				"href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=0&$top=10",
+				"templated": false
+			}
+		},
+		"_embedded": {
+			"self": []
+		}
+	}
+
+In the example above, the `_links` section is included in the data returned from an API request to get confirmed activations, where `$skip=10` and `$top=10`.
+
+The `self`.`href` value is the encoded version of the API request that returned these results.
+
+The `next`.`href` refers to a resource containing a page with the **next** 10 items.
+
+The `prev`.`href` refers to a resource containing a page with the **previous** 10 items.

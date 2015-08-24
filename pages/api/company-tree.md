@@ -21,36 +21,36 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
-| Id | Integer | Unique identifier for this Company. This value is system generated and read-only | `1` |
+| Id | Integer | Unique identifier | `1` |
 | Name | String | Name | `SampleCompany` |
 | Description | String  | Description | `Company creating great experiences.` |
-| Role | String | Role. This value is system generated and read-only | `Company` |
+| Role | String | Role | `Company` |
 | Roles | Object | The value must be `Company` | `{ "Name": "Company" }` |
-| CreatedUTC | DateTime | Date when this Company was created in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Date when this Company was last modified in UTC. This value is system generated and read-only | `2015-05-20T23:06:29.7700813Z` |
-| Attributes | Object | Set of key-value pairs that contain extra data to store with this Company | |
-| CorrelationId | String | Optional unique identifier in an external inventory system | `5cb8e583-6772-410d-a712-dcc8cd98f693` |
-| Logo | Object | A reference to an optional media asset |  |
-| Relationships | Array[Object] | Relationships for this Company. This value is system generated and read-only |  |
-| SortName | String  | A string used for sorting this Company. This value is system generated and read-only | `samplecompany` |
-| Version | Integer | The latest revision number. This value is system generated and read-only | `1` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data | |
+| CorrelationId | String | Identifier in an external inventory system | `5cb8e583-6772-410d-a712-dcc8cd98f693` |
+| Logo | Object | A reference to a media asset |  |
+| Relationships | Array[Object] | Relationships |  |
+| SortName | String  | A string used for sorting | `samplecompany` |
+| Version | Integer | The latest revision number | `1` |
 
 ### Location
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer  | Unique identifier for this Location | `2` |
-| Name | String  | Name | `SampleLocation` |
+| Id | Integer | Unique identifier | `2` |
+| Name | String | Name | `SampleLocation` |
 | Description | String  | Description | `The SampleLocation is used to clear out discounted inventory` |
-| Role | String  | The Role of this Location, this value must be `Location` | `Location` |
+| Role | String  | The Role, value must be `Location` | `Location` |
 | Roles | Array[Object] | The Role of this Location | |
 | Roles.Name | String | The name of the Role | `Location` |
-| CreatedUTC | DateTime  | Date when this Location was created in UTC| `2015-02-26T00:03:01.372Z` |
-| LastModifiedUTC | DateTime | Date when this Location was last modified in UTC | `2015-02-27T00:03:06.392Z` |
-| Area | Object | Measurement of the floor space of this Location |  |
+| CreatedUTC | DateTime  | Created date in UTC | `2015-02-26T00:03:01.372Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
+| Area | Object | Measurement of floor space |  |
 | Area.Value | Integer | Value of the Area | `1100` |
 | Area.Unit | String | Unit used for the Value, acceptable values are `SqFt` and `SqM` | `SqFt` |
-| Address | Object | Address of this location | |
+| Address | Object | Address | |
 | Address.AddressLine1 | String | First line of Address | `123 Sample Street` |
 | Address.AddressLine2 | String | Second line of Address | `Unit 200` |
 | Address.City | String | City | `Regina` |
@@ -60,29 +60,29 @@ summary:
 | Address.CountryName | String | Country | `Canada` |
 | Address.Zip | String | Zip or Postal Code | `S4P2L1` |
 | Attributes | Object  | Set of key-value pairs that contain extra data to store with this Location |  |
-| Contacts | Object | Contact information for this Location | |
+| Contacts | Object | Contact information | |
 | Contacts.Name | String | Name | `John Smith` |
 | Contacts.Description | String | Description | `Store Manager` |
 | Contacts.PhoneNumbers | Object | |
 | Contacts.PhoneNumbers.Description | String | Description | `Main Line` |
 | Contacts.PhoneNumbers.Number | String | Phone Number | `5555555555` |
 | Contacts.PhoneNumbers.Extension | String | Extension | `1234` |
-| CorrelationId | String | Optional unique identifier for this CatalogItem in an external inventory system | `RMS123` |
+| CorrelationId | String | Identifier for the Location in an external inventory system | `RMS123` |
 | Geography | Object | Geographic coordinates of this Location | |
 | Geography.Longitude | Decimal | Longitude | `50.443559` |
 | Geography.Latitude | Decimal | Latitude | `-104.612034` |
 | Logo | Object | A reference to a media asset | |
-| Relationships | Array[Object] | Relationships for a Location |  |
-| SortName | String  | A string used for sorting this Location | `samplecompany` |
+| Relationships | Array[Object] | Relationships |  |
+| SortName | String  | A string used for sorting | `samplecompany` |
 | StoreHours | Object | Store hours for this Location | |
 | StoreHours.Monday | Object | Store hours for a day of the week, such as Monday | |
-| StoreHours.Monday.Open | Object | Opening time on this day | |
+| StoreHours.Monday.Open | Object | Opening time | |
 | StoreHours.Monday.Open.Hour | Integer | Opening time hour, in the range of [0-24] | `10` |
 | StoreHours.Monday.Open.Minute | Integer | Opening time minute, in the range of [0-59] | `0` | 
-| StoreHours.Monday.Close | Object | Closing time on this day | |
+| StoreHours.Monday.Close | Object | Closing time | |
 | StoreHours.Monday.Close.Hour | Integer | Closing time hour, in the range of [0-24] | `18` |
 | StoreHours.Monday.Close.Minute | Integer | Closing time minute, in the range of [0-59] | `0` | 
-| StorePhoneNumbers | Array[Object] | Phone numbers for this Location |  |
+| StorePhoneNumbers | Array[Object] | Phone numbers |  |
 | StorePhoneNumbers.Description | String | Description  | `Main Phone` |
 | StorePhoneNumbers.Number | String | Phone Number | `5555555555` |
 | StorePhoneNumbers.Extension | String | Extension | `5555` |
@@ -98,7 +98,7 @@ summary:
     
 #### Parameters
 
-* `CompanyId` (**Required**) - Identifier for this [Company](#Company)
+* `CompanyId` (**Required**) - Identifier for this {{company}}
 
 #### Headers
 
@@ -113,7 +113,7 @@ summary:
 
 #### Response
 
-* [Company](#Company) - Company resource that was requested, if it exists
+* {{company}} that was requested, if it exists
 
 ###### Example
 
@@ -149,7 +149,7 @@ summary:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `LocationId` (**Required**) - Identifier for the [Location](#Location) 
+* `LocationId` (**Required**) - Identifier for the {{location}}
 
 #### Headers
 
@@ -164,7 +164,7 @@ summary:
 
 #### Response
 
-* [Location](#Location) - Location resource that was requested, if it exists
+* {{location}} that was requested, if it exists
 
 ###### Example
 
@@ -292,7 +292,7 @@ summary:
 
 #### Response
 
-* Array[{{location}}] - Locations in the {{company}}
+* Array[{{location}}] in the {{company}}
 
 ###### Example
 

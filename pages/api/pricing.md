@@ -30,18 +30,18 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier for this PricingInformation | `41614` |
-| CatalogItemId | GUID | Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem) | `f6642545-9136-4f44-a163-0e97e32e2e27` |
-| EntityId | Integer | Identifier for an [Entity](/api/entitystore) that represents a node in a [Company Tree](/api/company-tree) at which the price is set | `1` |
-| RegularPrice | Decimal | The regular price for the [CatalogItem](/api/catalog/#CatalogItem), must be greater than 0 | `10.0` |
-| OverridePrice | Decimal | The sale price for the [CatalogItem](/api/catalog/#CatalogItem), if specified this value must be greater than 0 | `5.0` |
-| PricingTermId | Integer | Identifier for a [PricingTerm](#PricingTerm) | `20` |
+| Id | Integer | Identifier | `41614` |
+| CatalogItemId | GUID | [CatalogItem](/api/catalog/#catalogitem) identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| EntityId | Integer | [Entity](/api/entitystore) identifier that represents a node in a [Company Tree](/api/company-tree) at which the price is set | `1` |
+| RegularPrice | Decimal | The regular price, must be greater than 0 | `10.0` |
+| OverridePrice | Decimal | The sale price, if specified this value must be greater than 0 | `5.0` |
+| PricingTermId | Integer | [PricingTerm](#pricingterm) identifier | `20` |
 
 ### PricingTerm
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier for this PricingTerm | `20` |
+| Id | Integer | Identifier | `20` |
 | EntityId | Integer | Identifier for the [Company](/api/company-tree/#company) | `2` |
 | Name | String (255) | Name | `$60 4G LTE Unlimited` |
 | Active | Booleam | A flag to indicate of this PricingTerm is active. When set to `false`, this PricingTerm can still be used, but does not appear in the responses to the [Getting All Active Pricing Terms](#getting-all-active-pricing-terms) request | `true` |
@@ -56,11 +56,7 @@ When Product Pricing is set at the {{company}} level, all Locations within the C
 
     POST /Companies({CompanyId})/Pricing
     {
-        "CatalogItemId": "{CatalogItemId}"
-        "EntityId": {EntityId},
-        "RegularPrice": {RegularPrice},
-        "OverridePrice": {OverridePrice},
-        "PricingTermId": {PricingTermId}
+        {Pricing}
     }
 
 #### Headers
@@ -74,13 +70,15 @@ When Product Pricing is set at the {{company}} level, all Locations within the C
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `CatalogItemId` (**Required**) - Unique identifier for the {{catalogitem}}
 
-##### Request Parameters
+#### Request Parameters
 
-* `CatalogItemId` (**Required**) - Unique identifier for the {{catalogitem}}
-* `EntityId` (**Required**) - Identifier for the {{company}}
-* `RegularPrice` (**Required**) - The regular price for the {{catalogitem}}, must be greater than 0 
-* `OverridePrice` (Optional) - The sale price for the {{catalogitem}}, if specified this value must be greater than 0
-* `PricingTermId` (Optional) - Identifier for a [PricingTerm](#pricingterm)
+{{pricing}} resource with the following properties:
+
+* `CatalogItemId` (**Required**) 
+* `EntityId` (**Required**) 
+* `RegularPrice` (**Required**) 
+* `OverridePrice` (Optional) 
+* `PricingTermId` (Optional) 
 
 ###### Example
 
@@ -97,7 +95,7 @@ When Product Pricing is set at the {{company}} level, all Locations within the C
 
 #### Response
 
-* [PricingInformation](#PricingInformation) - PricingInformation resource that was created
+* [PricingInformation](#pricinginformation) that was created
 
 ###### Example
 
@@ -122,11 +120,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
     POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
     {
-        "CatalogItemId": "{CatalogItemId}"
-        "EntityId": {EntityId},
-        "RegularPrice": {RegularPrice},
-        "OverridePrice": {OverridePrice},
-        "PricingTermId": {PricingTermId}
+        {Pricing}
     }
 
 #### Headers
@@ -141,13 +135,15 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 * `LocationId` (**Required**) - Identifier for the {{location}}
 * `CatalogItemId` (**Required**) - Unique identifier for the {{catalogitem}}
 
-##### Request Parameters
+#### Request Parameters
 
-* `CatalogItemId` (**Required**) - Unique identifier for the {{catalogitem}}
-* `EntityId` (**Required**) - Identifier for the {{location}}
-* `RegularPrice` (**Required**) - The regular price for the {{catalogitem}}, must be greater than 0 
-* `OverridePrice` (Optional) - The sale price for the {{catalogitem}}, if specified this value must be greater than 0
-* `PricingTermId` (Optional) - Identifier for a [PricingTerm](#pricingterm)
+{{pricing}} resource with the following properties:
+
+* `CatalogItemId` (**Required**) 
+* `EntityId` (**Required**) 
+* `RegularPrice` (**Required**) 
+* `OverridePrice` (Optional) 
+* `PricingTermId` (Optional) 
 
 ###### Example
 
@@ -164,7 +160,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* [PricingInformation](#PricingInformation) - PricingInformation resource that was created
+* [PricingInformation](#pricinginformation) that was created
 
 ###### Example
 
@@ -194,7 +190,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `LocationId` (**Required**) - Identifier for the {{location}}. Must belong to the {{company}} specified in the URI
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem) 
+* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#catalogitem) 
 
 ###### Example
 
@@ -204,7 +200,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* [PricingInformation](#PricingInformation) - PricingInformation resource that was requested, if it exists
+* [PricingInformation](#pricinginformation) that was requested, if it exists
 
 ###### Example
 
@@ -233,7 +229,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem) 
+* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#catalogitem) 
 
 ###### Example
 
@@ -243,7 +239,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* [PricingInformation](#PricingInformation) - PricingInformation resource that was requested, if it exists
+* [PricingInformation](#pricinginformation) that was requested, if it exists
 
 ###### Example
 
@@ -263,12 +259,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
     POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
     {
-        "Id": "{Id}",
-        "CatalogItemId": "{CatalogItemId}"
-        "EntityId": {EntityId},
-        "RegularPrice": {RegularPrice},
-        "OverridePrice": {OverridePrice},
-        "PricingTermId": {PricingTermId}
+        {Pricing}
     }
 
 #### Headers
@@ -281,14 +272,16 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 
-##### Request Parameters
+#### Request Parameters
 
-* `Id` (**Required**) - Unique identifier for the [PricingInformation](#pricinginformation)
-* `CatalogItemId` (**Required**) - Unique identifier for the {{catalogitem}}
-* `EntityId` (**Required**) - Identifier for the {{location}}
-* `RegularPrice` (**Required**) - The regular price for the {{catalogitem}}, must be greater than 0 
-* `OverridePrice` (Optional) - The sale price for the {{catalogitem}}, if specified this value must be greater than 0
-* `PricingTermId` (Optional) - Identifier for a [PricingTerm](#pricingterm)
+{{pricing}} resource with the following properties:
+
+* `Id` (**Required**)
+* `CatalogItemId` (**Required**) 
+* `EntityId` (**Required**) 
+* `RegularPrice` (**Required**) 
+* `OverridePrice` (Optional)
+* `PricingTermId` (Optional) 
 
 ###### Example
 
@@ -305,7 +298,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* [PricingInformation](#PricingInformation) - PricingInformation resource that was created
+* [PricingInformation](#pricinginformation) that was created
 
 ###### Example
 
@@ -325,12 +318,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
     POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
     {
-        "Id": {Id},
-        "CatalogItemId": "{CatalogItemId}"
-        "EntityId": {EntityId},
-        "RegularPrice": {RegularPrice},
-        "OverridePrice": {OverridePrice},
-        "PricingTermId": {PricingTermId}
+        {Pricing}
     }
 
 #### Headers
@@ -344,14 +332,16 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `CatalogItemId` (**Required**) - Unique identifier for the {{catalogitem}}
 
-##### Request Parameters
+#### Request Parameters
 
-* `Id` (**Required**) - Unique identifier for the [PricingInformation](#pricinginformation)
-* `CatalogItemId` (**Required**) - Unique identifier for the {{catalogitem}}
-* `EntityId` (**Required**) - Identifier for the {{company}}
-* `RegularPrice` (**Required**) - The regular price for the {{catalogitem}}, must be greater than 0 
-* `OverridePrice` (Optional) - The sale price for the {{catalogitem}}, if specified this value must be greater than 0
-* `PricingTermId` (Optional) - Identifier for a [PricingTerm](#pricingterm)
+{{pricing}} resource with the following properties:
+
+* `Id` (**Required**) 
+* `CatalogItemId` (**Required**) 
+* `EntityId` (**Required**) 
+* `RegularPrice` (**Required**) 
+* `OverridePrice` (Optional) 
+* `PricingTermId` (Optional)
 
 ###### Example
 
@@ -368,7 +358,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* [PricingInformation](#PricingInformation) - PricingInformation resource that was created
+* [PricingInformation](#pricinginformation) that was created
 
 ###### Example
 
@@ -406,7 +396,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* Array[[PricingTerm](#PricingTerm)] - PricingTerm resources, if any were found
+* Array[[PricingTerm](#pricingterm)] if any were found
 
 ###### Example
 
@@ -442,7 +432,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `PricingTermId` (**Required**) - Identifier for the [PricingTerm](#PricingTerm)
+* `PricingTermId` (**Required**) - Identifier for the [PricingTerm](#pricingterm)
 
 ###### Example
 
@@ -452,7 +442,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* [PricingTerm](#PricingTerm) - PricingTerm resource that was requested, if it exists
+* [PricingTerm](#pricingterm) that was requested, if it exists
 
 ###### Example
 
@@ -479,8 +469,8 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#CatalogItem)
-* `PricingTermId` (**Required**) - Identifier for the [PricingTerm](#PricingTerm)
+* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#catalogitem)
+* `PricingTermId` (**Required**) - Identifier for the [PricingTerm](#pricingterm)
 
 ###### Example
 
@@ -490,7 +480,7 @@ This request can be used to set Product Pricing for a specific {{location}}. Loc
 
 #### Response
 
-* Array[[PricingInformation](#PricingInformation)] - PricingInformation resources that were requested, if any were found
+* Array[[PricingInformation](#pricinginformation)] that were requested, if any were found
 
 ###### Example
 
@@ -521,8 +511,8 @@ The below table may help resolve problems encountered when making requests to th
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
-| `HTTP 400` | `Entity is not related to company` | Ensure the [Location](/api/company-tree/#Location) belongs to the [Company](/api/company-tree/#Company) specified in the URI |
+| `HTTP 400` | `Entity is not related to company` | Ensure the [Location](/api/company-tree/#location) belongs to the [Company](/api/company-tree/#company) specified in the URI |
 | `HTTP 400` | `Error while extracting the request query...` | Ensure $filter query parameter is formatted correctly |
-| `HTTP 404` | `Cannot find matching records` | Ensure [CatalogItem](/api/catalog/#CatalogItem) ID is valid, CatalogItem exists and belongs to the Company specified in the URI |
-| `HTTP 404` | `That term does not exist` | Ensure [PricingTerm](#PricingTerm) ID is valid |
+| `HTTP 404` | `Cannot find matching records` | Ensure [CatalogItem](/api/catalog/#catalogitem) ID is valid, CatalogItem exists and belongs to the Company specified in the URI |
+| `HTTP 404` | `That term does not exist` | Ensure [PricingTerm](#pricingterm) ID is valid |
 | `HTTP 500` | `An error occurred while updating the entries` | Ensure request body is correct, ensure Name property does not contain more then 255 characters |

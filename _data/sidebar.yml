@@ -51,6 +51,25 @@ entries:
           version: all
           print: true
           web: true
+          
+    - title: Guides
+      audience: writer, designer
+      platform: all
+      product: all
+      version: all
+      print: true
+
+      items:
+
+        - title: Creating an Order
+          url: guides/creating-an-order/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
 
     - title: API Reference
       audience: writer, designer
@@ -63,6 +82,15 @@ entries:
 
         - title: Authentication
           url: api/authentication/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
+        - title: Assets
+          url: api/assets/
           audience: writer, designer
           platform: all
           product: all
@@ -124,6 +152,15 @@ entries:
           print: true
           web: true
 
+        - title: Field Definitions
+          url: api/field-definitions/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all          
+          print: true
+          web: true
+
         - title: General Ledger
           url: api/general-ledger/
           audience: writer, designer
@@ -160,6 +197,15 @@ entries:
           print: true
           web: true
 
+        - title: User Manager
+          url: api/user-manager/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
     - title: Wireless Services
       audience: writer, designer
       platform: all
@@ -176,21 +222,3 @@ entries:
           product: all
           version: all
           print: true
-
-    - title: Guides
-      audience: writer, designer
-      platform: all
-      product: all
-      version: all
-      print: true
-
-      items:
-
-        - title: Creating an Order
-          url: guides/creating-an-order/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true

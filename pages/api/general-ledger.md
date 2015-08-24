@@ -23,19 +23,19 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier for this Account. This value is system-generated and read-only | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
-| AccountName | String (128) | The name of this Account. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
+| Id | GUID | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
+| AccountName | String (128) | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
 | AccountNumber | String (128) | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
 | AccountCategory  | String | Account Category, valid values are: **Asset, Liability, Equity, Revenue and Expense** | `Asset` |
 | SubCategory | String (256) | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
-| CreatedByUserId | Integer  | Auditing column showing User Id of whoever created this Account. This value is system-generated and read-only | `8488` |
-| UpdatedByUserId  | Integer | Auditing column showing User Id of whoever last updated this Account. This value is system-generated and read-only | `8488` |
+| CreatedByUserId | Integer  | Auditing column showing User Id of whoever created this Account | `8488` |
+| UpdatedByUserId  | Integer | Auditing column showing User Id of whoever last updated this Account | `8488` |
 | CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
 | CustomProperties |Object (4000) | A set of key-value pairs that contain extra data to store with this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | |
-| DateCreatedUTC | DateTime | Auditing column showing when this Account was first created, in UTC. This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
-| DateUpdatedUTC | DateTime | Auditing column showing when this Account was last updated, in UTC.  This value is system-generated and read-only | `2015-04-22T19:27:12.557` |
+| DateCreatedUTC | DateTime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
+| DateUpdatedUTC | DateTime | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
 | Description | String (1024) | Description | `This is a Canadian $ account` |
-| IsDebitAccount | Boolean | True if Account is a [Debit Account](/api/glossary/#Debit-Account), false if it is a [Credit Account](/api/glossary/#Credit-Account)| `true` |
+| IsDebitAccount | Boolean | True if Account is a [Debit Account](/api/glossary/#debit-account), false if it is a [Credit Account](/api/glossary/#credit-account)| `true` |
 | IsEnabled | Boolean | True if this Account is enabled, false if it is disabled | `true` |
 | Version | Integer | The latest revision number | `1` |
 
@@ -49,10 +49,10 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 | Name | Data Type  | Description | Example |
 |:-----|:-----------|:------------|:--------|
-| Id | GUID | Unique identifier for this Transaction. This value is system-generated and read-only | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
-| TransactionDateUTC  | Read-only | The date and time that this Transaction occurred in UTC. This value is system-generated and read-only | `2015-04-22T19:31:03.5159086+00:00` |
-| CreatedByUserId | Integer | Auditing column showing the User Id of whoever created this Transaction. This value is system-generated and read-only | `3` |
-| Entries | Array[[Entry](#Entry)] | The collection of Entries for this Transaction | |
+| Id | GUID | Unique identifier  | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
+| TransactionDateUTC  | Read-only | The date and time that this Transaction occurred in UTC | `2015-04-22T19:31:03.5159086+00:00` |
+| CreatedByUserId | Integer | Auditing column showing the User Id of whoever created this Transaction | `3` |
+| Entries | Array[[Entry](#entry)] | The collection of Entries for this Transaction | |
 
 ### Entry
 
@@ -98,7 +98,7 @@ Debit and Credit are decimal values without an associated currency as all Transa
 	
 #### Response
 
-* Array[[Account](#Account)] - Account resources, if any were found
+* Array[[Account](#account)], if any were found
 	
 ###### Example
 	
@@ -152,7 +152,7 @@ Debit and Credit are decimal values without an associated currency as all Transa
 	
 #### Response
 
-* Array[[Transaction](#Transaction)] - Transaction resources matching the filter criteria, if any were found
+* Array[[Transaction](#transaction)] matching the filter criteria, if any were found
 	
 ###### Example
 
@@ -257,7 +257,7 @@ These links are _relative_, they do not include the base endpoint. It is the res
 
 In the example above, the `_links` section is included in the data returned from an API call to get General Ledger Accounts, where `$skip=10` and `$top=10`.
 
-The `self`.`href` value is the encoded version of the API call that returned these results.
+The `self`.`href` value is the encoded version of the API request that returned these results.
 
 The `next`.`href` refers to a resource containing a page with the **next** 10 items.
 

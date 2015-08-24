@@ -19,65 +19,65 @@ summary:
 
 ### Order
 
-| Name | Data Type | Is Required? | Description | Example |
-|:-----|:----------|:-------------|:------------|:--------|
-| Id | GUID | Read-only | Unique identifier for this Order. This value is system-generated and read-only | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Optional | Name | `iPhone 5 Order` |
-| CustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#customer) who created this Order | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| EmployeeId | String | Optional | Identifier for the Employee who created this Order | `15` |
-| EntityId | Integer | Required | Identifier for the [Location](/api/company-tree/#location) | `8` |
-| State | OrderState | Read-only | [OrderState](#orderstate) for this Order. This value is system-generated and read-only | `Created` |
-| OrderExpiryDate | DateTime | Read-only | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
-| OrderExpiryHours | Integer | Optional | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
-| OrderType | String | Read-only | Name of the [OrderType](#ordertype). This value is system-generated and read-only | `Sales` |
-| OrderTypeId | Integer | Required | Identifier for the [OrderType](#ordertype) | `3` |
-| CreatedDateUtc | DateTime | Read-only | The date and time the [Order](#order) was created, in UTC. This value is system-generated and read-only | `2015-03-27T18:47:29.9012402+00:00` |
-| BillingAddressId | GUID | Optional | Unique identifier for the [Address](/api/crm/#address) this Order will be billed to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | GUID | Required | Unique identifier for the [Customer](/api/crm/#customer) this Order will be billed to | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingAddressId | String | Optional | Unique identifier for the [Address](/api/crm/#address) this Order will be shipped to | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | String | Optional | Unique identifier for the [Customer](/api/crm/#customer) this Order will be shipped to. If this value is provided, `ShippingEntityId` must be excluded. | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingEntityId | Integer | Optional | Identifier for the Location this Order will be shipped to. If this value is provided, `ShippingCustomerId` must be excluded. | `1` |
-| DiscountAmount | Decimal | Optional | The value of the discount to be applied at the Order level | `15.0` |
-| DiscountCode | String | Optional | The discount code for a discount applied to this Order | `MTRY-15` |
-| DiscountDescription | String | Optional | A description of the discount | `Military discount` |
-| PrintableId | String | Read-only | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
-| *TenderId* | *String* | *Optional* | *Reserved for future use* |  |
-| *TenderOrigin* | *String* | *Optional* | *Reserved for future use* |  |
+| CustomerId | String | Unique identifier for the [Customer](/api/crm/#customer) who created this Order | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| EmployeeId | String | Identifier for the Employee who created this Order | `15` |
+| EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `8` |
+| State | OrderState | [OrderState](#orderstate) for this Order | `Created` |
+| OrderExpiryDate | DateTime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryHours | Integer | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
+| OrderType | String | Name of the [OrderType](#ordertype) | `Sales` |
+| OrderTypeId | Integer | Identifier for the [OrderType](#ordertype) | `3` |
+| CreatedDateUtc | DateTime | The date and time the [Order](#order) was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| BillingAddressId | GUID | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingAddressId | String | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | String | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, `ShippingEntityId` must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. If this value is provided, `ShippingCustomerId` must be excluded. | `1` |
+| DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
+| DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
+| DiscountDescription | String | A description of the discount | `Military discount` |
+| PrintableId | String  | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
+| *TenderId* | *String* | *Reserved for future use* |  |
+| *TenderOrigin* | *String* | *Reserved for future use* |  |
 
 ### Item
 
-| Name | Data Type | Is Required? | Description | Example |
-|:-----|:----------|:-------------|:------------|:--------|
-| Id | GUID | Read-only | Unique identifier for this Item. This value is system-generated and read-only | `65a13420-5673-45cd-b455-9bbe7f27f694` |
-| OrderId | GUID | Read-only | Unique identifier for the [Order](#Order), specified by the OrderId in the URI. This value is system-generated and read-only | `216f7424-ae18-4c69-9597-984b430d0759` |
-| ItemStatus | String | Read-only | Name of the [ItemStatus](#ItemStatus). This value is system-generated and read-only | `New` |
-| ItemStatusId | Integer | Required | Identifier for the [ItemStatus](#ItemStatus)  | `1` |
-| ItemType | String | Read-only | Name of the [ItemType](#ItemType). This value is system-generated and read-only | `DropShip` |
-| ItemTypeId | String | Required | Identifier for the [ItemType](#ItemType)| `1` |
-| ProductId | String | Optional | Identifier for the Product | `12` |
-| SupplierEntityId | Integer | Optional | Identifier for the Supplier of this Item | `0` |
-| SupplierReference | String | Optional | May be used for additional Supplier reference information | `10` |
-| Cost | Decimal | Optional | Cost of this Item, defaults to 0 | `5.99` |
-| ListPrice | Decimal | Optional | List Price of this Item, defaults to 0 | `12.99` |
-| SellingPrice | Decimal | Optional | Selling Price of this Item, defaults to 0 | `9.99` |
-| Index | Integer | Optional | A value used for sorting Items, such as in a shopping cart| `0` |
-| Description | String | Optional | Description of this Item | `LG G3 phone case` |
-| Notes | String | Optional | Notes for this Item | `Dented corner` |
-| Quantity | Integer | Optional | Amount of this Item In Stock, defaults to 0 | `2` |
-| SerialNumbers | Array[String] | Optional | Serial numbers | `abc321` |
-| SKU | String | Optional | SKU for this Item | `00001` |
-| ShippingOptionId | String | Optional | Identifier for the ShippingOption that this Item will use | `1` |
-| TrackingInformation | Array[Object] | Optional | Tracking information in the form of key-value pairs|  |
-| TrackingInformation.Quantity | Integer | Required | Number of items being tracked | `1` |
-| TrackingInformation.TrackingNumber | String | Required | Tracking number | `1TTTTN4421 |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | GUID | Unique identifier for this Item | `65a13420-5673-45cd-b455-9bbe7f27f694` |
+| OrderId | GUID | Unique identifier for the [Order](#order), specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
+| ItemStatus | String | Name of the [ItemStatus](#itemstatus) | `New` |
+| ItemStatusId | Integer | Identifier for the [ItemStatus](#itemstatus)  | `1` |
+| ItemType | String | Name of the [ItemType](#itemtype). This value is system-generated and read-only | `DropShip` |
+| ItemTypeId | String | Identifier for the [ItemType](#itemtype)| `1` |
+| ProductId | String | Identifier for the Product | `12` |
+| SupplierEntityId | Integer | Identifier for the Supplier of this Item | `0` |
+| SupplierReference | String | May be used for additional Supplier reference information | `10` |
+| Cost | Decimal | Cost of this Item, defaults to 0 | `5.99` |
+| ListPrice | Decimal | List Price of this Item, defaults to 0 | `12.99` |
+| SellingPrice | Decimal | Selling Price of this Item, defaults to 0 | `9.99` |
+| Index | Integer | A value used for sorting Items, such as in a shopping cart| `0` |
+| Description | String | Description of this Item | `LG G3 phone case` |
+| Notes | String | Notes for this Item | `Dented corner` |
+| Quantity | Integer | Amount of this Item In Stock, defaults to 0 | `2` |
+| SerialNumbers | Array[String] | Serial numbers | `abc321` |
+| SKU | String | SKU for this Item | `00001` |
+| ShippingOptionId | String | Identifier for the ShippingOption that this Item will use | `1` |
+| TrackingInformation | Array[Object] | Tracking information in the form of key-value pairs |  |
+| TrackingInformation.Quantity | Integer | Number of items being tracked | `1` |
+| TrackingInformation.TrackingNumber | String | Tracking number | `1TTTTN4421 |
 
 ### OrderFull
 
 **OrderFull** is an extension on the Order resource, it consists of all Order properties plus the following:
 
-| Name  | Data Type   | Is Required?  | Description |
-|:------|:------------|:---------------|:------------|
-| Items | Array[Items] | Optional | The [Items](#Items) in the [Order](#Order) |
+| Name | Data Type | Description |
+|:-----|:----------|:------------|
+| Items | Array[Items] | The [Items](#items) in the [Order](#order) |
 
 ## Types
 
@@ -92,20 +92,20 @@ summary:
 
 ### OrderState
 
-| Name   |
-|:-------|
-|Created|
-|Pending|
-|Cancelled|
-|Processed|
-|Completed|
+| Name    |
+|:--------|
+| Created |
+| Pending |
+| Cancelled |
+| Processed |
+| Completed |
 
 ### ItemType
 
 | Name   | Id |
 |:-------|:---|
-|DropShip|1|
-|InStock|2|
+| DropShip | 1 |
+| InStock | 2 |
 
 ### ItemStatus
 
@@ -146,9 +146,24 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 
-##### Request Parameters
+#### Request Parameters
 
-* `Order` (**Required**) - [Order](#Order) to be updated
+An {{order}} resource with the following properties:
+
+* `OrderTypeId` (**Required**)
+* `EntityId` (**Required**) - Must belong to the Company specified in the URI
+* `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
+* `Name` (Optional)
+* `CustomerId` (Optional)
+* `EmployeeId` (Optional)
+* `OrderExpiryHours` (Optional)
+* `BillingAddressId` (Optional)
+* `ShippingAddressId` (Optional)
+* `ShippingCustomerId` (Optional)
+* `DiscountAmount` (Optional)
+* `DiscountCode` (Optional)
+* `DiscountDescription` (Optional)
+
 
 ###### Example
 
@@ -157,13 +172,14 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
     Accept: application/json
     Content-Type: application/json
     {
+        "OrderTypeId": 3,
+        "EntityId": 8,
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "Name": "iPhone 5 Order", 
         "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
-        "EntityId": 8,
-        "OrderTypeId": 3,
+        "OrderExpiryHours": 72
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "DiscountAmount": 15.0,
@@ -173,7 +189,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 
 #### Response
 
-* [Order](#Order) - Order resource that was created, if successful
+* {{order}} that was created, if successful
 
 ###### Example
 
@@ -218,11 +234,28 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+* `OrderId` (**Required**) - Identifier for the {{order}} being updated
 
-##### Request Parameters
+#### Request Parameters
 
-* `Item` (**Required**) - See [Item](#Item)
+{{orderitem}} resource with the following properties:
+
+* `ItemStatusId` (**Required**)
+* `ItemTypeId` (**Required**) 
+* `ProductId` (Optional) 
+* `SupplierEntityId` (Optional)
+* `SupplierReference` (Optional)
+* `Cost` (Optional)
+* `ListPrice` (Optional)
+* `SellingPrice` (Optional)
+* `Index` (Optional)
+* `Description` (Optional)
+* `Notes` (Optional)
+* `Quantity` (Optional)
+* `SerialNumbers` (Optional)
+* `SKU` (Optional)
+* `ShippingOptionId` (Optional)
+* `TrackingInformation` (Optional)
 
 ###### Example
 
@@ -256,7 +289,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 
 #### Response
 
-* [Item](#Item) - Item that was added to the [Order](#Order), if successful
+* [Item](#item) that was added to the {{order}}, if successful
 
 ###### Example
 
@@ -306,11 +339,26 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+* `OrderId` (**Required**) - Identifier for the {{order}} being updated
 
 #### Request Parameters
 
-* `Order` (**Required**) - See [Order](#Order)
+An {{order}} resource with the following properties:
+
+* `Id` (**Required**) - Must match the OrderId provided in the URI
+* `Name` (Optional)
+* `CustomerId` (Optional)
+* `EmployeeId` (Optional)
+* `EntityId` (Optional) - Must belong to the Company specified in the URI
+* `OrderExpiryHours` (Optional)
+* `OrderTypeId` (Optional)
+* `BillingAddressId` (Optional)
+* `ShippingAddressId` (Optional)
+* `BillingCustomerId` (Optional) - Must belong to the Company specified in the URI
+* `ShippingCustomerId` (Optional)
+* `DiscountAmount` (Optional)
+* `DiscountCode` (Optional)
+* `DiscountDescription` (Optional)
 
 ###### Example
 
@@ -324,27 +372,20 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
-        "State": "Created",
-        "OrderExpiryDate": "2015-05-08T18:05:13.137",
         "OrderExpiryHours": 72,
-        "OrderType": "Purchase",
         "OrderTypeId": 3,
-        "CreatedDateUtc": "2015-05-05T18:05:13.137",
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "TenderId": "",
-        "TenderOrigin": "",
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
-        "DiscountAmount": 15.0,
-        "PrintableId": ""
+        "DiscountAmount": 15.0
     }
 
 #### Response
 
-* [Order](#Order) - Order that was updated, if it was successful
+* {{order}} that was updated, if it was successful
 
 ###### Example
 
@@ -365,8 +406,6 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "TenderId": "",
-        "TenderOrigin": "",
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -392,11 +431,11 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+* `OrderId` (**Required**) - Identifier for the {{order}} being updated
 
 #### Request Parameters
 
-* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+* `OrderId` (**Required**) - Identifier for the {{order}} being updated
 
 ###### Example
 
@@ -411,7 +450,7 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 #### Response
 
 * `Id` (Integer) - Identifier for the response, this value can be ignored
-* `OrderId` (GUID) - Identifier for the [Order](#Order)
+* `OrderId` (GUID) - Identifier for the {{order}}
 
 ###### Example
 
@@ -439,11 +478,11 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+* `OrderId` (**Required**) - Identifier for the {{order}} being updated
 
 #### Request Parameters
 
-* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+* `OrderId` (**Required**) - Identifier for the {{order}} being updated
 
 ###### Example
 
@@ -458,8 +497,8 @@ The <code>EntityId</code> used in the request parameters must belong to the <cod
 #### Response
 
 * `Id` (Integer) - Identifier for the response, this value can be ignored
-* `OrderId` (GUID) - Identifier for the [Order](#Order)
-* `TrackingNumber` (String) - Tracking number for the [Order](#Order), placeholder that can be set in a later request
+* `OrderId` (GUID) - Identifier for the {{order}}
+* `TrackingNumber` (String) - Tracking number for the {{order}}, placeholder that can be set in a later request
 
 ###### Example
 
@@ -495,7 +534,38 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
 
 #### Request Parameters
 
-* `OrderFull` (**Required**) - See [OrderFull](#OrderFull)
+{{orderfull}} resource with the following properties
+
+* `OrderTypeId` (**Required**)
+* `EntityId` (**Required**) - Must belong to the Company specified in the URI
+* `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
+* `Name` (Optional)
+* `CustomerId` (Optional)
+* `EmployeeId` (Optional)
+* `OrderExpiryHours` (Optional)
+* `BillingAddressId` (Optional)
+* `ShippingAddressId` (Optional)
+* `ShippingCustomerId` (Optional)
+* `DiscountAmount` (Optional)
+* `DiscountCode` (Optional)
+* `DiscountDescription` (Optional)
+* `Items` (Optional)
+    * `ItemStatusId` (**Required**) - Required if Items is not null
+    * `ItemTypeId` (**Required**) - Required if Items is not null
+    * `ProductId` (Optional) 
+    * `SupplierEntityId` (Optional)
+    * `SupplierReference` (Optional)
+    * `Cost` (Optional)
+    * `ListPrice` (Optional)
+    * `SellingPrice` (Optional)
+    * `Index` (Optional)
+    * `Description` (Optional)
+    * `Notes` (Optional)
+    * `Quantity` (Optional)
+    * `SerialNumbers` (Optional)
+    * `SKU` (Optional)
+    * `ShippingOptionId` (Optional)
+    * `TrackingInformation` (Optional)
 
 ###### Example
 
@@ -504,13 +574,14 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
     Accept: application/json
     Content-Type: application/json
     {
+        "OrderTypeId": 3,
+        "EntityId": 8,
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "Name": "iPhone 5 Order", 
         "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
-        "EntityId": 8,
-        "OrderTypeId": 3,
+        "OrderExpiryHours": 72,
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "DiscountAmount": 15.0,
@@ -541,7 +612,7 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
 
 #### Response
 
-* [OrderFull](#OrderFull) - OrderFull resource that was created, if successful
+* [OrderFull](#orderfull) that was created, if successful
 
 ###### Example
 
@@ -614,11 +685,43 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `OrderId` (**Required**) - Identifier for the [Order](#Order) being updated
+* `OrderId` (**Required**) - Identifier for the {{order}} being updated
 
 #### Request Parameters
 
-* `OrderFull` (**Required**) - See [OrderFull](#OrderFull)
+{{orderfull}} resource with the following properties
+
+* `Id` (**Required**) - Must match the OrderId provided in the URI
+* `Name` (Optional)
+* `CustomerId` (Optional)
+* `EmployeeId` (Optional)
+* `EntityId` (Optional) - Must belong to the Company specified in the URI
+* `OrderExpiryHours` (Optional)
+* `OrderTypeId` (Optional)
+* `BillingAddressId` (Optional)
+* `BillingCustomerId` (Optional) - Must belong to the Company specified in the URI
+* `ShippingAddressId` (Optional)
+* `ShippingCustomerId` (Optional)
+* `DiscountAmount` (Optional)
+* `DiscountCode` (Optional)
+* `DiscountDescription` (Optional)
+* `Items` (Optional)
+    * `ItemStatusId` (Optional) - Required if Items is not null
+    * `ItemTypeId` (Optional) - Required if Items is not null
+    * `ProductId` (Optional) 
+    * `SupplierEntityId` (Optional)
+    * `SupplierReference` (Optional)
+    * `Cost` (Optional)
+    * `ListPrice` (Optional)
+    * `SellingPrice` (Optional)
+    * `Index` (Optional)
+    * `Description` (Optional)
+    * `Notes` (Optional)
+    * `Quantity` (Optional)
+    * `SerialNumbers` (Optional)
+    * `SKU` (Optional)
+    * `ShippingOptionId` (Optional)
+    * `TrackingInformation` (Optional)
 
 ###### Example
 
@@ -633,26 +736,17 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
-        "OrderExpiryDate": "2015-05-08T18:05:13.137",
         "OrderExpiryHours": 72,
-        "OrderType": "Purchase",
         "OrderTypeId": 3,
-        "CreatedDateUtc": "2015-05-05T18:05:13.137",
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "TenderId": "",
-        "TenderOrigin": "",
         "DiscountCode": "",
         "DiscountDescription": "",
         "DiscountAmount": 0,
-        "PrintableId": "8765-1234-987",
         "Items": [
             {
-                "Id": "2ad88692-7757-4a72-915b-dfe8f2539279",
-                "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-                "ItemStatus": "New",
                 "ItemStatusId": 1,
                 "ItemTypeId": 1,
                 "ProductId": 1,
@@ -676,7 +770,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 #### Response
 
-* [OrderFull](#orderfull) - Order that was updated, if it was successful
+* [OrderFull](#orderfull) that was updated, if it was successful
 
 ###### Example
 
@@ -697,8 +791,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "TenderId": "",
-        "TenderOrigin": "",
         "DiscountCode": "",
         "DiscountDescription": "",
         "DiscountAmount": 0,
@@ -755,7 +847,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 #### Response
 
-* [OrderFull](#OrderFull) - Order for the {{Company}}, if any were found
+* [OrderFull](#orderfull) for the {{Company}}, if any were found
 
 ###### Example
 
@@ -830,7 +922,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 #### Response
 
-* Array[[OrderFull](#OrderFull)] - Orders for the {{Company}}, if any were found
+* Array[[OrderFull](#orderfull)] for the {{Company}}, if any were found
 
 ###### Example
 
@@ -908,7 +1000,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 #### Response
 
-* Array[[Order](#order)] - Pending Order's for the {{location}}, if any were found
+* Array[[Order](#order)] that are pending for the {{location}}, if any were found
 
 ###### Example
 
@@ -930,8 +1022,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
             "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
             "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "TenderId": "",
-            "TenderOrigin": "",
             "DiscountCode": "MTRY-15",
             "DiscountDescription": "Military discount",
             "DiscountAmount": 15.0,
@@ -969,7 +1059,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 #### Response
 
-* Array[[Order](#Order)] - Orders matching the filter criteria, if any were found
+* Array[{{order}}] matching the filter criteria, if any were found
 
 ###### Example
 
@@ -1001,7 +1091,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 ## Errors
 
-The below table may help resolve problems encountered when making calls to the Order API.
+The below table may help resolve problems encountered when making requests to the Order API.
 
 | Error Code  | Description | Reason |
 |:------------|:------------|:-------|

@@ -9,10 +9,6 @@ summary:
 ---
 {% include linkrefs.html %}
 
-{{warning}}
-Request URI's in the Catalog API are <b>case sensitive</b>
-{{end}}
-
 ## Endpoints
 
 * Sandbox: https://catalogsdemo.iqmetrix.net/v1
@@ -26,10 +22,10 @@ A **CatalogItem** consists of the following properties:
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
-| CatalogItemId | GUID | Unique identifier for this CatalogItem | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| CatalogItemId | GUID | Unique identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
-| RmsId | String | Optional unique identifier for this CatalogItem in an external inventory system | `1` |
-| Slug | String | Unique identifier for a [Product](/api/product-library/#Product) in the Product Library | `M1-V2` |
+| RmsId | String | Identifier for the CatalogItem in an external inventory system  | `1` |
+| Slug | String | Unique identifier for a [Product](/api/product-library/#product) | `M1-V2` |
 
 {{note}}
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
@@ -37,7 +33,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 ### CatalogSearchResult
 
-A **CatalogSearchResult** resource is used to return information about [Product](/api/product-library/#Product) resources that match a given criteria, defined in the request.
+A **CatalogSearchResult** resource is used to return information about {{product}} resources that match a given criteria, defined in the request.
 
 A CatalogSearchResult resource consists of the following properties:
 
@@ -92,7 +88,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/items 
+    GET /Companies({CompanyId})/Catalog/Items 
     
 #### Headers
 
@@ -111,7 +107,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* Array[[CatalogItem](#CatalogItem)] - CatalogItems, if any exist
+* Array[[CatalogItem](#catalogitem)], if any exist
 
 ###### Example
 
@@ -142,7 +138,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/items({CatalogItemId})/productDetails
+    GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
     
 #### Headers
 
@@ -152,7 +148,7 @@ A CatalogSearchResult resource consists of the following properties:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#CatalogItem)
+* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#catalogitem)
 
 ###### Example
 
@@ -162,7 +158,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* [Product](/api/product-library/#Product) - Product details
+* {{Product}} details
 
 ###### Example
 
@@ -246,7 +242,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/items({CatalogItemId})/compatible 
+    GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible 
     
 #### Headers
 
@@ -256,7 +252,7 @@ A CatalogSearchResult resource consists of the following properties:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#CatlogItem)
+* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#catlogitem)
 
 ###### Example
 
@@ -266,7 +262,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* `Items` (Array) - Products compatible with the provided [CatalogItem](#CatalogItem)
+* `Items` (Array) - Products compatible with the provided [CatalogItem](#catalogitem)
     * `Name` (String) - The name of the CatalogItem
     * `Slug` (String) - The slug of the CatalogItem
     * `CatalogItemId` (GUID) - Unique identifier for the CatalogItem
@@ -297,7 +293,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/items({CatalogItemId})/variations 
+    GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations 
     
 #### Headers
 
@@ -307,7 +303,7 @@ A CatalogSearchResult resource consists of the following properties:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#CatalogItem)
+* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#catalogitem)
 
 ###### Example
 
@@ -317,11 +313,11 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* `Items` (Array) - Variations of the provided [CatalogItem](#CatalogItem)
+* `Items` (Array) - Variations of the provided [CatalogItem](#catalogitem)
   * `Name` (String) - The name of the variation 
   * `Slug` (String) - The slug of the variation 
   * `CatalogItemId` (GUID) - Unique identifier for the variation 
-  * `Revisions` (Array) - Revisions on the variation [CatalogItem](#CatalogItem)
+  * `Revisions` (Array) - Revisions on the variation [CatalogItem](#catalogitem)
      * `Name` (String) - The name of the revision 
      * `Slug` (String) - The slug of the revision 
      * `CatalogItemId` (GUID) - Unique identifier for the revision
@@ -357,7 +353,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/search?CategoryOrClassificationId={CategoryOrClassificationId}&Page={Page}&PageSize={PageSize}
+    GET /Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryOrClassificationId}&Page={Page}&PageSize={PageSize}
     
 #### Headers
 
@@ -379,7 +375,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found in the given Category/Classification
+* [CatalogSearchResult](#catalogsearchresult), if any Products were found in the given Category/Classification
 
 ###### Example
 
@@ -462,7 +458,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/search?ManufacturerIds={ManufacturerIds}&Page={Page}&PageSize={PageSize}
+    GET /Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Page={Page}&PageSize={PageSize}
     
 #### Headers
 
@@ -484,7 +480,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found with the given Manufacturer(s)
+* [CatalogSearchResult](#catalogsearchresult), if any Products were found with the given Manufacturer(s)
 
 ###### Example
 
@@ -567,7 +563,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/search?VendorIds={VendorIds}&Page={Page}&PageSize={PageSize}
+    GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&PageSize={PageSize}
     
 #### Headers
 
@@ -589,7 +585,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Products were found with the given Vendor(s)
+* [CatalogSearchResult](#catalogsearchresult), if any Products were found with the given Vendor(s)
 
 ###### Example
 
@@ -672,7 +668,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/items/byvendorsku?vendorsku={VendorSku}&vendorid={VendorId}
+    GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}
     
 #### Headers
 
@@ -683,7 +679,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `VendorSku` (**Required**) - Vendor Sku to search for
-* `VendorId` (Optional) - Identifier for a {{vendor}} to search for
+* `VendorId` (Optional) - Identifier for a vendor to search for
 
 ###### Example
 
@@ -695,7 +691,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 * Sku (String) - Vendor Sku specified in the URI
 * VendorId (Integer) - Vendor Id specified in the URI
-* Items (Array[{{catalogitem}}]) - CatalogItem resources matching the search criteria
+* Items (Array[{{catalogitem}}]) matching the search criteria
 
 ###### Example
 
@@ -718,7 +714,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/search?IsDropshippable=true&Page={Page}&PageSize={PageSize}
+    GET /Companies({CompanyId})/Catalog/Search?IsDropshippable=true&Page={Page}&PageSize={PageSize}
     
 #### Headers
 
@@ -740,7 +736,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Product available for shipping were found
+* [CatalogSearchResult](#catalogsearchresult), if any Product available for shipping were found
 
 ###### Example
 
@@ -827,7 +823,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/search?SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+    GET /Companies({CompanyId})/Catalog/Search?SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
     
 #### Headers
 
@@ -851,7 +847,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any products were found matching the `SearchTerms`
+* [CatalogSearchResult](#catalogsearchresult), if any products were found matching the `SearchTerms`
 
 ###### Example
 
@@ -936,7 +932,7 @@ Search filters can be combined to narrow down results. The example below illustr
 
 #### Request
 
-    GET /companies({CompanyId})/catalog/search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+    GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
     
 #### Headers
 
@@ -964,7 +960,7 @@ Search filters can be combined to narrow down results. The example below illustr
 
 #### Response
 
-* [CatalogSearchResult](#CatalogSearchResult) - CatalogSearchResult resource, if any Product available for shipping were found
+* [CatalogSearchResult](#catalogsearchresult), if any Product available for shipping were found
 
 ###### Example
 
@@ -1046,7 +1042,7 @@ Search filters can be combined to narrow down results. The example below illustr
 
 ## Errors
 
-The below table may help resolve problems encountered when making calls to the Catalog API.
+The below table may help resolve problems encountered when making requests to the Catalog API.
 
 | Error Code | Description | How to Resolve |
 |:-----------|:------------|:---------------|

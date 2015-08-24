@@ -32,5 +32,6 @@ The values above are different for each <a href="http://developers.iqmetrix.com/
 
 This guide is divided into sections.
 
-1. Starting an Order
+1. Starting an Order 
 2. Adding an Item to the Order
+3. Finalizing an Order

@@ -19,7 +19,7 @@ This guide is intended to walk you through the process of creating an Order usin
 ## Step 1: Authenticate
 
 {{tip}}
-You can skip this step if you recently acquired an access token, such as in the previous page of this guide!
+You can skip this step if you recently acquired an access token, such as in a previous page of this guide!
 {{end}}
 
 In order to make authorized requests to iQmetrix APIs, you need an {{access_token}}.
@@ -29,7 +29,7 @@ See the table below for different ways of getting an Access Token.
 | If... | Then... |
 |:------|:--------|
 | You do not have an Access Token | See [Obtaining an Access Token](http://developers.iqmetrix.com/api/authentication/#obtaining-an-access-token) |
-| You have an Access Token but it is close to expiring | See [Refreshing an Access Token](http://developers.iqmetrix.com/api/authentication/#refresh-token) |
+| You have an Access Token but it is close to expiring | See [Refreshing an Access Token](http://developers.iqmetrix.com/api/authentication/#refreshing-an-access-token) |
 
 The token is placed in the `Authorization` header of requests to iQmetrix APIs, prefixed by the word `Bearer`.
 
@@ -45,7 +45,7 @@ There are a number of different ItemTypes. A short explanation of each is provid
 
 | Value | Item Type | Description |
 |:------|:----------|:------------|
-| 1 | DropShip | Item is available for shipping |
+| 1 | DropShip | Item is available to be shipped |
 | 2 | InStock | Item is in stock |
 
 ##### Example
@@ -61,28 +61,42 @@ Your options for ItemStatus are **determined by the ItemType chosen in Step 2**,
 | Item Type | Value | Item Status |
 |:----------|:------|:------------|
 | Dropship | 1 | New |
-| Dropship | 2 | Cancelled | 
 | Dropship | 3 | Processed | 
-| Dropship | 4 | Ordered | 
-| Dropship | 5 | Error |
+| Dropship | 4 | Ordered |
 | Dropship | 6 | NotAvailable |
 | Dropship | 7 | Shipped | 
 | Dropship | 8 | Recieved | 
 | InStock | 9 | New |
 | InStock | 10 | Processed |
-| InStock | 11 | Error |
 
 ##### Example
 
     "ItemStatusId": 9
-    
-## (Optional) Step 3: Add Optional Parameters
+
+## (Optional) Step 3: Determine Supplier
+
+An {{order}} may have an associated {{supplier}}, as shown below:
+
+* `Item.SupplierEntityId` (Optional) - Identifier for the Supplier
+* `Item.SupplierReference` (Optional) - May be used for additional Supplier reference information, such as an OrderId
+
+A reference to the Supplier in the form of its `EntityId` is required. 
+
+| If... | Then... |
+|:------|:--------|
+| You know the basic Supplier details but not the EntityId | See [Getting All Suppliers](http://developers.iqmetrix.com/api/entity-store/#getting-all-suppliers) |
+| Supplier does not exist in the system | Contact iQmetrix about adding a Supplier |
+
+##### Example
+
+    "SupplierEntityId": 4,
+    "SupplierReference": ""
+
+## (Optional) Step 4: Add Optional Parameters
 
 The following parameters can be optionally added to an {{item}}
 
 * `Item.ProductId` - Identifier for the Product
-* `Item.SupplierEntityId` - Identifier for the Supplier of this Item
-* `Item.SupplierReference` - May be used for additional Supplier reference information
 * `Item.Cost` - Cost of this Item, defaults to 0
 * `Item.ListPrice` - List Price of this Item, defaults to 0
 * `Item.SellingPrice` - Selling Price of this Item, defaults to 0
@@ -92,14 +106,13 @@ The following parameters can be optionally added to an {{item}}
 * `Item.Quantity` - Amount of this Item in Stock, defaults to 0
 * `Item.SerialNumbers` - Serial numbers
 * `Item.SKU` - SKU for this Item
-* `Item.ShippingOptionId` - Identifier for the ShippingOption that this Item will use
 * `Item.TrackingInformation` - Tracking information in the form of key-value pairs
 
 ##### Example
     
     "ProductId": 1,
-    "SupplierEntityId": 0,
-    "SupplierReference":"10",
+    "SupplierEntityId": 4,
+    "SupplierReference":"",
     "Cost": 5.99,
     "ListPrice": 12.99,
     "SellingPrice": 9.99,
@@ -109,7 +122,6 @@ The following parameters can be optionally added to an {{item}}
     "Quantity": 2,
     "SerialNumbers":  ["abc123","abc321"],
     "SKU": "00001",
-    "ShippingOptionId": "",
     "TrackingInformation": [ 
         {
             "Quantity": 1,
@@ -117,7 +129,7 @@ The following parameters can be optionally added to an {{item}}
         }
     ]
 
-## Step 4: Creating an Item
+## Step 5: Creating an Item
 
 {{tip}}
 The <code>OrderId</code> you wrote down in Step 8 of the previous page of this guide is needed now!
