@@ -10,7 +10,7 @@ summary:
 
 {% include linkrefs.html %}
 
-This guide is intended to walk you through the process of creating an Order using the [Order API](http://developers.iqmetrix.com/api/orders).
+This guide is intended to walk you through the process of creating an {{order}}.
 
 ## Before You Begin
 
@@ -26,12 +26,14 @@ Before you can create an {{order}}, you will need your onboarding package from i
 The values above are different for each <a href="http://developers.iqmetrix.com/api/environments/">Environment</a> used
 {{end}}
 
-## Guide
+## Sections
 
 {% include custom/order_series.html %}
-
-This guide is divided into sections.
 
 1. Starting an Order 
 2. Adding an Item to the Order
 3. Finalizing an Order
+
+## Begin
+
+> Part 1: <a href="{{ "/guides/starting-an-order" | prepend: site.url | append: site.suffix}}">Starting an Order</a>

@@ -4,15 +4,15 @@
     <ol class="dropdown-menu">
         {% assign pages = site.pages | sort:"weight"  %}
         {% for p in pages %}
-        {% if p.series == "creating_an_order" %}
-        {% if p.url == page.url %}
-        <li class="active"> → {{p.weight}}. {{p.title}}</li>
-        {% else %}
-        <li>
-            <a href="{{p.url | prepend: site.url | append: site.suffix}}">{{p.weight}}. {{p.title}}</a>
-        </li>
-        {% endif %}
-        {% endif %}
+            {% if p.series == "creating_an_order" %}
+                {% if p.url == page.url %}
+                    <li class="active"> → {{p.weight}}. {{p.title}}</li>
+                {% else %}
+                <li>
+                    <a href="{{p.url | prepend: site.url}}">{{p.weight}}. {{p.title}}</a>
+                </li>
+                {% endif %}
+            {% endif %}
         {% endfor %}
     </ol>
 </div>
