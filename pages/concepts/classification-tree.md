@@ -14,11 +14,11 @@ Classification Trees are a key part of Product Library and your Catalog as they 
 
 Classification Trees are also used by downstream consumers like Dropship and Shelf.
 
-## Managing Classification Trees
+### Managing Classification Trees
 
 Currently, Classification Trees are managed by the iQmetrix Curation team.
 
-## Categories vs Classifications
+### Categories vs Classifications
 
 Categories are used for organization and do not contain any products.
 
@@ -26,13 +26,13 @@ Classifications are always children of Categories as well as being leaf nodes in
 
 As a rule, products always belong to a single Classification.
 
-## Types of Classification Trees
+### Types of Classification Trees
 
 Products in different industries are contained in their own respective trees.
 
 The examples below show Classification Trees for the clothing and wireless industries. 
 
-## General Example
+### General Example
 
 In the Apparel & Accessories tree, there are high level categories for Clothing and Shoes, both of which are then broken down into further categories for Men and Women. 
 
@@ -40,7 +40,7 @@ As you go down the tree, the tops Category has Classifications for tees, shirts,
 
 <img src="{{ "/images/classification-tree-general.gif" | prepend: site.url }}" />
 
-## Wireless Example
+### Wireless Example
 
 In the Cellular & Accessories tree, we have split up most of the tree based on Devices and Accessories. 
 
