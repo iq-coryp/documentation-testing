@@ -6,6 +6,32 @@ entries:
 - title: Sidebar # this title doesn't appear anywhere
   subcategories:
 
+    - title: Core Concepts
+      audience: writer, designer
+      platform: all
+      product: all
+      version: all
+      print: true
+
+      items:
+
+        - title: Classification Tree
+          url: concepts/classification-tree/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all          
+          print: true
+          web: true
+
+        - title: Product Library
+          url: concepts/product-library/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all          
+          print: true
+          web: true
 
     - title: Getting Started
       audience: writer, designer
@@ -51,25 +77,6 @@ entries:
           version: all
           print: true
           web: true
-          
-    - title: Guides
-      audience: writer, designer
-      platform: all
-      product: all
-      version: all
-      print: true
-
-      items:
-
-        - title: Creating an Order
-          url: guides/creating-an-order/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
 
     - title: API Reference
       audience: writer, designer
