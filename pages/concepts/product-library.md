@@ -30,7 +30,7 @@ Products can vary on different attributes, such as:
 
 In Product Library, these are refered to as **Variations**.
 
-Variations can contain their own details such as SKUs, Stock levels, {{prices}}, {{assets}} and more.
+Variations can contain their own details such as: SKUs, Stock levels, prices, assets and more.
 
 The image below represents how a Master Product "Comfy Sweater" has variations for color and size. 
 

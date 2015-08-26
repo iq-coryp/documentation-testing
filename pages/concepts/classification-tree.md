@@ -22,7 +22,7 @@ Currently, Classification Trees are managed by the iQmetrix Curation team.
 
 Categories are used for organization and do not contain any products.
 
-Classifications are always children of Categories as well as being leaf nodes in the tree
+Classifications are always children of Categories as well as being leaf nodes in the tree.
 
 As a rule, products always belong to a single Classification.
 
