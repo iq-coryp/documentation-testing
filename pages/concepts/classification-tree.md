@@ -34,9 +34,9 @@ The examples below show Classification Trees for the clothing and wireless indus
 
 ### General Example
 
-In the Apparel & Accessories tree, there are high level categories for Clothing and Shoes, both of which are then broken down into further categories for Men and Women. 
+In the Apparel & Accessories tree, there are high level Categories for Clothing and Shoes, both of which are then broken down into further Categories for Men and Women. 
 
-As you go down the tree, the tops Category has Classifications for tees, shirts, sweaters and jackets . The Bottoms category is broken down in a similar fashion.
+As you go down the tree, the tops Category has Classifications for Tees, Shirts, Sweaters and Jackets. The Bottoms category is broken down in a similar fashion.
 
 <img src="{{ "/images/classification-tree-general.gif" | prepend: site.url }}" />
 
