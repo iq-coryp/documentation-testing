@@ -5,14 +5,14 @@ topnav:
 - title: Topnav
   subcategories:
     - title: GETTING STARTED
-      url: api/rate-limiting/
+      url: api/environments/
       audience: writer, designer
       platform: all
       product: all
       version: all
 
     - title: API REFERENCE
-      url: api/authentication/
+      url: api/introduction/
       audience: writer, designer
       platform: all
       product: all

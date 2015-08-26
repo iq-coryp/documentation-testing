@@ -42,6 +42,15 @@ entries:
 
       items:
 
+        - title: Introduction
+          url: api/introduction/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all          
+          print: true
+          web: true
+          
         - title: Environments
           url: api/environments/
           audience: writer, designer
@@ -53,15 +62,6 @@ entries:
 
         - title: Rate Limiting
           url: api/rate-limiting/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Supported Response Formats
-          url: api/getting-started/
           audience: writer, designer
           platform: all
           product: all
@@ -87,8 +87,8 @@ entries:
 
       items:
 
-        - title: Authentication
-          url: api/authentication/
+        - title: Assets
+          url: api/assets/
           audience: writer, designer
           platform: all
           product: all
@@ -96,8 +96,8 @@ entries:
           print: true
           web: true
 
-        - title: Assets
-          url: api/assets/
+        - title: Authentication
+          url: api/authentication/
           audience: writer, designer
           platform: all
           product: all
