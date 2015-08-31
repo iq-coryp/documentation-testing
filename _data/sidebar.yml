@@ -213,6 +213,24 @@ entries:
           print: true
           web: true
 
+    - title: Guides
+      audience: writer, designer
+      platform: all
+      product: all
+      version: all
+      print: true
+
+      items:
+
+        - title: Creating an Order
+          url: guides/creating-an-order/
+          audience: writer, designer
+          platform: all
+          product: all
+          version: all
+          print: true
+          web: true
+
     - title: Wireless Services
       audience: writer, designer
       platform: all
