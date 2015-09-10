@@ -176,20 +176,20 @@ For more information about pricing methods, see [Regular Products](http://iqmetr
 
 #### Request Parameters
 
-{{regularproduct}} resource with the following properties
+An array of {{regularproduct}} resources with the following properties
 
 * `CategoryName` (**Required**) 
 * `ClassificationTreeId` (**Required**) 
 * `DefaultPricingAndPurchasing` (**Required**) 
-* `DefaultPricingAndPurchasing.Price` (**Required**) 
-* `DefaultPricingAndPurchasing.AllowReturns` (Optional) 
-* `DefaultPricingAndPurchasing.Discountable` (Optional) - Defaults to true
-* `DefaultPricingAndPurchasing.FloorPrice` (Optional) - Will default to 0 and cannot be negative
-* `DefaultPricingAndPurchasing.ForSale` (Optional) - Defaults to true
-* `DefaultPricingAndPurchasing.InvoiceComments` (Optional) 
-* `DefaultPricingAndPurchasing.Margin` (Optional) - Required if PricingMethod is set to Margin. Defaults to 0
-* `DefaultPricingAndPurchasing.ShowOnInvoice` (Optional) - Defaults to true
-* `DefaultPricingAndPurchasing.StoreInStorePrice` (Optional) - Defaults to 0
+    * `Price` (**Required**) 
+    * `AllowReturns` (Optional) 
+    * `Discountable` (Optional) - Defaults to true
+    * `FloorPrice` (Optional) - Will default to 0 and cannot be negative
+    * `ForSale` (Optional) - Defaults to true
+    * `InvoiceComments` (Optional) 
+    * `Margin` (Optional) - Required if PricingMethod is set to Margin. Defaults to 0
+    * `ShowOnInvoice` (Optional) - Defaults to true
+    * `StoreInStorePrice` (Optional) - Defaults to 0
 * `GlCostOfSalesAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `GlInventoryAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `GlInventoryCorrectionsAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
@@ -203,46 +203,45 @@ For more information about pricing methods, see [Regular Products](http://iqmetr
 * `Barcodes` (Optional) - Must be unique across all products
 * `DaysKeptInStock` (Optional) 
 * `DefaultLocationVendor` (Optional) 
-* `DefaultLocationVendor.Cost` (Optional) 
-* `DefaultLocationVendor.DiscontinuedDate` (Optional) 
-* `DefaultLocationVendor.DoNotOrder` (Optional) 
-* `DefaultLocationVendor.EndOfLife` (Optional) 
-* `DefaultLocationVendor.SpecialOrder` (Optional) 
-* `DefaultLocationVendor.WriteOff` (Optional) 
+    * `Cost` (Optional) 
+    * `DiscontinuedDate` (Optional) 
+    * `DoNotOrder` (Optional) 
+    * `EndOfLife` (Optional) 
+    * `SpecialOrder` (Optional) 
+    * `WriteOff` (Optional) 
 * `Enabled` (Optional) - Defaults to true
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if Serialized is set to `true`
 * `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false
 * `LocationPricingAndPurchasing` (Optional) 
-* `LocationPricingAndPurchasing.Price` (**Required**) - Required if LocationPricingAndPurchasing is not null 
-* `LocationPricingAndPurchasing.TargetLocationType` (**Required**) - Required if LocationPricingAndPurchasing is not null 
-* `LocationPricingAndPurchasing.AllowReturns` (Optional) - Defaults to true
-* `LocationPricingAndPurchasing.Discountable` (Optional) - Defaults to true
-* `LocationPricingAndPurchasing.FloorPrice` (Optional) - Defaults to 0, cannot be negative
-* `LocationPricingAndPurchasing.ForSale` (Optional) - Defaults to true
-* `LocationPricingAndPurchasing.InvoiceComments` (Optional) 
-* `LocationPricingAndPurchasing.LockMinMaxed` (Optional) - Defaults to false
-* `LocationPricingAndPurchasing.Margin` (Optional) - Required if PricingMethod is `Margin`
-* `LocationPricingAndPurchasing.MaximumQuantity` (Optional) 
-* `LocationPricingAndPurchasing.MinimumQuantity` (Optional) 
-* `LocationPricingAndPurchasing.PrimaryVendorName` (Optional) 
-* `LocationPricingAndPurchasing.RefundPeriod` (Optional) - Defaults to 0
-* `LocationPricingAndPurchasing.RefundToUsed` (Optional) - Defaults to false
-* `LocationPricingAndPurchasing.SaleBeginDate` (Optional) - Required if SalePrice is supplied
-* `LocationPricingAndPurchasing.SaleEndDate` (Optional) - Required if SalePrice is supplied
-* `LocationPricingAndPurchasing.SalePrice` (Optional) - Defaults to 0. If this value is provided, `SaleBeginDate` and `SaleEndDate` are required
-* `LocationPricingAndPurchasing.ShowOnInvoice` (Optional) - Defaults to true
-* `LocationPricingAndPurchasing.StoreInStorePrice` (Optional) 
-* `LocationPricingAndPurchasing.TargetLocationName` (Optional) - Required if TargetLocationType is not "All"
+    * `Price` (**Required**) - Required if LocationPricingAndPurchasing is not null 
+    * `TargetLocationType` (**Required**) - Required if LocationPricingAndPurchasing is not null 
+    * `AllowReturns` (Optional) - Defaults to true
+    * `Discountable` (Optional) - Defaults to true
+    * `FloorPrice` (Optional) - Defaults to 0, cannot be negative
+    * `ForSale` (Optional) - Defaults to true
+    * `InvoiceComments` (Optional) 
+    * `LockMinMaxed` (Optional) - Defaults to false
+    * `Margin` (Optional) - Required if PricingMethod is `Margin`
+    * `MaximumQuantity` (Optional) 
+    * `MinimumQuantity` (Optional) 
+    * `PrimaryVendorName` (Optional) 
+    * `RefundPeriod` (Optional) - Defaults to 0
+    * `RefundToUsed` (Optional) - Defaults to false
+    * `SaleBeginDate` (Optional) - Required if SalePrice is supplied
+    * `SaleEndDate` (Optional) - Required if SalePrice is supplied
+    * `SalePrice` (Optional) - Defaults to 0. If this value is provided, `SaleBeginDate` and `SaleEndDate` are required
+    * `ShowOnInvoice` (Optional) - Defaults to true
+    * `StoreInStorePrice` (Optional) 
+    * `TargetLocationName` (Optional) - Required if TargetLocationType is not "All"
 * `LocationVendors` (Optional) 
-* `LocationVendors.TargetLocationType` (**Required**) - Required if LocationVendors is not null
-* `LocationVendors.VendorName` (**Required**) - Required if LocationVendors is not null
-* `LocationVendors.Cost` (Optional) 
-* `LocationVendors.DiscontinuedDate` (Optional) 
-* `LocationVendors.DoNotOrder` (Optional) - Defaults to false
-* `LocationVendors.EndOfLife` (Optional) 
-* `LocationVendors.SpecialOrder` (Optional) - Defaults to false
-* `LocationVendors.TargetLocationName` (Optional) - Required if TargetLocationType is not "All"
-* `LocationVendors.WriteOff` (Optional) - Defaults to false
+    * `TargetLocationType` (**Required**) - Required if LocationVendors is not null
+    * `Cost` (Optional) 
+    * `DiscontinuedDate` (Optional) 
+    * `DoNotOrder` (Optional) - Defaults to false
+    * `EndOfLife` (Optional) 
+    * `SpecialOrder` (Optional) - Defaults to false
+    * `TargetLocationName` (Optional) - Required if TargetLocationType is not "All"
+    * `WriteOff` (Optional) - Defaults to false
 * `LongDescription` (Optional) 
 * `Model` (Optional) 
 * `MsrpAmount` (Optional) - Defaults to 0
@@ -252,8 +251,8 @@ For more information about pricing methods, see [Regular Products](http://iqmetr
 * `SerialNumberPromptText` (Optional) - This value can only be set Serialized is set to `True`
 * `ShortDescription` (Optional) 
 * `Vendors` (Optional) 
-* `Vendors.VendorName` (**Required**) - Required if Vendors is not null
-* `Vendors.VendorSku` (**Required**) - Required if Vendors is not null. If provided, must be unique per vendor
+    * `VendorName` (**Required**) - Required if Vendors is not null
+    * `VendorSku` (**Required**) - Required if Vendors is not null. If provided, must be unique per vendor
 * `WarehouseLocation` (Optional) 
 
 ###### Example
@@ -263,88 +262,108 @@ For more information about pricing methods, see [Regular Products](http://iqmetr
     Accept: application/json
     Content-Type: application/json
     {
-        "CategoryName" : "Smartphones",
-        "ClassificationTreeId" : "1",
-        "DefaultPricingAndPurchasing": {
-            "DefaultPricingAndPurchasing.Price" : "499.99",
-            "DefaultPricingAndPurchasing.AllowReturns" : "true",
-            "DefaultPricingAndPurchasing.Discountable" : "true",
-            "DefaultPricingAndPurchasing.FloorPrice" : "99.99",
-            "DefaultPricingAndPurchasing.ForSale" : "true",
-            "DefaultPricingAndPurchasing.InvoiceComments" : "Invoice comment",
-            "DefaultPricingAndPurchasing.Margin": "1",
-            "DefaultPricingAndPurchasing.ShowOnInvoice" : "true",
-            "DefaultPricingAndPurchasing.StoreInStorePrice" : "399.99"
-        },
-        "GlCostOfSalesAccountNumber" : "1001",
-        "GlInventoryAccountNumber" : "1002",
-        "GlInventoryCorrectionsAccountNumber" : "1001",
-        "GlSalesAccountNumber" : "1003",
-        "ManufacturerName" : "Apple",
-        "ManufacturerSku" : "ABC123",
-        "PricingMethod" : "Fixed",
-        "ProductLabel" : "iPhone 4S 16GB White",
-        "ProductName" : "iPhone 4S 16GB White",
-        "ProductReferenceId" : "PRO123",
-        "Barcodes" : "BARCODE123",
-        "DaysKeptInStock" : "10",
-        "DefaultLocationVendor": {
-            "DefaultLocationVendor.Cost" : "99.99",
-            "DefaultLocationVendor.DiscontinuedDate" : "2016-01-01T12:00:00.000",
-            "DefaultLocationVendor.DoNotOrder" : "false",
-            "DefaultLocationVendor.EndOfLife" : "false",
-            "DefaultLocationVendor.SpecialOrder" : "false",
-            "DefaultLocationVendor.WriteOff" : "false"
-        },
-        "Enabled" : "true",
-        "EnforcedTrackingNumberLength" : "50",
-        "IgnoreAutomaticTaxAddition" : "false",
-        "LocationPricingAndPurchasing": {
-            "LocationPricingAndPurchasing.Price" : "499.99",
-            "LocationPricingAndPurchasing.TargetLocationType" : "RegionName",
-            "LocationPricingAndPurchasing.AllowReturns" : "true",
-            "LocationPricingAndPurchasing.Discountable" : "true",
-            "LocationPricingAndPurchasing.FloorPrice" : "99.99",
-            "LocationPricingAndPurchasing.ForSale" : "true",
-            "LocationPricingAndPurchasing.InvoiceComments" : "Invoice comment",
-            "LocationPricingAndPurchasing.LockMinMaxed" : "true",
-            "LocationPricingAndPurchasing.Margin" : "1",
-            "LocationPricingAndPurchasing.MaximumQuantity" : "10",
-            "LocationPricingAndPurchasing.MinimumQuantity" : "1",
-            "LocationPricingAndPurchasing.PrimaryVendorName" : "Apple",
-            "LocationPricingAndPurchasing.RefundPeriod" : "10",
-            "LocationPricingAndPurchasing.RefundToUsed" : "false",
-            "LocationPricingAndPurchasing.SaleBeginDate" : "2015-10-14T12:00:00.000",
-            "LocationPricingAndPurchasing.SaleEndDate" : "2015-10-18T12:00:00.000",
-            "LocationPricingAndPurchasing.SalePrice" : "399.99",
-            "LocationPricingAndPurchasing.ShowOnInvoice" : "true",
-            "LocationPricingAndPurchasing.StoreInStorePrice" : "399.99",
-            "LocationPricingAndPurchasing.TargetLocationName" : "Saskatchewan"
-        },
-        "LocationVendors": {
-            "LocationVendors.TargetLocationType" : "RegionName",
-            "LocationVendors.VendorName" : "SampleVendor",
-            "LocationVendors.Cost" : "99.99",
-            "LocationVendors.DiscontinuedDate" : "2016-01-01T12:00:00.000",
-            "LocationVendors.DoNotOrder" : "false",
-            "LocationVendors.EndOfLife" : "false",
-            "LocationVendors.SpecialOrder" : "false",
-            "LocationVendors.TargetLocationName" : "Saskatchewan",
-            "LocationVendors.WriteOff" : "false"
-        },
-        "LongDescription" : "The iPhone 4S is a gradual step over the iPhone 4.",
-        "Model" : "iPhone 6",
-        "MsrpAmount" : "499.99",
-        "MsrpCurrencyCode" : "USD",
-        "ReleaseDate" : "2011-10-14T12:00:00.000",
-        "Serialized" : "true",
-        "SerialNumberPromptText" : "true",
-        "ShortDescription" : "Better than the iPhone 3G",
-        "Vendors": {
-            "Vendors.VendorName" : "SampleVendor",
-            "Vendors.VendorSku" : "DEF987"
-        },
-        "WarehouseLocation" : "Cornwall"
+        "RegularProducts": [
+            {
+                "CategoryName" : "Smartphones",
+                "ClassificationTreeId" : "1",
+                "DefaultPricingAndPurchasing": [
+                    {
+                        "Price" : "499.99",
+                        "AllowReturns" : "true",
+                        "Discountable" : "true",
+                        "FloorPrice" : "99.99",
+                        "ForSale" : "true",
+                        "InvoiceComments" : "Invoice comment",
+                        "Margin": "1",
+                        "ShowOnInvoice" : "true",
+                        "StoreInStorePrice" : "399.99"
+                    },
+                    ...
+                ]
+                "GlCostOfSalesAccountNumber" : "1001",
+                "GlInventoryAccountNumber" : "1002",
+                "GlInventoryCorrectionsAccountNumber" : "1001",
+                "GlSalesAccountNumber" : "1003",
+                "ManufacturerName" : "Apple",
+                "ManufacturerSku" : "ABC123",
+                "PricingMethod" : "Fixed",
+                "ProductLabel" : "iPhone 4S 16GB White",
+                "ProductName" : "iPhone 4S 16GB White",
+                "ProductReferenceId" : "PRO123",
+                "Barcodes" : "BARCODE123",
+                "DaysKeptInStock" : "10",
+                "DefaultLocationVendor": [
+                    {
+                        "Cost" : "99.99",
+                        "DiscontinuedDate" : "2016-01-01T12:00:00.000",
+                        "DoNotOrder" : "false",
+                        "EndOfLife" : "false",
+                        "SpecialOrder" : "false",
+                        "WriteOff" : "false"
+                    },
+                    ...
+                ],
+                "Enabled" : "true",
+                "EnforcedTrackingNumberLength" : "50",
+                "IgnoreAutomaticTaxAddition" : "false",
+                "LocationPricingAndPurchasing": [
+                    {
+                        "Price" : "499.99",
+                        "TargetLocationType" : "RegionName",
+                        "AllowReturns" : "true",
+                        "Discountable" : "true",
+                        "FloorPrice" : "99.99",
+                        "ForSale" : "true",
+                        "InvoiceComments" : "Invoice comment",
+                        "LockMinMaxed" : "true",
+                        "Margin" : "1",
+                        "MaximumQuantity" : "10",
+                        "MinimumQuantity" : "1",
+                        "PrimaryVendorName" : "Apple",
+                        "RefundPeriod" : "10",
+                        "RefundToUsed" : "false",
+                        "SaleBeginDate" : "2015-10-14T12:00:00.000",
+                        "SaleEndDate" : "2015-10-18T12:00:00.000",
+                        "SalePrice" : "399.99",
+                        "ShowOnInvoice" : "true",
+                        "StoreInStorePrice" : "399.99",
+                        "TargetLocationName" : "Saskatchewan"
+                    },
+                    ...
+                ]
+                "LocationVendors": [
+                    {
+                        "TargetLocationType" : "RegionName",
+                        "VendorName" : "SampleVendor",
+                        "Cost" : "99.99",
+                        "DiscontinuedDate" : "2016-01-01T12:00:00.000",
+                        "DoNotOrder" : "false",
+                        "EndOfLife" : "false",
+                        "SpecialOrder" : "false",
+                        "TargetLocationName" : "Saskatchewan",
+                        "WriteOff" : "false"
+                    },
+                    ...
+                ],
+                "LongDescription" : "The iPhone 4S is a gradual step over the iPhone 4.",
+                "Model" : "iPhone 6",
+                "MsrpAmount" : "499.99",
+                "MsrpCurrencyCode" : "USD",
+                "ReleaseDate" : "2011-10-14T12:00:00.000",
+                "Serialized" : "true",
+                "SerialNumberPromptText" : "true",
+                "ShortDescription" : "Better than the iPhone 3G",
+                "Vendors": [
+                    {
+                        "Vendors.VendorName" : "SampleVendor",
+                        "Vendors.VendorSku" : "DEF987"
+                    },
+                    ...
+                ],
+                "WarehouseLocation" : "Cornwall"
+            },
+            ...
+        ]
     }
 
 #### Response
