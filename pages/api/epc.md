@@ -159,7 +159,7 @@ For more information about pricing methods, see [Regular Products](http://iqmetr
 
 #### Request
 
-    POST /companies({CompanyId})/products
+    PUT /companies({CompanyId})/products
     {
         {RegularProduct}
     }
@@ -349,93 +349,11 @@ For more information about pricing methods, see [Regular Products](http://iqmetr
 
 #### Response
 
-* [RegularProduct](#regularproduct) that was created, if successful
+* `Status` (String) - A relative URI representing the API request made to determine the status of the request
 
 ###### Example
 
-    HTTP 201 Content-Type: application/json
+    HTTP ??? Content-Type: application/json
     {
-        "Id": "12",
-        "Barcodes" : "BARCODE123",
-        "CategoryName" : "Smartphones",
-        "ClassificationTreeId" : "1",
-        "DaysKeptInStock" : "10",
-        "DefaultLocationVendor": {
-            "DefaultLocationVendor.Cost" : "99.99",
-            "DefaultLocationVendor.DiscontinuedDate" : "2016-01-01T12:00:00.000",
-            "DefaultLocationVendor.DoNotOrder" : "false",
-            "DefaultLocationVendor.EndOfLife" : "false",
-            "DefaultLocationVendor.SpecialOrder" : "false",
-            "DefaultLocationVendor.WriteOff" : "false"
-        },
-        "DefaultPricingAndPurchasing": {
-            "DefaultPricingAndPurchasing.Price" : "499.99",
-            "DefaultPricingAndPurchasing.AllowReturns" : "true",
-            "DefaultPricingAndPurchasing.Discountable" : "true",
-            "DefaultPricingAndPurchasing.FloorPrice" : "99.99",
-            "DefaultPricingAndPurchasing.ForSale" : "true",
-            "DefaultPricingAndPurchasing.InvoiceComments" : "Invoice comment",
-            "DefaultPricingAndPurchasing.Margin": "1",
-            "DefaultPricingAndPurchasing.ShowOnInvoice" : "true",
-            "DefaultPricingAndPurchasing.StoreInStorePrice" : "399.99"
-        },        
-        "Enabled" : "true",
-        "EnforcedTrackingNumberLength" : "50",
-        "GlCostOfSalesAccountNumber" : "1001",
-        "GlInventoryAccountNumber" : "1002",
-        "GlInventoryCorrectionsAccountNumber" : "1001",
-        "GlSalesAccountNumber" : "1003",
-        "IgnoreAutomaticTaxAddition" : "false",
-        "LocationPricingAndPurchasing": {
-            "LocationPricingAndPurchasing.Price" : "499.99",
-            "LocationPricingAndPurchasing.TargetLocationType" : "RegionName",
-            "LocationPricingAndPurchasing.AllowReturns" : "true",
-            "LocationPricingAndPurchasing.Discountable" : "true",
-            "LocationPricingAndPurchasing.FloorPrice" : "99.99",
-            "LocationPricingAndPurchasing.ForSale" : "true",
-            "LocationPricingAndPurchasing.InvoiceComments" : "Invoice comment",
-            "LocationPricingAndPurchasing.LockMinMaxed" : "true",
-            "LocationPricingAndPurchasing.Margin" : "1",
-            "LocationPricingAndPurchasing.MaximumQuantity" : "10",
-            "LocationPricingAndPurchasing.MinimumQuantity" : "1",
-            "LocationPricingAndPurchasing.PrimaryVendorName" : "Apple",
-            "LocationPricingAndPurchasing.RefundPeriod" : "10",
-            "LocationPricingAndPurchasing.RefundToUsed" : "false",
-            "LocationPricingAndPurchasing.SaleBeginDate" : "2015-10-14T12:00:00.000",
-            "LocationPricingAndPurchasing.SaleEndDate" : "2015-10-18T12:00:00.000",
-            "LocationPricingAndPurchasing.SalePrice" : "399.99",
-            "LocationPricingAndPurchasing.ShowOnInvoice" : "true",
-            "LocationPricingAndPurchasing.StoreInStorePrice" : "399.99",
-            "LocationPricingAndPurchasing.TargetLocationName" : "Saskatchewan"
-        },
-        "LocationVendors": {
-            "LocationVendors.TargetLocationType" : "RegionName",
-            "LocationVendors.VendorName" : "SampleVendor",
-            "LocationVendors.Cost" : "99.99",
-            "LocationVendors.DiscontinuedDate" : "2016-01-01T12:00:00.000",
-            "LocationVendors.DoNotOrder" : "false",
-            "LocationVendors.EndOfLife" : "false",
-            "LocationVendors.SpecialOrder" : "false",
-            "LocationVendors.TargetLocationName" : "Saskatchewan",
-            "LocationVendors.WriteOff" : "false"
-        },
-        "LongDescription" : "The iPhone 4S is a gradual step over the iPhone 4.",
-        "ManufacturerName" : "Apple",
-        "ManufacturerSku" : "ABC123",
-        "Model" : "iPhone 6",
-        "MsrpAmount" : "499.99",
-        "MsrpCurrencyCode" : "USD",
-        "PricingMethod" : "Fixed",
-        "ProductLabel" : "iPhone 4S 16GB White",
-        "ProductName" : "iPhone 4S 16GB White",
-        "ProductReferenceId" : "PRO123",
-        "ReleaseDate" : "2011-10-14T12:00:00.000",
-        "Serialized" : "true",
-        "SerialNumberPromptText" : "true",
-        "ShortDescription" : "Better than the iPhone 3G",
-        "Vendors": {
-            "Vendors.VendorName" : "SampleVendor",
-            "Vendors.VendorSku" : "DEF987"
-        },
-        "WarehouseLocation" : "Cornwall"
+        "Status": "/v1/companies(1)/batches(3)/status"
     }
