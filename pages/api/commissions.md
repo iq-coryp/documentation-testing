@@ -9,7 +9,6 @@ summary:
 ---
 
 {% include linkrefs.html %}
-{% include common.html %}
 
 ## Endpoints
 
