@@ -52,7 +52,6 @@ Having created the {{order}}, we can update it if needed.
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "024ABE18-39B1-4522-9DCE-E3977631AF2B",
         "EmployeeId": 15,
         "EntityId": 64,
         "State": "Created",
@@ -80,22 +79,6 @@ When the {{order}} is complete, we can process it.
 ##### Example
     
     POST /Companies(1)/Orders(216f7424-ae18-4c69-9597-984b430d0759)/Process
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-        "OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
-    }
-
-## (Optional) Step 4: Ship the Order
-
-Once the {{order}} is ready, we can mark it as shipped.
-
-> See: [Shipping an Order](http://developers.iqmetrix.com/api/orders/#shipping-an-order)
-
-##### Example
-    
-    POST /Companies(1)/Orders(216f7424-ae18-4c69-9597-984b430d0759)/Shipped
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json

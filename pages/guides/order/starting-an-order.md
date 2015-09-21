@@ -32,47 +32,18 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 ##### Example
 
     Authorization: Bearer (Access Token)
-        
+
 ## Step 2: Determine Order Type
 
 Each {{order}} must have an associated [OrderType](http://developers.iqmetrix.com/api/orders/#ordertype).
 
-There are a number of different OrderTypes. A short explanation of each is provided below:
-
-| Value | Order Type | Description |
-|:------|:----------|:-------------|
-| `1` | Sales | An Order placed by a Customer |
-| `2`| Transfer | An Order to relocate inventory |
-| `3` | Purchase | An Order placed to a Supplier or Vendor |
-| `4` | RMA | Return Merchandise Authorization, an Order for returns, repairs or replacements |
+There are a number of different OrderTypes. A `Sales` Order is what is needed for this guide.
 
 ##### Example
 
     "OrderType": 1
 
-## Step 3: Find or Create Customers
-
-There many be as many as 3 Customers associated with an {{order}}, as shown below:
-
-* `Order.BillingCustomerId` (**Required**) - Customer for Billing 
-* `Order.CustomerId` (Optional) - Customer who created the Order
-* `Order.ShippingCustomerId` (Optional) - Customer for Shipping 
-
-For each Customer, a reference to the Customer in the form of its `CustomerId` is required. 
-
-| If... | Then... |
-|:------|:--------|
-| You know the Customer's address or phone number | See [Customer Search](http://developers.iqmetrix.com/api/crm/#customer-search) |
-| Customer exists in the system but needs to be updated | See [Updating a Customer](http://developers.iqmetrix.com/api/crm/#updating-a-customer) |
-| Customer does not exist in the system | See [Creating a Customer](http://developers.iqmetrix.com/api/crm/#creating-a-customer) |
-
-##### Example
-
-    "BillingCustomerId": "3E59F6C5-D7FC-48CF-A36D-9E871D5F5D0D"
-    "CustomerId": "024ABE18-39B1-4522-9DCE-E3977631AF2B"
-    "ShippingCustomerId": "5BBF809C-ECD3-4262-9544-61CABE1DD798"
-
-## Step 4: Find or Create a Location
+## Step 3: Find or Create a Location
 
 Every {{order}} must have an associated {{location}} that belongs to your {{company}}, as shown below:
 
@@ -89,12 +60,32 @@ A reference to the Location the form of its `EntityId` is required.
 
     "EntityId": 64
 
+## Step 3: Find or Create Customers
+
+There many be as many as 2 {{customers}} associated with an {{order}}, as shown below:
+
+* `Order.BillingCustomerId` (**Required**)
+* `Order.ShippingCustomerId` (Optional)
+
+For each Customer, a reference to the Customer in the form of its `CustomerId` is required. 
+
+| If... | Then... |
+|:------|:--------|
+| You know the Customer's address or phone number | See [Customer Search](http://developers.iqmetrix.com/api/crm/#customer-search) |
+| Customer exists in the system but needs to be updated | See [Updating a Customer](http://developers.iqmetrix.com/api/crm/#updating-a-customer) |
+| Customer does not exist in the system | See [Creating a Customer](http://developers.iqmetrix.com/api/crm/#creating-a-customer) |
+
+##### Example
+
+    "BillingCustomerId": "3E59F6C5-D7FC-48CF-A36D-9E871D5F5D0D",
+    "ShippingCustomerId": "5BBF809C-ECD3-4262-9544-61CABE1DD798"
+
 ## (Optional) Step 5: Find or Create Addresses
 
 There may be as many as 2 {{addresses}} associated with an {{order}}, as shown below:
 
-* `Order.BillingAddressId` (Optional) - Address used for Shipping
-* `Order.ShippingAddressId` (Optional) - Address used for Billing
+* `Order.BillingAddressId` 
+* `Order.ShippingAddressId` 
 
 For each Address, a reference to the Address in the form of its `AddressId` is required. 
 
@@ -142,12 +133,11 @@ Now that we have all the parameters needed, we can create an {{order}}.
     Content-Type: application/json
     {
         "OrderTypeId": 1,
-        "BillingCustomerId": "3E59F6C5-D7FC-48CF-A36D-9E871D5F5D0D"
-        "CustomerId": "024ABE18-39B1-4522-9DCE-E3977631AF2B"
-        "ShippingCustomerId": "5BBF809C-ECD3-4262-9544-61CABE1DD798"
-        "BillingAddressId": "A39DC672-17D1-4200-B5BF-98FE2D8E25E3"
-        "ShippingAddressId": "FEEE59C2-DD2B-4507-B158-CD5B3FE46E0D"
-        "EntityId": 64
+        "BillingCustomerId": "3E59F6C5-D7FC-48CF-A36D-9E871D5F5D0D",
+        "ShippingCustomerId": "5BBF809C-ECD3-4262-9544-61CABE1DD798",
+        "BillingAddressId": "A39DC672-17D1-4200-B5BF-98FE2D8E25E3",
+        "ShippingAddressId": "FEEE59C2-DD2B-4507-B158-CD5B3FE46E0D",
+        "EntityId": 64,
         "Name": "iPhone 5 Order", 
         "EmployeeId": 15,
         "DiscountAmount": 15.0,

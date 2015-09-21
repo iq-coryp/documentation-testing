@@ -39,14 +39,9 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
         
 ## Step 2: Determine the Item Type
 
-Each {{item}} must have an associated {{item_type}}.
+Each {{item}} must have an associated {{item_type}} in the form of an integer.
 
-There are a number of different ItemTypes. A short explanation of each is provided below:
-
-| Value | Item Type | Description |
-|:------|:----------|:------------|
-| 1 | DropShip | Item is available to be shipped |
-| 2 | InStock | Item is in stock |
+For an in store order, we will use the `InStock` ItemType.
 
 ##### Example
 
@@ -54,45 +49,23 @@ There are a number of different ItemTypes. A short explanation of each is provid
 
 ## Step 2: Determine the Item Status
 
-Each {{item}} must have an associated {{item_status}}.
+Each {{item}} must have an associated {{item_status}} value in the form of an integer.
 
-Your options for ItemStatus are **determined by the ItemType chosen in Step 2**, and are provided below:
+Your options for ItemStatus are **determined by the ItemType chosen in Step 2**, in this case we have an ItemType of `2`, leaving the following choices:
 
-| Item Type | Value | Item Status |
-|:----------|:------|:------------|
-| Dropship | 1 | New |
-| Dropship | 3 | Processed | 
-| Dropship | 4 | Ordered |
-| Dropship | 6 | NotAvailable |
-| Dropship | 7 | Shipped | 
-| Dropship | 8 | Recieved | 
-| InStock | 9 | New |
-| InStock | 10 | Processed |
+| ItemType | ItemStatus | Value |
+|:----------|:----------|:------|
+| InStock | New | 9 |
+| InStock | Processed | 10 |
+| InStock | Error | 11 |
+| InStock | BackOrder | 12 |
+| InStock | Cancelled | 16 |
 
 ##### Example
 
     "ItemStatusId": 9
 
-## (Optional) Step 3: Determine Supplier
-
-An {{order}} may have an associated {{supplier}}, as shown below:
-
-* `Item.SupplierEntityId` (Optional) - Identifier for the Supplier
-* `Item.SupplierReference` (Optional) - May be used for additional Supplier reference information, such as an OrderId
-
-A reference to the Supplier in the form of its `EntityId` is required. 
-
-| If... | Then... |
-|:------|:--------|
-| You know the basic Supplier details but not the EntityId | See [Getting All Suppliers](http://developers.iqmetrix.com/api/entity-store/#getting-all-suppliers) |
-| Supplier does not exist in the system | Contact iQmetrix about adding a Supplier |
-
-##### Example
-
-    "SupplierEntityId": 4,
-    "SupplierReference": ""
-
-## (Optional) Step 4: Add Optional Parameters
+## (Optional) Step 3: Add Optional Parameters
 
 The following parameters can be optionally added to an {{item}}
 
@@ -106,7 +79,6 @@ The following parameters can be optionally added to an {{item}}
 * `Item.Quantity` - Amount of this Item in Stock, defaults to 0
 * `Item.SerialNumbers` - Serial numbers
 * `Item.SKU` - SKU for this Item
-* `Item.TrackingInformation` - Tracking information in the form of key-value pairs
 
 ##### Example
     
@@ -121,15 +93,9 @@ The following parameters can be optionally added to an {{item}}
     "Notes": "",
     "Quantity": 2,
     "SerialNumbers":  ["abc123","abc321"],
-    "SKU": "00001",
-    "TrackingInformation": [ 
-        {
-            "Quantity": 1,
-            "TrackingNumber": "1TTTTN4421"
-        }
-    ]
+    "SKU": "00001"
 
-## Step 5: Creating an Item
+## Step 4: Creating an Item
 
 {{tip}}
 The <code>OrderId</code> you wrote down in Step 8 of the previous page of this guide is needed now!
@@ -149,8 +115,6 @@ Now that we have all the parameters needed, we can create an {{item}} on the {{o
         "ItemTypeId": 2,
         "ItemStatusId": 9,
         "ProductId": 1,
-        "SupplierEntityId": 0,
-        "SupplierReference":"10",
         "Cost": 5.99,
         "ListPrice": 12.99,
         "SellingPrice": 9.99,
@@ -160,13 +124,7 @@ Now that we have all the parameters needed, we can create an {{item}} on the {{o
         "Quantity": 2,
         "SerialNumbers":  ["abc123","abc321"],
         "SKU": "00001",
-        "ShoppingOptionId": "",
-        "TrackingInformation": [ 
-            {
-                "Quantity": 1,
-                "TrackingNumber": "1TTTTN4421"
-            }
-        ]
+        "ShoppingOptionId": ""
     }
 
 ## Next
