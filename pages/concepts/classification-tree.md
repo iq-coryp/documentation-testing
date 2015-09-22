@@ -10,40 +10,44 @@ summary:
 
 {% include linkrefs.html %}
 
-Classification Trees are a key part of Product Library and your Catalog as they organize all your products into Categories and Classifications.
+iQmetrix organizes retail (both saleable and not saleable) products in a hierarchal structure. The top level of this structure is the Classification Tree. Classification Trees are, in layman’s terms, Industries. Examples of Classification Trees could include Cellular and Accessories, Apparel and Accessories, or Automotive. 
 
-Classification Trees are also used by downstream consumers like Dropship and Shelf.
+Classification Trees are a key part of the Product Library and your Catalog, as they organize all your products into Categories and Classifications. Each Classification Tree has its own unique identifier. 
+
+See the figure below for a general concept of how products are organized. 
+
+<img src="{{ "/images/classifications.png" | prepend: site.url }}" />
 
 ### Managing Classification Trees
 
-Currently, Classification Trees are managed by the iQmetrix Curation team.
+Currently, Classification Trees are managed by the iQmetrix Curation team. In the future, an API will be available to allow vendors to manage their own Classification Tree structure.
 
-### Categories vs Classifications
+### Categories and Classifications
 
-Categories are used for organization and do not contain any products.
+Classification Trees contain Classifications and Categories.
 
-Classifications are always children of Categories as well as being leaf nodes in the tree.
+Categories are used to similar group products together, but do not contain any products themselves. Categories can also be contained within other Categories in order to narrow down the Product type. For example, from the figure above, if Classification Tree A is Apparel and Accessories, Category 1 could be Clothing, Category b could be Men, and Category b could be Women.
 
-As a rule, products always belong to a single Classification.
+Classifications are used to group Products together by similar features and are assigned a Product Template (e.g. Headphones). Classifications are always children of Categories, as well as being leaf nodes in the tree.
 
-### Types of Classification Trees
+As a general rule, Products should always belong to a single Classification (e.g. Smartphone or Sweater). 
 
-Products in different industries are contained in their own respective trees.
+Each Classification is unique to the Product Library and has its own identifier. There can be only one of each Classification, while Categories can be duplicated numerous times within Classification Trees, since they do not have an identifier. See the examples below for more details of this structure.
 
-The examples below show Classification Trees for the clothing and wireless industries. 
+### General Examples
 
-### General Example
+Below are two examples of Classification Tree hierarchies. 
 
-In the Apparel & Accessories tree, there are high level Categories for Clothing and Shoes, both of which are then broken down into further Categories for Men and Women. 
+#### Example 1 - Apparel and Accessories Tree
 
-As you go down the tree, the tops Category has Classifications for Tees, Shirts, Sweaters and Jackets. The Bottoms category is broken down in a similar fashion.
+This example demonstrates an Apparel and Accessories tree, where the high level Categories are for Clothing and Shoes, both of which are then broken down into Categories for Men and Women.
+
+As you move down the tree, the Tops Category has Classifications for Tees, Shirts, Sweaters, and Jackets. The Bottoms Category is split up into a similar fashion.
 
 <img src="{{ "/images/classification-tree-general.gif" | prepend: site.url }}" />
 
-### Wireless Example
+#### Example 2 - Cellular and Accessories Tree
 
-In the Cellular & Accessories tree, we have split up most of the tree based on Devices and Accessories. 
-
-Smartphones and Voice & Message Phones are both Classifications under the Phones category.
+This example demonstrates a Cellular and Accessories tree, where the high level Categories are for Devices and Accessories, both of which are then broken down into a further range of Categories.
 
 <img src="{{ "/images/classification-tree-wireless.gif" | prepend: site.url }}" />
