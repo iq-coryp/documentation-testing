@@ -1,8 +1,8 @@
-# iQmetrix Developer Portal
+# Documentation theme for Jekyll 
 
-We're most definitely "Under Construction". 
-We are planning to launch our [Platform API documentation](http://developers.iqmetrix.com/api) in June 2015.
+This is a Jekyll theme designed to be used for single-sourced documentation sites. Instructions for using the theme are in the site build. You can see the site build in the following two locations:
 
-If you find errors in the documentation, feel free to fork and send us a pull request or ask questions by sending an email to apisupport@iqmetrix.com
+* [http://idratherbetellingstories.com/documentation-theme-jekyll/doc_designers/](http://idratherbetellingstories.com/documentation-theme-jekyll/doc_designers/)
+* [http://idratherbetellingstories.com/documentation-theme-jekyll/doc_writers/](http://idratherbetellingstories.com/documentation-theme-jekyll/doc_writers/)
 
-Browse the documentation online at http://developers.iqmetrix.com
+The two different builds demonstrate the single-source publishing capabilities of the theme. The designer version is comprehensive, whereas the writer version is a subset of the designer version.

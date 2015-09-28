@@ -1,6 +1,6 @@
 ---
 title:  Product Structure
-permalink: /concepts/product-structure/
+permalink: concepts/product-structure/
 tags: []
 keywords: 
 audience: 
