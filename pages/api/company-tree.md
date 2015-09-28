@@ -22,8 +22,8 @@ summary:
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
 | Id | Integer | Unique identifier | `1` |
-| Name | String | Name | `SampleCompany` |
-| Description | String  | Description | `Company creating great experiences.` |
+| Name | String(250) | Name | `SampleCompany` |
+| Description | String(255) | Description | `Company creating great experiences.` |
 | Roles | Object | The value must be `Company` | `{ "Name": "Company" }` |
 | ClientEntityId | String | Identifier in an external system | `123` |
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
@@ -43,13 +43,72 @@ summary:
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 | *Role* | *String* | *Reserved for internal use* | |
 
+### CompanyTree
+
+Your Company Tree is a hierarchial representation of the how your Company is structured, including the root Company, Groups, Divisions and Locations.
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Integer | Company identifier | `1` |
+| Name | String(250) | Company name | `SampleCompany` | 
+| Description | String(255) | Description | `Company creating great experiences.` |
+| Role | String | Role | `Company` |
+| Nodes | Array[[CompanyTreeNode](#CompanyTreeNode)] | The Company Tree hierarchy made up of Nodes | |
+
+### CompanyTreeNode
+
+CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{group}}, {{division}}, {{location}} or device.
+
+As an example, the following snippet of a Company Tree represents a hierarchy of a Company (Costco) with one Division (Western BC) that has two Locations (Vancouver and Victoria).
+
+```json
+ {
+    "Id": 372,
+    "Name": "Costco",
+    "Description": "Company with multiple Locations.",
+    "Role": "Company",
+    "Nodes": [
+        {
+            "Id": 55,
+            "Name": "Western BC",
+            "Description": "Western area of BC.",
+            "Role": "Division",
+            "Nodes": [
+                {
+                    "Id": 754,
+                    "Name": "Victoria",
+                    "Description": "Across from Home Depot.",
+                    "Role": "Location",
+                    "Nodes": [],
+                },
+                {
+                    "Id": 554,
+                    "Name": "Vancouver",
+                    "Description": "Corner of Government and Brighton.",
+                    "Role": "Location",
+                    "Nodes": [],
+                }                
+            ]
+        }
+    ]
+}
+```
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Integer | Identifier | `55` |
+| Name | String(250) | Name | `Western BC` | 
+| Description | String(255) | Description | `Western area of BC.` |
+| Role | String | Role, possible values include: Company, Group, Division and Location | `Division` |
+| Nodes | Array[[CompanyTreeNode](#CompanyTreeNode)] | Children | |
+
 ### Location
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Unique identifier | `2` |
-| Name | String | Name | `SampleLocation` |
-| Description | String  | Description | `The SampleLocation is used to clear out discounted inventory` |
+| Name | String(250) | Name | `SampleLocation` |
+| Description | String(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
 | Roles | Array[Object] | The Role of this Location , the value must be `Location`| |
 | Roles.Name | String | The name of the Role | `Location` |
 | CreatedUTC | DateTime  | Created date in UTC | `2015-02-26T00:03:01.372Z` |
@@ -100,6 +159,63 @@ summary:
 | *LocationType* | *String* | *Reserved for future use* |  |
 | *LocationSubType* | *String* | *Reserved for future use* |  |
 | *Logo* | *Object* | *Reserved for internal use* |  |
+| *Role* | *String* | *Reserved for internal use* | |
+
+### Division
+
+Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company. 
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|-------------|:--------|
+| Id | Integer | Unique identifier | `5` |
+| Name | String(250) | Name | `SampleDivision` |
+| Description | String(255) | Description | `Division creating great experiences.` |
+| Roles | Object | The value must be `Division` | `{ "Name": "Division" }` |
+| ClientEntityId | String | Identifier in an external system | `112` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data | |
+| Logo | Object | A reference to an [Asset](/assets/#asset) |  |
+| Logo.Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Logo.Name | String | File name | `iqmetrix.jpg` |
+| Logo.Height | Integer | Height in pixels | `145` |
+| Logo.Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/`<br/>`assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
+| Logo.Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets  | `2c8f3b3774df219b8246ca02a2a2a892` |
+| Logo.MimeType | String | The mime type | `image/jpeg` |
+| Logo.Width | Integer | Width in pixels | `240` |
+| Relationships | Array[Object] | Relationship information, such child Locations, Suppliers and Carriers |  |
+| SortName | String  | A string used for sorting | `sampledivision` |
+| Version | Integer | The latest revision number | `1` |
+| *CorrelationId* | *String* | *Reserved for internal use* |  |
+| *Role* | *String* | *Reserved for internal use* | |
+
+### Group
+
+Groups, as well as Divisions, serve as generic buckets clients can use to organize the company tree. Groups could be used to represent managerial or geographical 
+groupings. 
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|-------------|:--------|
+| Id | Integer | Unique identifier | `16` |
+| Name | String(250) | Name | `SampleGroup` |
+| Description | String(255) | Description | `Group creating great experiences.` |
+| Roles | Object | The value must be `Group` | `{ "Name": "Group" }` |
+| ClientEntityId | String | Identifier in an external system | `187` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | Object | Set of key-value pairs that contain extra data | |
+| Logo | Object | A reference to an [Asset](/assets/#asset) |  |
+| Logo.Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Logo.Name | String | File name | `iqmetrix.jpg` |
+| Logo.Height | Integer | Height in pixels | `145` |
+| Logo.Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/`<br/>`assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
+| Logo.Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets  | `2c8f3b3774df219b8246ca02a2a2a892` |
+| Logo.MimeType | String | The mime type | `image/jpeg` |
+| Logo.Width | Integer | Width in pixels | `240` |
+| Relationships | Array[Object] | Relationship information, such child Locations, Suppliers and Carriers |  |
+| SortName | String  | A string used for sorting | `samplegroup` |
+| Version | Integer | The latest revision number | `1` |
+| *CorrelationId* | *String* | *Reserved for internal use* |  |
 | *Role* | *String* | *Reserved for internal use* | |
 
 ## Getting a Company
@@ -159,6 +275,66 @@ summary:
         "Version": 1
     }
 
+## Getting a Company Tree
+
+#### Request
+
+    GET /Companies({CompanyId})/Tree
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}} 
+
+###### Example
+
+    GET /Companies(1)/tree
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* {{companytree}} resource that was requested, if it exists
+
+###### Example
+
+    HTTP 200 Content-Type: application/json 
+    {
+        "Id": 1,
+        "ClientEntityId": "123",
+        "Name": "SampleCompany",
+        "Description": "Company creating great experiences.",
+        "Role": "Company"
+        "Nodes": [
+            {
+                "Id": 5,
+                "ClientEntityId": "112",
+                "Name": "SampleDivision",
+                "Description": "Division creating great experiences",
+                "Role": "Division"
+                "Nodes": [
+                    {
+                        "Id": 2,
+                        "ClientEntityId": "123",
+                        "Name": "SampleLocation",
+                        "Description": "The SampleLocation is used to clear out discounted inventory",
+                        "Role": "Location"
+                        "Nodes": [],
+                    },
+                    {
+                        "Id": 5,
+                        "ClientEntityId": "155",
+                        "Name": "LocationKiosk",
+                        "Description": "Kiosk in Maplewood Mall",
+                        "Role": "Location"
+                        "Nodes": [],
+                    },
+                    ...
+                ]
+            },
+            ...
+        ]
+    }
+
 ## Creating a Location
 
 #### Request
@@ -171,7 +347,7 @@ summary:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `NodeId` (**Required**) - Identifier of parent of the {{location}}
+* `NodeId` (**Required**) - Identifier of the parent for the {{location}} to be created under in the hierarchy
 
 #### Request Parameters
 
@@ -310,7 +486,7 @@ A {{location}} resource with the following properties:
                 "Name": "Location"
             }
         ],
-        "ClientEntityId": 123,
+        "ClientEntityId": "123",
         "CreatedUtc": "2014-04-17T03:35:31.449Z",
         "LastModifiedUtc": "2014-07-29T15:09:14.497Z",
         "Area": {
@@ -928,6 +1104,175 @@ A {{location}} resource with the following properties
         ...
     ]
 
+## Creating a Division
+
+Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
+
+#### Request
+
+    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
+    {
+        {Division}
+    }
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `NodeId` (**Required**) - Identifier of the parent for the {{division}} to be created under in the hierarchy
+
+#### Request Parameters
+
+A {{division}} resource with the following properties:
+
+* `Name` (**Required**) 
+* `Description` (Optional) 
+* `ClientEntityId` (Optional) 
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+###### Example
+
+    POST /Companies(1)/Tree/Nodes(1)/Divisions
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+    Content-Type: application/json
+    {
+        "Name": "SampleDivision",
+        "Description": "Division creating great experiences.",
+        "ClientEntityId": "112"      
+    }
+
+#### Response
+
+* {{division}} resource that was created, if successful
+
+###### Example
+
+    HTTP 201 Content-Type: application/json 
+    {
+        "Id": 5,
+        "Name": "SampleDivision",
+        "Description": "Division creating great experiences.",
+        "Roles": [
+            {
+                "Name": "Division"
+            }
+        ],
+        "ClientEntityId": "112",
+        "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+        "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+        "Attributes": { },
+        "Logo": null,
+        "ClientEntityId": "112",
+        "Relationships": [ ],
+        "SortName": "sampledivision",
+        "Version": 1
+    }
+
+## Creating a Group
+
+Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
+
+#### Request
+
+    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
+    {
+        {Group}
+    }
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `NodeId` (**Required**) - Identifier of the parent for the {{group}} to be created under in the hierarchy
+
+#### Request Parameters
+
+A {{group}} resource with the following properties:
+
+* `Name` (**Required**) 
+* `Description` (Optional) 
+* `ClientEntityId` (Optional) 
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+###### Example
+
+    POST /Companies(1)/Tree/Nodes(1)/Groups
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+    Content-Type: application/json
+    {
+        "Name": "SampleGroup",
+        "Description": "Group creating great experiences.",
+        "ClientEntityId": "187"      
+    }
+
+#### Response
+
+* {{group}} resource that was created, if successful
+
+###### Example
+
+    HTTP 201 Content-Type: application/json 
+    {
+        "Id": 16,
+        "Name": "SampleGroup",
+        "Description": "Group creating great experiences.",
+        "Roles": [
+            {
+                "Name": "Group"
+            }
+        ],
+        "ClientEntityId": "112",
+        "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+        "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+        "Attributes": { },
+        "Logo": null,
+        "ClientEntityId": "187",
+        "Relationships": [ ],
+        "SortName": "samplegroup",
+        "Version": 1
+    }
+
+## Deleting a Group or Division
+
+{{warning}}
+This operation <strong>cannot be undone</strong>.
+{{end}}
+
+This request removes the Node refered to by NodeId from the Company Tree along with all of its children. Only Divisions and Groups can be deleted this way. If the Node or any of its children include Entities other then Groups or Divisions, the request will be rejected.
+
+#### Request
+
+    DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
+
+#### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `NodeId` (**Required**) - Identifier of the {{group}} or {{division}} to be deleted
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+
+###### Example
+
+    DELETE /Companies(1)/Tree/Nodes(1)/Groups(16)
+
+#### Response
+
+###### Example
+
+    HTTP 204 No Content
+
 ## Search By ClientEntityId
 
 This request allows you to search your Company Tree using the `ClientEntityId` field.
@@ -956,13 +1301,7 @@ This request allows you to search your Company Tree using the `ClientEntityId` f
 
 This request returns an array of objects that summarize Entities matching the search criteria.
 
-The following resource types are considered "Entities": 
-
-* {{company}}
-* Division
-* Group
-* {{location}}
-* Devices
+The following resource types are considered "Entities": {{company}}, {{division}}, {{group}}, {{location}}, device
 
 * Array[Object] - Resources matching the search criteria
     * `Id` (Integer) 
@@ -1036,9 +1375,12 @@ The below table may help resolve problems encountered when making requests to th
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
 | `HTTP 400` | `Request Parameter Doesn't Match Expected Value` | Ensure all **Required** parameters are provided, see `Description` of Error for more details |
+| `HTTP 400` | `Please move or delete attached locations before deleting this entity` | Ensure Node to be deleted does not have child Locations |
+| `HTTP 400` | `'{x}' should not be empty.` | Ensure required parameters are included |
+| `HTTP 400` | `'{x}' must be between 0 and {y} characters. You entered {z} characters.` | Ensure required parameters are within size limitations |
 | `HTTP 400` | `'Latitude/Longitude' should not be empty` | Ensure both `Latitude` and `Longitude` are provided, or `Geography` is null |
 | `HTTP 400` | `'Latitude' must be between -90 and 90. You entered {x}` | Ensure `Latitude` is between -90 and 90 |
 | `HTTP 400` | `'Longitude' must be between -180 and 180. You entered {x}` | Ensure `Longitude` is between -180 and 180 |
 | `HTTP 404` | `Entity Not Found` | Ensure `CompanyId` and `LocationId` are accurate and the Location belongs to the Company |
 | `HTTP 409` | `Entity resource already modified by an earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
-| `HTTP 409` | `An Entity already exists with the same name and role at this level.` | Ensure a Location does not already exist with the same name |
+| `HTTP 409` | `An Entity already exists with the same name and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |

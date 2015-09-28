@@ -24,6 +24,16 @@ A type of Account where credits increase the Account's balance.
 
 A type of Account where debits increase the Account's balance.
 
+### Entity
+
+The following Resources are considered "Entities": 
+
+* {{company}}
+* {{division}}
+* {{group}}
+* {{location}}
+* Device
+
 ### Hero Shot
 
 An Asset for a Product, typically an image or video.
