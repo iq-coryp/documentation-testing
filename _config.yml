@@ -6,16 +6,16 @@ product: all
 platform: all
 version: all
 destination: ../doc_designers
-baseurl: "/"
-pagefileurl: "../../"
-api_baseurl: "/api"
+baseurl: "/documentation-testing/"
+pagefileurl: "/documentation-testing/"
+api_baseurl: "/documentation-testing/api"
 fileurl: "../"
-url: "http://developers.iqmetrix.com/"
+url: "http://melissakendall.github.io/documentation-testing/"
 topnav_title: iQmetrix Developer Portal 
 homepage_title: iQmetrix Developer Portal 
 site_title: iQmetrix Developer Portal 
 disqus_shortname: iqmetrixdeveloperportal
-google_analytics: UA-69492-17
+google_analytics: UA-408430-5
 github_editme_path: 
 
 sidebar_tagline: 
