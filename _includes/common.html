@@ -1,0 +1,18 @@
+{% include alerts.html %}
+{% include callouts.html %}
+
+{% capture skip %}
+The number of items to skip from the entire set of results. Defaults to 0 if no `$skip` value is specified. If a value less than 0 is specified, the URI is considered malformed
+{% endcapture %}
+
+{% capture topuser %}
+Maximum number of items to include in the response. Defaults to 30 if no `$top` value is specified. Acceptable values are in the range [0-100]
+{% endcapture %}
+
+{% capture toppunch %}
+Maximum number of items to include in the response. Defaults to 50 if no `$top` value is specified. Acceptable values are in the range [0-100]
+{% endcapture %}
+
+{% capture topgl %}
+Maximum number of items to include in the response. Defaults to 50 if no `$top` value is specified. Acceptable values are in the range [0-500]
+{% endcapture %}
