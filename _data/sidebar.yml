@@ -20,16 +20,14 @@ entries:
           audience: writer, designer
           platform: all
           product: all
-          version: all          
-          print: true
-          web: true
+          version: all
 
         - title: Product Library
           url: concepts/product-library/
           audience: writer, designer
           platform: all
           product: all
-          version: all          
+          version: all
           print: true
           web: true
 
@@ -42,15 +40,6 @@ entries:
 
       items:
 
-        - title: Introduction
-          url: api/introduction/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all          
-          print: true
-          web: true
-          
         - title: Environments
           url: api/environments/
           audience: writer, designer

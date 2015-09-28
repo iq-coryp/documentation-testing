@@ -1,6 +1,6 @@
 ---
 title: Classification Tree
-permalink: /concepts/classification-tree/
+permalink: concepts/classification-tree/
 tags: []
 keywords: 
 audience: 
