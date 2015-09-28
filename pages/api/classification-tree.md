@@ -9,8 +9,11 @@ summary:
 ---
 {% include linkrefs.html %}
 
+## Overview
+
 A **Classification Tree** is a hierarchical structure describing a taxonomy of {{products}}. 
-Classification Trees are relatively static, and rarely change.
+
+To learn more about Classification Trees, see [Classification Tree](/api/concepts/classification-tree/)
 
 ## Endpoints
 

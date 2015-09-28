@@ -4,11 +4,12 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 9/23/2015
 summary: 
 ---
 
 {% include linkrefs.html %}
+{% include common.html %}
 
 ## Endpoints
 
@@ -19,7 +20,7 @@ summary:
 
 ### CommissionEntry
 
-An instance of a commission earned for an employee.
+Commission earned by an employee.
 
 {{callout_info}}
 <b>RQ Connection</b>
@@ -32,13 +33,15 @@ For more information on Commissions in RQ, see <a href="http://iqmetrix.helpdocs
 | Comments | String(255) | Comments | `Shared with Nick` |
 | CommissionFixedCost | Decimal | Fixed cost of commission applied. Anything above this value is commission | `10.0` |
 | CommissionFloatingCost | Decimal | Floating cost of commission applied. This value is determined by adding anything above this value to average cost | `10` |
-| CommissionRate | Decimal | Commission rate applied | `35` |
-| CommissionSPIFF | Decimal | SPIFF applied | `15` |
-| CommissionType | Byte | Type of commission applied. Ifthis is a Coupon commission, see [CouponCommissionType](#couponcommissiontype) for a list of acceptable values, otherwise see [CommissionType](#commissiontype) for a list of acceptable values | `1` |
+| CommissionRate | Decimal | Commission rate applied | `35.0` |
+| CommissionSpiff | Decimal | A type of commission structure used to pay employees, where a fixed dollar amount is paid per unit sold | `15.0` |
+| CommissionSplitEmployeeSpecialId | Integer | Special Identifier for the split commission Employee in RQ | `0002` |
+| CommissionSplitUserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the split commissionable employee | `22212` |
+| CommissionType | Byte | Type of commission applied. If this is a Coupon commission, see [CouponCommissionType](#couponcommissiontype) for a list of acceptable values, otherwise see [CommissionType](#commissiontype) for a list of acceptable values | `1` |
 | CouponID | Integer | Identifier for a coupon associated with this commission in RQ | `8` |
-| DateCreatedUtc | DateTime | Time created in UTC | `2015-08-18T15:00:00` |
+| DateCreatedUtc | DateTime | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
+| EmployeeSpecialId | Integer | Special Identifier for the Employee in RQ | `0001` |
 | UserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the primary commissionable employee | `22212` |
-| User2Id | Integer | Identifier for a [User](/api/user-manager/#user) that is the split commissionable employee | `22242` |
 | GlobalProductID | Integer | Identifier of product associated with this commission in RQ | `1210` |
 | HasBeenReversed | Boolean | A flag to indicate if this CommissionEntry has been reversed | `false` |
 | InvoiceEditedDate | DateTime | Time last edited with the Invoice Editor in RQ | `2015-09-10T20:01:49.00` |
@@ -47,7 +50,7 @@ For more information on Commissions in RQ, see <a href="http://iqmetrix.helpdocs
 | IsCommissionSplit | Boolean | A flag to indicate if the commission is split with a second employee | `true` |
 | IsFullChargeback | Boolean | A flag to indicate if this commission was created by a full chargeback in RQ  | `false` |
 | IsSuspended | Boolean | A flag to indicate if this commission has been suspended | `false` |
-| LastUpdateDateUtc | DateTime | Time last updated in UTC | `2015-09-09T20:41:59.69` |
+| LastUpdateDateUtc | DateTime | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
 | LocationCode | String | An identifier for the Location in an external system | `LOC123` |
 | LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `4` |
 | MilestoneID | Guid | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
@@ -57,8 +60,8 @@ For more information on Commissions in RQ, see <a href="http://iqmetrix.helpdocs
 | SaleInvoiceAndCouponID | Guid | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
 | SaleInvoiceID | Integer | Identifier of the sale invoice which created this commission in RQ | `7` |
 | SerialNumber | String(100) | Serial number of the product associated with this commission in RQ | `8508194953` |
-| SplitRate1 | Decimal | Percentage of the commission the primary employee receives, defaults to 100 | `50` |
-| SplitRate2 | Decimal | Percentage of the commission the split employee receives, defaults to 0 | `50` |
+| SplitRate1 | Decimal | Percentage of the commission the primary employee receives, defaults to 100 | `50.0` |
+| SplitRate2 | Decimal | Percentage of the commission the split employee receives, defaults to 0 | `50.0` |
 | TotalCommission | Decimal | The total commission amount to be applied equal to (UnitCommission * Quantity) | `5.32` |
 | TransactionGUID | Guid | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
 | TransactionType | Byte | Type of transaction which created this commission. See [TransactionType](#transactiontypes) for a list of acceptable values | `1` |
@@ -120,7 +123,7 @@ To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
 * `Skip`(Optional) - {{skip}}
-* `Top` (Optional) - {{top-punch}}
+* `Top` (Optional) - {{toppunch}}
 
 ###### Example
 
@@ -158,41 +161,43 @@ To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline
                         }
                     },
                     "_embedded": {},
-                    "Id" : "24",
+                    "Id" : 24,
                     "Comments" : "Shared with Nick",
-                    "CommissionFixedCost" : "10.0",
-                    "CommissionFloatingCost" : "10",
-                    "CommissionRate" : "35",
-                    "CommissionSPIFF" : "15",
-                    "CommissionType" : "1",
-                    "CouponID" : "8",
+                    "CommissionFixedCost" : 10.0,
+                    "CommissionFloatingCost" : 10,
+                    "CommissionRate" : 35,
+                    "CommissionSplitEmployeeSpecialId": "0002",
+                    "CommissionSplitUserId": "22222",
+                    "CommissionSpiff" : 15,
+                    "CommissionType" : 1,
+                    "CouponID" : 8,
                     "DateCreatedUtc" : "2015-08-18T15:00:00",
-                    "UserId" : "22212",
-                    "User2Id" : "22242",
-                    "GlobalProductID" : "1210",
-                    "HasBeenReversed" : "false",
+                    "EmployeeSpecialId": "00001",
+                    "UserId" : 22212,
+                    "GlobalProductID" : 1210,
+                    "HasBeenReversed" : false,
                     "InvoiceEditedDate" : "2015-09-10T20:01:49.00",
                     "InvoiceNumber" : "84WEAIN5703",
-                    "IsChargeback" : "false",
-                    "IsCommissionSplit" : "true",
-                    "IsFullChargeback" : "false",
-                    "IsSuspended" : "false",
+                    "IsChargeback" : false,
+                    "IsCommissionSplit" : true,
+                    "IsFullChargeback" : false,
+                    "IsSuspended" : false,
                     "LastUpdateDateUtc" : "2015-09-09T20:41:59.69",
                     "LocationCode" : "LOC123",
-                    "LocationId" : "4",
+                    "LocationId" : 4,
                     "MilestoneID" : "74b95526-e46b-42da-baa5-19971dfe5b18",
-                    "Priority" : "1",
-                    "Quantity" : "1",
-                    "RQCommissionId" : "445",
+                    "Priority" : 1,
+                    "Quantity" : 1,
+                    "RQCommissionId" : 445,
                     "SaleInvoiceAndCouponID" : "d6ee8427-eac6-44ef-ac69-4617e18d2f66",
-                    "SaleInvoiceID" : "7",
+                    "SaleInvoiceID" : 7,
                     "SerialNumber" : "8508194953",
-                    "SplitRate1" : "50",
-                    "SplitRate2" : "50",
-                    "TotalCommission" : "5.32",
+                    "SplitRate1" : 50,
+                    "SplitRate2" : 50,
+                    "TotalCommission" : 5.32,
                     "TransactionGUID" : "a929571e-c432-4e9a-aef7-4302ed791251",
-                    "TransactionType" : "1",
-                    "UnitCommission" : "5.32"
+                    "TransactionType" : 1,
+                    "UnitCommission" : 5.32
                 }
             ]
         }

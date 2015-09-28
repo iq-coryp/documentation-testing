@@ -41,9 +41,9 @@ A CatalogSearchResult resource consists of the following properties:
 |:-----|:---------|:------------|:--------|
 | Items | Array[Object] | Products matching the search criteria |  |
 | Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |
-| Items.ClassificationTreeId | Integer | Identifier for the Classification Tree | `1` |
+| Items.ClassificationTreeId | Integer | Identifier for the [Classification Tree](/api/classification-tree/#classificationtree) | `1` |
 | Items.CanonicalClassification | Object | Classification tree details for this Product |  |
-| Items.CanonicalClassification.Id | Integer | Identifier for the Classification/Category | `1` |
+| Items.CanonicalClassification.Id | Integer | Identifier for the [Classification](/api/classification-tree/#classification) or [Category](/api/classification-tree/#category) | `1` |
 | Items.CanonicalClassification.Name | String | Name of the Classification/Category | `Smartphones` |
 | Items.CanonicalClassification.ParentCategories | Array[Object] | List of Parent Categories |  |
 | Items.CanonicalClassification.ParentCategories.Id | Integer | Identifier for this Category | `2` |
@@ -57,14 +57,14 @@ A CatalogSearchResult resource consists of the following properties:
 | Items.Manufacturer | Object | Manufacturer information for the Product |  |
 | Items.Manufacturer.Id | Integer | Identifier for the Manufacturer | `4` |
 | Items.Manufacturer.Name | String | Name of the Manufacturer | `SampleManufacturer` |
-| Items.MasterProductId | Integer | Identifier for the Master Product | `3` |
+| Items.MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
 | Items.Msrp | Object | Manufacturer's suggested retail price information for the Product |  |
 | Items.Msrp.Amount | Decimal | Manufacturer suggested retail price | `100` |
 | Items.Msrp.CurrencyCode | String | The 3 letter ISO currency code for the currency of the MSRP | `CAD` |
 | Items.ProductVersion | Integer | The latest revision number | `1` |
 | Items.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
 | Items.Slug | String | URL friendly identifier for the Product | `M3-V1` |
-| Items.VariationId | Integer | Identifier for the Variation this Product represents | `1` |
+| Items.VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#Variations) this Product represents | `1` |
 | Items.Vendors | Array[Object] | Vendor information for the Product |  |
 | Items.Vendors.Id | Integer | Identifier for the Vendor | `47` |
 | Items.Vendors.Name | String | Name of the Vendor | `SampleVendor` |
@@ -291,6 +291,8 @@ A CatalogSearchResult resource consists of the following properties:
 
 ## Getting Variations for a Catalog Item
 
+For more information about Variations, see [Variations](/concepts/product-structure/#variations).
+
 #### Request
 
     GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations 
@@ -317,7 +319,7 @@ A CatalogSearchResult resource consists of the following properties:
   * `Name` (String) - The name of the variation 
   * `Slug` (String) - The slug of the variation 
   * `CatalogItemId` (GUID) - Unique identifier for the variation 
-  * `Revisions` (Array) - Revisions on the variation [CatalogItem](#catalogitem)
+  * `Revisions` (Array) - [Carrier Revisions](/concepts/product-structure/#carrier-revisions) on the variation [CatalogItem](#catalogitem)
      * `Name` (String) - The name of the revision 
      * `Slug` (String) - The slug of the revision 
      * `CatalogItemId` (GUID) - Unique identifier for the revision
@@ -363,7 +365,7 @@ A CatalogSearchResult resource consists of the following properties:
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CategoryOrClassificationId` (**Required**) - Identifier for the Category or Classification 
+* `CategoryOrClassificationId` (**Required**) - Identifier for the {{category}} or {{classification}} 
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
 
@@ -945,7 +947,7 @@ Search filters can be combined to narrow down results. The example below illustr
 * `VendorIds` (Optional) - List of comma seperated integers representing identifiers for Vendors
 * `ManufacturerIds` (Optional) - Array of integers representing identifiers for Manufacturers
 * `IsDropshippable` (Optional) - True to display products available for shipping, false to display products not available for shipping
-* `CategoryOrClassificationId` (Optional) - Identifier for the Category or Classification 
+* `CategoryOrClassificationId` (Optional) - Identifier for the {{category}} or {{classification}} 
 * `SearchTerms` (Optional) - Search terms for products we want to search for
 * `OrderBy` (Optional) - A string value representing which field to order the results by. Acceptable values are `name` or `dateAdded`. Defaults to `name` if not specified
 * `OrderDir` (Optional) - A string value representing the sort direction. Acceptable values are `asc` and `desc`. Defaults to `asc` if not specified 

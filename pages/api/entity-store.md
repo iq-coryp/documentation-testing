@@ -26,16 +26,17 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Id | Integer | Unique identifier | `9` |
 | Name | String | Name | `SampleCarrier` |
 | Description | String  | Description | `Carrier creating great experiences.` |
-| Role | String | Role | `Carrier` |
-| Roles | Object | The value must be `Carrier` | `{ "Name": "Carrier" }` |
-| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data | |
-| CorrelationId | String | Identifier in an external inventory system | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| ClientEntityId | String | Identifier in an external system | `123` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to a media asset |  |
 | Relationships | Array[Object]  | Relationships |  |
+| Role | String | Role | `Carrier` |
+| Roles | Object | The value must be `Carrier` | `{ "Name": "Carrier" }` |
 | SortName | String  | A string used for sorting | `samplecarrier` |
 | Version | Integer | The latest revision number | `1` |
+| *CorrelationId* | *String* | *Reserved for internal use* |  |
 
 ### Manufacturer
 
@@ -44,16 +45,17 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Id | Integer | Unique identifier | `4` |
 | Name | String | Name | `SampleManufacturer` |
 | Description | String  | Description | `Manufacturer creating great experiences.` |
-| Role | String | Role | `Manufacturer` |
-| Roles | Object | The value must be `Manufacturer` | `{ "Name": "Manufacturer" }` |
-| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data | |
-| CorrelationId | String | Identifier in an external inventory system | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| ClientEntityId | String | Identifier in an external system | `123` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to a media asset |  |
 | Relationships | Array[Object]  | Relationships |  |
+| Role | String | Role | `Manufacturer` |
+| Roles | Object | The value must be `Manufacturer` | `{ "Name": "Manufacturer" }` |
 | SortName | String  | A string used for sorting | `samplemanufacturer` |
 | Version | Integer | The latest revision number | `1` |
+| *CorrelationId* | *String* | *Reserved for internal use* |  |
 
 ### Supplier
 
@@ -62,16 +64,17 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Id | Integer | Unique identifier | `14` |
 | Name | String | Name | `SampleSupplier` |
 | Description | String  | Description | `Supplier creating great experiences.` |
-| Role | String | Role | `Supplier` |
-| Roles | Object | The value must be `Supplier` | `{ "Name": "Supplier" }` |
-| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data | |
-| CorrelationId | String | Identifier in an external inventory system | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| ClientEntityId | String | Identifier in an external system | `123` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to a media asset |  |
 | Relationships | Array[Object]  | Relationships |  |
+| Role | String | Role | `Supplier` |
+| Roles | Object | The value must be `Supplier` | `{ "Name": "Supplier" }` |
 | SortName | String  | A string used for sorting | `samplesupplier` |
 | Version | Integer | The latest revision number | `1` |
+| *CorrelationId* | *String* | *Reserved for internal use* |  |
 
 ## Getting All Carriers
 
@@ -102,20 +105,20 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 			"Id": 9,
 			"Name": "SampleCarrier",
 			"Description": "Carrier creating great experiences.",
+			"Attributes": { 
+				"Sample Attribute": "sample"
+			},
+			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+			"ClientEntityId": "123",
+			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+			"Logo": { },
+			"Relationships": [ ],
 			"Role": "Carrier",
 			"Roles": [
 				{
 					"Name": "Carrier"
 				}
 			],
-			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-			"Attributes": { 
-				"Sample Attribute": "sample"
-			},
-			"CorrelationId": "db9bfc10-932e-4fbb-966d-720d688c2f42",
-			"Logo": { },
-			"Relationships": [ ],
 			"SortName": "samplecarrier",
 			"Version": 1
 		},
@@ -154,20 +157,20 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 		"Id": 9,
 		"Name": "SampleCarrier",
 		"Description": "Carrier creating great experiences.",
+		"Attributes": { 
+			"Sample Attribute": "sample"
+		},
+		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+		"ClientEntityId": "123",
+		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+		"Logo": { },
+		"Relationships": [ ],
 		"Role": "Carrier",
 		"Roles": [
 			{
 				"Name": "Carrier"
 			}
 		],
-		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-		"Attributes": { 
-			"Sample Attribute": "sample"
-		},
-		"CorrelationId": "db9bfc10-932e-4fbb-966d-720d688c2f42",
-		"Logo": { },
-		"Relationships": [ ],
 		"SortName": "samplecarrier",
 		"Version": 1
 	}
@@ -201,20 +204,20 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 			"Id": 4,
 			"Name": "SampleManufacturer",
 			"Description": "Manufacturer creating great experiences.",
+			"Attributes": { 
+				"Sample Attribute": "sample"
+			},
+			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+			"ClientEntityId": "123",
+			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+			"Logo": { },
+			"Relationships": [ ],
 			"Role": "Manufacturer",
 			"Roles": [
 				{
 					"Name": "Manufacturer"
 				}
 			],
-			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-			"Attributes": { 
-			"Sample Attribute": "sample"
-			},
-			"CorrelationId": "d4c43f84-d5cf-4cc9-9dcb-deadc2251ae0",
-			"Logo": { },
-			"Relationships": [ ],
 			"SortName": "samplemanufacturer",
 			"Version": 1
 		}
@@ -254,20 +257,20 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 		"Id": 4,
 		"Name": "SampleManufacturer",
 		"Description": "Manufacturer creating great experiences.",
+		"Attributes": { 
+			"Sample Attribute": "sample"
+		},
+		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+		"ClientEntityId": "123",
+		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+		"Logo": { },
+		"Relationships": [ ],
 		"Role": "Manufacturer",
 		"Roles": [
 			{
 				"Name": "Manufacturer"
 			}
 		],
-		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-		"Attributes": { 
-			"Sample Attribute": "sample"
-		},
-		"CorrelationId": "d4c43f84-d5cf-4cc9-9dcb-deadc2251ae0",
-		"Logo": { },
-		"Relationships": [ ],
 		"SortName": "samplemanufacturer",
 		"Version": 1
 	}
@@ -302,20 +305,20 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 			"Id": 14,
 			"Name": "SampleSupplier",
 			"Description": "Supplier creating great experiences.",
+			"Attributes": { 
+				"Sample Attribute": "sample"
+			},
+			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+			"ClientEntityId": "123",
+			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+			"Logo": { },
+			"Relationships": [ ],
 			"Role": "Vendor",
 			"Roles": [
 				{
 					"Name": "Vendor"
 				}
 			],
-			"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-			"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-			"Attributes": { 
-				"Sample Attribute": "sample"
-			},
-			"CorrelationId": "15380be4-9cf2-4f05-9a60-184a59f7ba5d",
-			"Logo": { },
-			"Relationships": [ ],
 			"SortName": "samplesupplier",
 			"Version": 1
 		},
@@ -354,20 +357,20 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 		"Id": 14,
 		"Name": "SampleSupplier",
 		"Description": "Supplier creating great experiences.",
+		"Attributes": { 
+			"Sample Attribute": "sample"
+		},
+		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+		"ClientEntityId": "123",
+		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+		"Logo": { },
+		"Relationships": [ ],
 		"Role": "Vendor",
 		"Roles": [
 			{
 				"Name": "Vendor"
 			}
 		],
-		"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-		"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-		"Attributes": { 
-			"Sample Attribute": "sample"
-		},
-		"CorrelationId": "15380be4-9cf2-4f05-9a60-184a59f7ba5d",
-		"Logo": { },
-		"Relationships": [ ],
 		"SortName": "samplesupplier",
 		"Version": 1
 	}

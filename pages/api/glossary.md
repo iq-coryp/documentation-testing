@@ -18,11 +18,11 @@ An Access Token is a string that identifies a client application and allows auth
 
 ### Credit Account
 
-A type of Account where debits increase the Account's balance.
+A type of Account where credits increase the Account's balance.
 
 ### Debit Account
 
-A type of Account where credits decrease the Account's balance.
+A type of Account where debits increase the Account's balance.
 
 ### Hero Shot
 

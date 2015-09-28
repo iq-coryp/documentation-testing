@@ -9,6 +9,7 @@ summary:
 ---
 
 {% include linkrefs.html %}
+{% include common.html %}
 
 ## Endpoints
 
@@ -207,7 +208,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 
 #### Response
 
-* [User](#user) that was updated, if it was succesful
+* [User](#user) that was updated, if it was successful
 
 ###### Example
 
@@ -294,28 +295,26 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 ##### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
-* `Skip`(Optional) - The number of records to skip before starting the record, defaults to 0 if no $skip value is used
-* `Top`(Optional) - The number of records to take, defaults to 30 if no $top value is used
-    * The maximum value of 100 will be used if the value provided is outside the acceptable range [0-100]
+* `Skip`(Optional) - {{skip}}
+* `Top`(Optional) - {{topuser}}
 
 ###### Example
 
-    GET /Entities(1)/Users?$skip=0&&top=5
+    GET /Entities(1)/Users?$skip=0&$top=5
     Authorization: Bearer (Access Token)
     Accept: application/json
 
 #### Response
 
-* _links (Object) - Relative URL's used for [Pagination](#pagination)
-    * prev (String) - Refers to a resource containing the previous page of results, `null` if there is no previous page
-    * self (String) - The encoded version of the API request that returned these results
-    * next (String) - Refers to a resource containing the next page of results
-* _metadata (Object) - Data representing [Pagination](#pagination) details, `null` if there is no next page
-    * count (Integer) - The total number of results returned from the request
-    * `Skip`(Integer) - The number of records to skip before starting the record, defaults to 0 if no $skip value is used
-    * `Top`(Integer) - The number of records to take, defaults to 50 if no $top value is used
-        * The maximum value of 100 will be used if the value provided is outside the acceptable range [0-100]
-* items (Array[[User](#user)]) - Users that were requested, if any were found
+* `_links` (Object) - Relative URL's used for [Pagination](#pagination)
+    * `prev` (String) - Refers to a resource containing the previous page of results, `null` if there is no previous page
+    * `self` (String) - The request that returned these results
+    * `next` (String) - Refers to a resource containing the next page of results, `null` if this is the last page
+* `_metadata` (Object) - Data representing [Pagination](#pagination) details
+    * `count` (Integer) - The total number of results returned from the request
+    * `skip` (Integer) - Value of `skip` in the request URI, if not specified the value will be 0
+    * `top` (Integer) - Value of `top` in the request URI, if not specified the value will be 30
+* `items` (Array[[User](#user)]) - Users that were requested, if any were found
 
 ###### Example
 
@@ -350,7 +349,320 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
             ...
         ]
     }
-    
+
+## Searching for Users
+
+#### Request
+
+    GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+##### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `Terms` (**Required**) - List of terms, multiple terms are separated by an encoded whitespace (`+`). User properties must contain/start with the term to be returned. Search terms are **not** case sensitive.
+* `Skip`(Optional) - {{skip}}
+* `Top`(Optional) - {{topuser}}
+
+###### Example
+
+    GET /Entities(1)/Users/Search?terms=Sam+Smith&$skip=0&$top=5
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* `_links` (Object) - Relative URL's used for [Pagination](#pagination)
+    * `prev` (String) - Refers to a resource containing the previous page of results, `null` if there is no previous page
+    * `self` (String) - The request that returned these results
+    * `next` (String) - Refers to a resource containing the next page of results, `null` if this is the last page
+* `_metadata` (Object) - Data representing [Pagination](#pagination) details, `null` if there is no next page
+    * `count` (Integer) - The total number of results returned from the request
+    * `skip` (Integer) - Value of `skip` in the request URI, if not specified the value will be 0
+    * `top` (Integer) - Value of `top` in the request URI, if not specified the value will be 30
+* `items` (Array[[User](#user)]) - Users matching the search terms, if any were found
+
+###### Example
+
+    HTTP 200 Content-Type: application/json
+    {
+        "_links": {
+            "prev": null,
+            "self": "/v1/Entities(1)/Users?$skip=0&$top=5",
+            "next": "/v1/Entities(1)/Users?$skip=5&$top=5"
+        },
+        "_metadata": {
+            "count": 15,
+            "skip": 0,
+            "top": 5
+        },
+        items: [
+            {
+                "Id": 22212,
+                "FirstName": "Sam",
+                "LastName": "Smith",
+                "UserName": "sample@iqmetrix.com",
+                "Attributes": {
+                    "Department": "Sales"
+                },
+                "ClientUserId": "132",
+                "Email": "sample@iqmetrix.com",
+                "IsActive": true,
+                "ParentEntityId": 1,
+                "Picture": null,
+                "Version": 1
+            },
+            {
+                "Id": 22218,
+                "FirstName": "Sam",
+                "LastName": "Smithitherson",
+                "UserName": "samples@iqmetrix.com",
+                "Attributes": {
+                    "Department": "IT"
+                },
+                "ClientUserId": "142",
+                "Email": "samples@iqmetrix.com",
+                "IsActive": true,
+                "ParentEntityId": 1,
+                "Picture": null,
+                "Version": 1
+            },
+            ...
+        ]
+    }
+
+## Assign a User to a Location
+
+{{note}}
+Users can be assigned to multiple locations
+{{end}}
+
+#### Request
+
+    PUT /Users({UserId})/Locations({LocationId})
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+##### URI Parameters
+
+* `UserId` (**Required**) - Identifier for the User
+* `LocationId` (**Required**) - Identifier for the Location
+ 
+###### Example
+
+    PUT /Users(22212)/Locations(2)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+###### Example
+
+    HTTP 204 NoContent
+
+## Unassign a User from a Location
+
+#### Request
+
+    DELETE /Users({UserId})/Locations({LocationId})
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+##### URI Parameters
+
+* `UserId` (**Required**) - Identifier for the User
+* `LocationId` (**Required**) - Identifier for the Location
+ 
+###### Example
+
+    DELETE /Users(22212)/Locations(2)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+###### Example
+
+    HTTP 204 NoContent
+
+## Getting Assigned Locations for a User
+
+#### Request
+
+    GET /Users({UserId})/Locations
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+##### URI Parameters
+
+* `UserId` (**Required**) - Identifier for the User
+ 
+###### Example
+
+    GET /Users(22212)/Locations
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* `UserId` (Integer) - Identifier for the User
+* `LocationIDs` (Array[Integer]) - Location IDs for Locations assigned to the User
+
+###### Example
+
+    HTTP 200 Content-Type: application/json
+    {
+        "UserId": 22212,
+        "LocationIDs": [2]
+    }
+
+## Getting Users by ClientUserId
+
+#### Request
+
+    GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip={Skip}&$top={Top}
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+##### URI Parameters
+
+* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `ClientUserId` (**Required**) - Identifier for the {{user}} in an external system
+* `Skip`(Optional) - {{skip}}
+* `Top`(Optional) - {{topuser}}
+
+###### Example
+
+    GET /Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=0&$top=5
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* `_links` (Object) - Relative URL's used for [Pagination](#pagination)
+    * `prev` (String) - Refers to a resource containing the previous page of results, `null` if there is no previous page
+    * `self` (String) - The request that returned these results
+    * `next` (String) - Refers to a resource containing the next page of results, `null` if this is the last page
+* `_metadata` (Object) - Data representing [Pagination](#pagination) details, `null` if there is no next page
+    * `count` (Integer) - The total number of results returned from the request
+    * `skip` (Integer) - Value of `skip` in the request URI, if not specified the value will be 0
+    * `top` (Integer) - Value of `top` in the request URI, if not specified the value will be 30
+* `items` (Array[[User](#user)]) - Users matching the search terms, if any were found
+
+###### Example
+
+    HTTP 200 Content-Type: application/json
+    {
+        "_links": {
+            "prev": null,
+            "self": "/v1/Entities(1)/Users?$skip=0&$top=5",
+            "next": "/v1/Entities(1)/Users?$skip=5&$top=5"
+        },
+        "_metadata": {
+            "count": 15,
+            "skip": 0,
+            "top": 5
+        },
+        items: [
+            {
+                "Id": 22212,
+                "FirstName": "Sam",
+                "LastName": "Smith",
+                "UserName": "sample@iqmetrix.com",
+                "Attributes": {
+                    "Department": "Sales"
+                },
+                "ClientUserId": "132",
+                "Email": "sample@iqmetrix.com",
+                "IsActive": true,
+                "ParentEntityId": 1,
+                "Picture": null,
+                "Version": 1
+            },
+            ...
+        ]
+    }
+
+## Locking a User
+
+{{note}}
+Once locked, a User will not be able to log in or obtain an access token until they are unlocked 
+{{end}}
+
+#### Request
+
+    POST /Users({UserId})/Lock
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+#### URI Parameters
+
+* `UserId` (**Required**) - Identifier for the User
+ 
+###### Example
+
+    POST /Users(22212)/Lock
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+###### Example
+
+    HTTP 204 NoContent
+
+## Unlocking a User
+
+Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
+
+{{note}}
+A User can be unlocked if their account is locked and their parent Entity is not using third-party authentication
+{{end}}
+
+#### Request
+
+    POST /Users({UserId})/Unlock
+
+#### Headers
+
+* `Authorization: Bearer` ({{access_token}})
+* `Accept: application/json`
+
+#### URI Parameters
+
+* `UserId` (**Required**) - Identifier for the User
+ 
+###### Example
+
+    POST /Users(22212)/Unlock
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+###### Example
+
+    HTTP 204 NoContent
+
 
 ## Disabling a User
 
@@ -423,7 +735,7 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 #### Response
 
-* [User](#user) that was enabled, if it was succesful
+* [User](#user) that was enabled, if it was successful
 
 ###### Example
 
@@ -452,15 +764,13 @@ The User Manager API supports pagination of collections of resources for some re
 
 Pagination is done through the use of $skip and $top query string parameters.
 
-`$skip` denotes the number of items in the collection to skip, defaults to 0 if no value is provided.
+`$skip` denotes the number of items to skip from the entire set of results. This value defaults to 0 if no `$skip` value is specified. If a value less than 0 is specified, the URI is considered malformed.
 
-`$top` denotes the number of items to take, defaults to 30 if no value is provided. 
-
-The maximum value of 100 will be used if the value provided is outside the acceptable range [0-100].
+`$top` denotes the maximum number of items to include in the response. This value defaults to 30 if no `$top` value is specified. Acceptable values are in the range [0-100]. 
 
 ### Navigation Links
 
-Pagination links for 'self', 'prev' and 'next' are returned by default when the media type is a hypermedia-enabled media type (i.e. HAL).
+Pagination-enabled requests include links for 'self', 'prev' and 'next' in the response data. 
 
 These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to append the appropriate endpoint.
 
@@ -481,11 +791,11 @@ These links are _relative_, they do not include the base endpoint. It is the res
 
 In the example above, the `_links` section is included in the data returned from an API call to <a href="#getting-all-users-for-a-company">Getting All Users for a Company</a>, where `$skip=0` and `$top=5`.
 
-The `self`.`href` value is the encoded version of the API call that returned these results.
+The `self`.`href` value is the relative version of the API call that returned these results.
 
-The `next`.`href` refers to a resource containing a page with the **next** 10 items.
+The `next`.`href` refers to a resource containing a page with the **next** 5 items.
 
-The `prev`.`href` refers to a resource containing a page with the **previous** 10 items.
+The `prev`.`href` refers to a resource containing a page with the **previous** 5 items.
 
 ## Errors
 
@@ -496,10 +806,11 @@ The below table may help resolve problems encountered when making requests to th
 | Error Code  | Description | How to Resolve |
 |:------------|:------------|:---------------|
 | `HTTP 400` | `Bad Request` | Ensure all of the required fields are provided and formatted accurately, for more details see error message |
-| `HTTP 404` | `User not found` | Ensure User.Id is valid |
+| `HTTP 400` | `No search terms provided` | Ensure search terms are provided in URI |
+| `HTTP 400` | `Query string parameter '$top' should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
+| `HTTP 400` | `Query string parameter '$skip' should be non-negative but was -1` | Ensure `$top` is non-negative |
+| `HTTP 404` | `User not found` | Ensure UserId is valid |
+| `HTTP 404` | `Entity not found` | Ensure LocationId is valid |
 | `HTTP 409` | `Username and email already exist` | Ensure the email chosen does not already belong to a User. <br/> If the email address belongs to a disabled User, change the email for the disabled User before creating a new User with the original email |
 | `HTTP 409` | `User version mismatch` | Ensure the Version value provided in the request data matches the Version for the User in the database |
-
-
-
 

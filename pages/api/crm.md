@@ -1,11 +1,11 @@
 ---
-title:  CRM
+title:  Customers
 permalink: /api/crm/
 tags: []
 keywords: 
-audience: 
-last_updated: 
-summary: 
+audience:
+last_updated:
+summary:
 ---
 
 {% include linkrefs.html %}
@@ -19,7 +19,7 @@ summary:
 
 ### Customer
 
-A **Customer** is a person or organization that buys goods or services from a store or business. 
+A **Customer** is a person or organization that buys goods or services from a store or business.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -35,6 +35,7 @@ A **Customer** is a person or organization that buys goods or services from a st
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | Notes | String | Any notes related to this customer | `Interested in iPhone 6` |
 | Title | String | Title | `Mr` |
+| Version | Integer | Latest revision number | `1` |
 
 ### Address
 
@@ -46,18 +47,22 @@ An **Address** represents a valid address somewhere on the planet.
 | CustomerId | GUID | Unique identifier for the Customer  | `f23a104e-0ce3-409e-8b1f-37ae9d1aeaa7` |
 | AddressType | String | Name of the [AddressType](#addresstype) | `Business` |
 | AddressTypeId | Integer | Identifier for the [AddressType](#addresstype) | `3` |
+| AttentionTo | String | Attention To ('Attn:') | `iQmetrix` |
 | Country | String | The Country. This value is system-generated and read-only | `Canada`|
 | CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
 | Default | Boolean | A flag to indicate if this address is the default address for the customer | `false` |
 | DoNotContact | Boolean | A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true | `true`|
+| Email | String | Email | `Test@Test.com` |
 | Locality | String | City, Town, Hamlet | `Mountain View` |
 | Notes | String | Notes related to this Address | `New residence` |
+| Phone | String | Phone number | `(555) 555-5555` | 
 | PostalCode | String | The postal code/zip code | `94043`      |
 | PostOfficeBoxNumber | String | The post office box number for PO box addresses | `P.O. Box 1022` |
 | State | String | The State/Province | `British Columbia` |
 | StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
 | StreetAddress1 | String | The street address | `1600 Amphitheatre Pkwy` |
 | StreetAddress2 | String | The street address | `Suite 500`|
+| Version | Integer | Latest revision number | `1` |
 
 ### ContactMethod
 
@@ -75,6 +80,7 @@ A **Contact Method** is a method of contacting a Customer.
 | DoNotContact | Boolean | A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true| `true` |
 | Notes | String | Notes related to this ContactMethod | `After 6pm` |
 | Value | String | The value representing this ContactMethod | `(306) 222-3333` |
+| Version | Integer | Latest revision number | `1` |
 
 ### CustomerExtension
 
@@ -87,6 +93,7 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 | ExtensionType | String | Name of the [CustomerExtensionType](#customerextensiontype) | `ExternalCustomerId` |
 | ExtensionTypeId | Integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `1` |
 | Value | String | Value | `66432` |
+| Version | Integer | Latest revision number | `1` |
 
 ### CustomerExtensionType
 
@@ -112,11 +119,11 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 
 ### CustomerSearch
 
-**CustomerSearch** is used to search for CustomerFull resources based on a Criteria. 
+**CustomerSearch** is used to search for CustomerFull resources based on a Criteria.
 
 A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) resource, it consists of all CustomerFull properties plus the following:
 
-| Name  | Data Type   | Description | 
+| Name  | Data Type   | Description |
 |:------|:------------|:------------|
 | Criteria | String | The criteria used to seach for the Customer |
 
@@ -124,8 +131,8 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 
 ### AddressType
 
-| Name  | Id |
-|:------|:---|
+| Name | Id |
+|:-----|:---|
 | None | 1 |
 | Home | 2 |
 | Shipping | 3 |
@@ -134,8 +141,8 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 
 ### ContactMethodCategory
 
-| Name   | Id |
-|:-------|:---|
+| Name | Id |
+|:-----|:---|
 | Phone | 1 |
 | Email | 2 |
 | Other | 3 |
@@ -164,11 +171,11 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 
 ### CustomerType
 
-| Name    | Id |
-|:--------|:---|
-| None    | 1  |
-| Person  | 2  |
-| Company | 3  |
+| Name | Id |
+|:-----|:---|
+| None | 1 |
+| Person | 2 |
+| Company | 3 |
 
 ## Creating a Customer
 
@@ -193,17 +200,17 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 
 A {{customer}} resource with the following properties
 
-* `CustomerTypeId` (**Required**) 
-* `PrimaryName` (Optional) 
+* `CustomerTypeId` (**Required**)
+* `PrimaryName` (Optional)
 * `MiddleName` (Optional)
-* `FamilyName` (Optional) 
-* `AlternateName`  (Optional) 
-* `DateOfBirth` (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd) 
+* `FamilyName` (Optional)
+* `AlternateName`  (Optional)
+* `DateOfBirth` (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)
 * `Disabled` (Optional) - Defaults to false  
 * `DoNotContact` (Optional) - Defaults to true
 * `Notes` (Optional)
-* `Title` (Optional) 
- 
+* `Title` (Optional)
+
 ###### Example
 
     POST /Companies({CompanyId})/Customers
@@ -242,22 +249,23 @@ A {{customer}} resource with the following properties
         "Disabled": true,
         "DoNotContact": true,
         "Notes": "Interested in iPhone 6",
-        "Title": "Mr"
+        "Title": "Mr",
+        "Version": 1
     }
 
 ## Updating a Customer
 
 #### Request
 
-    PUT /Companies({CompanyId})/Customers({CustomerId}) 
+    PUT /Companies({CompanyId})/Customers({CustomerId})
     {
         {Customer}
     }
-    
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
-* `Accept: application/json` 
+* `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
@@ -270,23 +278,23 @@ A {{customer}} resource with the following properties
 A {{customer}} resource with the following properties:
 
 * `Id` (**Required**) - Must match the CustomerId provided in the URI, immutable
-* `CustomerTypeId` (Optional) 
-* `PrimaryName` (Optional) 
+* `CustomerTypeId` (Optional)
+* `PrimaryName` (Optional)
 * `MiddleName` (Optional)
-* `FamilyName` (Optional) 
-* `AlternateName`  (Optional) 
-* `DateOfBirth` (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd) 
+* `FamilyName` (Optional)
+* `AlternateName`  (Optional)
+* `DateOfBirth` (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)
 * `Disabled` (Optional) - Defaults to false  
 * `DoNotContact` (Optional) - Defaults to true
 * `Notes` (Optional)
-* `Title` (Optional) 
+* `Title` (Optional)
 
 ###### Example
 
     PUT /Companies(1)/Customers(6ffb6e15-bcbb-4f3d-82be-b1591e64f446)
     Authorization: Bearer (Access Token)
-    Accept: application/json 
-    Content-Type: application/json 
+    Accept: application/json
+    Content-Type: application/json
     {
         "Id": "6ffb6e15-bcbb-4f3d-82be-b1591e64f446",
         "CustomerTypeId": 2,
@@ -303,7 +311,7 @@ A {{customer}} resource with the following properties:
 
 #### Response
 
-* {{customer}} that was updated, if it was successful 
+* {{customer}} that was updated, if it was successful
 
 ###### Example
 
@@ -320,7 +328,8 @@ A {{customer}} resource with the following properties:
         "Disabled": false,
         "DoNotContact": true,
         "Notes": "",
-        "Title": "Miss"
+        "Title": "Miss",
+        "Version": 2
     }
 
 ## Creating a Full Customer
@@ -358,11 +367,14 @@ A {{CustomerFull}} resource with the following parameters
 * `Title` (Optional)
 * `Addresses` (Optional)
     * `AddressTypeId` (**Required**) - Required if `Addresses` is not null
+    * `AttentionTo` (Optional)
     * `Default` (Optional)
     * `DoNotContact` (Optional)
+    * `Email` (Optional)
     * `CountryCode` (Optional) - Required if `StateCode` is provided
     * `Locality` (Optional)
     * `StateCode` (Optional) - Required if `CountryCode` is provided
+    * `Phone` (Optional)
     * `PostalCode` (Optional)
     * `PostOfficeBoxNumber` (Optional)
     * `StreetAddress1` (Optional)
@@ -380,7 +392,7 @@ A {{CustomerFull}} resource with the following parameters
     * `Value` (Optional)
 * `MemberOf` (Optional)
 * `RelatedCustomers` (Optional)
- 
+
 ###### Example
 
     POST /Companies({CompanyId})/CustomerFull
@@ -401,12 +413,15 @@ A {{CustomerFull}} resource with the following parameters
         "Addresses": [
             {
                 "AddressTypeId": 2,
+                "AttentionTo": "iQmetrix",
                 "CountryCode": "CA",
                 "StateCode": "SK",
                 "AddressType": "Home",
                 "Default": false,
                 "DoNotContact": true,
+                "Email": "Test@Test.com"
                 "Locality": "Regina",
+                "Phone": "(555) 555-5555",
                 "PostalCode": "S4P 0P7",
                 "PostOfficeBoxNumber": "",
                 "StreetAddress1": "2221 Cornwall Street",
@@ -458,49 +473,60 @@ A {{CustomerFull}} resource with the following parameters
             {
                 "AddressTypeId": 2,
                 "AddressType": "Home",
+                "AttentionTo": "iQmetrix",
                 "Default": false,
                 "DoNotContact": true,
+                "Email": "Test@Test.com",
                 "CountryCode": "CA",
                 "Country": "Canada",
                 "Locality": "Regina",
                 "StateCode": "SK",
                 "State": "Saskatchewan",
+                "Phone": "(555) 555-5555",
                 "PostalCode": "S4P 0P7",
                 "PostOfficeBoxNumber": "",
                 "StreetAddress1": "2221 Cornwall Street",
                 "StreetAddress2": "",
-                "Notes": ""
+                "Notes": "",
+                "Version": 1
             }
         ],
         "ContactMethods": [
             {
-                "ContactMethodCategoryId": 1,
+                "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+                "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
                 "ContactMethodCategory": "Phone",
-                "ContactMethodTypeId": 5,
+                "ContactMethodCategoryId": 1,
                 "ContactMethodType": "Pager",
-                "Value": "(306) 222-3333",
-                "DoNotContact": true,
+                "ContactMethodTypeId": 5,
                 "Default": false,
-                "Notes": ""
+                "DoNotContact": true,
+                "Notes": "",
+                "Value": "(306) 222-3333",
+                "Version": 1
             }
         ],
         "CustomerExtensions": [
             {
-                "Value": "4421",
+                "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+                "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
+                "ExtensionType": "ExternalCustomerId",
                 "ExtensionTypeId": 1,
-                "ExtensionType": "ExternalCustomerId"
+                "Value": "4421",
+                "Version": 1
             }
         ],
         "MemberOf": [ ],
-        "RelatedCustomers": [ ]
+        "RelatedCustomers": [ ],
+        "Version": 1
     }
 
 ## Getting a Customer
 
 #### Request
 
-    GET /Companies({CompanyId})/Customers({CustomerId}) 
-    
+    GET /Companies({CompanyId})/Customers({CustomerId})
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
@@ -523,9 +549,9 @@ A {{CustomerFull}} resource with the following parameters
 
 ###### Example
 
-    HTTP 200 Content-Type: application/json 
+    HTTP 200 Content-Type: application/json
     {
-        "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
+        "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "PrimaryName": "Robert",
         "MiddleName": "Lee",
         "FamilyName": "Smith",
@@ -536,15 +562,16 @@ A {{CustomerFull}} resource with the following parameters
         "Disabled": true,
         "DoNotContact": true,
         "Notes": "Interested in iPhone 6",
-        "Title": "Mr"
+        "Title": "Mr",
+        "Version": 1
     }
 
 ## Getting a Full Customer
 
 #### Request
 
-    GET /Companies({CompanyId})/CustomerFull({CustomerId}) 
-    
+    GET /Companies({CompanyId})/CustomerFull({CustomerId})
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
@@ -567,7 +594,7 @@ A {{CustomerFull}} resource with the following parameters
 
 ###### Example
 
-    HTTP 200 Content-Type: application/json 
+    HTTP 200 Content-Type: application/json
     {
         "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
         "PrimaryName": "Robert",
@@ -616,9 +643,12 @@ A {{CustomerFull}} resource with the following parameters
             }
         ],
         "CustomerExtensions": [
-            "Value": "4421",
-            "ExtensionTypeId": 1,
+            "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+            "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
             "ExtensionType": "ExternalCustomerId"
+            "ExtensionTypeId": 1,
+            "Value": "4421",
+            "Version": 1
         ],
         "MemberOf": [ ],
         "RelatedCustomers": [ ]
@@ -632,7 +662,7 @@ A {{CustomerFull}} resource with the following parameters
     {
         {Address}
     }
-    
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
@@ -651,10 +681,13 @@ A {{CustomerFull}} resource with the following parameters
 * `AddressTypeId` (**Required**)
 * `CountryCode` (**Required**)
 * `StateCode` (**Required**)
+* `AttentionTo` (Optional)
 * `Default` (Optional)
 * `DoNotContact` (Optional)
+* `Email` (Optional)
 * `Locality` (Optional)
 * `Notes` (Optional)
+* `Phone` (Optional)
 * `PostalCode` (Optional)
 * `PostOfficeBoxNumber` (Optional)
 * `StreetAddress1` (Optional)
@@ -670,10 +703,13 @@ A {{CustomerFull}} resource with the following parameters
         "AddressTypeId": 2,
         "CountryCode": "CA",
         "StateCode": "SK",
+        "AttentionTo": "iQmetrix",
         "Default": false,
         "DoNotContact": true,
+        "Email": "Test@Test.com",
         "Locality": "Regina",
         "Notes": "",
+        "Phone": "(555) 555-5555",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
         "StreetAddress1": "2221 Cornwall Street",
@@ -690,20 +726,24 @@ A {{CustomerFull}} resource with the following parameters
     {
         "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "AddressType": "Home",
         "AddressTypeId": 2,
-        "Country": "Canada",
-        "CountryCode": "CA",
+        "AddressType": "Home",
+        "AttentionTo": "iQmetrix",
         "Default": false,
         "DoNotContact": true,
+        "Email": "Test@Test.com",
+        "CountryCode": "CA",
+        "Country": "Canada",
         "Locality": "Regina",
-        "Notes": "",
+        "StateCode": "SK",
+        "State": "Saskatchewan",
+        "Phone": "(555) 555-5555",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
-        "State": "Saskatchewan",
-        "StateCode": "SK",
         "StreetAddress1": "2221 Cornwall Street",
-        "StreetAddress2": ""
+        "StreetAddress2": "",
+        "Notes": "",
+        "Version": 1
     }
 
 ## Updating a Customer Address
@@ -714,11 +754,11 @@ A {{CustomerFull}} resource with the following parameters
     {
         {Address}
     }
-    
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
-* `Accept: application/json` 
+* `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
@@ -754,11 +794,14 @@ A {{CustomerFull}} resource with the following parameters
         "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
         "AddressTypeId": 2,
+        "AttentionTo": "iQmetrix",
         "CountryCode": "CA",
         "Default": false,
         "DoNotContact": true,
+        "Email": "Test@Test.com",
         "Locality": "Regina",
         "Notes": "Adding a note",
+        "Phone": "(555) 555-5555",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
         "StateCode": "SK",
@@ -776,20 +819,24 @@ A {{CustomerFull}} resource with the following parameters
     {
         "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "AddressType": "Home",
         "AddressTypeId": 2,
-        "Country": "Canada",
-        "CountryCode": "CA",
+        "AddressType": "Home",
+        "AttentionTo": "iQmetrix",
         "Default": false,
         "DoNotContact": true,
+        "Email": "Test@Test.com",
+        "CountryCode": "CA",
+        "Country": "Canada",
         "Locality": "Regina",
-        "Notes": "Adding a note",
+        "StateCode": "SK",
+        "State": "Saskatchewan",
+        "Phone": "(555) 555-5555",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
-        "State": "Saskatchewan",
-        "StateCode": "SK",
         "StreetAddress1": "2221 Cornwall Street",
-        "StreetAddress2": ""
+        "StreetAddress2": "",
+        "Notes": "Adding a note",
+        "Version": 2
     }
 
 ## Getting a Customer Address
@@ -801,7 +848,7 @@ A {{CustomerFull}} resource with the following parameters
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
-* `Accept: application/json` 
+* `Accept: application/json`
 
 #### URI Parameters
 
@@ -825,20 +872,24 @@ A {{CustomerFull}} resource with the following parameters
     {
         "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-        "AddressType": "Home",
         "AddressTypeId": 2,
-        "Country": "Canada",
-        "CountryCode": "CA",
+        "AddressType": "Home",
+        "AttentionTo": "iQmetrix",
         "Default": false,
         "DoNotContact": true,
+        "Email": "Test@Test.com",
+        "CountryCode": "CA",
+        "Country": "Canada",
         "Locality": "Regina",
-        "Notes": "Adding a note",
+        "StateCode": "SK",
+        "State": "Saskatchewan",
+        "Phone": "(555) 555-5555",
         "PostalCode": "S4P 0P7",
         "PostOfficeBoxNumber": "",
-        "State": "Saskatchewan",
-        "StateCode": "SK",
         "StreetAddress1": "2221 Cornwall Street",
-        "StreetAddress2": ""
+        "StreetAddress2": "",
+        "Notes": "Adding a note",
+        "Version": 2
     }
 
 ## Adding a Customer Contact Method
@@ -849,7 +900,7 @@ A {{CustomerFull}} resource with the following parameters
     {
         {ContactMethod}
     }
-    
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
@@ -888,14 +939,14 @@ A {{CustomerFull}} resource with the following parameters
         "Notes": "",
         "Value": "(306) 222-3333"
     }
-  
+
 #### Response
 
 * {{contactmethod}} that was requested, if it exists
 
 ###### Example
 
-    HTTP 201 Content-Type: application/json 
+    HTTP 201 Content-Type: application/json
     {
         "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
@@ -906,14 +957,15 @@ A {{CustomerFull}} resource with the following parameters
         "Default": false,
         "DoNotContact": true,
         "Notes": "",
-        "Value": "(306) 222-3333"
+        "Value": "(306) 222-3333",
+        "Version": 1
     }
 
 ## Updating a Customer Contact Method
 
 #### Request
 
-    PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId} 
+    PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
     {
         {ContactMethod}
     }
@@ -960,14 +1012,14 @@ A {{CustomerFull}} resource with the following parameters
         "Notes": "Updating this contact method",
         "Value": "(306) 222-3333"
     }
-  
+
 #### Response
 
-* {{contactmethod}} that was updated, if it was successful 
+* {{contactmethod}} that was updated, if it was successful
 
 ###### Example
 
-    HTTP 200 Content-Type: application/json 
+    HTTP 200 Content-Type: application/json
     {
         "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
         "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
@@ -978,7 +1030,8 @@ A {{CustomerFull}} resource with the following parameters
         "Default": false,
         "DoNotContact": true,
         "Notes": "Updating this contact method",
-        "Value": "(306) 222-3333"
+        "Value": "(306) 222-3333",
+        "Version": 2
     }
 
 # Searching
@@ -1027,7 +1080,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 #### Request
 
     GET /Companies({CompanyId})/Customers?$filter={FilterQuery}
-    
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
@@ -1050,7 +1103,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
 ###### Example
 
-    HTTP 200 Content-Type: application/json 
+    HTTP 200 Content-Type: application/json
     {
         "Id": "67d75e7c-5b0e-49ed-92a8-a53dc61c22c8,
         "PrimaryName": "Robert",
@@ -1063,7 +1116,8 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
         "Disabled": true,
         "DoNotContact": true,
         "Notes": "Interested in iPhone 6",
-        "Title": "Mr"
+        "Title": "Mr",
+        "Version": 2
 
     }
 
@@ -1073,25 +1127,25 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
 `Criteria` searches all of the searchable properties for the given value and returns the resource if it is found.
 
-<h3> Filterable Properties</h3> 
+<h3> Filterable Properties</h3>
 
 The Criteria filter will search the properties below for the given value.
 
 | Resource | Property |
 |:---------|:---------|
-| [Address](#address) | StreetAddress1 | 
+| [Address](#address) | StreetAddress1 |
 | [Address](#address) | StreetAddress2 |
 | [ContactMethod](#contactmethod) | Value |
 | [Customer](#customer) | PrimaryName |
 | [Customer](#customer)| MiddleName  |
 | [Customer](#customer)| FamilyName |
 | [Customer](#customer) | AlternateName |
-| [CustomerExtension](#customerextension) | Value | 
+| [CustomerExtension](#customerextension) | Value |
 
 #### Request
 
     GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
-    
+
 #### Headers
 
 * `Authorization: Bearer` ({{access_token}})
@@ -1114,7 +1168,7 @@ The Criteria filter will search the properties below for the given value.
 
 ###### Example
 
-    HTTP 200 Content-Type: application/json 
+    HTTP 200 Content-Type: application/json
     {
         "Criteria": "Bob",
         "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
@@ -1122,11 +1176,11 @@ The Criteria filter will search the properties below for the given value.
         "MiddleName": "Lee",
         "FamilyName": "Smith",
         "AlternateName": "Bob",
-        "CustomerTypeId": 2,
         "CustomerType": "Person",
+        "CustomerTypeId": 2,
         "DateOfBirth": "1952-07-23T12:00:00.000",
         "Disabled": true,
-        "DoNotContact": true,
+        "DoNotContact": true
         "Notes": "Interested in iPhone 6",
         "Title": "Mr",
         "Addresses": [
@@ -1164,17 +1218,20 @@ The Criteria filter will search the properties below for the given value.
             }
         ],
         "CustomerExtensions": [
-            "Value": "4421",
-            "ExtensionTypeId": 1,
+            "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+            "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
             "ExtensionType": "ExternalCustomerId"
+            "ExtensionTypeId": 1,
+            "Value": "4421",
+            "Version": 1
         ],
-        "RelatedCustomers": [ ],
-        "MemberOf": [ ]
+        "MemberOf": [ ],
+        "RelatedCustomers": [ ]
     }
 
 ## Pagination
 
-The CRM API supports pagination of collections for some resources. 
+The CRM API supports pagination of collections for some resources.
 
 Requests to resources that support pagination include the `Accept: application/hal+json` HTTP header under the Headers section.
 
@@ -1184,7 +1241,7 @@ Pagination is done through the use of $skip and $top query string parameters.
 
 `$skip` denotes the number of items in the collection to skip, defaults to 0 if no value is provided.
 
-`$top` denotes the number of items to take, defaults to 50 if no value is provided. 
+`$top` denotes the number of items to take, defaults to 50 if no value is provided.
 
 The maximum value of 100 will be used if the value provided is outside the acceptable range [0-100].
 
