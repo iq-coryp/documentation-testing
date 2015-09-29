@@ -1,6 +1,6 @@
 ---
 title: Classification Tree
-permalink: concepts/classification-tree/
+permalink: /concepts/classification-tree/
 tags: []
 keywords: 
 audience: 
@@ -20,19 +20,17 @@ See the figure below for a general concept of how products are organized.
 
 ### Managing Classification Trees
 
-Currently, Classification Trees are managed by the iQmetrix Curation team. In the future, an API will be available to allow vendors to manage their own Classification Tree structure.
+Currently, Classification Trees are managed by the iQmetrix Curation team. In the future, an API will be available to allow suppliers to manage their own Classification Tree structure.
 
 ### Categories and Classifications
 
 Classification Trees contain Classifications and Categories.
 
-Categories are used to similar group products together, but do not contain any products themselves. Categories can also be contained within other Categories in order to narrow down the Product type. For example, from the figure above, if Classification Tree A is Apparel and Accessories, Category 1 could be Clothing, Category b could be Men, and Category b could be Women.
+Categories are used to similar group products together, but do not contain any products themselves. Categories can also be contained within other Categories in order to narrow down the Product type. For example, from the figure above, if Classification Tree A is Apparel and Accessories, Category 1 could be Clothing, Category b could be Men, and Category a could be Women.
 
 Classifications are used to group Products together by similar features and are assigned a Product Template (e.g. Headphones). Classifications are always children of Categories, as well as being leaf nodes in the tree.
 
 As a general rule, Products should always belong to a single Classification (e.g. Smartphone or Sweater). 
-
-Each Classification is unique to the Product Library and has its own identifier. There can be only one of each Classification, while Categories can be duplicated numerous times within Classification Trees, since they do not have an identifier. See the examples below for more details of this structure.
 
 ### General Examples
 

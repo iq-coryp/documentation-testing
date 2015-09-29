@@ -29,7 +29,7 @@ summary:
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data | |
-| Logo | Object | A reference to an [Asset](/assets/#asset) |  |
+| Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Logo.Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | Logo.Name | String | File name | `iqmetrix.jpg` |
 | Logo.Height | Integer | Height in pixels | `145` |
@@ -53,7 +53,7 @@ Your Company Tree is a hierarchial representation of the how your Company is str
 | Name | String(250) | Company name | `SampleCompany` | 
 | Description | String(255) | Description | `Company creating great experiences.` |
 | Role | String | Role | `Company` |
-| Nodes | Array[[CompanyTreeNode](#CompanyTreeNode)] | The Company Tree hierarchy made up of Nodes | |
+| Nodes | Array[[CompanyTreeNode](#companytreenode)] | The Company Tree hierarchy made up of Nodes | |
 
 ### CompanyTreeNode
 
@@ -100,7 +100,7 @@ As an example, the following snippet of a Company Tree represents a hierarchy of
 | Name | String(250) | Name | `Western BC` | 
 | Description | String(255) | Description | `Western area of BC.` |
 | Role | String | Role, possible values include: Company, Group, Division and Location | `Division` |
-| Nodes | Array[[CompanyTreeNode](#CompanyTreeNode)] | Children | |
+| Nodes | Array[[CompanyTreeNode](#companytreenode)] | Children | |
 
 ### Location
 
@@ -175,7 +175,7 @@ Division, as well as Groups, serve as generic buckets clients can use to organiz
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data | |
-| Logo | Object | A reference to an [Asset](/assets/#asset) |  |
+| Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Logo.Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | Logo.Name | String | File name | `iqmetrix.jpg` |
 | Logo.Height | Integer | Height in pixels | `145` |
@@ -204,7 +204,7 @@ groupings.
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data | |
-| Logo | Object | A reference to an [Asset](/assets/#asset) |  |
+| Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Logo.Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | Logo.Name | String | File name | `iqmetrix.jpg` |
 | Logo.Height | Integer | Height in pixels | `145` |

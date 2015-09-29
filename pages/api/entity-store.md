@@ -95,7 +95,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* Array[[Carrier](#Carrier)], if any were found
+* Array[[Carrier](#carrier)], if any were found
 
 ###### Example
 
@@ -133,7 +133,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 	
 #### URI Parameters
 
-* `CarrierId` (**Required**) - Identifier for the [Carrier](#Carrier)
+* `CarrierId` (**Required**) - Identifier for the [Carrier](#carrier)
 
 #### Headers
 

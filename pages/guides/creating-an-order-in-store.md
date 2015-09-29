@@ -174,7 +174,7 @@ The following {{item}} properties can be added to the request:
 
 ##### Example
     
-    "ProductId": 1,
+    "ProductId": "M3-V1",
     "SupplierEntityId": 4,
     "SupplierReference":"",
     "Cost": 5.99,
@@ -219,7 +219,7 @@ For each Item you want to add to the Order, repeat steps 7-9.
             {
                 "ItemStatusId": 1,
                 "ItemTypeId": 1,
-                "ProductId": 1,
+                "ProductId": "M3-V1",
                 "SupplierEntityId": 0,
                 "SupplierReference":"10",
                 "Cost": 5.99,

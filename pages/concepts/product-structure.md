@@ -1,6 +1,6 @@
 ---
 title:  Product Structure
-permalink: concepts/product-structure/
+permalink: /concepts/product-structure/
 tags: []
 keywords: 
 audience: 
@@ -16,7 +16,7 @@ In Product Library and in your Catalog, products are structured in a way to make
 
 A **Master Product** is a product which may or may not be saleable.
 
-A Master Product that is **saleable** only exists in one form, such as a designer necklace or charging cable, and does not have any variations/
+A Master Product that is **saleable** only exists in one form, such as a designer necklace or charging cable, and does not have any variations.
 
 A Master Product that is **not saleable** has multiple forms, such as different colors or sizes. In this case, the Master Product is an abstract of the product and Variations are an extension of the Master Product.
 

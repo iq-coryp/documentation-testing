@@ -5,7 +5,7 @@ tags: []
 keywords: 
 audience: 
 last_updated: 
-summary: 
+summary: 9/29/2015
 ---
 
 {% include linkrefs.html %}
@@ -23,7 +23,6 @@ summary:
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Optional | Name | `iPhone 5 Order` |
-| CustomerId | String | Unique identifier for the [Customer](/api/crm/#customer) who created this Order | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | EmployeeId | String | Identifier for the Employee who created this Order | `15` |
 | EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `8` |
 | State | OrderState | [OrderState](#orderstate) for this Order | `Created` |
@@ -36,11 +35,12 @@ summary:
 | BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ShippingAddressId | String | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
 | ShippingCustomerId | String | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, `ShippingEntityId` must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. If this value is provided, `ShippingCustomerId` must be excluded. | `1` |
+| ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. If this value is provided, `ShippingCustomerId` must be excluded | `1` |
 | DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | A description of the discount | `Military discount` |
 | PrintableId | String  | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
+| *CustomerId* | *String* | *This is a legacy property that should not be used* | |
 | *TenderId* | *String* | *Reserved for future use* |  |
 | *TenderOrigin* | *String* | *Reserved for future use* |  |
 
@@ -83,12 +83,12 @@ summary:
 
 ### OrderType
 
-| Name   | Id |
-|:-------|:---|
-|Sales|1|
-|Transfer|2|
-|Purchase|3|
-|RMA|4|
+| Id | Name | Description |
+|:--:|------|:------------|
+| 1 | Sales | An Order placed by a Customer |
+| 2 | Transfer | An Order to relocate inventory |
+| 3 | Purchase | An Order placed to a Supplier or Vendor |
+| 4 | RMA | Return Merchandise Authorization, an Order for returns, repairs or replacements |
 
 ### OrderState
 
@@ -102,26 +102,34 @@ summary:
 
 ### ItemType
 
-| Name   | Id |
-|:-------|:---|
-| DropShip | 1 |
-| InStock | 2 |
+| Value | Item Type | Description | 
+|:------|:----------|:------------|
+| 1 | DropShip | Item is available to be shipped |
+| 2 | InStock | Item is in stock |
+| 3 | eCommerce | Item is from an eCommerce platform |
+| 4 | Shipping | Item is shipping |
 
 ### ItemStatus
 
-| Name | ItemTypeId | Id |
-|:-----|:-----------|:---|
-| New | 1 | 1 |
-| Cancelled | 1 | 2 |
-| Processed | 1 | 3 |
-| Ordered | 1 | 4 |
-| Error | 1 | 5 |
-| NotAvailable | 1 | 6 |
-| Shipped | 1 | 7 |
-| Received | 1 | 8 |
-| New | 2 | 9 |
-| Processed | 2 | 10 |
-| Error | 2 | 11 |
+| OrderType | ItemType | Id | 
+|:----------|:---------|----|
+| Dropship | New | 1 |
+| Dropship | Cancelled | 2 |
+| Dropship | Processed | 3 |
+| Dropship | Ordered | 4 |
+| Dropship | Error | 5 |
+| Dropship | NotAvailable | 6 |
+| Dropship | Shipped | 7 |
+| Dropship | Received | 8 |
+| eCommerce | New | 13 |
+| eCommerce | Processed | 14 |
+| eCommerce | Cancelled | 17 |
+| InStock | New | 9 |
+| InStock | Processed | 10 |
+| InStock | Error | 11 |
+| InStock | BackOrder | 12 |
+| InStock | Cancelled | 16 |
+| Shipping | Shipping | 15 |
 
 ## Creating an Order
 
@@ -154,16 +162,15 @@ An {{order}} resource with the following properties:
 * `EntityId` (**Required**) - Must belong to the Company specified in the URI
 * `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
 * `Name` (Optional)
-* `CustomerId` (Optional)
 * `EmployeeId` (Optional)
 * `OrderExpiryHours` (Optional)
 * `BillingAddressId` (Optional)
 * `ShippingAddressId` (Optional)
 * `ShippingCustomerId` (Optional)
+* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
 * `DiscountAmount` (Optional)
 * `DiscountCode` (Optional)
 * `DiscountDescription` (Optional)
-
 
 ###### Example
 
@@ -176,12 +183,12 @@ An {{order}} resource with the following properties:
         "EntityId": 8,
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "OrderExpiryHours": 72
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountAmount": 15.0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount"
@@ -197,7 +204,6 @@ An {{order}} resource with the following properties:
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
@@ -210,6 +216,7 @@ An {{order}} resource with the following properties:
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -347,7 +354,6 @@ An {{order}} resource with the following properties:
 
 * `Id` (**Required**) - Must match the OrderId provided in the URI
 * `Name` (Optional)
-* `CustomerId` (Optional)
 * `EmployeeId` (Optional)
 * `EntityId` (Optional) - Must belong to the Company specified in the URI
 * `OrderExpiryHours` (Optional)
@@ -356,6 +362,7 @@ An {{order}} resource with the following properties:
 * `ShippingAddressId` (Optional)
 * `BillingCustomerId` (Optional) - Must belong to the Company specified in the URI
 * `ShippingCustomerId` (Optional)
+* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
 * `DiscountAmount` (Optional)
 * `DiscountCode` (Optional)
 * `DiscountDescription` (Optional)
@@ -369,7 +376,6 @@ An {{order}} resource with the following properties:
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
         "OrderExpiryHours": 72,
@@ -378,6 +384,7 @@ An {{order}} resource with the following properties:
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0
@@ -393,7 +400,6 @@ An {{order}} resource with the following properties:
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
@@ -406,6 +412,7 @@ An {{order}} resource with the following properties:
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -460,55 +467,6 @@ An {{order}} resource with the following properties:
         "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
     }
 
-## Shipping an Order
-
-#### Request
-
-    POST /Companies({CompanyId})/Orders({OrderId})/Shipped 
-    {
-        "OrderId": "{OrderId}"
-    }
-    
-#### Headers
-
-* `Authorization: Bearer` ({{access_token}})
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-#### URI Parameters
-
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `OrderId` (**Required**) - Identifier for the {{order}} being updated
-
-#### Request Parameters
-
-* `OrderId` (**Required**) - Identifier for the {{order}} being updated
-
-###### Example
-
-    POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Shipped
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-       "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
-    }
-
-#### Response
-
-* `Id` (Integer) - Identifier for the response, this value can be ignored
-* `OrderId` (GUID) - Identifier for the {{order}}
-* `TrackingNumber` (String) - Tracking number for the {{order}}, placeholder that can be set in a later request
-
-###### Example
-
-    HTTP 201 Content-Type: application/json
-    {
-        "Id": 1,
-        "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-        "TrackingNumber": null
-    }
-
 ## Creating an Order With Items
 
 {{note}}
@@ -540,12 +498,12 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
 * `EntityId` (**Required**) - Must belong to the Company specified in the URI
 * `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
 * `Name` (Optional)
-* `CustomerId` (Optional)
 * `EmployeeId` (Optional)
 * `OrderExpiryHours` (Optional)
 * `BillingAddressId` (Optional)
 * `ShippingAddressId` (Optional)
 * `ShippingCustomerId` (Optional)
+* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
 * `DiscountAmount` (Optional)
 * `DiscountCode` (Optional)
 * `DiscountDescription` (Optional)
@@ -578,12 +536,12 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
         "EntityId": 8,
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "OrderExpiryHours": 72,
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountAmount": 15.0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
@@ -620,7 +578,6 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
@@ -633,6 +590,7 @@ Instead of creating {{order}} and then adding {{items}} to the Order one at a ti
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -693,7 +651,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 
 * `Id` (**Required**) - Must match the OrderId provided in the URI
 * `Name` (Optional)
-* `CustomerId` (Optional)
 * `EmployeeId` (Optional)
 * `EntityId` (Optional) - Must belong to the Company specified in the URI
 * `OrderExpiryHours` (Optional)
@@ -702,6 +659,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
 * `BillingCustomerId` (Optional) - Must belong to the Company specified in the URI
 * `ShippingAddressId` (Optional)
 * `ShippingCustomerId` (Optional)
+* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
 * `DiscountAmount` (Optional)
 * `DiscountCode` (Optional)
 * `DiscountDescription` (Optional)
@@ -732,7 +690,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "Samsung Galaxy S5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
@@ -742,6 +699,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountCode": "",
         "DiscountDescription": "",
         "DiscountAmount": 0,
@@ -778,7 +736,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "Samsung Galaxy S5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
@@ -791,6 +748,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountCode": "",
         "DiscountDescription": "",
         "DiscountAmount": 0,
@@ -855,7 +813,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "iPhone 5 Order", 
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
@@ -868,6 +825,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -931,7 +889,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         {
             "Id": "216f7424-ae18-4c69-9597-984b430d0759",
             "Name": "iPhone 5 Order", 
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "EmployeeId": 15,
             "EntityId": 8,
             "State": "Created",
@@ -944,6 +901,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
             "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
             "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ShippingEntityId": 0,
             "DiscountCode": "MTRY-15",
             "DiscountDescription": "Military discount",
             "DiscountAmount": 15.0,
@@ -1009,7 +967,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         {
             "Id": "216f7424-ae18-4c69-9597-984b430d0759",
             "Name": "iPhone 5 Order", 
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "EmployeeId": 15,
             "EntityId": 8,
             "State": "Pending",
@@ -1022,6 +979,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
             "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
             "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ShippingEntityId": 0,
             "DiscountCode": "MTRY-15",
             "DiscountDescription": "Military discount",
             "DiscountAmount": 15.0,
@@ -1068,7 +1026,6 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
         {
             "Id": "216f7424-ae18-4c69-9597-984b430d0759",
             "Name": "iPhone 5 Order", 
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "EmployeeId": 15,
             "EntityId": 8,
             "State": "Created",
@@ -1081,6 +1038,7 @@ The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in 
             "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
             "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
             "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ShippingEntityId": 0,
             "DiscountCode": "MTRY-15",
             "DiscountDescription": "Military discount",
             "DiscountAmount": 15.0,

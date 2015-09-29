@@ -16,6 +16,27 @@ summary:
 
 An Access Token is a string that identifies a client application and allows authenticated access to iQmetrix APIs.
 
+### Asset
+
+An {{asset}} is an image or video associated with a Product. 
+
+#### Supported Asset Types
+
+The following file formats are supported for assets: 
+
+“.gif”, ".jpg",".jpeg",".png", ".bmp", ".3g2", ".3gp", ".asf", ".avi", 
+".flv", ".mkv", ".mov", ".mp4", ".mpg", ".mpeg", ".mpeg4", “.ogg", ".ogm", ".ogv", ".rm", ".vob", ".webm", ".wmv", ".pdf"
+
+### Classication
+
+**Classifications** are used to group {{products}} together by similar features.
+
+For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a Classification of "Smartphones"
+
+### Classification Tree
+
+A {{classificationtree}} is a hierarchical structure describing a taxonomy of {{products}}. Classification Trees are relatively static, and rarely change.
+
 ### Credit Account
 
 A type of Account where credits increase the Account's balance.
@@ -24,23 +45,13 @@ A type of Account where credits increase the Account's balance.
 
 A type of Account where debits increase the Account's balance.
 
-### Entity
-
-The following Resources are considered "Entities": 
-
-* {{company}}
-* {{division}}
-* {{group}}
-* {{location}}
-* Device
-
 ### Hero Shot
 
 An Asset for a Product, typically an image or video.
 
 ### OAuth
 
-OAuth provides client applications with secure access to resources on behalf of a resource owner by allowing [Access Tokens](#Access-Token) to be issued to third-party clients. 
+OAuth provides client applications with secure access to resources on behalf of a resource owner by allowing [Access Tokens](#access-token) to be issued to third-party clients. 
 
 ###### Example
 

@@ -13,12 +13,16 @@
 <a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Address</a>
 {% endcapture %}
 
+{% capture addresses %}
+<a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Addresses</a>
+{% endcapture %}
+
 {% capture asset %}
 <a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Asset</a>
 {% endcapture %}
 
-{% capture assets %}
-<a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Assets</a>
+{% capture asset_glossary %}
+<a href="{{"/glossary/#asset" | prepend: site.api_baseurl}}">Asset</a>
 {% endcapture %}
 
 {% capture carrier %}
@@ -27,6 +31,18 @@
 
 {% capture catalogitem %}
 <a href="{{"/catalog/#catalogitem" | prepend: site.api_baseurl}}">CatalogItem</a>
+{% endcapture %}
+
+{% capture classificationconcept %}
+<a href="{{"/classification-tree" | prepend: site.concepts_baseurl}}">Classification Tree</a>
+{% endcapture %}
+
+{% capture classificationtree %}
+<a href="{{"/classification-tree/#classificationtree" | prepend: site.api_baseurl}}">Classification Tree</a>
+{% endcapture %}
+
+{% capture classification_glossary %}
+<a href="{{"/glossary/#classification" | prepend: site.api_baseurl}}">Classification</a>
 {% endcapture %}
 
 {% capture commissionentry %}
@@ -49,6 +65,10 @@
 <a href="{{"/company-tree/#companytree" | prepend: site.api_baseurl}}">CompanyTree</a>
 {% endcapture %}
 
+{% capture environment %}
+<a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>
+{% endcapture %}
+
 {% capture contactmethod %}
 <a href="{{"/crm/#contactmethod" | prepend: site.api_baseurl}}">ContactMethod</a>
 {% endcapture %}
@@ -61,6 +81,10 @@
 <a href="{{"/crm/#customer" | prepend: site.api_baseurl}}">Customer</a>
 {% endcapture %}
 
+{% capture customers %}
+<a href="{{"/crm/#customer" | prepend: site.api_baseurl}}">Customers</a>
+{% endcapture %}
+
 {% capture customerfull %}
 <a href="{{"/crm/#customerfull" | prepend: site.api_baseurl}}">CustomerFull</a>
 {% endcapture %}
@@ -69,23 +93,15 @@
 <a href="{{"/company-tree/#division" | prepend: site.api_baseurl}}">Division</a>
 {% endcapture %}
 
-{% capture entity %}
-<a href="{{"/glossary/#entity" | prepend: site.api_baseurl}}">Entity</a>
-{% endcapture %}
-
-{% capture entities %}
-<a href="{{"/glossary/#entity" | prepend: site.api_baseurl}}">Entity</a>
-{% endcapture %}
-
-{% capture entities %}
-<a href="{{"/glossary/#entity" | prepend: site.api_baseurl}}">Entity</a>
-{% endcapture %}
-
 {% capture environment %}
 <a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>
 {% endcapture %}
 
-{% capture field-definition %}
+{% capture get_field_definitions %}
+<a href="{{"/field-definitions/#getting-field-definitions" | prepend: site.api_baseurl}}">Getting Field Definitions</a>
+{% endcapture %}
+
+{% capture field_definition %}
 <a href="{{"/field-definitions/#fielddefinition" | prepend: site.api_baseurl}}">FieldDefinition</a>
 {% endcapture %}
 
@@ -93,8 +109,12 @@
 <a href="{{"/company-tree/#group" | prepend: site.api_baseurl}}">Group</a>
 {% endcapture %}
 
-{% capture orderitem %}
-<a href="{{"/orders/#item" | prepend: site.api_baseurl}}">Item</a>
+{% capture item_type %}
+<a href="{{"/orders/#itemtype" | prepend: site.api_baseurl}}">ItemType</a>
+{% endcapture %}
+
+{% capture item_status %}
+<a href="{{"/orders/#itemstatus" | prepend: site.api_baseurl}}">ItemStatus</a>
 {% endcapture %}
 
 {% capture location %}
@@ -109,16 +129,16 @@
 <a href="{{"/entity-store/#manufacturer" | prepend: site.api_baseurl}}">Manufacturer</a>
 {% endcapture %}
 
-{% capture masterproduct %}
-<a href="{{"/product-library/#masterproduct" | prepend: site.api_baseurl}}">MasterProduct</a>
-{% endcapture %}
-
 {% capture oauth2 %}
 <a href="{{"/glossary/#oauth-token" | prepend: site.api_baseurl}}">OAuth2</a>
 {% endcapture %}
 
 {% capture order %}
 <a href="{{"/orders/#order" | prepend: site.api_baseurl}}">Order</a>
+{% endcapture %}
+
+{% capture orderitem %}
+<a href="{{"/orders/#item" | prepend: site.api_baseurl}}">Item</a>
 {% endcapture %}
 
 {% capture orderfull %}
@@ -134,23 +154,19 @@
 {% endcapture %}
 
 {% capture product %}
-<a href="{{"/catalog/#product" | prepend: site.api_baseurl}}">Product</a>
-{% endcapture %}
-
-{% capture product-structure %}
-<a href="{{"/concepts/product-structure" | prepend: site.api_baseurl}}">Product Structure</a>
+<a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Product</a>
 {% endcapture %}
 
 {% capture products %}
 <a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Products</a>
 {% endcapture %}
 
-{% capture productdocument %}
-<a href="{{"/product-library/#productdocument" | prepend: site.api_baseurl}}">ProductDocument</a>
-{% endcapture %}
-
 {% capture regularproduct %}
 <a href="{{"/epc/#regularproduct" | prepend: site.api_baseurl}}">RegularProduct</a>
+{% endcapture %}
+
+{% capture product_structure %}
+<a href="{{"/product-structure" | prepend: site.concepts_baseurl}}">Product Structure</a>
 {% endcapture %}
 
 {% capture supplier %}
@@ -160,6 +176,10 @@
 {% capture user %}
 <a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">User</a>
 {% endcapture %} 
+
+{% capture supplier %}
+<a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>
+{% endcapture %}
 
 {% capture vendor %}
 <a href="{{"/entity-store/#vendor" | prepend: site.api_baseurl}}">Vendor</a>

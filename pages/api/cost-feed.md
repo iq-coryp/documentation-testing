@@ -19,7 +19,9 @@ These costs will be provided for retailers (companies) to use for future transac
 
 Products can be repeated in this feed with different costs. For example, the iPhone 6 could be priced differently depending on where it is sold. 
 
-{{note}} Ensure each company ID has only <strong>one</strong> cost per product.{{end}}
+{{note}} 
+Ensure each company ID has only <strong>one</strong> cost per product.
+{{end}}
 
 ## Endpoints
 
@@ -33,7 +35,7 @@ Products can be repeated in this feed with different costs. For example, the iPh
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | GUID | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
-| Products | Array[Product] | List of products for which the cost is being updated |  |
+| Products | Array[Object] | List of products for which the cost is being updated |  |
 | Products.Sku | String | SKU identifier for the product from product feed | `1115884` |
 | Products.Cost | Decimal | Wholesale cost for the associated companies | `12.99` |
 | Products.CompanyIds | Array[Integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the product's cost |  |
@@ -52,7 +54,7 @@ Products can be repeated in this feed with different costs. For example, the iPh
 
 #### URI Parameters
 
-* `SupplierId` (**Required**) - Identifier of the {{supplier}} 
+* `SupplierId` (**Required**) - Identifier of the {{supplier}}
 * `Products` (**Required**)
     * `Sku` (**Required**)
     * `Cost` (**Required**)
@@ -64,7 +66,6 @@ Products can be repeated in this feed with different costs. For example, the iPh
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
-
     {
         "Products": [
             {
@@ -125,4 +126,4 @@ The below table may help resolve problems encountered when making requests to th
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
-| `HTTP 400` | `Cannot find supplier identifier in the uri` | Occurs when entering an incorrect SupplierId in the uri |
+| `HTTP 400` | `Cannot find supplier identifier in the uri` | Occurs when entering an incorrect `SupplierId` in the uri |

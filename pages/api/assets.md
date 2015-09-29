@@ -61,7 +61,7 @@ An **Asset** is an image or video associated with a Product.
 
 #### Response
 
-* [Asset](#Asset) that was created, if it exists
+* [Asset](#asset) that was created, if it exists
 
 ###### Example
 
@@ -85,7 +85,7 @@ An **Asset** is an image or video associated with a Product.
 
 #### URI Parameters
 
-* `AssetId` (**Required**) - Identifier for the [Asset](#Asset)
+* `AssetId` (**Required**) - Identifier for the [Asset](#asset)
 
 ###### Example
 
@@ -93,7 +93,7 @@ An **Asset** is an image or video associated with a Product.
 
 #### Response
 
-* [Asset](#Asset) that was requested, if it exists
+* [Asset](#asset) that was requested, if it exists
 
 ###### Example
 
@@ -116,7 +116,7 @@ An **Asset** is an image or video associated with a Product.
 
 #### URI Parameters
 
-* `AssetId` (**Required**) - Identifier for the [Asset](#Asset)
+* `AssetId` (**Required**) - Identifier for the [Asset](#asset)
 
 ###### Example
 

@@ -24,7 +24,7 @@ A **InventoryAvailability** resource consists of the following properties:
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier for the [CatalogItem](/api/catalog/#catalogitem) | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
-| EntityId | Integer | Identifier for the [Company Tree Node](/api/company-tree/) | `1` |
+| EntityId | Integer | Identifier for the [Company Tree Node](/api/company-tree/#companytreenode) | `1` |
 | Quantity | Integer | Quantity | `15` |
 | IsDropShippable | Boolean | A flag to indicate if the CatalogItem can be shipped | `true` |
 
@@ -53,7 +53,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### Response
 
-* [InventoryAvailability](#InventoryAvailability) that was requested, if it exists
+* [InventoryAvailability](#inventoryavailability) that was requested, if it exists
 
 ###### Example
 
@@ -89,7 +89,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### Response
 
-* Array[[InventoryAvailability](#InventoryAvailability)] for Locations
+* Array[[InventoryAvailability](#inventoryavailability)] for Locations
 
 ###### Example
 

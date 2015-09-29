@@ -81,7 +81,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | Credit | Decimal | The value of the Credit side of this Entry, must be a positive value. If Credit is positive, Debit must be 0 | `0` | 
 | CustomProperties | Object (4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 charcters | | 
 | Debit | Decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` | 
-| EntityId | Integer | Identifier for the [Location](/api/company-tree/#Location) this Entry applies to | `25` | 
+| EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) this Entry applies to | `25` | 
 | LineNumber | Integer | A value indicating the sort order of this entry within the Transaction | `1` |
 | Memo | String (1024) | Memo string for this Entry | `Memo for debit` | 
 | ReferenceID | String (128) | Reference number string, such as the invoice that caused the Transaction | `1234` | 
