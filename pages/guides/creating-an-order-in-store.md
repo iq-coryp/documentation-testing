@@ -17,7 +17,7 @@ This guide is intended to walk you through the process of creating an {{order}} 
 
 Creating an Order will make it available to other iQmetrix products such as {{RQ}} and {{XQShelf}}.
 
-### Use Cases
+### Who is this Guide for?
 
 You may be interested in this guide if you are creating...
 
@@ -25,31 +25,38 @@ You may be interested in this guide if you are creating...
 * A system to manage **service requests**
 * A **mobile POS** that will send Orders to RQ for payment processing
 
-### Before You Begin
+### Prerequisites
 
-Before you can create an Order, you will need:
+To use this guide, the following steps must be completed:
 
-* Your **onboarding package** from iQmetrix, which includes your access credentials and environments
-    * If you do not have your onboarding package, contact [API support](mailto:apisupport@iqmetrix.com)
-* Your **Product Catalog** set up by iQmetrix made up of the physical inventory for your store(s)
-* Your **Company Tree** set up by iQmetrix representing your company structure (stores, groups, divisions, etc)
+* You must have your **onboarding package** from iQmetrix, which includes your access credentials and environments
+* Your **Product Catalog**, physical inventory for your store(s), must be set up
+* Your **Company Tree**, representing company structure (stores, groups, divisions, etc), must be created
 
-You will also need to know:
+{{tip}}
+If the above steps are not complete or you are not sure, contact <a href="mailto:{{site.support_email}}?subject=Support">API Support</a>
+{{end}}
 
-* **Where** the Order is being fulfilled, the physical location of the store
-* **Who** is trying to place the Order, the Customer, and optionally the Employee processing the order
+## Before You Begin
+
+Before you can create an Order, you will need to know:
+
+* **Who** is trying to place the Order, the Customer
 * **What** is being added to the Order, the Product(s)
+* **Where** the Order is being fulfilled, the physical location of the store
 
 ### Things Developers Should Know
 
-* iQmetrix APIs are protected by [OAuth2](http://developers.iqmetrix.com/api/glossary/#oauth)
-* iQmetrix APIs support different [Response Formats](/api/getting-started/) depending on the type of request
-* iQmetrix APIs are [Rate Limited](/api/rate-limiting) to manage server load
-* iQmetrix APIs are provisioned into [Environments](/api/environments/)
+iQmetrix APIs...
+
+* ...use [OAuth2](/api/glossary/#oauth)
+* ...support different [Response Formats](/api/getting-started/) depending on the type of request
+* ...have [Rate Limiting](/api/rate-limiting) to manage server load
+* ...are provisioned into [Environments](/api/environments/)
 
 ## Step 1: Authenticating
 
-In order to make authorized requests to iQmetrix APIs, you need an {{access_token}}.
+In order to make authorized requests to iQmetrix APIs, we first need an {{access_token}}.
 
 See the table below for different ways of getting an Access Token.
 
@@ -76,11 +83,11 @@ There are many different OrderTypes. We will use the `Sales` type for an in-stor
 
 ## Step 3: Finding or Creating a Location
 
-Every {{order}} must have an associated {{location}} that belongs to your {{company}}. 
+Every {{order}} must have an associated {{location}} that belongs to a {{company}}. 
 
 We will reference this Location in our request by using its `EntityId`.
 
-For the Order to appear in the pending list in RQ, the `EntityId` must match the `EntityId` of the logged-in-store.
+For the Order to appear in the pending list in RQ, the `EntityId` must match the `EntityId` of the logged-in store.
 
 | If... | Then... |
 |:------|:--------|
@@ -93,7 +100,7 @@ For the Order to appear in the pending list in RQ, the `EntityId` must match the
 
 ## Step 4: Finding or Creating a Billing Customer
 
-Every {{order}} must have an associated {{customer}} that belongs to your {{company}}.
+Every {{order}} must have an associated {{customer}} that belongs to the {{company}}.
 
 We will reference this Customer in our request by using its `CustomerId`.
 
@@ -106,10 +113,6 @@ We will reference this Customer in our request by using its `CustomerId`.
 ##### Example
 
     "BillingCustomerId": "3E59F6C5-D7FC-48CF-A36D-9E871D5F5D0D"
-
-{{tip}}
-Take note of the <code>BillingCustomerId</code> as is needed in later steps
-{{end}}
 
 ## (Recommended) Step 5: Finding or Creating a Billing Address
 
@@ -132,7 +135,6 @@ We will reference this Address in our request by using its `AddressId`.
 The following {{order}} properties can be added to the request:
 
 * `Name` - Name of the Order
-* `EmployeeId` - Identifier for an Employee who created the Order. This value is ignored in RQ, the employee linked to the Order is the currently logged-in employee
 * `DiscountAmount` - Value of discount to be applied at Order level
 * `DiscountCode` - Discount Code for a discount applied to this Order
 * `DiscountDescription` - Description of the discount
@@ -141,7 +143,6 @@ The following {{order}} properties can be added to the request:
 ##### Example
     
     "Name": "Interactive Display Order 331", 
-    "EmployeeId": 15,
     "DiscountAmount": 15.0,
     "DiscountCode": "MTRY-15",
     "DiscountDescription": "Military discount",
@@ -149,7 +150,7 @@ The following {{order}} properties can be added to the request:
 
 ## Step 7: Getting a Catalog Item
 
-To add a Product to our Order, we first need to find it in our Catalog. 
+To add a Product to our Order, we first need to find it in our Catalog, which contains store(s) inventory.
 
 We will reference the Product in our request by using its `CatalogItemId` as the value for the `ProductId` request parameter. 
 
@@ -159,7 +160,7 @@ We will reference the Product in our request by using its `CatalogItemId` as the
 | You know the Product's Classification/Category and have your ClassificationTreeId | Start by [Getting a Classification Tree](/api/classification-tree/#getting-a-classification-tree) to determine the ClassificationId/CategoryId. Use this value to [Get Products by Category or Classification](/api/catalog/#getting-products-by-category-or-classification) |
 | You know the Product's Name, Manufacturer Name, UPC, or SKU | See [Search for Products](/api/catalog/#search-for-products) |
 | You have added a Product to the Order are interested in offering the Customer compatible products (accessories) | See [Getting Compatible Products](/api/catalog/#getting-compatible-products-for-a-catalog-item) |
-| The Product does not exist in your Catalog | Contact [API Support](mailto:apisupport@iqmetrix.com) to have the Product added to your Catalog |
+| The Product does not exist in your Catalog | Contact <a href="mailto:{{site.support_email}}?subject=Support">API Support</a> to have the Product added to your Catalog |
 
 ##### Example
 
@@ -169,7 +170,7 @@ We will reference the Product in our request by using its `CatalogItemId` as the
 
 Each {{item}} on the Order must have an associated {{item_type}} in the form of an integer.
 
-For an in-store order, we will use the `InStock` ItemType.
+For an in-store order, we will use the `InStock` ItemType which has a value of `2`.
 
 ##### Example
 
@@ -179,7 +180,7 @@ For an in-store order, we will use the `InStock` ItemType.
 
 Each {{item}} must have an associated {{item_status}} value in the form of an integer.
 
-Your options for ItemStatus are determined by the ItemType chosen in Step 2.
+Options for ItemStatus are determined by the ItemType chosen in Step 2.
 
 For RQ to accept the Item, the ItemStatus must be `New`, or a value of `9`.
 
@@ -203,15 +204,15 @@ Each {{item}} added to the Order may also have the following optional properties
     "Index": 1,
     "Notes": "",
     "Quantity": 2,
-    "SerialNumbers":  ["EQE0RCHD"]
+    "SerialNumbers": ["EQE0RCHD"]
 
 ## (Optional) Step 11: Adding More Items to the Order
 
-For each Item you want to add to the Order, repeat steps 7-9.
+To add more Items to the order, repeat steps 7-10.
 
 ## Step 12: Creating the Order
 
-> See [Creating an Order with Items](http://developers.iqmetrix.com/api/orders/#creating-an-order-with-items)
+We can now combine the information gathered in previous steps to [Create an Order with Items](/api/orders/#creating-an-order-with-items).
 
 ##### Example Request
     
@@ -224,7 +225,6 @@ For each Item you want to add to the Order, repeat steps 7-9.
         "EntityId": 8,
         "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "Name": "Interactive Display Order 331", 
-        "EmployeeId": 15,
         "OrderExpiryHours": 72,
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "DiscountAmount": 15.0,
@@ -246,11 +246,12 @@ For each Item you want to add to the Order, repeat steps 7-9.
 
 ##### Example Response
 
+Note that some fields are omitted from the response as they are not relevant to this guide.
+
     HTTP 201 Content-Type: application/json
     {
         "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
         "Name": "Interactive Display Order 331", 
-        "EmployeeId": 15,
         "EntityId": 8,
         "State": "Created",
         "OrderExpiryDate": "2015-05-08T18:05:13.137",
