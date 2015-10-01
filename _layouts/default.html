@@ -21,13 +21,15 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
 <script>
-  $(document).ready(function(){
+  $(document).ready(function() {}
+      $('.changelog').DataTable({
+        'searching': false,
+        'paging': false,
+        'info': false
+      });
 
-      $('table.datatable').DataTable( {
-                  paging: false,
-                  stateSave: true
-              }
-      );
+      $('table.datatable').DataTable();
+    });
 </script>
 {% endif %}
 {% endunless %}
