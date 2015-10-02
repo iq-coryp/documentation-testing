@@ -32,7 +32,7 @@ metadata: false
 
 Subscribe to our RSS feed to keep up to date with changes.
 
-<a href="{{ "feed.xml" | prepend: site.url }}"><img src="{{ "/images/rss.png" | prepend: site.url }}" /></a>
+<a href="{{ "feed.xml" | prepend: site.url }}"><img src="{{ "images/rss.png" | prepend: site.url }}" /></a>
 
 ### Changes
 
