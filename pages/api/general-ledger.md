@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 9/23/2015
+last_updated: 02-10-2015
 summary: 
 ---
 
@@ -20,13 +20,15 @@ summary:
 
 {{account}} type is determined by the `AccountCategory` property and can be one of the following: **Asset, Liability, Equity, Revenue, Expense**.
 
-Asset and Expense accounts are usually [Debit Accounts](/api/glossary/#debit-account). By default, a debit to these accounts will **increase** the account balance.
+Account balances will be affected by Debits and Credits in the following ways:
 
-Liability, Equity and Revenue accounts are usually [Credit Accounts](/api/glossary/#credit-account). By default, a debit to these accounts will **decrease** the account balance.
-
-The `IsDebitAccount` property would usually be set to true for Asset and Expense accounts and to false for Liability, Equity and Revenue accounts. However, this flag exists in case you wish to reverse that logic.
-
-To learn more about General Ledger, see [General Ledger](http://iqmetrix.helpdocsonline.com/general-ledger-accounts).
+| Account | Debit | Credit |
+|:--------|:------|:-------|
+| Asset | <i class="fa fa-arrow-up"></i> | <i class="fa fa-arrow-down"></i> |
+| Liability | <i class="fa fa-arrow-down"></i> | <i class="fa fa-arrow-up"></i> |
+| Equity | <i class="fa fa-arrow-down"></i> | <i class="fa fa-arrow-up"></i> |
+| Revenue | <i class="fa fa-arrow-down"></i> | <i class="fa fa-arrow-up"></i> |
+| Expense | <i class="fa fa-arrow-up"></i> | <i class="fa fa-arrow-down"></i> |
 
 ## Resources
 
@@ -48,14 +50,13 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | DateCreatedUTC | DateTime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` | 
 | DateUpdatedUTC | DateTime | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` | 
 | Description | String (1024) | Description | `This is a Canadian $ account` | Y |
-| IsDebitAccount | Boolean | A flag to indicate if this Account is a [Debit Account](/api/glossary/#debit-account) (`true`) or a [Credit Account](/api/glossary/#credit-account) (`false`) | `true` | 
 | IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` | 
 | Version | Integer | The latest revision number | `1` |
 
 ### Transaction
 
 {{note}}
-A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries are the same value, this is called a Balanced Transaction
+A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries is the same value, this is called a Balanced Transaction
 {{end}}
 
 A **Transaction** is a financial record that affects two or more **Accounts**.
@@ -71,23 +72,28 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 <b>Notes:</b>
 
-* A Transaction is <b>immutable</b> and permanent, after it has been created it cannot be updated or deleted
+* A Transaction is <b>immutable</b> and permanent after it has been created it cannot be updated or deleted
 * Debit and Credit are decimal values without an associated currency
 * All transactions within the context of this {{account}} will use the currency configured at the Account level
 
 | Name | Data Type  | Description | Example | 
 |:-----|:-----------|:------------|:--------|
 | AccountID | GUID | Identifier for the [Account](#account) this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` | 
-| Credit | Decimal | The value of the Credit side of this Entry, must be a positive value. If Credit is positive, Debit must be 0 | `0` | 
-| CustomProperties | Object (4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 charcters | | 
+| Credit | Decimal | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` | 
+| CustomProperties | Object (4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters | | 
 | Debit | Decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` | 
 | EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) this Entry applies to | `25` | 
 | LineNumber | Integer | A value indicating the sort order of this entry within the Transaction | `1` |
 | Memo | String (1024) | Memo string for this Entry | `Memo for debit` | 
 | ReferenceID | String (128) | Reference number string, such as the invoice that caused the Transaction | `1234` | 
-| ReferenceType | String (128) | String value to indicate what the ReferenceId column is refering to (Invoice, Cheque, etc.) | `Invoice Id` | 
+| ReferenceType | String (128) | String value to indicate what the ReferenceId column is referring to (Invoice, Cheque, etc.) | `Invoice Id` | 
 
 ## Get Accounts
+
+{{callout_info}}
+<b>Sorting Order</b><br/>
+Accounts are ordered alphabetically by <code>AccountName</code>
+{{end}}
 
 #### Request
 
@@ -152,7 +158,6 @@ If using a `application/hal+json`, [Pagination](#pagination) data will be includ
                     "DateCreatedUTC": "2015-04-23T13:14:12.997",
                     "DateUpdatedUTC": "2015-04-23T13:14:12.997",
                     "Description": "This is a Canadian $ account",
-                    "IsDebitAccount": true,
                     "IsEnabled": true,
                     "Version": "1"
                 },
@@ -162,6 +167,11 @@ If using a `application/hal+json`, [Pagination](#pagination) data will be includ
     }
 
 ## Get Transactions By Date
+
+{{callout_info}}
+<b>Sorting Order</b><br/>
+When getting Transacations, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first
+{{end}}
 
 #### Request
 
@@ -298,3 +308,16 @@ The `self`.`href` value is the encoded version of the API request that returned 
 The `next`.`href` refers to a resource containing a page with the **next** 10 items.
 
 The `prev`.`href` refers to a resource containing a page with the **previous** 10 items.
+
+## Errors
+
+The below table may help resolve problems encountered when making requests to the General Ledger API.
+
+| Error Code | Message | How to Resolve |
+|:-----------|:--------|:---------------|
+| `HTTP 400` | `Error converting value {x} to type {y}` | Ensure `AccountCategory` is set to one of: Asset, Liability, Equity, Revenue, Expense |
+| `HTTP 400` | `The supplied currency code {x} is not supported` | Ensure `CurrencyCode` is one of the supported values such as `USD` or `CAD` |
+| `HTTP 400` | `The {x} field is required` | Ensure all Required fields are provided |
+| `HTTP 400` | `Uri parameter representing resource id ... don't match` | Ensure given request body parameters match URI parameters |
+| `HTTP 404` | `Resource cannot be found` | Ensure the `Id` specified in the URI is valid and the resource exists | 
+| `HTTP 409` | `The account has a non-unique name or account number` | Account names and numbers must be unique for the Company |
