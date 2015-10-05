@@ -1,206 +1,74 @@
 # This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
-# Spacing is really important here. A two-space indent appears below each level to indicate a new depth.
-# 
+
 # Sidebar
 entries:
-- title: Sidebar # this title doesn't appear anywhere
+- title: Sidebar
   subcategories:
 
     - title: Core Concepts
-      audience: writer, designer
+      audience: writers, designers
       platform: all
       product: all
       version: all
-      print: true
 
       items:
 
         - title: Classification Tree
-          url: concepts/classification-tree/
-          audience: writer, designer
+          url: /concepts/classification-tree/
+          audience: writers, designers
           platform: all
           product: all
           version: all
 
-        - title: Product Library
-          url: concepts/product-library/
-          audience: writer, designer
+        - title: Product Structure
+          url: /concepts/product-structure/
+          audience: writers, designers
           platform: all
           product: all
           version: all
-          print: true
-          web: true
 
     - title: Getting Started
-      audience: writer, designer
+      audience: writers, designers
       platform: all
       product: all
       version: all
-      print: true
 
       items:
+
+        - title: Changelog
+          url: /api/changelog/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all          
 
         - title: Environments
-          url: api/environments/
-          audience: writer, designer
+          url: /api/environments/
+          audience: writers, designers
           platform: all
           product: all
-          version: all          
-          print: true
-          web: true
+          version: all
 
         - title: Rate Limiting
-          url: api/rate-limiting/
-          audience: writer, designer
+          url: /api/rate-limiting/
+          audience: writers, designers
           platform: all
           product: all
           version: all
-          print: true
-          web: true
+
+        - title: Supported Response Formats
+          url: /api/getting-started/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
 
         - title: Glossary
-          url: api/glossary/
-          audience: writer, designer
+          url: /api/glossary/
+          audience: writers, designers
           platform: all
           product: all
           version: all
-          print: true
-          web: true
-
-    - title: API Reference
-      audience: writer, designer
-      platform: all
-      product: all
-      version: all
-      print: true
-
-      items:
-
-        - title: Assets
-          url: api/assets/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Authentication
-          url: api/authentication/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Availability
-          url: api/availability/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Catalog
-          url: api/catalog/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Classification Tree
-          url: api/classification-tree/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Company Tree
-          url: api/company-tree/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: CRM
-          url: api/crm/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Entities
-          url: api/entity-store/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Field Definitions
-          url: api/field-definitions/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all          
-          print: true
-          web: true
-
-        - title: General Ledger
-          url: api/general-ledger/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Orders
-          url: api/orders/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Pricing
-          url: api/pricing/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: Product Library
-          url: api/product-library/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
-
-        - title: User Manager
-          url: api/user-manager/
-          audience: writer, designer
-          platform: all
-          product: all
-          version: all
-          print: true
-          web: true
 
     - title: Guides
       audience: writer, designer
@@ -211,8 +79,8 @@ entries:
 
       items:
 
-        - title: Creating an Order
-          url: guides/creating-an-order/
+        - title: Creating an Order In Store
+          url: guides/creating-an-order-in-store/
           audience: writer, designer
           platform: all
           product: all
@@ -220,19 +88,176 @@ entries:
           print: true
           web: true
 
-    - title: Wireless Services
-      audience: writer, designer
+
+    - title: API Reference
+      audience: writers, designers
       platform: all
       product: all
       version: all
-      print: true
+      url: api/changelog/
 
-      items: 
+      items:
 
-        - title: Carrier Integration
-          url: api/carrier-integration/
+        - title: Authentication
+          url: /api/authentication/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Assets
+          url: /api/assets/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Availability
+          url: /api/availability/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Catalog
+          url: /api/catalog/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Cost Feed
+          url: /api/cost-feed/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all          
+
+        - title: Classification Tree
+          url: /api/classification-tree/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Customer Managed Inventory (CMI)
+          url: /api/cmi/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Company Tree
+          url: /api/company-tree/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: CRM
+          url: /api/crm/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Entities
+          url: /api/entity-store/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Field Definitions
+          url: /api/field-definitions/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all          
+
+        - title: General Ledger
+          url: /api/general-ledger/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Orders
+          url: /api/orders/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Pricing
+          url: /api/pricing/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Product Feed
+          url: /api/product-feed/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all          
+
+        - title: Product Library
+          url: /api/product-library/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Product Subscription
+          url: api/product-subscription/
           audience: writer, designer
           platform: all
           product: all
           version: all
           print: true
+          web: true
+
+        - title: User Manager
+          url: /api/user-manager/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+    - title: RQ
+      audience: writers, designers
+      platform: all
+      product: all
+      version: all
+
+      items:
+
+        - title: Carrier Integration
+          url: /api/carrier-integration/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Commissions
+          url: /api/commissions/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Electronic Product Catalog (EPC)
+          url: /api/epc/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+          
+        - title: Punch Clock
+          url: /api/punch-clock/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all

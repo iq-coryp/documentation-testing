@@ -16,23 +16,10 @@
 {% endif %}
 {% endunless %}
 
-{% unless site.print == true %}
 {% if page.datatable == true %}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
-<script>
-  $(document).ready(function() {}
-      $('.changelog').DataTable({
-        'searching': false,
-        'paging': false,
-        'info': false
-      });
-
-      $('table.datatable').DataTable();
-    });
-</script>
 {% endif %}
-{% endunless %}
 
   </head>
 
@@ -40,21 +27,20 @@
 
    {% include topnav.html %}
 
-
     <!-- Page Content -->
     <div class="container">
         <div class="col-lg-12">&nbsp;</div>
 
+            <!-- Col-md-3 -->
+            {% include sidebar.html %}
 
-{% include sidebar.html %}
-
-            <!-- Content Column -->
-            <div class="col-md-9">
-
-                {{content}}
-            </div><!-- /.row -->
-
-    </div>    <!-- /.container -->
+            {% if page.metadata == false %}
+              <div class="col-md-9">{{content}}</div>
+            {% else %}
+              <div class="col-md-7">{{content}}</div>
+              <div class="col-lg-1 hidden-md hidden-sm hidden-xs">{% include pagemetadata.html %}</div>
+            {% endif %}
+    </div>
 
 </body>
 {% if site.google_analytics %}
