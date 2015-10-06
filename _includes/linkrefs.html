@@ -21,8 +21,16 @@
 <a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Asset</a>
 {% endcapture %}
 
+{% capture assets %}
+<a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Assets</a>
+{% endcapture %}
+
 {% capture asset_glossary %}
 <a href="{{"/glossary/#asset" | prepend: site.api_baseurl}}">Asset</a>
+{% endcapture %}
+
+{% capture availability %}
+<a href="{{"/api/availability/" | prepend: site.api_baseurl}}">Availability</a>
 {% endcapture %}
 
 {% capture carrier %}
@@ -62,7 +70,7 @@
 {% endcapture %}
 
 {% capture companytree %}
-<a href="{{"/company-tree/#companytree" | prepend: site.api_baseurl}}">CompanyTree</a>
+<a href="{{"/company-tree#companytree" | prepend: site.api_baseurl}}">CompanyTree</a>
 {% endcapture %}
 
 {% capture environment %}
@@ -145,6 +153,10 @@
 <a href="{{"/orders/#orderfull" | prepend: site.api_baseurl}}">OrderFull</a>
 {% endcapture %}
 
+{% capture ordertype %}
+<a href="{{"/orders/#ordertype" | prepend: site.api_baseurl}}">OrderType</a>
+{% endcapture %}
+
 {% capture prices %}
 <a href="{{"/pricing/" | prepend: site.api_baseurl}}">Prices</a>
 {% endcapture %}
@@ -163,6 +175,10 @@
 
 {% capture regularproduct %}
 <a href="{{"/epc/#regularproduct" | prepend: site.api_baseurl}}">RegularProduct</a>
+{% endcapture %}
+
+{% capture subscribable_list %}
+<a href="{{"/product-subscription/#subscribablelist" | prepend: site.api_baseurl}}">Subscribable List</a>
 {% endcapture %}
 
 {% capture product_structure %}

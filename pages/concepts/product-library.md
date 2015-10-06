@@ -1,64 +1,60 @@
 ---
-title:  Product Library
+title: Product Library
 permalink: /concepts/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 06-10-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
+{% include externallinks.html %}
 
-In Product Library and in your Catalog, products are structured in a way to make managing them easier.
+**Product Library** provides retailers with a central hub of content from a variety of sources, including manufacturers, distributors and other suppliers.
 
-## Master Products
+### Retailier Catalog
 
-A Master Product is a product which may or may not be saleable.
+Retailers can select products from the Product Library to create a **Retailer Catalog**, a collection of products that can be sold.
 
-A Master Product that is **saleable** only exists in one form, such as a designer necklace or charging cable. When a customer is purchasing this product, they do not have to choose a color, size, etc. 
+Every Product in Product Library must belong to a single {{classificationconcept}}, refered to as an **industry**.
 
-A Master Product that is **not saleable** has multiple forms, such as different colors or sizes. A customer cannot purchase the product without specifying these details, as the Master Product itself does **not physically exist**. 
+This is a similar model to iTunes where users have access to many different types of products such as songs, movies and books (Industries) in the iTunes Store (Product Library) from which they can build their Library (Retailer Catalog). 
 
-## Variations
+As the image below illustrates, there is only one Product Library but many Retailer Catalogs, which may overlap and include Products across multiple industries. 
 
-Products can vary on different attributes, such as:
+<img src="{{ "/images/product-library-concept.png" | prepend: site.url }}" />
 
-* Size
-* Color
-* Material 
+For a list of currently supported suppliers, manufacturers and carriers see {{PL-Content-Management}}.
 
-In Product Library, these are refered to as **Variations**.
+### Curation
 
-Variations can contain their own details such as: SKUs, Stock levels, prices, assets and more.
+Products enter Product Library through a number of different channels.
 
-The image below represents how a Master Product "Comfy Sweater" has variations for color and size. 
+For the **Wireless** industry, iQmetrix Curators create accurate, up-to-date, rich product information available for retailers to consume.
 
-<img src="{{ "/images/nonwireless.png" | prepend: site.url }}" />
+For **other industries**, Retailers can curate content directly from suppliers, such as:
 
-## Carrier Revisions
+* High quality {{assets}} 
+* Accurate specifications and details
+* Compatibilty links that facilitate product-related conversations on sales
 
-In the wireless industry, there is often an additional level of complexity, as each {{carrier}} may offer a different version of the product. These are refered to as Carrier Revisions.
+### Virtual Inventory
 
-**Note** that Carrier Revisions may be created off of Master Products or Variations, but if Variations exist on a Master Product, Carrier Revisions must be created off of these Variations.
+{{callout_info}}
+<strong>Dropship</strong> is a retailer practice of shipping items from a supplier directly to a customer.
+{{end}}
 
-As an example, if a customer walks into a retail store looking for a Gold iPhone 6 Gold 32 GB, they might have a choice of:
+Using Dropship, retailers can showcase and sell a wide variety of unique, luxury and specialized items without having to invest in physical inventory. 
 
-* Sprint iPhone 6 Gold 32 GB 
-* AT&T iPhone 6 Gold 32 GB  
-* T-Mobile iPhone 6 Gold 32 GB
-* Verizon iPhone 6 Gold 32 GB
+This **virtual inventory** also allows retailers to expand the number of accessories and products they sell, creating an endless aisle experience.
 
-The image below represents how a Master Product of an iPhone 6 has Variations for color and size, but also has Carrier Revisions for every Carrier that sells the iPhone 6.
+## Pricing, Availability and Locations
 
-<img src="{{ "/images/wireless.png" | prepend: site.url }}" />
+Products in a Retailer Catalog can have {{pricing}} and {{availability}} set at any level in the {{companytree}}.
 
-## Examples
+<img src="{{ "/images/Product-Library.png" | prepend: site.url }}" />
 
-| Product | Master Product, Variation or Carrier Revision? | 
-|:-------------|:------------------------------------------|
-| "Lucy" Graphic T-Shirt | Master Product | 
-| Comfy Sweater Blue S | Variation | 
-| iPhone 6 | Master Product | 
-| Pebble Watch Black | Variation |
-| AT&T iPhone 6 Gold 32 GB | Carrier Revision | 
+In the example above, the Company Tree is made up of four nodes, Costco (Company), British Columbia (Region), Vancouver (District) and Victoria Square (Location). The Retailer Catalog contains a number of products including a Google Nexus 5 16GB White.
+
+Pricing and Availability are set at the Vancouver level, at 9.99 and 13 respectively. This means all Locations under the Vancouver district, including Victoria Square, will inherited the values.

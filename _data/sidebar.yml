@@ -75,7 +75,6 @@ entries:
       platform: all
       product: all
       version: all
-      print: true
 
       items:
 
@@ -85,8 +84,6 @@ entries:
           platform: all
           product: all
           version: all
-          print: true
-          web: true
 
 
     - title: API Reference
@@ -94,7 +91,6 @@ entries:
       platform: all
       product: all
       version: all
-      url: api/changelog/
 
       items:
 
