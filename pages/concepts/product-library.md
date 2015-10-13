@@ -4,16 +4,18 @@ permalink: /concepts/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 06-10-2015
+last_updated: 13-10-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
 {% include externallinks.html %}
 
+<img src="{{ "/images/PL Concept Overview.jpg" | prepent: site.url " />
+
 **Product Library** provides retailers with a central hub of content from a variety of sources, including manufacturers, distributors and other suppliers.
 
-### Retailier Catalog
+### Retailer Catalog
 
 Retailers can select products from the Product Library to create a **Retailer Catalog**, a collection of products that can be sold.
 
@@ -25,11 +27,11 @@ As the image below illustrates, there is only one Product Library but many Retai
 
 <img src="{{ "/images/product-library-concept.png" | prepend: site.url }}" />
 
-For a list of currently supported suppliers, manufacturers and carriers see {{PL-Content-Management}}.
+For a list of currently supported suppliers, manufacturers and carriers see {{plcontentmanagement}}.
 
 ### Curation
 
-Products enter Product Library through a number of different channels.
+Products are funneled into the Product Library through a number of different channels.
 
 For the **Wireless** industry, iQmetrix Curators create accurate, up-to-date, rich product information available for retailers to consume.
 
@@ -57,4 +59,4 @@ Products in a Retailer Catalog can have {{pricing}} and {{availability}} set at 
 
 In the example above, the Company Tree is made up of four nodes, Costco (Company), British Columbia (Region), Vancouver (District) and Victoria Square (Location). The Retailer Catalog contains a number of products including a Google Nexus 5 16GB White.
 
-Pricing and Availability are set at the Vancouver level, at 9.99 and 13 respectively. This means all Locations under the Vancouver district, including Victoria Square, will inherited the values.
+Pricing and Availability are set at the Vancouver level, at 9.99 and 13 respectively. This means all Locations under the Vancouver district, including Victoria Square, will inherit the values.
