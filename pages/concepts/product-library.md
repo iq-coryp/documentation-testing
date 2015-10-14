@@ -11,7 +11,7 @@ summary:
 {% include linkrefs.html %}
 {% include externallinks.html %}
 
-<img src="{{ "/images/PL Concept Overview.jpg" | prepent: site.url }}" />
+<img src="{{ "/images/PL Concept Overview.jpg" | prepend: site.url }}" />
 
 **Product Library** provides retailers with a central hub of content from a variety of sources, including manufacturers, distributors and other suppliers.
 
