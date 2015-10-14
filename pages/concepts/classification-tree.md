@@ -4,7 +4,7 @@ permalink: /concepts/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 13-10-2015
 summary: 
 ---
 
@@ -26,7 +26,7 @@ Currently, Classification Trees are managed by the iQmetrix Curation team. In th
 
 Classification Trees contain Classifications and Categories.
 
-Categories are used to similar group products together, but do not contain any products themselves. Categories can also be contained within other Categories in order to narrow down the Product type. For example, from the figure above, if Classification Tree A is Apparel and Accessories, Category 1 could be Clothing, Category b could be Men, and Category a could be Women.
+Categories are used to group similar products together, but do not contain any products themselves. Categories can also be contained within other Categories in order to narrow down the Product type. For example, from the figure above, if Classification Tree A is Apparel and Accessories, Category 1 could be Clothing, Category b could be Men, and Category a could be Women.
 
 Classifications are used to group Products together by similar features and are assigned a Product Template (e.g. Headphones). Classifications are always children of Categories, as well as being leaf nodes in the tree.
 
