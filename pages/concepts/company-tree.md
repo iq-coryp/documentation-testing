@@ -41,7 +41,7 @@ The root (top-most) Node in a Company Tree always represents the {{company}} tha
 
 {{divisions}} and {{groups}} serve as generic buckets you can use to organize a Company Tree.
 
-iQmetrix reccomends using Divisions to represent **sub-brands** or **sub-companies** of a main Company and Groups to represent **managerial** or **geographical** groupings.
+iQmetrix recommends using Divisions to represent **sub-brands** or **sub-companies** and Groups to represent **managerial** or **geographical** groupings.
 
 ### Locations
 
@@ -49,7 +49,7 @@ iQmetrix reccomends using Divisions to represent **sub-brands** or **sub-compani
 
 #### Devices
 
-Devices are hardware appliances that run iQmetrix products such a XQ Shelf.
+Devices are hardware appliances that run iQmetrix products such as XQ Shelf.
 
 ### Relationships
 
@@ -73,7 +73,7 @@ iQmetrix APIs use the hierarchical structure of a Company Tree to pass informati
 
 In the example above, we use the [Pricing](/api/pricing), [Company Tree](/api/company-tree) and [Product Catalog](/api/catalog) APIs to set the price of an iPhone 5C Flash Case at the Alberta and Edmonton Nodes for 9.99 and 8.99, respectively.
 
-However, because the Calgary Node does not have a price explicity set, it inherits the 9.99 pricing from its parent, Alberta.
+However, because the Calgary Node does not have a price explicitly set, it inherits the 9.99 pricing from its parent, Alberta.
 
 ## Examples
 
@@ -97,7 +97,7 @@ This fictional Company "Middle Earth" is organized geographically using Groups.
 
 The first level of Groups includes the geographical regions: Eriador and Mordor. 
 
-The Eriador Group is furthur organized into smaller geographical regions - Angmar and Arnor, each of which has a Location.
+The Eriador Group is further organized into smaller geographical regions - Angmar and Arnor, each of which has a Location.
 
 Finally, there is a single device off the main Company.
 
@@ -113,4 +113,4 @@ Within the "White Sun" Division there are three Locations: Bernadette, Londinium
 
 The Verse also has operational teams, so they decide to use a Group created off the root Company Node.
 
-The "Captains" Group represents one of the many teams in The Verse and contains three Locations, named by manager: Malcom, Monty and Nandi.
+The "Captains" Group represents one of the many teams in The Verse and contains three Locations, named by their manager: Malcolm, Monty and Nandi.
