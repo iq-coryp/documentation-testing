@@ -4,23 +4,23 @@
 topnav:
 - title: Topnav
   subcategories:
-    - title: GETTING STARTED
-      url: api/environments/
-      audience: writer, designer
+    - title: CHANGELOG
+      url: api/changelog/
+      audience: writers, designers
       platform: all
       product: all
       version: all
 
     - title: API REFERENCE
-      url: api/introduction/
-      audience: writer, designer
+      url: api/authentication/
+      audience: writers, designers
       platform: all
       product: all
       version: all
 
     - title: BACK TO iQMETRIX.COM »
       external_url: http://iqmetrix.com
-      audience: writer, designer
+      audience: writers, designers
       platform: all
       product: all
       version: all

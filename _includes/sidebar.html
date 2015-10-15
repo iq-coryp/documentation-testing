@@ -3,41 +3,38 @@
     <!-- Sidebar Column -->
     <div class="col-md-3">
 
-
-
         <script>
-
             $(document).ready(function() {
-                        // Initialize navgoco with default options
-                        $("#mysidebar").navgoco({
-                                caretHtml: '',
-                                accordion: {{site.sidebar_accordion}},
-                                openClass: 'active', // open
-                                save: false, // leave false or nav higlighting doesn't work right
-                                cookie: {
-                                    name: 'navgoco',
-                                            expires: false,
-                                            path: '/'
-                                },
-                                slide: {
-                                    duration: 400,
-                                            easing: 'swing'
-                                }
-                            });
 
-            $("#collapseAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', false);
+                // Initialize navgoco with default options
+                $("#mysidebar").navgoco({
+                    caretHtml: '',
+                    accordion: {{site.sidebar_accordion}},
+                    openClass: 'active', // open
+                    save: false, // leave false or nav higlighting doesn't work right
+                    cookie: {
+                        name: 'navgoco',
+                        expires: false,
+                        path: '/'
+                    },
+                    slide: {
+                        duration: 400,
+                        easing: 'swing'
+                    }
+                });
+
+                $("#collapseAll").click(function(e) {
+                    e.preventDefault();
+                    $("#mysidebar").navgoco('toggle', false);
+                });
+
+                $("#expandAll").click(function(e) {
+                    e.preventDefault();
+                    $("#mysidebar").navgoco('toggle', true);
+                });
+
             });
-
-            $("#expandAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', true);
-            });
-        });
-
         </script>
-
 
         {% include custom/conditions.html %}
 
@@ -45,29 +42,51 @@
             <div class="siteTagline">{{site.tagline}}</div>
             {% for entry in sidebar %}
                 {% for subcategory in entry.subcategories %}
-                    <li>
-                        <a href="#">{{ subcategory.title }}</a>
-                        <ul>
-                            {% for item in subcategory.items %}
-                                {% if item.external_url != null %}
-                                    <li><a href="{{item.external_url}}" target="_blank">{{subcategory.title}}</a></li>
-                                {% elsif page.url contains item.url %}
-                                    <li class="active"><a href="{{item.url | prepend: site.url | append: site.suffix}}">{{item.title}}</a></li>
-                                {% else %}
-                                    <li><a href="{{item.url | prepend: site.url | append: site.suffix}}">{{item.title}}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </li>
+                    {% if subcategory.url != null %}
+                        <li><a href="{{ subcategory.url }}">{{ subcategory.title }}</a>
+                    {% elsif subcategory.audience contains audience and subcategory.product contains product and subcategory.platform contains platform and subcategory.version contains version and subcategory.web != false %}
+                        <li><a href="#">{{ subcategory.title }}</a>
+                            <ul>
+                                {% for item in subcategory.items %}
+                                    {% if item.thirdLevelItems != null %}
+                                        <li class="thirdlevel"><a href="#">{{ item.title }}</a>
+                                            <ul>
+                                                {% for deepItem in item.thirdLevelItems %}
+                                                    {% if deepItem.external_url %}
+                                                        <li><a href="{{deepItem.external_url}}" target="_blank">{{deepItem.title}}</a></li>
+                                                    {% elsif page.url contains deepItem.url %}
+                                                        <li class="active"><a href="{{deepItem.url | prepend: site.url | append: site.suffix}}">{{deepItem.title}}</a></li>
+                                                    {% else %}
+                                                        <li><a href="{{deepItem.url | prepend: site.url | append: site.suffix}}">{{deepItem.title}}</a></li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% elsif item.audience contains audience and item.product contains product and item.platform contains platform and item.version contains version and item.web != false %}
+                                        {% if item.external_url %}
+                                            <li><a href="{{item.external_url}}" target="_blank">{{subcategory.title}}</a></li>
+                                        {% elsif page.url contains item.url %}
+                                            <li class="active"><a href="{{item.url | prepend: site.url | append: site.suffix}}">{{item.title}}</a></li>
+                                        {% else %}
+                                            <li><a href="{{item.url | prepend: site.url | append: site.suffix}}">{{item.title}}</a></li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             {% endfor %}
         </ul>
 
         {% if site.sidebar_accordion == false %}
-        <p class="external">
-            <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
-        </p>
+            <p class="external">
+                <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+            </p>
         {% endif %}
     </div>
-       <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above.-->
-    <script>$("li.active").parents('li').toggleClass("active");</script>
+<!-- div missing here is intentional -->
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+

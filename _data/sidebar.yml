@@ -33,14 +33,7 @@ entries:
       product: all
       version: all
 
-      items:
-
-        - title: Changelog
-          url: /api/changelog/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all          
+      items:      
 
         - title: Environments
           url: /api/environments/
@@ -79,14 +72,7 @@ entries:
       items:
 
         - title: Creating an In Store Order
-          url: /api/creating-an-in-store-order/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
-        - title: Dropship Onboarding Guide
-          url: /api/guides/dropship-onboarding-guide/
+          url: /guides/creating-an-in-store-order/
           audience: writers, designers
           platform: all
           product: all
@@ -128,13 +114,6 @@ entries:
           product: all
           version: all
 
-        - title: Cost Feed
-          url: /api/cost-feed/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all          
-
         - title: Classification Tree
           url: /api/classification-tree/
           audience: writers, designers
@@ -162,6 +141,42 @@ entries:
           platform: all
           product: all
           version: all
+
+        - title: Dropship
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all 
+
+          thirdLevelItems:
+
+            - title: Cost Feed
+              url: /api/cost-feed/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all 
+
+            - title: Product Feed
+              url: /api/product-feed/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all 
+
+            - title: Product Subscription
+              url: /api/product-subscription/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+            - title: Shipping Options
+              url: /api/shipping-options/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
 
         - title: Entities
           url: /api/entity-store/
@@ -198,28 +213,48 @@ entries:
           product: all
           version: all
 
-        - title: Product Feed
-          url: /api/product-feed/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all          
-
         - title: Product Library
           url: /api/product-library/
           audience: writers, designers
           platform: all
           product: all
-          version: all
+          version: all  
 
-        - title: Product Subscription
-          url: api/product-subscription/
-          audience: writer, designer
+        - title: RQ
+          audience: writers, designers
           platform: all
           product: all
           version: all
-          print: true
-          web: true
+
+          thirdLevelItems:
+
+            - title: Carrier Integration
+              url: /api/carrier-integration/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+            - title: Commissions
+              url: /api/commissions/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+            - title: Electronic Product Catalog (EPC)
+              url: /api/epc/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+            - title: Punch Clock
+              url: /api/punch-clock/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
 
         - title: User Manager
           url: /api/user-manager/
@@ -228,38 +263,9 @@ entries:
           product: all
           version: all
 
-    - title: RQ
+    - title: Changelog
+      url: /api/changelog/
       audience: writers, designers
       platform: all
       product: all
       version: all
-
-      items:
-
-        - title: Carrier Integration
-          url: /api/carrier-integration/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
-        - title: Commissions
-          url: /api/commissions/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
-        - title: Electronic Product Catalog (EPC)
-          url: /api/epc/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-          
-        - title: Punch Clock
-          url: /api/punch-clock/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: al
