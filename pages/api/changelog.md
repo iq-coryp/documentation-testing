@@ -4,7 +4,7 @@ permalink: /api/changelog/
 tags: []
 keywords: 
 audience: 
-last_updated: 19-10-2015
+last_updated: 21-10-2015
 summary: 
 datatable: true
 metadata: false

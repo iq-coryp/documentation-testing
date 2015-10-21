@@ -4,7 +4,7 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 21-10-2015
 summary: 
 ---
 {% include linkrefs.html %}
