@@ -4,53 +4,24 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 20-10-2015
+last_updated: 21-10-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
 {% include externallinks.html %}
 
-## Overview
-
 {{note}}
 Changes within the Security Roles API involve complex actions behind the scenes and <b>are not always immediate</b>.
 {{end}}
 
-Security Roles allow you to specifiy what {{users}} are allowed to do.
+## Overview
+
+Security Roles allow you to specify what {{users}} are allowed to do.
 
 The figure below shows how Security Roles interact with Resources in the [User Manager](/api/user-manager) and [Company Tree](/api/company-tree) APIs.
 
 <img src="{{ "/images/security-roles.png" | prepend: site.url }}" />
-
-### Permissions and Users
-
-Users never get Permissions directly. Instead, a User is assigned one or more SecurityRoles which contain Permissions. This assignment is also associated with an Entity, which allows for very specific SecurityRole assignments.
-
-The only way to revoke a User's access is to [change their SecurityRole](#unassigning-a-security-role-from-a-user) or [remove a Permission](#removing-a-permission-from-a-security-role) from the SecurityRole
-
-Most permissions can be added to any SecurityRole with some exceptions.
-
-### Parent Permissions
-
-Some Permissions require another Permission, called a parent Permission, be assigned first. The parent Permission is specified by the `ParentPermissionId` parameter.
-
-### Stock Security Roles
-
-All entities with Users come with a set of stock SecurityRoles, generated for convenience of administrators. These stock SecurityRoles have Permissions that represent the needs of the typical User.
-
-New Companies will come with the following stock security roles:
-
-* System Admin
-* Marketing Admin
-* Store Manager
-* Marketer
-
-Users are free to modify stock SecurityRole names and Permissions.
-
-### Restricted Permissions
-
-Some Permissions are intended for specific scenarios and are Restricted by iQmetix. If you require access to a Restricted Permission, contact {{contact_support}}.
 
 ## Endpoints
 
@@ -74,26 +45,23 @@ SecurityRoles allow you create custom groups that can hold Permissions.
 
 An AssignedRole represents the relationship between a {{user}}, {{securityrole}} and Entity. 
 
-The example below shows Sam Smith as a Store Manager for Alberta, with the View Products and Edit Products Permissions.
-
-As Sam Smith does not have a specified AssignedRole with Edmonton and Calgary, the SecurityRole is passed down or **inherited** from parent to child. Sam Smith therefore has a Store Manager Security Role with Alberta, Edmonton and Calgary.
-
-<img src="{{ "/images/assigned-role.png" | prepend: site.url }}" />
-
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Identifier | `6548` |
 | EntityId | Integer | Identifier of an Entity | `4` |
-| SecurityRoleId | Integer | Identifier of a [SecurityRole](#role)| `4457` |
+| SecurityRoleId | Integer | Identifier of a [SecurityRole](#securityrole)| `4457` |
 | UserId | Integer | Identifier of a [User](/api/usermanager/#user) | `22212` |
 
 ### Permission
 
-Permissions are the building blocks of SecurityRoles and represent enabling an action within iQmetrix APIs. For example, the `View Company` Permission enables [Getting a Company Tree](/api/company-tree/#getting-a-company-tree).
+Permissions are the building blocks of SecurityRoles and represent the ability to perform an action within iQmetrix APIs.
 
-Assigning a Permission to a Security Role always **grants** an action, never denies. For example, you would never assign a `Cannot View Customers` Permission, instead you would unassign the `View Customers` Permission.
+#### Notes
 
-A Permission will never overrule another Permission.
+* Assigning a Permission to a Security Role always **grants** an action
+* A Permission will never overrule another Permission
+* When `ParentPermissionId` is not `null`, the parent Permission specified by the `ParentPermissionId` parameter must be assigned first
+* When `IsAssignable` is set to `false`, the Permission is Restricted by iQmetrix. If you require access to a Restricted Permission, contact {{contact_support}}
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
@@ -102,14 +70,14 @@ A Permission will never overrule another Permission.
 | Category | String | This field is used internally to group Permissions by how they impact the iQmetrix ecosystem | `Products` |
 | Code | String | Unique, system generated name used for sorting Permissions | `editproducts` |
 | Description | String | Describes the function of the Permission | `Enables the user to create, update`<br/>`and archive their private products and retailer revisions.` |
-| IsAssignable | Boolean | A flag to indicate if this Permission can be Assigned to a Security Role. If `false`, this Permission is [Restricted](#restricted-permissions) | `true` |
-| ParentPermissionId | Integer | Identifier of a [Parent Permission](#parent-permissions) which must be assigned before this Permission can be assigned | `22` |
+| IsAssignable | Boolean | A flag to indicate if this Permission is Restricted (see)| `true` |
+| ParentPermissionId | Integer | Identifier of a Parent Permission (see Notes) | `22` |
 
 ## Getting All Permissions
 
 #### Request
 
-    GET /Entities({CompanyId})/Permissions
+    GET /Entities({EntityId})/Permissions
     
 #### Headers
 
@@ -118,7 +86,7 @@ A Permission will never overrule another Permission.
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier of a {{company}}
+* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}} 
 
 ###### Example
 
@@ -128,7 +96,7 @@ A Permission will never overrule another Permission.
 
 #### Response
 
-* Array[[Permission](permission)] resources that were requested
+* Array[[Permission](#permission)] resources that were requested
 
 ###### Example
 
@@ -168,7 +136,7 @@ A Permission will never overrule another Permission.
 
 #### Request
 
-    GET /Entities({CompanyId})/SecurityRoles
+    GET /Entities({EntityId})/SecurityRoles
     
 #### Headers
 
@@ -177,7 +145,7 @@ A Permission will never overrule another Permission.
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier of a {{company}}
+* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
 
 ###### Example
 
@@ -212,7 +180,7 @@ A Permission will never overrule another Permission.
 
 #### Request
 
-    POST /Entities({CompanyId})/SecurityRoles
+    POST /Entities({EntityId})/SecurityRoles
     {
         "Name": "{Name}"
     }
@@ -225,7 +193,7 @@ A Permission will never overrule another Permission.
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier of a {{company}}
+* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
 
 #### Request Parameters
 
@@ -259,7 +227,7 @@ A {{securityrole}} resource with the following properties:
 
 #### Request
 
-    PUT /Entities({CompanyId})/SecurityRoles({SecurityRoleId})
+    PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})
     {
         "Id": {Id},
         "Name": "{Name}"
@@ -273,7 +241,7 @@ A {{securityrole}} resource with the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier of a {{company}}
+* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
 * `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
 
 #### Request Parameters
@@ -306,11 +274,11 @@ A {{securityrole}} resource with the following properties:
         "Name": "District Store Manager"
     }
 
-## Adding a Permission to a Security Role
+## Enabling a Permission for a Security Role
 
 #### Request
 
-    PUT /Entities({CompanyId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
+    PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
 
 #### Headers
 
@@ -319,7 +287,7 @@ A {{securityrole}} resource with the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier of a {{company}}
+* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
 * `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
 * `PermissionId` (**Required**) - Identifier of a {{permission}}. If you don't know the `PermissionId` for the Permission you want to add, see [Getting a List of Permissions](#getting-a-list-of-permissions)
 
@@ -335,11 +303,11 @@ A {{securityrole}} resource with the following properties:
 
     HTTP 204 No Content
 
-## Removing a Permission From a Security Role
+## Disabling a Permission for a Security Role
 
 #### Request
 
-    PUT /Entities({CompanyId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
+    DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
 
 #### Headers
 
@@ -348,7 +316,7 @@ A {{securityrole}} resource with the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier of a {{company}}
+* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
 * `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
 * `PermissionId` (**Required**) - Identifier of a {{permission}}
 
@@ -368,7 +336,7 @@ A {{securityrole}} resource with the following properties:
 
 #### Request
 
-    GET /Entities({CompanyId})/SecurityRoles({SecurityRoleId})/Permissions
+    GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
     
 #### Headers
 
@@ -377,7 +345,7 @@ A {{securityrole}} resource with the following properties:
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier of a {{company}}
+* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
 * `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
 
 ###### Example
@@ -558,4 +526,3 @@ The below table may help resolve problems encountered when making requests to th
 | `HTTP 400` | `Expected {x} to contain {y} but found {z} | Ensure parameters that are in both Request URI and body match |
 | `HTTP 404` | `{x} not found` | Ensure URI parameters are correct | 
 | `HTTP 409` | `The SecurityRole name {x} already exists for entity {y}` | SecurityRole names must be unique across the Company |
-
