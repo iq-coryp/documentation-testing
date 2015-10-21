@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 16-10-2015
 summary: 
 ---
 
@@ -772,7 +772,7 @@ Pagination is done through the use of $skip and $top query string parameters.
 
 Pagination-enabled requests include links for 'self', 'prev' and 'next' in the response data. 
 
-These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to append the appropriate endpoint.
+These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to prepend the appropriate endpoint.
 
 ##### Example
 

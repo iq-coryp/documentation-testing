@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-10-2015
+last_updated: 16-10-2015
 summary: 
 ---
 
@@ -110,9 +110,15 @@ To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline
 
 ## Getting All Commission Entries
 
+By default, the sorting order of the response to this request will be **descending** order by `LastUpdateDateUtc`
+
 #### Request
 
-    GET /Companies({CompanyId})/CommissionEntries?$skip={Skip}&$top={Top}
+{{note}}
+Don't forget <code>$filter=</code> in the request!
+{{end}}
+
+    GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}
 
 #### Headers
 
@@ -122,12 +128,14 @@ To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline
 #### URI Parameters
 
 * `CompanyId` (**Required**) - Identifier for the {{company}}
+* `StartDate` (Optional) - Date at which to begin search request, in UTC
+* `EndDate` (Optional) - Date at which to end search request, in UTC
 * `Skip`(Optional) - {{skip}}
 * `Top` (Optional) - {{toppunch}}
 
 ###### Example
 
-    GET /Companies(1)/CommissionEntries?$skip=0&$top=10
+    GET /Companies(1)/CommissionEntries?$filter=TransactionDateUTC ge datetime'2015-01-01T00:00:00.000' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000'&$skip=1&$top=10
     Authorization: Bearer (Access Token)
     Accept: application/hal+json
 
@@ -143,11 +151,11 @@ To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline
     {
         "_links": {
             "self": {
-                "href": "v1/Companies(1)/CommissionEntries?$skip=0&$top=10",
+                "href": "v1/Companies(1)/CommissionEntries?$filter=ransactionDateUTC ge datetime'2015-01-01T00:00:00.000' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000'&$skip=0&$top=10",
                 "templated": false
             },
             "next": {
-                "href": "v1/Companies(1)/CommissionEntries?$skip=10&$top=10",
+                "href": "v1/Companies(1)/CommissionEntries?$filter=ransactionDateUTC ge datetime'2015-01-01T00:00:00.000' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000'&$skip=10&$top=10",
                 "templated": false
             }
         },
@@ -219,7 +227,7 @@ Pagination is done through the use of `$skip` and `$top` query string parameters
 
 Pagination-enabled requests include links for 'self', 'prev' and 'next' in the response data. 
 
-These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to append the appropriate endpoint.
+These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to prepend the appropriate endpoint.
 
 ##### Example
 

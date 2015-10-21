@@ -4,7 +4,7 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 07-10-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -13,7 +13,7 @@ summary:
 
 A **Classification Tree** is a hierarchical structure describing a taxonomy of {{products}}. 
 
-To learn more about Classification Trees, see [Classification Tree](/api/concepts/classification-tree/)
+To learn more about Classification Trees, see {{classificationconcept}}.
 
 ## Endpoints
 

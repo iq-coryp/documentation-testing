@@ -4,8 +4,9 @@ permalink: /api/epc/
 tags: []
 keywords: 
 audience: 
-last_updated: 05-10-2015
+last_updated: 08-10-2015
 summary: 
+metadata: false
 ---
 {% include linkrefs.html %}
 
@@ -27,7 +28,7 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 | Id | Integer | Identifier | `12` |
 | Barcodes | Array[String] | Barcodes for this Product | `BARCODE123` |
 | ProductName | String | Name | `iPhone 4S 16GB White` |
-| CategoryName | String | Name of the Category/Classification for this Product | `Smartphones` |
+| CategoryName | String | Path to the Category, delimited by `>` | `Products > Phones > Smartphones` |
 | DaysKeptInStock | Short | Number of days the Product can remain in stock | `10` |
 | DefaultLocationVendor | [LocationVendor](#locationvendor) | Default location | |
 | DefaultPricing | [RegularProductPricing](#regularproductpricing) | Default pricing | |
@@ -100,7 +101,7 @@ For more information about Non-Stocked Products, see [Non-Stocked Products](http
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `14` |
 | ProductName | String | Name | `Prepaid Rate Plan` |
-| CategoryName | String | Name of the Category/Classification for this Product | `Rate Plans` |
+| CategoryName | String | Name of the Category/Classification for this Product | `Rate Plans > Rate Plans` |
 | DefaultPricing | [NonStockedProductPricing](#nonstockedproductpricing) | Default pricing information | 
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
@@ -160,7 +161,7 @@ For more information about Vendor Rebates, see [Vendor Rebates](http://iqmetrix.
 | Id | Integer | Identifier | `16` |
 | VendorName | String | Vendor name | `SampleVendor` |
 | ProductName | String | Name | `2 YR New Act` |
-| CategoryName | String | Name of the Category/Classification for this Product | `Rate Plan Rebates` |
+| CategoryName | String | Name of the Category/Classification for this Product | `Rate Plans > Rate Plan Rebates` |
 | DefaultPricing | [VendorRebateProductPricing](#vendorrebateproductpricing) | Default pricing information | |
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
@@ -223,7 +224,7 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `18` |
 | ProductName | String | Name | `Recycling Fee` |
-| CategoryName | String | Name of the Category/Classification for this Product | `Misc. Fees` |
+| CategoryName | String | Name of the Category/Classification for this Product | `Misc > Misc. Fees` |
 | DefaultPricing | [NonStockedProductPricing](#nonstockedproductpricing) | Default pricing information | 
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
@@ -356,20 +357,20 @@ An array of {{regularproduct}} resources with the following properties
 * `DefaultPricing` (**Required**) 
     * `Price` (**Required**) 
     * `PrimaryVendorName` (**Required**) 
-    * `AllowReturns` (Optional) 
-    * `Discountable` (Optional) - Defaults to true
+    * `AllowReturns` (Optional) - Value must be true or false, case sensitive 
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Will default to 0 and cannot be negative
-    * `ForSale` (Optional) - Defaults to true
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
-    * `LockMinMaxed` (Optional) - Defaults to false
+    * `LockMinMaxed` (Optional) - Defaults to false, case sensitive 
     * `Margin` (Optional) - Required if PricingMethod is set to Margin. Defaults to 0
     * `MaximumQuantity` (Optional) 
     * `MinimumQuantity` (Optional) 
     * `MsrpAmount` (Optional) - Defaults to 0
     * `MsrpCurrencyCode` (Optional) - Required if MsrpAmount is not null 
     * `RefundPeriod` (Optional) - Defaults to 0
-    * `RefundToUsed` (Optional) - Defaults to false
-    * `ShowOnInvoice` (Optional) - Defaults to true
+    * `RefundToUsed` (Optional) - Defaults to false, case sensitive 
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) - Defaults to 0
 * `GlCostOfSalesAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `GlInventoryAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
@@ -386,35 +387,35 @@ An array of {{regularproduct}} resources with the following properties
 * `DefaultLocationVendor` (Optional) 
     * `Cost` (Optional) 
     * `DiscontinuedDate` (Optional) 
-    * `DoNotOrder` (Optional) 
+    * `DoNotOrder` (Optional) - Value must be true or false, case sensitive 
     * `EndOfLife` (Optional) 
-    * `SpecialOrder` (Optional) 
-    * `WriteOff` (Optional) 
-* `Enabled` (Optional) - Defaults to true
+    * `SpecialOrder` (Optional) - Value must be true or false, case sensitive 
+    * `WriteOff` (Optional) - Value must be true or false, case sensitive 
+* `Enabled` (Optional) - Defaults to true, case sensitive 
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if Serialized is set to `true`
-* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false
+* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
 * `LocationPricing` (Optional) 
     * `Price` (**Required**) 
     * `PrimaryVendorName` (**Required**) 
     * `TargetLocationType` (**Required**) - Required if LocationPricing is not null 
     * `TargetLocationName` (**Required**) - Required if TargetLocationType is not "All"
-    * `AllowReturns` (Optional) 
-    * `Discountable` (Optional) - Defaults to true
+    * `AllowReturns` (Optional) - Value must be true or false, case sensitive 
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Will default to 0 and cannot be negative
-    * `ForSale` (Optional) - Defaults to true
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
-    * `LockMinMaxed` (Optional) - Defaults to false
+    * `LockMinMaxed` (Optional) - Defaults to false, case sensitive 
     * `Margin` (Optional) - Required if PricingMethod is set to Margin. Defaults to 0
     * `MaximumQuantity` (Optional) 
     * `MinimumQuantity` (Optional) 
     * `MsrpAmount` (Optional) - Defaults to 0
     * `MsrpCurrencyCode` (Optional) - Required if MsrpAmount is not null 
     * `RefundPeriod` (Optional) - Defaults to 0
-    * `RefundToUsed` (Optional) - Defaults to false
+    * `RefundToUsed` (Optional) - Defaults to false, case sensitive 
     * `SaleBeginDate` (Optional) - Required if SalePrice is supplied
     * `SaleEndDate` (Optional) - Required if SalePrice is supplied
     * `SalePrice` (Optional) - Defaults to 0. If this value is provided, `SaleBeginDate` and `SaleEndDate` are required
-    * `ShowOnInvoice` (Optional) - Defaults to true
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) - Defaults to 0
 * `LocationVendors` (Optional) 
     * `TargetLocationName` (**Required**) - Required if TargetLocationType is not "All"
@@ -422,14 +423,14 @@ An array of {{regularproduct}} resources with the following properties
     * `VendorName` (**Required**)
     * `Cost` (Optional) 
     * `DiscontinuedDate` (Optional) 
-    * `DoNotOrder` (Optional) - Defaults to false
+    * `DoNotOrder` (Optional) - Defaults to false, case sensitive 
     * `EndOfLife` (Optional) 
-    * `SpecialOrder` (Optional) - Defaults to false
-    * `WriteOff` (Optional) - Defaults to false
+    * `SpecialOrder` (Optional) - Defaults to false, case sensitive 
+    * `WriteOff` (Optional) - Defaults to false, case sensitive 
 * `LongDescription` (Optional) 
 * `Model` (Optional) 
 * `ReleaseDate` (Optional) 
-* `Serialized` (Optional) - Defaults to false
+* `Serialized` (Optional) - Defaults to false, case sensitive 
 * `SerialNumberPromptText` (Optional) - This value can only be set Serialized is set to `true`
 * `ShortDescription` (Optional) 
 * `Vendors` (Optional) 
@@ -446,7 +447,7 @@ An array of {{regularproduct}} resources with the following properties
     {
         "RegularProducts": [
             {
-                "CategoryName": "Smartphones",
+                "CategoryName": "Products > Phones > Smartphones",
                 "DefaultPricing": 
                 {
                     "Price" : 499.99,
@@ -594,18 +595,18 @@ An array of {{nonstockedproduct}} resources with the following properties
 * `CategoryName` (**Required**) 
 * `DefaultPricing` (**Required**) 
     * `Price` (**Required**) 
-    * `AllowReturns` (Optional) - Defaults to `true`
+    * `AllowReturns` (Optional) - Defaults to true, case sensitive 
     * `CarrierPrice` (Optional) 
     * `Cost` (Optional) 
-    * `Discountable` (Optional) - Defaults to `true`
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Defaults to `0`, cannot be negative
-    * `ForSale` (Optional) - Defaults to `true`
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
     * `Margin` (Optional) - Required if `PricingMethod` is `Margin`
     * `RefundPeriod` (Optional) - In days
-    * `ShowOnInvoice` (Optional) - Defaults to `true`
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) 
-    * `Enabled` (Optional) - Defaults to `true`
+    * `Enabled` (Optional) - Defaults to true, case sensitive 
 * `PricingMethod` (**Required**) 
 * `ProductLabel` (**Required**) 
 * `ProductName` (**Required**) 
@@ -614,27 +615,27 @@ An array of {{nonstockedproduct}} resources with the following properties
 * `GlInventoryAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `GlSalesAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if `Serialized` is set to `true`
-* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to `false`
+* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
 * `LongDescription` (Optional) 
 * `PricingLocations` (Optional) 
     * `Price` (**Required**) 
     * `TargetLocationType` (**Required**) - Required if `LocationVendors` is not `null`
-    * `AllowReturns` (Optional) - Defaults to `true`
+    * `AllowReturns` (Optional) - Defaults to true, case sensitive 
     * `CarrierPrice` (Optional) 
     * `Cost` (Optional) 
-    * `Discountable` (Optional) - Defaults to `true`
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Defaults to `0`, cannot be negative
-    * `ForSale` (Optional) - Defaults to `true`
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
     * `Margin` (Optional) - Required if `PricingMethod` is `Margin`
     * `RefundPeriod` (Optional) - In days
     * `SaleBeginDate` (Optional) - Required if `SalePrice` is supplied
     * `SaleEndDate` (Optional) - Required if `SalePrice` is supplied
     * `SalePrice` (Optional) - Defaults to `0`. If this value is provided, `SaleBeginDate` and `SaleEndDate` are required
-    * `ShowOnInvoice` (Optional) - Defaults to `true`
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) 
     * `TargetLocationName` (Optional) - Required if TargetLocationType is not `All`
-* `Serialized` (Optional) - Defaults to `false`
+* `Serialized` (Optional) - Defaults to false, case sensitive 
 * `SerialNumberPromptText` (Optional) - This value can only be set Serialized is set to `true`
 * `ShortDescription` (Optional) 
 
@@ -648,7 +649,7 @@ An array of {{nonstockedproduct}} resources with the following properties
         "RegularProducts": null,
         "NonStockedProducts": [
             {
-                "CategoryName": "RatePlans",
+                "CategoryName": "Rate Plans > RatePlans",
                 "DefaultPricing": { 
                     "AllowReturns": false,
                     "CarrierPrice": 0.0,
@@ -750,17 +751,17 @@ An array of {{vendorrebateproduct}} resources with the following properties
 * `CategoryName` (**Required**) 
 * `DefaultPricing` (**Required**) 
     * `Price` (**Required**) 
-    * `AllowReturns` (Optional) - Defaults to `true`
+    * `AllowReturns` (Optional) - Defaults to true, case sensitive 
     * `CarrierPrice` (Optional) 
     * `Cost` (Optional) 
-    * `Discountable` (Optional) - Defaults to `true`
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Defaults to `0`, cannot be negative
-    * `ForSale` (Optional) - Defaults to `true`
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
     * `Margin` (Optional) - Required if `PricingMethod` is `Margin`
-    * `ShowOnInvoice` (Optional) - Defaults to `true`
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) 
-    * `Enabled` (Optional) - Defaults to `true`
+    * `Enabled` (Optional) - Defaults to true, case sensitive 
 * `PricingMethod` (**Required**) 
 * `ProductLabel` (**Required**) 
 * `ProductName` (**Required**) 
@@ -771,26 +772,26 @@ An array of {{vendorrebateproduct}} resources with the following properties
 * `VendorAccountName` (**Required**)
 * `VendorName` (**Required**)
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if `Serialized` is set to `true`
-* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to `false`
+* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
 * `LongDescription` (Optional) 
 * `PricingLocations` (Optional) 
     * `Price` (**Required**) 
     * `TargetLocationType` (**Required**) - Required if `LocationVendors` is not `null`
-    * `AllowReturns` (Optional) - Defaults to `true`
+    * `AllowReturns` (Optional) - Defaults to true, case sensitive 
     * `CarrierPrice` (Optional) 
     * `Cost` (Optional) 
-    * `Discountable` (Optional) - Defaults to `true`
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Defaults to `0`, cannot be negative
-    * `ForSale` (Optional) - Defaults to `true`
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
     * `Margin` (Optional) - Required if `PricingMethod` is `Margin`
     * `SaleBeginDate` (Optional) - Required if `SalePrice` is supplied
     * `SaleEndDate` (Optional) - Required if `SalePrice` is supplied
     * `SalePrice` (Optional) - Defaults to `0`. If this value is provided, `SaleBeginDate` and `SaleEndDate` are required
-    * `ShowOnInvoice` (Optional) - Defaults to `true`
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) 
     * `TargetLocationName` (Optional) - Required if TargetLocationType is not `All`
-* `Serialized` (Optional) - Defaults to `false`
+* `Serialized` (Optional) - Defaults to false, case sensitive 
 * `SerialNumberPromptText` (Optional) - This value can only be set Serialized is set to `true`
 * `ShortDescription` (Optional)
 
@@ -806,7 +807,7 @@ An array of {{vendorrebateproduct}} resources with the following properties
         "NonRevenueProducts": null,
         "VendorRebateProducts": [
             {
-                "CategoryName": "Rate Plan Rebates",
+                "CategoryName": "Rate Plans > Rate Plan Rebates",
                 "DefaultPricing": {
                     "AllowReturns": false,
                     "CarrierPrice": 0.0,
@@ -907,18 +908,18 @@ An array of {{nonreveueproducts}} resources with the following properties
 * `CategoryName` (**Required**) 
 * `DefaultPricing` (**Required**) 
     * `Price` (**Required**) 
-    * `AllowReturns` (Optional) - Defaults to `true`
+    * `AllowReturns` (Optional) - Defaults to true, case sensitive 
     * `CarrierPrice` (Optional) 
     * `Cost` (Optional) 
-    * `Discountable` (Optional) - Defaults to `true`
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Defaults to `0`, cannot be negative
-    * `ForSale` (Optional) - Defaults to `true`
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
     * `Margin` (Optional) - Required if `PricingMethod` is `Margin`
     * `RefundPeriod` (Optional) - In days
-    * `ShowOnInvoice` (Optional) - Defaults to `true`
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) 
-    * `Enabled` (Optional) - Defaults to `true`
+    * `Enabled` (Optional) - Defaults to true, case sensitive 
 * `PricingMethod` (**Required**) 
 * `ProductLabel` (**Required**) 
 * `ProductName` (**Required**) 
@@ -927,27 +928,27 @@ An array of {{nonreveueproducts}} resources with the following properties
 * `GlInventoryAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `GlSalesAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if `Serialized` is set to `true`
-* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to `false`
+* `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
 * `LongDescription` (Optional) 
 * `PricingLocations` (Optional) 
     * `Price` (**Required**) 
     * `TargetLocationType` (**Required**) - Required if `LocationVendors` is not `null`
-    * `AllowReturns` (Optional) - Defaults to `true`
+    * `AllowReturns` (Optional) - Defaults to true, case sensitive 
     * `CarrierPrice` (Optional) 
     * `Cost` (Optional) 
-    * `Discountable` (Optional) - Defaults to `true`
+    * `Discountable` (Optional) - Defaults to true, case sensitive 
     * `FloorPrice` (Optional) - Defaults to `0`, cannot be negative
-    * `ForSale` (Optional) - Defaults to `true`
+    * `ForSale` (Optional) - Defaults to true, case sensitive 
     * `InvoiceComments` (Optional) 
     * `Margin` (Optional) - Required if `PricingMethod` is `Margin`
     * `RefundPeriod` (Optional) - In days
     * `SaleBeginDate` (Optional) - Required if `SalePrice` is supplied
     * `SaleEndDate` (Optional) - Required if `SalePrice` is supplied
     * `SalePrice` (Optional) - Defaults to `0`. If this value is provided, `SaleBeginDate` and `SaleEndDate` are required
-    * `ShowOnInvoice` (Optional) - Defaults to `true`
+    * `ShowOnInvoice` (Optional) - Defaults to true, case sensitive 
     * `StoreInStorePrice` (Optional) 
     * `TargetLocationName` (Optional) - Required if TargetLocationType is not `All`
-* `Serialized` (Optional) - Defaults to `false`
+* `Serialized` (Optional) - Defaults to false, case sensitive 
 * `SerialNumberPromptText` (Optional) - This value can only be set Serialized is set to `true`
 * `ShortDescription` (Optional) 
 
@@ -962,7 +963,7 @@ An array of {{nonreveueproducts}} resources with the following properties
         "NonStockedProducts": null,
         "NonRevenueProducts": [
             {
-                "CategoryName": "",
+                "CategoryName": "Misc > Misc. Fees",
                 "DefaultPricing": {
                     "AllowReturns": false,
                     "CarrierPrice": 0.0,

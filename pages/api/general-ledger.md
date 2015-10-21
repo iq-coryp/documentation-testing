@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-10-2015
+last_updated: 16-10-2015
 summary: 
 ---
 
@@ -170,7 +170,7 @@ If using a `application/hal+json`, [Pagination](#pagination) data will be includ
 
 {{callout_info}}
 <b>Sorting Order</b><br/>
-When getting Transacations, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first
+When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first
 {{end}}
 
 #### Request
@@ -277,7 +277,7 @@ Pagination is done through the use of `$skip` and `$top` query string parameters
 
 Pagination links for 'self', 'prev' and 'next' are returned by default when the media type is a hypermedia-enabled media type (i.e. HAL).
 
-These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to append the appropriate endpoint.
+These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to prepend the appropriate endpoint.
 
 ##### Example
 

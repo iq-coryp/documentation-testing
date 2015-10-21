@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 13-10-2015
 summary: 
 ---
 
@@ -13,7 +13,7 @@ summary:
 ## Overview
 
 The cost feed provides iQmetrix with the wholesale cost (inclusive cost for the company) for each product.  
-The cost feed alows suppliers to input a list of products, where each product includes one cost and list of associated companies.
+The cost feed allows suppliers to input a list of products, where each product includes one cost and list of associated companies.
 
 These costs will be provided for retailers (companies) to use for future transactions and will be reflected in RQ and BI reporting. 
 
@@ -45,6 +45,10 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 ### Request
 
     POST /Suppliers({SupplierId})/Cost
+
+    {
+        {Cost}
+    }
     
 #### Headers
 
@@ -55,6 +59,9 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 #### URI Parameters
 
 * `SupplierId` (**Required**) - Identifier of the {{supplier}}
+
+#### Request Parameters
+
 * `Products` (**Required**)
     * `Sku` (**Required**)
     * `Cost` (**Required**)

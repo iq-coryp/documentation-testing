@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 19-10-2015
 summary: 
 ---
 
@@ -22,7 +22,7 @@ The Customer Managed Inventory (CMI) API can be used to:
 
 ## Endpoints
 
-* Sandbox: https://vmi7.iqmetrix.net/VMIClientService.asmx
+* Sandbox: https://vmidemeo.iqmetrix.net/VMIClientService.asmx
 * Production (Denver): https://vmi1.iqmetrix.net/VMIClientService.asmx
 * Production (Toronto): https://vmi3.iqmetrix.net/VMIClientService.asmx
 * Production (Philadelphia): https://vmi10.iqmetrix.net/VMIClientService.asmx
@@ -48,7 +48,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 | ClientID | GUID | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` | 
 | Username | String | Username | `sampleusername` |
 | Password | String | Password | `samplepassword` |
-| StoreId | Integer | Store identifier | `4` | 
+| StoreId | Integer | Reserved for future use. Use value of -1 | `-1` | 
 
 ### PurchaseOrderShipmentNotice
 
@@ -237,7 +237,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
         <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
         <Username>sampleusername</Username>
         <Password>samplepassword</Password>
-        <StoreID>4</StoreID>
+        <StoreID>-1</StoreID>
       </client>
       <notice>
         <PurchaseOrderShipmentNotice>
@@ -267,7 +267,7 @@ ClientIdentity client = new ClientIdentity();
 client.ClientID = new GUID("9DC6AA95-856B-42C9-8AAF-392A2A02AC77");
 client.Username = "sampleusername";
 client.Password = "samplepassword";
-client.StoreID = 4;
+client.StoreID = -1;
 
 PurchaseOrderShipmentNotice shipmentNotice = new PurchaseOrderShipmentNotice();
 shipmentNotice.PurchaseOrderID = new GUID(84DACFD3-4095-4D50-A02E-781B86B7408E);

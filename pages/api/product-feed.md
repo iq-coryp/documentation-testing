@@ -27,7 +27,10 @@ Product information for the feed.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
+| Assets | Object | A reference to [Assets](/api/product-feed/#assets) | `` |
+| Classification | Object | A reference to [Classification](/api/product-feed/#classification) | `` |
 | ClassificationTreeName | String | Name of the classification tree | `Cellular & Accessories` |
+| Fields | Object | A reference to [Fields](/api/product-feed/#fields) | `` |
 | Id | Integer | Product Identifier | `34` |
 | LastModifiedByVendorUtc | DateTime | Provides the last date (UTC time format) that the product feed was modified by the vendor | `2015-09-16T10:40:31.101Z` |
 | Manufacturer | String | The company that produces the product | `Motorola` |
@@ -35,6 +38,7 @@ Product information for the feed.
 | ModelName | String | Master Product name. It is <strong>highly recommended</strong> to include ModelName for every product created. See [Product Structure](/concepts/product-structure). | `Agent18 SlimShield Case for iPhone 6` | 
 | ProviderClassification | Integer | Reserved for internal purposes | `null` |
 | UPC | String | Universal Product Code | `723755004337` |
+| VendorSkus | Object | A reference to [Vendor Skus](/api/product-feed/#vendorskus) | `` |
 
 ### ProductFeed
 
@@ -48,7 +52,7 @@ Product information for the feed.
 | Version | Integer | Product feed revision | `8` |
 
 
-### Classication
+### Classification
 
 Refer to {{classificationconcept}} concept for more information.
 
