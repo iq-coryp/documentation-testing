@@ -697,3 +697,7 @@ li.activeSeries {
   -moz-box-sizing: content-box;
   box-sizing: content-box
 }
+
+.gsc-clear-button {
+  display: none;
+}
