@@ -387,8 +387,8 @@ text-decoration: none;
 
 ul#mysidebar {
   margin-top:40px;
-  
   border-radius:0px;
+  width: 300px;
 }
 
 .nav ul li ul li a {
@@ -483,8 +483,9 @@ figcaption {
 }
 
 .siteTagline {
-margin: 20px 0px;
-font-size:17px;
+  margin: 20px 0px;
+  font-size:17px;
+  min-height: 55px;
 }
 
 .testing {
@@ -602,10 +603,10 @@ a[data-toggle] {
 
 .pageMetadata {
     padding:13px;
-    margin:15px 0px 15px 15px;
+    margin:15px 0px 15px 50px;
     border:1px solid #dedede;
     background-color: whitesmoke;
-    width:200px;
+    width:260px;
 }
 
 @media (max-width: 1000px) {
@@ -673,4 +674,26 @@ li.activeSeries {
 .seriesContext .dropdown-menu li.active {
     font-weight: bold;
     margin-left: 20px;
+}
+
+/* Custom styles for search */
+
+.siteTagline table, .siteTagline tr, .siteTagline th {
+  padding:0px !important;
+  border: none !important;
+  max-width: 100%;
+}
+
+.siteTagline table > thead > tr > th, table > tbody > tr > th, 
+.siteTagline table > tfoot > tr > th, 
+.siteTagline table > thead > tr > td, 
+.siteTagline table > tbody > tr > td, table > tfoot > tr > td {
+  padding: 0px !important;
+  border: none !important;
+}
+
+.siteTagLine *, .siteTagLine *:before, .siteTagLine *:after {
+  -webkit-box-sizing: content-box; 
+  -moz-box-sizing: content-box;
+  box-sizing: content-box
 }

@@ -39,7 +39,23 @@
         {% include custom/conditions.html %}
 
         <ul id="mysidebar" class="nav">
-            <div class="siteTagline">{{site.tagline}}</div>
+            <div class="siteTagline">
+                 <script>
+                  (function() {
+                    var cx = '009591095099572015911:qnzozsb5l8y';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//cse.google.com/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                    $(".cse .gsc-control-cse, .gsc-control-cse").css("padding","0");
+                  })();
+
+                </script>
+                <gcse:search></gcse:search>
+            </div>
             {% for entry in sidebar %}
                 {% for subcategory in entry.subcategories %}
                     {% if subcategory.url != null %}
