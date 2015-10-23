@@ -698,6 +698,6 @@ li.activeSeries {
   box-sizing: content-box
 }
 
-.gsc-clear-button {
-  display: none;
+.col-lg-1.hidden-md.hidden-sm.hidden-xs, .col-md-7 {
+  z-index: -1;
 }
