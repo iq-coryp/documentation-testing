@@ -4,7 +4,7 @@ permalink: /concepts/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 26-10-2015
 summary: 
 ---
 
@@ -12,7 +12,7 @@ summary:
 
 iQmetrix organizes retail (both saleable and not saleable) products in a hierarchal structure. The top level of this structure is the Classification Tree. Classification Trees are, in layman’s terms, Industries. Examples of Classification Trees could include Cellular and Accessories, Apparel and Accessories, or Automotive. 
 
-Classification Trees are a key part of the Product Library and your Catalog, as they organize all your products into Categories and Classifications. Each Classification Tree has its own unique identifier. 
+Classification Trees are a key part of the {{productlibraryconcept}} and your Catalog, as they organize all your products into Categories and Classifications. Each Classification Tree has its own unique identifier. 
 
 See the figure below for a general concept of how products are organized. 
 

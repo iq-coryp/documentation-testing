@@ -4,21 +4,21 @@ permalink: /concepts/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 26-10-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
 
-A Company Trees is a representation of how a Company is structured and is used to: 
+A Company Tree is a representation of how a Company is structured and is used to: 
 
 * Organize Locations
-* Manage nuances within iQmetrix APIs which can be passed down hierarchically 
+* Manage nuances within iQmetrix APIs, which can be passed down hierarchically 
 * Structure reporting
 * Manage security access
 
 {{note}}
-If you use RQ, you have limited control of your Company Tree
+If you use RQ, you have limited control of your Company Tree.
 {{end}}
 
 See the figure below for a general concept of how a Company Tree is structured. 
@@ -107,13 +107,13 @@ Through a successful social media campaign, Westeros gains thousands of follower
 
 This translates into record sales, and Westeros decides to expand into the neighboring province of Saskatchewan, which has a similar climate.
 
-A new province means a new set of taxes and regulations, so Westeros hires a regional store manager, Frank. The Company Tree is modified to include regional groups, Saskatchewan, and Alberta.
+A new province means a new set of taxes and regulations, so Westeros hires a regional store manager. The Company Tree is modified to include regional groups, Saskatchewan, and Alberta.
 
 <img src="{{ "/images/westeros-2.png" | prepend: site.url }}" />
 
 A few months later, Westeros acquires two retail stores in Manitoba through a merger with a competitor, Globex. The company name changes to Westeros Corporation as a result.
 
-Wanting to improve customer experience, Westeros decides to add an XQ Shelf screen to the Saskatoon retail store.
+Wanting to improve the customer experience, Westeros decides to add an XQ Shelf screen to the Regina retail store.
 
 To simplify management, the Company Tree is divided into Divisions.
 

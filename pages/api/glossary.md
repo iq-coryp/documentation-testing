@@ -4,7 +4,7 @@ permalink: /api/glossary/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 27-10-2015
 summary:
 ---
 
@@ -35,7 +35,7 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 
 ### Classification Tree
 
-A {{classificationtree}} is a hierarchical structure describing a taxonomy of {{products}}. Classification Trees are relatively static, and rarely change.
+A {{classificationtree}} is a hierarchical structure describing a taxonomy of {{products}} (i.e. an industry). Classification Trees are relatively static, and rarely change.
 
 ### Credit Account
 
@@ -48,6 +48,12 @@ A type of Account where debits increase the Account's balance.
 ### Hero Shot
 
 An Asset for a Product, typically an image or video.
+
+### Inheritance
+
+A process by which iQmetrix APIs use the hierarhical structure of a Company Tree to pass information "down" the Tree.
+
+For more information, see [Company Tree Inheritance](/concepts/company-tree/#inheritance).
 
 ### OAuth
 

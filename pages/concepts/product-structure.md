@@ -4,13 +4,13 @@ permalink: /concepts/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 26-10-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
 
-In Product Library and in your Catalog, products are structured in a way to make managing them easier.
+In {{productlibraryconcept}} and in your Catalog, products are structured in a way to make managing them easier.
 
 ## Master Products
 

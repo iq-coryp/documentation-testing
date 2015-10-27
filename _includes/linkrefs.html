@@ -33,6 +33,10 @@
 <a href="{{"/security-roles/#assignedrole" | prepend: site.api_baseurl}}">AssignedRole</a>
 {% endcapture %}
 
+{% capture availability %}
+<a href="{{"/availability/" | prepend: site.api_baseurl}}">Availability</a>
+{% endcapture %}
+
 {% capture carrier %}
 <a href="{{"/entity-store/#carrier" | prepend: site.api_baseurl}}">Carrier</a>
 {% endcapture %}
@@ -67,6 +71,14 @@
 
 {% capture company %}
 <a href="{{"/company-tree/#company" | prepend: site.api_baseurl}}">Company</a>
+{% endcapture %}
+
+{% capture companytree %}
+<a href="{{"/company-tree#companytree" | prepend: site.api_baseurl}}">CompanyTree</a>
+{% endcapture %}
+
+{% capture companytreeconcept %}
+<a href="{{"/company-tree/" | prepend: site.concepts_baseurl}}">Company Tree</a>
 {% endcapture %}
 
 {% capture companytreenode %}
@@ -109,6 +121,10 @@
 <a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>
 {% endcapture %}
 
+{% capture get_a_customer %}
+<a href="{{"/crm/#getting-a-customer" | prepend: site.api_baseurl}}">Get a Customer</a>
+{% endcapture %}
+
 {% capture get_field_definitions %}
 <a href="{{"/field-definitions/#getting-field-definitions" | prepend: site.api_baseurl}}">Getting Field Definitions</a>
 {% endcapture %}
@@ -123,6 +139,10 @@
 
 {% capture groups %}
 <a href="{{"/company-tree/#group" | prepend: site.api_baseurl}}">Groups</a>
+{% endcapture %}
+
+{% capture inheritance %}
+<a href="{{"/glossary/#inheritance" | prepend: site.api_baseurl}}">Inheritance</a>
 {% endcapture %}
 
 {% capture item_type %}
@@ -181,6 +201,10 @@
 <a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Product</a>
 {% endcapture %}
 
+{% capture productlibraryconcept %}
+<a href="{{"/product-library" | prepend: site.concepts_baseurl}}">Product Library</a>
+{% endcapture %}
+
 {% capture products %}
 <a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Products</a>
 {% endcapture %}
@@ -205,8 +229,16 @@
 <a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>
 {% endcapture %}
 
+{% capture update_a_customer %}
+<a href="{{"/crm/#updating-a-customer" | prepend: site.api_baseurl}}">Update a Customer</a>
+{% endcapture %}
+
 {% capture user %}
 <a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">User</a>
+{% endcapture %} 
+
+{% capture users %}
+<a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">Users</a>
 {% endcapture %} 
 
 {% capture supplier %}
