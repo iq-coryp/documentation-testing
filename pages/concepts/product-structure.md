@@ -4,7 +4,7 @@ permalink: /concepts/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 26-10-2015
+last_updated: 27-10-2015
 summary: 
 ---
 
