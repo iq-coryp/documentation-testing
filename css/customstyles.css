@@ -710,9 +710,11 @@ div.special_table table,
 div.special_table td {
   border-left-style: solid;
   border-left-width: 1px;
+  border-left-color: #dedede;
 
   border-right-style: solid;
   border-right-width: 1px;
+  border-right-color: #dedede;
   
   border-spacing: 0;
   border-collapse: collapse;
