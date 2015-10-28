@@ -701,3 +701,41 @@ li.activeSeries {
 .col-lg-1.hidden-md.hidden-sm.hidden-xs, .col-md-7 {
   z-index: -1;
 }
+
+.spacing{
+  padding-left:20px;
+}
+
+div.special_table table,
+div.special_table td {
+  border-style: solid;
+  border-width: 1px;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+div.special_table td:first-child{
+  width: 15px;
+}
+
+div.special_table thead {
+  text-transform: uppercase;
+  background-color: #444;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #444;
+}
+
+div.special_table thead > td {
+  padding: 8px;
+  font-size: 14px;
+}
+
+div.special_table table > tbody > tr > td {
+  font-size: 12px;
+}
