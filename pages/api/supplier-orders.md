@@ -493,7 +493,8 @@ The current feed endpoint gives access to the most recent entries in the feed.
 
 ### Response
 
-    {OrderStatusUpdate} that was created, if successful
+[OrderStatusUpdate](/orderstatusupdate) that was created, if successful
+
 
 ###### Example
 
@@ -577,7 +578,7 @@ If products from an order have been shipped in multiple shipments, the supplier 
 
 ### Response
 
-    {ItemStatusUpdate} that was created, if successful
+[ItemStatusUpdate](/itemstatusupdate) that was created, if successful
 
 ###### Example
 
