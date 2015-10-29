@@ -689,6 +689,8 @@ div.special_table td {
   border-right-style: solid;
   border-right-width: 1px;
   border-right-color: #dedede;
+  
+  border-top-style: none;
 
   border-spacing: 0;
   border-collapse: collapse;
