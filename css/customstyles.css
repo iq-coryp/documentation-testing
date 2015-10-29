@@ -675,3 +675,33 @@ li.activeSeries {
     font-weight: bold;
     margin-left: 20px;
 }
+
+.spacing{
+  padding-left:20px;
+}
+
+div.special_table table,
+div.special_table td {
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #dedede;
+
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #dedede;
+
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+div.special_table td:first-child{
+  width: 15px;
+}
+
+div.special_table table > thead > tr > th {
+  text-align: left;
+}
+
+div.special_table table > tbody > tr > td {
+  font-size: 12px;
+}
