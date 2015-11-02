@@ -73,7 +73,7 @@ resourceTypes:
                             <<exampleResourceHal>>
 schemas:
   - halLinks: |
-      { "$schema": "http://json-schema.org/schema",
+      { "$schema": "http://json-schema.org/draft-03/schema",
         "type": "object",
         "description": "Hal links for objects",
         "properties": {
@@ -84,7 +84,7 @@ schemas:
         "required": [ "self" ]
       }     
   - halLink: |
-      { "$schema": "http://json-schema.org/schema",
+      { "$schema": "http://json-schema.org/draft-03/schema",
         "type": "object",
         "description": "a Hypertext Application Language link",
         "properties": {
@@ -96,7 +96,7 @@ schemas:
   - customer: |
       { 
         "type": "object",
-        "$schema": "http://json-schema.org/schema",
+        "$schema": "http://json-schema.org/draft-03/schema",
         "description": "A Customer",
         "properties": {
           "Id":  { "type": "guid" },
@@ -117,7 +117,7 @@ schemas:
   - customerHalInner: |
       {
         "type": "object",
-        "$schema": "http://json-schema.org/schema",
+        "$schema": "http://json-schema.org/draft-03/schema",
         "description": "A Customer",
         "properties": {
           "self": { "type": "array", "$ref": "customerHal3" }
@@ -126,7 +126,7 @@ schemas:
   - customerHal3: |
       {
         "type": "object",
-        "$schema": "http://json-schema.org/schema",
+        "$schema": "http://json-schema.org/draft-03/schema",
         "description": "A Customer",
         "properties": {
           "_links": { "$ref": "halLinks" },
@@ -148,7 +148,7 @@ schemas:
   - customerHal: |
       {
         "type": "object",
-        "$schema": "http://json-schema.org/schema",
+        "$schema": "http://json-schema.org/draft-03/schema",
         "description": "A Customer",
         "properties": {
           "_links": { "$ref": "halLinks" },
