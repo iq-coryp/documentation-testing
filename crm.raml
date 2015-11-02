@@ -1,0 +1,334 @@
+#%RAML 0.8
+title: CRM
+version: v1
+baseUri: https://crm.iqmetrix.net/{version}
+traits:
+  - pageable:
+      queryParameters:
+        $skip:
+          displayName: skip
+          type: integer
+          description: Number of records to skip
+          example: 0
+          required: false
+        $top: 
+          displayName: top
+          type: integer
+          description: Number of records to take
+          example: 5
+          required: false
+resourceTypes:
+    - singularEndpoint:
+        securedBy: [oauth_2_0]
+        get:
+            responses:
+                200:
+                    body:
+                        application/json:
+                          schema: <<resource>>
+                          example: |
+                            <<exampleResource>> 
+        post: 
+          body:
+            application/json:
+              schema: <<resource>>
+              example: |
+                <<examplePostRequest>>
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: <<resource>>        
+                  example: |
+                    <<exampleResource>>
+        put:
+          body:
+            application/json:
+              schema: <<resource>>
+              example: |
+                <<examplePutRequest>>
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: <<resource>>
+                  example: |
+                   <<exampleResource>>
+        delete:
+          responses:
+            204:
+    - collectionEndpoint:
+        securedBy: [oauth_2_0]
+        get:
+            responses:
+                200:
+                    body:
+                        application/json:
+                          schema: <<resource>>
+                          example: |
+                            <<exampleCollection>> 
+                        application/hal+json:
+                          schema: <<resourceHal>>
+                          example: |
+                            <<exampleResourceHal>>
+schemas:
+  - halLinks: |
+      { "$schema": "http://json-schema.org/schema",
+        "type": "object",
+        "description": "Hal links for objects",
+        "properties": {
+          "self":  { "$ref": "halLink" },
+          "next": { "$ref": "halLink" },
+          "prev": { "$ref": "halLink" }
+        },
+        "required": [ "self" ]
+      }     
+  - halLink: |
+      { "$schema": "http://json-schema.org/schema",
+        "type": "object",
+        "description": "a Hypertext Application Language link",
+        "properties": {
+          "href":  { "type": "string" },
+          "tempated": { "type": "boolean" }
+        },
+        "required": [ "href" ]
+      }  
+  - customer: |
+      { 
+        "type": "object",
+        "$schema": "http://json-schema.org/schema",
+        "description": "A Customer",
+        "properties": {
+          "Id":  { "type": "guid" },
+          "CustomerTypeId":  { "type": "integer", "required": true },
+          "CustomerType": { "type": "string" },
+          "Title": { "type": "string" },
+          "PrimaryName": { "type": "string" },
+          "AlternateName": { "type": "string" },
+          "MiddleName": { "type": "string" },
+          "FamilyName": { "type": "string" },            
+          "DateOfBirth": { "type": "date" },
+          "Notes": { "type": "string" },            
+          "Disabled": { "type": "boolean" },
+          "DoNotContact": { "type": "boolean" },
+          "Version" : { "type": "integer"}
+        }
+      } 
+  - customerHalInner: |
+      {
+        "type": "object",
+        "$schema": "http://json-schema.org/schema",
+        "description": "A Customer",
+        "properties": {
+          "self": { "type": "array", "$ref": "customerHal3" }
+        }
+      }
+  - customerHal3: |
+      {
+        "type": "object",
+        "$schema": "http://json-schema.org/schema",
+        "description": "A Customer",
+        "properties": {
+          "_links": { "$ref": "halLinks" },
+          "Id":  { "type": "guid" },
+          "CustomerTypeId":  { "type": "integer", "required": true },
+          "CustomerType": { "type": "string" },
+          "Title": { "type": "string" },
+          "PrimaryName": { "type": "string" },
+          "AlternateName": { "type": "string" },
+          "MiddleName": { "type": "string" },
+          "FamilyName": { "type": "string" },            
+          "DateOfBirth": { "type": "date" },
+          "Notes": { "type": "string" },            
+          "Disabled": { "type": "boolean" },
+          "DoNotContact": { "type": "boolean" },
+          "Version" : { "type": "integer"}
+        }
+      }
+  - customerHal: |
+      {
+        "type": "object",
+        "$schema": "http://json-schema.org/schema",
+        "description": "A Customer",
+        "properties": {
+          "_links": { "$ref": "halLinks" },
+          "_embedded":{ "$ref": "customerHalInner" }
+        }
+      }
+securitySchemes:
+    - oauth_2_0:
+        description: |
+            iQmetrix APIs support OAuth 2.0 for authenticating API requests.
+        type: OAuth 2.0
+        describedBy:
+            headers:
+                Authorization:
+                    description: |
+                       Used to send a valid OAuth 2 access token.
+                    type: string
+            responses:
+                401:
+                    description: |
+                        Bad or expired token. This can happen if the user or iQmetrix
+                        revoked or expired an access token. To fixsorry fo, you should re-
+                        authenticate the user.
+                403:
+                    description: |
+                        Bad OAuth request (wrong consumer key, bad nonce, expired
+                        timestamp...). Unfortunately, re-authenticating the user won't help here.
+        settings:
+          authorizationUri: https://accountsint.iqmetrix.net/v1/oauth2/authorize
+          accessTokenUri: https://accountsint.iqmetrix.net/v1/oauth2/tokenn
+          authorizationGrants: [ owner ]
+/Companies({CompanyId})/Customers({CustomerId}):
+  type:
+    singularEndpoint:
+      resource: customer
+      examplePostRequest: |
+        {
+          "CustomerTypeId": 2,
+          "Title": "Mr",
+          "PrimaryName": "Robert",
+          "AlternateName": "Bob",
+          "MiddleName": "Lee",
+          "FamilyName": "Smith",
+          "DateOfBirth": "1952-07-23T12:00:00",
+          "Notes": "Interested in iPhone 6",
+          "Disabled": true,
+          "DoNotContact": true,
+        }
+      exampleResource: |
+        [
+          {
+            "Id": "92c0af6b-014e-4c9e-872e-17f1d87ef881",
+            "CustomerTypeId": 2,
+            "CustomerType": "Person",
+            "Title": "Mr",
+            "PrimaryName": "Robert",
+            "AlternateName": "Bob",
+            "MiddleName": "Lee",
+            "FamilyName": "Smith",
+            "DateOfBirth": "1952-07-23T12:00:00",
+            "Notes": "Interested in iPhone 6",
+            "Disabled": true,
+            "DoNotContact": true,
+            "Version": 1
+          }
+        ]
+      examplePutRequest: |
+        {
+          "Id": "92c0af6b-014e-4c9e-872e-17f1d87ef881",
+          "CustomerTypeId": 2,
+          "CustomerType": "Person",
+          "Title": "Mr",
+          "PrimaryName": "Robert",
+          "AlternateName": "Bob",
+          "MiddleName": "Lee",
+          "FamilyName": "Smith",
+          "DateOfBirth": "1952-07-23T12:00:00",
+          "Notes": "Interested in iPhone 6",
+          "Disabled": true,
+          "DoNotContact": true,
+          "Version": 1
+        }
+/Companies({CompanyId})/Customers?$skip={skip}&$top={top}:
+  type:
+    collectionEndpoint:
+      resource: customer
+      resourceHal: customerHal
+      exampleCollection: |
+        [
+          {
+            "Id": "92c0af6b-014e-4c9e-872e-17f1d87ef881",
+            "CustomerTypeId": 2,
+            "CustomerType": "Person",
+            "Title": "Mr",
+            "PrimaryName": "Robert",
+            "AlternateName": "Bob",
+            "MiddleName": "Lee",
+            "FamilyName": "Smith",
+            "DateOfBirth": "1952-07-23T12:00:00",
+            "Notes": "Interested in iPhone 6",
+            "Disabled": true,
+            "DoNotContact": true,
+            "Version": 1
+          },
+          {
+            "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
+            "CustomerTypeId": 2,
+            "CustomerType": "Person",
+            "Title": "Mrs",
+            "PrimaryName": null,
+            "AlternateName": null,
+            "MiddleName": null,
+            "FamilyName": null,
+            "DateOfBirth": null,
+            "Notes": null,
+            "Disabled": false,
+            "DoNotContact": true,
+            "Version": 3
+          }
+        ]
+      exampleResourceHal: |
+        {
+          "_links": {
+            "self": {
+              "href": "Companies(1)/Customers?$skip=0&$top=1",
+              "templated": false
+            },
+            "next": {
+              "href": "Companies(1)/Customers?$skip=1&$top=1",
+              "templated": false
+            }
+          },
+          "_embedded": {
+            "self": [
+              {
+                "_links": {
+                  "self": {
+                    "href": "Companies(1)/Customers(92c0af6b-014e-4c9e-872e-17f1d87ef881)",
+                    "templated": false
+                  },
+                  "iq:CustomerFull": {
+                    "href": "Companies(1)/CustomerFull(92c0af6b-014e-4c9e-872e-17f1d87ef881)",
+                    "templated": false
+                  },
+                  "iq:Address": {
+                    "href": "Companies(1)/Customers(92c0af6b-014e-4c9e-872e-17f1d87ef881)/Addresses",
+                    "templated": false
+                  },
+                  "iq:ContactMethod": {
+                    "href": "Companies(1)/Customers(92c0af6b-014e-4c9e-872e-17f1d87ef881)/ContactMethods",
+                    "templated": false
+                  },
+                  "iq:CustomerExtension": {
+                    "href": "Companies(1)/Customers(92c0af6b-014e-4c9e-872e-17f1d87ef881)/CustomerExtensions",
+                    "templated": false
+                  },
+                  "iq:RelatedCustomer": {
+                    "href": "Companies(1)/Customers(92c0af6b-014e-4c9e-872e-17f1d87ef881)/RelatedCustomers",
+                    "templated": false
+                  },
+                  "iq:MemberOf": {
+                    "href": "Companies(1)/Customers(92c0af6b-014e-4c9e-872e-17f1d87ef881)/MemberOf",
+                    "templated": false
+                  }
+                },
+                "_embedded": {},
+                "Id": "92c0af6b-014e-4c9e-872e-17f1d87ef881",
+                "CustomerTypeId": 2,
+                "CustomerType": "Person",
+                "Title": "Mr",
+                "PrimaryName": "Robert",
+                "AlternateName": "Bob",
+                "MiddleName": "Lee",
+                "FamilyName": "Smith",
+                "DateOfBirth": "1952-07-23T12:00:00",
+                "Notes": "Interested in iPhone 6",
+                "Disabled": true,
+                "DoNotContact": true,
+                "Version": 1
+              }
+            ]
+          }
+        }
