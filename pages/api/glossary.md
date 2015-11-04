@@ -4,38 +4,65 @@ permalink: /api/glossary/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-10-2015
+last_updated: 04-11-2015
 summary:
 ---
 
 {% include linkrefs.html %}
 
-## Terms
-
 ### Access Token
 
-An Access Token is a string that identifies a client application and allows authenticated access to iQmetrix APIs.
+A string that identifies a client application and allows authenticated access to iQmetrix APIs.
 
 ### Asset
 
-An {{asset}} is an image or video associated with a Product. 
+An image or video associated with a Product. 
 
 #### Supported Asset Types
 
 The following file formats are supported for assets: 
 
-“.gif”, ".jpg",".jpeg",".png", ".bmp", ".3g2", ".3gp", ".asf", ".avi", 
-".flv", ".mkv", ".mov", ".mp4", ".mpg", ".mpeg", ".mpeg4", “.ogg", ".ogm", ".ogv", ".rm", ".vob", ".webm", ".wmv", ".pdf"
+* .gif 
+* .jpg 
+* .jpeg 
+* .png 
+* .bmp 
+* .3g2
+* .asf 
+* .avi 
+* .flv 
+* .mkv
+* .mov 
+* .mp4 
+* .mpg 
+* .mpeg 
+* .mpeg4 
+* .ogg 
+* .ogm 
+* .ogv 
+* .pdf 
+* .rm 
+* .vob 
+* .webm 
+* .wmv
 
 ### Classication
 
-**Classifications** are used to group {{products}} together by similar features.
+A mechanism used to group {{products}} by similar features.
 
 For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a Classification of "Smartphones"
 
 ### Classification Tree
 
-A {{classificationtree}} is a hierarchical structure describing a taxonomy of {{products}} (i.e. an industry). Classification Trees are relatively static, and rarely change.
+A hierarchical structure describing a taxonomy of {{products}} (i.e. an industry). Classification Trees are relatively static, and rarely change.
+
+### Company
+
+An organization that sells Products to Customers.
+
+### Company Tree
+
+A hierarchial representation how a Company is structured, including the root Company, Groups, Divisions and Locations.
 
 ### Credit Account
 
@@ -44,6 +71,14 @@ A type of Account where credits increase the Account's balance.
 ### Debit Account
 
 A type of Account where debits increase the Account's balance.
+
+### Division
+
+A generic bucket used to organize a Company Tree, generally by sub-brand or sub-company.
+
+### Group
+
+A generic bucket used to organize a Company Tree, generally geographically or by manager.
 
 ### Hero Shot
 
@@ -55,9 +90,13 @@ A process by which iQmetrix APIs use the hierarhical structure of a Company Tree
 
 For more information, see [Company Tree Inheritance](/concepts/company-tree/#inheritance).
 
+### Location
+
+A physical or virtual presence that may hold inventory or process transactions.
+
 ### OAuth
 
-OAuth provides client applications with secure access to resources on behalf of a resource owner by allowing [Access Tokens](#access-token) to be issued to third-party clients. 
+Provides client applications with secure access to resources on behalf of a resource owner by allowing [Access Tokens](#access-token) to be issued to third-party clients. 
 
 ###### Example
 
@@ -67,7 +106,7 @@ OAuth provides client applications with secure access to resources on behalf of 
 
 ### Product Template
 
-A Product Template is a blueprint for creating a {{product}} in Product Library. It defines common Product Fields and how they should be organized into Field Groups for a Product that belongs to a Classification associated with the Product Template. 
+A blueprint for creating a {{product}} in Product Library. It defines common Product Fields and how they should be organized into Field Groups for a Product that belongs to a Classification associated with the Product Template. 
 
 Multiple Classifications may be associated with the same Product Template. 
 

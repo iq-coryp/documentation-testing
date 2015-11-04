@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -12,7 +12,7 @@ summary:
 
 ## Overview
 
-Suppliers have the ability to add products to their subscribable lists. They also have the ability to retrieve a list of companies from a subscription.
+Suppliers have the ability to add products to their subscribable lists and retrieve a list of companies from a subscription.
 
 ## Endpoints
 
@@ -26,7 +26,7 @@ Suppliers have the ability to add products to their subscribable lists. They als
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Companies | Array[Object] | Companies for the subscription | |
-| Companies.DateSubscribedUtc | DateTime | Date company subscribed to product subscription | `2015-09-23T23:48:37.744Z` |
+| Companies.DateSubscribedUtc | DateTime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
 | Companies.Id | Integer | Company identifier | `60454` |
 | Companies.Name | String | Company Name | `Mark Inc` |
 | ListId | GUID | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
@@ -47,22 +47,20 @@ Suppliers have the ability to add products to their subscribable lists. They als
 | Products.Version | Integer | Product revision | `2` |
 | Version | Integer | Subscription revision | `12` |
 
+## Getting All Companies in a Product Subscription
 
-## Get All Companies for Product Subscription
-
-### Request
+#### Request
 
     GET /subscription({ListId})
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameter
 
 * `ListId` (**Required**)
-
 
 ##### Example
 
@@ -70,8 +68,7 @@ Suppliers have the ability to add products to their subscribable lists. They als
     Authorization: Bearer (Access Token)
     Accept: application/json
 
-### Response
-
+#### Response
 
 ##### Example
 
@@ -95,25 +92,20 @@ Suppliers have the ability to add products to their subscribable lists. They als
         ]
     }
 
-## Get Subscribable List by ID
+## Getting a Subscribable List
 
-Retrieves a {{subscribable_list}}.
-
-### Request
+#### Request
 
     GET /subscribablelists({Id})
-
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
-
 
 #### URI Parameter
 
-* `Id` (**Required**)
-
+* `Id` (**Required**) - Identifier for a {{SubscribableList}}
 
 ##### Example
 
@@ -121,11 +113,9 @@ Retrieves a {{subscribable_list}}.
     Authorization: Bearer (Access Token)
     Accept: application/json
 
+#### Response
 
-### Response
-
-{{subscribable_list}} list for specified product subscription, if successful
-
+* {{SubscribableList}}
 
 ##### Example
 
@@ -143,9 +133,9 @@ Retrieves a {{subscribable_list}}.
                 "ProductSlugs": [
                     "M5218"
                 ],
-				"Version": 1
-			},
-			{
+                "Version": 1
+            },
+            {
                 "ProductName": "iPhone 6 Flexshield Case",
                 "VendorSku": "987321654",
                 "Price": 28.99,
@@ -157,28 +147,28 @@ Retrieves a {{subscribable_list}}.
         "Version": 2
     }
 
-## Put Products in Subscribable List
+## Updating Products in a Subscribable List
 
-{{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
+{{note}}
+The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.
+{{end}}
 
-### Request
+#### Request
 
     PUT /subscribablelists({Id})
     {
         {SubscribableList}
     }
    
-    
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-
 #### URI Parameter
 
-* `Id` (**Required**)
+* `Id` (**Required**) - Identifier for a {{SubscribableList}}
 
 #### Request Parameters
 
@@ -190,14 +180,12 @@ Retrieves a {{subscribable_list}}.
   * `Price` (Optional)
   * `Dropshipable` (Optional)
 
-
 ##### Example
 
     PUT /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
-
     {
         "EntityId": 60455,
         "Name": "Joe's Product List",
@@ -211,14 +199,13 @@ Retrieves a {{subscribable_list}}.
         ]
     }
 
+#### Response
 
-### Response
-
+* {{SubscribableList}}
 
 ##### Example
 
     HTTP 200 OK Content-Type: application/json
-
     {
         "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
         "EntityId": 60455,
@@ -236,10 +223,7 @@ Retrieves a {{subscribable_list}}.
         "Version": 2
     }
     
-
 ## Errors
-
-The below table may help resolve problems encountered when making requests to the product subscription API.
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|

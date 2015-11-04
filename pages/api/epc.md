@@ -4,13 +4,12 @@ permalink: /api/epc/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
-metadata: false
 ---
 {% include linkrefs.html %}
 
-The Electronic Product Catalog API allows you to import products into Product Library, your Catalog, and RQ. 
+The Electronic Product Catalog API allows you to import products into {{ProductLibrary_Concept}}, your Catalog, and RQ. 
 
 ## Endpoints
 
@@ -30,7 +29,7 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 | ProductName | String | Name | `iPhone 4S 16GB White` |
 | CategoryName | String | Path to the Category, delimited by `>` | `Products > Phones > Smartphones` |
 | DaysKeptInStock | Short | Number of days the Product can remain in stock | `10` |
-| DefaultLocationVendor | [LocationVendor](#locationvendor) | Default location | |
+| DefaultLocationVendor | [LocationVendor](#locationvendor) | Default values for location vendors | |
 | DefaultPricing | [RegularProductPricing](#regularproductpricing) | Default pricing | |
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
@@ -40,11 +39,11 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 | GlSalesAccountNumber | String | Account number for Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1003` |
 | IgnoreAutomaticTaxAddition | Boolean | Ensures that taxes will not be added as part of the automatic tax process. Defaults to false | `false` |
 | LocationVendors | Array[[LocationVendor](#locationvendor)] | Vendors for each location | |
-| LongDescription | String | Long description | `The iPhone 4S is a gradual step over the iPhone 4.` |
+| LongDescription | String | Long description | `The iPhone 4S is a gradual`<br/>`step over the iPhone 4.` |
 | ManufacturerName | String | Name of a Manufacturer | `Apple` |
 | ManufacturerSku | String | Manufacturer SKU | `ABC123` |
 | Model | String | Model | `iPhone 6` |
-| PricingAndPurchasingLocations | Array[[RegularProductLocationPricing](#regularproductlocationpricing)] | Pricing for locations | |
+| PricingAndPurchasingLocations | Array<br/>[[RegularProductLocationPricing](#regularproductlocationpricing)] | Pricing for locations | |
 | PricingMethod | String | See [PricingMethods](#pricingmethods) for a list of acceptable values | `Fixed` |
 | ProductLabel | String | Defaults to first 30 characters of the ProductName, but can be edited | |
 | ProductReferenceId | String | Identifier from an external system | `PRO123` |
@@ -58,7 +57,7 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 ### RegularProductPricing
 
 {{important}}
-When a new RegularProductPricing is created, these values will be used as defaults for any properties that are not supplied. However, for any subsequent updates, each RegularProductPricing will have to be changed individually as the change(s) will not propagate.
+When a new RegularProductPricing is created, the <b>default pricing</b> values will be used for any properties that are not supplied. However, for any subsequent updates, each RegularProductPricing will have to be changed individually as the change(s) to <b>default pricing fields</b> will not propagate.
 {{end}}
 
 | Name | Data Type | Description | Example |
@@ -91,7 +90,7 @@ This resource is an extension on [RegularProductPricing](#regularproductpricing)
 | SaleEndDate | DateTime | Sale end date | `2015-10-18T12:00:00.000` |
 | SalePrice | Decimal | Sale price will override FloorPrice if it is lower. Defaults to 0 | `399.99` |
 | TargetLocationName | String |Name of a channel, region, district or location to apply this pricing to. To select the entire Company, leave this value empty and select `All` for `TargetLocationType` | `Saskatchewan` |
-| TargetLocationType | String | See [TargetLocations](#targetlocations) for acceptable values | `RegionName` |
+| TargetLocationType | String | See [TargetLocations](#targetlocations) for a list of acceptable values | `RegionName` |
 
 ### NonStockedProduct
 
@@ -109,8 +108,8 @@ For more information about Non-Stocked Products, see [Non-Stocked Products](http
 | GlInventoryAccountNumber | String | Account number for Inventory, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1002` |
 | GlSalesAccountNumber | String | Account number for Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1003` |
 | IgnoreAutomaticTaxAddition | Boolean | Ensures that taxes will not be added as part of the automatic tax process. Defaults to false | `true` |
-| LongDescription | String | Long description | `Prepaid plan for people on the go` |
-| PricingLocations | Array[[NonStockedProductLocationPricing](#nonstockedproductlocationpricing)] | Pricing for Locations | 
+| LongDescription | String | Long description | `Prepaid plan for`<br/>`people on the go` |
+| PricingLocations | Array<br/>[[NonStockedProductLocationPricing](#nonstockedproductlocationpricing)] | Pricing for Locations | 
 | PricingMethod | String | See [PricingMethods](#pricingmethods) for a list of acceptable values | `Fixed` |
 | ProductLabel | String | Defaults to first 30 characters of the ProductName, but can be edited | `Prepaid Rate Plan` |
 | ProductReferenceId | String | Identifier from an external system | `PRO123A` |
@@ -122,7 +121,7 @@ For more information about Non-Stocked Products, see [Non-Stocked Products](http
 ### NonStockedProductPricing
 
 {{important}}
-When a new NonStockedProductPricing is created, these values will be used as defaults for any properties that are not supplied. However, for any subsequent updates, each NonStockedProductPricing will have to be changed individually as the change(s) will not propagate.
+When a new NonStockedProductPricing is created, the <b>default pricing</b> values will be used for any properties that are not supplied. However, for any subsequent updates, each NonStockedProductPricing will have to be changed individually as the change(s) to <b>default pricing fields</b> will not propagate.
 {{end}}
 
 | Name | Data Type | Description | Example |
@@ -147,7 +146,7 @@ This resource is an extension on [NonStockedProductPricing](#nonstockedproductpr
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | TargetLocationName | String | Applies pricing to a single location, or all locations in a company, channel, region or district | `Saskatchewan` |
-| TargetLocationType | String | Where to apply the pricing, see [TargetLocations](#targetlocations) for acceptable values | `RegionName` |
+| TargetLocationType | String | Where to apply the pricing, see [TargetLocations](#targetlocations) for a list of acceptable values | `RegionName` |
 | SalePrice | Decimal | Sale price, will override Floor Price if it is lower. Defaults to 0 | `0.0` |
 | SaleBeginDate | DateTime | Sale begin date | `null` |
 | SaleEndDate | DateTime | Sale end date | `null` |
@@ -170,7 +169,7 @@ For more information about Vendor Rebates, see [Vendor Rebates](http://iqmetrix.
 | GlSalesAccountNumber | String | Account number for Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1003` |
 | IgnoreAutomaticTaxAddition | Boolean | Ensures that taxes will not be added as part of the automatic tax process. Defaults to false | `false` |
 | LongDescription | String | Long description | `Rebate on 2 year actiations` |
-| PricingLocations | Array[[VendorRebateLocationPricing](#vendorrebatelocationpricing)] | Pricing for Locations | |
+| PricingLocations | Array<br/>[[VendorRebateLocationPricing](#vendorrebatelocationpricing)] | Pricing for Locations | |
 | PricingMethod | String | See [PricingMethods](#pricingmethods) for a list of acceptable values | `Fixed` |
 | ProductLabel | String | Defaults to first 30 characters of the ProductName, but can be edited | `2 YR New Act` |
 | ProductReferenceId | String | Identifier from an external system | `PRO123B` |
@@ -182,7 +181,7 @@ For more information about Vendor Rebates, see [Vendor Rebates](http://iqmetrix.
 ### VendorRebateProductPricing
 
 {{important}}
-When a new VendorRebateProductPricing is created, these values will be used as defaults for any properties that are not supplied. However, for any subsequent updates, each VendorRebateProductPricing will have to be changed individually as the change(s) will not propagate.
+When a new VendorRebateProductPricing is created, the <b>default pricing</b> values will be used for any properties that are not supplied. However, for any subsequent updates, each VendorRebateProductPricing will have to be changed individually as the change(s) to <b>default pricing fields</b> will not propagate.
 {{end}}
 
 | Name | Data Type | Description | Example |
@@ -207,7 +206,7 @@ This resource is an extension on [VendorRebateProductPricing](#vendorrebateprodu
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | TargetLocationName | String | Applies pricing to a single location, or all locations in a company, channel, region or district | `Saskatchewan` |
-| TargetLocationType | String | Where to apply the pricing, see [TargetLocations](#targetlocations) for acceptable values | `RegionName` |
+| TargetLocationType | String | Where to apply the pricing, see [TargetLocations](#targetlocations) for a list of acceptable values | `RegionName` |
 | SalePrice | Decimal | Sale price, will override Floor Price if it is lower. Defaults to 0 | `0.0` |
 | SaleBeginDate | DateTime | Sale begin date | `null` |
 | SaleEndDate | DateTime | Sale end date | `null` |
@@ -232,8 +231,8 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | GlInventoryAccountNumber | String | Account number for Inventory, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1002` |
 | GlSalesAccountNumber | String | Account number for Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1003` |
 | IgnoreAutomaticTaxAddition | Boolean | Ensures that taxes will not be added as part of the automatic tax process. Defaults to false | `true` |
-| LongDescription | String | Long description | `Recycling fee to dispose of old handset` |
-| PricingLocations | Array[[NonStockedProductLocationPricing](#nonstockedproductlocationpricing)] | Pricing for Locations | 
+| LongDescription | String | Long description | `Recycling fee to dispose`<br/>`of old handset` |
+| PricingLocations | Array<br/>[[NonStockedProductLocationPricing](#nonstockedproductlocationpricing)] | Pricing for Locations | 
 | PricingMethod | String | See [PricingMethods](#pricingmethods) for a list of acceptable values | `Fixed` |
 | ProductLabel | String | Defaults to first 30 characters of the ProductName, but can be edited | `Recycling Fee` |
 | ProductReferenceId | String | Identifier from an external system | `PRO123C` |
@@ -251,7 +250,7 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | EndOfLife | DateTime | Date for the Product as appropriate | `2016-01-01T12:00:00.000` |
 | SpecialOrder | Boolean | A flag to indicate that the Product is a special order. Defaults to false | `false` |
 | TargetLocationName | String | Applies pricing to a single location, or all locations in a company, channel, region or district | |
-| TargetLocationType | String | Where to apply the pricing, see [TargetLocations](#targetlocations) for acceptable values | |
+| TargetLocationType | String | Where to apply the pricing, see [TargetLocations](#targetlocations) for a list of acceptable values | |
 | VendorName | String | Vendor name | `SampleVendor` |
 | WriteOff | Boolean | A flag to indicate that the Product is a write-off. Defaults to false | `false` |
 
@@ -280,48 +279,48 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | ProductReferenceId | String | Identifier of the Product in an external system | `PRO123D` |
-| ProductDefinition | String | If this is a failed Product, description of the Product in XML | `<RegularProduct xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">….` |
+| ProductDefinition | String | If this is a failed Product, description of the Product in XML | `<RegularProduct`<br/>`xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"`<br/>`xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">….` |
 | StatusCode | Integer | Status of the import, see [StatusCode](#statuscode) for a list of possible values | `2` |
 | StatusName | String | Name of the associated [StatusCode](#statuscode) | `Error` |
-| ErrorMessage | String | Error message | `No matching RQ manufacturer found with the name appple` |
+| ErrorMessage | String | Error message | `No matching RQ manufacturer`<br/>`found with the name appple` |
 
-## Types
+## Enumerations
 
-### PricingMethods
+### PricingMethod
 
 For more information about pricing methods, see [Regular Products](http://iqmetrix.helpdocsonline.com/regular-products$General)
 
+### BatchStatusCode
+
+| Name | Id | Description |
+|:-----|:---|-------------|
+| Completed | 3 | The batch has been processed. Some products may have failed or all may have succeeded |
+| InProgress | 2 | The import is in progress |
+| Pending | 0 | The batch has not yet been imported |
+| Ready | 1 | The batch has not yet been imported |
+
 | Name |
 |:-----|
-| Margin |
 | Fixed |
+| Margin |
+
+### ProductStatusCode
+
+| Name | Id | Description |
+|:-----|:---|:------------|
+| Error | 2 | The Product encountered an error during import |
+| Pending | 0 | The Product has not yet been processed |
+| Processed | 1 | The Product was imported successfully |
 
 ### TargetLocations
 
 | Name | Locations affected |
-|:-----|:------------|
+|:-----|:-------------------|
 | All | All locations in Company |
 | ChannelName | Locations in channel specified by channel name |
-| RegionName | Locations in region specified by region name |
 | DistrictName | Locations in district specified by district name |
+| RegionName | Locations in region specified by region name |
 | StoreName | Location specified by store name |
-
-### BatchStatusCode
-
-| Id | Name | Description |
-|:---|:-----|:------------|
-| 0 | Pending | The batch has not yet been imported |
-| 1 | Ready | The batch has not yet been imported |
-| 2 | InProgress | The import is in progress |
-| 3 | Completed | The batch has been processed. Some products may have failed or all may have succeeded |
-
-### ProductStatusCode
-
-| Id | Name | Description |
-|:---|:-----|:------------|
-| 0 | Pending | The Product has not yet been processed |
-| 1 | Processed | The Product was imported successfully |
-| 2 | Error | The Product encountered an error during import |
 
 ## Importing a Regular Product
 
@@ -341,17 +340,15 @@ This request can be combined with other Import requests to import multiple Regul
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 #### Request Parameters
-
-An array of {{regularproduct}} resources with the following properties
 
 * `CategoryName` (**Required**) 
 * `DefaultPricing` (**Required**) 
@@ -580,17 +577,15 @@ This request can be combined with other Import requests to import multiple Regul
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 #### Request Parameters
-
-An array of {{nonstockedproduct}} resources with the following properties
 
 * `CategoryName` (**Required**) 
 * `DefaultPricing` (**Required**) 
@@ -736,17 +731,15 @@ This request can be combined with other Import requests to import multiple Regul
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 #### Request Parameters
-
-An array of {{vendorrebateproduct}} resources with the following properties
 
 * `CategoryName` (**Required**) 
 * `DefaultPricing` (**Required**) 
@@ -893,17 +886,15 @@ This request can be combined with other Import requests to import multiple Regul
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 #### Request Parameters
-
-An array of {{nonreveueproducts}} resources with the following properties
 
 * `CategoryName` (**Required**) 
 * `DefaultPricing` (**Required**) 
@@ -1041,13 +1032,13 @@ This request can be used to get the status of a request previously sent to EPC.
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `BatchId` (**Required**) - Identifier of the batch, which is supplied in responses to other requests to the EPC API
 
 ###### Example
@@ -1058,7 +1049,7 @@ This request can be used to get the status of a request previously sent to EPC.
 
 #### Response
 
-* [BatchStatus](#batchstatus) of the Batch that was requested, if it exists
+* [BatchStatus](#batchstatus)
 
 ###### Example
 

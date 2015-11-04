@@ -4,7 +4,7 @@ permalink: /api/rate-limiting/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -24,7 +24,7 @@ There are three rate limit policies that are applied to the APIs.
 
 The Authenticated Limit policy determines how many **Authenticated Requests** can be made during the Rate Limit Window.
 
-Authenticated Requests are made to iQmetrix APIs that require authentication, and include an {{access_token}} in the HTTP Header.
+Authenticated Requests are made to iQmetrix APIs that require authentication, and include an {{AccessToken_Glossary}} in the HTTP Header.
 
 To determine the limit, make an Authenticated Request to an iQmetrix API, then check the `X-RateLimit-Limit` HTTP Header of the response. 
 
@@ -69,4 +69,4 @@ If the rate limit is exceeded, the response will be `429 Too Many Requests` and 
 
 ## Support
 
-If you run into the `429 Too Many Requests` error, please contact {{site.support_email}}
+If you run into the `429 Too Many Requests` error, please contact {{contact_support}}

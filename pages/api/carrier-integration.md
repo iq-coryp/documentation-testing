@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -22,7 +22,7 @@ An **Activation** contains IDs necessary to identify an activation, and all the 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is<br/><br/>`{fieldID}={value}[,{additionalFieldIds}={additionalValues}]`<br/><br/>There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma  | `1=35854205829867` |
+| Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is<br/><br/>`{fieldID}={value}[,{additionalFieldIds}={additionalValues}]`<br/><br/>There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma  | `1=358542`<br/>`05829867` |
 | CarrierActivationDetails | [CarrierActivationDetails](#carrieractivationdetails) | The details of this [Activation](#activation) | |
 | CarrierId | Integer | Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
 | CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
@@ -37,12 +37,12 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | ActivationId | Integer | System-generated identifier for the [Activation](#activation) | `354` |
 | ActivationDate | DateTime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
 | ActivatedProduct | [ActivatedProduct](#activatedproduct) | The Product that is being activated | |
-| ActivationState | String ([ActivationState](#activationstate)) | State of the Activation. A `Pending` [Activation](#activation) has not yet had payment taken. A `Completed` Activation has been paid for successfully  | `Pending` |
+| ActivationState | String | State of the Activation. See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
 | ActivationTermCode | String(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
-| ActivationType | String ([ActivationType](#activationtype)) | The type of this Activation, such as a new [Activation](#activation) or an upgrade. See [ActivationType](#activationtype) for the full list of allowable types | `NewActivation` |
+| ActivationType | String | The type of this Activation, such as a new [Activation](#activation) or an upgrade. See [ActivationType](#activationtype) for a list of acceptable values | `NewActivation` |
 | AdditionalFees | Array[[AdditionalFee](#additionalfee)] | The additional fees that are applicable to this Activation, not including the deposit fee or tab | |
 | ContractLengthInMonths | Integer | Number of months the [Activation](#activation) has been contracted for. ContractTerm in RQ. For a list of acceptable values, see [ContractTerms](#contractterm) | `24` |
-| ContractNumberIsAccountNumber | Boolean | Whether the contract number of the [Activation](#activation) can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
+| ContractNumberIsAccountNumber | Boolean | A flag to indicate if the contract number of the [Activation](#activation) can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
 | DealerName | String | Carrier-specific dealer name | `IAPR` |
 | DealerCode | String(64) | Carrier-specific dealer code | `IAPR` |
 | Deposit | [AdditionalFee](#additionalfee) | The security deposit that the [Activation](#activation) requires the Subscriber to pay | `Credit check performed, deposit required` |
@@ -77,8 +77,8 @@ A **Subscriber** contains all of the customer information related to an activati
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | SubscriberId | String(64) | Carrier-specific identifier for the Subscriber | `12121212121` |
-| FirstName | String(64) | If the Subscriber is an individual, the first name of the Subscriber | `Joe` |
-| LastName | String(64) | If the Subscriber is an individual, the last name of the Subscriber | `Smith` |
+| FirstName | String(64) | If `IsIndividual` is `true`, the first name of the Subscriber | `Joe` |
+| LastName | String(64) | If `IsIndividual` is `true`, the last name of the Subscriber | `Smith` |
 | Addresses | Array[[Address](#address)] | List of addresses for the Subscriber | |
 | AssociatedAccount | Object | The account associated with this Subscriber | |
 | AssociatedAccount.AccountId | String(64) | Carrier-specific identifier for the associated account | `343434343` |
@@ -90,7 +90,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (`true`) or a  business (`false`) | `true` |
 | Notes | String(128) | Notes | `24 Month Term` |
 | PhoneNumbers | Array[Object] | List of phone numbers | |
-| PhoneNumbers.Type | String ([PhoneNumberType](#phonenumbertype)) | The type of phone number.  See [PhoneNumberType](#phonenumbertype) for the list of valid types  | `Home` |
+| PhoneNumbers.Type | String | The type of phone number. See [PhoneNumberType](#phonenumbertype) for the list of acceptable values | `Home` |
 | PhoneNumbers.Value | String(32) | Phone number | `1234561234` |
 | SSN | String(4) | Last 4 digits of a SSN  | `6789` |
 | TrackingNumber | String(64) | Carrier-specific tracking number | `2121212121` |
@@ -115,7 +115,7 @@ A **Subscriber** contains all of the customer information related to an activati
 | PostalCode | String(32) | Postal code or zip code | `19901` |
 | Province | String(64) | Province or state | `DE` |
 | SuiteNumber | String(32) | Suite number | `100` |
-| Type | String ([AddressType](#addresstype)) | The type of this Address. See [AddressType](#addresstype) for a list of valid types | `Residential` |
+| Type | String | The type of this Address. See [AddressType](#addresstype) for a list of acceptable values | `Residential` |
 
 ### RatePlan
 
@@ -214,14 +214,14 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) where the transaction occurred | `1` |
 | Taxes | Decimal | The taxes from the invoice | `8.16` |
 
-## Types
+## Enumerations
 
 ### ActivationState
 
-| Name |
-|:-----|
-| Completed |
-| Pending |
+| Name | Description |
+|:-----|:------------|
+| Completed | An Activation that has been paid for successfully |
+| Pending | An Activation that has not yet had payment taken |
 
 ### ActivationType
 
@@ -275,20 +275,18 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 
 #### Headers
 
-* `Authorization: Bearer` {{access_token}}
+* `Authorization: Bearer` {{AccessToken_Glossary}}
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `LocationId` (**Required**) - Identifier for the {{location}}
-* `CarrierId` (**Required**) - Identifier for the {{carrier}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `LocationId` (**Required**) - Identifier for the {{Location}}
+* `CarrierId` (**Required**) - Identifier for the {{Carrier}}
 * `ActivationId` (**Required**) - Identifier for the [Activation](#activation)
 
 #### Request Parameters
-
-An [Activation](#activation) resource with the following properties:
 
 * `Id` (**Required**) - Must match the ActivationId provided in the URI
 * `CarrierActivationDetails` (**Required**) 
@@ -538,7 +536,7 @@ An [Activation](#activation) resource with the following properties:
     
 #### Response
 
-* [Activation](#activation) that was added
+* [Activation](#activation) 
 
 ###### Example
 
@@ -680,14 +678,14 @@ An [Activation](#activation) resource with the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` {{access_token}}
+* `Authorization: Bearer` {{AccessToken_Glossary}}
 * `Accept: application/json` OR `Accept: application/hal+json`
 * `Content-Type: application/json` 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CarrierId` (**Required**) - Identifier for the {{carrier}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CarrierId` (**Required**) - Identifier for the {{Carrier}}
 * `ConfirmationDate` (Optional) - Limits returned records to ones that were created after the specified date
 * `Skip` (Optional) - Number of records to skip before returning.  See [Pagination](#pagination) for more details
 * `Top` (Optional) - Maximum number of records return.  See [Pagination](#pagination) for more details
@@ -698,7 +696,7 @@ An [Activation](#activation) resource with the following properties:
 
 #### Response
 
-* Array[[ConfirmedActivation](#confirmedactivation)] matching the filter criteria.
+* Array[[ConfirmedActivation](#confirmedactivation)] 
  
 ###### Example (application/json)
 
@@ -823,11 +821,9 @@ The `prev`.`href` refers to a resource containing a page with the **previous** 1
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Carrier Integration API.
-
-| Error Code  | Description | How to Resolve |
-|:------------|:------------|:---------------|
-| `HTTP 400` | `Invalid Request: The field {x} must be greater than or equal to 1` | Ensure CarrierId in request matches CarrierId in URI |
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
+| `HTTP 400` | `Invalid Request: The field {x}`<br/>`must be greater than or equal to 1` | Ensure CarrierId in request matches CarrierId in URI |
 | `HTTP 400` | `Carrier {x} not found` | Ensure Carrier provided in URI is correct |
-| `HTTP 400` | `Invalid Request: the {x} field is required` | Ensure all required fields are provided |
-| `HTTP 400` | `Invalid Request: Type field must be one of the following values: {x}` | Ensure AddressType is one of the values in [AddressType](#addresstype) |
+| `HTTP 400` | `Invalid Request: the {x} `<br/>`field is required` | Ensure all required fields are provided |
+| `HTTP 400` | `Invalid Request: Type field must`<br/>` be one of the following values: {x}` | Ensure AddressType is one of the values in [AddressType](#addresstype) |

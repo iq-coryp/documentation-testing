@@ -4,7 +4,7 @@ permalink: /concepts/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -27,23 +27,23 @@ See the figure below for a general concept of how a Company Tree is structured.
 
 ## Nodes
 
-Nodes are the building blocks of a Company Tree and are used to represent the {{company}}, {{groups}}, {{divisions}}, {{locations}} or Devices in a Company Tree. 
+Nodes are the building blocks of a Company Tree and are used to represent the {{Company}}, {{Groups}}, {{Divisions}}, {{Locations}} or Devices in a Company Tree. 
 
 While Nodes may have multiple children, they can only have a single parent.
 
 ### Company
 
-The Root (top-most) Node in a Company Tree always represents the {{company}} that owns the tree.
+The Root (top-most) Node in a Company Tree always represents the {{Company}} that owns the tree.
 
 ### Divisions and Groups
 
-{{divisions}} and {{groups}} serve as generic buckets you can use to organize a Company Tree.
+{{Divisions}} and {{Groups}} serve as generic buckets you can use to organize a Company Tree.
 
 iQmetrix recommends using Divisions to represent **sub-brands** or **sub-companies** and Groups to represent **managerial** or **geographical** groupings.
 
 ### Locations
 
-{{locations}} represent physical and virtual presences that may hold inventory or process transactions, such as:
+{{Locations}} represent physical and virtual presences that may hold inventory or process transactions, such as:
 
 * Offices
 * Retail locations

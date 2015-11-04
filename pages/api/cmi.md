@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -285,7 +285,7 @@ PurchaseOrderShipmentNotice snReturn = cmiService.CreatePurchaseOrderShipmentNot
 
 #### Response
 
-* [PurchaseOrderShipmentNotice](#purchaseordershipmentnotice)] that was created, if it was successful
+* [PurchaseOrderShipmentNotice](#purchaseordershipmentnotice)
 
 ##### Example
 
@@ -399,7 +399,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
 
 #### Response
 
-* Array[[PurchaseOrderInformation](#purchaseorderinformation)] that were requested, if any were found
+* Array[[PurchaseOrderInformation](#purchaseorderinformation)]
 
 ###### Example
 
@@ -518,6 +518,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
 
 ###### Example
 
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
@@ -548,7 +549,7 @@ PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(clie
 
 #### Response
 
-* [PurchaseOrderInformation](#purchaseorderinformation) that were requested, if it exists
+* [PurchaseOrderInformation](#purchaseorderinformation)
 
 ##### Example
 
@@ -701,7 +702,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByBusinessID(client,
 
 #### Response
 
-* Array[[PurchaseOrderInformation](#purchaseorderinformation)] that were requested, if any were found
+* Array[[PurchaseOrderInformation](#purchaseorderinformation)] 
 
 ###### Example
 
@@ -842,7 +843,7 @@ StoreInformation[] stores = cmiService.GetStoreList(client);
 
 #### Response
 
-* Array[[StoreInformation](#storeinformation)] - StoreInformation resources that were requested, if any were found
+* Array[[StoreInformation](#storeinformation)] 
 
 ###### Example
 

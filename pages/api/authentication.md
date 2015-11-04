@@ -4,11 +4,17 @@ permalink: /api/authentication/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 03-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
+
+## Overview 
+
+iQmetrix APIs are protected by {{OAuth2_Glossary}}.
+
+In order to make authorized requests to iQmetrix APIs, your application must first obtain an {{AccessToken_Glossary}}.
 
 ## Endpoints
 
@@ -27,12 +33,6 @@ public class OAuth2TokenResponse
     public string refresh_token { get; set; }
 }
 ```
-
-## Authentication 
-
-iQmetrix APIs are protected by {{oauth2}}.
-
-In order to make authorized requests to iQmetrix APIs, your application must first obtain an {{access_token}}.
 
 ## Obtaining an Access Token
 
@@ -115,16 +115,6 @@ public static OAuth2TokenResponse ObtainingAnAccessToken()
         "refresh_token": "f8bk56n40f7gi34j49g7bh4n430gf874h" 
     }
 
-##### Errors
-
-The below table may help resolve problems encountered when making requests to the Authentication API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
-| HTTP 400 | `unsupported_grant_type` | Ensure grant_type is set to `password` |
-| HTTP 400 | `invalid_client` | Ensure client_id and client_secret are correct |
-| HTTP 400 | `invalid_grant` | Ensure username and password are correct |
- 
 ## Refreshing an Access Token 
 
 Instead of always using credentials, a client application may use the refresh token to obtain a new access token.
@@ -206,10 +196,8 @@ public static SsoTokenResponse RefreshingAnAccessToken(string refreshToken)
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Authentication API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
-| `HTTP 400` | `unsupported_grant_type` | Ensure grant_type is set to `refresh_token` |
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
+| `HTTP 400` | `unsupported_grant_type` | Ensure grant_type is set to appropriately |
 | `HTTP 400` | `invalid_client` | Ensure client_id and client_secret are correct |
-| `HTTP 400` | `invalid_grant` | Ensure client credentials are the same as those used in the original request to acquire the provided refresh token |
+| `HTTP 400` | `invalid_grant` | Ensure client credentials are correct. For a refresh token, ensure credentials are the same as those used to acquire the original access token  |

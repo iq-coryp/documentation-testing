@@ -4,18 +4,18 @@ permalink: /guides/creating-an-in-store-order/
 tags: []
 keywords: 
 audience: 
-last_updated: 05-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
-{% include externallinks.html %}
+
 
 ## Overview
 
-This guide is intended to walk you through the process of creating an {{order}} that is fulfilled in a store (not dropship or eCommerce). 
+This guide is intended to walk you through the process of creating an {{Order}} that is fulfilled in a store (not dropship or eCommerce). 
 
-Creating an Order will make it available to other iQmetrix products such as {{RQ}} and {{XQShelf}}.
+Creating an Order will make it available to other iQmetrix products such as {{rq}} and {{xqshelf}}.
 
 ### Who Is This Guide For?
 
@@ -30,11 +30,11 @@ You may be interested in this guide if you are creating...
 To use this guide, the following steps must be completed:
 
 * You must have your **onboarding package** from iQmetrix, which includes your access credentials and environments
-* Your **Product Catalog**, physical inventory for your store(s), must be set up
-* Your **Company Tree**, representing company structure (stores, groups, divisions, etc), must be created
+* Your {{ProductLibrary_Concept}}, or physical inventory for your store(s), must be set up
+* Your {{CompanyTree_Concept}}, representing company structure (stores, groups, divisions, etc), must be created
 
 {{tip}}
-If the above steps are not complete or you are not sure, contact <a href="mailto:{{site.support_email}}?subject=Support">API Support</a>
+If the above steps are not complete or you are not sure, contact {{contact_support}}.
 {{end}}
 
 ## Before You Begin
@@ -47,7 +47,7 @@ Before you can create an Order, you will need to know:
 
 ## Step 1 - Authenticating
 
-In order call iQmetrix APIs, we first need an {{access_token}}.
+In order call iQmetrix APIs, we first need an {{AccessToken_Glossary}}.
 
 See the table below for different ways of getting an Access Token.
 
@@ -64,7 +64,7 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 
 ## Step 2 - Finding or Creating a Location
 
-Every {{order}} must have an associated {{location}} that belongs to a {{company}}. 
+Every {{Order}} must have an associated {{Location}} that belongs to a {{Company}}. 
 
 We will reference this Location in our request by using its `EntityId`.
 
@@ -81,7 +81,7 @@ For the Order to appear in the pending list of orders in RQ, the `EntityId` must
 
 ## Step 3 - Finding or Creating a Customer
 
-Every {{order}} must have an associated {{customer}} that belongs to the {{company}}.
+Every {{Order}} must have an associated {{Customer}} that belongs to the {{Company}}.
 
 We will reference this Customer in our request by using its `CustomerId`.
 
@@ -97,7 +97,7 @@ We will reference this Customer in our request by using its `CustomerId`.
 
 ## (Recommended) Step 4 - Finding or Creating a Billing Address
 
-It is **optional** but reccomended to include a billing {{address}} for the {{customer}} in the request. 
+It is **optional** but reccomended to include a billing {{Address}} for the {{Customer}} in the request. 
 
 We will reference this Address in our request by using its `AddressId`.
 
@@ -129,7 +129,7 @@ We will reference the Product(s) in our request by using a `CatalogItemId` as th
 
 ## Step 6 - Setting the Order Type
 
-Each {{order}} must have an associated {{ordertype}}.
+Each {{Order}} must have an associated {{OrderType}}.
 
 There are many different OrderTypes. We will use the `Sales` type for an in-store Order, referencing it by associated identifier `1`.
 
@@ -139,7 +139,7 @@ There are many different OrderTypes. We will use the `Sales` type for an in-stor
 
 ## (Optional) Step 7 - Adding Optional Order Properties
 
-The following {{order}} properties can be added to the request:
+The following {{Order}} properties can be added to the request:
 
 * `Name` - Name of the Order
 * `DiscountAmount` - Value of discount to be applied at Order level
@@ -158,7 +158,7 @@ The following {{order}} properties can be added to the request:
 
 ## Step 8 - Setting the Item Type
 
-Each {{item}} on the Order must have an associated {{item_type}} in the form of an integer.
+Each {{OrderItem}} on the Order must have an associated {{ItemType}} in the form of an integer.
 
 For an in-store order, we will use the `InStock` ItemType which has a value of `2`.
 
@@ -168,7 +168,7 @@ For an in-store order, we will use the `InStock` ItemType which has a value of `
 
 ## Step 9 - Setting the Item Status
 
-Each {{item}} on the Order must have an associated {{item_status}} value in the form of an integer.
+Each {{ItemType}} on the Order must have an associated {{ItemStatus}} value in the form of an integer.
 
 Options for ItemStatus are determined by the ItemType chosen in Step 2.
 
@@ -180,7 +180,7 @@ For RQ to accept the Item, the ItemStatus must be `New`, or a value of `9`.
 
 ## (Optional) Step 10 - Adding Optional Item Properties
 
-Each {{item}} added to the Order may also have the following optional properties:
+Each {{OrderItem}} added to the Order may also have the following optional properties:
 
 * `Description` - Description of this Item 
 * `Index` - A value used for sorting, if you wish to change the order of the Items on the invoice in RQ. If omitted, this value will be automatically generated

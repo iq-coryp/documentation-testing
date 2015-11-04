@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 03-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -38,7 +38,7 @@ An **Asset** is an image or video associated with a Product.
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: multipart/form-data`
 
@@ -61,7 +61,7 @@ An **Asset** is an image or video associated with a Product.
 
 #### Response
 
-* [Asset](#asset) that was created, if it exists
+* [Asset](#asset)
 
 ###### Example
 
@@ -85,7 +85,7 @@ An **Asset** is an image or video associated with a Product.
 
 #### URI Parameters
 
-* `AssetId` (**Required**) - Identifier for the [Asset](#asset)
+* `AssetId` (**Required**) - Identifier for the {{Asset}}
 
 ###### Example
 
@@ -93,7 +93,7 @@ An **Asset** is an image or video associated with a Product.
 
 #### Response
 
-* [Asset](#asset) that was requested, if it exists
+* [Asset](#asset) 
 
 ###### Example
 
@@ -133,10 +133,8 @@ An **Asset** is an image or video associated with a Product.
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Asset and Media API.
-
-| Error Code | Description | How to Resolve |
-|:-----------|:------------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 400` | `Bad Request` | Ensure the Asset is of the correct type for the action (i.e. an image for /images endpoints) |
 | `HTTP 400` | `Bad Request` | Ensure you are only uploading one Asset at a time |
 | `HTTP 400` | `Bad Request` | Ensure file was attached to request |

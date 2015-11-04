@@ -4,10 +4,14 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 03-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
+## Overview
+
+Retailers can select products from the {{ProductLibrary_Concept}} to create a **Retailer Catalog**, a collection of products that can be sold. 
 
 ## Endpoints
 
@@ -18,7 +22,7 @@ summary:
 
 ### CatalogItem
 
-A **CatalogItem** consists of the following properties:
+Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
@@ -27,22 +31,16 @@ A **CatalogItem** consists of the following properties:
 | RmsId | String | Identifier for the CatalogItem in an external inventory system  | `1` |
 | Slug | String | Unique identifier for a [Product](/api/product-library/#product) | `M1-V2` |
 
-{{note}}
-Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
-{{end}}
-
 ### CatalogSearchResult
 
-A **CatalogSearchResult** resource is used to return information about {{product}} resources that match a given criteria, defined in the request.
-
-A CatalogSearchResult resource consists of the following properties:
+A **CatalogSearchResult** resource is used to return information about {{Product}} resources that match a given criteria, defined in the request.
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Items | Array[Object] | Products matching the search criteria |  |
 | Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |
-| Items.ClassificationTreeId | Integer | Identifier for the [Classification Tree](/api/classification-tree/#classificationtree) | `1` |
-| Items.CanonicalClassification | Object | Classification tree details for this Product |  |
+| Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) | `1` |
+| Items.CanonicalClassification | Object | ClassificationTree details |  |
 | Items.CanonicalClassification.Id | Integer | Identifier for the [Classification](/api/classification-tree/#classification) or [Category](/api/classification-tree/#category) | `1` |
 | Items.CanonicalClassification.Name | String | Name of the Classification/Category | `Smartphones` |
 | Items.CanonicalClassification.ParentCategories | Array[Object] | List of Parent Categories |  |
@@ -50,9 +48,9 @@ A CatalogSearchResult resource consists of the following properties:
 | Items.CanonicalClassification.ParentCategories.Name | String | Name of this Category | `Cellular & Accessories` |
 | Items.CatalogItemId | GUID | Unique identifier for the CatalogItem | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | Items.CompanyId | Integer | Identifier for the Company | `1` |
-| Items.DateAddedUtc | DateTime | Date this Product was added to the catalog in UTC format | `2011-10-14T12:00:00.000` |
-| Items.HeroShotId | GUID | An identifier for a Hero Shot image resource | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
-| Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this Product is publicly accessible, instead of private | `true` |
+| Items.DateAddedUtc | DateTime | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
+| Items.HeroShotId | GUID | An identifier for a [Hero Shot](/api/glossary/#hero-shot) [asset](/api/assets/#asset) | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (`true`), or private (`false`) | `true` |
 | Items.IsDropShippable | Boolean | A flag to indicate if this Product can be shipped | `true` |
 | Items.Manufacturer | Object | Manufacturer information for the Product |  |
 | Items.Manufacturer.Id | Integer | Identifier for the Manufacturer | `4` |
@@ -61,7 +59,7 @@ A CatalogSearchResult resource consists of the following properties:
 | Items.Msrp | Object | Manufacturer's suggested retail price information for the Product |  |
 | Items.Msrp.Amount | Decimal | Manufacturer suggested retail price | `100` |
 | Items.Msrp.CurrencyCode | String | The 3 letter ISO currency code for the currency of the MSRP | `CAD` |
-| Items.ProductVersion | Integer | The latest revision number | `1` |
+| Items.ProductVersion | Integer | Latest revision number | `1` |
 | Items.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
 | Items.Slug | String | URL friendly identifier for the Product | `M3-V1` |
 | Items.VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#Variations) this Product represents | `1` |
@@ -92,12 +90,12 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 ###### Example
 
@@ -107,7 +105,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* Array[[CatalogItem](#catalogitem)], if any exist
+* Array[[CatalogItem](#catalogitem)]
 
 ###### Example
 
@@ -142,12 +140,12 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#catalogitem)
 
 ###### Example
@@ -158,7 +156,7 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* {{Product}} details
+* {{Product}}
 
 ###### Example
 
@@ -246,13 +244,13 @@ A CatalogSearchResult resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#catlogitem)
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
 
 ###### Example
 
@@ -262,11 +260,11 @@ A CatalogSearchResult resource consists of the following properties:
 
 #### Response
 
-* `Items` (Array) - Products compatible with the provided [CatalogItem](#catalogitem)
-    * `Name` (String) - The name of the CatalogItem
-    * `Slug` (String) - The slug of the CatalogItem
-    * `CatalogItemId` (GUID) - Unique identifier for the CatalogItem
-    * `HeroShotId` (GUID) - Unique identifier for the Hero Shot 
+* `Items` (Array)
+    * `Name` (String) 
+    * `Slug` (String) - {{Product}} slug for this {{CatalogItem}}
+    * `CatalogItemId` (GUID) 
+    * `HeroShotId` (GUID) 
 
 ###### Example
 
@@ -299,13 +297,13 @@ For more information about Variations, see [Variations](/concepts/product-struct
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](#catalogitem)
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
 
 ###### Example
 
@@ -315,14 +313,14 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 #### Response
 
-* `Items` (Array) - Variations of the provided [CatalogItem](#catalogitem)
-  * `Name` (String) - The name of the variation 
-  * `Slug` (String) - The slug of the variation 
-  * `CatalogItemId` (GUID) - Unique identifier for the variation 
-  * `Revisions` (Array) - [Carrier Revisions](/concepts/product-structure/#carrier-revisions) on the variation [CatalogItem](#catalogitem)
-     * `Name` (String) - The name of the revision 
-     * `Slug` (String) - The slug of the revision 
-     * `CatalogItemId` (GUID) - Unique identifier for the revision
+* `Items` (Array) 
+  * `Name` (String) 
+  * `Slug` (String) - {{Product}} slug
+  * `CatalogItemId` (GUID)
+  * `Revisions` (Array) 
+     * `Name` (String)
+     * `Slug` (String) - {{Product}} slug
+     * `CatalogItemId` (GUID)
 
 ###### Example
 
@@ -359,13 +357,13 @@ For more information about Variations, see [Variations](/concepts/product-struct
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CategoryOrClassificationId` (**Required**) - Identifier for the {{category}} or {{classification}} 
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CategoryOrClassificationId` (**Required**) - Identifier for the {{Category}} or {{Classification}} 
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
 
@@ -377,7 +375,7 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 #### Response
 
-* [CatalogSearchResult](#catalogsearchresult), if any Products were found in the given Category/Classification
+* [CatalogSearchResult](#catalogsearchresult)
 
 ###### Example
 
@@ -464,12 +462,12 @@ For more information about Variations, see [Variations](/concepts/product-struct
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `ManufacturerIds` (**Required**) - List of comma seperated integers representing identifiers for Manufacturers
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
@@ -482,7 +480,7 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 #### Response
 
-* [CatalogSearchResult](#catalogsearchresult), if any Products were found with the given Manufacturer(s)
+* [CatalogSearchResult](#catalogsearchresult)
 
 ###### Example
 
@@ -569,12 +567,12 @@ For more information about Variations, see [Variations](/concepts/product-struct
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `VendorIds` (**Required**) - List of comma seperated integers representing identifiers for Vendors
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
@@ -587,7 +585,7 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 #### Response
 
-* [CatalogSearchResult](#catalogsearchresult), if any Products were found with the given Vendor(s)
+* [CatalogSearchResult](#catalogsearchresult)
 
 ###### Example
 
@@ -674,12 +672,12 @@ For more information about Variations, see [Variations](/concepts/product-struct
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `VendorSku` (**Required**) - Vendor Sku to search for
 * `VendorId` (Optional) - Identifier for a vendor to search for
 
@@ -693,7 +691,7 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 * Sku (String) - Vendor Sku specified in the URI
 * VendorId (Integer) - Vendor Id specified in the URI
-* Items (Array[{{catalogitem}}]) matching the search criteria
+* Items (Array[{{CatalogItem}}])
 
 ###### Example
 
@@ -720,12 +718,12 @@ For more information about Variations, see [Variations](/concepts/product-struct
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `IsDropshippable` (**Required**) - True to display products available for shipping, false to display products not available for shipping
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
@@ -738,7 +736,7 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 #### Response
 
-* [CatalogSearchResult](#catalogsearchresult), if any Product available for shipping were found
+* [CatalogSearchResult](#catalogsearchresult)
 
 ###### Example
 
@@ -820,7 +818,7 @@ For more information about Variations, see [Variations](/concepts/product-struct
 ## Search for Products
 
 {{note}}
-SearchTerms specified in the URI are compared against the following {{product}} fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
+SearchTerms specified in the URI are compared against the following Product fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
 {{end}}
 
 #### Request
@@ -829,12 +827,12 @@ SearchTerms specified in the URI are compared against the following {{product}} 
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `SearchTerms` (**Required**) - Search terms for products we want to search for
 * `OrderBy` (Optional) - A string value representing which field to order the results by. Acceptable values are `name` or `dateAdded`. Defaults to `name` if not specified
 * `OrderDir` (Optional) - A string value representing the sort direction. Acceptable values are `asc` and `desc`. Defaults to `asc` if not specified 
@@ -849,7 +847,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 
 #### Response
 
-* [CatalogSearchResult](#catalogsearchresult), if any products were found matching the `SearchTerms`
+* [CatalogSearchResult](#catalogsearchresult)
 
 ###### Example
 
@@ -930,7 +928,7 @@ SearchTerms specified in the URI are compared against the following {{product}} 
 
 ## Combining Search Filters
 
-Search filters can be combined to narrow down results. The example below illustrates a search request using every filter.
+Search filters can be combined to narrow down results. The example below illustrates a search request using every possible filter.
 
 #### Request
 
@@ -938,17 +936,17 @@ Search filters can be combined to narrow down results. The example below illustr
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `VendorIds` (Optional) - List of comma seperated integers representing identifiers for Vendors
 * `ManufacturerIds` (Optional) - Array of integers representing identifiers for Manufacturers
 * `IsDropshippable` (Optional) - True to display products available for shipping, false to display products not available for shipping
-* `CategoryOrClassificationId` (Optional) - Identifier for the {{category}} or {{classification}} 
-* `SearchTerms` (Optional) - Search terms for products we want to search for
+* `CategoryOrClassificationId` (Optional) - Identifier for the {{Category}} or {{Classification}} 
+* `SearchTerms` (Optional) - Search terms
 * `OrderBy` (Optional) - A string value representing which field to order the results by. Acceptable values are `name` or `dateAdded`. Defaults to `name` if not specified
 * `OrderDir` (Optional) - A string value representing the sort direction. Acceptable values are `asc` and `desc`. Defaults to `asc` if not specified 
 * `Page` (Optional) - Page to display, if not specified defaults to 1
@@ -962,7 +960,7 @@ Search filters can be combined to narrow down results. The example below illustr
 
 #### Response
 
-* [CatalogSearchResult](#catalogsearchresult), if any Product available for shipping were found
+* [CatalogSearchResult](#catalogsearchresult)
 
 ###### Example
 
@@ -1044,8 +1042,6 @@ Search filters can be combined to narrow down results. The example below illustr
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Catalog API.
-
-| Error Code | Description | How to Resolve |
-|:-----------|:------------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 404` | `Catalog Item not found` | Ensure CatalogItem GUID is valid and the CatalogItem exists |

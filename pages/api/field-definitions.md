@@ -4,7 +4,7 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -17,7 +17,7 @@ summary:
 
 ## Notes
 
-A **Field Definition** defines both how {{product}} specification details are displayed on a screen, such as a website, and how it is stored in the Product Library.
+A **Field Definition** defines both how {{Product}} specification details are displayed on a screen, such as a website, and how it is stored in the Product Library.
 
 As an example, the following Field Definition describes how battery capacity for a product might be displayed.
 
@@ -62,20 +62,22 @@ The result displayed on the page, with some styling, is shown below
 
 ### FieldDefinition
 
+{{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}
+
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Identifier | `84` |
-| StringId | String | Consistent identifier, this identifier should be used as `Id` will change across [Environments](/api/environments) | `CDMA` |
-| InputType | String | Type of UI element this FieldDefinition uses, see [InputTypes](#inputtype) for acceptable values | `YesNo` |
+| StringId | String | Consistent identifier across all [Environments](/api/environments) | `CDMA` |
+| InputType | String | Type of UI element this FieldDefinition uses, see [InputTypes](#inputtype) for a list of acceptable values | `YesNo` |
 | IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (`false`) or not (`true`) | `false` |
 | LanguageInvariantUnit | String | Unit | `mm` |
 | DisplayName | String | Value to be displayed in the UI | `CDMA` |
 | Options | Array[Object] | List of Options, only used when InputType is `SingleSelect` or `MultiSelect` | |
 | Options.Id | Integer | Identifier for the Option | `1` |
 | Options.Value | String | Value of the Option | `Blue` |
-| *LanguageInvariantName* | *String* | *Depreciated* |  |
+| *LanguageInvariantName* | *String* | *Deprecated* |  |
 
-## Types
+## Enumerations
 
 ### InputTypes
 
@@ -99,7 +101,7 @@ The result displayed on the page, with some styling, is shown below
 
 #### Headers
 
-* `Authorization: Bearer` {{access_token}}
+* `Authorization: Bearer` {{AccessToken_Glossary}}
 * `Accept: application/json`
 
 ###### Example
@@ -110,7 +112,7 @@ The result displayed on the page, with some styling, is shown below
 
 #### Response
 
-* Array[[FieldDefinition](#fieldefinition)] that were requested, if any were found
+* Array[[FieldDefinition](#fieldefinition)]
 
 ###### Example
 
@@ -172,12 +174,12 @@ The result displayed on the page, with some styling, is shown below
 
 #### Headers
 
-* `Authorization: Bearer` {{access_token}}
+* `Authorization: Bearer` {{AccessToken_Glossary}}
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `FieldDefinitionId` (**Required**) - Identifier for the {{field-definition}}
+* `FieldDefinitionId` (**Required**) - Identifier for the {{FieldDefinition}}
 
 ###### Example
 
@@ -187,7 +189,7 @@ The result displayed on the page, with some styling, is shown below
 
 #### Response
 
-* [FieldDefinition](#fieldefinition) that was requested, if it exists
+* [FieldDefinition](#fieldefinition)
 
 ###### Example
 
@@ -205,8 +207,6 @@ The result displayed on the page, with some styling, is shown below
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Field Definition API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 404` | `Document not found` | Ensure FieldDefinitionId is correct |

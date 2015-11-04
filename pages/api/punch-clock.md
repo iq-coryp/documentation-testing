@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -30,19 +30,19 @@ For more information on the Punch Clock in RQ, see <a href="http://iqmetrix.help
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Unique Identifier | `1953` |
-| CreatedDateUtc | DateTime | Created date and time | `2015-09-23T15:41:59.403` |
+| CreatedDateUtc | DateTime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
 | EmployeeVerified | Boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
 | EmployeeSpecialId  | Boolean | Special identifier for Employee in RQ | `0001` |
 | LastUpdateDateUtc | DateTime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
 | LocationCode | String(100) | An identifier for the Location in an external system | `CWW` |
 | LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `4` |
 | ManagerVerified | Boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
-| PunchInComments | String(100) | Punch in comments  | `IN - FingerPrint/HomeConsole` |
+| PunchInComments | String(100) | Punch in comments | `IN - FingerPrint/HomeConsole` |
 | PunchOutComments | String(100) | Punch out comments | `OUT - HomeConsole` |
-| TimeInAtStore | DateTime | Punch in time (local time at store) | `2015-09-23T09:41:52.653` |
-| TimeOutAtStore | DateTime | Punch out time (local time at store) | `2015-09-23T09:55:03.973` |
+| TimeInAtStore | DateTime | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
+| TimeOutAtStore | DateTime | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
 | UserId | Integer | Identifier for a [User](/api/user-manager/#user) | `22212` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *RQPunchId* | *Integer* | *Reserved for internal use* | |
 
 ## Getting All Punch Entries
@@ -59,16 +59,16 @@ Don't forget <code>$filter=</code> in the request!
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/hal+json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `StartDate` (Optional) - Date at which to begin search request, in UTC
 * `EndDate` (Optional) - Date at which to end search request, in UTC
-* `Skip`(Optional) - {{skip}}
-* `Top` (Optional) - {{toppunch}}
+* `Skip`(Optional) - {{Skip}}
+* `Top` (Optional) - {{Top_Punch}}
 
 ###### Example
 
@@ -80,7 +80,7 @@ Don't forget <code>$filter=</code> in the request!
 
 If using a `application/hal+json`, [Pagination](#pagination) data will be included in the response
 
-* [PunchEntry](#punchentry) that were requested, if any were found
+* [PunchEntry](#punchentry)
 
 ###### Example
 

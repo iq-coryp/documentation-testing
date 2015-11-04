@@ -29,7 +29,7 @@ A **Customer** is a person or organization that buys goods or services from a st
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
 | AlternateName | String | Alias or preferred name | `Bob` |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
-| CustomerTypeId | Integer | Identifier for the [CustomerType](#customertype) | `3` |
+| CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
 | DateOfBirth | Date | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a "Disable" operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false  | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
@@ -46,7 +46,7 @@ An **Address** represents a valid address somewhere on the planet.
 | Id | GUID | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
 | CustomerId | GUID | Unique identifier for the Customer  | `f23a104e-0ce3-409e-8b1f-37ae9d1aeaa7` |
 | AddressType | String | Name of the [AddressType](#addresstype) | `Business` |
-| AddressTypeId | Integer | Identifier for the [AddressType](#addresstype) | `3` |
+| AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
 | AttentionTo | String | Attention To ('Attn:') | `iQmetrix` |
 | Country | String | The Country. This value is system-generated and read-only | `Canada`|
 | CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
@@ -73,9 +73,9 @@ A **Contact Method** is a method of contacting a Customer.
 | Id | GUID | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
 | CustomerId | GUID | Unique identifier for the [Customer](#customer) | `b8b54200-4c7e-414d-93eb-a3689e473be3` |
 | ContactMethodCategory | String | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
-| ContactMethodCategoryId | Integer | Identifier for the [ContactMethodCategory](#contactmethodcategory) | `3` |
+| ContactMethodCategoryId | Integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values| `3` |
 | ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype) | `Work phone` |
-| ContactMethodTypeId | Integer | Identifier for the [ContactMethodType](#contactmethodtype) | `5` |
+| ContactMethodTypeId | Integer | See [ContactMethodType](#contactmethodtype) for a list of acceptable values | `5` |
 | Default | Boolean | A flag to indicate if this is the default ContactMethod for the Customer | `true` |
 | DoNotContact | Boolean | A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true| `true` |
 | Notes | String | Notes related to this ContactMethod | `After 6pm` |
@@ -127,55 +127,55 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 |:------|:------------|:------------|
 | Criteria | String | The criteria used to seach for the Customer |
 
-## Types
+## Enumerations
 
 ### AddressType
 
 | Name | Id |
 |:-----|:---|
-| None | 1 |
 | Home | 2 |
-| Shipping | 3 |
 | Office | 4 |
 | Other | 5 |
+| None | 1 |
+| Shipping | 3 |
 
 ### ContactMethodCategory
 
 | Name | Id |
 |:-----|:---|
-| Phone | 1 |
 | Email | 2 |
 | Other | 3 |
+| Phone | 1 |
 
 ### ContactMethodType
 
-| Name   | Id | ContactCategoryId |
-|:-------|:---|:------------------|
-| Home | 1 | 1 |
-| Work | 2 | 1 |
-| Mobile | 3 | 1 |
-| Company | 4 | 1 |
-| Pager | 5 | 1 |
-| Home Fax | 6 | 1 |
-| Work Fax | 7 | 1 |
-| Other | 8  | 1 |
-| Home | 9  | 2 |
-| Work | 10 | 2 |
-| Other | 11 | 2 |
-| Website | 12 | 3 |
-| Skype | 13 | 3 |
-| Twitter | 14 | 3 |
-| Facebook | 15 | 3 |
-| LinkedIn | 16 | 3 |
-| Other | 17 | 3 |
+| Category | Contact Method | Id |
+|:---------|:---------------|:---|
+| Dropship | Facebook | 15 |
+| Dropship | LinkedIn | 16 |
+| Dropship | Other | 17 |
+| Dropship | Skype | 13 |
+| Dropship | Twitter | 14 |
+| Dropship | Website | 12 |
+| Email | Home | 9 |
+| Email | Other | 11 |
+| Email | Work | 10 |
+| Phone | Company | 4 |
+| Phone | Home | 1 |
+| Phone | Home Fax | 6 |
+| Phone | Mobile | 3 |
+| Phone | Other | 8 |
+| Phone | Pager | 5 |
+| Phone | Work | 2 |
+| Phone | Work Fax | 7 |
 
 ### CustomerType
 
 | Name | Id |
 |:-----|:---|
+| Company | 3 |
 | None | 1 |
 | Person | 2 |
-| Company | 3 |
 
 ## Creating a Customer
 
@@ -183,22 +183,29 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 
     POST /Companies({CompanyId})/Customers
     {
-        {Customer}
+        "CustomerTypeId": {CustomerTypeId},
+        "PrimaryName": "{PrimaryName}",
+        "MiddleName": "{MiddleName}",
+        "FamilyName": "{FamilyName}",
+        "AlternateName": "{AlternateName}",
+        "DateOfBirth": "{DateOfBirth}",
+        "Disabled": {Disabled},
+        "DoNotContact": {DoNotContact},
+        "Notes": "{Notes}",
+        "Title": "{Title}"
     }
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 #### Request Parameters
-
-A {{customer}} resource with the following properties
 
 * `CustomerTypeId` (**Required**)
 * `PrimaryName` (Optional)
@@ -232,7 +239,7 @@ A {{customer}} resource with the following properties
 
 #### Response
 
-* {{customer}} that was created, if succesful
+* {{Customer}}
 
 ###### Example
 
@@ -259,23 +266,31 @@ A {{customer}} resource with the following properties
 
     PUT /Companies({CompanyId})/Customers({CustomerId})
     {
-        {Customer}
+        "Id": "{Id}",
+        "CustomerTypeId": {CustomerTypeId},
+        "PrimaryName": "{PrimaryName}",
+        "MiddleName": "{MiddleName}",
+        "FamilyName": "{FamilyName}",
+        "AlternateName": "{AlternateName}",
+        "DateOfBirth": "{DateOfBirth}",
+        "Disabled": {Disabled},
+        "DoNotContact": {DoNotContact},
+        "Notes": "{Notes}",
+        "Title": "{Title}"
     }
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Unique identifier for the {{customer}} being updated
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Unique identifier for the {{Customer}} being updated
 
 #### Request Parameters
-
-A {{customer}} resource with the following properties:
 
 * `Id` (**Required**) - Must match the CustomerId provided in the URI, immutable
 * `CustomerTypeId` (Optional)
@@ -311,7 +326,7 @@ A {{customer}} resource with the following properties:
 
 #### Response
 
-* {{customer}} that was updated, if it was successful
+* {{Customer}} 
 
 ###### Example
 
@@ -338,22 +353,66 @@ A {{customer}} resource with the following properties:
 
     POST /Companies({CompanyId})/CustomerFull
     {
-        {CustomerFull}
+        "CustomerTypeId": {CustomerTypeId},
+        "PrimaryName": "{PrimaryName}",
+        "MiddleName": "{MiddleName}",
+        "FamilyName": "{FamilyName}",
+        "AlternateName": "{AlternateName}",
+        "DateOfBirth": "{DateOfBirth}",
+        "Disabled": {Disabled},
+        "DoNotContact": {DoNotContact},
+        "Notes": "{Notes},
+        "Title": "{Title}",
+        "Addresses": [
+            {
+                "AddressTypeId": {AddressTypeId},
+                "AttentionTo": "{AttentionTo}",
+                "CountryCode": "{CountryCode}",
+                "StateCode": "{StateCode}",
+                "AddressType": "{AddressType}",
+                "Default": {Default},
+                "DoNotContact": {DoNotContact},
+                "Email": "{Email}"
+                "Locality": "{Locality}",
+                "Phone": "{Phone}",
+                "PostalCode": "{PostalCode}",
+                "PostOfficeBoxNumber": "{PostOfficeBoxNumber}",
+                "StreetAddress1": "{StreetAddress1}",
+                "StreetAddress2": "{StreetAddress2}",
+                "Notes": "{Notes}"
+            }
+        ],
+        "ContactMethods": [
+            {
+                "ContactMethodCategoryId": {ContactMethodCategoryId},
+                "ContactMethodTypeId": {ContactMethodTypeId},
+                "Value": "{Value}",
+                "DoNotContact": {DoNotContact},
+                "Default": {Default},
+                "Notes": "{Notes}"
+            }
+        ],
+        "CustomerExtensions": [
+            {
+                "ExtensionTypeId": {ExtensionTypeId},
+                "Value": "{Value}"
+            }
+        ],
+        "MemberOf": {MemberOf},
+        "RelatedCustomers": {RelatedCustomers}   
     }
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 #### Request Parameters
-
-A {{CustomerFull}} resource with the following parameters
 
 * `CustomerTypeId` (**Required**)
 * `PrimaryName` (Optional)
@@ -451,7 +510,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{customerfull}} that was created, if succesful
+* {{CustomerFull}} 
 
 ###### Example
 
@@ -529,13 +588,13 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Unique identifier for the {{customer}} that was requested
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Unique identifier for the {{Customer}} 
 
 ###### Example
 
@@ -545,7 +604,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{customer}} that was requested, if it exists
+* {{Customer}}
 
 ###### Example
 
@@ -574,13 +633,13 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Unique identifier for the {{customer}} that was requested
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Unique identifier for the {{Customer}}
 
 ###### Example
 
@@ -590,7 +649,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{customerfull}} that was requested, if it exists
+* {{CustomerFull}} 
 
 ###### Example
 
@@ -660,23 +719,35 @@ A {{CustomerFull}} resource with the following parameters
 
     POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
     {
-        {Address}
+        "AddressTypeId": {AddressTypeId},
+        "AttentionTo": "{AttentionTo}",
+        "CountryCode": "{CountryCode}",
+        "StateCode": "{StateCode}",
+        "AddressType": "{AddressType}",
+        "Default": {Default},
+        "DoNotContact": {DoNotContact},
+        "Email": "{Email}"
+        "Locality": "{Locality}",
+        "Notes": "{Notes}",
+        "Phone": "{Phone}",
+        "PostalCode": "{PostalCode}",
+        "PostOfficeBoxNumber": "{PostOfficeBoxNumber}",
+        "StreetAddress1": "{StreetAddress1}",
+        "StreetAddress2": "{StreetAddress2}"
     }
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Identifier for the {{customer}} being updated
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
 
 #### Request Parameters
-
-{{address}} resource with the following properties:
 
 * `AddressTypeId` (**Required**)
 * `CountryCode` (**Required**)
@@ -718,7 +789,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{address}} that was requested, if it exists
+* {{Address}} 
 
 ###### Example
 
@@ -752,24 +823,37 @@ A {{CustomerFull}} resource with the following parameters
 
     PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     {
-        {Address}
+        "Id": "{Id}",
+        "CustomerId": "{CustomerId}",
+        "AddressTypeId": {AddressTypeId},
+        "AttentionTo": "{AttentionTo}",
+        "CountryCode": "{CountryCode}",
+        "Default": {Default},
+        "DoNotContact": {DoNotContact},
+        "Email": "{Email}"
+        "Locality": "{Locality}",
+        "Notes": "{Notes}",
+        "Phone": "{Phone}",
+        "PostalCode": "{PostalCode}",
+        "PostOfficeBoxNumber": "{PostOfficeBoxNumber}",
+        "StateCode": "{StateCode}",
+        "StreetAddress1": "{StreetAddress1}",
+        "StreetAddress2": "{StreetAddress2}"
     }
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Identifier for the {{customer}} being updated
-* `AddressId` (**Required**) - Identifier for the {{address}} being updated
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
+* `AddressId` (**Required**) - Identifier for the {{Address}} being updated
 
 #### Request Parameters
-
-{{address}} resource with the following properties:
 
 * `Id` (**Required**) - Must match the AddressId provided in the URI, immutable
 * `AddressTypeId` (Optional)
@@ -811,7 +895,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{address}} that was updated, if it was successful
+* {{Address}} 
 
 ###### Example
 
@@ -847,14 +931,14 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Identifier for the {{customer}}
-* `AddressId` (**Required**) - Identifier for the {{address}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Identifier for the {{Customer}}
+* `AddressId` (**Required**) - Identifier for the {{Address}}
 
 ###### Example
 
@@ -864,7 +948,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{address}} that was requested, if it exists
+* {{Address}} 
 
 ###### Example
 
@@ -898,23 +982,27 @@ A {{CustomerFull}} resource with the following parameters
 
     POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
     {
-        {ContactMethod}
+        "CustomerId": "{CustomerId}",
+        "ContactMethodCategoryId": {ContactMethodCategoryId},
+        "ContactMethodTypeId": {ContactMethodTypeId},
+        "Default": {Default},
+        "DoNotContact": {DoNotContact},
+        "Notes": "{Notes}",
+        "Value": "{Value}"
     }
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Identifier for the {{customer}} being updated
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
 
 #### Request Parameters
-
-{{contactmethod}} resource with the following properties:
 
 * `CustomerId` (**Required**)
 * `ContactMethodCategoryId` (**Required**)
@@ -942,7 +1030,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{contactmethod}} that was requested, if it exists
+* {{ContactMethod}} 
 
 ###### Example
 
@@ -972,19 +1060,17 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CustomerId` (**Required**) - Identifier for the {{customer}} being updated
-* `ContactMethodId` (**Required**) Identifier for the {{contactmethod}} being updated
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
+* `ContactMethodId` (**Required**) Identifier for the {{ContactMethod}} being updated
 
 #### Request Parameters
-
-{{contactmethod}} resource with the following properties:
 
 * `Id` (**Required**) - Must match the ContactMethodId provided in the URI, immutable
 * `ContactMethodCategoryId` (Optional)
@@ -1015,7 +1101,7 @@ A {{CustomerFull}} resource with the following parameters
 
 #### Response
 
-* {{contactmethod}} that was updated, if it was successful
+* {{ContactMethod}} 
 
 ###### Example
 
@@ -1036,7 +1122,7 @@ A {{CustomerFull}} resource with the following parameters
 
 # Searching
 
-The CRM API supports searching of {{customer}} and [CustomerSearch](#customersearch) resources through the use of filters.
+The CRM API supports searching of {{Customer}} and [CustomerSearch](#customersearch) resources through the use of filters.
 
 The `$filter` query parameter is used for specifying filtering criteria.
 
@@ -1065,7 +1151,7 @@ Filters can be combined using the keyword `and` as shown below.
 
 ### Case Sensitivity
 
-Filters on {{customer}} resources are **case sensitive**.
+Filters on {{Customer}} resources are **case sensitive**.
 
 Filters on [CustomerSearch](#customersearch) resources are **NOT** case sensitive.
 
@@ -1083,13 +1169,13 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `FilterQuery` (**Required**) - The filter to apply to the {{customer}} request
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `FilterQuery` (**Required**) - The filter to apply to the {{Customer}} request
 
 ###### Example
 
@@ -1099,7 +1185,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
 #### Response
 
-* Array[{{customer}}] matching filter criteria
+* Array[{{Customer}}] 
 
 ###### Example
 
@@ -1148,12 +1234,12 @@ The Criteria filter will search the properties below for the given value.
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json` **OR** `Accept: application/hal+json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `FilterQuery` (**Required**) - The filter to apply to the [CustomerSearch](#customersearch) request
 
 ###### Example
@@ -1164,7 +1250,7 @@ The Criteria filter will search the properties below for the given value.
 
 #### Response
 
-* Array[{{customerfull}}] matching filter criteria
+* Array[{{CustomerFull}}] 
 
 ###### Example
 
@@ -1283,8 +1369,6 @@ The `prev`.`href` refers to a resource containing a page with the **previous** 1
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the CRM API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 404` | `Not Found` | Ensure the CustomerID is correct |

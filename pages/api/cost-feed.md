@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -40,25 +40,31 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 | Products.Cost | Decimal | Wholesale cost for the associated companies | `12.99` |
 | Products.CompanyIds | Array[Integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the product's cost |  |
 
-## Add a Product to Cost Feed
+## Adding a Product to Cost Feed
 
-### Request
+#### Request
 
     POST /Suppliers({SupplierId})/Cost
-
     {
-        {Cost}
+        "Products": [
+            {
+                "Sku": "{Sku}",
+                "Cost": {Cost},
+                "CompanyIds": {CompanyIds}    
+            },
+            ...
+        ]
     }
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `SupplierId` (**Required**) - Identifier of the {{supplier}}
+* `SupplierId` (**Required**) - Identifier of the {{Supplier}}
 
 #### Request Parameters
 
@@ -73,6 +79,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
+    
     {
         "Products": [
             {
@@ -96,9 +103,9 @@ Ensure each company ID has only <strong>one</strong> cost per product.
         ]
     }
 
-### Response
+#### Response
 
-    {{cost}} that was created, if successful
+* {{Cost}}
 
 ###### Example
 
@@ -129,8 +136,6 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Cost Feed API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 400` | `Cannot find supplier identifier in the uri` | Occurs when entering an incorrect `SupplierId` in the uri |

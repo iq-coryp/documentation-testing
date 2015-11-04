@@ -4,7 +4,7 @@ permalink: /api/changelog/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 04-11-2015
 summary: 
 datatable: true
 metadata: false
@@ -40,7 +40,14 @@ The date format used in the table below is mm/dd/yyyy
 
 | Date | Changes |
 |:-----|:--------|
-| 10/19/2015 | Updated CMI Reference page with new Sandbox URL and modified value for StoreId |
+| 11/04/2014 | Cleanup of many pages to maintain consistency of formatting |
+| 10/30/2015 | Updated Product Feed field definition section  |
+| 10/27/2015 | Updated formatting for all dropship articles  |
+| 10/26/2015 | Added Security Roles, Company Tree Concepts and Product Library Concepts page  |
+| 10/23/2015 | Updated General Ledger to include ReferenceTypes |
+| 10/21/2015 | Changed wording in EPC to emphasize important concepts. Added calculations to Commission Types. Added TOC back to EPC and adjusted styling slightly. Other: Made updates to Fields Definitions and Product Feed pages |
+| 10/20/2015 | Added Dropship Onboarding guide |
+| 10/19/2015 | Updated CMI Reference page with new Sandbox URL and modified value for StoreId. Other: Made updates to Supplier Availability |
 | 10/15/2015 | Added Supplier Availability page. Other: Changed sidebar to simplify navigation |
 | 10/14/2015 | Added filter for LastUpdateDateUtc to Commissions and PunchClock |
 | 10/13/2015 | Other: moved changelog to its own section on sidebar |

@@ -4,12 +4,12 @@ permalink: /concepts/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
-{% include externallinks.html %}
+
 
 **Product Library** provides retailers with a central hub of content from a variety of sources, including manufacturers, distributors and other suppliers.
 
@@ -19,7 +19,7 @@ summary:
 
 Retailers can select products from the Product Library to create a **Retailer Catalog**, a collection of products that can be sold. 
 
-Every Product in Product Library must belong to a single {{classificationconcept}}, refered to as an **industry**.
+Every Product in Product Library must belong to a single {{ClassificationTree_Concept}}, refered to as an **industry**.
 
 This is a similar model to iTunes where users have access to many different types of products such as songs, movies and books (Industries) in the iTunes Store (Product Library) from which they can build their library (Retailer Catalog).
 
@@ -43,7 +43,7 @@ For the **Wireless** industry, iQmetrix Curators create accurate, up-to-date, ri
 
 For **other industries**, Retailers can create Products in Product Library. 
 
-For more information about Product Structure see {{product_structure}}.
+For more information about Product Structure see {{ProductStructure_Concepts}}.
 
 ### Virtual Inventory
 

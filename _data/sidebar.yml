@@ -20,8 +20,29 @@ entries:
           product: all
           version: all
 
+        - title: Company Tree
+          url: /concepts/company-tree/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Product Library
+          url: /concepts/product-library/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
         - title: Product Structure
           url: /concepts/product-structure/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: User Manager
+          url: /concepts/user-manager/
           audience: writers, designers
           platform: all
           product: all
@@ -77,6 +98,13 @@ entries:
           platform: all
           product: all
           version: all
+        - title: Dropship Onboarding Guide
+          url: /guides/dropship-onboarding-guide/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+          print: true
 
     - title: API Reference
       audience: writers, designers
@@ -178,8 +206,8 @@ entries:
               product: all
               version: all
 
-            - title: Supplier Orders
-              url: /api/supplier-orders/
+            - title: Supplier Availability
+              url: /api/supplier-availability/
               audience: writers, designers
               platform: all
               product: all
@@ -262,6 +290,13 @@ entries:
               platform: all
               product: all
               version: all
+
+        - title: Security Roles
+          url: /api/security-roles/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all  
 
         - title: User Manager
           url: /api/user-manager/

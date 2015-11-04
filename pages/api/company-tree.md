@@ -4,7 +4,7 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 04-11-2015
 summary: 
 ---
 
@@ -39,13 +39,15 @@ summary:
 | Logo.Width | Integer | Width in pixels | `240` |
 | Relationships | Array[Object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String  | A string used for sorting | `samplecompany` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 | *Role* | *String* | *Reserved for internal use* | |
 
 ### CompanyTree
 
-Your Company Tree is a hierarchial representation of the how your Company is structured, including the root Company, Groups, Divisions and Locations.
+Your Company Tree is a hierarchial representation of how your Company is structured, including the root Company, Groups, Divisions and Locations.
+
+To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -57,7 +59,7 @@ Your Company Tree is a hierarchial representation of the how your Company is str
 
 ### CompanyTreeNode
 
-CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{group}}, {{division}}, {{location}} or device.
+CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{Group}}, {{Division}}, {{Location}} or device.
 
 As an example, the following snippet of a Company Tree represents a hierarchy of a Company (Costco) with one Division (Western BC) that has two Locations (Vancouver and Victoria).
 
@@ -154,7 +156,7 @@ As an example, the following snippet of a Company Tree represents a hierarchy of
 | TimeZone | Object | Timezone information for the Location | |
 | TimeZone.Id | String | TimeZone name | `Alaskan Standard Time` |
 | TimeZone.DaylightSavingTimeEnabled | Boolean | A flag indicating if the TimeZone observes daylight saving time | `true` |
-| Version | Integer | The latest revision number| `13` |
+| Version | Integer | Latest revision number| `13` |
 | *CorrelationId* | *String* | *Reserved for internal use*  |  |
 | *LocationType* | *String* | *Reserved for future use* |  |
 | *LocationSubType* | *String* | *Reserved for future use* |  |
@@ -164,6 +166,8 @@ As an example, the following snippet of a Company Tree represents a hierarchy of
 ### Division
 
 Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company. 
+
+To learn more about Divisions, see {{Division_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
@@ -185,7 +189,7 @@ Division, as well as Groups, serve as generic buckets clients can use to organiz
 | Logo.Width | Integer | Width in pixels | `240` |
 | Relationships | Array[Object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String  | A string used for sorting | `sampledivision` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 | *Role* | *String* | *Reserved for internal use* | |
 
@@ -193,6 +197,8 @@ Division, as well as Groups, serve as generic buckets clients can use to organiz
 
 Groups, as well as Divisions, serve as generic buckets clients can use to organize the company tree. Groups could be used to represent managerial or geographical 
 groupings. 
+
+To learn more about Groups, see {{Group_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|-------------|:--------|
@@ -214,7 +220,7 @@ groupings.
 | Logo.Width | Integer | Width in pixels | `240` |
 | Relationships | Array[Object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String  | A string used for sorting | `samplegroup` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 | *Role* | *String* | *Reserved for internal use* | |
 
@@ -226,7 +232,7 @@ groupings.
     
 #### Parameters
 
-* `CompanyId` (**Required**) - Identifier for this {{company}}
+* `CompanyId` (**Required**) - Identifier for this {{Company}}
 
 #### Headers
 
@@ -241,7 +247,7 @@ groupings.
 
 #### Response
 
-* {{company}} that was requested, if it exists
+* {{Company}}
 
 ###### Example
 
@@ -283,7 +289,7 @@ groupings.
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}} 
+* `CompanyId` (**Required**) - Identifier for the {{Company}} 
 
 ###### Example
 
@@ -293,7 +299,7 @@ groupings.
 
 #### Response
 
-* {{companytree}} resource that was requested, if it exists
+* {{CompanyTree}}
 
 ###### Example
 
@@ -341,17 +347,75 @@ groupings.
 
     POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
     {
-        {Location}
+        "Name": "{Name}",
+        "Roles": [
+            {
+                "Name": "{Name}"
+            }
+        ],
+        "Description": "{Description}",
+        "Area": {
+            "Value": {Value},
+            "Unit": "{Unit}"
+        },
+        "Address": {
+            "AddressLine1": "{AddressLine1}",
+            "AddressLine2": "{AddressLine2}",
+            "City": "{City}",
+            "StateCode": "{StateCode}",
+            "CountryCode": "{CountryCode}",
+            "Zip": "{Zip}"
+        },
+        "Attributes": { },
+        "ClientEntityId": "{ClientEntityId}",
+        "Contacts": [
+            {
+                "Name": "{Name}",
+                "Description": "{Description}",
+                "PhoneNumbers": [
+                    {
+                        "Description": "{Description}",
+                        "Number": "{Number}",
+                        "Extension": "{Extension}"
+                    }
+                ]
+            }
+        ],
+        "Geography": {
+            "Latitude": {Latitude},
+            "Longitude": {Longitude}
+        },
+        "StoreHours": {
+            "Monday": {
+                "Open": {
+                    "Hour": {Hour},
+                    "Minute": {Minute}
+                },
+                "Close": {
+                    "Hour": {Hour},
+                    "Minute": {Minute}
+                }
+            }
+        },
+        "StorePhoneNumbers": [
+            {
+                "Description": "{Description}",
+                "Number": "{Number}",
+                "Extension": "{Extension}"
+            }
+        ],
+        "TimeZone": {
+            "Id": "{Id}",
+            "DaylightSavingTimeEnabled": {DaylightSavingTimeEnabled}
+        }
     }
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `NodeId` (**Required**) - Identifier of the parent for the {{location}} to be created under in the hierarchy
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `NodeId` (**Required**) - Identifier of the parent for the {{Location}} to be created under in the hierarchy
 
 #### Request Parameters
-
-A {{location}} resource with the following properties:
 
 * `Name` (**Required**) 
 * `Roles` (**Required**) - Must be `Location`
@@ -396,7 +460,7 @@ A {{location}} resource with the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -472,7 +536,7 @@ A {{location}} resource with the following properties:
 
 #### Response
 
-* {{location}} resource that was created, if successful
+* {{Location}}
 
 ###### Example
 
@@ -564,7 +628,7 @@ The only difference between Option 1 and Option 2 is a `NodeId` in the URI, the 
 
 #### Request (Option 1)
 
-This option requires knowing the Id of the parent of this {{location}} in the form of a `NodeId`, but has stronger validation.
+This option requires knowing the Id of the parent of this {{Location}} in the form of a `NodeId`, but has stronger validation.
 
     PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
     {
@@ -582,18 +646,16 @@ This option does not require a `NodeId` but has weaker validation.
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `LocationId` (**Required**) - Identifier for the {{location}}
-* `NodeId` (**Required**) - Identifier of parent of the {{location}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `LocationId` (**Required**) - Identifier for the {{Location}}
+* `NodeId` (**Required**) - Identifier of parent of the {{Location}}
 
 #### Request Parameters
 
-A {{location}} resource with the following properties
-
 * `Id` (**Required**) - Must match the LocationId provided in the URI
-* `Name` (**Required**) - Must be unique within the {{company}}
+* `Name` (**Required**) - Must be unique within the {{Company}}
 * `Roles` (**Required**) - Must be `Location`
-* `Version` (**Required**) - The latest revision number
+* `Version` (**Required**) - Latest revision number
 * `Description` (Optional) 
 * `Area` (Optional) 
     * `Value` (**Required**)
@@ -635,7 +697,7 @@ A {{location}} resource with the following properties
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -728,7 +790,7 @@ A {{location}} resource with the following properties
 
 #### Response
 
-* {{location}} that was updated, if successful
+* {{Location}}
 
 ###### Example
 
@@ -824,12 +886,12 @@ A {{location}} resource with the following properties
     
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `LocationId` (**Required**) - Identifier for the {{location}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `LocationId` (**Required**) - Identifier for the {{Location}}
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ###### Example
@@ -840,7 +902,7 @@ A {{location}} resource with the following properties
 
 #### Response
 
-* {{location}} that was requested, if it exists
+* {{Location}} 
 
 ###### Example
 
@@ -967,11 +1029,11 @@ A {{location}} resource with the following properties
     
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ###### Example
@@ -982,7 +1044,7 @@ A {{location}} resource with the following properties
 
 #### Response
 
-* Array[{{location}}] in the {{company}}
+* Array[{{Location}}] 
 
 ###### Example
 
@@ -1112,17 +1174,17 @@ Divisions may be added to the root Company node, or to a Division or Group node.
 
     POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
     {
-        {Division}
+        "Name": "{Name}",
+        "Description": "{Description}",
+        "ClientEntityId": "{ClientEntityId}"  
     }
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `NodeId` (**Required**) - Identifier of the parent for the {{division}} to be created under in the hierarchy
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `NodeId` (**Required**) - Identifier of the parent for the {{Division}} to be created under in the hierarchy
 
 #### Request Parameters
-
-A {{division}} resource with the following properties:
 
 * `Name` (**Required**) 
 * `Description` (Optional) 
@@ -1130,7 +1192,7 @@ A {{division}} resource with the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1148,7 +1210,7 @@ A {{division}} resource with the following properties:
 
 #### Response
 
-* {{division}} resource that was created, if successful
+* {{Division}}
 
 ###### Example
 
@@ -1181,17 +1243,17 @@ Groups may be added to the root Company node, or to a Division or Group node. A 
 
     POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
     {
-        {Group}
+        "Name": "{Name}",
+        "Description": "{Description}",
+        "ClientEntityId": "{ClientEntityId}" 
     }
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `NodeId` (**Required**) - Identifier of the parent for the {{group}} to be created under in the hierarchy
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `NodeId` (**Required**) - Identifier of the parent for the {{Group}} to be created under in the hierarchy
 
 #### Request Parameters
-
-A {{group}} resource with the following properties:
 
 * `Name` (**Required**) 
 * `Description` (Optional) 
@@ -1199,7 +1261,7 @@ A {{group}} resource with the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1217,7 +1279,7 @@ A {{group}} resource with the following properties:
 
 #### Response
 
-* {{group}} resource that was created, if successful
+* {{Group}}
 
 ###### Example
 
@@ -1256,12 +1318,12 @@ This request removes the Node refered to by NodeId from the Company Tree along w
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `NodeId` (**Required**) - Identifier of the {{group}} or {{division}} to be deleted
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `NodeId` (**Required**) - Identifier of the {{Group}} or {{Division}} to be deleted
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
 ###### Example
 
@@ -1283,12 +1345,12 @@ This request allows you to search your Company Tree using the `ClientEntityId` f
     
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for this {{company}}
+* `CompanyId` (**Required**) - Identifier for this {{Company}}
 * `ClientEntityId` (**Required**) - The value to search for
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ###### Example
@@ -1301,7 +1363,7 @@ This request allows you to search your Company Tree using the `ClientEntityId` f
 
 This request returns an array of objects that summarize Entities matching the search criteria.
 
-The following resource types are considered "Entities": {{company}}, {{division}}, {{group}}, {{location}}, device
+The following resource types are considered "Entities": {{Company}}, {{Division}}, {{Group}}, {{Location}}, device
 
 * Array[Object] - Resources matching the search criteria
     * `Id` (Integer) 
@@ -1370,17 +1432,15 @@ The following resource types are considered "Entities": {{company}}, {{division}
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Company Tree API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 400` | `Request Parameter Doesn't Match Expected Value` | Ensure all **Required** parameters are provided, see `Description` of Error for more details |
-| `HTTP 400` | `Please move or delete attached locations before deleting this entity` | Ensure Node to be deleted does not have child Locations |
+| `HTTP 400` | `Please move or delete attached`<br/>`locations before deleting this entity` | Ensure Node to be deleted does not have child Locations |
 | `HTTP 400` | `'{x}' should not be empty.` | Ensure required parameters are included |
-| `HTTP 400` | `'{x}' must be between 0 and {y} characters. You entered {z} characters.` | Ensure required parameters are within size limitations |
+| `HTTP 400` | `'{x}' must be between 0 and {y} characters.`<br/>` You entered {z} characters.` | Ensure required parameters are within size limitations |
 | `HTTP 400` | `'Latitude/Longitude' should not be empty` | Ensure both `Latitude` and `Longitude` are provided, or `Geography` is null |
-| `HTTP 400` | `'Latitude' must be between -90 and 90. You entered {x}` | Ensure `Latitude` is between -90 and 90 |
-| `HTTP 400` | `'Longitude' must be between -180 and 180. You entered {x}` | Ensure `Longitude` is between -180 and 180 |
+| `HTTP 400` | `'Latitude' must be between -90 and 90. `<br/>`You entered {x}` | Ensure `Latitude` is between -90 and 90 |
+| `HTTP 400` | `'Longitude' must be between -180 and 180.`<br/>`You entered {x}` | Ensure `Longitude` is between -180 and 180 |
 | `HTTP 404` | `Entity Not Found` | Ensure `CompanyId` and `LocationId` are accurate and the Location belongs to the Company |
-| `HTTP 409` | `Entity resource already modified by an earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
-| `HTTP 409` | `An Entity already exists with the same name and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |
+| `HTTP 409` | `Entity resource already modified by an`<br/>` earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
+| `HTTP 409` | `An Entity already exists with the same name `<br/>`and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |

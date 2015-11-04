@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -39,7 +39,7 @@ summary:
 | Picture.Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
 | Picture.MimeType | String | The mime type of the Asset | `image/jpeg` |
 | Picture.Width | Integer | Width in pixels | `240` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 | *Profiles* | *Object* | *This is a legacy property that should not be used* |  |
 
@@ -53,21 +53,28 @@ This request allows existing Users to be imported from another system. Users cre
 
     POST /users/importExisting
     {
-        {User}
+        "Username": "{Username}",
+        "ParentEntityId": {ParentEntityId},
+        "FirstName": "{FirstName}",
+        "LastName": "{LastName}",
+        "Password": "{Password}",
+        "Email" : "{Email}",
+        "Attributes": {
+            "Department": "{Department}"
+        },
+        "ClientUserId": "{ClientUserId}"
     }
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### Request Parameters
 
-{{user}} resource with the following properties
-
 * `UserName ` (**Required**) - The name used to identify this User. Must be unique
-* `ParentEntityId` (**Required**) - Identifier for the {{company}} to which this User belongs
+* `ParentEntityId` (**Required**) - Identifier for the {{Company}} to which this User belongs
 * `FirstName` (Optional) - First name of the User
 * `LastName` (Optional) - Last name of the User
 * `Password` (Optional) - Password. If supplied, it must be a nonempty string
@@ -96,7 +103,7 @@ This request allows existing Users to be imported from another system. Users cre
 
 #### Response
 
-* [User](#user) that was created, if successful
+* {{User}}
 
 ###### Example
 
@@ -152,7 +159,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -168,7 +175,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 * `Email` (**Required**) - The User's email address. Must be unique. No notification will be sent when this User is updated
 * `Attributes` (Optional) - Set of key-value pairs that contain extra data to store with the User
 * `ClientUserId` (Optional) -  Identifier for the User in an external system 
-* `Picture` (Optional) - A reference to an {{asset}} that is a photo of the User. Once the `Picture` property is populated, it is **immutable**. However, it can be removed completely by setting `Picture` to `null` in the body of a `PUT` reqest
+* `Picture` (Optional) - A reference to an {{Asset}} that is a photo of the User. Once the `Picture` property is populated, it is **immutable**. However, it can be removed completely by setting `Picture` to `null` in the body of a `PUT` reqest
     * `Id` (**Required**) - Unique identifier for the Asset
     * `Name` (**Required**) - Asset name
     * `Height` (**Required**) - Height of the Asset in pixels
@@ -208,7 +215,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 
 #### Response
 
-* [User](#user) that was updated, if it was successful
+* {{User}}
 
 ###### Example
 
@@ -245,7 +252,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ##### URI Parameters
@@ -260,7 +267,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 
 #### Response
 
-* [User](#user) that was requested, if it exists
+* {{User}}
 
 ###### Example
 
@@ -289,14 +296,14 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ##### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `Skip`(Optional) - {{skip}}
-* `Top`(Optional) - {{topuser}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `Skip`(Optional) - {{Skip}}
+* `Top`(Optional) - {{Top_User}}
 
 ###### Example
 
@@ -314,7 +321,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
     * `count` (Integer) - The total number of results returned from the request
     * `skip` (Integer) - Value of `skip` in the request URI, if not specified the value will be 0
     * `top` (Integer) - Value of `top` in the request URI, if not specified the value will be 30
-* `items` (Array[[User](#user)]) - Users that were requested, if any were found
+* `items` (Array[{{User}}]) 
 
 ###### Example
 
@@ -358,15 +365,15 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ##### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `Terms` (**Required**) - List of terms, multiple terms are separated by an encoded whitespace (`+`). User properties must contain/start with the term to be returned. Search terms are **not** case sensitive.
-* `Skip`(Optional) - {{skip}}
-* `Top`(Optional) - {{topuser}}
+* `Skip`(Optional) - {{Skip}}
+* `Top`(Optional) - {{Top_User}}
 
 ###### Example
 
@@ -384,7 +391,7 @@ To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepe
     * `count` (Integer) - The total number of results returned from the request
     * `skip` (Integer) - Value of `skip` in the request URI, if not specified the value will be 0
     * `top` (Integer) - Value of `top` in the request URI, if not specified the value will be 30
-* `items` (Array[[User](#user)]) - Users matching the search terms, if any were found
+* `items` (Array[{{User}}]) - 
 
 ###### Example
 
@@ -447,7 +454,7 @@ Users can be assigned to multiple locations
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ##### URI Parameters
@@ -475,7 +482,7 @@ Users can be assigned to multiple locations
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ##### URI Parameters
@@ -503,7 +510,7 @@ Users can be assigned to multiple locations
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ##### URI Parameters
@@ -537,15 +544,15 @@ Users can be assigned to multiple locations
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ##### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `ClientUserId` (**Required**) - Identifier for the {{user}} in an external system
-* `Skip`(Optional) - {{skip}}
-* `Top`(Optional) - {{topuser}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `ClientUserId` (**Required**) - Identifier for the {{User}} in an external system
+* `Skip`(Optional) - {{Skip}}
+* `Top`(Optional) - {{Top_User}}
 
 ###### Example
 
@@ -563,7 +570,7 @@ Users can be assigned to multiple locations
     * `count` (Integer) - The total number of results returned from the request
     * `skip` (Integer) - Value of `skip` in the request URI, if not specified the value will be 0
     * `top` (Integer) - Value of `top` in the request URI, if not specified the value will be 30
-* `items` (Array[[User](#user)]) - Users matching the search terms, if any were found
+* `items` (Array[{{User}}])
 
 ###### Example
 
@@ -611,7 +618,7 @@ Once locked, a User will not be able to log in or obtain an access token until t
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -644,7 +651,7 @@ A User can be unlocked if their account is locked and their parent Entity is not
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -676,7 +683,7 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -691,7 +698,7 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 #### Response
 
-* [User](#user) that was disabled, if it was successful
+* [User](#user)
 
 ###### Example
 
@@ -720,7 +727,7 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -735,7 +742,7 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 #### Response
 
-* [User](#user) that was enabled, if it was successful
+* {{User}}
 
 ###### Example
 
@@ -799,16 +806,12 @@ The `prev`.`href` refers to a resource containing a page with the **previous** 5
 
 ## Errors
 
-<br/>
-
-The below table may help resolve problems encountered when making requests to the User Manager API.
-
-| Error Code  | Description | How to Resolve |
-|:------------|:------------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 400` | `Bad Request` | Ensure all of the required fields are provided and formatted accurately, for more details see error message |
 | `HTTP 400` | `No search terms provided` | Ensure search terms are provided in URI |
-| `HTTP 400` | `Query string parameter '$top' should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
-| `HTTP 400` | `Query string parameter '$skip' should be non-negative but was -1` | Ensure `$top` is non-negative |
+| `HTTP 400` | `Query string parameter '$top'`<br/>`should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
+| `HTTP 400` | `Query string parameter '$skip'<br/>`should be non-negative but was -1` | Ensure `$top` is non-negative |
 | `HTTP 404` | `User not found` | Ensure UserId is valid |
 | `HTTP 404` | `Entity not found` | Ensure LocationId is valid |
 | `HTTP 409` | `Username and email already exist` | Ensure the email chosen does not already belong to a User. <br/> If the email address belongs to a disabled User, change the email for the disabled User before creating a new User with the original email |

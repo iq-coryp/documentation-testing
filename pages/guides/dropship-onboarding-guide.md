@@ -4,12 +4,11 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
-{% include externallinks.html %}
 
 ## Overview
 
@@ -39,20 +38,21 @@ As part of the onboarding process, you will have received an onboarding package 
 
 Should you require information beyond the scope of this guide, or did not receive the onboarding package, contact <a href ="mailto:{{site.support_email}}?subject=Support">API Support</a>.
 
+If the above steps are not complete or you are not sure, contact {{contact_support}}.
 
 #### Environment
 
 iQmetrix provides you with two environments: Sandbox and Production. 
 Use the Sandbox environment to test your API and to perform end-to-end testing. After completing this stage proceed to the Production environment.
 
-For more information on environments, see {{environment}}.
+For more information on environments, see {{Environments}}.
 
 The iQmetrix API supports JSON and JSON + HAL. See [Supported Response Formats](/api/getting-started) for more information.
 
 
 ## Step 1 - Authentication
 
-In order to make authorized requests to iQmetrix APIs, you need an {{access_token}}.
+In order to make authorized requests to iQmetrix APIs, you need an {{AccessToken_Glossary}}.
 
 See the table below for different ways of getting an Access Token.
 
@@ -69,9 +69,9 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 
 ## Step 2 - Product Feed
 
-A [Product Feed](/api/product-feed) allows you to continuously steam all of your products' information into a single source within the iQmetrix system. The product feed you provide will be curated by iQmetrix into the Product Library and made available to retailers. 
+A [Product Feed](/api/product-feed) allows you to continuously channel all of your products' information into a single source within the iQmetrix system. The product feed you provide will be curated by iQmetrix into the Product Library and made available to retailers. 
 
-Each product that has been curated will be removed from the feed, leaving the delta from your last push. It's recommended to update the `LastModifiedByVendorUtc` field for this product feed lifecycle, as it gives visibility to the curation team should there be any new products added to the feed or any product information updates.
+Each product that has been curated will be <strong>removed from the feed</strong>, leaving the delta from your last push. It's recommended to update the `LastModifiedByVendorUtc` field for this product feed lifecycle, as it gives visibility to the curation team should there be any new products added to the feed or any product information updates.
 
 <img src="{{ "/images/product-feed.jpg" | prepend: site.url }}" alt="product feed diagram" />
 
@@ -81,9 +81,9 @@ iQmetrix organizes retail products in a hierarchical structure using Classificat
 
 Each Product must have an associated Classification Tree and Classification.
 
-For more details on this concept, see {{classificationconcept}}.
+For more details on this concept, see {{ClassificationTree_Concept}}.
 
-To get a list of Classifications based on your provided Classification Tree ID, see [Get Classification Tree by ID](/api/classification-tree/#getting-a-classification-tree)
+To get a list of Classifications based on your provided Classification Tree ID, see [Getting a Classification Tree](/api/classification-tree/#getting-a-classification-tree)
 
 ##### Example Request
 
@@ -129,7 +129,7 @@ To get a list of Classifications based on your provided Classification Tree ID, 
 
 ### 2.2 Get All Field Definitions
 
-A field definition contains all metadata about a product's attribute, such as name, units, and how it should be diplayed.  
+A field definition contains all metadata about a product's attribute, such as name, units, and how it should be displayed.  
 
 A field is an instance of a field definition. Each product field has a definition and a value. Field definitions are agnostic of industry and are considered global attributes.
 
@@ -197,8 +197,9 @@ To get all Field Definitions, see [Getting Field Definitions](/api/field-definit
 
 Now that you have a list of Field Definitions and Classifications, there are also optional parameters to enter for your Products. Ensure your products have, at minimum, a ModelName as this field will be used to import your products into the iQmetrix platform.
 
-We can now combine the information gathered from the previous steps to [Add a Product to your Product Feed](/api/product-feed/#add-product-to-product-feed)
+We can now combine the information gathered from the previous steps to [Adding a Product to your Product Feed](/api/product-feed/#addding-a-product-to-product-feed)
 
+<hr>
 <strong>Recommendations:</strong>
 
 * Ensure your product images (assets) have a transparent background. We crop out any backgrounds so that we can create a clean reflection in XQ.
@@ -206,9 +207,11 @@ We can now combine the information gathered from the previous steps to [Add a Pr
 * Ensure dimensions are in separate fields, and <strong>not</strong> as a string, such as "5x5x5".
 * Ensure `MSRP` includes currency code, such as "14.99 USD".
 * Ensure `Classification` is not null.
-* Ensure the `color` definition uses model desciptions, such as Space Gray
+* Ensure the `color` definition uses model descriptions, such as Space Gray
 * Ensure the `color tag` definition uses multiple of the following palette:
  * Black, Blue, Brown, Gray, Green, Orange, Pink, Purple, Red, Translucent, Turquoise, White, Yellow, Gold, Silver, Bronze
+
+<hr>
 
 ##### Example Request
 
@@ -329,7 +332,7 @@ During synchronization, this feed updates all subscribed retailers with all prod
 | Price | Wholesale price |
 | Dropshippable | true |
 
-To add products, see [Put Products in Subscribable List](/api/product-subscription/#put-products-in-subscribable-list). 
+To add products, see [Updating Products in a Subscribable List](/api/product-subscription/#updating-products-in-a-subscribable-list). 
 
 ##### Example Request
 
@@ -376,7 +379,7 @@ To add products, see [Put Products in Subscribable List](/api/product-subscripti
 
 For the remaining steps, you <strong>must</strong> know the Company IDs for the companies you will be interacting with. 
 
-You can get a list of all your companies via [Get All Companies for Product Subscription](/api/product-subscription/#get-all-companies-for-product-subscription).
+You can get a list of all your companies via [Getting All Companies in a Product Subscription](/api/product-subscription/#getting-all-companies-in-a-product-subscription).
 
 ##### Example Request
     
@@ -408,7 +411,7 @@ The [Supplier Availability](/api/supplier-availability) provides iQmetrix with a
 
 ### 4.1 Configure Availability
 
-To configure product availability, see [Configure Product Availability](/api/supplier-availability/#configure-product-availability). 
+To configure product availability, see [Configuring Product Availability](/api/supplier-availability/#configuring-product-availability). 
 
 ##### Example Request
 
@@ -454,7 +457,7 @@ The [Cost Feed](/api/cost-feed) allows you to continually provide wholesale cost
 
 Every Product must have an associated cost and a list of companies to apply the cost.
 
-You must add product costs to the cost feed via [Add Products to Cost Feed](/api/cost-feed/#add-a-product-to-cost-feed). 
+You must add product costs to the cost feed via [Adding Products to Cost Feed](/api/cost-feed/#adding-a-product-to-cost-feed). 
 
 ##### Example Request
 
@@ -500,7 +503,9 @@ You must add product costs to the cost feed via [Add Products to Cost Feed](/api
 
 You must provide a [Shipping Options](/api/shipping-options) API to iQmetrix. Your options will then be displayed to the customer. 
 
-Once an order has been created, shipping options will be requested via the SACCS service. The SACCS service is a shipping options arbitrator between end customer products (e.g. RQ) and iQmetrix services. The SACCS service will first call out the Supplier Availability service to determine whether or not the products are available, and pass this information to the Shipping service. Then the Shipping service will request shipping options via your API and includes the shipping address' postal code.
+Once an order has been created, shipping options will be requested via the SACCS service. 
+
+{{callout_info}}The <strong>SACCS service</strong> is a shipping options arbitrator between end customer products (e.g. RQ) and iQmetrix services. The SACCS service will first call out the Supplier Availability service to determine whether or not the products are available, and pass this information to the Shipping service. Then the Shipping service will request shipping options via your API and includes the shipping address' postal code.{{end}}
 
 <img src="{{ "/images/shipping-options.jpg" | prepend: site.url }}" class=".img-responsive" alt="shipping options" />
 

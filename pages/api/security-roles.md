@@ -4,12 +4,12 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
-{% include externallinks.html %}
+
 
 {{note}}
 Changes within the Security Roles API involve complex actions behind the scenes and <b>are not always immediate</b>.
@@ -17,7 +17,7 @@ Changes within the Security Roles API involve complex actions behind the scenes 
 
 ## Overview
 
-Security Roles allow you to specify what {{users}} are allowed to do.
+Security Roles allow you to specify what {{Users}} are allowed to do.
 
 The figure below shows how Security Roles interact with Resources in the [User Manager](/api/user-manager) and [Company Tree](/api/company-tree) APIs.
 
@@ -25,14 +25,14 @@ The figure below shows how Security Roles interact with Resources in the [User M
 
 ## Endpoints
 
-* Sandbox: https://usermanager.iqmetrix.net/v1
+* Sandbox: https://usermanagerdemo.iqmetrix.net/v1
 * Production: https://usermanager.iqmetrix.net/v1
 
 ## Resources
 
 ### SecurityRole
 
-A SecurityRole represents the relationship between a {{user}} and a set of Permissions.
+A SecurityRole represents the relationship between a {{User}} and a set of Permissions.
 
 SecurityRoles allow you create custom groups that can hold Permissions.
 
@@ -43,7 +43,7 @@ SecurityRoles allow you create custom groups that can hold Permissions.
 
 ### AssignedRole
 
-An AssignedRole represents the relationship between a {{user}}, {{securityrole}} and Entity. 
+An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity. 
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
@@ -60,7 +60,6 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 
 * Assigning a Permission to a Security Role always **grants** an action
 * A Permission will never overrule another Permission
-* When `ParentPermissionId` is not `null`, the parent Permission specified by the `ParentPermissionId` parameter must be assigned first
 * When `IsAssignable` is set to `false`, the Permission is Restricted by iQmetrix. If you require access to a Restricted Permission, contact {{contact_support}}
 
 | Name | DataType | Description | Example |
@@ -69,11 +68,13 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 | Name | String | Descriptive name | `Edit Products` |
 | Category | String | This field is used internally to group Permissions by how they impact the iQmetrix ecosystem | `Products` |
 | Code | String | Unique, system generated name used for sorting Permissions | `editproducts` |
-| Description | String | Describes the function of the Permission | `Enables the user to create, update`<br/>`and archive their private products and retailer revisions.` |
-| IsAssignable | Boolean | A flag to indicate if this Permission is Restricted (see)| `true` |
-| ParentPermissionId | Integer | Identifier of a Parent Permission (see Notes) | `22` |
+| Description | String | Describes the function of the Permission | `Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.` |
+| IsAssignable | Boolean | A flag to indicate if this Permission is Restricted, see Notes above | `true` |
+| ParentPermissionId | Integer | Identifier of a similar Permission, used for organizing Permissions into groups | `22` |
 
-## Getting All Permissions
+## Getting All Permissions for an Entity
+
+This request will return all [Permissions](#permission) within the [SecurityRoles](#security-role) belonging to the specified Entity.
 
 #### Request
 
@@ -81,12 +82,12 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}} 
+* `EntityId` (**Required**) - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
 ###### Example
 
@@ -96,7 +97,7 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 
 #### Response
 
-* Array[[Permission](#permission)] resources that were requested
+* Array[{{Permission}}]
 
 ###### Example
 
@@ -132,7 +133,7 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
         ...
     ]
 
-## Getting All Security Roles
+## Getting All Security Roles for an Entity
 
 #### Request
 
@@ -140,12 +141,12 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
+* `EntityId` (**Required**) - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
 
 ###### Example
 
@@ -155,7 +156,7 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 
 #### Response
 
-* Array[[SecurityRole](#securityrole)] resources that were requested
+* Array[{{SecurityRole}}]
 
 ###### Example
 
@@ -187,17 +188,15 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
+* `EntityId` (**Required**) - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
 
 #### Request Parameters
-
-A {{securityrole}} resource with the following properties:
 
 * `Name` (**Required**) - A descriptive name, must be unique within the Company
 
@@ -213,7 +212,7 @@ A {{securityrole}} resource with the following properties:
 
 #### Response
 
-{{securityrole}} resource that was created, if successful
+* {{SecurityRole}}
 
 ###### Example
 
@@ -235,18 +234,16 @@ A {{securityrole}} resource with the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
-* `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
+* `EntityId` (**Required**) - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+* `SecurityRoleId` (**Required**) - Identifier of a {{SecurityRole}}
 
 #### Request Parameters
-
-A {{securityrole}} resource with the following properties:
 
 * `Id` (**Required**) - Must match the SecurityRoleId provided in the URI
 * `Name` (**Required**) - A descriptive name, must be unique within the Company
@@ -264,7 +261,7 @@ A {{securityrole}} resource with the following properties:
 
 #### Response
 
-{{securityrole}} resource that was updated, if successful
+* {{SecurityRole}}
 
 ###### Example
 
@@ -282,14 +279,14 @@ A {{securityrole}} resource with the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
-* `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
-* `PermissionId` (**Required**) - Identifier of a {{permission}}. If you don't know the `PermissionId` for the Permission you want to add, see [Getting a List of Permissions](#getting-a-list-of-permissions)
+* `EntityId` (**Required**) - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+* `SecurityRoleId` (**Required**) - Identifier of a {{SecurityRole}}
+* `PermissionId` (**Required**) - Identifier of a {{Permission}}
 
 ###### Example
 
@@ -311,18 +308,18 @@ A {{securityrole}} resource with the following properties:
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
-* `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
-* `PermissionId` (**Required**) - Identifier of a {{permission}}
+* `EntityId` (**Required**) - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+* `SecurityRoleId` (**Required**) - Identifier of a {{SecurityRole}}
+* `PermissionId` (**Required**) - Identifier of a {{Permission}}
 
 ###### Example
 
-    PUT /Entities(1)/SecurityRoles(4457)/Permissions(55)
+    DELETE /Entities(1)/SecurityRoles(4457)/Permissions(55)
     Authorization: Bearer (Access Token)
     Accept: application/json
 
@@ -340,13 +337,13 @@ A {{securityrole}} resource with the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `EntityId` (**Required**) - Identifier of a {{company}}, {{location}}, {{division}} or {{group}}
-* `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
+* `EntityId` (**Required**) - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+* `SecurityRoleId` (**Required**) - Identifier of a {{SecurityRole}}
 
 ###### Example
 
@@ -356,7 +353,7 @@ A {{securityrole}} resource with the following properties:
 
 #### Response
 
-* Array[[Permission](#permission)] resources that were requested
+* Array[{{Permission}}] 
 
 ###### Example
 
@@ -394,7 +391,7 @@ A {{securityrole}} resource with the following properties:
 
 ## Assigning a Security Role to a User
 
-If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{assignedrole}}, the same response as assigning a new SecurityRole to a User.
+If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
 
 #### Request
 
@@ -406,18 +403,18 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 #### URI Parameters
 
-* `UserId` (**Required**) - Identifier of a {{user}}
+* `UserId` (**Required**) - Identifier of a {{User}}
 
 #### Request Parameters
 
 * `EntityId` (**Required**) - Identifier of an Entity at which to apply this SecurityRole
-* `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
+* `SecurityRoleId` (**Required**) - Identifier of a {{SecurityRole}}
 
 ###### Example
 
@@ -432,7 +429,7 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 #### Response
 
-* {{assignedrole}} resource that was created
+* {{AssignedRole}}
 
 ###### Example
 
@@ -452,13 +449,13 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `UserId` (**Required**) - Identifier of a {{user}}
-* `SecurityRoleId` (**Required**) - Identifier of a {{securityrole}}
+* `UserId` (**Required**) - Identifier of a {{User}}
+* `SecurityRoleId` (**Required**) - Identifier of a {{SecurityRole}}
 
 ###### Example
 
@@ -480,12 +477,12 @@ If the User is assigned a SecurityRole they already have, the result will be a `
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `UserId` (**Required**) - Identifier of a {{user}}
+* `UserId` (**Required**) - Identifier of a {{User}}
 
 ###### Example
 
@@ -495,7 +492,7 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 #### Response
 
-* Array[[AssignedRole](#assignedrole)] resources that were requested
+* Array[{{AssignedRole}}] 
 
 ###### Example
 
@@ -518,11 +515,9 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Cost Feed API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
-| `HTTP 400` | `The field {x} is a required field but was not found in the request` | Ensure all required parameters are included |
-| `HTTP 400` | `Expected {x} to contain {y} but found {z} | Ensure parameters that are in both Request URI and body match |
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
+| `HTTP 400` | `The field {x} is a required field`<br/>`but was not found in the request` | Ensure all required parameters are included |
+| `HTTP 400` | `Expected {x} to contain {y} but found {z}` | Ensure parameters that are in both Request URI and body match |
 | `HTTP 404` | `{x} not found` | Ensure URI parameters are correct | 
-| `HTTP 409` | `The SecurityRole name {x} already exists for entity {y}` | SecurityRole names must be unique across the Company |
+| `HTTP 409` | `The SecurityRole name {x}`<br/>`already exists for entity {y}` | SecurityRole names must be unique across the Company |

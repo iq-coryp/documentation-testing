@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -18,7 +18,7 @@ summary:
 
 ## Overview
 
-{{account}} type is determined by the `AccountCategory` property and can be one of the following: **Asset, Liability, Equity, Revenue, Expense**.
+{{Account}} type is determined by the `AccountCategory` property and can be one of the following: **Asset, Liability, Equity, Revenue, Expense**.
 
 Account balances will be affected by Debits and Credits in the following ways:
 
@@ -39,19 +39,19 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` | 
-| AccountName | String (128) | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` | 
-| AccountNumber | String (128) | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` | 
+| AccountName | String(128) | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` | 
+| AccountNumber | String(128) | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` | 
 | AccountCategory  | String | Account Category, acceptable values include: **Asset, Liability, Equity, Revenue and Expense** | `Asset` | 
-| SubCategory | String (256) | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
+| SubCategory | String(256) | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
 | CreatedByUserId | Integer  | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
 | UpdatedByUserId  | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that last updated this Account | `22212` |
 | CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` | 
-| CustomProperties | Object (4000) | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | | 
+| CustomProperties | Object(4000) | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | | 
 | DateCreatedUTC | DateTime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` | 
 | DateUpdatedUTC | DateTime | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` | 
-| Description | String (1024) | Description | `This is a Canadian $ account` | Y |
+| Description | String(1024) | Description | `This is a Canadian $ account` | Y |
 | IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` | 
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 
 ### Transaction
 
@@ -63,30 +63,57 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 | Name | Data Type  | Description | Example |
 |:-----|:-----------|:------------|:--------|
-| Id | GUID | Unique identifier  | `6f29405f-6124-4919-b839-b84fbd53f6e0` | 
-| TransactionDateUTC | DateTime| The date and time that this Transaction occurred in UTC | `2015-04-22T19:31:03.5159086+00:00` | 
+| Id | GUID | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` | 
+| TransactionDateUTC | DateTime| The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` | 
 | CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` | 
 | Entries | Array[[Entry](#entry)] | The collection of Entries for this Transaction | | 
 
 ### Entry
 
-<b>Notes:</b>
+#### Notes
 
 * A Transaction is <b>immutable</b> and permanent after it has been created it cannot be updated or deleted
 * Debit and Credit are decimal values without an associated currency
-* All transactions within the context of this {{account}} will use the currency configured at the Account level
+* All transactions within the context of this {{Account}} will use the currency configured at the Account level
 
 | Name | Data Type  | Description | Example | 
 |:-----|:-----------|:------------|:--------|
 | AccountID | GUID | Identifier for the [Account](#account) this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` | 
 | Credit | Decimal | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` | 
-| CustomProperties | Object (4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters | | 
+| CustomProperties | Object(4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters | | 
 | Debit | Decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` | 
 | EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) this Entry applies to | `25` | 
 | LineNumber | Integer | A value indicating the sort order of this entry within the Transaction | `1` |
-| Memo | String (1024) | Memo string for this Entry | `Memo for debit` | 
-| ReferenceID | String (128) | Reference number string, such as the invoice that caused the Transaction | `1234` | 
-| ReferenceType | String (128) | String value to indicate what the ReferenceId column is referring to (Invoice, Cheque, etc.) | `Invoice Id` | 
+| Memo | String(1024) | Memo string for this Entry | `Memo` | 
+| ReferenceID | String(128) | Reference number string, such as the invoice that caused the Transaction | `INV005` | 
+| ReferenceType | String(128) | String value to indicate what `ReferenceID` is referring to. See [ReferenceType](#referencetype) | `Invoice` | 
+
+## Enumerations
+
+### ReferenceType 
+
+The following table lists the ReferencType values used in RQ.
+
+| ReferenceType | 
+|:--------------|
+| Account Payment | 
+| Bill Pay | 
+| Cashout | 
+| Chargeback |
+| Consignment | 
+| Full Charge Back | 
+| Gift Card Maintenance | 
+| Inventory Adjustment | 
+| Invoice |
+| Opening Balance | 
+| Petty Cash Transaction | 
+| Receive PO (& Corrections) | 
+| Sales Order | 
+| Starting Inventory Count Import | 
+| Stock Balance | 
+| Transfer | 
+| Vendor Deposit | 
+| Vendor Rebate Adjustment | 
 
 ## Get Accounts
 
@@ -101,14 +128,14 @@ Accounts are ordered alphabetically by <code>AccountName</code>
         
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json` **OR** `Accept: application/hal+json` 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `Skip` (Optional) - {{skip}}
-* `Top` (Optional) - {{topgl}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `Skip` (Optional) - {{Skip}}
+* `Top` (Optional) - {{Top_GL}}
 
 ###### Example
 
@@ -118,9 +145,9 @@ Accounts are ordered alphabetically by <code>AccountName</code>
     
 #### Response
 
-If using a `application/hal+json`, [Pagination](#pagination) data will be included in the response
+If using `application/hal+json`, [Pagination](#pagination) data will be included in the response
 
-* Array[[Account](#account)], if any were found
+* Array[{{Account}}]
     
 ###### Example
 
@@ -179,16 +206,16 @@ When getting Transactions, the order is ascending by <code>TransactionDateUTC</c
         
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/hal+json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `StartDate` (**Required**) - Date at which to begin search request, in UTC
 * `EndDate` (**Required**) - Date at which to end search request, in UTC
-* `Skip` (Optional) - {{skip}}
-* `Top` (Optional) - {{topgl}}
+* `Skip` (Optional) - {{Skip}}
+* `Top` (Optional) - {{Top_GL}}
 
 ###### Example
 
@@ -200,7 +227,7 @@ When getting Transactions, the order is ascending by <code>TransactionDateUTC</c
 
 If using a `application/hal+json`, [Pagination](#pagination) data will be included in the response
 
-* Array[[Transaction](#transaction)] matching the filter criteria, if any were found
+* Array[[Transaction](#transaction)] 
     
 ###### Example
 
@@ -238,9 +265,9 @@ If using a `application/hal+json`, [Pagination](#pagination) data will be includ
                                 "Debit": 5000,
                                 "EntityId": 25,
                                 "LineNumber": 1,
-                                "Memo": "Memo for debit",
-                                "ReferenceID": "1234",
-                                "ReferenceType": "1234"
+                                "Memo": "Memo",
+                                "ReferenceID": "INV005",
+                                "ReferenceType": "Invoice"
                             },
                             {
                                 "AccountID": "c60b922e-1454-4999-aecb-775431e56831",
@@ -249,9 +276,9 @@ If using a `application/hal+json`, [Pagination](#pagination) data will be includ
                                 "Debit": 0,
                                 "EntityId": 25,
                                 "LineNumber": 2,
-                                "Memo": "Memo for credit",
-                                "ReferenceID": "1234",
-                                "ReferenceType": "1234",
+                                "Memo": "Quoted invoice",
+                                "ReferenceID": "INV005",
+                                "ReferenceType": "Invoice"
                             }
                         ]
                     }
@@ -311,13 +338,11 @@ The `prev`.`href` refers to a resource containing a page with the **previous** 1
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the General Ledger API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 400` | `Error converting value {x} to type {y}` | Ensure `AccountCategory` is set to one of: Asset, Liability, Equity, Revenue, Expense |
-| `HTTP 400` | `The supplied currency code {x} is not supported` | Ensure `CurrencyCode` is one of the supported values such as `USD` or `CAD` |
+| `HTTP 400` | `The supplied currency code {x} `<br/>`is not supported` | Ensure `CurrencyCode` is one of the supported values such as `USD` or `CAD` |
 | `HTTP 400` | `The {x} field is required` | Ensure all Required fields are provided |
-| `HTTP 400` | `Uri parameter representing resource id ... don't match` | Ensure given request body parameters match URI parameters |
+| `HTTP 400` | `Uri parameter representing resource id`<br/>`{x} don't match` | Ensure given request body parameters match URI parameters |
 | `HTTP 404` | `Resource cannot be found` | Ensure the `Id` specified in the URI is valid and the resource exists | 
-| `HTTP 409` | `The account has a non-unique name or account number` | Account names and numbers must be unique for the Company |
+| `HTTP 409` | `The account has a non-unique name`<br/>` or account number` | Account names and numbers must be unique for the Company |

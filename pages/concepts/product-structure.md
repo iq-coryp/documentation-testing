@@ -4,13 +4,13 @@ permalink: /concepts/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
 
-In {{productlibraryconcept}} and in your Catalog, products are structured in a way to make managing them easier.
+In {{ProductLibrary_Concept}} and in your Catalog, products are structured in a way to make managing them easier.
 
 ## Master Products
 
@@ -32,7 +32,7 @@ Products can vary on different attributes, such as:
 
 In Product Library, these are refered to as **Variations**.
 
-Variations can contain their own details such as SKUs, Stock levels, {{prices}}, {{assets}} and more.
+Variations can contain their own details such as SKUs, Stock levels, {{Pricing}}, {{Assets}} and more.
 
 The image below represents how a Master Product "Comfy Sweater" has variations for color and size. 
 
@@ -40,7 +40,7 @@ The image below represents how a Master Product "Comfy Sweater" has variations f
 
 ## Carrier Revisions
 
-In the wireless industry, there is often an additional level of complexity, as each {{carrier}} may offer a different version of the product. These are refered to as **Carrier Revisions**.
+In the wireless industry, there is often an additional level of complexity, as each {{Carrier}} may offer a different version of the product. These are refered to as **Carrier Revisions**.
 
 **Note:**  *Carrier Revisions may be created from either Master Products or Variations. If Variations exist on a Master Product, then Carrier Revisions must be created from these Variations.*
 

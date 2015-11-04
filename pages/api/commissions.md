@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -53,60 +53,60 @@ For more information on Commissions in RQ, see <a href="http://iqmetrix.helpdocs
 | LastUpdateDateUtc | DateTime | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
 | LocationCode | String | An identifier for the Location in an external system | `LOC123` |
 | LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `4` |
-| MilestoneID | Guid | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
+| MilestoneID | GUID | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
 | Priority | Integer | Priority of product on sale invoice associated with this commission in RQ | `1` |
 | Quantity | Integer | The number of times the unit commission is to be applied | `1` |
 | RQCommissionId | Integer | Identifier of the associated commission RQ | `445` |
-| SaleInvoiceAndCouponID | Guid | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
+| SaleInvoiceAndCouponID | GUID | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
 | SaleInvoiceID | Integer | Identifier of the sale invoice which created this commission in RQ | `7` |
 | SerialNumber | String(100) | Serial number of the product associated with this commission in RQ | `8508194953` |
 | SplitRate1 | Decimal | Percentage of the commission the primary employee receives, defaults to 100 | `50.0` |
 | SplitRate2 | Decimal | Percentage of the commission the split employee receives, defaults to 0 | `50.0` |
 | TotalCommission | Decimal | The total commission amount to be applied equal to (UnitCommission * Quantity) | `5.32` |
-| TransactionGUID | Guid | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
+| TransactionGUID | GUID | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
 | TransactionType | Byte | Type of transaction which created this commission. See [TransactionType](#transactiontypes) for a list of acceptable values | `1` |
 | UnitCommission | Decimal | The individual unit Commission amount | `5.32` |
 
-## Types
+## Enumerations
 
 ### CommissionType
 
 To learn more about Commission types, see [Commission Types](http://iqmetrix.helpdocsonline.com/commission-types)
 
-| Id | Name |
-|:---|:---|
-| 0 | NonCommissionable |
-| 1 | SPIF | 
-| 2 | % Of Gross Sale | 
-| 3 | % Of Margin |
-| 4 | SPIF + % Of Gross Sale | |
-| 5 | SPIF + % Of Margin |
-| 6 | Fixed Cost |
-| 7 | Floating Cost |
-| 8 | % Above Fixed Cost |
+| Name | Id | Calculation |
+|:-----|:---|:------------|
+| % Above Fixed Cost | 8 | |
+| % Of Gross Sale | 2 | (UnitCommission * 100) / CommissionRate |
+| % Of Margin | 3 | (UnitCommission * 100) / CommissionRate |
+| Fixed Cost | 6 | | 
+| Floating Cost | 7 | |
+| NonCommissionable | 0 | None |
+| SPIF | 1 | UnitCommission |
+| SPIF + % Of Gross Sale | 4 | ((UnitCommission – CommissionSpiff) * 100) / CommissionRate |
+| SPIF + % Of Margin | 5 | ((UnitCommission – CommissionSpiff) * 100) / CommissionRate |
 
 ### CouponCommissionType
 
 To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline.com/coupon-overview)
 
-| Id | Name |
-|:---|:---|
-| 0 | NonCommissionable |
-| 1 | PercentageOfCoupon | 
-| 2 | SPIF | 
+| Name | Id |
+|:-----|:---|
+| NonCommissionable | 0 |
+| PercentageOfCoupon | 1 |
+| SPIF | 2 |
 
 ### TransactionType
 
-| Id | Description |
-|:---|:------------|
-| 0 | All | 
-| 1 | Invoice | 
-| 2 | Manual Entry | 
-| 3 | Reversal | 
-| 4 | Vendor Rebate Adjustment |  
-| 5 | Coupon | 
-| 6 | Full Charge Back | 
-| 7 | Milestone Reward | 
+| Description | Id |
+|:------------|:---|
+| All | 0 |
+| Coupon | 5 | 
+| Full Charge Back | 6 | 
+| Invoice | 1 |
+| Manual Entry | 2 | 
+| Milestone Reward | 7 | 
+| Reversal | 3 |
+| Vendor Rebate Adjustment | 4 |
 
 ## Getting All Commission Entries
 
@@ -122,16 +122,16 @@ Don't forget <code>$filter=</code> in the request!
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/hal+json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 * `StartDate` (Optional) - Date at which to begin search request, in UTC
 * `EndDate` (Optional) - Date at which to end search request, in UTC
-* `Skip`(Optional) - {{skip}}
-* `Top` (Optional) - {{toppunch}}
+* `Skip`(Optional) - {{Skip}}
+* `Top` (Optional) - {{Top_Punch}}
 
 ###### Example
 
@@ -143,7 +143,7 @@ Don't forget <code>$filter=</code> in the request!
 
 [Pagination](#pagination) links are included in this response
 
-* [Commission](#commission) that were requested, if any were found
+* [Commission](#commission)
 
 ###### Example
 

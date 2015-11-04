@@ -4,7 +4,7 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -22,14 +22,14 @@ summary:
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | String | Identifier | `M3-V1` |
-| Name | String (450) | Name | `iPhone 4S 16GB White` |
-| ShortDescription | String (450) | Short Description | `Better than iPhone 3G` |
-| LongDescription | String (20000) | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
+| Name | String(450) | Name | `iPhone 4S 16GB White` |
+| ShortDescription | String(450) | Short Description | `Better than iPhone 3G` |
+| LongDescription | String(20000) | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
 | Assets | Array[Object] | Asset information |  |
-| CanonicalClassification | Object | [Classification tree](/concepts/classification-tree) details |  |
+| CanonicalClassification | Object | [ClassificationTree](/concepts/classification-tree) details |  |
 | Entity | Object | Entity information, used for Entity revisions |  |
 | HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
-| HeroShotUri | String (450) | URI to a Hero Shot [Asset](/api/assets/#asset) | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| HeroShotUri | String(450) | URI to a Hero Shot [Asset](/api/assets/#asset) | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (`true`), or private (`false`) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
 | Manufacturer | Object | Manufacturer information | |
@@ -65,11 +65,11 @@ summary:
 | VendorSkus.Value | String | SKU value | `403405` |
 | VendorSkus.Description | String | SKU description | `SKU` |
 | VendorSkus.Entity | Integer | SKU Identifier | `3` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 
 ## Searching Products By Identifier
 
-`FindByIdentifier` can be used to search for [Product](#product) resources by the following identifiers:
+`FindByIdentifier` can be used to search for {{Product}} resources by the following identifiers:
 
 | Searchable Identifiers |
 |:-----------------------|
@@ -101,7 +101,7 @@ See the table below for available options and the syntax of using each one.
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
@@ -140,8 +140,6 @@ See the table below for available options and the syntax of using each one.
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Product Library API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 406` | `Locale not available` | This error occurs with some browsers and apps such as Postman. To resolve, add the header `Accept-Language: en-US` |

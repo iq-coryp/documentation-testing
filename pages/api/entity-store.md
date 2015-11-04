@@ -4,7 +4,7 @@ permalink: /api/entity-store/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -27,15 +27,15 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Name | String | Name | `SampleCarrier` |
 | Description | String  | Description | `Carrier creating great experiences.` |
 | Attributes | Object | Set of key-value pairs that contain extra data | |
-| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date, in UTC | `2015-05-20T23:06:29.7700813Z` |
 | ClientEntityId | String | Identifier in an external system | `123` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Logo | Object | A reference to a media asset |  |
+| Logo | Object | A reference to an [asset](/api/assets/#asset) |  |
 | Relationships | Array[Object]  | Relationships |  |
 | Role | String | Role | `Carrier` |
 | Roles | Object | The value must be `Carrier` | `{ "Name": "Carrier" }` |
 | SortName | String  | A string used for sorting | `samplecarrier` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 
 ### Manufacturer
@@ -49,12 +49,12 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | ClientEntityId | String | Identifier in an external system | `123` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Logo | Object | A reference to a media asset |  |
+| Logo | Object | A reference to an [asset](/api/assets/#asset) |  |
 | Relationships | Array[Object]  | Relationships |  |
 | Role | String | Role | `Manufacturer` |
 | Roles | Object | The value must be `Manufacturer` | `{ "Name": "Manufacturer" }` |
 | SortName | String  | A string used for sorting | `samplemanufacturer` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 
 ### Supplier
@@ -68,12 +68,12 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | ClientEntityId | String | Identifier in an external system | `123` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Logo | Object | A reference to a media asset |  |
+| Logo | Object | A reference to an [asset](/api/assets/#asset) |  |
 | Relationships | Array[Object]  | Relationships |  |
 | Role | String | Role | `Supplier` |
 | Roles | Object | The value must be `Supplier` | `{ "Name": "Supplier" }` |
 | SortName | String  | A string used for sorting | `samplesupplier` |
-| Version | Integer | The latest revision number | `1` |
+| Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* |  |
 
 ## Getting All Carriers
@@ -95,7 +95,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* Array[[Carrier](#carrier)], if any were found
+* Array[{{Carrier}}]
 
 ###### Example
 
@@ -133,7 +133,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 	
 #### URI Parameters
 
-* `CarrierId` (**Required**) - Identifier for the [Carrier](#carrier)
+* `CarrierId` (**Required**) - Identifier for the {{Carrier}}
 
 #### Headers
 
@@ -148,7 +148,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* [Carrier](#carrier) that was requested, if it exists
+* {{Carrier}}
 
 ###### Example
 
@@ -194,7 +194,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* Array[[Manufacturer](#manufacturer)], if any were found
+* Array[{{Manufacturer}}]
 
 ###### Example
 
@@ -233,11 +233,11 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### URI Parameters
 
-* `ManufacturerId` (**Required**) - Identifier for the [Manufacturer](#manufacturer)
+* `ManufacturerId` (**Required**) - Identifier for the {{Manufacturer}}
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ###### Example
@@ -248,7 +248,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* [Manufacturer](#manufacturer) that was requested, if it exists
+* {{Manufacturer}}
 
 ###### Example
 
@@ -284,7 +284,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ###### Example
@@ -295,7 +295,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* Array[[Supplier](#supplier)], if any were found
+* Array[{{Supplier}}]
 
 ###### Example
 
@@ -333,11 +333,11 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 	
 #### URI Parameters
 
-* `SupplierId` (**Required**) - Identifier for the [Supplier](#supplier)
+* `SupplierId` (**Required**) - Identifier for the {{Supplier}}
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 ###### Example
@@ -348,7 +348,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 #### Response
 
-* [Supplier](#supplier) that was requested, if it exists
+* {{Supplier}}
 
 ###### Example
 

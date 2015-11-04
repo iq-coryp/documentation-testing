@@ -4,16 +4,16 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-10-2015
+last_updated: 03-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
 
 ## Overview
 
-A **Classification Tree** is a hierarchical structure describing a taxonomy of {{products}}. 
+A **Classification Tree** is a hierarchical structure describing a taxonomy of {{Products}}. 
 
-To learn more about Classification Trees, see {{classificationconcept}}.
+To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 ## Endpoints
 
@@ -24,9 +24,11 @@ To learn more about Classification Trees, see {{classificationconcept}}.
 
 ### Classification
 
-**Classifications** are used to group {{products}} together by similar features.
+**Classifications** are used to group {{Products}} together by similar features.
 
-For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a Classification of "Smartphones":
+A Product can only have a single Classification.
+
+For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a Classification of Smartphones".
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -36,10 +38,6 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 | ProductTemplate | Object | A reference to a [ProductTemplate](/api/glossary/#producttemplate) | |
 | ProductTemplate.Id | Integer | Identifier | `60` |
 | ProductTemplate.Name | String | Name | `Wireless Device` |
-
-{{note}}
-{{products}} are associated with a single Classification.
-{{end}}
 
 ### Category
 
@@ -53,8 +51,8 @@ There is a limit to 20 levels of depth for Categories.
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `2` |
 | Name | String | Name | `Device` |
-| Categories | Array[Category] | Child Categories | |
-| Classifications | Array[Classification] | Child Classifications | |
+| Categories | Array[[Category](#category)] | Child Categories | |
+| Classifications | Array[[Classification](#classification)] | Child Classifications | |
 | Order | Integer | Sorting order | `1` | 
 
 ### ClassificationTree
@@ -64,13 +62,13 @@ There is a limit to 20 levels of depth for Categories.
 | Id | Integer | Identifier | `21` |
 | Name | String | Name | `Cellular & Accessories` |
 | Description | String | Description | `Classification of products for wireless retail` |
-| Categories | Array[Category] | Categories in the Tree | |
-| Classifications | Array[Classification] | Classifications for the Tree | |
-| IsCanonical | Boolean | This property is used by iQmetrix and can be ignored | `false` |
+| Categories | Array[[Category](#category)] | Categories in the Tree | |
+| Classifications | Array[[Classification](#classification)] | Classifications for the Tree | |
 | Owner | Object | Information about the [Company](/api/company-tree/#company) that owns this Company Tree |  |
 | Owner.Id | Integer | [Company](/api/company-tree/#company) Identifier | `1` |
 | Owner.Name | String | [Company](/api/company-tree/#company) Name | `SampleCompany` |
-| Version | Integer | Version of the tree, number of revisions that have been made | `41` |
+| Version | Integer | Latest revision number | `41` |
+| *IsCanonical* | *Boolean* | *Reserved for internal use* | |
 
 ## Getting a Classification Tree
 
@@ -80,12 +78,12 @@ There is a limit to 20 levels of depth for Categories.
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `ClassificationTreeId` (**Required**) - Identifier for the ClassificationTree
+* `ClassificationTreeId` (**Required**) - Identifier for the {{ClassificationTree}}
 
 ###### Example
 
@@ -95,7 +93,7 @@ There is a limit to 20 levels of depth for Categories.
 
 #### Response
 
-* [ClassificationTree](#classificationtree) that was requested, if it exists
+* {{ClassificationTree}}
 
 ###### Example
 
@@ -109,8 +107,12 @@ There is a limit to 20 levels of depth for Categories.
                 "Id": 2,
                 "Name": "Devices",
                 "Order": 1,
-                "Categories": [...],
-                "Classifications": [...]
+                "Categories": [
+                    ...
+                ],
+                "Classifications": [
+                    ...
+                ]
             },
             ...
         ],
@@ -126,7 +128,6 @@ There is a limit to 20 levels of depth for Categories.
             },
             ...
         ],
-        "IsCanonical": false,
         "Owner": {
             "Id": 1,
             "Name": "SampleCompany"
@@ -136,9 +137,7 @@ There is a limit to 20 levels of depth for Categories.
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Classification Tree API.
-
-| Error Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 404` | `Unable to find document id {x}` | Ensure ClassificationTreeId is correct |
 | `HTTP 406` | `Locale not available` | This error occurs with some browser extensions such as Postman. To resolve, add the header `Accept-Language: en-US` |

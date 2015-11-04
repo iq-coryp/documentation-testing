@@ -39,8 +39,7 @@
         {% include custom/conditions.html %}
 
         <ul id="mysidebar" class="nav">
-            <div class="siteTagline">
-            </div>
+            <div class="siteTagline">{{site.tagline}}</div>
             {% for entry in sidebar %}
                 {% for subcategory in entry.subcategories %}
                     {% if subcategory.url != null %}

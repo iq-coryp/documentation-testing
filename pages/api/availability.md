@@ -4,7 +4,7 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -17,16 +17,14 @@ summary:
 
 ## Resources
 
-### InventoryAvailability
-
-A **InventoryAvailability** resource consists of the following properties:
+### Availability
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier for the [CatalogItem](/api/catalog/#catalogitem) | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
-| EntityId | Integer | Identifier for the [Company Tree Node](/api/company-tree/#companytreenode) | `1` |
+| Id | GUID | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
+| EntityId | Integer | Identifier for a [CompanyTreeNode](/api/company-tree/#companytreenode) | `1` |
 | Quantity | Integer | Quantity | `15` |
-| IsDropShippable | Boolean | A flag to indicate if the CatalogItem can be shipped | `true` |
+| IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#catalogitem) can be shipped | `true` |
 
 ## Getting Availability For a Catalog Item By Location
 
@@ -36,14 +34,14 @@ A **InventoryAvailability** resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `LocationId` (**Required**) - Identifier for the {{location}}
-* `CatalogItemId` (**Required**) - Unique identifier for the [CatalogItem](/api/catalog/#catalogitem)
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `LocationId` (**Required**) - Identifier for the {{Location}}
+* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
 
 ###### Example
 
@@ -53,7 +51,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### Response
 
-* [InventoryAvailability](#inventoryavailability) that was requested, if it exists
+* [Availability](#availability) 
 
 ###### Example
 
@@ -73,13 +71,13 @@ A **InventoryAvailability** resource consists of the following properties:
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{company}}
-* `CatalogItemId` (**Required**) - Identifier for the [CatalogItem](/api/catalog/#catalogitem)
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+* `CatalogItemId` (**Required**) - Identifier for the {{CatalogItem}}
 
 ###### Example
 
@@ -89,7 +87,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 #### Response
 
-* Array[[InventoryAvailability](#inventoryavailability)] for Locations
+* Array[[Availability](#availability)] 
 
 ###### Example
 
@@ -112,9 +110,7 @@ A **InventoryAvailability** resource consists of the following properties:
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Availability API.
-
-| Error Code | Message | How To Resolve |
-|:-----------|:--------|:---------------|
+| HTTP Status Code | Description | How to Resolve |
+|:-----------------|:------------|:---------------|
 | `HTTP 404` | `InventoryAvailability resource with EntityId {x}` <br/> `and ProductId {y} cannot be found, nor is there`<br> `availability in the tree branch.` | Ensure CatalogItemId is valid and belongs to the [Location](/api/company-tree/#location) specified in the request |
 | `HTTP 500` | `Entity is not related to company` | Ensure [Location](/api/company-tree/#location) belongs to Company specified in request |
