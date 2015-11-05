@@ -238,7 +238,7 @@ It is also possible to get archives for order feed. Each order feed archive, inc
 ## Updating Order Status
 
 
-### Request
+#### Request
 
     PUT /Supplier({SupplierId})/Orders({OrderId})/OrderStatusUpdate
 
@@ -281,7 +281,7 @@ It is also possible to get archives for order feed. Each order feed archive, inc
         "ShippingProvider": "UPS"
     }
 
-### Response
+#### Response
 
 Returns [OrderStatusUpdate](#orderstatusupdate) that was created, if successful
 
@@ -304,7 +304,7 @@ Returns [OrderStatusUpdate](#orderstatusupdate) that was created, if successful
 
 If products from an order have been shipped in multiple shipments, the supplier can provide tracking numbers for each product in the order.
 
-### Request
+#### Request
 
     PUT /Suppliers({EntityId})/Orders({OrderId})/ItemStatusUpdate
 
@@ -365,7 +365,7 @@ If products from an order have been shipped in multiple shipments, the supplier 
         ]    
     }
 
-### Response
+#### Response
 
 Returns [ItemStatusUpdate](#itemstatusupdate) that was created, if successful
 
@@ -405,7 +405,7 @@ Returns [ItemStatusUpdate](#itemstatusupdate) that was created, if successful
 
 The current feed endpoint gives access to the most recent entries in the feed.
 
-### Request
+#### Request
 
     GET /Suppliers({SupplierId})/Notifications
 
@@ -427,7 +427,7 @@ The current feed endpoint gives access to the most recent entries in the feed.
     Accept: application/atom+xml
 
 
-### Response
+#### Response
 
 Returns the [Order Feed](#feed) from the specified supplier
 
@@ -540,7 +540,7 @@ Returns the [Order Feed](#feed) from the specified supplier
 
 ## Getting Order Feed Archive
 
-### Request
+#### Request
 
     GET /Suppliers({SupplierId})/Notifications/Pages({PageId})
 
@@ -563,7 +563,7 @@ Returns the [Order Feed](#feed) from the specified supplier
     Accept: application/atom+xml
 
 
-### Response
+#### Response
 
 Returns an archive of the [Order Feed](#feed), based on page ID
 
