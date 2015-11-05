@@ -388,7 +388,7 @@ text-decoration: none;
 ul#mysidebar {
   margin-top:40px;
   border-radius:0px;
-  width: 300px;
+  /*width: 300px;*/
 }
 
 .nav ul li ul li a {
