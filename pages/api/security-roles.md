@@ -4,16 +4,11 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
-
-
-{{note}}
-Changes within the Security Roles API involve complex actions behind the scenes and <b>are not always immediate</b>.
-{{end}}
 
 ## Overview
 
@@ -22,6 +17,10 @@ Security Roles allow you to specify what {{Users}} are allowed to do.
 The figure below shows how Security Roles interact with Resources in the [User Manager](/api/user-manager) and [Company Tree](/api/company-tree) APIs.
 
 <img src="{{ "/images/security-roles.png" | prepend: site.url }}" />
+
+{{note}}
+Changes within the Security Roles API involve complex actions behind the scenes and <b>are not always immediate</b>.
+{{end}}
 
 ## Endpoints
 
@@ -36,7 +35,7 @@ A SecurityRole represents the relationship between a {{User}} and a set of Permi
 
 SecurityRoles allow you create custom groups that can hold Permissions.
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Identifier | `4457` |
 | Name | String | Name | `Store Manager` |
@@ -45,7 +44,7 @@ SecurityRoles allow you create custom groups that can hold Permissions.
 
 An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity. 
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Identifier | `6548` |
 | EntityId | Integer | Identifier of an Entity | `4` |
@@ -62,7 +61,7 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 * A Permission will never overrule another Permission
 * When `IsAssignable` is set to `false`, the Permission is Restricted by iQmetrix. If you require access to a Restricted Permission, contact {{contact_support}}
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Identifier | `108` |
 | Name | String | Descriptive name | `Edit Products` |

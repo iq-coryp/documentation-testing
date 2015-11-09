@@ -4,12 +4,14 @@ permalink: /concepts/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
 {% include externallinks.html %}
+
+<img src="{{ "/images/user_manager.jpg" | prepend: site.url }}" />
 
 User Manager allows you to:
 
@@ -17,17 +19,13 @@ User Manager allows you to:
 * Organize Users by [Security Roles](#security-roles)
 * Determine the actions that can be done with [Permissions](#permissions)
 
+{{note}}
+Changes to User Manager are coming soon
+{{end}}
+
 ## Users
 
 A User represents an account that can be used to perform actions on your data within iQmetrix APIs. 
-
-### Users vs Employees (RQ)
-
-Employees in RQ have a single security role.
-
-Users can have multiple Security Roles at any level in the Company Tree that can be passed "down" the tree through {{inheritance}}. 
-
-To learn more about Employees, see {{employeesconsoleoverview}}.
 
 ## Permissions
 
@@ -58,22 +56,6 @@ For example, you would never assign a "Cannot View Customers" Permission, instea
 Some Permissions are intended for specific scenarios and are Restricted by iQmetix.
 
 If you require access to a Restricted Permission, contact {{contact_support}}.
-
-### Permissions vs Security Modules (RQ)
-
-Security modules in RQ are the building blocks of security roles and represent access to features in RQ on a scale, often from No Access to Full Access.
-
-Permissions, in contrast, represent the ability to perform a single action or a set of logically-grouped actions and are always positive. 
-
-The below table shows how different security module levels might be represented as Permissions.
-
-| Security Module Level | Permission(s) Examples |
-|:----------------------|:-----------------------|
-| No Access | None |
-| View Only | View Customers |
-| Full Access | View Customers, Edit Customers |
-
-To learn more about security modules in RQ, see {{securityrolesetup}}.
 
 ## Security Roles
 
@@ -109,12 +91,57 @@ To accomplish the scenario above, we use the [Company Tree](/api/company-tree), 
 
 As Sam Smith does not have a specified Security Role with Edmonton, the Security Role is passed down or **inherited** from parent to child and Sam acquires a Regional Manager Security Role for Alberta and Edmonton.
 
-### Relationship Between Security Roles in User Manager and RQ 
+## Platform vs RQ
 
-Security roles in RQ are made up of security modules and are assigned to employees, who are limited to a single security role.
+The equivalent of Users, Security Roles and Permissions in User Manager are listed in the below table,
 
-Security Roles in User Manager are made up of Permissions and are assigned to Users who may have multiple Roles.
+| Platform | RQ | 
+|:---------|:---|
+| Users | Employees |
+| Security Roles (UM) | Security Roles (RQ) |
+| Permissions | Security Screens and Security Levels |
 
-Additionally, Security Roles in User Manager are intended to span the entire iQmetrix ecosystem and security roles in RQ are specific to RQ.
+To avoid confusion, Security Roles in RQ will be listed as "Security Roles (RQ)" and Security Roles in User Manager will be listed as "Security Roles (UM)".
 
-To learn more about security roles in RQ, see {{securityrolesetup}}.
+### Users vs Employees
+
+Users...
+* Represent accounts that can be used to perform actions on your data within iQmetrix APIs
+* Can have multiple Security Roles (UM) at any level in the Company Tree, see {{Inheritance}}
+
+Employees...
+* Represent accounts that can be used to access your data within RQ
+* Can only have a single Security Role (RQ)
+
+To learn more about Employees, see {{employeesconsoleoverview}}.
+
+### Security Roles (UM) vs Security Roles (RQ)
+
+Security Roles (UM)...
+* Represent relationships between [Users](#users) and a set of [Permissions](#permissions).
+* Span the entire iQmetrix ecosystem
+* Are made up of Permissions 
+* Are Assigned to Users 
+* Have a set of assigned Permissions
+
+Security Roles (RQ)...
+* Represent relationships between Employees and Security Screens
+* Exist only within RQ
+* Are made up of Security Levels and Security Screens
+* Are assigned to Employees
+* Have Security Levels for every Security Screen
+
+To learn more about Security Roles (RQ), see {{securityrolesetup}}.
+
+### Permissions vs Security Screens and Security Levels
+
+Permissions...
+* Represent the ability to perform a single action or a set of logically-grouped actions within iQmetrix APIs
+* Grant access by assignment to Security Roles (UM) 
+
+Security Screens...
+* Represent access to features in RQ 
+* Are made up of Security Levels on a scale, often from No Access to Full Access
+* Grant or deny access by changing the Security Level for a Security Screen
+
+To learn more about Security Screens, see {{securityrolesetup}}.

@@ -4,7 +4,7 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -19,7 +19,7 @@ summary:
 
 ### Product
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | String | Identifier | `M3-V1` |
 | Name | String(450) | Name | `iPhone 4S 16GB White` |

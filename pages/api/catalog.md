@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -24,7 +24,7 @@ Retailers can select products from the {{ProductLibrary_Concept}} to create a **
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | CatalogItemId | GUID | Unique identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
@@ -35,7 +35,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 A **CatalogSearchResult** resource is used to return information about {{Product}} resources that match a given criteria, defined in the request.
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Items | Array[Object] | Products matching the search criteria |  |
 | Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |

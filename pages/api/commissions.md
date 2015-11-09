@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -27,7 +27,7 @@ Commission earned by an employee.
 For more information on Commissions in RQ, see <a href="http://iqmetrix.helpdocsonline.com/employee-commission-setup">Employee Commission Setup</a>
 {{end}}
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Unique Identifier for the CommissionEntry | `24` |
 | Comments | String(255) | Comments | `Shared with Nick` |

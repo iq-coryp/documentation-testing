@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -59,7 +59,7 @@ API key must be provided in header and is configurable.
 
 ### ShippingQuery
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
 | Items | Array[Object] | List of Products to be added to shipping query |  |
@@ -70,7 +70,7 @@ API key must be provided in header and is configurable.
 
 ### ShippingOptions
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | String | Identifer for the shipping option | `350` |
 | Name | String | Shipping option name | `PurolatorExpress` |

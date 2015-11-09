@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -43,7 +43,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 ClientIdentity authentication information is <a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a> specific
 {{end}}
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | ClientID | GUID | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` | 
 | Username | String | Username | `sampleusername` |
@@ -52,7 +52,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 
 ### PurchaseOrderShipmentNotice
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | PurchaseOrderID | GUID | Unique identifier | `84DACFD3-4095-4D50-A02E-781B86B7408E` |
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
@@ -65,7 +65,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 
 ### PurchaseOrderInformation
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | PurchaseOrderID | GUID | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
 | PurchaseOrderData | [PurchaseOrderData](#purchaseorderdata) | Purchase order | |
@@ -75,7 +75,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 
 ### PurchaseOrderData
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | PurchaseOrderID | GUID | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
 | BillToStoreID | Integer | RQ StoreId | `55` |
@@ -98,7 +98,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 
 ### ProductInformation
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | ProductID | GUID | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
 | ProductName | String | Name | `Samsung Galaxy S6` |
@@ -134,7 +134,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 
 ### ProductSerialNumber
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
 | DateReceived | Date | Date recieved | `3/11/2014 2:29:25 PM`|
@@ -143,7 +143,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 
 ### StoreInformation
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | StoreID | Integer | Identifier | `36` |
 | Name | String | Name | `Cornwall West` |

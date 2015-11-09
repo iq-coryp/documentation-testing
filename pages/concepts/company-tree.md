@@ -4,7 +4,7 @@ permalink: /concepts/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -33,7 +33,7 @@ While Nodes may have multiple children, they can only have a single parent.
 
 ### Company
 
-The Root (top-most) Node in a Company Tree always represents the {{Company}} that owns the tree.
+The Root (top-most) Company Tree Node always represents the {{Company}} that owns the tree.
 
 ### Divisions and Groups
 
@@ -57,12 +57,12 @@ Devices include payment terminals and hardware appliances that run iQmetrix prod
 
 ### Relationships
 
-Nodes are connected by Relationships, which create the hierarchical nature of the Company Tree.
+Company Tree Nodes are connected by Relationships, which create the hierarchical nature of the Company Tree.
 
-The following table summarizes the possible relationships that may exist between Nodes.
+The following table summarizes the possible relationships that may exist between Company Tree Nodes.
 
-| Node Type | Allowable Childen |
-|:----------|:------------------|
+| Company Tree Node Type | Allowable Childen |
+|:-----------------------|:------------------|
 | Company | Division, Group, Location, Device |
 | Division | Division, Group, Location | 
 | Group | Division, Group, Location |

@@ -4,13 +4,15 @@ permalink: /concepts/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
 
 In {{ProductLibrary_Concept}} and in your Catalog, products are structured in a way to make managing them easier.
+
+<img src="{{ "/images/product_structure.jpg" | prepend: site.url }}" />
 
 ## Master Products
 

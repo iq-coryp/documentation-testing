@@ -33,6 +33,9 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 | DefaultPricing | [RegularProductPricing](#regularproductpricing) | Default pricing | |
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
+| ExtendedAttributes | Array[Object] | Additional attributes to store with the Product | | 
+| ExtendedAttributes.Name | String | Name | `ProductId` |
+| ExtendedAttributes.Value | String | Value | `66` |
 | GlCostOfSalesAccountNumber | String | Account number for Cost of Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1001` |
 | GlInventoryAccountNumber | String | Account number for Inventory, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1002` |
 | GlInventoryCorrectionsAccountNumber | String | Account number for Inventory Corrections, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1001` |
@@ -104,6 +107,9 @@ For more information about Non-Stocked Products, see [Non-Stocked Products](http
 | DefaultPricing | [NonStockedProductPricing](#nonstockedproductpricing) | Default pricing information | 
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
+| ExtendedAttributes | Array[Object] | Additional attributes to store with the Product | | 
+| ExtendedAttributes.Name | String | Name | `ProductId` |
+| ExtendedAttributes.Value | String | Value | `66` |
 | GlCostOfSalesAccountNumber | String | Account number for Cost of Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1001` |
 | GlInventoryAccountNumber | String | Account number for Inventory, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1002` |
 | GlSalesAccountNumber | String | Account number for Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1003` |
@@ -164,6 +170,9 @@ For more information about Vendor Rebates, see [Vendor Rebates](http://iqmetrix.
 | DefaultPricing | [VendorRebateProductPricing](#vendorrebateproductpricing) | Default pricing information | |
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
+| ExtendedAttributes | Array[Object] | Additional attributes to store with the Product | | 
+| ExtendedAttributes.Name | String | Name | `ProductId` |
+| ExtendedAttributes.Value | String | Value | `66` |
 | GlCostOfSalesAccountNumber | String | Account number for Cost of Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1001` |
 | GlInventoryAccountNumber | String | Account number for Inventory, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1002` |
 | GlSalesAccountNumber | String | Account number for Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1003` |
@@ -227,6 +236,9 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | DefaultPricing | [NonStockedProductPricing](#nonstockedproductpricing) | Default pricing information | 
 | Enabled | Boolean | A flag to indicate if this Product is Enabled. Defaults to true | `true` |
 | EnforcedTrackingNumberLength | Integer | A value that restricts tracking number length | `50` |
+| ExtendedAttributes | Array[Object] | Additional attributes to store with the Product | | 
+| ExtendedAttributes.Name | String | Name | `ProductId` |
+| ExtendedAttributes.Value | String | Value | `66` |
 | GlCostOfSalesAccountNumber | String | Account number for Cost of Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1001` |
 | GlInventoryAccountNumber | String | Account number for Inventory, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1002` |
 | GlSalesAccountNumber | String | Account number for Sales, see [G/L Account Setup](http://iqmetrix.helpdocsonline.com/g-l-account-setup) for more information | `1003` |
@@ -390,6 +402,10 @@ This request can be combined with other Import requests to import multiple Regul
     * `WriteOff` (Optional) - Value must be true or false, case sensitive 
 * `Enabled` (Optional) - Defaults to true, case sensitive 
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if Serialized is set to `true`
+* `ExtendedAttributes` (Optional)
+    * `Name` (Optional)
+    * `Value` (Optional)
+* `ExtendedAttributes` (Optional)
 * `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
 * `LocationPricing` (Optional) 
     * `Price` (**Required**) 
@@ -487,6 +503,12 @@ This request can be combined with other Import requests to import multiple Regul
                 },
                 "Enabled": true,
                 "EnforcedTrackingNumberLength": 50,
+                "ExtendedAttributes": [
+                    {
+                        "Name": "ProductId", 
+                        "Value": "66"
+                    }
+                ],
                 "IgnoreAutomaticTaxAddition": false,
                 "PricingAndPurchasingLocations": [
                     {
@@ -610,6 +632,9 @@ This request can be combined with other Import requests to import multiple Regul
 * `GlInventoryAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `GlSalesAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if `Serialized` is set to `true`
+* `ExtendedAttributes` (Optional)
+    * `Name` (Optional)
+    * `Value` (Optional)
 * `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
 * `LongDescription` (Optional) 
 * `PricingLocations` (Optional) 
@@ -661,6 +686,12 @@ This request can be combined with other Import requests to import multiple Regul
                 },
                 "Enabled": true,
                 "EnforcedTrackingNumberLength": 50,
+                "ExtendedAttributes": [
+                    {
+                        "Name": "ProductId", 
+                        "Value": "66"
+                    }
+                ],                
                 "GlCostOfSalesAccountNumber": "1001",
                 "GlInventoryAccountNumber": "2001",
                 "GlSalesAccountNumber": "3001",
@@ -765,6 +796,9 @@ This request can be combined with other Import requests to import multiple Regul
 * `VendorAccountName` (**Required**)
 * `VendorName` (**Required**)
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if `Serialized` is set to `true`
+* `ExtendedAttributes` (Optional)
+    * `Name` (Optional)
+    * `Value` (Optional)
 * `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
 * `LongDescription` (Optional) 
 * `PricingLocations` (Optional) 
@@ -817,6 +851,12 @@ This request can be combined with other Import requests to import multiple Regul
                 },
                 "Enabled": true,
                 "EnforcedTrackingNumberLength": 50,
+                "ExtendedAttributes": [
+                    {
+                        "Name": "ProductId", 
+                        "Value": "66"
+                    }
+                ],                
                 "GlCostOfSalesAccountNumber": "1001",
                 "GlInventoryAccountNumber": "2001",
                 "GlSalesAccountNumber": "3001",
@@ -920,6 +960,9 @@ This request can be combined with other Import requests to import multiple Regul
 * `GlSalesAccountNumber` (**Required**) - If no value is provided, the default accounts must be configured in RQ, and those defaults will be used
 * `EnforcedTrackingNumberLength` (Optional) - This value can only be set if `Serialized` is set to `true`
 * `IgnoreAutomaticTaxAddition` (Optional) - Defaults to false, case sensitive 
+* `ExtendedAttributes` (Optional)
+    * `Name` (Optional)
+    * `Value` (Optional)
 * `LongDescription` (Optional) 
 * `PricingLocations` (Optional) 
     * `Price` (**Required**) 
@@ -971,6 +1014,12 @@ This request can be combined with other Import requests to import multiple Regul
                 },
                 "Enabled": true,
                 "EnforcedTrackingNumberLength": 50,
+                "ExtendedAttributes": [
+                    {
+                        "Name": "ProductId", 
+                        "Value": "66"
+                    }
+                ],                
                 "GlCostOfSalesAccountNumber": "1001",
                 "GlInventoryAccountNumber": "2001",
                 "GlSalesAccountNumber": "3001",

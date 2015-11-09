@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -27,7 +27,7 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 For more information on the Punch Clock in RQ, see <a href="http://iqmetrix.helpdocsonline.com/scheduling$Punch%20Clock">HR Scheduling</a>
 {{end}}
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Unique Identifier | `1953` |
 | CreatedDateUtc | DateTime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |

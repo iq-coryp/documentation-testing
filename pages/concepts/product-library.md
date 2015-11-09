@@ -4,12 +4,11 @@ permalink: /concepts/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
 {% include linkrefs.html %}
-
 
 **Product Library** provides retailers with a central hub of content from a variety of sources, including manufacturers, distributors and other suppliers.
 
@@ -35,6 +34,8 @@ If a Product does not exist in Product Library, a Retailer can create a custom P
 
 This Product will only be visible by the Company that created it.
 
+Using our iTunes metaphor, a user can add a home video (Custom Product) to their library (Retailer Catalog). A home video would not exist in the iTunes Store (Product Library), and once added the home video would only exist in the user's own library - you would not want everyone seeing your home videos!
+
 ### Curation
 
 Products are funneled into the Product Library through a number of different channels.
@@ -43,7 +44,7 @@ For the **Wireless** industry, iQmetrix Curators create accurate, up-to-date, ri
 
 For **other industries**, Retailers can create Products in Product Library. 
 
-For more information about Product Structure see {{ProductStructure_Concepts}}.
+For more information about Product Structure see {{ProductStructure_Concept}}.
 
 ### Virtual Inventory
 

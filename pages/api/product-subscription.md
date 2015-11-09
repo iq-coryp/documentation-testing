@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -23,7 +23,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 ### Subscription
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Companies | Array[Object] | Companies for the subscription | |
 | Companies.DateSubscribedUtc | DateTime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
@@ -33,7 +33,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 ### SubscribableList
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | EntityId | Integer | [Supplier](/api/entity-store/#supplier) identifier | `60455` |
 | Id | GUID | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
