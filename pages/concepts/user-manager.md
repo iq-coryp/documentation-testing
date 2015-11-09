@@ -106,10 +106,12 @@ To avoid confusion, Security Roles in RQ will be listed as "Security Roles (RQ)"
 ### Users vs Employees
 
 Users...
+
 * Represent accounts that can be used to perform actions on your data within iQmetrix APIs
 * Can have multiple Security Roles (UM) at any level in the Company Tree, see {{Inheritance}}
 
 Employees...
+
 * Represent accounts that can be used to access your data within RQ
 * Can only have a single Security Role (RQ)
 
@@ -118,6 +120,7 @@ To learn more about Employees, see {{employeesconsoleoverview}}.
 ### Security Roles (UM) vs Security Roles (RQ)
 
 Security Roles (UM)...
+
 * Represent relationships between [Users](#users) and a set of [Permissions](#permissions).
 * Span the entire iQmetrix ecosystem
 * Are made up of Permissions 
@@ -125,6 +128,7 @@ Security Roles (UM)...
 * Have a set of assigned Permissions
 
 Security Roles (RQ)...
+
 * Represent relationships between Employees and Security Screens
 * Exist only within RQ
 * Are made up of Security Levels and Security Screens
@@ -136,10 +140,12 @@ To learn more about Security Roles (RQ), see {{securityrolesetup}}.
 ### Permissions vs Security Screens and Security Levels
 
 Permissions...
+
 * Represent the ability to perform a single action or a set of logically-grouped actions within iQmetrix APIs
 * Grant access by assignment to Security Roles (UM) 
 
 Security Screens...
+
 * Represent access to features in RQ 
 * Are made up of Security Levels on a scale, often from No Access to Full Access
 * Grant or deny access by changing the Security Level for a Security Screen
