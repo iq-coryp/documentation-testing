@@ -4,7 +4,7 @@ permalink: /api/supplier-orders/
 tags: []
 keywords: supplier orders
 audience: 
-last_updated: 2-11-2015
+last_updated: 10-11-2015
 summary: 
 ---
 
@@ -12,26 +12,26 @@ summary:
 
 ## Overview
 
-Suppliers have the ability to the update order status, as well as getting their order feed. The dropship order ID used to update the order status is retrieved through the order ATOM feed.
+Suppliers have the ability to update the status of their orders, as well as get the latest orders via the iQmetrix Supplier Orders API. The dropship order ID needed to update order status is retrieved through the Order Feed, which is encoded as atom+xml.
 
 ### Order Status
 
-Suppliers can update the status of individual or all items in a dropship order in order to notify iQmetrix. Depending on the scenario, one of the following calls should be used:
+Suppliers can update the status of individual items or all items in a dropship order in order to notify the end client. Depending on item stock, one of the following calls should be used:
 
 * `OrderStatusUpdate` should be used if there no exceptions for any of the items. 
-* `ItemUpdateStatus` should be used if there **are** exceptions for any of the items (e.g. not available).
+* `ItemUpdateStatus` should be used if there **are** exceptions for any of the items (e.g. not available or back-ordered).
 
-Once an order has been shipped, a tracking number and shipping carrier should be included when updating the order status to `Shipped`.
+Once an order has been shipped from the supplier's warehouse, the order status must be updated to `Shipped`, and include a tracking number and shipping carrier to notify the end client.
 
-If the supplier wants to provide reasoning behind an order's specific status, then a message can be provided in the `Message` field.
+If the supplier wants to provide reasoning behind an order or item's specific status, then a message can be provided in the `Message` field.
 
 ### Order Feed
 
-The order feed contains a feed of dropship order events for a supplier in "[Atom Syndication Format](http://tools.ietf.org/html/rfc4287)" using "[Archived Feeds](https://tools.ietf.org/html/rfc5005#page-6)".
+The order feed contains a list of dropship order events for a supplier in "[Atom Syndication Format](http://tools.ietf.org/html/rfc4287)" using "[Archived Feeds](https://tools.ietf.org/html/rfc5005#page-6)".
 
-Each page of the feed will contain up to 50 events. This feed must be monitored by the supplier and when a new order is displayed then the supplier can process this order. It is up to the supplier's system to keep track of the orders that have been processed.
+Each page of the feed will contain up to 50 events. This feed must be monitored by the supplier and when a new order is placed the supplier can process this order. It is up to the supplier's system to keep track of the orders that have been processed and their current status.
 
-It is also possible to get archives for order feed. Each order feed archive, including the current order feed, will contain a link to the previous archive.
+It is also possible to get historical archives from the order feed. Each order feed archive, including the current order feed, contains a link to the previously archived 50 events.
 
 
 ## Endpoints
@@ -223,8 +223,8 @@ It is also possible to get archives for order feed. Each order feed archive, inc
         <tr><td class="spacing"></td><td class="spacing"></td><td>info</td><td>String</td><td>General information about the item</td><td><code>www.ups.com</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>message</td><td>String</td><td>A reason for the status of an order</td><td><code>Error: Product '98ESP456' is unavailable</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>quantity</td><td>Integer</td><td>Number of items</td><td><code>1</code></td></tr>
-        <tr><td class="spacing"></td><td class="spacing"></td><td>reference-name</td><td>String</td><td>Reserved for internal use</td><td></td></tr>
-        <tr><td class="spacing"></td><td class="spacing"></td><td>reference-value</td><td>String</td><td>Reserved for internal use</td><td></td></tr>
+        <tr><td class="spacing"></td><td class="spacing"></td><td><em>reference-name</em></td><td><em>String</em></td><td><em>Reserved for internal use</em></td><td></td></tr>
+        <tr><td class="spacing"></td><td class="spacing"></td><td><em>reference-value</em></td><td><em>String</em></td><td><em>Reserved for internal use</em></td><td></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>shipping-provider</td><td>String</td><td>Shipping provider</td><td><code>Purolator</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>sku</td><td>String</td><td>Product SKU</td><td><code>AB-JH0786-MI</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>status</td><td>String</td><td><a href="#itemstatus">Order item status</a></td><td><code>Other</code></td></tr>
@@ -260,7 +260,7 @@ It is also possible to get archives for order feed. Each order feed archive, inc
 #### Request Parameters
 
 * `Id` (**Required**)
-* `Status` (**Required**) 
+* `Status` (**Required**) - default PendingSupplier
 * `Info` (Optional) 
 * `Message` (Optional) 
 * `ShippingProvider` (Optional)
@@ -302,7 +302,7 @@ Returns [OrderStatusUpdate](#orderstatusupdate) that was created, if successful
 
 ## Updating Item Status
 
-If products from an order have been shipped in multiple shipments, the supplier can provide tracking numbers for each product in the order.
+If products from an order have been split into multiple shipments, then the supplier must provide tracking numbers for each shipment.
 
 #### Request
 
@@ -328,7 +328,7 @@ If products from an order have been shipped in multiple shipments, the supplier 
 * `Id` (**Required**)
 * `ItemInformation` (Optional)
     * `Sku` (**Required**) 
-    * `Status` (**Required**)
+    * `Status` (**Required**) - default PendingSupplier
     * `CatalogId` (Optional) 
     * `Info` (Optional) 
     * `Message` (Optional) 
@@ -401,7 +401,7 @@ Returns [ItemStatusUpdate](#itemstatusupdate) that was created, if successful
 
 
 
-## Getting Order Feed
+## Getting the Order Feed
 
 The current feed endpoint gives access to the most recent entries in the feed.
 
@@ -521,8 +521,6 @@ Returns the [Order Feed](#feed) from the specified supplier
                         <info i:nil="true" />
                         <message i:nil="true" />
                         <quantity>1</quantity>
-                        <reference-name i:nil="true" />
-                        <reference-value i:nil="true" />
                         <shipping-provider>Purolator</shipping-provider>
                         <sku>AB-JH0786-MI</sku>
                         <status>Other</status>
@@ -538,7 +536,7 @@ Returns the [Order Feed](#feed) from the specified supplier
 ```
 
 
-## Getting Order Feed Archive
+## Getting Order Feed Archives
 
 #### Request
 
@@ -596,8 +594,6 @@ Returns an archive of the [Order Feed](#feed), based on page ID
                         <info>Additional info</info>
                         <message>Message</message>
                         <quantity>1</quantity>
-                        <reference-name>Invoice Number</reference-name>
-                        <reference-value>INV123</reference-value>
                         <shipping-provider>UPS</shipping-provider>
                         <sku>GB40030</sku>
                         <status>Shipped</status>
@@ -617,7 +613,7 @@ Returns an archive of the [Order Feed](#feed), based on page ID
 
 ## Errors
 
-The below table may help resolve problems encountered when making requests to the Supplier Orders API.
+The table below may help resolve problems encountered when making requests to the Supplier Orders API.
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
