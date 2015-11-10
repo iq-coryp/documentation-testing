@@ -4,7 +4,7 @@ permalink: /api/supplier-availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -32,7 +32,7 @@ For POST
 
 ### Availability
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | GUID | Unique identifer | `a84549a1-3b0d-4ca6-b27f-65136957309b` |
 | Products | Array[Object] | Products for the availability feed | |
@@ -43,7 +43,7 @@ For POST
 
 ### SupplierSku
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | GUID | Unique identifer | `45957dcf-9117-4a0f-bd12-4f737b000f2e` |
 | Products | Array[Object] | Products for the availability feed | |

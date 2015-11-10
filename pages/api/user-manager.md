@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -20,7 +20,7 @@ summary:
 
 ### User
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | Integer | Identifier | `22212` |
 | FirstName | String | First name | `Sam` |

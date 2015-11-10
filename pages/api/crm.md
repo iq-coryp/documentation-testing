@@ -103,7 +103,7 @@ A **CustomerExtension** resource is used for adding custom properties to a Custo
 |:-----|:----------|:-------------|:------------|:--------|
 | Id | Integer | Identifier | `1` |
 | Name | String | Name | `ExternalCustomerId` |
-| DataType | String | Data type | `Integer` |
+| Data Type | String | Data type | `Integer` |
 
 ### CustomerFull
 
@@ -220,7 +220,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 
 ###### Example
 
-    POST /Companies({CompanyId})/Customers
+    POST /Companies(1)/Customers
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -454,7 +454,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 
 ###### Example
 
-    POST /Companies({CompanyId})/CustomerFull
+    POST /Companies(1)/CustomerFull
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -599,7 +599,7 @@ A CustomerSearch resource is an extension on the [CustomerFull](#customerfull) r
 ###### Example
 
     GET /Companies(1)/Customer(5ce90b33-1668-46f0-b3a8-0216cef59993)
-    Authorization: Bearer (Access T oken)
+    Authorization: Bearer (Access Token)
     Accept: application/json
 
 #### Response

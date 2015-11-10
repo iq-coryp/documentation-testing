@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -20,7 +20,7 @@ summary:
 
 An **Asset** is an image or video associated with a Product.
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | name | String | File name | `iqmetrix.jpg` |

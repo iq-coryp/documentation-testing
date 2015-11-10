@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 ---
 
@@ -32,7 +32,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ### Cost
 
-| Name | DataType | Description | Example |
+| Name | Data Type | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | GUID | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
 | Products | Array[Object] | List of products for which the cost is being updated |  |

@@ -4,7 +4,7 @@ permalink: /api/changelog/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-11-2015
+last_updated: 09-11-2015
 summary: 
 datatable: true
 metadata: false
@@ -40,7 +40,8 @@ The date format used in the table below is mm/dd/yyyy
 
 | Date | Changes |
 |:-----|:--------|
-| 11/04/2014 | Cleanup of many pages to maintain consistency of formatting |
+| 11/09/2015 | Added image to Product Structure, minor consistency changes |
+| 11/04/2015 | Cleanup of many pages to maintain consistency of formatting. Added ExtendedAttributes to EPC |
 | 10/30/2015 | Updated Product Feed field definition section  |
 | 10/27/2015 | Updated formatting for all dropship articles  |
 | 10/26/2015 | Added Security Roles, Company Tree Concepts and Product Library Concepts page  |
