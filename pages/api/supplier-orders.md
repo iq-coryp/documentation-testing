@@ -4,7 +4,7 @@ permalink: /api/supplier-orders/
 tags: []
 keywords: supplier orders
 audience: 
-last_updated: 10-11-2015
+last_updated: 12-11-2015
 summary: 
 ---
 
@@ -12,7 +12,7 @@ summary:
 
 ## Overview
 
-Suppliers have the ability to update the status of their orders, as well as get the latest orders via the iQmetrix Supplier Orders API. The dropship order ID needed to update order status is retrieved through the Order Feed, which is encoded as atom+xml.
+Suppliers have the ability to update the status of their orders, as well as get the latest orders via the iQmetrix Supplier Orders API. The dropship order ID needed to update order status is retrieved through the Order Feed, which is encoded as `atom+xml`.
 
 ### Order Status
 
@@ -45,68 +45,38 @@ It is also possible to get historical archives from the order feed. Each order f
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
-| Id | GUID | Dropship order identifer found in Order Feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
+| Id | GUID | Identifier for the Dropship order | `91a57ddb-2d42-402b-85b4-fe327a347313` |
 | Info | String | General information about the item(s), such as tracking site, additional reference info, etc | `www.ups.com` |
 | Message | String | A reason for the status of an order | `Error: Product '98ESP456' is unavailable` |
-| *ReferenceName*  | *String* | *Reserved for internal use* | |
-| *ReferenceValue* | *String* | *Reserved for internal use* | |
 | ShippingProvider | String | Shipping carrier for the order | `UPS` |
 | Status | String | Current [order status](#orderstatus) | `Shipped` |
 | TrackingInfo | String | Tracking number for a shipped order | `23923408863` |
-
-
-### OrderStatus
-
-| Name | Description |
-|:-----|:------------|
-| BackOrdered | Order cannot currently be fulfilled due to items being temporarily out of stock |
-| Cancelled | Order has been cancelled |
-| Error | There has been an exception with either a product or an entire order |
-| NotAvailable | Some or all items from order are no longer available |
-| Ordered | Order has been picked up by the supplier and is in processing stage (picked, packed and shipped) |
-| Other | Order is in a state not represented by the other states |
-| PartiallyShipped | Some items have been shipped due to availability, and other items are pending availability |
-| PendingSupplier | A new order has been created, but is pending the supplier |
-| Shipped | Order has been shipped from a warehouse |
+| *ReferenceName*  | *String* | *Reserved for internal use* | |
+| *ReferenceValue* | *String* | *Reserved for internal use* | |
 
 
 ### ItemStatusUpdate
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
-| Id | GUID | Dropship order identifer found in Order Feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
+| Id | GUID | Identifier for the Dropship order | `91a57ddb-2d42-402b-85b4-fe327a347313` |
 | ItemInformation | Array[Object] | A list of [Item Information](#iteminformation) |  |
 
 ### ItemInformation
 
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
-| CatalogId | GUID | Catalog item identifier | `dbc2577a-021f-4bbf-8289` |
+| CatalogId | GUID | Identifier for the [Catalog](/api/catalog/#catalogitem) item | `dbc2577a-021f-4bbf-8289` |
 | Info | String | General information about the item(s), such as tracking site, additional reference info, etc | `www.ups.com` |
 | Message | String | A reason for the status of an order | `No errors` |
 | ProductName | String | Name of the product | `239234SMS L720 BLU SPT RTD8863` |
 | Quantity | Integer | Used in the case of partial shipments. | `5` |
-| *ReferenceName*  | *String* | *Reserved for internal use*|  |
-| *ReferenceValue* | *String* | *Reserved for internal use*|  |
 | Status | String | Current [item status](#itemstatus) | `Exception` |
 | Sku | String | Must match SKUs provided as part of the content feed | `9356SAMGL6S` |
 | TrackingInfo | String | The tracking number for this shipped product | `23923408863` |
 | ShippingProvider | String | The shipping carrier that the product was shipped with | `UPS` |
-
-
-### ItemStatus
-
-| Name | Description |
-|:-----|:------------|
-| BackOrdered | Order cannot currently be fulfilled due to items being temporarily out of stock |
-| Cancelled | Order has been cancelled |
-| Error | There has been an exception with either a product or an entire order |
-| NotAvailable | Some or all items from order are no longer available |
-| Ordered | Order has been picked up by the supplier and is in processing stage (picked, packed and shipped) |
-| Other | Order is in a state not represented by the other states |
-| PartiallyShipped | Some items have been shipped due to availability, and other items are pending availability |
-| PendingSupplier | A new order has been created, but is pending the supplier |
-| Shipped | Order has been shipped from a warehouse |
+| *ReferenceName*  | *String* | *Reserved for internal use*|  |
+| *ReferenceValue* | *String* | *Reserved for internal use*|  |
 
 
 ### Feed
@@ -119,8 +89,8 @@ It is also possible to get historical archives from the order feed. Each order f
     </thead>
 
     <tbody>
+        <tr><td colspan="3">id</td><td>GUID</td><td>Identifier for the Feed</td><td><code>urn:uuid:f1be4a74-508f-4159-b3f1-c6efe76c03e4</code></td></tr>
         <tr><td colspan="3">title</td><td>String</td><td>Title of order feed</td><td><code>Dropship Order Event Feed</code></td></tr>
-        <tr><td colspan="3">id</td><td>GUID</td><td>Feed identifier</td><td><code>urn:uuid:f1be4a74-508f-4159-b3f1-c6efe76c03e4</code></td></tr>
         <tr><td colspan="3">updated</td><td>DateTime</td><td>Last updated</td><td><code>2015-10-23T21:37:34Z</code></td></tr>
         <tr><td colspan="3">author</td><td>Object</td><td>Container for author name</td><td></td></tr>
         <tr><td class="spacing"></td><td colspan="2">name</td><td>String</td><td>Name of author</td><td><code>iQmetrix</code></td></tr>
@@ -160,7 +130,7 @@ It is also possible to get historical archives from the order feed. Each order f
     </thead>
     
     <tbody>
-        <tr><td colspan="3">order-id</td><td>GUID</td><td>Dropship Order identifier</td><td><code>32cb2b46-fb26-48c8-9b8f-67ed759e2599</code></td></tr>
+        <tr><td colspan="3">order-id</td><td>GUID</td><td>Identifier for the Dropship order</td><td><code>32cb2b46-fb26-48c8-9b8f-67ed759e2599</code></td></tr>
         <tr><td colspan="3">items</td><td>Array[Object]</td><td>Array of order items</td><td></td></tr>
         <tr><td class="spacing"></td><td colspan="2">order-item</td><td>Object</td><td>Information for item in order</td><td></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>catalog-id</td><td>String</td><td><a href="/api/catalog/">Catalog</a> identifier</td><td><code>18e039de-4d8e-d0db55a07</code></td></tr>
@@ -215,7 +185,7 @@ It is also possible to get historical archives from the order feed. Each order f
     </thead>    
     
     <tbody>
-        <tr><td colspan="3">order-id</td><td>GUID</td><td>Dropship Order identifier</td><td><code>32cb2b46-fb26-48c8-9b8f-67ed759e2599</code></td></tr>
+        <tr><td colspan="3">order-id</td><td>GUID</td><td>Identifier for the Dropship order</td><td><code>32cb2b46-fb26-48c8-9b8f-67ed759e2599</code></td></tr>
         <tr><td colspan="3">company-id</td><td>Integer</td><td><a href="/api/company-tree/#company">Company</a> identifier</td><td><code>50068</code></td></tr>
         <tr><td colspan="3">items</td><td>Array[item-information]</td><td>Array of order items</td><td></td></tr>
         <tr><td class="spacing"></td><td colspan="2">item-information</td><td>Object</td><td>Information for item in order</td><td></td></tr>
@@ -223,17 +193,48 @@ It is also possible to get historical archives from the order feed. Each order f
         <tr><td class="spacing"></td><td class="spacing"></td><td>info</td><td>String</td><td>General information about the item</td><td><code>www.ups.com</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>message</td><td>String</td><td>A reason for the status of an order</td><td><code>Error: Product '98ESP456' is unavailable</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>quantity</td><td>Integer</td><td>Number of items</td><td><code>1</code></td></tr>
-        <tr><td class="spacing"></td><td class="spacing"></td><td><em>reference-name</em></td><td><em>String</em></td><td><em>Reserved for internal use</em></td><td></td></tr>
-        <tr><td class="spacing"></td><td class="spacing"></td><td><em>reference-value</em></td><td><em>String</em></td><td><em>Reserved for internal use</em></td><td></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>shipping-provider</td><td>String</td><td>Shipping provider</td><td><code>Purolator</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>sku</td><td>String</td><td>Product SKU</td><td><code>AB-JH0786-MI</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>status</td><td>String</td><td><a href="#itemstatus">Order item status</a></td><td><code>Other</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>tracking-info</td><td>String</td><td>The tracking number for this shipped product</td><td><code>23923408863</code></td></tr>
+        <tr><td class="spacing"></td><td class="spacing"></td><td><em>reference-name</em></td><td><em>String</em></td><td><em>Reserved for internal use</em></td><td></td></tr>
+        <tr><td class="spacing"></td><td class="spacing"></td><td><em>reference-value</em></td><td><em>String</em></td><td><em>Reserved for internal use</em></td><td></td></tr>
         <tr><td colspan="3">supplier-id</td><td>Integer</td><td>Supplier identifier</td><td><code>60455</code></td></tr>
     </tbody>        
 </table>    
 </div>
 
+
+## Types
+
+### OrderStatus
+
+| Id | Name | Description |
+|:---|:-----|:------------|
+| 0 | PendingSupplier | A new order has been created, but is pending the supplier |
+| 1 | Ordered | Order has been picked up by the supplier and is in processing stage (picked, packed and shipped) |
+| 2 | Shipped | Order has been shipped from a warehouse |
+| 3 | BackOrdered | Order cannot currently be fulfilled due to items being temporarily out of stock |
+| 4 | Error | There has been an exception with either a product or an entire order |
+| 5 | NotAvailable | Some or all items from order are no longer available |
+| 6 | PartiallyShipped | Some items have been shipped due to availability, and other items are pending availability |
+| 7 | Cancelled | Order has been cancelled |
+| 8 | Other | Order is in a state not represented by the other states |
+
+
+### ItemStatus
+
+| Id | Name | Description |
+|:---|:-----|:------------|
+| 0 | PendingSupplier | A new order has been created, but is pending the supplier |
+| 1 | Ordered | Order has been picked up by the supplier and is in processing stage (picked, packed and shipped) |
+| 2 | Shipped | Order has been shipped from a warehouse |
+| 3 | BackOrdered | Order cannot currently be fulfilled due to items being temporarily out of stock |
+| 4 | Error | There has been an exception with either a product or an entire order |
+| 5 | NotAvailable | Some or all items from order are no longer available |
+| 6 | PartiallyShipped | Some items have been shipped due to availability, and other items are pending availability |
+| 7 | Cancelled | Order has been cancelled |
+| 8 | Other | Order is in a state not represented by the other states |
 
 ## Updating Order Status
 
@@ -609,12 +610,10 @@ Returns an archive of the [Order Feed](#feed), based on page ID
 ```
 
 
-
-
 ## Errors
 
 The table below may help resolve problems encountered when making requests to the Supplier Orders API.
 
-| Error Code | Message | How to Resolve |
+| HTTP Status Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
 | `HTTP 400` | `Cannot find supplier identifier in the uri` | Occurs when entering an incorrect `SupplierId` in the uri |
