@@ -1,19 +1,27 @@
 ---
-title:  Classification Tree
+title: Classification Tree
 permalink: /api/classification-tree/
 tags: []
 keywords: 
-audience: 
-last_updated: 09-11-2015
-summary: 
+audience:
+last_updated: 13-11-2015
+summary:
 ---
+
 {% include linkrefs.html %}
+
+
 
 ## Overview
 
 A **Classification Tree** is a hierarchical structure describing a taxonomy of {{Products}}. 
 
 To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
+
+
+
+
+
 
 ## Endpoints
 
@@ -22,118 +30,187 @@ To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 ## Resources
 
+
+
+
+
 ### Classification
 
-**Classifications** are used to group {{Products}} together by similar features.
-
+Classifications are used to group Products together by similar features.
 A Product can only have a single Classification.
+For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a Classification of Smartphones.
 
-For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a Classification of Smartphones".
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier | `1` |
+| Name  | Data Type | Description | Example |
+|:------|:----------|:------------|:--------|
+| Id | Object | Identifier | `1` |
 | Name | String | Name | `Smartphones` |
-| Order | Integer | Sorting order | `2` |
-| ProductTemplate | Object | A reference to a [ProductTemplate](/api/glossary/#producttemplate) | |
-| ProductTemplate.Id | Integer | Identifier | `60` |
+| Order | Object | Sorting order | `2` |
+| ProductTemplate | Object | A reference to a ProductTemplate | `` |
+| ProductTemplate.Id | Object | Identifier | `60` |
 | ProductTemplate.Name | String | Name | `Wireless Device` |
+
+    
+
+
 
 ### Category
 
-A **Category** is a node in a Classification Tree that represents a logical grouping of related Classifications.
-
-For example, "iPhone" and "Tablet" Classifications might both be children of a "Device" Category.
-
+A Category is a node in a Classification Tree that represents a logical grouping of related Classifications.
+For example, 'iPhone' and 'Tablet' Classifications might both be children of a 'Device' Category.
 There is a limit to 20 levels of depth for Categories.
 
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier | `2` |
+| Name  | Data Type | Description | Example |
+|:------|:----------|:------------|:--------|
+| Id | Object | Identifier | `2` |
 | Name | String | Name | `Device` |
-| Categories | Array[[Category](#category)] | Child Categories | |
-| Classifications | Array[[Classification](#classification)] | Child Classifications | |
-| Order | Integer | Sorting order | `1` | 
+| Categories |  | Child Categories | `` |
+| Classifications |  | Child Classifications | `` |
+| Order | Object | Sorting order | `1` |
 
-### ClassificationTree
+    
 
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier | `21` |
+
+
+### Classificationtree
+
+?????
+
+| Name  | Data Type | Description | Example |
+|:------|:----------|:------------|:--------|
+| Id | Object | Identifier | `21` |
 | Name | String | Name | `Cellular & Accessories` |
 | Description | String | Description | `Classification of products for wireless retail` |
-| Categories | Array[[Category](#category)] | Categories in the Tree | |
-| Classifications | Array[[Classification](#classification)] | Classifications for the Tree | |
-| Owner | Object | Information about the [Company](/api/company-tree/#company) that owns this Company Tree |  |
-| Owner.Id | Integer | [Company](/api/company-tree/#company) Identifier | `1` |
-| Owner.Name | String | [Company](/api/company-tree/#company) Name | `SampleCompany` |
-| Version | Integer | Latest revision number | `41` |
-| *IsCanonical* | *Boolean* | *Reserved for internal use* | |
+| Categories |  | Categories in the Tree | `` |
+| Classifications |  | Classifications for the Tree | `` |
+| Owner | Object | Information about the Company that owns this Company Tree | `` |
+| Owner.Id | Object | Company Identifier | `1` |
+| Owner.Name | String | Company Name | `SampleCompany` |
+| Version | Object | Latest revision number | `41` |
+| IsCanonical | Boolean | Reserved for internal use | `` |
 
-## Getting a Classification Tree
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 
+
+Getting a Company Tree
 
 #### Request
 
-    GET /ClassificationTrees({ClassificationTreeId})
+```
+GET /ClassificationTrees({ClassificationTreeId})
+```
 
 #### Headers
 
+
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
+
+
+
 * `Accept: application/json`
+
+
+
+
+
 
 #### URI Parameters
 
-* `ClassificationTreeId` (**Required**) - Identifier for the {{ClassificationTree}}
+
+* `ClassificationTreeId` (**Required**) - Identifier for the Classification Tree
+
+
+
 
 ###### Example
 
-    GET /ClassificationTrees(21)
-    Authorization: Bearer (Access Token)
-    Accept: application/json
+```
+GET /ClassificationTrees(21)
+
+
+Authorization: Bearer (Access Token)
+
+
+
+Accept: application/json
+
+
+
+
+
+```
 
 #### Response
 
-* {{ClassificationTree}}
 
+
+
+ 
 ###### Example
-
-    HTTP 200 Content-Type: application/json
+```
+HTTP 200 Content-Type: application/json
+{
+  "Id": 21,
+  "Name": "Cellular & Accessories",
+  "Description": "Classification of products for wireless retail",
+  "Categories": [
     {
-        "Id": 21,
-        "Name": "Cellular & Accessories",
-        "Description": "Classification of products for wireless retail",
-        "Categories": [
-            {
-                "Id": 2,
-                "Name": "Devices",
-                "Order": 1,
-                "Categories": [
-                    ...
-                ],
-                "Classifications": [
-                    ...
-                ]
-            },
-            ...
-        ],
-        "Classifications": [
-            {         
-                "Id": 1,
-                "Name": "Smartphones",
-                "Order": 2,
-                "ProductTemplate": {
-                    "Id": 60,
-                    "Name": "Wireless Device"
-                }
-            },
-            ...
-        ],
-        "Owner": {
-            "Id": 1,
-            "Name": "SampleCompany"
-        },
-        "Version": 41
-    }
+      "Id": 2,
+      "Name": "Devices",
+      "Order": 1,
+      "Categories": [
+        ...
+      ],
+      "Classifications": [
+        ...
+      ]
+  },
+  ...
+  ],
+  "Classifications": [
+    {         
+      "Id": 1,
+      "Name": "Smartphones",
+      "Order": 2,
+      "ProductTemplate": {
+        "Id": 60,
+        "Name": "Wireless Device"
+      }
+    },
+    ...
+  ],
+  "Owner": {
+    "Id": 1,
+    "Name": "SampleCompany"
+  },
+  "Version": 41
+}
+ 
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 ## Errors
 
@@ -141,3 +218,5 @@ There is a limit to 20 levels of depth for Categories.
 |:-----------------|:------------|:---------------|
 | `HTTP 404` | `Unable to find document id {x}` | Ensure ClassificationTreeId is correct |
 | `HTTP 406` | `Locale not available` | This error occurs with some browser extensions such as Postman. To resolve, add the header `Accept-Language: en-US` |
+
+
