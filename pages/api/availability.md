@@ -4,7 +4,7 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -25,18 +25,17 @@ summary:
 
 
 
-### Availability
-
-?????
+## Availability
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier for a CatalogItem | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
+| Id | Object | Unique identifier for a CatalogItem | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
 | EntityId | Object | Identifier for a CompanyTreeNode | `1` |
 | Quantity | Object | Quantity | `15` |
 | IsDropShippable | Boolean | A flag to indicate if the CatalogItem can be shipped | `true` |
 
-    
+
+
 
 
 
@@ -65,6 +64,8 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -75,11 +76,13 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `LocationId` (**Required**) - Identifier for the Location
+* `LocationId` (**Required**) - Identifier for the {{Location}}
 
-* `CatalogItemId` (**Required**) - Unique identifier for the CatalogItem
+* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
+
+
 
 
 
@@ -107,7 +110,15 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier for a CatalogItem
+  * `EntityId` (integer) - Identifier for a CompanyTreeNode
+  * `Quantity` (integer) - Quantity
+  * `IsDropShippable` (boolean) - A flag to indicate if the CatalogItem can be shipped
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -120,6 +131,7 @@ HTTP 200 Content-Type: application/json
 
 
 ```
+
 
 
 
@@ -145,6 +157,8 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -155,9 +169,11 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CatalogItemId` (**Required**) - Identifier for the CatalogItem
+* `CatalogItemId` (**Required**) - Identifier for the {{CatalogItem}}
+
+
 
 
 
@@ -185,7 +201,15 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier for a CatalogItem
+  * `EntityId` (integer) - Identifier for a CompanyTreeNode
+  * `Quantity` (integer) - Quantity
+  * `IsDropShippable` (boolean) - A flag to indicate if the CatalogItem can be shipped
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -207,6 +231,7 @@ HTTP 200 Content-Type: application/json
 
 
 ```
+
 
 
 

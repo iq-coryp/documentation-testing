@@ -4,7 +4,7 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -34,7 +34,7 @@ To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 
 
-### Classification
+## Classification
 
 Classifications are used to group Products together by similar features.
 A Product can only have a single Classification.
@@ -49,11 +49,12 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 | ProductTemplate.Id | Object | Identifier | `60` |
 | ProductTemplate.Name | String | Name | `Wireless Device` |
 
-    
 
 
 
-### Category
+
+
+## Category
 
 A Category is a node in a Classification Tree that represents a logical grouping of related Classifications.
 For example, 'iPhone' and 'Tablet' Classifications might both be children of a 'Device' Category.
@@ -63,32 +64,32 @@ There is a limit to 20 levels of depth for Categories.
 |:------|:----------|:------------|:--------|
 | Id | Object | Identifier | `2` |
 | Name | String | Name | `Device` |
-| Categories |  | Child Categories | `` |
-| Classifications |  | Child Classifications | `` |
+| Categories | Object | Child Categories | `` |
+| Classifications | Object | Child Classifications | `` |
 | Order | Object | Sorting order | `1` |
 
-    
 
 
 
-### Classificationtree
 
-?????
+
+## Classificationtree
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
 | Id | Object | Identifier | `21` |
 | Name | String | Name | `Cellular & Accessories` |
 | Description | String | Description | `Classification of products for wireless retail` |
-| Categories |  | Categories in the Tree | `` |
-| Classifications |  | Classifications for the Tree | `` |
+| Categories | Object | Categories in the Tree | `` |
+| Classifications | Object | Classifications for the Tree | `` |
 | Owner | Object | Information about the Company that owns this Company Tree | `` |
 | Owner.Id | Object | Company Identifier | `1` |
 | Owner.Name | String | Company Name | `SampleCompany` |
 | Version | Object | Latest revision number | `41` |
 | IsCanonical | Boolean | Reserved for internal use | `` |
 
-    
+
+
 
 
 
@@ -119,6 +120,8 @@ GET /ClassificationTrees({ClassificationTreeId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -129,7 +132,9 @@ GET /ClassificationTrees({ClassificationTreeId})
 #### URI Parameters
 
 
-* `ClassificationTreeId` (**Required**) - Identifier for the Classification Tree
+* `ClassificationTreeId` (**Required**) - Identifier for the {{ClassificationTree}}
+
+
 
 
 
@@ -157,7 +162,21 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `Name` (string) - Name
+  * `Description` (string) - Description
+  * `Categories` (object) - Categories in the Tree
+  * `Classifications` (object) - Classifications for the Tree
+  * `Owner` (object) - Information about the Company that owns this Company Tree
+    * `Owner.Id` (integer) - Company Identifier
+    * `Owner.Name` (string) - Company Name
+  * `Version` (integer) - Latest revision number
+  * `IsCanonical` (boolean) - Reserved for internal use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -200,6 +219,7 @@ HTTP 200 Content-Type: application/json
  
 
 ```
+
 
 
 

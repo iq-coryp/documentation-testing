@@ -4,7 +4,7 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -73,7 +73,7 @@ The result displayed on the page, with some styling, is shown below
 
 
 
-### Fielddefinition
+## Fielddefinition
 
 {{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}
 
@@ -85,12 +85,13 @@ The result displayed on the page, with some styling, is shown below
 | IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `false` |
 | LanguageInvariantUnit | String | Unit | `mm` |
 | DisplayName | String | Value to be displayed in the UI | `CDMA` |
-| Options |  | List of Options, only used when InputType is SingleSelect or MultiSelect | `` |
+| Options | Object | List of Options, only used when InputType is SingleSelect or MultiSelect | `` |
 | Options.Id | Object | Identifier for the Option | `1` |
 | Options.Value | String | Value of the Option | `Blue` |
 | LanguageInvariantName | String | Deprecated | `` |
 
-    
+
+
 
 
 
@@ -140,7 +141,11 @@ GET /FieldDefinitions
 
 
 
+
+
 * `Accept: application/json`
+
+
 
 
 
@@ -170,7 +175,21 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `StringId` (string) - Consistent identifier across all Environments
+  * `InputType` (string) - Type of UI element this FieldDefinition uses, see InputTypes for a list of acceptable values
+  * `IsRequired` (boolean) - A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true)
+  * `LanguageInvariantUnit` (string) - Unit
+  * `DisplayName` (string) - Value to be displayed in the UI
+  * `Options` (array[object]) - List of Options, only used when InputType is SingleSelect or MultiSelect
+    * `Options.Id` (integer) - Identifier for the Option
+    * `Options.Value` (string) - Value of the Option
+  * `LanguageInvariantName` (string) - Deprecated
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -233,6 +252,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting All FieldDefinitions
 
 
@@ -250,6 +270,8 @@ GET /FieldDefinitions({FieldDefinitionId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -260,7 +282,9 @@ GET /FieldDefinitions({FieldDefinitionId})
 #### URI Parameters
 
 
-* `FieldDefinitionId` (**Required**) - Identifier for the FieldDefinition
+* `FieldDefinitionId` (**Required**) - Identifier for the {{FieldDefinition}}
+
+
 
 
 
@@ -288,7 +312,21 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `StringId` (string) - Consistent identifier across all Environments
+  * `InputType` (string) - Type of UI element this FieldDefinition uses, see InputTypes for a list of acceptable values
+  * `IsRequired` (boolean) - A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true)
+  * `LanguageInvariantUnit` (string) - Unit
+  * `DisplayName` (string) - Value to be displayed in the UI
+  * `Options` (array[object]) - List of Options, only used when InputType is SingleSelect or MultiSelect
+    * `Options.Id` (integer) - Identifier for the Option
+    * `Options.Value` (string) - Value of the Option
+  * `LanguageInvariantName` (string) - Deprecated
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -304,6 +342,7 @@ HTTP 200 Content-Type: application/json
 } 
 
 ```
+
 
 
 

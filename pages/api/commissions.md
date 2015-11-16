@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -27,7 +27,7 @@ summary:
 
 
 
-### Commissionentry
+## Commissionentry
 
 Commission earned by an employee.
 {{callout_info}}<b>RQ Connection</b>For more information on Commissions in RQ, see <a href='http://iqmetrix.helpdocsonline.com/employee-commission-setup'>Employee Commission Setup</a>{{end}}
@@ -35,44 +35,51 @@ Commission earned by an employee.
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
 | Id | Object | Unique Identifier for the CommissionEntry | `24` |
-| Comments | String | Comments | `Shared with Nick` |
-| CommissionFixedCost |  | Fixed cost of commission applied. Anything above this value is commission | `10.0` |
-| CommissionFloatingCost |  | Floating cost of commission applied. This value is determined by adding anything above this value to average cost | `10` |
-| CommissionRate |  | Commission rate applied | `35.0` |
-| CommissionSpiff |  | A type of commission structure used to pay employees, where a fixed dollar amount is paid per unit sold | `15.0` |
+| Comments | Object | Comments | `Shared with Nick` |
+| CommissionFixedCost | Object | Fixed cost of commission applied. Anything above this value is commission | `10.0` |
+| CommissionFloatingCost | Object | Floating cost of commission applied. This value is determined by adding anything above this value to average cost | `10` |
+| CommissionRate | Object | Commission rate applied | `35.0` |
+| CommissionSpiff | Object | A type of commission structure used to pay employees, where a fixed dollar amount is paid per unit sold | `15.0` |
 | CommissionSplitEmployeeSpecialId | Object | Special Identifier for the split commission Employee in RQ | `0002` |
 | CommissionSplitUserId | Object | Identifier for a User that is the split commissionable employee | `22212` |
-| CommissionType |  | Type of commission applied. If this is a Coupon commission, see CouponCommissionType for a list of acceptable values, otherwise see CommissionType for a list of acceptable values | `1` |
+| CommissionType | Object | Type of commission applied. If this is a Coupon commission, see CouponCommissionType for a list of acceptable values, otherwise see CommissionType for a list of acceptable values | `1` |
 | CouponID | Object | Identifier for a coupon associated with this commission in RQ | `8` |
-| DateCreatedUtc |  | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
+| DateCreatedUtc | Object | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
 | EmployeeSpecialId | Object | Special Identifier for the Employee in RQ | `0001` |
 | UserId | Object | Identifier for a User that is the primary commissionable employee | `22212` |
 | GlobalProductID | Object | Identifier of product associated with this commission in RQ | `1210` |
 | HasBeenReversed | Boolean | A flag to indicate if this CommissionEntry has been reversed | `false` |
-| InvoiceEditedDate |  | Time last edited with the Invoice Editor in RQ | `2015-09-10T20:01:49.00` |
-| InvoiceNumber | String | Invoice Number of the transaction which created this commission in RQ | `84WEAIN5703` |
+| InvoiceEditedDate | Object | Time last edited with the Invoice Editor in RQ | `2015-09-10T20:01:49.00` |
+| InvoiceNumber | Object | Invoice Number of the transaction which created this commission in RQ | `84WEAIN5703` |
 | IsChargeback | Boolean | A flag to indicate if this commission was created by a chargeback in RQ | `false` |
 | IsCommissionSplit | Boolean | A flag to indicate if the commission is split with a second employee | `true` |
 | IsFullChargeback | Boolean | A flag to indicate if this commission was created by a full chargeback in RQ | `false` |
 | IsSuspended | Boolean | A flag to indicate if this commission has been suspended | `false` |
-| LastUpdateDateUtc |  | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
+| LastUpdateDateUtc | Object | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
 | LocationCode | String | An identifier for the Location in an external system | `LOC123` |
 | LocationId | Object | Identifier for the Location | `4` |
-| MilestoneID | String | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
+| MilestoneID | Object | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
 | Priority | Object | Priority of product on sale invoice associated with this commission in RQ | `1` |
 | Quantity | Object | The number of times the unit commission is to be applied | `1` |
 | RQCommissionId | Object | Identifier of the associated commission RQ | `445` |
-| SaleInvoiceAndCouponID | String | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
+| SaleInvoiceAndCouponID | Object | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
 | SaleInvoiceID | Object | Identifier of the sale invoice which created this commission in RQ | `7` |
-| SerialNumber | String | Serial number of the product associated with this commission in RQ | `8508194953` |
-| SplitRate1 |  | Percentage of the commission the primary employee receives, defaults to 100 | `50.0` |
-| SplitRate2 |  | Percentage of the commission the split employee receives, defaults to 0 | `50.0` |
-| TotalCommission |  | The total commission amount to be applied equal to (UnitCommission * Quantity) | `5.32` |
-| TransactionGUID | String | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
-| TransactionType |  | Type of transaction which created this commission. See TransactionType for a list of acceptable values | `1` |
-| UnitCommission |  | The individual unit Commission amount | `5.32` |
+| SerialNumber | Object | Serial number of the product associated with this commission in RQ | `8508194953` |
+| SplitRate1 | Object | Percentage of the commission the primary employee receives, defaults to 100 | `50.0` |
+| SplitRate2 | Object | Percentage of the commission the split employee receives, defaults to 0 | `50.0` |
+| TotalCommission | Object | The total commission amount to be applied equal to (UnitCommission * Quantity) | `5.32` |
+| TransactionGUID | Object | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
+| TransactionType | Object | Type of transaction which created this commission. See TransactionType for a list of acceptable values | `1` |
+| UnitCommission | Object | The individual unit Commission amount | `5.32` |
 
-    
+
+
+
+
+
+
+
+
 
 
 
@@ -145,6 +152,8 @@ GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datet
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -159,7 +168,7 @@ GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datet
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `StartDate` (Optional) - Date at which to begin search request, in UTC
 
@@ -168,6 +177,8 @@ GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datet
 * `Skip` (Optional) - The number of items to skip from the entire set of results. Defaults to 0 if no $skip value is specified. If a value less than 0 is specified, the URI is considered malformed
 
 * `Top` (Optional) - Maximum number of items to include in the response. Defaults to 50 if no $top value is specified. Acceptable values are in the range [0
+
+
 
 
 
@@ -195,7 +206,48 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Unique Identifier for the CommissionEntry
+  * `Comments` (string(255)) - Comments
+  * `CommissionFixedCost` (decimal) - Fixed cost of commission applied. Anything above this value is commission
+  * `CommissionFloatingCost` (decimal) - Floating cost of commission applied. This value is determined by adding anything above this value to average cost
+  * `CommissionRate` (decimal) - Commission rate applied
+  * `CommissionSpiff` (decimal) - A type of commission structure used to pay employees, where a fixed dollar amount is paid per unit sold
+  * `CommissionSplitEmployeeSpecialId` (integer) - Special Identifier for the split commission Employee in RQ
+  * `CommissionSplitUserId` (integer) - Identifier for a User that is the split commissionable employee
+  * `CommissionType` (byte) - Type of commission applied. If this is a Coupon commission, see CouponCommissionType for a list of acceptable values, otherwise see CommissionType for a list of acceptable values
+  * `CouponID` (integer) - Identifier for a coupon associated with this commission in RQ
+  * `DateCreatedUtc` (datetime) - Time created in RQ, in UTC
+  * `EmployeeSpecialId` (integer) - Special Identifier for the Employee in RQ
+  * `UserId` (integer) - Identifier for a User that is the primary commissionable employee
+  * `GlobalProductID` (integer) - Identifier of product associated with this commission in RQ
+  * `HasBeenReversed` (boolean) - A flag to indicate if this CommissionEntry has been reversed
+  * `InvoiceEditedDate` (datetime) - Time last edited with the Invoice Editor in RQ
+  * `InvoiceNumber` (string(14)) - Invoice Number of the transaction which created this commission in RQ
+  * `IsChargeback` (boolean) - A flag to indicate if this commission was created by a chargeback in RQ
+  * `IsCommissionSplit` (boolean) - A flag to indicate if the commission is split with a second employee
+  * `IsFullChargeback` (boolean) - A flag to indicate if this commission was created by a full chargeback in RQ
+  * `IsSuspended` (boolean) - A flag to indicate if this commission has been suspended
+  * `LastUpdateDateUtc` (datetime) - Time created in the API, in UTC
+  * `LocationCode` (string) - An identifier for the Location in an external system
+  * `LocationId` (integer) - Identifier for the Location
+  * `MilestoneID` (guid) - Identifier for a milestone associated with this commission in RQ
+  * `Priority` (integer) - Priority of product on sale invoice associated with this commission in RQ
+  * `Quantity` (integer) - The number of times the unit commission is to be applied
+  * `RQCommissionId` (integer) - Identifier of the associated commission RQ
+  * `SaleInvoiceAndCouponID` (guid) - Identifier of the coupon on the sale invoice associated with this commission in RQ
+  * `SaleInvoiceID` (integer) - Identifier of the sale invoice which created this commission in RQ
+  * `SerialNumber` (string(100)) - Serial number of the product associated with this commission in RQ
+  * `SplitRate1` (decimal) - Percentage of the commission the primary employee receives, defaults to 100
+  * `SplitRate2` (decimal) - Percentage of the commission the split employee receives, defaults to 0
+  * `TotalCommission` (decimal) - The total commission amount to be applied equal to (UnitCommission * Quantity)
+  * `TransactionGUID` (guid) - Identifier of the transaction which created this commission in RQ
+  * `TransactionType` (byte) - Type of transaction which created this commission. See TransactionType for a list of acceptable values
+  * `UnitCommission` (decimal) - The individual unit Commission amount
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -264,7 +316,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -333,6 +388,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 ```
+
 
 
 

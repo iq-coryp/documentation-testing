@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -44,32 +44,33 @@ Account balances will be affected by Debits and Credits in the following ways:
 
 
 
-### Account
+## Account
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
-| AccountName | String | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
-| AccountNumber | String | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
+| Id | Object | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
+| AccountName | Object | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
+| AccountNumber | Object | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
 | AccountCategory | String | Account Category, acceptable values include: Asset, Liability, Equity, Revenue and Expense | `Asset` |
-| SubCategory | String | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
+| SubCategory | Object | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
 | CreatedByUserId | Object | Auditing column, the identifier of the User that created this Account | `22212` |
 | UpdatedByUserId | Object | Auditing column, the identifier of the User that last updated this Account | `22212` |
 | CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
-| CustomProperties | String | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | `` |
-| DateCreatedUTC |  | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
-| DateUpdatedUTC |  | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
-| Description | String | Description | `This is a Canadian $ account` |
+| CustomProperties | Object | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | `` |
+| DateCreatedUTC | Object | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
+| DateUpdatedUTC | Object | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
+| Description | Object | Description | `This is a Canadian $ account` |
 | IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` |
 | Version | Object | Latest revision number | `1` |
 
-    
 
 
 
-### Transaction
+
+
+## Transaction
 
 {{note}}A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries is the same value, this is called a Balanced Transaction{{end}}
 
@@ -77,17 +78,17 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
-| TransactionDateUTC |  | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
+| Id | Object | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
+| TransactionDateUTC | Object | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
 | CreatedByUserId | Object | Auditing column, the identifier of the User that created this Account | `22212` |
-| Entries |  | The collection of Entries for this Transaction | `` |
-
-    
+| Entries | Object | The collection of Entries for this Transaction | `` |
 
 
 
-### Entry
 
+
+
+## Entry
 
 * A Transaction is <b>immutable</b> and permanent after it has been created it cannot be updated or deleted
 * Debit and Credit are decimal values without an associated currency
@@ -95,17 +96,18 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| AccountID | String | Identifier for the Account this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` |
-| Credit |  | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` |
-| CustomProperties | String | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters | `` |
-| Debit |  | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
+| AccountID | Object | Identifier for the Account this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` |
+| Credit | Object | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` |
+| CustomProperties | Object | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters | `` |
+| Debit | Object | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
 | EntityId | Object | Identifier for the Location this Entry applies to | `25` |
 | LineNumber | Object | A value indicating the sort order of this entry within the Transaction | `1` |
-| Memo | String | Memo string for this Entry | `Memo` |
-| ReferenceID | String | Reference number string, such as the invoice that caused the Transaction | `INV005` |
-| ReferenceType | String | String value to indicate what ReferenceID is referring to. See ReferenceType | `Invoice` |
+| Memo | Object | Memo string for this Entry | `Memo` |
+| ReferenceID | Object | Reference number string, such as the invoice that caused the Transaction | `INV005` |
+| ReferenceType | Object | String value to indicate what ReferenceID is referring to. See ReferenceType | `Invoice` |
 
-    
+
+
 
 
 
@@ -167,6 +169,8 @@ GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -181,11 +185,13 @@ GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -213,7 +219,25 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `AccountName` (string(128)) - Account name. Must be unique across the entire list of Accounts and cannot be empty
+  * `AccountNumber` (string(128)) - Account number. Must be unique across the entire list of Accounts and cannot be empty
+  * `AccountCategory` (string) - Account Category, acceptable values include: Asset, Liability, Equity, Revenue and Expense
+  * `SubCategory` (string(256)) - A string that can be used to further group Accounts into sub-categories
+  * `CreatedByUserId` (integer) - Auditing column, the identifier of the User that created this Account
+  * `UpdatedByUserId` (integer) - Auditing column, the identifier of the User that last updated this Account
+  * `CurrencyCode` (string) - The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case
+  * `CustomProperties` (object(4000)) - A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters
+  * `DateCreatedUTC` (datetime) - Auditing column showing when this Account was first created, in UTC
+  * `DateUpdatedUTC` (datetime) - Auditing column showing when this Account was last updated, in UTC
+  * `Description` (string(1024)) - Description
+  * `IsEnabled` (boolean) - A flag to indicate if this Account is Enabled
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -238,7 +262,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -293,6 +320,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+
 ## Getting Transactions By Date
 
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
@@ -310,6 +338,8 @@ GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -324,7 +354,7 @@ GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `StartDate` (**Required**) - Date at which to begin search request, in UTC
 
@@ -333,6 +363,8 @@ GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -360,7 +392,15 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `TransactionDateUTC` (datetime) - The date and time that this Transaction occurred, in UTC
+  * `CreatedByUserId` (integer) - Auditing column, the identifier of the User that created this Account
+  * `Entries` (array[entry]) - The collection of Entries for this Transaction
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -398,7 +438,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -460,6 +503,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 ```
+
 
 
 

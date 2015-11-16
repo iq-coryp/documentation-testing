@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -32,41 +32,56 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 
 
-### Subscription
-
-?????
+## Subscribablelistput
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Companies |  | Companies for the subscription | `` |
-| Companies.DateSubscribedUtc |  | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
+| EntityId |  |  | `` |
+| Name |  |  | `` |
+| Products |  |  | `` |
+| Products.Price |  |  | `` |
+| Products.ProductName |  |  | `` |
+| Products.VendorSku |  |  | `` |
+| Products.Version |  |  | `` |
+
+
+
+
+
+
+## Subscription
+
+| Name  | Data Type | Description | Example |
+|:------|:----------|:------------|:--------|
+| Companies | Object | Companies for the subscription | `` |
+| Companies.DateSubscribedUtc | Object | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
 | Companies.Id | Object | Company identifier | `60454` |
 | Companies.Name | String | Company Name | `Mark Inc` |
-| ListId | String | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
-
-    
+| ListId | Object | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 
 
 
-### Subscribablelist
 
-?????
+
+
+## Subscribablelist
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
 | EntityId | Object | Supplier identifier | `60455` |
-| Id | String | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
+| Id | Object | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 | Name | String | Title of product subscription | `Joe's Subscription List` |
-| Products |  | Products for the subscribable list | `` |
+| Products | Object | Products for the subscribable list | `` |
 | Products.Dropshippable | Boolean | If the product is dropshippable | `true` |
-| Products.Price |  | Product price | `28.99` |
+| Products.Price | Object | Product price | `28.99` |
 | Products.ProductName | String | Name of product | `iPhone 6 Flexshield Case` |
-| Products.ProductSlugs | String | List of slugs that match the vendor sku | `` |
+| Products.ProductSlugs | Object | List of slugs that match the vendor sku | `` |
 | Products.VendorSku | String | Produt Sku | `9101AGAP6` |
 | Products.Version | Object | Product revision | `2` |
 | Version | Object | Subscription revision | `12` |
 
-    
+
+
 
 
 
@@ -97,6 +112,8 @@ GET /subscription({ListId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -107,7 +124,9 @@ GET /subscription({ListId})
 #### URI Parameters
 
 
-* `ListId` (**Required**) - undefined
+* `ListId` (**Required**) - 
+
+
 
 
 
@@ -135,7 +154,16 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Companies` (array[object]) - Companies for the subscription
+    * `Companies.DateSubscribedUtc` (datetime) - Date company subscribed to product subscription, in UTC
+    * `Companies.Id` (integer) - Company identifier
+    * `Companies.Name` (string) - Company Name
+  * `ListId` (guid) - Subscription identifier
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -163,6 +191,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
 
@@ -180,6 +209,8 @@ PUT /subscription({ListId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -191,8 +222,22 @@ PUT /subscription({ListId})
 #### URI Parameters
 
 
-* `ListId` (**Required**) - undefined
+* `ListId` (**Required**) - 
 
+
+
+
+
+#### Request Parameters
+
+  * `EntityId` (**Required**)
+  * `Name` (**Required**)
+  * `Products` (**Required**)
+    * `Price` (Optional)
+    * `ProductName` (Optional)
+    * `VendorSku` (**Required**)
+    * `Version` (Optional)
+ 
 
 
 
@@ -237,7 +282,16 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Companies` (array[object]) - Companies for the subscription
+    * `Companies.DateSubscribedUtc` (datetime) - Date company subscribed to product subscription, in UTC
+    * `Companies.Id` (integer) - Company identifier
+    * `Companies.Name` (string) - Company Name
+  * `ListId` (guid) - Subscription identifier
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -268,6 +322,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting a Subscribable List
 
 
@@ -285,6 +340,8 @@ GET /subscribablelists({SubscribableListId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -296,6 +353,8 @@ GET /subscribablelists({SubscribableListId})
 
 
 * `SubscribableListId` (**Required**) - Identifier for a Subscribable List
+
+
 
 
 
@@ -323,7 +382,22 @@ Accept: application/json
 
 
 
- 
+
+
+  * `EntityId` (integer) - Supplier identifier
+  * `Id` (guid) - Subscribable List identifer
+  * `Name` (string) - Title of product subscription
+  * `Products` (array[product]) - Products for the subscribable list
+    * `Products.Dropshippable` (boolean) - If the product is dropshippable
+    * `Products.Price` (decimal) - Product price
+    * `Products.ProductName` (string) - Name of product
+    * `Products.ProductSlugs` (array[string]) - List of slugs that match the vendor sku
+    * `Products.VendorSku` (string) - Produt Sku
+    * `Products.Version` (integer) - Product revision
+  * `Version` (integer) - Subscription revision
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -361,6 +435,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating Products in a Subscribable List
 
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
@@ -378,6 +453,8 @@ PUT /subscribablelists({SubscribableListId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -391,6 +468,20 @@ PUT /subscribablelists({SubscribableListId})
 
 * `SubscribableListId` (**Required**) - Identifier for a Subscribable List
 
+
+
+
+
+#### Request Parameters
+
+  * `EntityId` (**Required**)
+  * `Name` (**Required**)
+  * `Products` (**Required**)
+    * `Price` (Optional)
+    * `ProductName` (Optional)
+    * `VendorSku` (**Required**)
+    * `Version` (Optional)
+ 
 
 
 
@@ -445,7 +536,22 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `EntityId` (integer) - Supplier identifier
+  * `Id` (guid) - Subscribable List identifer
+  * `Name` (string) - Title of product subscription
+  * `Products` (array[product]) - Products for the subscribable list
+    * `Products.Dropshippable` (boolean) - If the product is dropshippable
+    * `Products.Price` (decimal) - Product price
+    * `Products.ProductName` (string) - Name of product
+    * `Products.ProductSlugs` (array[string]) - List of slugs that match the vendor sku
+    * `Products.VendorSku` (string) - Produt Sku
+    * `Products.Version` (integer) - Product revision
+  * `Version` (integer) - Subscription revision
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -478,6 +584,7 @@ HTTP 200 Content-Type: application/json
 
 
 ```
+
 
 
 

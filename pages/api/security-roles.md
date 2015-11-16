@@ -4,7 +4,7 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -40,7 +40,7 @@ Changes within the Security Roles API involve complex actions behind the scenes 
 
 
 
-### Securityrole
+## Securityrole
 
 A SecurityRole represents the relationship between a {{User}} and a set of Permissions.
 
@@ -51,11 +51,12 @@ SecurityRoles allow you create custom groups that can hold Permissions
 | Id | Object | Identifier | `4457` |
 | Name | String | Name | `Store Manager` |
 
-    
 
 
 
-### Assignedrole
+
+
+## Assignedrole
 
 An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity.
 
@@ -66,11 +67,12 @@ An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}}
 | SecurityRoleId | Object | Identifier of a SecurityRole | `4457` |
 | UserId | Object | Identifier of a User | `22212` |
 
-    
 
 
 
-### Permission
+
+
+## Permission
 
 Permissions are the building blocks of SecurityRoles and represent the ability to perform an action within iQmetrix APIs.
 
@@ -88,7 +90,8 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 | IsAssignable | Boolean | A flag to indicate if this Permission is Restricted, see Notes above | `true` |
 | ParentPermissionId | Object | Identifier of a similar Permission, used for organizing Permissions into groups | `22` |
 
-    
+
+
 
 
 
@@ -120,6 +123,8 @@ GET /Entities({EntityId})/Permissions
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -131,6 +136,8 @@ GET /Entities({EntityId})/Permissions
 
 
 * `EntityId` (**Required**) - Identifier of a Company, Location, Division or Group
+
+
 
 
 
@@ -158,7 +165,18 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `Name` (string) - Descriptive name
+  * `Category` (string) - This field is used internally to group Permissions by how they impact the iQmetrix ecosystem
+  * `Code` (string) - Unique, system generated name used for sorting Permissions
+  * `Description` (string) - Describes the function of the Permission
+  * `IsAssignable` (boolean) - A flag to indicate if this Permission is Restricted, see Notes above
+  * `ParentPermissionId` (integer) - Identifier of a similar Permission, used for organizing Permissions into groups
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -203,6 +221,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
 
@@ -220,6 +239,8 @@ POST /Entities({EntityId})/SecurityRoles
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -233,6 +254,15 @@ POST /Entities({EntityId})/SecurityRoles
 
 * `EntityId` (**Required**) - Identifier of a Company, Location, Division or Group
 
+
+
+
+
+#### Request Parameters
+
+  
+  * `Name` (**Required**)
+ 
 
 
 
@@ -264,7 +294,13 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `Name` (string) - Name
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -275,6 +311,7 @@ HTTP 201 Content-Type: application/json
 
 
 ```
+
 
 
 
@@ -297,6 +334,8 @@ GET /Entities({EntityId})/SecurityRoles
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -308,6 +347,8 @@ GET /Entities({EntityId})/SecurityRoles
 
 
 * `EntityId` (**Required**) - Identifier of a Company, Location, Division or Group
+
+
 
 
 
@@ -335,7 +376,13 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `Name` (string) - Name
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -362,6 +409,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Creating a Security Role
 
 
@@ -379,6 +427,8 @@ PUT /Entities({EntityId})/SecurityRoles
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -391,6 +441,8 @@ PUT /Entities({EntityId})/SecurityRoles
 
 
 * `EntityId` (**Required**) - Identifier of a Company, Location, Division or Group
+
+
 
 
 
@@ -422,88 +474,6 @@ Content-Type: application/json
 
 
 
-## Changing the Name of a Security Role
-
-
-
-#### Request
-
-```
-PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})
-```
-
-#### Headers
-
-
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-
-
-
-
-
-#### URI Parameters
-
-
-* `EntityId` (**Required**) - Identifier of a Company, Location, Division or Group
-
-* `SecurityRoleId` (**Required**) - Identifier of a SecurityRole
-
-
-
-
-###### Example
-
-```
-PUT /Entities(1)/SecurityRoles(4457)
-
-
-Authorization: Bearer (Access Token)
-
-
-
-Accept: application/json
-Content-Type: application/json
-
-
-
-
-{
-  "Id": 4457,
-  "Name": "District Store Manager"
-}
-
-
-```
-
-#### Response
-
-
-
-
- 
-###### Example
-```
-HTTP 200 Content-Type: application/json
-{
-  "Id": 4457,
-  "Name": "District Store Manager"
-}
-     
-
-```
-
-
-
-
-
-
-
 
 ## 
 
@@ -519,6 +489,8 @@ PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permissio
 
 
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
+
+
 
 
 
@@ -538,6 +510,8 @@ PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permissio
 * `SecurityRoleId` (**Required**) - Identifier of a SecurityRole
 
 * `PermissionId` (**Required**) - Identifier of a Permission
+
+
 
 
 
@@ -586,6 +560,8 @@ DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permis
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -601,6 +577,8 @@ DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permis
 * `SecurityRoleId` (**Required**) - Identifier of a SecurityRole
 
 * `PermissionId` (**Required**) - Identifier of a Permission
+
+
 
 
 
@@ -651,6 +629,8 @@ GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -664,6 +644,8 @@ GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
 * `EntityId` (**Required**) - Identifier of a Company, Location, Division or Group
 
 * `SecurityRoleId` (**Required**) - Identifier of a SecurityRole
+
+
 
 
 
@@ -691,7 +673,18 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `Name` (string) - Descriptive name
+  * `Category` (string) - This field is used internally to group Permissions by how they impact the iQmetrix ecosystem
+  * `Code` (string) - Unique, system generated name used for sorting Permissions
+  * `Description` (string) - Describes the function of the Permission
+  * `IsAssignable` (boolean) - A flag to indicate if this Permission is Restricted, see Notes above
+  * `ParentPermissionId` (integer) - Identifier of a similar Permission, used for organizing Permissions into groups
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -736,6 +729,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Assigning a Security Role to a User
 
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
@@ -753,6 +747,8 @@ POST /Users({UserId})/AssignedRoles
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -766,6 +762,17 @@ POST /Users({UserId})/AssignedRoles
 
 * `UserId` (**Required**) - Identifier of a User
 
+
+
+
+
+#### Request Parameters
+
+  
+  * `EntityId` (**Required**)
+  * `SecurityRoleId` (**Required**)
+  
+ 
 
 
 
@@ -798,7 +805,15 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `EntityId` (integer) - Identifier of an Entity
+  * `SecurityRoleId` (integer) - Identifier of a SecurityRole
+  * `UserId` (integer) - Identifier of a User
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -811,6 +826,7 @@ HTTP 201 Content-Type: application/json
 
 
 ```
+
 
 
 
@@ -833,6 +849,8 @@ GET /Users({UserId})/AssignedRoles
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -844,6 +862,8 @@ GET /Users({UserId})/AssignedRoles
 
 
 * `UserId` (**Required**) - Identifier of a User
+
+
 
 
 
@@ -871,7 +891,15 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `EntityId` (integer) - Identifier of an Entity
+  * `SecurityRoleId` (integer) - Identifier of a SecurityRole
+  * `UserId` (integer) - Identifier of a User
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -901,6 +929,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Unassigning a Security Role from a User
 
 
@@ -918,6 +947,8 @@ DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -931,6 +962,8 @@ DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
 * `UserId` (**Required**) - Identifier of a User
 
 * `SecurityRoleId` (**Required**) - Identifier of a SecurityRole
+
+
 
 
 

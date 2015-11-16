@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -27,81 +27,92 @@ summary:
 
 
 
-### Order
 
 
+
+
+
+
+
+
+
+
+
+
+## Order
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Id | Object | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Optional | `Name` |
-| BillingAddressId | String | Unique identifier for the billing Address | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | String | Unique identifier for the billing Customer | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| CreatedDateUtc |  | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
-| DiscountAmount |  | The value of the discount to be applied at the Order level | `15.0` |
+| BillingAddressId | Object | Unique identifier for the billing Address | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | Object | Unique identifier for the billing Customer | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| CreatedDateUtc | Object | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| DiscountAmount | Object | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | A description of the discount | `Military discount` |
 | EmployeeId | String | Identifier for the Employee who created this Order | `15` |
 | EntityId | Object | Identifier for the Location | `8` |
-| OrderExpiryDate |  | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryDate | Object | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
 | OrderExpiryHours | Object | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
 | OrderType | String | Name of the OrderType | `Sales` |
 | OrderTypeId | Object | See OrderType for a list of acceptable values | `3` |
 | PrintableId | String | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
 | ShippingAddressId | String | Unique identifier for the shipping Address | `cb39f178-3577-40bb-a7e5-032f29325b09` |
 | ShippingCustomerId | String | Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingEntityId | Object | Identifier for the Location this Order will be shipped to. If this value is provided, ShippingCustomerId must be excluded | `1` |
-| State |  | See OrderState for a list of acceptable values | `Created` |
+| ShippingEntityId | Object | Identifier for the Location this Order will be shipped to. | `1` |
+| State | Object | See OrderState for a list of acceptable values | `Created` |
 | CustomerId | String | This is a legacy property that should not be used | `` |
 | TenderId | String | Reserved for future use | `` |
 | TenderOrigin | String | Reserved for future use | `` |
 
-    
 
 
 
-### Item
 
 
+## Item
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier for this Item | `65a13420-5673-45cd-b455-9bbe7f27f694` |
-| Cost |  | Cost of this Item, defaults to 0 | `5.99` |
+| Id | Object | Unique identifier for this Item | `65a13420-5673-45cd-b455-9bbe7f27f694` |
+| Cost | Object | Cost of this Item, defaults to 0 | `5.99` |
 | Description | String | Description of this Item | `LG G3 phone case` |
 | ItemStatus | String | Name of the ItemStatus | `New` |
 | ItemStatusId | Object | See ItemStatus for a list of acceptable values | `1` |
 | ItemType | String | Name of the ItemType | `DropShip` |
 | ItemTypeId | String | See ItemType for a list of acceptable values | `1` |
 | Index | Object | A value used for sorting Items, such as in a shopping cart | `0` |
-| ListPrice |  | List Price of this Item, defaults to 0 | `12.99` |
+| ListPrice | Object | List Price of this Item, defaults to 0 | `12.99` |
 | Notes | String | Notes for this Item | `Dented corner` |
-| OrderId | String | Unique identifier for the Order, specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
+| OrderId | Object | Unique identifier for the Order, specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
 | ProductId | String | Identifier for the Product | `12` |
 | Quantity | Object | Amount of this Item In Stock, defaults to 0 | `2` |
-| SellingPrice |  | Selling Price of this Item, defaults to 0 | `9.99` |
-| SerialNumbers |  | Serial numbers | `abc321` |
+| SellingPrice | Object | Selling Price of this Item, defaults to 0 | `9.99` |
+| SerialNumbers | Object | Serial numbers | `abc321` |
 | SKU | String | SKU for this Item | `00001` |
 | ShippingOptionId | String | Identifier for the ShippingOption that this Item will use | `1` |
 | SupplierEntityId | Object | Identifier for the Supplier of this Item | `0` |
 | SupplierReference | String | May be used for additional Supplier reference information | `10` |
-| TrackingInformation |  | Tracking information in the form of key-value pairs | `` |
+| TrackingInformation | Object | Tracking information in the form of key-value pairs | `` |
 | TrackingInformation.Quantity | Object | Number of items being tracked | `1` |
 | TrackingInformation.TrackingNumber | String | Tracking number | ``1TTTTN4421` |
 
-    
 
 
 
-### Orderfull
+
+
+## Orderfull
 
 **OrderFull** is an extension on the Order resource, it consists of all Order properties plus the following:
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Items |  | The Items in the Order | `` |
+| Items | Object | The Items in the Order | `` |
 
-    
+
+
 
 
 
@@ -186,6 +197,8 @@ POST /Companies({CompanyId})/Orders
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -197,8 +210,37 @@ POST /Companies({CompanyId})/Orders
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
+
+
+
+
+#### Request Parameters
+
+  
+  * `Name` (Optional)
+  * `BillingAddressId` (Optional)
+  * `BillingCustomerId` (**Required**) -  Must belong to the Company specified in the URI
+  
+  * `DiscountAmount` (Optional)
+  * `DiscountCode` (Optional)
+  * `DiscountDescription` (Optional)
+  * `EmployeeId` (Optional) - Must belong to the Company specified in the URI
+  * `EntityId` (**Required**)
+  
+  * `OrderExpiryHours` (Optional)
+  
+  * `OrderTypeId` (**Required**)
+  
+  * `ShippingAddressId` (Optional)
+  * `ShippingCustomerId` (Optional)
+  * `ShippingEntityId` (Optional) - If this value is provided, ShippingCustomerId must be excluded
+  
+  
+  
+  
+ 
 
 
 
@@ -242,7 +284,33 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `Name` (string) - Optional
+  * `BillingAddressId` (guid) - Unique identifier for the billing Address
+  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
+  * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
+  * `DiscountCode` (string) - The discount code for a discount applied to this Order
+  * `DiscountDescription` (string) - A description of the discount
+  * `EmployeeId` (string) - Identifier for the Employee who created this Order
+  * `EntityId` (integer) - Identifier for the Location
+  * `OrderExpiryDate` (datetime) - The date and time this Order expires and can no longer be updated, in UTC
+  * `OrderExpiryHours` (integer) - The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.
+  * `OrderType` (string) - Name of the OrderType
+  * `OrderTypeId` (integer) - See OrderType for a list of acceptable values
+  * `PrintableId` (string) - An identifier for this Order that can used to print on invoices. This value is system-generated and read-only
+  * `ShippingAddressId` (string) - Unique identifier for the shipping Address
+  * `ShippingCustomerId` (string) - Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded
+  * `ShippingEntityId` (integer) - Identifier for the Location this Order will be shipped to.
+  * `State` (orderstate) - See OrderState for a list of acceptable values
+  * `CustomerId` (string) - This is a legacy property that should not be used
+  * `TenderId` (string) - Reserved for future use
+  * `TenderOrigin` (string) - Reserved for future use
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -275,6 +343,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting a Single Order
 
 
@@ -292,6 +361,8 @@ GET /Companies({CompanyId})/Orders
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -302,7 +373,9 @@ GET /Companies({CompanyId})/Orders
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+
+
 
 
 
@@ -330,7 +403,33 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `Name` (string) - Optional
+  * `BillingAddressId` (guid) - Unique identifier for the billing Address
+  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
+  * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
+  * `DiscountCode` (string) - The discount code for a discount applied to this Order
+  * `DiscountDescription` (string) - A description of the discount
+  * `EmployeeId` (string) - Identifier for the Employee who created this Order
+  * `EntityId` (integer) - Identifier for the Location
+  * `OrderExpiryDate` (datetime) - The date and time this Order expires and can no longer be updated, in UTC
+  * `OrderExpiryHours` (integer) - The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.
+  * `OrderType` (string) - Name of the OrderType
+  * `OrderTypeId` (integer) - See OrderType for a list of acceptable values
+  * `PrintableId` (string) - An identifier for this Order that can used to print on invoices. This value is system-generated and read-only
+  * `ShippingAddressId` (string) - Unique identifier for the shipping Address
+  * `ShippingCustomerId` (string) - Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded
+  * `ShippingEntityId` (integer) - Identifier for the Location this Order will be shipped to.
+  * `State` (orderstate) - See OrderState for a list of acceptable values
+  * `CustomerId` (string) - This is a legacy property that should not be used
+  * `TenderId` (string) - Reserved for future use
+  * `TenderOrigin` (string) - Reserved for future use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -366,6 +465,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Adding an Item to an Order
 
 
@@ -383,6 +483,8 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -394,10 +496,39 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order being updated
+* `OrderId` (**Required**) - Identifier for the {{Order}} being updated
 
+
+
+
+
+#### Request Parameters
+
+  
+  * `Cost` (Optional)
+  * `Description` (Optional)
+  * `ItemStatus` (Optional)
+  
+  
+  * `ItemTypeId` (**Required**)
+  * `Index` (Optional)
+  * `ListPrice` (Optional)
+  * `Notes` (Optional)
+  
+  * `ProductId` (Optional)
+  * `Quantity` (Optional)
+  * `SellingPrice` (Optional)
+  * `SerialNumbers` (Optional)
+  * `SKU` (Optional)
+  * `ShippingOptionId` (Optional)
+  * `SupplierEntityId` (Optional)
+  * `SupplierReference` (Optional)
+  * `TrackingInformation` (Optional)
+    * `Quantity` (**Required**)
+    * `TrackingNumber` (**Required**)
+ 
 
 
 
@@ -449,7 +580,33 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier for this Item
+  * `Cost` (decimal) - Cost of this Item, defaults to 0
+  * `Description` (string) - Description of this Item
+  * `ItemStatus` (string) - Name of the ItemStatus
+  * `ItemStatusId` (integer) - See ItemStatus for a list of acceptable values
+  * `ItemType` (string) - Name of the ItemType
+  * `ItemTypeId` (string) - See ItemType for a list of acceptable values
+  * `Index` (integer) - A value used for sorting Items, such as in a shopping cart
+  * `ListPrice` (decimal) - List Price of this Item, defaults to 0
+  * `Notes` (string) - Notes for this Item
+  * `OrderId` (guid) - Unique identifier for the Order, specified by the OrderId in the URI
+  * `ProductId` (string) - Identifier for the Product
+  * `Quantity` (integer) - Amount of this Item In Stock, defaults to 0
+  * `SellingPrice` (decimal) - Selling Price of this Item, defaults to 0
+  * `SerialNumbers` (array[string]) - Serial numbers
+  * `SKU` (string) - SKU for this Item
+  * `ShippingOptionId` (string) - Identifier for the ShippingOption that this Item will use
+  * `SupplierEntityId` (integer) - Identifier for the Supplier of this Item
+  * `SupplierReference` (string) - May be used for additional Supplier reference information
+  * `TrackingInformation` (array[object]) - Tracking information in the form of key-value pairs
+    * `TrackingInformation.Quantity` (integer) - Number of items being tracked
+    * `TrackingInformation.TrackingNumber` (string) - Tracking number
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -487,6 +644,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting all Items on an Order
 
 
@@ -504,6 +662,8 @@ GET /Companies({CompanyId})/Orders({OrderId})/Items
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -514,9 +674,11 @@ GET /Companies({CompanyId})/Orders({OrderId})/Items
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order being updated
+* `OrderId` (**Required**) - Identifier for the {{Order}} being updated
+
+
 
 
 
@@ -544,7 +706,33 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier for this Item
+  * `Cost` (decimal) - Cost of this Item, defaults to 0
+  * `Description` (string) - Description of this Item
+  * `ItemStatus` (string) - Name of the ItemStatus
+  * `ItemStatusId` (integer) - See ItemStatus for a list of acceptable values
+  * `ItemType` (string) - Name of the ItemType
+  * `ItemTypeId` (string) - See ItemType for a list of acceptable values
+  * `Index` (integer) - A value used for sorting Items, such as in a shopping cart
+  * `ListPrice` (decimal) - List Price of this Item, defaults to 0
+  * `Notes` (string) - Notes for this Item
+  * `OrderId` (guid) - Unique identifier for the Order, specified by the OrderId in the URI
+  * `ProductId` (string) - Identifier for the Product
+  * `Quantity` (integer) - Amount of this Item In Stock, defaults to 0
+  * `SellingPrice` (decimal) - Selling Price of this Item, defaults to 0
+  * `SerialNumbers` (array[string]) - Serial numbers
+  * `SKU` (string) - SKU for this Item
+  * `ShippingOptionId` (string) - Identifier for the ShippingOption that this Item will use
+  * `SupplierEntityId` (integer) - Identifier for the Supplier of this Item
+  * `SupplierReference` (string) - May be used for additional Supplier reference information
+  * `TrackingInformation` (array[object]) - Tracking information in the form of key-value pairs
+    * `TrackingInformation.Quantity` (integer) - Number of items being tracked
+    * `TrackingInformation.TrackingNumber` (string) - Tracking number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -585,6 +773,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting an Order
 
 
@@ -602,6 +791,8 @@ GET /Companies({CompanyId})/Orders({OrderId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -612,9 +803,11 @@ GET /Companies({CompanyId})/Orders({OrderId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order
+* `OrderId` (**Required**) - Identifier for the {{Order}}
+
+
 
 
 
@@ -642,7 +835,33 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `Name` (string) - Optional
+  * `BillingAddressId` (guid) - Unique identifier for the billing Address
+  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
+  * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
+  * `DiscountCode` (string) - The discount code for a discount applied to this Order
+  * `DiscountDescription` (string) - A description of the discount
+  * `EmployeeId` (string) - Identifier for the Employee who created this Order
+  * `EntityId` (integer) - Identifier for the Location
+  * `OrderExpiryDate` (datetime) - The date and time this Order expires and can no longer be updated, in UTC
+  * `OrderExpiryHours` (integer) - The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.
+  * `OrderType` (string) - Name of the OrderType
+  * `OrderTypeId` (integer) - See OrderType for a list of acceptable values
+  * `PrintableId` (string) - An identifier for this Order that can used to print on invoices. This value is system-generated and read-only
+  * `ShippingAddressId` (string) - Unique identifier for the shipping Address
+  * `ShippingCustomerId` (string) - Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded
+  * `ShippingEntityId` (integer) - Identifier for the Location this Order will be shipped to.
+  * `State` (orderstate) - See OrderState for a list of acceptable values
+  * `CustomerId` (string) - This is a legacy property that should not be used
+  * `TenderId` (string) - Reserved for future use
+  * `TenderOrigin` (string) - Reserved for future use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -675,6 +894,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating an Order
 
 
@@ -692,6 +912,8 @@ PUT /Companies({CompanyId})/Orders({OrderId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -703,10 +925,39 @@ PUT /Companies({CompanyId})/Orders({OrderId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order
+* `OrderId` (**Required**) - Identifier for the {{Order}}
 
+
+
+
+
+#### Request Parameters
+
+  * `Id` (**Required**)
+  * `Name` (Optional)
+  * `BillingAddressId` (Optional)
+  * `BillingCustomerId` (**Required**) -  Must belong to the Company specified in the URI
+  * `CreatedDateUtc` (**Required**)
+  * `DiscountAmount` (Optional)
+  * `DiscountCode` (Optional)
+  * `DiscountDescription` (Optional)
+  * `EmployeeId` (Optional) - Must belong to the Company specified in the URI
+  * `EntityId` (**Required**)
+  * `OrderExpiryDate` (**Required**)
+  * `OrderExpiryHours` (Optional)
+  * `OrderType` (**Required**)
+  * `OrderTypeId` (**Required**)
+  * `PrintableId` (**Required**)
+  * `ShippingAddressId` (Optional)
+  * `ShippingCustomerId` (Optional)
+  * `ShippingEntityId` (Optional) - If this value is provided, ShippingCustomerId must be excluded
+  * `State` (**Required**)
+  
+  
+  
+ 
 
 
 
@@ -756,7 +1007,33 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `Name` (string) - Optional
+  * `BillingAddressId` (guid) - Unique identifier for the billing Address
+  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
+  * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
+  * `DiscountCode` (string) - The discount code for a discount applied to this Order
+  * `DiscountDescription` (string) - A description of the discount
+  * `EmployeeId` (string) - Identifier for the Employee who created this Order
+  * `EntityId` (integer) - Identifier for the Location
+  * `OrderExpiryDate` (datetime) - The date and time this Order expires and can no longer be updated, in UTC
+  * `OrderExpiryHours` (integer) - The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.
+  * `OrderType` (string) - Name of the OrderType
+  * `OrderTypeId` (integer) - See OrderType for a list of acceptable values
+  * `PrintableId` (string) - An identifier for this Order that can used to print on invoices. This value is system-generated and read-only
+  * `ShippingAddressId` (string) - Unique identifier for the shipping Address
+  * `ShippingCustomerId` (string) - Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded
+  * `ShippingEntityId` (integer) - Identifier for the Location this Order will be shipped to.
+  * `State` (orderstate) - See OrderState for a list of acceptable values
+  * `CustomerId` (string) - This is a legacy property that should not be used
+  * `TenderId` (string) - Reserved for future use
+  * `TenderOrigin` (string) - Reserved for future use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -789,6 +1066,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
 
@@ -806,6 +1084,8 @@ DELETE /Companies({CompanyId})/Orders({OrderId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -816,9 +1096,11 @@ DELETE /Companies({CompanyId})/Orders({OrderId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order
+* `OrderId` (**Required**) - Identifier for the {{Order}}
+
+
 
 
 
@@ -869,6 +1151,8 @@ POST /Companies({CompanyId})/Orders({OrderId})/Process
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -880,10 +1164,18 @@ POST /Companies({CompanyId})/Orders({OrderId})/Process
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order
+* `OrderId` (**Required**) - Identifier for the {{Order}}
 
+
+
+
+
+#### Request Parameters
+
+  * `OrderId` (**Required**)
+ 
 
 
 
@@ -915,7 +1207,13 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier for the response, this value can be ignored
+  * `OrderId` (string) - Identifier for the Order
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -926,6 +1224,7 @@ HTTP 201 Content-Type: application/json
 
 
 ```
+
 
 
 
@@ -948,6 +1247,8 @@ GET /Companies({CompanyId})/Orders({OrderId})/Process
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -958,9 +1259,11 @@ GET /Companies({CompanyId})/Orders({OrderId})/Process
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order
+* `OrderId` (**Required**) - Identifier for the {{Order}}
+
+
 
 
 
@@ -988,7 +1291,33 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `Name` (string) - Optional
+  * `BillingAddressId` (guid) - Unique identifier for the billing Address
+  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
+  * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
+  * `DiscountCode` (string) - The discount code for a discount applied to this Order
+  * `DiscountDescription` (string) - A description of the discount
+  * `EmployeeId` (string) - Identifier for the Employee who created this Order
+  * `EntityId` (integer) - Identifier for the Location
+  * `OrderExpiryDate` (datetime) - The date and time this Order expires and can no longer be updated, in UTC
+  * `OrderExpiryHours` (integer) - The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.
+  * `OrderType` (string) - Name of the OrderType
+  * `OrderTypeId` (integer) - See OrderType for a list of acceptable values
+  * `PrintableId` (string) - An identifier for this Order that can used to print on invoices. This value is system-generated and read-only
+  * `ShippingAddressId` (string) - Unique identifier for the shipping Address
+  * `ShippingCustomerId` (string) - Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded
+  * `ShippingEntityId` (integer) - Identifier for the Location this Order will be shipped to.
+  * `State` (orderstate) - See OrderState for a list of acceptable values
+  * `CustomerId` (string) - This is a legacy property that should not be used
+  * `TenderId` (string) - Reserved for future use
+  * `TenderOrigin` (string) - Reserved for future use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -999,6 +1328,7 @@ HTTP 200 Content-Type: application/json
 
 
 ```
+
 
 
 
@@ -1025,6 +1355,8 @@ POST /Companies({CompanyId})/OrderFull
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1036,8 +1368,48 @@ POST /Companies({CompanyId})/OrderFull
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
+
+
+
+
+#### Request Parameters
+
+  * `Name` (Optional)
+  * `BillingAddressId` (Optional)
+  * `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
+  * `DiscountAmount` (Optional)
+  * `DiscountCode` (Optional)
+  * `DiscountDescription` (Optional)
+  * `EmployeeId` (Optional)
+  * `EntityId` (**Required**) - Must belong to the Company specified in the URI
+  * `OrderExpiryHours` (Optional)
+  * `OrderTypeId` (**Required**)
+  * `ShippingAddressId` (Optional)
+  * `ShippingCustomerId` (Optional)
+  * `ShippingEntityId` (Optional) - If this value is provided, ShippingCustomerId must be excluded
+  * `CustomerId` (Optional)
+  * `Items` (Optional)
+    * `Cost` (Optional)
+    * `Description` (Optional)
+    * `ItemStatusId` (**Required**)
+    * `ItemTypeId` (**Required**)
+    * `Index` (Optional)
+    * `ListPrice` (Optional)
+    * `Notes` (Optional)
+    * `ProductId` (Optional)
+    * `Quantity` (Optional)
+    * `SellingPrice` (Optional)
+    * `SerialNumbers` (Optional)
+    * `SKU` (Optional)
+    * `ShippingOptionId` (Optional)
+    * `SupplierEntityId` (Optional)
+    * `SupplierReference` (Optional)
+    * `TrackingInformation` (Optional)
+      * `Quantity` (**Required**)
+      * `TrackingNumber` (**Required**)
+ 
 
 
 
@@ -1107,7 +1479,12 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Items` (array[item]) - The Items in the Order
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -1169,6 +1546,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting All Orders for a Company
 
 
@@ -1186,6 +1564,8 @@ GET /Companies({CompanyId})/OrderFull
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1196,7 +1576,9 @@ GET /Companies({CompanyId})/OrderFull
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+
+
 
 
 
@@ -1224,7 +1606,12 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Items` (array[item]) - The Items in the Order
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1289,6 +1676,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting an Order with Items
 
 
@@ -1306,6 +1694,8 @@ GET /Companies({CompanyId})/OrderFull({OrderId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1316,9 +1706,11 @@ GET /Companies({CompanyId})/OrderFull({OrderId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order being updated
+* `OrderId` (**Required**) - Identifier for the {{Order}} being updated
+
+
 
 
 
@@ -1346,7 +1738,12 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Items` (array[item]) - The Items in the Order
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1401,6 +1798,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating an Order with Items
 
 {{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
@@ -1419,6 +1817,8 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1430,10 +1830,50 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order being updated
+* `OrderId` (**Required**) - Identifier for the {{Order}} being updated
 
+
+
+
+
+#### Request Parameters
+
+  * `Name` (Optional)
+  * `BillingAddressId` (Optional)
+  * `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
+  * `DiscountAmount` (Optional)
+  * `DiscountCode` (Optional)
+  * `DiscountDescription` (Optional)
+  * `EmployeeId` (Optional)
+  * `EntityId` (**Required**) - Must belong to the Company specified in the URI
+  * `OrderExpiryHours` (Optional)
+  * `OrderTypeId` (**Required**)
+  * `ShippingAddressId` (Optional)
+  * `ShippingCustomerId` (Optional)
+  * `ShippingEntityId` (Optional) - If this value is provided, ShippingCustomerId must be excluded
+  * `CustomerId` (Optional)
+  * `Items` (Optional)
+    * `Cost` (Optional)
+    * `Description` (Optional)
+    * `ItemStatusId` (**Required**)
+    * `ItemTypeId` (**Required**)
+    * `Index` (Optional)
+    * `ListPrice` (Optional)
+    * `Notes` (Optional)
+    * `ProductId` (Optional)
+    * `Quantity` (Optional)
+    * `SellingPrice` (Optional)
+    * `SerialNumbers` (Optional)
+    * `SKU` (Optional)
+    * `ShippingOptionId` (Optional)
+    * `SupplierEntityId` (Optional)
+    * `SupplierReference` (Optional)
+    * `TrackingInformation` (Optional)
+      * `Quantity` (**Required**)
+      * `TrackingNumber` (**Required**)
+ 
 
 
 
@@ -1505,7 +1945,12 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Items` (array[item]) - The Items in the Order
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1560,6 +2005,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
 
@@ -1577,6 +2023,8 @@ DELETE /Companies({CompanyId})/OrderFull({OrderId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1587,9 +2035,11 @@ DELETE /Companies({CompanyId})/OrderFull({OrderId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `OrderId` (**Required**) - Identifier for the Order being updated
+* `OrderId` (**Required**) - Identifier for the {{Order}} being updated
+
+
 
 
 
@@ -1640,6 +2090,8 @@ GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {L
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1650,9 +2102,11 @@ GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {L
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `LocationId` (**Required**) - Identifier for the Location
+* `LocationId` (**Required**) - Identifier for the {{Location}}
+
+
 
 
 
@@ -1680,7 +2134,33 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `Name` (string) - Optional
+  * `BillingAddressId` (guid) - Unique identifier for the billing Address
+  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
+  * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
+  * `DiscountCode` (string) - The discount code for a discount applied to this Order
+  * `DiscountDescription` (string) - A description of the discount
+  * `EmployeeId` (string) - Identifier for the Employee who created this Order
+  * `EntityId` (integer) - Identifier for the Location
+  * `OrderExpiryDate` (datetime) - The date and time this Order expires and can no longer be updated, in UTC
+  * `OrderExpiryHours` (integer) - The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.
+  * `OrderType` (string) - Name of the OrderType
+  * `OrderTypeId` (integer) - See OrderType for a list of acceptable values
+  * `PrintableId` (string) - An identifier for this Order that can used to print on invoices. This value is system-generated and read-only
+  * `ShippingAddressId` (string) - Unique identifier for the shipping Address
+  * `ShippingCustomerId` (string) - Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded
+  * `ShippingEntityId` (integer) - Identifier for the Location this Order will be shipped to.
+  * `State` (orderstate) - See OrderState for a list of acceptable values
+  * `CustomerId` (string) - This is a legacy property that should not be used
+  * `TenderId` (string) - Reserved for future use
+  * `TenderOrigin` (string) - Reserved for future use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1719,6 +2199,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting Orders by PrintableId
 
 {{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
@@ -1736,6 +2217,8 @@ GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1746,9 +2229,11 @@ GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `PrintableId` (**Required**) - An Order identifier printed on invoices
+* `PrintableId` (**Required**) - An {{Order}} identifier printed on invoices
+
+
 
 
 
@@ -1776,7 +2261,33 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `Name` (string) - Optional
+  * `BillingAddressId` (guid) - Unique identifier for the billing Address
+  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
+  * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
+  * `DiscountCode` (string) - The discount code for a discount applied to this Order
+  * `DiscountDescription` (string) - A description of the discount
+  * `EmployeeId` (string) - Identifier for the Employee who created this Order
+  * `EntityId` (integer) - Identifier for the Location
+  * `OrderExpiryDate` (datetime) - The date and time this Order expires and can no longer be updated, in UTC
+  * `OrderExpiryHours` (integer) - The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.
+  * `OrderType` (string) - Name of the OrderType
+  * `OrderTypeId` (integer) - See OrderType for a list of acceptable values
+  * `PrintableId` (string) - An identifier for this Order that can used to print on invoices. This value is system-generated and read-only
+  * `ShippingAddressId` (string) - Unique identifier for the shipping Address
+  * `ShippingCustomerId` (string) - Unique identifier for the shipping Customer. If this value is provided, ShippingEntityId must be excluded
+  * `ShippingEntityId` (integer) - Identifier for the Location this Order will be shipped to.
+  * `State` (orderstate) - See OrderState for a list of acceptable values
+  * `CustomerId` (string) - This is a legacy property that should not be used
+  * `TenderId` (string) - Reserved for future use
+  * `TenderOrigin` (string) - Reserved for future use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1807,6 +2318,7 @@ HTTP 200 Content-Type: application/json
 
 
 ```
+
 
 
 

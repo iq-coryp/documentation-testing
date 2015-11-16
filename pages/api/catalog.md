@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -27,40 +27,47 @@ summary:
 
 
 
-### Catalogitem
+
+
+
+
+
+
+## Catalogitem
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| CatalogItemId | String | Unique identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| CatalogItemId | Object | Unique identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
 | RmsId | String | Identifier for the CatalogItem in an external inventory system | `1` |
 | Slug | String | Unique identifier for a Product | `M1-V2` |
 
-    
 
 
 
-### Catalogsearchresult
+
+
+## Catalogsearchresult
 
 A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Items |  | Products matching the search criteria | `` |
+| Items | Object | Products matching the search criteria | `` |
 | Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |
 | Items.ClassificationTreeId | Object | Identifier for the ClassificationTree | `1` |
 | Items.CanonicalClassification | Object | ClassificationTree details | `` |
 | Items.CanonicalClassification.Id | Object | Identifier for the Classification or Category | `1` |
 | Items.CanonicalClassification.Name | String | Name of the Classification/Category | `Smartphones` |
-| Items.CanonicalClassification.ParentCategories |  | List of Parent Categories | `` |
+| Items.CanonicalClassification.ParentCategories | Object | List of Parent Categories | `` |
 | Items.CanonicalClassification.ParentCategories.Id | Object | Identifier for this Category | `2` |
 | Items.CanonicalClassification.ParentCategories.Name | String | Name of this Category | `Cellular & Accessories` |
-| Items.CatalogItemId | String | Unique identifier for the CatalogItem | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| Items.CatalogItemId | Object | Unique identifier for the CatalogItem | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | Items.CompanyId | Object | Identifier for the Company | `1` |
-| Items.DateAddedUtc |  | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
-| Items.HeroShotId | String | An identifier for a Hero Shot asset | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| Items.DateAddedUtc | Object | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
+| Items.HeroShotId | Object | An identifier for a Hero Shot asset | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | Items.IsDropShippable | Boolean | A flag to indicate if this Product can be shipped | `true` |
 | Items.Manufacturer | Object | Manufacturer information for the Product | `` |
@@ -68,22 +75,22 @@ A CatalogSearchResult resource is used to return information about Product resou
 | Items.Manufacturer.Name | String | Name of the Manufacturer | `SampleManufacturer` |
 | Items.MasterProductId | Object | Identifier for the Master Product | `3` |
 | Items.Msrp | Object | Manufacturer suggested retail price information for the Product | `` |
-| Items.Msrp.Amount |  | Manufacturer suggested retail price | `100` |
+| Items.Msrp.Amount | Object | Manufacturer suggested retail price | `100` |
 | Items.Msrp.CurrencyCode | String | The 3 letter ISO currency code for the currency of the MSRP | `CAD` |
 | Items.ProductVersion | Object | Latest revision number | `1` |
 | Items.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
 | Items.Slug | String | URL friendly identifier for the Product | `M3-V1` |
 | Items.VariationId | Object | Identifier for the Variation this Product represents | `1` |
-| Items.Vendors |  | Vendor information for the Product | `` |
+| Items.Vendors | Object | Vendor information for the Product | `` |
 | Items.Vendors.Id | Object | Identifier for the Vendor | `47` |
 | Items.Vendors.Name | String | Name of the Vendor | `SampleVendor` |
 | Facets | Object | Summary of Manufacturer and Vendor information for the Items | `` |
-| Facets.Manufacturers |  | Manufacturer information for the Items | `` |
+| Facets.Manufacturers | Object | Manufacturer information for the Items | `` |
 | Facets.Manufacturers.Count | Object | Number of Items | `1` |
 | Facets.Manufacturers.Item | Object | Information about this Manufacturer | `` |
 | Facets.Manufacturers.Item.Id | Object | Identifier for this Manufacturer | `4` |
 | Facets.Manufacturers.Item.Name | String | Name of this Manufacturer | `SampleManufacturer` |
-| Facets.Vendors |  | Vendor information for the Items | `` |
+| Facets.Vendors | Object | Vendor information for the Items | `` |
 | Facets.Vendors.Count | Object | Number of Items | `1` |
 | Facets.Vendors.Item | Object | Information about this Vendor | `` |
 | Facets.Vendors.Item.Id | Object | Identifier for this Vendor | `47` |
@@ -93,11 +100,12 @@ A CatalogSearchResult resource is used to return information about Product resou
 | MetaData.PageSize | Object | Number of Items included in the resource | `20` |
 | MetaData.TotalResults | Object | Number of Items matching the search criteria | `5` |
 
-    
 
 
 
-### Searchresult
+
+
+## Searchresult
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
@@ -105,11 +113,12 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 |:------|:----------|:------------|:--------|
 | Items | Object |  | `` |
 
-    
 
 
 
-### Arrayitem
+
+
+## Arrayitem
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
@@ -117,10 +126,11 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 |:------|:----------|:------------|:--------|
 | Name | String |  | `iPhone 4/4s Screen Protector` |
 | Slug | String | Product slug for this CatalogItem | `M141-V6` |
-| CatalogItemId | String |  | `d7f821de-1fd1-4666-8784-d747280c8a21` |
+| CatalogItemId | Object |  | `d7f821de-1fd1-4666-8784-d747280c8a21` |
 | HeroShotId | String |  | `80aec415-306c-4d23-a16c-73d8d7b27fdc` |
 
-    
+
+
 
 
 
@@ -151,6 +161,8 @@ GET /Companies({CompanyId})/Catalog/Items
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -161,7 +173,9 @@ GET /Companies({CompanyId})/Catalog/Items
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+
+
 
 
 
@@ -189,7 +203,15 @@ Accept: application/json
 
 
 
- 
+
+
+  * `CatalogItemId` (guid) - Unique identifier
+  * `IsArchived` (boolean) - A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results
+  * `RmsId` (string) - Identifier for the CatalogItem in an external inventory system
+  * `Slug` (string) - Unique identifier for a Product
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -225,6 +247,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting Product Details
 
 
@@ -242,6 +265,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -252,9 +277,11 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CatalogItemId` (**Required**) - Unique identifier for the CatalogItem
+* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
+
+
 
 
 
@@ -282,7 +309,56 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (string) - Identifier
+  * `Name` (string) - Name
+  * `ShortDescription` (string) - Short Description
+  * `LongDescription` (string) - Long Description
+  * `Assets` (array[object]) - Asset information
+  * `CanonicalClassification` (object) - ClassificationTree details
+  * `Entity` (object) - Entity information, used for Entity revisions
+  * `HeroShotId` (guid) - Hero Shot identifier
+  * `HeroShotUri` (string) - URI to a Hero Shot Asset
+  * `IsLinkedToCuratedProduct` (boolean) - A flag to indicate if this version of this Product is publicly accessible (true), or private (false)
+  * `IsSaleable` (boolean) - A flag to indicate if this product can be sold
+  * `Manufacturer` (object) - Manufacturer information
+    * `Manufacturer.Id` (string) - Manufacturer identifier
+    * `Manufacturer.Name` (string) - Manufacturer Name
+  * `ManufacturerSkus` (array[object]) - Manufacturer SKUs
+    * `ManufacturerSkus.Value` (string) - SKU value
+    * `ManufacturerSkus.Description` (string) - SKU description
+    * `ManufacturerSkus.Entity` (integer) - SKU identifier
+  * `MasterProductId` (integer) - Identifier for the Master Product
+  * `MSRP` (object) - Manufacturers suggested retail price information
+    * `MSRP.Amount` (decimal) - Manufacturers suggested retail price
+    * `MSRP.CurrencyCode` (string) - Currency
+  * `Owner` (object) - Owner information, used for Private products and Carrier Revisions
+  * `Region` (object) - Region information, for Regional Carrier Revisions
+  * `ReleaseDate` (datetime) - Release Date, in UTC
+  * `Specifications` (array[object]) - Details such as color, dimension, etc
+    * `Specifications.Name` (string) - Specification name
+    * `Specifications.Fields` (object) - Specification Fields
+      * `Specifications.Fields.Id` (integer) - Field identifier
+      * `Specifications.Fields.StringId` (string) - Additional field identifier
+      * `Specifications.Fields.DisplayName` (string) - Field display name
+      * `Specifications.Fields.Name` (string) - Field name
+      * `Specifications.Fields.Value` (string) - Field value
+      * `Specifications.Fields.Type` (string) - Type of HTML element this field uses
+      * `Specifications.Fields.Unit` (string) - Unit
+  * `UpcCodes` (array[object]) - UPC codes
+    * `UpcCodes.Value` (string) - UPC Code value
+    * `UpcCodes.Description` (string) - UPC Code description
+    * `UpcCodes.Entity` (integer) - UPC Code identifier
+  * `VariationId` (integer) - Identifier for the Variation
+  * `VendorSkus` (array[object]) - Vendor SKUs
+    * `VendorSkus.Value` (string) - SKU value
+    * `VendorSkus.Description` (string) - SKU description
+    * `VendorSkus.Entity` (integer) - SKU Identifier
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -371,6 +447,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting Compatible Products for a Catalog Item
 
 
@@ -388,6 +465,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -398,9 +477,11 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CatalogItemId` (**Required**) - Unique identifier for the CatalogItem
+* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
+
+
 
 
 
@@ -428,7 +509,12 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Items` (array)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -460,6 +546,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting Variations for a Catalog Item
 
 
@@ -477,6 +564,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -487,9 +576,11 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CatalogItemId` (**Required**) - Unique identifier for the CatalogItem
+* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
+
+
 
 
 
@@ -517,7 +608,12 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Items` (array)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -555,6 +651,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Searching For Products
 
 {{note}}
@@ -575,6 +672,8 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -585,15 +684,15 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `VendorIds` (Optional) - List of comma seperated integers representing identifiers for Vendors
+* `VendorIds` (Optional) - List of comma seperated integers representing identifiers for {{Vendors}}
 
-* `ManufacturerIds` (Optional) - Array of integers representing identifiers for Manufacturers
+* `ManufacturerIds` (Optional) - Array of integers representing identifiers for {{Manufacturers}}
 
 * `IsDropShippable` (Optional) - True to display products available for shipping, false to display products not available for shipping
 
-* `CategoryOrClassificationId` (Optional) - Identifier for the Category or Classification
+* `CategoryOrClassificationId` (Optional) - Identifier for the {{Category}} or {{Classification}}
 
 * `SearchTerms` (Optional) - Search terms
 
@@ -604,6 +703,8 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 * `Page` (Optional) - Page to display, if not specified defaults to 1
 
 * `PageSize` (Optional) - Number of results that will be returned, if not specified defaults to 20
+
+
 
 
 
@@ -631,7 +732,12 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Items` (array)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -719,6 +825,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting Products by Vendor SKU
 
 
@@ -734,6 +841,8 @@ GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vend
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -744,11 +853,13 @@ GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vend
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `VendorSku` (**Required**) - Vendor SKU to search for
 
-* `VendorId` (Optional) - Identifier for a Vendor to search for
+* `VendorId` (Optional) - Identifier for a {{Vendor}} to search for
+
+
 
 
 
@@ -774,7 +885,14 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Sku` (string) - Vendor Sku specified in the URI
+  * `VendorId` (integer) - Vendor Id specified in the URI
+  * `Items` (array)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -792,6 +910,7 @@ HTTP 200 Content-Type: application/json
   ]
 }
 ```
+
 
 
 

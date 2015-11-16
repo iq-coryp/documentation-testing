@@ -4,7 +4,7 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -33,37 +33,68 @@ Each feed will have its own unique **Feed ID**.
 
 
 
-### Product
+## Productpost
+
+Product information for the feed. It is **highly recommended** to include `ModelName` for every product created. See {{ProductStructure_Concept}} for more information.
+
+| Name  | Data Type | Description | Example |
+|:------|:----------|:------------|:--------|
+| Assets |  |  | `` |
+| Assets.AssetUrl |  |  | `` |
+| Classification |  |  | `` |
+| Classification.Id |  |  | `` |
+| Classification.TreeId |  |  | `` |
+| Fields |  |  | `` |
+| Fields.Definition |  |  | `` |
+| Fields.Definition.Id |  |  | `` |
+| Fields.Value |  |  | `` |
+| LastModifiedByVendorUtc |  |  | `` |
+| Manufacturer |  |  | `` |
+| ManufacturerSku |  |  | `` |
+| ModelName |  |  | `` |
+| UPC |  |  | `` |
+| VendorSkus |  |  | `` |
+| VendorSkus.Description |  |  | `` |
+| VendorSkus.Sku |  |  | `` |
+| VendorSkus.VendorName |  |  | `` |
+
+
+
+
+
+
+## Product
 
 Product information for the feed. It is **highly recommended** to include `ModelName` for every product created. See {{ProductStructure_Concept}} for more information.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
 | Id | Object | Product Identifier | `34` |
-| Assets |  | Assets | `` |
+| Assets | Object | Assets | `` |
 | Classification | Object | Refer to Classification concept for more information | `` |
 | Classification.Id | Object | Classification identifier | `2` |
 | Classification.Name | String | The name of the Classification your product falls under | `Smartphones` |
 | Classification.TreeId | Object | Classification Tree identifier | `1` |
 | ClassificationTreeName | String | Name of the classification tree | `Cellular & Accessories` |
-| Fields |  | A list of fields for the product. For the product being added, only include the definitions that apply | `` |
-| LastModifiedByVendorUtc |  | Provides the last date that the product feed was modified by the vendor, in UTC | `2015-09-16T10:40:31.101Z` |
+| Fields | Object | A list of fields for the product. For the product being added, only include the definitions that apply | `` |
+| LastModifiedByVendorUtc | Object | Provides the last date that the product feed was modified by the vendor, in UTC | `2015-09-16T10:40:31.101Z` |
 | Manufacturer | String | The company that produces the product | `Motorola` |
 | ManufacturerSku | String | The Product SKU from the manufacturer | `1234` |
 | ModelName | String | Master Product name | `Agent18 SlimShield Case for iPhone 6` |
 | UPC | String | Universal Product Code | `723755004337` |
-| VendorSkus |  | Vendor SKU information for the product | `` |
+| VendorSkus | Object | Vendor SKU information for the product | `` |
 | VendorSkus.Description | String | Description of the SKU | `Phone case` |
 | VendorSkus.Sku | String | The Product SKU from the vendor | `1115884` |
 | VendorSkus.VendorName | String | The name of the vendor | `Amazon` |
 | ProviderClassification | String | Reserved for internal use | `` |
-| UnsupportedAssets |  | This is a legacy property that should not be used | `` |
-
-    
+| UnsupportedAssets | Object | This is a legacy property that should not be used | `` |
 
 
 
-### Field
+
+
+
+## Field
 
 At minimum, the Product Name field is required along with a corresponding value.
 
@@ -75,11 +106,12 @@ To get a list of all field definitions, use the {{Get_Field_Definitions}} method
 | Definition.Id | Object | The field definition identifier. The definition for this parameter varies based on the Environments | `1` |
 | Value | String | The value for the field | `Android` |
 
-    
 
 
 
-### Asset
+
+
+## Asset
 
 During the request, only the asset URLs are required. The response will contain additional information provided by the server.
 
@@ -87,30 +119,32 @@ Refer to {{Asset_Glossary}} for more information.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Asset identifier | `31294366-948a-420c-972f-ed1450e3cdd8` |
+| Id | Object | Asset identifier | `31294366-948a-420c-972f-ed1450e3cdd8` |
 | AssetUrl | String | Original URL of asset provided in request | `http://image.sample.com/b.png` |
 | FileName | String | Filename of the asset | `Note4-white.png` |
 | IsConverted | Boolean | Indicates if the asset have been converted | `false` |
 | MimeType | String | Type of Mime | `image/jpg` |
 | OriginalUrl | String | Original URL of asset | `http://image.sample.com/b.png` |
 
-    
 
 
 
-### Productfeed
+
+
+## Productfeed
 
 **Product Feeds** are used to group all Products together for a particular vendor.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
 | Id | Object | Product Feed identifier | `34` |
-| LastReceivedUpdatesFromProviderUtc |  | Date and time of last received update, in UTC | `2014-11-13T19:40:57.102Z` |
-| Products |  | List of Products | `` |
+| LastReceivedUpdatesFromProviderUtc | Object | Date and time of last received update, in UTC | `2014-11-13T19:40:57.102Z` |
+| Products | Object | List of Products | `` |
 | ProviderName | String | Name of the Product Feed | `Joe's Product Feed` |
 | Version | Object | Latest revision number | `8` |
 
-    
+
+
 
 
 
@@ -141,6 +175,8 @@ POST /ProductFeeds({FeedId})/Products
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -154,6 +190,31 @@ POST /ProductFeeds({FeedId})/Products
 
 * `FeedId` (**Required**) - Product Feed identifier
 
+
+
+
+
+#### Request Parameters
+
+  * `Assets` (Optional)
+    * `AssetUrl` (Optional)
+  * `Classification` (**Required**)
+    * `Id` (**Required**)
+    * `TreeId` (**Required**)
+  * `Fields` (**Required**)
+    * `Definition` (**Required**)
+      * `Id` (**Required**)
+    * `Value` (Optional)
+  * `LastModifiedByVendorUtc` (Optional)
+  * `Manufacturer` (Optional)
+  * `ManufacturerSku` (Optional)
+  * `ModelName` (**Required**)
+  * `UPC` (Optional)
+  * `VendorSkus` (Optional)
+    * `Description` (Optional)
+    * `Sku` (Optional)
+    * `VendorName` (Optional)
+ 
 
 
 
@@ -234,7 +295,30 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Product Identifier
+  * `Assets` (array[object]) - Assets
+  * `Classification` (object) - Refer to Classification concept for more information
+    * `Classification.Id` (integer) - Classification identifier
+    * `Classification.Name` (string) - The name of the Classification your product falls under
+    * `Classification.TreeId` (integer) - Classification Tree identifier
+  * `ClassificationTreeName` (string) - Name of the classification tree
+  * `Fields` (array[field]) - A list of fields for the product. For the product being added, only include the definitions that apply
+  * `LastModifiedByVendorUtc` (datetime) - Provides the last date that the product feed was modified by the vendor, in UTC
+  * `Manufacturer` (string) - The company that produces the product
+  * `ManufacturerSku` (string) - The Product SKU from the manufacturer
+  * `ModelName` (string) - Master Product name
+  * `UPC` (string) - Universal Product Code
+  * `VendorSkus` (array[object]) - Vendor SKU information for the product
+    * `VendorSkus.Description` (string) - Description of the SKU
+    * `VendorSkus.Sku` (string) - The Product SKU from the vendor
+    * `VendorSkus.VendorName` (string) - The name of the vendor
+  * `ProviderClassification` (string) - Reserved for internal use
+  * `UnsupportedAssets` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -341,6 +425,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting All Products in a Feed
 
 Returns all the **Products** in a particular **Product Feed** indicated by the feed's **Feed ID** parameter. \n\nUseful when testing to ensure that products have been successfully added or removed.
@@ -359,6 +444,8 @@ GET /ProductFeeds({FeedId})/Products
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -370,6 +457,8 @@ GET /ProductFeeds({FeedId})/Products
 
 
 * `FeedId` (**Required**) - Product Feed identifier
+
+
 
 
 
@@ -397,7 +486,30 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Product Identifier
+  * `Assets` (array[object]) - Assets
+  * `Classification` (object) - Refer to Classification concept for more information
+    * `Classification.Id` (integer) - Classification identifier
+    * `Classification.Name` (string) - The name of the Classification your product falls under
+    * `Classification.TreeId` (integer) - Classification Tree identifier
+  * `ClassificationTreeName` (string) - Name of the classification tree
+  * `Fields` (array[field]) - A list of fields for the product. For the product being added, only include the definitions that apply
+  * `LastModifiedByVendorUtc` (datetime) - Provides the last date that the product feed was modified by the vendor, in UTC
+  * `Manufacturer` (string) - The company that produces the product
+  * `ManufacturerSku` (string) - The Product SKU from the manufacturer
+  * `ModelName` (string) - Master Product name
+  * `UPC` (string) - Universal Product Code
+  * `VendorSkus` (array[object]) - Vendor SKU information for the product
+    * `VendorSkus.Description` (string) - Description of the SKU
+    * `VendorSkus.Sku` (string) - The Product SKU from the vendor
+    * `VendorSkus.VendorName` (string) - The name of the vendor
+  * `ProviderClassification` (string) - Reserved for internal use
+  * `UnsupportedAssets` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -507,6 +619,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting a Product Feed
 
 Returns an array of [Products](#product), as well as additional parameters.
@@ -525,6 +638,8 @@ GET /ProductFeeds({FeedId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -535,7 +650,9 @@ GET /ProductFeeds({FeedId})
 #### URI Parameters
 
 
-* `FeedId` (**Required**) - undefined
+* `FeedId` (**Required**) - 
+
+
 
 
 
@@ -563,7 +680,16 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Product Feed identifier
+  * `LastReceivedUpdatesFromProviderUtc` (datetime) - Date and time of last received update, in UTC
+  * `Products` (array[object]) - List of Products
+  * `ProviderName` (string) - Name of the Product Feed
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -579,6 +705,7 @@ HTTP 200 Content-Type: application/json
         
 
 ```
+
 
 
 
@@ -605,6 +732,8 @@ DELETE /ProductFeeds({FeedId})/Products({ProductId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -615,9 +744,11 @@ DELETE /ProductFeeds({FeedId})/Products({ProductId})
 #### URI Parameters
 
 
-* `FeedId` (**Required**) - undefined
+* `FeedId` (**Required**) - 
 
-* `ProductId` (**Required**) - undefined
+* `ProductId` (**Required**) - 
+
+
 
 
 

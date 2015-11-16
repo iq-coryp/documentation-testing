@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -29,38 +29,45 @@ summary:
 
 
 
-### Customer
+
+
+
+
+
+
+## Customer
 
 A Customer is a person or organization that buys goods or services from a store or business.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | Object | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
 | AlternateName | String | Alias or preferred name | `Bob` |
 | CustomerType | String | Name of the CustomerType | `Company` |
 | CustomerTypeId | Object | See CustomerType for a list of acceptable values | `3` |
-| DateOfBirth |  | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| DateOfBirth | Object | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
 | Title | String | Title | `Mr` |
 | Version | Object | Latest revision number | `1` |
 
-    
 
 
 
-### Address
+
+
+## Address
 
 An Address represents a valid address somewhere on the planet.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| CustomerId | String | Unique identifier for the Customer | `f23a104e-0ce3-409e-8b1f-37ae9d1aeaa7` |
+| Id | Object | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| CustomerId | Object | Unique identifier for the Customer | `f23a104e-0ce3-409e-8b1f-37ae9d1aeaa7` |
 | AddressType | String | Name of the AddressType | `Business` |
 | AddressTypeId | Object | See AddressType for a list of acceptable values | `3` |
 | AttentionTo | String | Attention To (Attn:) | `iQmetrix` |
@@ -80,18 +87,19 @@ An Address represents a valid address somewhere on the planet.
 | StreetAddress2 | String | The street address | `Suite 500` |
 | Version | Object | Latest revision number | `1` |
 
-    
 
 
 
-### Contactmethod
+
+
+## Contactmethod
 
 A Contact Method is a method of contacting a Customer.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
-| CustomerId | String | Unique identifier for the Customer | `b8b54200-4c7e-414d-93eb-a3689e473be3` |
+| Id | Object | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
+| CustomerId | Object | Unique identifier for the Customer | `b8b54200-4c7e-414d-93eb-a3689e473be3` |
 | ContactMethodCategory | String | Name of the ContactMethodCategory | `Email` |
 | ContactMethodCategoryId | Object | See ContactMethodCategory for a list of acceptable values | `3` |
 | ContactMethodType | String | Name of the ContactMethodType | `Work phone` |
@@ -102,28 +110,30 @@ A Contact Method is a method of contacting a Customer.
 | Value | String | The value representing this ContactMethod | `(306) 222-3333` |
 | Version | Object | Latest revision number | `1` |
 
-    
 
 
 
-### Customerextension
+
+
+## Customerextension
 
 A CustomerExtension resource is used for adding custom properties to a Customer.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Id | String | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
-| CustomerId | String | Unique identifier for the Customer | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | Object | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
+| CustomerId | Object | Unique identifier for the Customer | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ExtensionType | String | Name of the CustomerExtensionType | `ExternalCustomerId` |
 | ExtensionTypeId | Object | Identifier for the CustomerExtensionType | `1` |
 | Value | String | Value | `66432` |
 | Version | Object | Latest revision number | `1` |
 
-    
 
 
 
-### Customerextensiontype
+
+
+## Customerextensiontype
 
 CustomerExtensionType resources are created by iQmetrix and are used to provide custom properties for the CustomerExtension resource.
 
@@ -133,27 +143,29 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 | Name | String | Name | `ExternalCustomerId` |
 | Data Type | String | Data type | `Integer` |
 
-    
 
 
 
-### Customerfull
+
+
+## Customerfull
 
 CustomerFull is an extension on the Customer resource, it consists of all Customer properties plus the following:
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
-| Addresses |  | A collection of Addresses | `` |
-| ContactMethods |  | A collection of ContactMethods | `` |
-| CustomerExtensions |  | A collection of CustomerExtensions | `` |
-| MemberOf |  | A collection of Customers that the Customer is a MemberOf (parent relation) | `` |
-| RelatedCustomers |  | A collection of Customers related to the Customer (child relation) | `` |
-
-    
+| Addresses | Object | A collection of Addresses | `` |
+| ContactMethods | Object | A collection of ContactMethods | `` |
+| CustomerExtensions | Object | A collection of CustomerExtensions | `` |
+| MemberOf | Object | A collection of Customers that the Customer is a MemberOf (parent relation) | `` |
+| RelatedCustomers | Object | A collection of Customers related to the Customer (child relation) | `` |
 
 
 
-### Customersearch
+
+
+
+## Customersearch
 
 CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource, it consists of all CustomerFull properties plus the following
 
@@ -161,7 +173,8 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 |:------|:----------|:------------|:--------|
 | Criteria | String | The criteria used to seach for the Customer | `` |
 
-    
+
+
 
 
 
@@ -194,6 +207,8 @@ POST /Companies({CompanyId})/Customers
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -209,8 +224,28 @@ POST /Companies({CompanyId})/Customers
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
+
+
+
+
+#### Request Parameters
+
+  
+  * `PrimaryName` (Optional)
+  * `MiddleName` (Optional)
+  * `FamilyName` (Optional)
+  * `AlternateName` (Optional)
+  
+  * `CustomerTypeId` (**Required**)
+  * `DateOfBirth` (Optional)
+  * `Disabled` (Optional)
+  * `DoNotContact` (Optional)
+  * `Notes` (Optional)
+  * `Title` (Optional)
+  
+ 
 
 
 
@@ -251,7 +286,24 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
+  * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
+  * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
+  * `AlternateName` (string) - Alias or preferred name
+  * `CustomerType` (string) - Name of the CustomerType
+  * `CustomerTypeId` (integer) - See CustomerType for a list of acceptable values
+  * `DateOfBirth` (object) - Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)
+  * `Disabled` (boolean) - A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false
+  * `DoNotContact` (boolean) - A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Any notes related to this Customer
+  * `Title` (string) - Title
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -280,6 +332,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting All Customers
 
 
@@ -297,6 +350,8 @@ GET /Companies({CompanyId})/Customers
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -311,7 +366,9 @@ GET /Companies({CompanyId})/Customers
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+
+
 
 
 
@@ -339,7 +396,24 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
+  * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
+  * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
+  * `AlternateName` (string) - Alias or preferred name
+  * `CustomerType` (string) - Name of the CustomerType
+  * `CustomerTypeId` (integer) - See CustomerType for a list of acceptable values
+  * `DateOfBirth` (object) - Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)
+  * `Disabled` (boolean) - A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false
+  * `DoNotContact` (boolean) - A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Any notes related to this Customer
+  * `Title` (string) - Title
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -363,7 +437,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -440,6 +517,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+
 ## Getting a Customer
 
 
@@ -457,6 +535,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -467,9 +547,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 #### URI Parameters
 
 
-* `CustomerId` (**Required**) - Identifier for the Customer
+* `CustomerId` (**Required**) - Identifier for the {{Customer}}
 
 * `CompanyId` (**Required**) - 
+
+
 
 
 
@@ -497,7 +579,24 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
+  * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
+  * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
+  * `AlternateName` (string) - Alias or preferred name
+  * `CustomerType` (string) - Name of the CustomerType
+  * `CustomerTypeId` (integer) - See CustomerType for a list of acceptable values
+  * `DateOfBirth` (object) - Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)
+  * `Disabled` (boolean) - A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false
+  * `DoNotContact` (boolean) - A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Any notes related to this Customer
+  * `Title` (string) - Title
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -524,6 +623,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating a Customer
 
 
@@ -541,6 +641,8 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -552,10 +654,30 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 #### URI Parameters
 
 
-* `CustomerId` (**Required**) - Identifier for the Customer
+* `CustomerId` (**Required**) - Identifier for the {{Customer}}
 
 * `CompanyId` (**Required**) - 
 
+
+
+
+
+#### Request Parameters
+
+  * `Id` (**Required**)
+  * `PrimaryName` (Optional)
+  * `MiddleName` (Optional)
+  * `FamilyName` (Optional)
+  * `AlternateName` (Optional)
+  * `CustomerType` (**Required**)
+  * `CustomerTypeId` (**Required**)
+  * `DateOfBirth` (Optional)
+  * `Disabled` (Optional)
+  * `DoNotContact` (Optional)
+  * `Notes` (Optional)
+  * `Title` (Optional)
+  * `Version` (**Required**)
+ 
 
 
 
@@ -599,7 +721,24 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
+  * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
+  * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
+  * `AlternateName` (string) - Alias or preferred name
+  * `CustomerType` (string) - Name of the CustomerType
+  * `CustomerTypeId` (integer) - See CustomerType for a list of acceptable values
+  * `DateOfBirth` (object) - Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)
+  * `Disabled` (boolean) - A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false
+  * `DoNotContact` (boolean) - A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Any notes related to this Customer
+  * `Title` (string) - Title
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -626,6 +765,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Deleting a Customer
 
 
@@ -643,6 +783,8 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -653,9 +795,11 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 #### URI Parameters
 
 
-* `CustomerId` (**Required**) - Identifier for the Customer
+* `CustomerId` (**Required**) - Identifier for the {{Customer}}
 
 * `CompanyId` (**Required**) - 
+
+
 
 
 
@@ -706,6 +850,8 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -721,10 +867,37 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Identifier for the Customer being updated
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
 
+
+
+
+
+#### Request Parameters
+
+  
+  
+  
+  * `AddressTypeId` (**Required**) - Required if Addresses is not null
+  * `AttentionTo` (Optional)
+  
+  * `CountryCode` (**Required**) - Required if StateCode is provided
+  * `Default` (Optional)
+  * `DoNotContact` (Optional)
+  * `Email` (Optional)
+  * `Locality` (Optional)
+  * `Notes` (Optional)
+  * `Phone` (Optional)
+  * `PostalCode` (Optional)
+  * `PostOfficeBoxNumber` (Optional)
+  
+  * `StateCode` (**Required**)
+  * `StreetAddress1` (Optional)
+  * `StreetAddress2` (Optional)
+  
+ 
 
 
 
@@ -769,7 +942,31 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `AddressType` (string) - Name of the AddressType
+  * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
+  * `AttentionTo` (string) - Attention To (Attn:)
+  * `Country` (string) - The Country. This value is system-generated and read-only
+  * `CountryCode` (string) - Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard
+  * `Default` (boolean) - A flag to indicate if this address is the default address for the customer
+  * `DoNotContact` (boolean) - A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Email` (string) - Email
+  * `Locality` (string) - City, Town, Hamlet
+  * `Notes` (string) - Notes related to this Address
+  * `Phone` (string) - Phone number
+  * `PostalCode` (string) - The postal code/zip code
+  * `PostOfficeBoxNumber` (string) - The post office box number for PO box addresses
+  * `State` (string) - The State/Province
+  * `StateCode` (string) - Code for the State in which this address resides. Based off the ISO 3166-2 standard
+  * `StreetAddress1` (string) - The street address
+  * `StreetAddress2` (string) - The street address
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -803,6 +1000,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting All Addresses for a Customer
 
 
@@ -820,6 +1018,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -834,9 +1034,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Identifier for the Customer being updated
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
+
+
 
 
 
@@ -864,7 +1066,31 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `AddressType` (string) - Name of the AddressType
+  * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
+  * `AttentionTo` (string) - Attention To (Attn:)
+  * `Country` (string) - The Country. This value is system-generated and read-only
+  * `CountryCode` (string) - Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard
+  * `Default` (boolean) - A flag to indicate if this address is the default address for the customer
+  * `DoNotContact` (boolean) - A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Email` (string) - Email
+  * `Locality` (string) - City, Town, Hamlet
+  * `Notes` (string) - Notes related to this Address
+  * `Phone` (string) - Phone number
+  * `PostalCode` (string) - The postal code/zip code
+  * `PostOfficeBoxNumber` (string) - The post office box number for PO box addresses
+  * `State` (string) - The State/Province
+  * `StateCode` (string) - Code for the State in which this address resides. Based off the ISO 3166-2 standard
+  * `StreetAddress1` (string) - The street address
+  * `StreetAddress2` (string) - The street address
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -893,7 +1119,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -945,6 +1174,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+
 ## Getting a Customer Address
 
 
@@ -962,6 +1192,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -974,9 +1206,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 * `CompanyId` (**Required**) - Identifier of the Company
 
-* `CustomerId` (**Required**) - Identifier for the Customer
+* `CustomerId` (**Required**) - Identifier for the {{Customer}}
 
-* `AddressId` (**Required**) - Identifier for the Address
+* `AddressId` (**Required**) - Identifier for the {{Address}}
+
+
 
 
 
@@ -1004,7 +1238,31 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `AddressType` (string) - Name of the AddressType
+  * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
+  * `AttentionTo` (string) - Attention To (Attn:)
+  * `Country` (string) - The Country. This value is system-generated and read-only
+  * `CountryCode` (string) - Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard
+  * `Default` (boolean) - A flag to indicate if this address is the default address for the customer
+  * `DoNotContact` (boolean) - A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Email` (string) - Email
+  * `Locality` (string) - City, Town, Hamlet
+  * `Notes` (string) - Notes related to this Address
+  * `Phone` (string) - Phone number
+  * `PostalCode` (string) - The postal code/zip code
+  * `PostOfficeBoxNumber` (string) - The post office box number for PO box addresses
+  * `State` (string) - The State/Province
+  * `StateCode` (string) - Code for the State in which this address resides. Based off the ISO 3166-2 standard
+  * `StreetAddress1` (string) - The street address
+  * `StreetAddress2` (string) - The street address
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1038,6 +1296,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating a Customer Address
 
 
@@ -1055,6 +1314,8 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1068,10 +1329,37 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 * `CompanyId` (**Required**) - Identifier of the Company
 
-* `CustomerId` (**Required**) - Identifier for the Customer
+* `CustomerId` (**Required**) - Identifier for the {{Customer}}
 
-* `AddressId` (**Required**) - Identifier for the Address
+* `AddressId` (**Required**) - Identifier for the {{Address}}
 
+
+
+
+
+#### Request Parameters
+
+  * `Id` (**Required**)
+  * `CustomerId` (**Required**)
+  * `AddressType` (**Required**)
+  * `AddressTypeId` (**Required**) - Required if Addresses is not null
+  * `AttentionTo` (Optional)
+  * `Country` (**Required**)
+  * `CountryCode` (**Required**) - Required if StateCode is provided
+  * `Default` (Optional)
+  * `DoNotContact` (Optional)
+  * `Email` (Optional)
+  * `Locality` (Optional)
+  * `Notes` (Optional)
+  * `Phone` (Optional)
+  * `PostalCode` (Optional)
+  * `PostOfficeBoxNumber` (Optional)
+  * `State` (**Required**)
+  * `StateCode` (**Required**)
+  * `StreetAddress1` (Optional)
+  * `StreetAddress2` (Optional)
+  * `Version` (**Required**)
+ 
 
 
 
@@ -1122,7 +1410,31 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `AddressType` (string) - Name of the AddressType
+  * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
+  * `AttentionTo` (string) - Attention To (Attn:)
+  * `Country` (string) - The Country. This value is system-generated and read-only
+  * `CountryCode` (string) - Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard
+  * `Default` (boolean) - A flag to indicate if this address is the default address for the customer
+  * `DoNotContact` (boolean) - A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Email` (string) - Email
+  * `Locality` (string) - City, Town, Hamlet
+  * `Notes` (string) - Notes related to this Address
+  * `Phone` (string) - Phone number
+  * `PostalCode` (string) - The postal code/zip code
+  * `PostOfficeBoxNumber` (string) - The post office box number for PO box addresses
+  * `State` (string) - The State/Province
+  * `StateCode` (string) - Code for the State in which this address resides. Based off the ISO 3166-2 standard
+  * `StreetAddress1` (string) - The street address
+  * `StreetAddress2` (string) - The street address
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1156,6 +1468,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Removing an Address from a Customer
 
 
@@ -1173,6 +1486,8 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1185,9 +1500,11 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 * `CompanyId` (**Required**) - Identifier of the Company
 
-* `CustomerId` (**Required**) - Identifier for the Customer
+* `CustomerId` (**Required**) - Identifier for the {{Customer}}
 
-* `AddressId` (**Required**) - Identifier for the Address
+* `AddressId` (**Required**) - Identifier for the {{Address}}
+
+
 
 
 
@@ -1238,6 +1555,8 @@ POST /Companies({CompanyId})/CustomerFull
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1253,8 +1572,52 @@ POST /Companies({CompanyId})/CustomerFull
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
+
+
+
+
+#### Request Parameters
+
+  * `CustomerTypeId` (**Required**)
+  * `PrimaryName` (Optional)
+  * `MiddleName` (Optional)
+  * `FamilyName` (Optional)
+  * `AlternateName` (Optional)
+  * `DateOfBirth` (Optional)
+  * `Disabled` (Optional)
+  * `DoNotContact` (Optional)
+  * `Notes` (Optional)
+  * `Title` (Optional)
+  * `Addresses` (Optional)
+    * `AddressTypeId` (**Required**) - Required if Addresses is not null
+    * `AttentionTo` (Optional)
+    * `Default` (Optional)
+    * `DoNotContact` (Optional)
+    * `Email` (Optional)
+    * `CountryCode` (**Required**) - Required if StateCode is provided
+    * `Locality` (Optional)
+    * `StateCode` (**Required**) - Required if CountryCode is provided
+    * `Phone` (Optional)
+    * `PostalCode` (Optional)
+    * `PostOfficeBoxNumber` (Optional)
+    * `StreetAddress1` (Optional)
+    * `StreetAddress2` (Optional)
+    * `Notes` (Optional)
+  * `ContactMethods` (Optional)
+    * `ContactMethodCategoryId` (**Required**) - Required if ContactMethods is not null
+    * `ContactMethodTypeId` (**Required**) - Required if ContactMethods is not null
+    * `Value` (Optional)
+    * `DoNotContact` (Optional)
+    * `Default` (Optional)
+    * `Notes` (Optional)
+  * `CustomerExtensions` (Optional)
+    * `ExtensionTypeId` (**Required**) - Required if CustomerExtensions is not null
+    * `Value` (Optional)
+  * `MemberOf` (Optional)
+  * `RelatedCustomers` (Optional)
+ 
 
 
 
@@ -1332,7 +1695,16 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Addresses` (array[address]) - A collection of Addresses
+  * `ContactMethods` (array[contactmethod]) - A collection of ContactMethods
+  * `CustomerExtensions` (array[customrextension]) - A collection of CustomerExtensions
+  * `MemberOf` (array[object]) - A collection of Customers that the Customer is a MemberOf (parent relation)
+  * `RelatedCustomers` (array[object]) - A collection of Customers related to the Customer (child relation)
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -1408,6 +1780,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting All Full Customers
 
 
@@ -1425,6 +1798,8 @@ GET /Companies({CompanyId})/CustomerFull
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1439,7 +1814,9 @@ GET /Companies({CompanyId})/CustomerFull
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
+
+
 
 
 
@@ -1467,7 +1844,16 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Addresses` (array[address]) - A collection of Addresses
+  * `ContactMethods` (array[contactmethod]) - A collection of ContactMethods
+  * `CustomerExtensions` (array[customrextension]) - A collection of CustomerExtensions
+  * `MemberOf` (array[object]) - A collection of Customers that the Customer is a MemberOf (parent relation)
+  * `RelatedCustomers` (array[object]) - A collection of Customers related to the Customer (child relation)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1538,7 +1924,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -1648,6 +2037,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+
 ## Getting a Full Customer
 
 
@@ -1665,6 +2055,8 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1675,9 +2067,11 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Unique identifier for the Customer
+* `CustomerId` (**Required**) - Unique identifier for the {{Customer}}
+
+
 
 
 
@@ -1705,7 +2099,16 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Addresses` (array[address]) - A collection of Addresses
+  * `ContactMethods` (array[contactmethod]) - A collection of ContactMethods
+  * `CustomerExtensions` (array[customrextension]) - A collection of CustomerExtensions
+  * `MemberOf` (array[object]) - A collection of Customers that the Customer is a MemberOf (parent relation)
+  * `RelatedCustomers` (array[object]) - A collection of Customers related to the Customer (child relation)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1775,6 +2178,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating a Full Customer
 
 
@@ -1792,6 +2196,8 @@ PUT /Companies({CompanyId})/CustomerFull({CustomerId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1803,10 +2209,54 @@ PUT /Companies({CompanyId})/CustomerFull({CustomerId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Unique identifier for the Customer
+* `CustomerId` (**Required**) - Unique identifier for the {{Customer}}
 
+
+
+
+
+#### Request Parameters
+
+  * `CustomerTypeId` (**Required**)
+  * `PrimaryName` (Optional)
+  * `MiddleName` (Optional)
+  * `FamilyName` (Optional)
+  * `AlternateName` (Optional)
+  * `DateOfBirth` (Optional)
+  * `Disabled` (Optional)
+  * `DoNotContact` (Optional)
+  * `Notes` (Optional)
+  * `Title` (Optional)
+  * `Addresses` (Optional)
+    * `AddressTypeId` (**Required**) - Required if Addresses is not null
+    * `AttentionTo` (Optional)
+    * `Default` (Optional)
+    * `DoNotContact` (Optional)
+    * `Email` (Optional)
+    * `CountryCode` (**Required**) - Required if StateCode is provided
+    * `Locality` (Optional)
+    * `StateCode` (**Required**) - Required if CountryCode is provided
+    * `Phone` (Optional)
+    * `PostalCode` (Optional)
+    * `PostOfficeBoxNumber` (Optional)
+    * `StreetAddress1` (Optional)
+    * `StreetAddress2` (Optional)
+    * `Notes` (Optional)
+  * `ContactMethods` (Optional)
+    * `ContactMethodCategoryId` (**Required**) - Required if ContactMethods is not null
+    * `ContactMethodTypeId` (**Required**) - Required if ContactMethods is not null
+    * `Value` (Optional)
+    * `DoNotContact` (Optional)
+    * `Default` (Optional)
+    * `Notes` (Optional)
+  * `CustomerExtensions` (Optional)
+    * `ExtensionTypeId` (**Required**) - Required if CustomerExtensions is not null
+    * `Value` (Optional)
+  * `MemberOf` (Optional)
+  * `RelatedCustomers` (Optional)
+ 
 
 
 
@@ -1893,7 +2343,16 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Addresses` (array[address]) - A collection of Addresses
+  * `ContactMethods` (array[contactmethod]) - A collection of ContactMethods
+  * `CustomerExtensions` (array[customrextension]) - A collection of CustomerExtensions
+  * `MemberOf` (array[object]) - A collection of Customers that the Customer is a MemberOf (parent relation)
+  * `RelatedCustomers` (array[object]) - A collection of Customers related to the Customer (child relation)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1963,6 +2422,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Deleting a Full Customer
 
 
@@ -1980,6 +2440,8 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1990,9 +2452,11 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Unique identifier for the Customer
+* `CustomerId` (**Required**) - Unique identifier for the {{Customer}}
+
+
 
 
 
@@ -2043,6 +2507,8 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -2058,10 +2524,28 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Identifier for the Customer being updated
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
 
+
+
+
+
+#### Request Parameters
+
+  
+  * `CustomerId` (Optional)
+  
+  * `ContactMethodCategoryId` (**Required**) - Required if ContactMethods is not null
+  
+  * `ContactMethodTypeId` (**Required**) - Required if ContactMethods is not null
+  * `Default` (Optional)
+  * `DoNotContact` (Optional)
+  * `Notes` (Optional)
+  * `Value` (Optional)
+  
+ 
 
 
 
@@ -2099,7 +2583,22 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
+  * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
+  * `ContactMethodType` (string) - Name of the ContactMethodType
+  * `ContactMethodTypeId` (integer) - See ContactMethodType for a list of acceptable values
+  * `Default` (boolean) - A flag to indicate if this is the default ContactMethod for the Customer
+  * `DoNotContact` (boolean) - A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Notes related to this ContactMethod
+  * `Value` (string) - The value representing this ContactMethod
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -2124,6 +2623,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting All Contact Methods for a Customer
 
 
@@ -2141,6 +2641,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -2155,9 +2657,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Identifier for the Customer being updated
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
+
+
 
 
 
@@ -2185,7 +2689,22 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
+  * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
+  * `ContactMethodType` (string) - Name of the ContactMethodType
+  * `ContactMethodTypeId` (integer) - See ContactMethodType for a list of acceptable values
+  * `Default` (boolean) - A flag to indicate if this is the default ContactMethod for the Customer
+  * `DoNotContact` (boolean) - A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Notes related to this ContactMethod
+  * `Value` (string) - The value representing this ContactMethod
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -2205,7 +2724,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -2248,6 +2770,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+
 ## Getting a Customer Contact Method
 
 
@@ -2265,6 +2788,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -2275,11 +2800,13 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Identifier for the Customer being updated
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
 
-* `ContactMethodId` (**Required**) - undefined
+* `ContactMethodId` (**Required**) - Identifier for the {{ContactMethod}}
+
+
 
 
 
@@ -2307,7 +2834,22 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
+  * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
+  * `ContactMethodType` (string) - Name of the ContactMethodType
+  * `ContactMethodTypeId` (integer) - See ContactMethodType for a list of acceptable values
+  * `Default` (boolean) - A flag to indicate if this is the default ContactMethod for the Customer
+  * `DoNotContact` (boolean) - A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Notes related to this ContactMethod
+  * `Value` (string) - The value representing this ContactMethod
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -2332,6 +2874,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating a Customer Contact Method
 
 
@@ -2349,6 +2892,8 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -2360,12 +2905,30 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Identifier for the Customer being updated
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
 
-* `ContactMethodId` (**Required**) - undefined
+* `ContactMethodId` (**Required**) - Identifier for the {{ContactMethod}}
 
+
+
+
+
+#### Request Parameters
+
+  * `Id` (**Required**)
+  * `CustomerId` (Optional)
+  * `ContactMethodCategory` (**Required**)
+  * `ContactMethodCategoryId` (**Required**) - Required if ContactMethods is not null
+  * `ContactMethodType` (**Required**)
+  * `ContactMethodTypeId` (**Required**) - Required if ContactMethods is not null
+  * `Default` (Optional)
+  * `DoNotContact` (Optional)
+  * `Notes` (Optional)
+  * `Value` (Optional)
+  * `Version` (**Required**)
+ 
 
 
 
@@ -2407,7 +2970,22 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
+  * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
+  * `ContactMethodType` (string) - Name of the ContactMethodType
+  * `ContactMethodTypeId` (integer) - See ContactMethodType for a list of acceptable values
+  * `Default` (boolean) - A flag to indicate if this is the default ContactMethod for the Customer
+  * `DoNotContact` (boolean) - A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Notes related to this ContactMethod
+  * `Value` (string) - The value representing this ContactMethod
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -2432,6 +3010,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Removing a Customer Contact Method
 
 
@@ -2449,6 +3028,8 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -2459,11 +3040,13 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `CustomerId` (**Required**) - Identifier for the Customer being updated
+* `CustomerId` (**Required**) - Identifier for the {{Customer}} being updated
 
-* `ContactMethodId` (**Required**) - undefined
+* `ContactMethodId` (**Required**) - Identifier for the {{ContactMethod}}
+
+
 
 
 
@@ -2514,6 +3097,8 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={skip}&$top={to
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -2524,13 +3109,15 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={skip}&$top={to
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `FilterQuery` (Optional) - Filter on customers
 
 * `skip` (**Required**) - 
 
 * `top` (**Required**) - 
+
+
 
 
 
@@ -2558,7 +3145,24 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (guid) - Unique identifier
+  * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
+  * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
+  * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
+  * `AlternateName` (string) - Alias or preferred name
+  * `CustomerType` (string) - Name of the CustomerType
+  * `CustomerTypeId` (integer) - See CustomerType for a list of acceptable values
+  * `DateOfBirth` (object) - Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)
+  * `Disabled` (boolean) - A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false
+  * `DoNotContact` (boolean) - A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true
+  * `Notes` (string) - Any notes related to this Customer
+  * `Title` (string) - Title
+  * `Version` (integer) - Latest revision number
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -2582,6 +3186,7 @@ HTTP 200 Content-Type: application/json
                         
 
 ```
+
 
 
 
@@ -2624,6 +3229,8 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -2634,9 +3241,11 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `FilterQuery` (Optional) - The filter to apply
+
+
 
 
 
@@ -2664,7 +3273,12 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Criteria` (string) - The criteria used to seach for the Customer
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -2730,6 +3344,7 @@ HTTP 200 Content-Type: application/json
                         
 
 ```
+
 
 
 

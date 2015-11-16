@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -27,7 +27,7 @@ summary:
 
 
 
-### User
+## User
 
 A User represents an account that can be used to perform actions on your data within iQmetrix APIs.
 
@@ -39,11 +39,11 @@ A User represents an account that can be used to perform actions on your data wi
 | UserName | String | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `` |
 | ClientUserId | String | Identifier for the User in an external system | `132` |
-| Email |  | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
+| Email | String | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
 | IsActive | Boolean | Flag to indicate if the Users login is enabled, false if it is disabled | `true` |
 | ParentEntityId | Object | Identifier for the Company to which this User belongs | `1` |
 | Picture | Object | A reference to an Asset that is a photo of the User | `` |
-| Picture.Id | String | Unique identifier for the Asset | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Picture.Id | Object | Unique identifier for the Asset | `732130d2-b673-461c-812b-f2b614d6076e` |
 | Picture.Name | String | File name of the asset | `iqmetrix.jpg` |
 | Picture.Height | Object | Height in pixels | `145` |
 | Picture.Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
@@ -54,11 +54,12 @@ A User represents an account that can be used to perform actions on your data wi
 | CorrelationId | String | Reserved for internal use | `` |
 | Profiles | Object | This is a legacy property that should not be used | `` |
 
-    
 
 
 
-### _links
+
+
+## _links
 
 Relative URL's used for Pagination
 
@@ -68,11 +69,12 @@ Relative URL's used for Pagination
 | self | String | The request that returned these results | `null` |
 | next | String | Refers to a resource containing the next page of results, `null` if this is the last page | `null` |
 
-    
 
 
 
-### _metadata
+
+
+## _metadata
 
 Data representing Pagination details
 
@@ -82,13 +84,12 @@ Data representing Pagination details
 | skip | Object | Value of `skip` in the request URI, if not specified the value will be 0 | `0` |
 | top | Object | Value of `top` in the request URI, if not specified the value will be 30 | `5` |
 
-    
 
 
 
-### Importuser
 
 
+## Importuser
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -97,11 +98,25 @@ Data representing Pagination details
 | FirstName | String | First name | `Sam` |
 | LastName | String | Last name | `Smith` |
 | Password | String | Password. If supplied, it must be a nonempty string | `smith123` |
-| Email |  | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
+| Email | Object | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `` |
 | ClientUserId | String | Identifier for the User in an external system | `132` |
 
-    
+
+
+
+
+
+## Searchschema
+
+| Name  | Data Type | Description | Example |
+|:------|:----------|:------------|:--------|
+| _links |  |  | `` |
+| _metadata |  |  | `` |
+| items | Object |  | `` |
+
+
+
 
 
 
@@ -131,8 +146,12 @@ POST /Users/importExisting
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
+
+
 
 
 
@@ -173,7 +192,19 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `UserName` (string) - Name to be used to identify this User, must be unique
+  * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
+  * `FirstName` (string) - First name
+  * `LastName` (string) - Last name
+  * `Password` (string) - Password. If supplied, it must be a nonempty string
+  * `Email` (object) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
+  * `Attributes` (????) - Set of key-value pairs that contain extra data to store with the User
+  * `ClientUserId` (string) - Identifier for the User in an external system
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -202,6 +233,7 @@ HTTP 201 Content-Type: application/json
 
 
 
+
 ## Getting a User
 
 
@@ -219,6 +251,8 @@ GET /Users({UserId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -229,7 +263,9 @@ GET /Users({UserId})
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
+
+
 
 
 
@@ -257,7 +293,31 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `FirstName` (string) - First name
+  * `LastName` (string) - Last name
+  * `UserName` (string) - Name to be used to identify this User, must be unique
+  * `Attributes` (object) - Set of key-value pairs that contain extra data to store with the User
+  * `ClientUserId` (string) - Identifier for the User in an external system
+  * `Email` (string) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
+  * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
+  * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
+  * `Picture` (object) - A reference to an Asset that is a photo of the User
+    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Name` (string) - File name of the asset
+    * `Picture.Height` (integer) - Height in pixels
+    * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
+    * `Picture.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
+    * `Picture.MimeType` (string) - The mime type of the Asset
+    * `Picture.Width` (integer) - Width in pixels
+  * `Version` (integer) - Latest revision number
+  * `CorrelationId` (string) - Reserved for internal use
+  * `Profiles` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -292,6 +352,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Updating a User
 
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
@@ -310,6 +371,8 @@ PUT /Users({UserId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -321,8 +384,35 @@ PUT /Users({UserId})
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
 
+
+
+
+
+#### Request Parameters
+
+  * `Id` (**Required**)
+  * `FirstName` (**Required**)
+  * `LastName` (**Required**)
+  * `UserName` (**Required**) - The name used to identify this User. Must be unique
+  * `Attributes` (**Required**)
+  * `ClientUserId` (**Required**)
+  * `Email` (**Required**) - The User's email address. Must be unique. No notification will be sent when this User is updated
+  * `IsActive` (**Required**)
+  * `ParentEntityId` (**Required**)
+  * `Picture` (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest
+    * `Id` (**Required**)
+    * `Name` (**Required**)
+    * `Height` (**Required**)
+    * `Href` (**Required**)
+    * `Md5Checksum` (Optional)
+    * `MimeType` (**Required**)
+    * `Width` (**Required**)
+  * `Version` (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date
+  
+  
+ 
 
 
 
@@ -374,7 +464,31 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `FirstName` (string) - First name
+  * `LastName` (string) - Last name
+  * `UserName` (string) - Name to be used to identify this User, must be unique
+  * `Attributes` (object) - Set of key-value pairs that contain extra data to store with the User
+  * `ClientUserId` (string) - Identifier for the User in an external system
+  * `Email` (string) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
+  * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
+  * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
+  * `Picture` (object) - A reference to an Asset that is a photo of the User
+    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Name` (string) - File name of the asset
+    * `Picture.Height` (integer) - Height in pixels
+    * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
+    * `Picture.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
+    * `Picture.MimeType` (string) - The mime type of the Asset
+    * `Picture.Width` (integer) - Width in pixels
+  * `Version` (integer) - Latest revision number
+  * `CorrelationId` (string) - Reserved for internal use
+  * `Profiles` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -409,6 +523,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Disabling a User
 
 {{note}}
@@ -429,6 +544,8 @@ DELETE /Users({UserId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -439,7 +556,9 @@ DELETE /Users({UserId})
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
+
+
 
 
 
@@ -467,7 +586,31 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `FirstName` (string) - First name
+  * `LastName` (string) - Last name
+  * `UserName` (string) - Name to be used to identify this User, must be unique
+  * `Attributes` (object) - Set of key-value pairs that contain extra data to store with the User
+  * `ClientUserId` (string) - Identifier for the User in an external system
+  * `Email` (string) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
+  * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
+  * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
+  * `Picture` (object) - A reference to an Asset that is a photo of the User
+    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Name` (string) - File name of the asset
+    * `Picture.Height` (integer) - Height in pixels
+    * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
+    * `Picture.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
+    * `Picture.MimeType` (string) - The mime type of the Asset
+    * `Picture.Width` (integer) - Width in pixels
+  * `Version` (integer) - Latest revision number
+  * `CorrelationId` (string) - Reserved for internal use
+  * `Profiles` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -496,6 +639,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Getting All Users for a Company
 
 
@@ -513,6 +657,8 @@ GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -523,11 +669,13 @@ GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -555,7 +703,14 @@ Accept: application/json
 
 
 
- 
+
+
+  * `_links` (undefined)
+  * `_metadata` (undefined)
+  * `items` (array[user])
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -597,6 +752,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
 
@@ -614,6 +770,8 @@ PUT /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -625,12 +783,39 @@ PUT /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
 
+
+
+
+
+#### Request Parameters
+
+  * `Id` (**Required**)
+  * `FirstName` (**Required**)
+  * `LastName` (**Required**)
+  * `UserName` (**Required**) - The name used to identify this User. Must be unique
+  * `Attributes` (**Required**)
+  * `ClientUserId` (**Required**)
+  * `Email` (**Required**) - The User's email address. Must be unique. No notification will be sent when this User is updated
+  * `IsActive` (**Required**)
+  * `ParentEntityId` (**Required**)
+  * `Picture` (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest
+    * `Id` (**Required**)
+    * `Name` (**Required**)
+    * `Height` (**Required**)
+    * `Href` (**Required**)
+    * `Md5Checksum` (Optional)
+    * `MimeType` (**Required**)
+    * `Width` (**Required**)
+  * `Version` (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date
+  
+  
+ 
 
 
 
@@ -689,7 +874,31 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `FirstName` (string) - First name
+  * `LastName` (string) - Last name
+  * `UserName` (string) - Name to be used to identify this User, must be unique
+  * `Attributes` (object) - Set of key-value pairs that contain extra data to store with the User
+  * `ClientUserId` (string) - Identifier for the User in an external system
+  * `Email` (string) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
+  * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
+  * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
+  * `Picture` (object) - A reference to an Asset that is a photo of the User
+    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Name` (string) - File name of the asset
+    * `Picture.Height` (integer) - Height in pixels
+    * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
+    * `Picture.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
+    * `Picture.MimeType` (string) - The mime type of the Asset
+    * `Picture.Width` (integer) - Width in pixels
+  * `Version` (integer) - Latest revision number
+  * `CorrelationId` (string) - Reserved for internal use
+  * `Profiles` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -731,6 +940,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
 Deleting a user
@@ -748,6 +958,8 @@ DELETE /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -758,11 +970,13 @@ DELETE /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -813,6 +1027,8 @@ GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -823,13 +1039,15 @@ GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `Terms` (**Required**) - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive.
 
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -857,7 +1075,14 @@ Accept: application/json
 
 
 
- 
+
+
+  * `_links` (undefined)
+  * `_metadata` (undefined)
+  * `items` (array[user])
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -914,6 +1139,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
 
@@ -931,6 +1157,8 @@ PUT /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -942,7 +1170,7 @@ PUT /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `Terms` (**Required**) - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive.
 
@@ -950,6 +1178,16 @@ PUT /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 
 * `Top` (**Required**) - 
 
+
+
+
+
+#### Request Parameters
+
+  * `_links` (Optional)
+  * `_metadata` (Optional)
+  * `items` (Optional)
+ 
 
 
 
@@ -1023,7 +1261,14 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `_links` (undefined)
+  * `_metadata` (undefined)
+  * `items` (array[user])
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1080,9 +1325,10 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## 
 
-Deleting a search
+Deleting a searchSchema
 
 #### Request
 
@@ -1097,6 +1343,8 @@ DELETE /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1107,13 +1355,15 @@ DELETE /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `Terms` (**Required**) - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive.
 
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -1167,6 +1417,8 @@ PUT /Users({UserId})/Locations({LocationId})
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1178,9 +1430,11 @@ PUT /Users({UserId})/Locations({LocationId})
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
 
-* `LocationId` (**Required**) - Identifier for the Location
+* `LocationId` (**Required**) - Identifier for the {{Location}}
+
+
 
 
 
@@ -1209,12 +1463,15 @@ Content-Type: application/json
 
 
 
- 
+
+
+
 ###### Example
 ```
 HTTP 204 Content-Type: application/json
 
 ```
+
 
 
 
@@ -1237,6 +1494,8 @@ DELETE /Users({UserId})/Locations({LocationId})
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1247,9 +1506,11 @@ DELETE /Users({UserId})/Locations({LocationId})
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
 
-* `LocationId` (**Required**) - Identifier for the Location
+* `LocationId` (**Required**) - Identifier for the {{Location}}
+
+
 
 
 
@@ -1300,6 +1561,8 @@ GET /Users({UserId})/Locations
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1314,7 +1577,9 @@ GET /Users({UserId})/Locations
 
 * `top` (Optional) - Number of records to take
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
+
+
 
 
 
@@ -1342,7 +1607,13 @@ Accept: application/json
 
 
 
- 
+
+
+  * `UserId` (integer)
+  * `LocationIDs` (undefined)
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1353,6 +1624,7 @@ HTTP 200 Content-Type: application/json
  
 
 ```
+
 
 
 
@@ -1378,6 +1650,8 @@ GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip=
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -1392,13 +1666,15 @@ GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip=
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
-* `ClientUserId` (**Required**) - Identifier for the User in an external system
+* `ClientUserId` (**Required**) - Identifier for the {{User}} in an external system
 
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -1426,7 +1702,31 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `FirstName` (string) - First name
+  * `LastName` (string) - Last name
+  * `UserName` (string) - Name to be used to identify this User, must be unique
+  * `Attributes` (object) - Set of key-value pairs that contain extra data to store with the User
+  * `ClientUserId` (string) - Identifier for the User in an external system
+  * `Email` (string) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
+  * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
+  * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
+  * `Picture` (object) - A reference to an Asset that is a photo of the User
+    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Name` (string) - File name of the asset
+    * `Picture.Height` (integer) - Height in pixels
+    * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
+    * `Picture.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
+    * `Picture.MimeType` (string) - The mime type of the Asset
+    * `Picture.Width` (integer) - Width in pixels
+  * `Version` (integer) - Latest revision number
+  * `CorrelationId` (string) - Reserved for internal use
+  * `Profiles` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1471,6 +1771,7 @@ HTTP 200 Content-Type: application/json
 
 
 
+
 ## Locking a User
 
 {{note}}
@@ -1489,6 +1790,8 @@ POST /Users({UserId})/Lock
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1500,7 +1803,9 @@ POST /Users({UserId})/Lock
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
+
+
 
 
 
@@ -1527,12 +1832,15 @@ Content-Type: application/json
 
 
 
- 
+
+
+
 ###### Example
 ```
 HTTP 204 Content-Type: application/json
 
 ```
+
 
 
 
@@ -1561,6 +1869,8 @@ POST /Users({UserId})/Unlock
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1572,7 +1882,9 @@ POST /Users({UserId})/Unlock
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
+
+
 
 
 
@@ -1599,12 +1911,15 @@ Content-Type: application/json
 
 
 
- 
+
+
+
 ###### Example
 ```
 HTTP 204 Content-Type: application/json
 
 ```
+
 
 
 
@@ -1628,6 +1943,8 @@ POST /Users({UserId})/Enable
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1639,7 +1956,9 @@ POST /Users({UserId})/Enable
 #### URI Parameters
 
 
-* `UserId` (**Required**) - Identifier for the User
+* `UserId` (**Required**) - Identifier for the {{User}}
+
+
 
 
 
@@ -1666,7 +1985,31 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Identifier
+  * `FirstName` (string) - First name
+  * `LastName` (string) - Last name
+  * `UserName` (string) - Name to be used to identify this User, must be unique
+  * `Attributes` (object) - Set of key-value pairs that contain extra data to store with the User
+  * `ClientUserId` (string) - Identifier for the User in an external system
+  * `Email` (string) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
+  * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
+  * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
+  * `Picture` (object) - A reference to an Asset that is a photo of the User
+    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Name` (string) - File name of the asset
+    * `Picture.Height` (integer) - Height in pixels
+    * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
+    * `Picture.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
+    * `Picture.MimeType` (string) - The mime type of the Asset
+    * `Picture.Width` (integer) - Width in pixels
+  * `Version` (integer) - Latest revision number
+  * `CorrelationId` (string) - Reserved for internal use
+  * `Profiles` (object) - This is a legacy property that should not be used
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -1685,8 +2028,8 @@ HTTP 200 Content-Type: application/json
   "Picture": null,
   "Version": 3
 }
-
 ```
+
 
 
 

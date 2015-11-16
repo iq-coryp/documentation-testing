@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -41,19 +41,20 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 
 
-### Product
+## Product
 
 ?????
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
 | Id | String | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
-| Products |  | List of products for which the cost is being updated | `` |
+| Products | Object | List of products for which the cost is being updated | `` |
 | Products.Sku | String | SKU identifier for the product from product feed | `1115884` |
-| Products.Cost |  | Wholesale cost for the associated companies | `12.99` |
-| Products.CompanyIds |  | List of Company identifiers that are applied to the products cost | `` |
+| Products.Cost | Object | Wholesale cost for the associated companies | `12.99` |
+| Products.CompanyIds | Object | List of Company identifiers that are applied to the products cost | `` |
 
-    
+
+
 
 
 
@@ -84,6 +85,8 @@ POST /Suppliers({SupplierId})/Cost
 
 
 
+
+
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -97,6 +100,18 @@ POST /Suppliers({SupplierId})/Cost
 
 * `SupplierId` (**Required**) - Identifier of the Supplier
 
+
+
+
+
+#### Request Parameters
+
+  * `Id` (Optional)
+  * `Products` (**Required**)
+    * `Sku` (**Required**)
+    * `Cost` (**Required**)
+    * `CompanyIds` (**Required**)
+ 
 
 
 
@@ -147,7 +162,16 @@ Content-Type: application/json
 
 
 
- 
+
+
+  * `Id` (String) - Identifer for the cost feed
+  * `Products` (Array[Object]) - List of products for which the cost is being updated
+    * `Products.Sku` (string) - SKU identifier for the product from product feed
+    * `Products.Cost` (decimal) - Wholesale cost for the associated companies
+    * `Products.CompanyIds` (Array[Integer]) - List of Company identifiers that are applied to the products cost
+
+
+
 ###### Example
 ```
 HTTP 201 Content-Type: application/json
@@ -177,6 +201,7 @@ HTTP 201 Content-Type: application/json
 
 
 ```
+
 
 
 

@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience:
-last_updated: 13-11-2015
+last_updated: 16-11-2015
 summary:
 ---
 
@@ -25,7 +25,7 @@ summary:
 
 
 
-### Punchentry
+## Punchentry
 
 An instance of a clock punch for an employee at a location, with a punch-in time and (optionally) a punch-out time.
 
@@ -34,22 +34,23 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
 | Id | Object | Unique Identifier | `1953` |
-| CreatedDateUtc |  | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
+| CreatedDateUtc | Object | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
 | EmployeeVerified | Boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
 | EmployeeSpecialId | Boolean | Special identifier for Employee in RQ | `0001` |
-| LastUpdateDateUtc |  | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
-| LocationCode | String | An identifier for the Location in an external system | `CWW` |
+| LastUpdateDateUtc | Object | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
+| LocationCode | Object | An identifier for the Location in an external system | `CWW` |
 | LocationId | Object | Identifier for the Location | `4` |
 | ManagerVerified | Boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
-| PunchInComments | String | Punch in comments | `IN - FingerPrint/HomeConsole` |
-| PunchOutComments | String | Punch out comments | `OUT - HomeConsole` |
-| TimeInAtStore |  | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
-| TimeOutAtStore |  | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
+| PunchInComments | Object | Punch in comments | `IN - FingerPrint/HomeConsole` |
+| PunchOutComments | Object | Punch out comments | `OUT - HomeConsole` |
+| TimeInAtStore | Object | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
+| TimeOutAtStore | Object | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
 | UserId | Object | Identifier for a User | `22212` |
 | Version | Object | Latest revision number | `1` |
 | RQPunchId | Object | Reserved for internal use | `` |
 
-    
+
+
 
 
 
@@ -83,6 +84,8 @@ GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{
 
 
 
+
+
 * `Accept: application/json`
 
 
@@ -97,7 +100,7 @@ GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{
 
 * `top` (Optional) - Number of records to take
 
-* `CompanyId` (**Required**) - Identifier for the Company
+* `CompanyId` (**Required**) - Identifier for the {{Company}}
 
 * `StartDate` (Optional) - Date at which to begin search request, in UTC
 
@@ -106,6 +109,8 @@ GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{
 * `Skip` (**Required**) - 
 
 * `Top` (**Required**) - 
+
+
 
 
 
@@ -133,7 +138,26 @@ Accept: application/json
 
 
 
- 
+
+
+  * `Id` (integer) - Unique Identifier
+  * `CreatedDateUtc` (datetime) - Created date and time, in UTC
+  * `EmployeeVerified` (boolean) - A flag to indicate if the employee has verified the PunchEntry
+  * `EmployeeSpecialId` (boolean) - Special identifier for Employee in RQ
+  * `LastUpdateDateUtc` (datetime) - Time of the last update, in UTC
+  * `LocationCode` (string(100)) - An identifier for the Location in an external system
+  * `LocationId` (integer) - Identifier for the Location
+  * `ManagerVerified` (boolean) - A flag to indicate if the manager has verified the PunchEntry
+  * `PunchInComments` (string(100)) - Punch in comments
+  * `PunchOutComments` (string(100)) - Punch out comments
+  * `TimeInAtStore` (datetime) - Punch in time (local time at store), in UTC
+  * `TimeOutAtStore` (datetime) - Punch out time (local time at store), in UTC
+  * `UserId` (integer) - Identifier for a User
+  * `Version` (integer) - Latest revision number
+  * `RQPunchId` (integer) - Reserved for internal use
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/json
@@ -159,7 +183,10 @@ HTTP 200 Content-Type: application/json
  
 
 ```
- 
+
+
+
+
 ###### Example
 ```
 HTTP 200 Content-Type: application/hal+json
@@ -206,6 +233,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 ```
+
 
 
 
