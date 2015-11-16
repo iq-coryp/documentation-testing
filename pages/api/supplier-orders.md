@@ -2,9 +2,9 @@
 title:  Supplier Orders
 permalink: /api/supplier-orders/
 tags: []
-keywords: supplier orders
+keywords: supplier orders dropship
 audience: 
-last_updated: 12-11-2015
+last_updated: 16-11-2015
 summary: 
 ---
 
@@ -12,26 +12,36 @@ summary:
 
 ## Overview
 
-Suppliers have the ability to update the status of their orders, as well as get the latest orders via the iQmetrix Supplier Orders API. The dropship order ID needed to update order status is retrieved through the Order Feed, which is encoded as `atom+xml`.
+This API allows suppliers to manage order submitted by retailers participating in the Dropship program facilitated via iQmetrix Platform: 
 
-### Order Status
+- Get a list of order notifications
+- Get an archived list of order notifications
+- Update the status of orders
+- Update the status of items 
 
-Suppliers can update the status of individual items or all items in a dropship order in order to notify the end client. Depending on item stock, one of the following calls should be used:
 
-* `OrderStatusUpdate` should be used if there no exceptions for any of the items. 
-* `ItemUpdateStatus` should be used if there **are** exceptions for any of the items (e.g. not available or back-ordered).
+### Order Status Updates
+
+Suppliers have an ability to update the status of the order or individual items in that order. Some order status transitions trigger notifications to retailers and end customers who placed the order. Depending on item stock, one of the following calls should be used:
+
+* `OrderStatusUpdate` should be used if all items in the order are stocked for shipment
+* `ItemStatusUpdate` should be used if one or more items in the order are **not** stocked for shipment
+
+More information regarding states can be found in the [Dropship Order Guide](/guides/dropship-order-guide). 
 
 Once an order has been shipped from the supplier's warehouse, the order status must be updated to `Shipped`, and include a tracking number and shipping carrier to notify the end client.
 
 If the supplier wants to provide reasoning behind an order or item's specific status, then a message can be provided in the `Message` field.
 
-### Order Feed
+### Order Notifications Feed
 
-The order feed contains a list of dropship order events for a supplier in "[Atom Syndication Format](http://tools.ietf.org/html/rfc4287)" using "[Archived Feeds](https://tools.ietf.org/html/rfc5005#page-6)".
+The order notifications feed contains a list of dropship order events for a supplier in "[Atom Syndication Format](http://tools.ietf.org/html/rfc4287)" using "[Archived Feeds](https://tools.ietf.org/html/rfc5005#page-6)" and is encoded as `atom+xml`.
 
 Each page of the feed will contain up to 50 events. This feed must be monitored by the supplier and when a new order is placed the supplier can process this order. It is up to the supplier's system to keep track of the orders that have been processed and their current status.
 
 It is also possible to get historical archives from the order feed. Each order feed archive, including the current order feed, contains a link to the previously archived 50 events.
+
+For best practices, it is recommended to store the timestamp for the last order retrieved and use this marker as your timestamp for retrieving the next batch of orders.
 
 
 ## Endpoints
@@ -49,7 +59,7 @@ It is also possible to get historical archives from the order feed. Each order f
 | Info | String | General information about the item(s), such as tracking site, additional reference info, etc | `www.ups.com` |
 | Message | String | A reason for the status of an order | `Error: Product '98ESP456' is unavailable` |
 | ShippingProvider | String | Shipping carrier for the order | `UPS` |
-| Status | String | Current [order status](#orderstatus) | `Shipped` |
+| Status | String | Current [OrderStatus](#orderstatus) | `Shipped` |
 | TrackingInfo | String | Tracking number for a shipped order | `23923408863` |
 | *ReferenceName*  | *String* | *Reserved for internal use* | |
 | *ReferenceValue* | *String* | *Reserved for internal use* | |
@@ -60,7 +70,7 @@ It is also possible to get historical archives from the order feed. Each order f
 | Name | DataType | Description | Example |
 |:-----|:---------|:------------|:--------|
 | Id | GUID | Identifier for the Dropship order | `91a57ddb-2d42-402b-85b4-fe327a347313` |
-| ItemInformation | Array[Object] | A list of [Item Information](#iteminformation) |  |
+| ItemInformation | Array[Object] | A list of [ItemInformation](#iteminformation) |  |
 
 ### ItemInformation
 
@@ -71,7 +81,7 @@ It is also possible to get historical archives from the order feed. Each order f
 | Message | String | A reason for the status of an order | `No errors` |
 | ProductName | String | Name of the product | `239234SMS L720 BLU SPT RTD8863` |
 | Quantity | Integer | Used in the case of partial shipments. | `5` |
-| Status | String | Current [item status](#itemstatus) | `Exception` |
+| Status | String | Current [ItemStatus](#itemstatus) | `Exception` |
 | Sku | String | Must match SKUs provided as part of the content feed | `9356SAMGL6S` |
 | TrackingInfo | String | The tracking number for this shipped product | `23923408863` |
 | ShippingProvider | String | The shipping carrier that the product was shipped with | `UPS` |
@@ -141,33 +151,33 @@ It is also possible to get historical archives from the order feed. Each order f
         <tr><td colspan="3">seller</td><td>Object</td><td>Information for selling store</td><td><code>Dropship Order Event Feed</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">company-id</td><td>Integer</td><td>Company identifier</td><td><code>33772</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">location-id</td><td>Integer</td><td>Store location identifier</td><td><code>33773</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">po-reference</td><td>String</td><td>Purchase order reference</td><td><code>ABC123N1</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">printable-id</td><td>String</td><td>ID that gets printed on the invoice</td><td><code>98764531</code></td></tr>
-        <tr><td colspan="3">ship-to-store</td><td>Boolean</td><td>Indicates if order is shipped to store</td><td><code>true</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">po-reference</td><td>String</td><td>Purchase order that gets printed on customer invoice</td><td><code>ABC123N1</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">printable-id</td><td>String</td><td>ID that gets printed on customer invoice</td><td><code>98764531</code></td></tr>
+        <tr><td colspan="3">ship-to-store</td><td>Boolean</td><td>Indicates if order is shipped to store</td><td><code>false</code></td></tr>
         <tr><td colspan="3">shipping-address</td><td>Object</td><td>Information for shipping address</td><td></td></tr>
         <tr><td class="spacing"></td><td colspan="2">address-id</td><td>GUID</td><td><a href="/api/crm/#address">Address</a> identifier</td><td><code>0987530-1234-0000-0000-654345</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">attention-to</td><td>String</td><td>Recipitent's name</td><td><code>Bob Eh</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">attention-to</td><td>String</td><td>Recipient's name</td><td><code>Bob Eh</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">country</td><td>String</td><td>Country</td><td><code>Canada</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">country-code</td><td>String</td><td>Country code</td><td><code>CA</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">locality</td><td>String</td><td>City</td><td><code>Moosejaw</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">notes</td><td>String</td><td>Notes for recipitent</td><td><code>Onroute</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">phone</td><td>String</td><td>Recipitent phone number</td><td><code>555-555-5555</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">notes</td><td>String</td><td>Notes for recipient</td><td><code>Onroute</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">phone</td><td>String</td><td>Recipient phone number</td><td><code>555-555-5555</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">post-office-box-number</td><td>String</td><td>P.O. box number</td><td><code>510</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">postal-code</td><td>String</td><td>Postal/zip code</td><td><code>S6J1N2</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">region</td><td>String</td><td>Province/Territory/State</td><td><code>Saskatchewan</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">region-code</td><td>String</td><td>Province/Territory/State code</td><td><code>SK</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">street-address-1</td><td>String</td><td>Address line 1</td><td><code>742 Evergreen Terrace</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">street-address-2</td><td>String</td><td>Address line 2</td><td><code>West</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">type</td><td>String</td><td>Entity type</td><td><code>Home</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">type</td><td>String</td><td><a href="/api/crm/#addresstype">Address</a> type</td><td><code>Home</code></td></tr>
         <tr><td colspan="3">shipping-customer</td><td>Object</td><td>Information for shipping customer</td><td></td></tr>
         <tr><td class="spacing"></td><td colspan="2">customer-id</td><td>GUID</td><td><a href="/api/crm/#customer">Customer</a> identifier</td><td><code>3da9470e-f1b2-a-bd47-5bf18fe2d1ab</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">alternate-name</td><td>String</td><td>Customer's alternate name</td><td><code>Francis</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">family-name</td><td>String</td><td>Last name</td><td><code>Eh</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">middle-name</td><td>String</td><td>Midle name</td><td><code>John</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">notes</td><td>String</td><td>Notes for recipitent</td><td><code>Pending shipment</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">notes</td><td>String</td><td>Notes for recipient</td><td><code>Pending shipment</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">primary-name</td><td>String</td><td>First name</td><td><code>Bob</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">title</td><td>String</td><td>Recipitent's title</td><td><code>Mr.</code></td></tr>
-        <tr><td class="spacing"></td><td colspan="2">type</td><td>String</td><td>Entity type</td><td><code>Person</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">title</td><td>String</td><td>Recipient's title</td><td><code>Mr.</code></td></tr>
+        <tr><td class="spacing"></td><td colspan="2">type</td><td>String</td><td><a href="/api/crm/#customertype">Customer</a> type</td><td><code>Person</code></td></tr>
         <tr><td colspan="3">shipping-method</td><td>String</td><td>Method ID that comes from shipping provider</td><td><code>123</code></td></tr>
         <tr><td colspan="3">supplier-id</td><td>Integer</td><td>Supplier identifier</td><td><code>60455</code></td></tr>
     </tbody>  
@@ -231,10 +241,10 @@ It is also possible to get historical archives from the order feed. Each order f
 | 2 | Shipped | Order has been shipped from a warehouse |
 | 3 | BackOrdered | Order cannot currently be fulfilled due to items being temporarily out of stock |
 | 4 | Error | There has been an exception with either a product or an entire order |
-| 5 | NotAvailable | Some or all items from order are no longer available |
-| 6 | PartiallyShipped | Some items have been shipped due to availability, and other items are pending availability |
-| 7 | Cancelled | Order has been cancelled |
-| 8 | Other | Order is in a state not represented by the other states |
+| 5 | NotAvailable | This item from order is no longer available |
+| 6 | PartiallyShipped | This item has been shipped due to some quantity availabile |
+| 7 | Cancelled | Item from order has been cancelled |
+| 8 | Other | Item from order is in a state not represented by the other states |
 
 ## Updating Order Status
 
@@ -261,7 +271,7 @@ It is also possible to get historical archives from the order feed. Each order f
 #### Request Parameters
 
 * `Id` (**Required**)
-* `Status` (**Required**) - default PendingSupplier
+* `Status` (Optional) - default PendingSupplier
 * `Info` (Optional) 
 * `Message` (Optional) 
 * `ShippingProvider` (Optional)
@@ -329,7 +339,7 @@ If products from an order have been split into multiple shipments, then the supp
 * `Id` (**Required**)
 * `ItemInformation` (Optional)
     * `Sku` (**Required**) 
-    * `Status` (**Required**) - default PendingSupplier
+    * `Status` (Optional) - default PendingSupplier
     * `CatalogId` (Optional) 
     * `Info` (Optional) 
     * `Message` (Optional) 
@@ -351,9 +361,9 @@ If products from an order have been split into multiple shipments, then the supp
             {
                 "Status": "Error",      
                 "ProductName": "SMS L720 BLU SPT RTD",
-                "Message": "Error: Product dsf could not be found",
+                "Message": "Error: Product 'iPhone 6 Case' could not be found",
                 "Sku": "abc123",
-                "TrackingInfo": 23923408863,
+                "TrackingInfo": "239BFD08863",
                 "ShippingProvider": "UPS"
             },
             {
@@ -381,10 +391,10 @@ Returns [ItemStatusUpdate](#itemstatusupdate) that was created, if successful
                 "CatalogId": "dbc2577a-021f-4bbf-8289-ff9cac593a8b",
                 "Quantity": 1,
                 "Status": "Error",
-                "TrackingInfo": "23923408863",
+                "TrackingInfo": "239BFD08863",
                 "ShippingProvider": "UPS",
                 "Info": null,
-                "Message": "Error: Product dsf could not be found"
+                "Message": "Error: Product 'iPhone 6 Case' could not be found"
             },
             {
                 "Sku": "234oike",
@@ -404,7 +414,7 @@ Returns [ItemStatusUpdate](#itemstatusupdate) that was created, if successful
 
 ## Getting the Order Feed
 
-The current feed endpoint gives access to the most recent entries in the feed.
+The `current` feed endpoint gives access to the most recent (up to 50) entries in the notification feed, while the `prev-archive` link will give access to the previous (up to 50) entries in the feed.
 
 #### Request
 
@@ -430,7 +440,7 @@ The current feed endpoint gives access to the most recent entries in the feed.
 
 #### Response
 
-Returns the [Order Feed](#feed) from the specified supplier
+Returns the [Order Feed](#feed) for a specific supplier
 
 ###### Example
 
@@ -539,6 +549,8 @@ Returns the [Order Feed](#feed) from the specified supplier
 
 ## Getting Order Feed Archives
 
+The `next-archive` link gives access to a newer (up to 50) list of archive entries in the notification feed, while the `prev-archive` link will give access to the previous (up to 50) list of archive entries.
+
 #### Request
 
     GET /Suppliers({SupplierId})/Notifications/Pages({PageId})
@@ -615,5 +627,8 @@ Returns an archive of the [Order Feed](#feed), based on page ID
 The table below may help resolve problems encountered when making requests to the Supplier Orders API.
 
 | HTTP Status Code | Message | How to Resolve |
-|:-----------|:--------|:---------------|
+|:-----------------|:--------|:---------------|
 | `HTTP 400` | `Cannot find supplier identifier in the uri` | Occurs when entering an incorrect `SupplierId` in the uri |
+| `HTTP 400` | `The request is invalid` | Occurs when entering an incorrect `PageId` in the uri |
+| `HTTP 401` | `Invalid token` | Occurs when entering an incorrect token in the request header |
+| `HTTP 404` | `Not found` | Occurs when entering an incorrect uri path (e.g. Zxppliers({SupplierId})) |
