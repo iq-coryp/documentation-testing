@@ -25,9 +25,7 @@ summary:
 
 
 
-## Product
-
-?????
+### Product
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -158,7 +156,7 @@ Accept: application/json
   * `Assets` (array[object]) - Asset information
   * `CanonicalClassification` (object) - ClassificationTree details
   * `Entity` (object) - Entity information, used for Entity revisions
-  * `HeroShotId` (guid) - Hero Shot identifier
+  * `HeroShotId` (GUID) - Hero Shot identifier
   * `HeroShotUri` (string) - URI to a Hero Shot Asset
   * `IsLinkedToCuratedProduct` (boolean) - A flag to indicate if this version of this Product is publicly accessible (true), or private (false)
   * `IsSaleable` (boolean) - A flag to indicate if this product can be sold

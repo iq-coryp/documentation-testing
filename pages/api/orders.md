@@ -39,7 +39,7 @@ summary:
 
 
 
-## Order
+### Order
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -71,7 +71,7 @@ summary:
 
 
 
-## Item
+### Item
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -103,7 +103,7 @@ summary:
 
 
 
-## Orderfull
+### Orderfull
 
 **OrderFull** is an extension on the Order resource, it consists of all Order properties plus the following:
 
@@ -286,10 +286,10 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `Name` (string) - Optional
-  * `BillingAddressId` (guid) - Unique identifier for the billing Address
-  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `BillingAddressId` (GUID) - Unique identifier for the billing Address
+  * `BillingCustomerId` (GUID) - Unique identifier for the billing Customer
   * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
   * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
   * `DiscountCode` (string) - The discount code for a discount applied to this Order
@@ -405,10 +405,10 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `Name` (string) - Optional
-  * `BillingAddressId` (guid) - Unique identifier for the billing Address
-  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `BillingAddressId` (GUID) - Unique identifier for the billing Address
+  * `BillingCustomerId` (GUID) - Unique identifier for the billing Customer
   * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
   * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
   * `DiscountCode` (string) - The discount code for a discount applied to this Order
@@ -582,7 +582,7 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier for this Item
+  * `Id` (GUID) - Unique identifier for this Item
   * `Cost` (decimal) - Cost of this Item, defaults to 0
   * `Description` (string) - Description of this Item
   * `ItemStatus` (string) - Name of the ItemStatus
@@ -592,7 +592,7 @@ Content-Type: application/json
   * `Index` (integer) - A value used for sorting Items, such as in a shopping cart
   * `ListPrice` (decimal) - List Price of this Item, defaults to 0
   * `Notes` (string) - Notes for this Item
-  * `OrderId` (guid) - Unique identifier for the Order, specified by the OrderId in the URI
+  * `OrderId` (GUID) - Unique identifier for the Order, specified by the OrderId in the URI
   * `ProductId` (string) - Identifier for the Product
   * `Quantity` (integer) - Amount of this Item In Stock, defaults to 0
   * `SellingPrice` (decimal) - Selling Price of this Item, defaults to 0
@@ -708,7 +708,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier for this Item
+  * `Id` (GUID) - Unique identifier for this Item
   * `Cost` (decimal) - Cost of this Item, defaults to 0
   * `Description` (string) - Description of this Item
   * `ItemStatus` (string) - Name of the ItemStatus
@@ -718,7 +718,7 @@ Accept: application/json
   * `Index` (integer) - A value used for sorting Items, such as in a shopping cart
   * `ListPrice` (decimal) - List Price of this Item, defaults to 0
   * `Notes` (string) - Notes for this Item
-  * `OrderId` (guid) - Unique identifier for the Order, specified by the OrderId in the URI
+  * `OrderId` (GUID) - Unique identifier for the Order, specified by the OrderId in the URI
   * `ProductId` (string) - Identifier for the Product
   * `Quantity` (integer) - Amount of this Item In Stock, defaults to 0
   * `SellingPrice` (decimal) - Selling Price of this Item, defaults to 0
@@ -837,10 +837,10 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `Name` (string) - Optional
-  * `BillingAddressId` (guid) - Unique identifier for the billing Address
-  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `BillingAddressId` (GUID) - Unique identifier for the billing Address
+  * `BillingCustomerId` (GUID) - Unique identifier for the billing Customer
   * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
   * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
   * `DiscountCode` (string) - The discount code for a discount applied to this Order
@@ -1009,10 +1009,10 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `Name` (string) - Optional
-  * `BillingAddressId` (guid) - Unique identifier for the billing Address
-  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `BillingAddressId` (GUID) - Unique identifier for the billing Address
+  * `BillingCustomerId` (GUID) - Unique identifier for the billing Customer
   * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
   * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
   * `DiscountCode` (string) - The discount code for a discount applied to this Order
@@ -1293,10 +1293,10 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `Name` (string) - Optional
-  * `BillingAddressId` (guid) - Unique identifier for the billing Address
-  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `BillingAddressId` (GUID) - Unique identifier for the billing Address
+  * `BillingCustomerId` (GUID) - Unique identifier for the billing Customer
   * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
   * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
   * `DiscountCode` (string) - The discount code for a discount applied to this Order
@@ -2136,10 +2136,10 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `Name` (string) - Optional
-  * `BillingAddressId` (guid) - Unique identifier for the billing Address
-  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `BillingAddressId` (GUID) - Unique identifier for the billing Address
+  * `BillingCustomerId` (GUID) - Unique identifier for the billing Customer
   * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
   * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
   * `DiscountCode` (string) - The discount code for a discount applied to this Order
@@ -2263,10 +2263,10 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `Name` (string) - Optional
-  * `BillingAddressId` (guid) - Unique identifier for the billing Address
-  * `BillingCustomerId` (guid) - Unique identifier for the billing Customer
+  * `BillingAddressId` (GUID) - Unique identifier for the billing Address
+  * `BillingCustomerId` (GUID) - Unique identifier for the billing Customer
   * `CreatedDateUtc` (datetime) - The date and time the Order was created, in UTC
   * `DiscountAmount` (decimal) - The value of the discount to be applied at the Order level
   * `DiscountCode` (string) - The discount code for a discount applied to this Order

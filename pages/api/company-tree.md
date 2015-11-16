@@ -25,7 +25,7 @@ summary:
 
 
 
-## Groupdivisionpost
+### Groupdivisionpost
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -38,7 +38,7 @@ summary:
 
 
 
-## Company
+### Company
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -69,7 +69,7 @@ summary:
 
 
 
-## Companytree
+### Companytree
 
 Your Company Tree is a hierarchial representation of how your Company is structured, including the root Company, Groups, Divisions and Locations.
 
@@ -88,7 +88,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 
 
-## Companytreenode
+### Companytreenode
 
 CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{Group}}, {{Division}}, {{Location}} or device.
 
@@ -105,9 +105,9 @@ CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can r
 
 
 
-## Location
+### Location
 
-?????
+A **Location** is a physical or virtual presence that may hold inventory or process transactions.
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -171,7 +171,7 @@ CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can r
 
 
 
-## Division
+### Division
 
 Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company.
 
@@ -206,7 +206,7 @@ To learn more about Divisions, see {{Division_Concept}}.
 
 
 
-## Group
+### Group
 
 Groups, as well as Divisions, serve as generic buckets clients can use to organize the company tree. Groups could be used to represent managerial or geographical groupings.
 
@@ -319,7 +319,7 @@ Accept: application/json
   * `LastModifiedUTC` (datetime) - Last modified date in UTC
   * `Attributes` (object) - Set of key-value pairs that contain extra data
   * `Logo` (object) - A reference to an Asset
-    * `Logo.Id` (guid) - Unique identifier
+    * `Logo.Id` (GUID) - Unique identifier
     * `Logo.Name` (string) - File name
     * `Logo.Height` (integer) - Height in pixels
     * `Logo.Href` (string) - URL that points to an actual file where the digital asset is stored
@@ -695,7 +695,7 @@ Content-Type: application/json
   * `Area` (object) - Measurement of floor space
     * `Area.Value` (integer) - Value of the Area
     * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (????) - Address
+  * `Address` (object) - Address
     * `Address.AddressLine1` (string) - First line of Address
     * `Address.AddressLine2` (string) - Second line of Address
     * `Address.City` (string) - City
@@ -1054,7 +1054,7 @@ Content-Type: application/json
   * `Area` (object) - Measurement of floor space
     * `Area.Value` (integer) - Value of the Area
     * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (????) - Address
+  * `Address` (object) - Address
     * `Address.AddressLine1` (string) - First line of Address
     * `Address.AddressLine2` (string) - Second line of Address
     * `Address.City` (string) - City
@@ -1271,7 +1271,7 @@ Accept: application/json
   * `Area` (object) - Measurement of floor space
     * `Area.Value` (integer) - Value of the Area
     * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (????) - Address
+  * `Address` (object) - Address
     * `Address.AddressLine1` (string) - First line of Address
     * `Address.AddressLine2` (string) - Second line of Address
     * `Address.City` (string) - City
@@ -1691,7 +1691,7 @@ Content-Type: application/json
   * `Area` (object) - Measurement of floor space
     * `Area.Value` (integer) - Value of the Area
     * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (????) - Address
+  * `Address` (object) - Address
     * `Address.AddressLine1` (string) - First line of Address
     * `Address.AddressLine2` (string) - Second line of Address
     * `Address.City` (string) - City
@@ -1937,7 +1937,7 @@ Accept: application/json
   * `Area` (object) - Measurement of floor space
     * `Area.Value` (integer) - Value of the Area
     * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (????) - Address
+  * `Address` (object) - Address
     * `Address.AddressLine1` (string) - First line of Address
     * `Address.AddressLine2` (string) - Second line of Address
     * `Address.City` (string) - City
@@ -2106,7 +2106,7 @@ Content-Type: application/json
   * `LastModifiedUTC` (datetime) - Last modified date in UTC
   * `Attributes` (object) - Set of key-value pairs that contain extra data
   * `Logo` (object) - A reference to an Asset
-    * `Logo.Id` (guid) - Unique identifier
+    * `Logo.Id` (GUID) - Unique identifier
     * `Logo.Name` (string) - File name
     * `Logo.Height` (integer) - Height in pixels
     * `Logo.Href` (string) - URL that points to an actual file where the digital asset is stored
@@ -2305,7 +2305,7 @@ Content-Type: application/json
   * `LastModifiedUTC` (datetime) - Last modified date in UTC
   * `Attributes` (object) - Set of key-value pairs that contain extra data
   * `Logo` (object) - A reference to an Asset
-    * `Logo.Id` (guid) - Unique identifier
+    * `Logo.Id` (GUID) - Unique identifier
     * `Logo.Name` (string) - File name
     * `Logo.Height` (integer) - Height in pixels
     * `Logo.Href` (string) - URL that points to an actual file where the digital asset is stored

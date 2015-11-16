@@ -44,7 +44,7 @@ Account balances will be affected by Debits and Credits in the following ways:
 
 
 
-## Account
+### Account
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
@@ -70,7 +70,7 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 
 
 
-## Transaction
+### Transaction
 
 {{note}}A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries is the same value, this is called a Balanced Transaction{{end}}
 
@@ -88,7 +88,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 
 
-## Entry
+### Entry
 
 * A Transaction is <b>immutable</b> and permanent after it has been created it cannot be updated or deleted
 * Debit and Credit are decimal values without an associated currency
@@ -221,7 +221,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `AccountName` (string(128)) - Account name. Must be unique across the entire list of Accounts and cannot be empty
   * `AccountNumber` (string(128)) - Account number. Must be unique across the entire list of Accounts and cannot be empty
   * `AccountCategory` (string) - Account Category, acceptable values include: Asset, Liability, Equity, Revenue and Expense
@@ -394,7 +394,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `TransactionDateUTC` (datetime) - The date and time that this Transaction occurred, in UTC
   * `CreatedByUserId` (integer) - Auditing column, the identifier of the User that created this Account
   * `Entries` (array[entry]) - The collection of Entries for this Transaction

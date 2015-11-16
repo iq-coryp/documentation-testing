@@ -41,9 +41,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 
 
-## Product
-
-?????
+### Cost
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|

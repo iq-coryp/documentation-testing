@@ -35,7 +35,7 @@ summary:
 
 
 
-## Customer
+### Customer
 
 A Customer is a person or organization that buys goods or services from a store or business.
 
@@ -60,7 +60,7 @@ A Customer is a person or organization that buys goods or services from a store 
 
 
 
-## Address
+### Address
 
 An Address represents a valid address somewhere on the planet.
 
@@ -92,7 +92,7 @@ An Address represents a valid address somewhere on the planet.
 
 
 
-## Contactmethod
+### Contactmethod
 
 A Contact Method is a method of contacting a Customer.
 
@@ -115,7 +115,7 @@ A Contact Method is a method of contacting a Customer.
 
 
 
-## Customerextension
+### Customerextension
 
 A CustomerExtension resource is used for adding custom properties to a Customer.
 
@@ -133,7 +133,7 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 
 
 
-## Customerextensiontype
+### Customerextensiontype
 
 CustomerExtensionType resources are created by iQmetrix and are used to provide custom properties for the CustomerExtension resource.
 
@@ -148,7 +148,7 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 
 
 
-## Customerfull
+### Customerfull
 
 CustomerFull is an extension on the Customer resource, it consists of all Customer properties plus the following:
 
@@ -165,7 +165,7 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 
 
 
-## Customersearch
+### Customersearch
 
 CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource, it consists of all CustomerFull properties plus the following
 
@@ -288,7 +288,7 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
   * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
   * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
@@ -398,7 +398,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
   * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
   * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
@@ -581,7 +581,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
   * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
   * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
@@ -723,7 +723,7 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
   * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
   * `FamilyName` (string) - Family name. In the U.S., the last name of a Person
@@ -944,8 +944,8 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `AddressType` (string) - Name of the AddressType
   * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
   * `AttentionTo` (string) - Attention To (Attn:)
@@ -1068,8 +1068,8 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `AddressType` (string) - Name of the AddressType
   * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
   * `AttentionTo` (string) - Attention To (Attn:)
@@ -1240,8 +1240,8 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `AddressType` (string) - Name of the AddressType
   * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
   * `AttentionTo` (string) - Attention To (Attn:)
@@ -1412,8 +1412,8 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `AddressType` (string) - Name of the AddressType
   * `AddressTypeId` (integer) - See AddressType for a list of acceptable values
   * `AttentionTo` (string) - Attention To (Attn:)
@@ -2585,8 +2585,8 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
   * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
   * `ContactMethodType` (string) - Name of the ContactMethodType
@@ -2691,8 +2691,8 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
   * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
   * `ContactMethodType` (string) - Name of the ContactMethodType
@@ -2836,8 +2836,8 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
   * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
   * `ContactMethodType` (string) - Name of the ContactMethodType
@@ -2972,8 +2972,8 @@ Content-Type: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
-  * `CustomerId` (guid) - Unique identifier for the Customer
+  * `Id` (GUID) - Unique identifier
+  * `CustomerId` (GUID) - Unique identifier for the Customer
   * `ContactMethodCategory` (string) - Name of the ContactMethodCategory
   * `ContactMethodCategoryId` (integer) - See ContactMethodCategory for a list of acceptable values
   * `ContactMethodType` (string) - Name of the ContactMethodType
@@ -3147,7 +3147,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier
+  * `Id` (GUID) - Unique identifier
   * `PrimaryName` (string) - First name of a given person or the full name of the business, division, organization, etc
   * `MiddleName` (string) - Middle name. Could also be referred to as Additional name
   * `FamilyName` (string) - Family name. In the U.S., the last name of a Person

@@ -33,7 +33,7 @@ Each feed will have its own unique **Feed ID**.
 
 
 
-## Productpost
+### Productpost
 
 Product information for the feed. It is **highly recommended** to include `ModelName` for every product created. See {{ProductStructure_Concept}} for more information.
 
@@ -63,7 +63,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 
 
 
-## Product
+### Product
 
 Product information for the feed. It is **highly recommended** to include `ModelName` for every product created. See {{ProductStructure_Concept}} for more information.
 
@@ -94,7 +94,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 
 
 
-## Field
+### Field
 
 At minimum, the Product Name field is required along with a corresponding value.
 
@@ -111,7 +111,7 @@ To get a list of all field definitions, use the {{Get_Field_Definitions}} method
 
 
 
-## Asset
+### Asset
 
 During the request, only the asset URLs are required. The response will contain additional information provided by the server.
 
@@ -131,7 +131,7 @@ Refer to {{Asset_Glossary}} for more information.
 
 
 
-## Productfeed
+### Productfeed
 
 **Product Feeds** are used to group all Products together for a particular vendor.
 

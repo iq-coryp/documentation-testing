@@ -30,7 +30,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-## Carrier
+### Carrier
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -54,7 +54,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-## Manufacturer
+### Manufacturer
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -78,7 +78,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-## Supplier
+### Supplier
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -166,14 +166,14 @@ Accept: application/json
   * `Id` (integer) - Unique identifier
   * `Name` (string) - Name
   * `Description` (string) - Description
-  * `Attributes` (????) - Set of key-value pairs that contain extra data
+  * `Attributes` (object) - Set of key-value pairs that contain extra data
   * `CreatedUTC` (object) - Created date, in UTC
   * `ClientEntityId` (string) - Identifier in an external system
   * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (????) - A reference to an asset
+  * `Logo` (object) - A reference to an asset
   * `Relationships` (object) - Relationships
   * `Role` (string) - Role
-  * `Roles` (????) - The value must be Carrier
+  * `Roles` (object) - The value must be Carrier
   * `SortName` (string) - A string used for sorting
   * `Version` (integer) - Latest revision number
   * `CorrelationId` (string) - Reserved for internal use
@@ -285,14 +285,14 @@ Accept: application/json
   * `Id` (integer) - Unique identifier
   * `Name` (string) - Name
   * `Description` (string) - Description
-  * `Attributes` (????) - Set of key-value pairs that contain extra data
+  * `Attributes` (object) - Set of key-value pairs that contain extra data
   * `CreatedUTC` (object) - Created date, in UTC
   * `ClientEntityId` (string) - Identifier in an external system
   * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (????) - A reference to an asset
+  * `Logo` (object) - A reference to an asset
   * `Relationships` (object) - Relationships
   * `Role` (string) - Role
-  * `Roles` (????) - The value must be Carrier
+  * `Roles` (object) - The value must be Carrier
   * `SortName` (string) - A string used for sorting
   * `Version` (integer) - Latest revision number
   * `CorrelationId` (string) - Reserved for internal use
@@ -391,14 +391,14 @@ Accept: application/json
   * `Id` (integer) - Unique identifier
   * `Name` (string) - Name
   * `Description` (string) - Description
-  * `Attributes` (????) - Set of key-value pairs that contain extra data
+  * `Attributes` (object) - Set of key-value pairs that contain extra data
   * `CreatedUTC` (object) - Created date in UTC
   * `ClientEntityId` (string) - Identifier in an external system
   * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (????) - A reference to an asset
+  * `Logo` (object) - A reference to an asset
   * `Relationships` (object) - Relationships
   * `Role` (string) - Role
-  * `Roles` (????) - The value must be Manufacturer
+  * `Roles` (object) - The value must be Manufacturer
   * `SortName` (string) - A string used for sorting
   * `Version` (integer) - Latest revision number
   * `CorrelationId` (string) - Reserved for internal use
@@ -510,14 +510,14 @@ Accept: application/json
   * `Id` (integer) - Unique identifier
   * `Name` (string) - Name
   * `Description` (string) - Description
-  * `Attributes` (????) - Set of key-value pairs that contain extra data
+  * `Attributes` (object) - Set of key-value pairs that contain extra data
   * `CreatedUTC` (object) - Created date in UTC
   * `ClientEntityId` (string) - Identifier in an external system
   * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (????) - A reference to an asset
+  * `Logo` (object) - A reference to an asset
   * `Relationships` (object) - Relationships
   * `Role` (string) - Role
-  * `Roles` (????) - The value must be Manufacturer
+  * `Roles` (object) - The value must be Manufacturer
   * `SortName` (string) - A string used for sorting
   * `Version` (integer) - Latest revision number
   * `CorrelationId` (string) - Reserved for internal use

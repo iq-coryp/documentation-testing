@@ -33,7 +33,7 @@ summary:
 
 
 
-## Catalogitem
+### Catalogitem
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
@@ -49,7 +49,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 
 
-## Catalogsearchresult
+### Catalogsearchresult
 
 A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.
 
@@ -105,7 +105,7 @@ A CatalogSearchResult resource is used to return information about Product resou
 
 
 
-## Searchresult
+### Searchresult
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
@@ -118,7 +118,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 
 
-## Arrayitem
+### Arrayitem
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
@@ -205,7 +205,7 @@ Accept: application/json
 
 
 
-  * `CatalogItemId` (guid) - Unique identifier
+  * `CatalogItemId` (GUID) - Unique identifier
   * `IsArchived` (boolean) - A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results
   * `RmsId` (string) - Identifier for the CatalogItem in an external inventory system
   * `Slug` (string) - Unique identifier for a Product
@@ -318,7 +318,7 @@ Accept: application/json
   * `Assets` (array[object]) - Asset information
   * `CanonicalClassification` (object) - ClassificationTree details
   * `Entity` (object) - Entity information, used for Entity revisions
-  * `HeroShotId` (guid) - Hero Shot identifier
+  * `HeroShotId` (GUID) - Hero Shot identifier
   * `HeroShotUri` (string) - URI to a Hero Shot Asset
   * `IsLinkedToCuratedProduct` (boolean) - A flag to indicate if this version of this Product is publicly accessible (true), or private (false)
   * `IsSaleable` (boolean) - A flag to indicate if this product can be sold

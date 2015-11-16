@@ -27,7 +27,7 @@ summary:
 
 
 
-## User
+### User
 
 A User represents an account that can be used to perform actions on your data within iQmetrix APIs.
 
@@ -59,55 +59,25 @@ A User represents an account that can be used to perform actions on your data wi
 
 
 
-## _links
-
-Relative URL's used for Pagination
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| prev | String | Refers to a resource containing the previous page of results, `null` if there is no previous page | `null` |
-| self | String | The request that returned these results | `null` |
-| next | String | Refers to a resource containing the next page of results, `null` if this is the last page | `null` |
 
 
 
 
 
 
-## _metadata
-
-Data representing Pagination details
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| count | Object | The total number of results returned from the request | `15` |
-| skip | Object | Value of `skip` in the request URI, if not specified the value will be 0 | `0` |
-| top | Object | Value of `top` in the request URI, if not specified the value will be 30 | `5` |
 
 
 
 
 
 
-## Importuser
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| UserName | String | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
-| ParentEntityId | Object | Identifier for the Company to which this User belongs | `1` |
-| FirstName | String | First name | `Sam` |
-| LastName | String | Last name | `Smith` |
-| Password | String | Password. If supplied, it must be a nonempty string | `smith123` |
-| Email | Object | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
-| Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `` |
-| ClientUserId | String | Identifier for the User in an external system | `132` |
 
 
 
 
 
 
-## Searchschema
+### Searchschema
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -200,7 +170,7 @@ Content-Type: application/json
   * `LastName` (string) - Last name
   * `Password` (string) - Password. If supplied, it must be a nonempty string
   * `Email` (object) - Email for the User. Must be unique. A notification will be sent to this address when a User is created.
-  * `Attributes` (????) - Set of key-value pairs that contain extra data to store with the User
+  * `Attributes` (object) - Set of key-value pairs that contain extra data to store with the User
   * `ClientUserId` (string) - Identifier for the User in an external system
 
 
@@ -305,7 +275,7 @@ Accept: application/json
   * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
   * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
   * `Picture` (object) - A reference to an Asset that is a photo of the User
-    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Id` (GUID) - Unique identifier for the Asset
     * `Picture.Name` (string) - File name of the asset
     * `Picture.Height` (integer) - Height in pixels
     * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
@@ -476,7 +446,7 @@ Content-Type: application/json
   * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
   * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
   * `Picture` (object) - A reference to an Asset that is a photo of the User
-    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Id` (GUID) - Unique identifier for the Asset
     * `Picture.Name` (string) - File name of the asset
     * `Picture.Height` (integer) - Height in pixels
     * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
@@ -598,7 +568,7 @@ Accept: application/json
   * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
   * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
   * `Picture` (object) - A reference to an Asset that is a photo of the User
-    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Id` (GUID) - Unique identifier for the Asset
     * `Picture.Name` (string) - File name of the asset
     * `Picture.Height` (integer) - Height in pixels
     * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
@@ -886,7 +856,7 @@ Content-Type: application/json
   * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
   * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
   * `Picture` (object) - A reference to an Asset that is a photo of the User
-    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Id` (GUID) - Unique identifier for the Asset
     * `Picture.Name` (string) - File name of the asset
     * `Picture.Height` (integer) - Height in pixels
     * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
@@ -1714,7 +1684,7 @@ Accept: application/json
   * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
   * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
   * `Picture` (object) - A reference to an Asset that is a photo of the User
-    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Id` (GUID) - Unique identifier for the Asset
     * `Picture.Name` (string) - File name of the asset
     * `Picture.Height` (integer) - Height in pixels
     * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored
@@ -1997,7 +1967,7 @@ Content-Type: application/json
   * `IsActive` (boolean) - Flag to indicate if the Users login is enabled, false if it is disabled
   * `ParentEntityId` (integer) - Identifier for the Company to which this User belongs
   * `Picture` (object) - A reference to an Asset that is a photo of the User
-    * `Picture.Id` (guid) - Unique identifier for the Asset
+    * `Picture.Id` (GUID) - Unique identifier for the Asset
     * `Picture.Name` (string) - File name of the asset
     * `Picture.Height` (integer) - Height in pixels
     * `Picture.Href` (string) - URL that points to an actual file where the digital asset is stored

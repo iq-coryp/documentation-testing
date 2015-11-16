@@ -32,7 +32,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 
 
-## Subscribablelistput
+### Subscribablelistput
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -49,7 +49,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 
 
-## Subscription
+### Subscription
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -64,7 +64,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 
 
-## Subscribablelist
+### Subscribablelist
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -160,7 +160,7 @@ Accept: application/json
     * `Companies.DateSubscribedUtc` (datetime) - Date company subscribed to product subscription, in UTC
     * `Companies.Id` (integer) - Company identifier
     * `Companies.Name` (string) - Company Name
-  * `ListId` (guid) - Subscription identifier
+  * `ListId` (GUID) - Subscription identifier
 
 
 
@@ -288,7 +288,7 @@ Content-Type: application/json
     * `Companies.DateSubscribedUtc` (datetime) - Date company subscribed to product subscription, in UTC
     * `Companies.Id` (integer) - Company identifier
     * `Companies.Name` (string) - Company Name
-  * `ListId` (guid) - Subscription identifier
+  * `ListId` (GUID) - Subscription identifier
 
 
 
@@ -385,7 +385,7 @@ Accept: application/json
 
 
   * `EntityId` (integer) - Supplier identifier
-  * `Id` (guid) - Subscribable List identifer
+  * `Id` (GUID) - Subscribable List identifer
   * `Name` (string) - Title of product subscription
   * `Products` (array[product]) - Products for the subscribable list
     * `Products.Dropshippable` (boolean) - If the product is dropshippable
@@ -539,7 +539,7 @@ Content-Type: application/json
 
 
   * `EntityId` (integer) - Supplier identifier
-  * `Id` (guid) - Subscribable List identifer
+  * `Id` (GUID) - Subscribable List identifer
   * `Name` (string) - Title of product subscription
   * `Products` (array[product]) - Products for the subscribable list
     * `Products.Dropshippable` (boolean) - If the product is dropshippable

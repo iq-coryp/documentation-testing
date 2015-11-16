@@ -35,7 +35,7 @@ summary:
 
 
 
-## Activation
+### Activation
 
 An **Activation** contains IDs necessary to identify an activation, and all the activation details.
 
@@ -52,7 +52,7 @@ An **Activation** contains IDs necessary to identify an activation, and all the 
 
 
 
-## Carrieractivationdetails
+### Carrieractivationdetails
 
 A **CarrierActivationDetails** contains all of the customer, product, and rate plan information necessary to process an activation.
 
@@ -95,7 +95,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Subscriber
+### Subscriber
 
  A **Subscriber** contains all of the customer information related to an activation. 
 
@@ -130,7 +130,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Address
+### Address
 
 #### RQ Limitations 
 
@@ -156,7 +156,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Rateplan
+### Rateplan
 
 #### RQ Limitations
 
@@ -180,7 +180,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Rateplanfeature
+### Rateplanfeature
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -196,7 +196,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Activatedproduct
+### Activatedproduct
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -224,7 +224,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Additionalfee
+### Additionalfee
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -241,7 +241,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Vendorrebate
+### Vendorrebate
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -257,7 +257,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 
 
-## Confirmedactivation
+### Confirmedactivation
 
 A ConfirmedActivation resource represents a payment transaction that completed the activation of one or more phones.
 

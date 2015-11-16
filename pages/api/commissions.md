@@ -27,7 +27,7 @@ summary:
 
 
 
-## Commissionentry
+### Commissionentry
 
 Commission earned by an employee.
 {{callout_info}}<b>RQ Connection</b>For more information on Commissions in RQ, see <a href='http://iqmetrix.helpdocsonline.com/employee-commission-setup'>Employee Commission Setup</a>{{end}}
@@ -232,17 +232,17 @@ Accept: application/json
   * `LastUpdateDateUtc` (datetime) - Time created in the API, in UTC
   * `LocationCode` (string) - An identifier for the Location in an external system
   * `LocationId` (integer) - Identifier for the Location
-  * `MilestoneID` (guid) - Identifier for a milestone associated with this commission in RQ
+  * `MilestoneID` (GUID) - Identifier for a milestone associated with this commission in RQ
   * `Priority` (integer) - Priority of product on sale invoice associated with this commission in RQ
   * `Quantity` (integer) - The number of times the unit commission is to be applied
   * `RQCommissionId` (integer) - Identifier of the associated commission RQ
-  * `SaleInvoiceAndCouponID` (guid) - Identifier of the coupon on the sale invoice associated with this commission in RQ
+  * `SaleInvoiceAndCouponID` (GUID) - Identifier of the coupon on the sale invoice associated with this commission in RQ
   * `SaleInvoiceID` (integer) - Identifier of the sale invoice which created this commission in RQ
   * `SerialNumber` (string(100)) - Serial number of the product associated with this commission in RQ
   * `SplitRate1` (decimal) - Percentage of the commission the primary employee receives, defaults to 100
   * `SplitRate2` (decimal) - Percentage of the commission the split employee receives, defaults to 0
   * `TotalCommission` (decimal) - The total commission amount to be applied equal to (UnitCommission * Quantity)
-  * `TransactionGUID` (guid) - Identifier of the transaction which created this commission in RQ
+  * `TransactionGUID` (GUID) - Identifier of the transaction which created this commission in RQ
   * `TransactionType` (byte) - Type of transaction which created this commission. See TransactionType for a list of acceptable values
   * `UnitCommission` (decimal) - The individual unit Commission amount
 

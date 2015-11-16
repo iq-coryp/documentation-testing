@@ -39,7 +39,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 
 
-## Pricing
+### Pricing
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -55,7 +55,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 
 
-## Pricingterm
+### Pricingterm
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|

@@ -25,7 +25,7 @@ summary:
 
 
 
-## Punchentry
+### Punchentry
 
 An instance of a clock punch for an employee at a location, with a punch-in time and (optionally) a punch-out time.
 

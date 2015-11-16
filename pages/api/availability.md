@@ -25,7 +25,7 @@ summary:
 
 
 
-## Availability
+### Availability
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
@@ -112,7 +112,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier for a CatalogItem
+  * `Id` (GUID) - Unique identifier for a CatalogItem
   * `EntityId` (integer) - Identifier for a CompanyTreeNode
   * `Quantity` (integer) - Quantity
   * `IsDropShippable` (boolean) - A flag to indicate if the CatalogItem can be shipped
@@ -203,7 +203,7 @@ Accept: application/json
 
 
 
-  * `Id` (guid) - Unique identifier for a CatalogItem
+  * `Id` (GUID) - Unique identifier for a CatalogItem
   * `EntityId` (integer) - Identifier for a CompanyTreeNode
   * `Quantity` (integer) - Quantity
   * `IsDropShippable` (boolean) - A flag to indicate if the CatalogItem can be shipped

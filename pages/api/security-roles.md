@@ -40,7 +40,7 @@ Changes within the Security Roles API involve complex actions behind the scenes 
 
 
 
-## Securityrole
+### Securityrole
 
 A SecurityRole represents the relationship between a {{User}} and a set of Permissions.
 
@@ -56,7 +56,7 @@ SecurityRoles allow you create custom groups that can hold Permissions
 
 
 
-## Assignedrole
+### Assignedrole
 
 An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity.
 
@@ -72,7 +72,7 @@ An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}}
 
 
 
-## Permission
+### Permission
 
 Permissions are the building blocks of SecurityRoles and represent the ability to perform an action within iQmetrix APIs.
 

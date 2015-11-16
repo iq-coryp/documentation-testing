@@ -34,7 +34,7 @@ To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 
 
-## Classification
+### Classification
 
 Classifications are used to group Products together by similar features.
 A Product can only have a single Classification.
@@ -54,7 +54,7 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 
 
 
-## Category
+### Category
 
 A Category is a node in a Classification Tree that represents a logical grouping of related Classifications.
 For example, 'iPhone' and 'Tablet' Classifications might both be children of a 'Device' Category.
@@ -73,7 +73,7 @@ There is a limit to 20 levels of depth for Categories.
 
 
 
-## Classificationtree
+### Classificationtree
 
 | Name  | Data Type | Description | Example |
 |:------|:----------|:------------|:--------|
