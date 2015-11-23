@@ -13,8 +13,8 @@ summary:
 
 ## Endpoints
 
-* Sandbox: https://availabilitydemo.iqmetrix.net/v1
-* Production: https://availability.iqmetrix.net/v1
+* Sandbox: <a href="https://availabilitydemo.iqmetrix.net/v1">https://availabilitydemo.iqmetrix.net/v1</a>
+* Production: <a href="https://availability.iqmetrix.net/v1">https://availability.iqmetrix.net/v1</a>
 
 ## Resources
 

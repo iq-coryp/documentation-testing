@@ -16,8 +16,8 @@ Retailers can select products from the {{ProductLibrary_Concept}} to create a **
 
 ## Endpoints
 
-* Sandbox: https://catalogsdemo.iqmetrix.net/v1
-* Production: https://catalogs.iqmetrix.net/v1
+* Sandbox: <a href="https://catalogsdemo.iqmetrix.net/v1">https://catalogsdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://catalogs.iqmetrix.net/v1">https://catalogs.iqmetrix.net/v1</a>
 
 ## Resources
 

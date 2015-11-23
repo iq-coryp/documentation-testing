@@ -26,8 +26,8 @@ Changes within the Security Roles API involve complex actions behind the scenes 
 
 ## Endpoints
 
-* Sandbox: https://usermanagerdemo.iqmetrix.net/v1
-* Production: https://usermanager.iqmetrix.net/v1
+* Sandbox: <a href="https://usermanagerdemo.iqmetrix.net/v1">https://usermanagerdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://usermanager.iqmetrix.net/v1">https://usermanager.iqmetrix.net/v1</a>
 
 ## Resources
 

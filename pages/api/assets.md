@@ -13,8 +13,8 @@ summary:
 
 ## Endpoints
 
-* Sandbox: https://amsdemo.iqmetrix.net
-* Production: https://ams.iqmetrix.net
+* Sandbox: <a href="https://amsdemo.iqmetrix.net">https://amsdemo.iqmetrix.net</a>
+* Production: <a href="https://ams.iqmetrix.net">https://ams.iqmetrix.net</a>
 
 ## Resources
 

@@ -16,8 +16,8 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ## Endpoints
 
-* Sandbox: https://entitymanagerdemo.iqmetrix.net/v1
-* Production: https://entitymanager.iqmetrix.net/v1
+* Sandbox: <a href="https://entitymanagerdemo.iqmetrix.net/v1">https://entitymanagerdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://entitymanager.iqmetrix.net/v1">https://entitymanager.iqmetrix.net/v1</a>
 
 ## Resources
 

@@ -26,8 +26,8 @@ Account balances will be affected by Debits and Credits in the following ways:
 
 ## Endpoints
 
-* Sandbox: https://generalledgerdemo.iqmetrix.net/v1
-* Production: https://generalledger.iqmetrix.net/v1
+* Sandbox: <a href="https://generalledgerdemo.iqmetrix.net/v1">https://generalledgerdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://generalledger.iqmetrix.net/v1">https://generalledger.iqmetrix.net/v1</a>
 
 ## Resources
 

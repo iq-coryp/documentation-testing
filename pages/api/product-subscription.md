@@ -16,8 +16,8 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 ## Endpoints
 
-* Sandbox: https://productsubscriptionsdemo.iqmetrix.net/v1
-* Production: https://productsubscriptions.iqmetrix.net/v1
+* Sandbox: <a href="https://productsubscriptionsdemo.iqmetrix.net/v1">https://productsubscriptionsdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://productsubscriptions.iqmetrix.net/v1">https://productsubscriptions.iqmetrix.net/v1</a>
 
 ## Resources
 

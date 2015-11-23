@@ -23,8 +23,8 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ## Endpoints
 
-* Sandbox: https://pricingdemo.iqmetrix.net/v1
-* Production: https://pricing.iqmetrix.net/v1
+* Sandbox: <a href="https://pricingdemo.iqmetrix.net/v1">https://pricingdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://pricing.iqmetrix.net/v1">https://pricing.iqmetrix.net/v1</a>
 
 ## Resources
 

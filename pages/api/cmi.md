@@ -26,10 +26,10 @@ The Customer Managed Inventory (CMI) API can be used to:
 
 ## Endpoints
 
-* Sandbox: https://vmidemo.iqmetrix.net/VMIClientService.asmx
-* Production (Denver): https://vmi1.iqmetrix.net/VMIClientService.asmx
-* Production (Toronto): https://vmi3.iqmetrix.net/VMIClientService.asmx
-* Production (Philadelphia): https://vmi10.iqmetrix.net/VMIClientService.asmx
+* Sandbox: <a href="https://vmidemo.iqmetrix.net/VMIClientService.asmx">https://vmidemo.iqmetrix.net/VMIClientService.asmx</a>
+* Production (Denver): <a href="https://vmi1.iqmetrix.net/VMIClientService.asmx">https://vmi1.iqmetrix.net/VMIClientService.asmx</a>
+* Production (Toronto): <a href="https://vmi3.iqmetrix.net/VMIClientService.asmx">https://vmi3.iqmetrix.net/VMIClientService.asmx</a>
+* Production (Philadelphia): <a href="https://vmi10.iqmetrix.net/VMIClientService.asmx">https://vmi10.iqmetrix.net/VMIClientService.asmx</a>
 
 {{important}}
 You should choose a production endpoint that is geographically closest to your data center 

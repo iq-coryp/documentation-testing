@@ -18,8 +18,8 @@ To learn more about User Manager, see {{UserManager_Concept}}.
 
 ## Endpoints
 
-* Sandbox: https://usermanagerdemo.iqmetrix.net/v1
-* Production: https://usermanager.iqmetrix.net/v1
+* Sandbox: <a href="https://usermanagerdemo.iqmetrix.net/v1">https://usermanagerdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://usermanager.iqmetrix.net/v1">https://usermanager.iqmetrix.net/v1</a>
 
 ## Resources
 

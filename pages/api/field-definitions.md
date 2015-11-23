@@ -55,8 +55,8 @@ The result displayed on the page, with some styling, is shown below
 
 ## Endpoints
 
-* Sandbox: https://productlibrarydemo.iqmetrix.net/v1
-* Production: https://productlibrary.iqmetrix.net/v1
+* Sandbox: <a href="https://productlibrarydemo.iqmetrix.net/v1">https://productlibrarydemo.iqmetrix.net/v1</a>
+* Production: <a href="https://productlibrary.iqmetrix.net/v1">https://productlibrary.iqmetrix.net/v1</a>
 
 ## Resources
 

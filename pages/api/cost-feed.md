@@ -25,8 +25,8 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ## Endpoints
 
-* Sandbox: https://dropshipdemo.iqmetrix.net/v1
-* Production: https://dropship.iqmetrix.net/v1
+* Sandbox: <a href="https://dropshipdemo.iqmetrix.net/v1">https://dropshipdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://dropship.iqmetrix.net/v1">https://dropship.iqmetrix.net/v1</a>
 
 ## Resources
 
