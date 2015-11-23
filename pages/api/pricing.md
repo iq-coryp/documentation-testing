@@ -1,16 +1,13 @@
 ---
-title: Pricing
+title:  Pricing
 permalink: /api/pricing/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 ## Overview
 
@@ -24,10 +21,6 @@ Pricing information for products can be retrieved and managed using the Pricing 
 4. Term-based pricing is available to accommodate for scenarios where price varies based on contractual commitment
 
 
-
-
-
-
 ## Endpoints
 
 * Sandbox: https://pricingdemo.iqmetrix.net/v1
@@ -35,46 +28,25 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ## Resources
 
-
-
-
-
 ### Pricing
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Identifier | `41614` |
-| CatalogItemId | String | CatalogItem identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
-| EntityId | Object | Entity identifier that represents a node in a Company Tree at which the price is set | `1` |
-| RegularPrice | Object | The regular price, must be greater than 0 | `10.0` |
-| OverridePrice | Object | The sale price, if specified this value must be greater than 0 | `5.0` |
-| PricingTermId | Object | PricingTerm identifier | `20` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Identifier | `41614` |
+| CatalogItemId | Guid | [CatalogItem](/api/catalog/#catalogitem) identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| EntityId | integer | [CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set | `1` |
+| RegularPrice | decimal | The regular price, must be greater than 0 | `10.0` |
+| OverridePrice | decimal | The sale price, if specified this value must be greater than 0 | `5.0` |
+| PricingTermId | integer | [PricingTerm](#pricingterm) identifier | `20` |
 
+### PricingTerm
 
-
-
-
-
-### Pricingterm
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Identifier | `20` |
-| EntityId | Object | Identifier for the Company | `2` |
-| Name | Object | Name | `$60 4G LTE Unlimited` |
-| Active | Object | A flag to indicate of this PricingTerm is active. When set to false, this PricingTerm can still be used, but does not appear in the responses to the Getting All Active Pricing Terms request | `true` |
-
-
-
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Identifier | `20` |
+| EntityId | integer | Identifier for the [Company](/api/company-tree/#company) | `2` |
+| Name | string(255) | Name | `$60 4G LTE Unlimited` |
+| Active | boolean | A flag to indicate of this PricingTerm is active. When set to false, this PricingTerm can still be used, but does not appear in the responses to the Getting All Active Pricing Terms request | `true` |
 
 
 
@@ -86,64 +58,39 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 #### Request
 
-```
-POST /Companies({CompanyId})/Pricing
-```
+    POST /Companies({CompanyId})/Pricing
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 #### Request Parameters
 
-  
   * `CatalogItemId` (**Required**)
   * `EntityId` (**Required**)
   * `RegularPrice` (**Required**)
+  
   * `OverridePrice` (Optional)
   * `PricingTermId` (Optional)
- 
-
 
 
 ###### Example
 
 ```
 POST /Companies(1)/Pricing
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
     "CatalogItemId": "3105813f-538f-4657-bbc6-5e8a86a3ae4d",
     "EntityId": 1,
@@ -159,19 +106,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `CatalogItemId` (string) - CatalogItem identifier
-  * `EntityId` (integer) - Entity identifier that represents a node in a Company Tree at which the price is set
-  * `RegularPrice` (object) - The regular price, must be greater than 0
-  * `OverridePrice` (object) - The sale price, if specified this value must be greater than 0
-  * `PricingTermId` (integer) - PricingTerm identifier
-
-
-
 ###### Example
+
 ```
 HTTP 201 Content-Type: application/json
 {
@@ -183,17 +119,6 @@ HTTP 201 Content-Type: application/json
     "PricingTermId": null
 }}
                       
-
-```
-
-
-
-
-
-
-
-
-
 ## Creating Product Pricing at Location Level
 
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
@@ -201,68 +126,39 @@ HTTP 201 Content-Type: application/json
 
 #### Request
 
-```
-POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
-```
+    POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - Identifier for the {{Location}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 #### Request Parameters
 
-  
   * `CatalogItemId` (**Required**)
   * `EntityId` (**Required**)
   * `RegularPrice` (**Required**)
+  
   * `OverridePrice` (Optional)
   * `PricingTermId` (Optional)
- 
-
 
 
 ###### Example
 
 ```
 POST /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
   "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
   "EntityId": 2,
@@ -278,19 +174,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `CatalogItemId` (string) - CatalogItem identifier
-  * `EntityId` (integer) - Entity identifier that represents a node in a Company Tree at which the price is set
-  * `RegularPrice` (object) - The regular price, must be greater than 0
-  * `OverridePrice` (object) - The sale price, if specified this value must be greater than 0
-  * `PricingTermId` (integer) - PricingTerm identifier
-
-
-
 ###### Example
+
 ```
 HTTP 201 Content-Type: application/json
 {
@@ -301,14 +186,6 @@ HTTP 201 Content-Type: application/json
     "OverridePrice": 450,
     "PricingTermId": null
 }
-
-
-```
-
-
-
-
-
 
 ## Getting Product Pricing for a Retail Location
 
@@ -316,37 +193,19 @@ HTTP 201 Content-Type: application/json
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
-```
+    GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - Identifier for the {{Location}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -354,17 +213,8 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 
 ```
 GET /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -372,19 +222,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `CatalogItemId` (string) - CatalogItem identifier
-  * `EntityId` (integer) - Entity identifier that represents a node in a Company Tree at which the price is set
-  * `RegularPrice` (object) - The regular price, must be greater than 0
-  * `OverridePrice` (object) - The sale price, if specified this value must be greater than 0
-  * `PricingTermId` (integer) - PricingTerm identifier
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -396,52 +235,26 @@ HTTP 200 Content-Type: application/json
     "PricingTermId": null
 }
  
-
-```
-
-
-
-
-
-
 ## Updating Product Pricing for a Retail Location
 
 
 
 #### Request
 
-```
-PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
-```
+    PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - Identifier for the {{Location}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -449,29 +262,13 @@ PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 
 ```
 PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 
 ```
 
 #### Response
-
-
-
-
-
-
-
 
 ## Creating Product Pricing at Company Level
 
@@ -479,66 +276,39 @@ Content-Type: application/json
 
 #### Request
 
-```
-POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
-```
+    POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 #### Request Parameters
 
-  
   * `CatalogItemId` (**Required**)
   * `EntityId` (**Required**)
   * `RegularPrice` (**Required**)
+  
   * `OverridePrice` (Optional)
   * `PricingTermId` (Optional)
- 
-
 
 
 ###### Example
 
 ```
 POST /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
   "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
   "EntityId": 2,
@@ -554,19 +324,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `CatalogItemId` (string) - CatalogItem identifier
-  * `EntityId` (integer) - Entity identifier that represents a node in a Company Tree at which the price is set
-  * `RegularPrice` (object) - The regular price, must be greater than 0
-  * `OverridePrice` (object) - The sale price, if specified this value must be greater than 0
-  * `PricingTermId` (integer) - PricingTerm identifier
-
-
-
 ###### Example
+
 ```
 HTTP 201 Content-Type: application/json
 {
@@ -578,49 +337,25 @@ HTTP 201 Content-Type: application/json
     "PricingTermId": null
 }
 
-
-```
-
-
-
-
-
-
 ## Getting Product Pricing at Company Level
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
-```
+    GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -628,17 +363,8 @@ GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
 
 ```
 GET /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -646,19 +372,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `CatalogItemId` (string) - CatalogItem identifier
-  * `EntityId` (integer) - Entity identifier that represents a node in a Company Tree at which the price is set
-  * `RegularPrice` (object) - The regular price, must be greater than 0
-  * `OverridePrice` (object) - The sale price, if specified this value must be greater than 0
-  * `PricingTermId` (integer) - PricingTerm identifier
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -670,50 +385,26 @@ HTTP 200 Content-Type: application/json
     "PricingTermId": null
 }
  
-
-```
-
-
-
-
-
-
 ## Updating Product Pricing at Company Level
 
 
 
 #### Request
 
-```
-PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
-```
+    PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -721,29 +412,13 @@ PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
 
 ```
 PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 
 ```
 
 #### Response
-
-
-
-
-
-
-
 
 ## Getting all Active Pricing Terms
 
@@ -751,33 +426,19 @@ Content-Type: application/json
 
 #### Request
 
-```
-GET /Companies({CompanyId})/PricingTerms
-```
+    GET /Companies({CompanyId})/PricingTerms
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -785,17 +446,8 @@ GET /Companies({CompanyId})/PricingTerms
 
 ```
 GET /Companies(1)/PricingTerms
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -803,17 +455,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `EntityId` (integer) - Identifier for the Company
-  * `Name` (string(255)) - Name
-  * `Active` (object) - A flag to indicate of this PricingTerm is active. When set to false, this PricingTerm can still be used, but does not appear in the responses to the Getting All Active Pricing Terms request
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -832,52 +475,25 @@ HTTP 200 Content-Type: application/json
   ...
 ]
                              
-
-```
-
-
-
-
-
-
-
-
-
 ## Getting a Pricing Term
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/PricingTerms({PricingTermId})
-```
+    GET /Companies({CompanyId})/PricingTerms({PricingTermId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `PricingTermId` (**Required**) - Identifier for the {{PricingTerm}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
 
 
 
@@ -885,17 +501,8 @@ GET /Companies({CompanyId})/PricingTerms({PricingTermId})
 
 ```
 GET /Companies(1)/PricingTerms(20)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -903,17 +510,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `EntityId` (integer) - Identifier for the Company
-  * `Name` (string(255)) - Name
-  * `Active` (object) - A flag to indicate of this PricingTerm is active. When set to false, this PricingTerm can still be used, but does not appear in the responses to the Getting All Active Pricing Terms request
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -923,54 +521,25 @@ HTTP 200 Content-Type: application/json
     "Active": true
 }
        
-
-```
-
-
-
-
-
-
-
-
-
 ## Getting Product Pricing by Pricing Term
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={PricingTermId}
-```
+    GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={PricingTermId}
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-* `PricingTermId` (**Required**) - Identifier for the {{PricingTerm}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} * `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
 
 
 
@@ -978,17 +547,8 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={Prici
 
 ```
 GET /Companies(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing?$filter=20
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -996,19 +556,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `CatalogItemId` (string) - CatalogItem identifier
-  * `EntityId` (integer) - Entity identifier that represents a node in a Company Tree at which the price is set
-  * `RegularPrice` (object) - The regular price, must be greater than 0
-  * `OverridePrice` (object) - The sale price, if specified this value must be greater than 0
-  * `PricingTermId` (integer) - PricingTerm identifier
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -1032,20 +581,6 @@ HTTP 200 Content-Type: application/json
 ]
                              
 
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
@@ -1055,5 +590,3 @@ HTTP 200 Content-Type: application/json
 | `HTTP 404` | `Cannot find matching records` | Ensure [CatalogItem](/api/catalog/#catalogitem) ID is valid, CatalogItem exists and belongs to the Company specified in the URI |
 | `HTTP 404` | `That term does not exist` | Ensure [PricingTerm](#pricingterm) ID is valid |
 | `HTTP 500` | `An error occurred while updating the entries` | Ensure request body is correct, ensure Name property does not contain more then 255 characters |
-
-

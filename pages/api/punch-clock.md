@@ -1,16 +1,13 @@
 ---
-title: Punch Clock
+title:  Punch Clock
 permalink: /api/punch-clock/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 
 
@@ -21,43 +18,29 @@ summary:
 
 ## Resources
 
-
-
-
-
-### Punchentry
+### PunchEntry
 
 An instance of a clock punch for an employee at a location, with a punch-in time and (optionally) a punch-out time.
 
 {{callout_info}}<b>RQ Connection</b>For more information on the Punch Clock in RQ, see <a href='http://iqmetrix.helpdocsonline.com/scheduling$Punch%20Clock'>HR Scheduling</a>{{end}}
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique Identifier | `1953` |
-| CreatedDateUtc | Object | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
-| EmployeeVerified | Boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
-| EmployeeSpecialId | Boolean | Special identifier for Employee in RQ | `0001` |
-| LastUpdateDateUtc | Object | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
-| LocationCode | Object | An identifier for the Location in an external system | `CWW` |
-| LocationId | Object | Identifier for the Location | `4` |
-| ManagerVerified | Boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
-| PunchInComments | Object | Punch in comments | `IN - FingerPrint/HomeConsole` |
-| PunchOutComments | Object | Punch out comments | `OUT - HomeConsole` |
-| TimeInAtStore | Object | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
-| TimeOutAtStore | Object | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
-| UserId | Object | Identifier for a User | `22212` |
-| Version | Object | Latest revision number | `1` |
-| RQPunchId | Object | Reserved for internal use | `` |
-
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique Identifier | `1953` |
+| CreatedDateUtc | datetime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
+| EmployeeVerified | boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
+| EmployeeSpecialId | boolean | Special identifier for Employee in RQ | `0001` |
+| LastUpdateDateUtc | datetime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
+| LocationCode | string(100) | An identifier for the Location in an external system | `CWW` |
+| LocationId | integer | Identifier for the [Location](/api/company-tree/#location) | `4` |
+| ManagerVerified | boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
+| PunchInComments | string(100) | Punch in comments | `IN - FingerPrint/HomeConsole` |
+| PunchOutComments | string(100) | Punch out comments | `OUT - HomeConsole` |
+| TimeInAtStore | datetime | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
+| TimeOutAtStore | datetime | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
+| UserId | integer | Identifier for a [User](/api/user-manager/#user) | `22212` |
+| Version | integer | Latest revision number | `1` |
+| *RQPunchId* | *integer* | *Reserved for internal use* | |
 
 
 
@@ -68,68 +51,32 @@ By default, the sorting order of the response to this request will be **descendi
 
 {{note}}
 Don't forget <code>$filter=</code> in the request!
-{{end}}
-
+{{end}}  
 
 #### Request
 
-```
-GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}
-```
+    GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `skip` (Optional) - Number of records to skip
-
-* `top` (Optional) - Number of records to take
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `StartDate` (Optional) - Date at which to begin search request, in UTC
-
-* `EndDate` (Optional) - Date at which to end search request, in UTC
-
-* `Skip` (**Required**) - 
-
-* `Top` (**Required**) - 
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `StartDate` (Optional)  - Date at which to begin search request, in UTC * `EndDate` (Optional)  - Date at which to end search request, in UTC * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take 
 
 
 
 ###### Example
 
 ```
-GET /Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'Wed Dec 31 2014 18:00:00 GMT-0600 (Canada Central Standard Time)' and LastUpdateDateUtc le datetime'Thu Dec 31 2015 17:59:59 GMT-0600 (Canada Central Standard Time)'&$skip=undefined&$top=undefined
-
-
+GET /Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'Wed Dec 31 2014 18:00:00 GMT-0600 (Canada Central Standard Time)' and LastUpdateDateUtc le datetime'Thu Dec 31 2015 17:59:59 GMT-0600 (Canada Central Standard Time)'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -137,28 +84,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique Identifier
-  * `CreatedDateUtc` (datetime) - Created date and time, in UTC
-  * `EmployeeVerified` (boolean) - A flag to indicate if the employee has verified the PunchEntry
-  * `EmployeeSpecialId` (boolean) - Special identifier for Employee in RQ
-  * `LastUpdateDateUtc` (datetime) - Time of the last update, in UTC
-  * `LocationCode` (string(100)) - An identifier for the Location in an external system
-  * `LocationId` (integer) - Identifier for the Location
-  * `ManagerVerified` (boolean) - A flag to indicate if the manager has verified the PunchEntry
-  * `PunchInComments` (string(100)) - Punch in comments
-  * `PunchOutComments` (string(100)) - Punch out comments
-  * `TimeInAtStore` (datetime) - Punch in time (local time at store), in UTC
-  * `TimeOutAtStore` (datetime) - Punch out time (local time at store), in UTC
-  * `UserId` (integer) - Identifier for a User
-  * `Version` (integer) - Latest revision number
-  * `RQPunchId` (integer) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -182,12 +109,9 @@ HTTP 200 Content-Type: application/json
 ]
  
 
-```
-
-
-
 
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/hal+json
 {
@@ -232,19 +156,6 @@ HTTP 200 Content-Type: application/hal+json
 }
 
 
-```
-
-
-
-
-
-
-
-
-
-
-## Pagination
-
 ## Pagination
 
 The Punch Clock API supports pagination of collections of resources for some requests.
@@ -285,20 +196,3 @@ The `self`.`href` value is the relative version of the API call that returned th
 The `next`.`href` refers to a resource containing a page with the **next** 5 items.
 
 The `prev`.`href` refers to a resource containing a page with the **previous** 5 items.
-traits:
-  - pageable:
-      queryParameters:
-        $skip:
-          displayName: skip
-          type: integer
-          description: Number of records to skip
-          example: 0
-          required: false
-        $top: 
-          displayName: top
-          type: integer
-          description: Number of records to take
-          example: 5
-          required: false
-
-

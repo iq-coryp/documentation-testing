@@ -1,20 +1,13 @@
 ---
-title: Carrier Integration
+title:  Carrier Integration
 permalink: /api/carrier-integration/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
-
-
-
-
 
 
 
@@ -26,74 +19,55 @@ summary:
 ## Resources
 
 
-
-
-
-
-
-
-
-
-
 ### Activation
 
 An **Activation** contains IDs necessary to identify an activation, and all the activation details.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma | `1=35854205829867` |
-| CarrierActivationDetails | Object | The details of this Activation | `` |
-| CarrierId | Object | Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
-| CompanyId | Object | Identifier of the Company making this request | `1234` |
-| LocationId | Object | Identifier of the Location making this request | `5678` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | string | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma | `1=35854205829867` |
+| CarrierActivationDetails | [CarrierActivationDetails](#carrieractivationdetails) | The details of this Activation |  |
+| CarrierId | integer | Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
+| CompanyId | integer | Identifier of the Company making this request | `1234` |
+| LocationId | integer | Identifier of the Location making this request | `5678` |
 
-
-
-
-
-
-### Carrieractivationdetails
+### CarrierActivationDetails
 
 A **CarrierActivationDetails** contains all of the customer, product, and rate plan information necessary to process an activation.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| ActivationId | String | System-generated identifier for the Activation | `354` |
-| ActivationDate | Object | Date the Activation occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
-| ActivatedProduct | Object | The Product that is being activated | `` |
-| ActivationState | String | State of the Activation. See ActivationState for a list of acceptable values | `Pending` |
-| ActivationTermCode | Object | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
-| ActivationType | String | The type of this Activation, such as a new Activation or an upgrade. See ActivationType for a list of acceptable values | `NewActivation` |
-| AdditionalFees | Object | The additional fees that are applicable to this Activation, not including the deposit fee or tab | `` |
-| ContractLengthInMonths | Object | Number of months the Activation has been contracted for. ContractTerm in RQ. For a list of acceptable values, see ContractTerms | `24` |
-| ContractNumberIsAccountNumber | Boolean | A flag to indicate if the contract number of the Activation can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
-| DealerName | String | Carrier-specific dealer name | `IAPR` |
-| DealerCode | Object | Carrier-specific dealer code | `IAPR` |
-| Deposit |  | The security deposit that the Activation requires the Subscriber to pay | `Credit check performed, deposit required` |
-| Notes | Object | Free form text with any additional notes related to the Activation | `Notes go here!` |
-| OrderNumber | Object | Carrier-specific identifier for the order this activation is associated with. Activations may have the same order number if they were part of a multi-line activation in the carrier system | `ORD1234` |
-| RatePlans |  | The Rate Plan(s) that are applied to the Activation | `` |
-| RemoteActivationID | String | Carrier-specific identifier for the Activation | `3023997373` |
-| Subscriber |  | The Subscriber (customer) that the Activation is for | `` |
-| TrackingNumber | Object | Carrier-specific tracking number for this Activation | `3023997373` |
-| BillingCode | String | Reserved for future use | `` |
-| BillingCycle | String | Reserved for future use | `` |
-| BillingCycleDate | String | Reserved for future use | `` |
-| Commission | Object | Reserved for future use | `` |
-| CompanyCode | String | Reserved for future use | `` |
-| IsCommissionable | Boolean | Reserved for future use | `` |
-| OriginalIMEI | String | Reserved for future use | `` |
-| OriginalSIM | String | Reserved for future use | `` |
-| OriginalRatePlanCode | String | Reserved for future use | `` |
-| OriginalRatePlanMRC | String | Reserved for future use | `` |
-| SalesRepresentativeName | String | Reserved for future use | `` |
-| UpgradeCode | String | Reserved for future use | `` |
-| UpgradeSourceNumber | String | Reserved for future use | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| ActivationId | integer | System-generated identifier for the [Activation](#activation) | `354` |
+| ActivationDate | datetime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
+| ActivatedProduct | [ActivatedProduct](#activatedproduct) | The Product that is being activated |  |
+| ActivationState | string | State of the [Activation](#activation). See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
+| ActivationTermCode | string(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
+| ActivationType | string | The type of this [Activation](#activation), such as a new [Activation](#activation) or an upgrade. See [ActivationType](#activationtype) for a list of acceptable values | `NewActivation` |
+| AdditionalFees | array[[AdditionalFee](#additionalfee)] | The additional fees that are applicable to this [Activation](#activation), not including the deposit fee or tab |  |
+| ContractLengthInMonths | integer | Number of months the [Activation](#activation) has been contracted for. ContractTerm in RQ. For a list of acceptable values, see [ContractTerms](#contractterms) | `24` |
+| ContractNumberIsAccountNumber | boolean | A flag to indicate if the contract number of the [Activation](#activation) can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
+| DealerName | string | Carrier-specific dealer name | `IAPR` |
+| DealerCode | string(64) | Carrier-specific dealer code | `IAPR` |
+| Deposit | [AdditionalFee](#additionalfee) | The security deposit that the [Activation](#activation) requires the Subscriber to pay | `Credit check performed, deposit required` |
+| Notes | string(256) | Free form text with any additional notes related to the [Activation](#activation) | `Notes go here!` |
+| OrderNumber | string(64) | Carrier-specific identifier for the order this activation is associated with. Activations may have the same order number if they were part of a multi-line activation in the carrier system | `ORD1234` |
+| RatePlans | array[[RatePlan](#rateplan)] | The Rate Plan(s) that are applied to the [Activation](#activation) |  |
+| RemoteActivationID | string | Carrier-specific identifier for the [Activation](#activation) | `3023997373` |
+| Subscriber | subscriber | The Subscriber (customer) that the [Activation](#activation) is for |  |
+| TrackingNumber | string(64) | Carrier-specific tracking number for this [Activation](#activation) | `3023997373` |
+| *BillingCode* | *string* | *Reserved for future use* | |
+| *BillingCycle* | *string* | *Reserved for future use* | |
+| *BillingCycleDate* | *string* | *Reserved for future use* | |
+| *Commission* | *decimal* | *Reserved for future use* | |
+| *CompanyCode* | *string* | *Reserved for future use* | |
+| *IsCommissionable* | *boolean* | *Reserved for future use* | |
+| *OriginalIMEI* | *string* | *Reserved for future use* | |
+| *OriginalSIM* | *string* | *Reserved for future use* | |
+| *OriginalRatePlanCode* | *string* | *Reserved for future use* | |
+| *OriginalRatePlanMRC* | *string* | *Reserved for future use* | |
+| *SalesRepresentativeName* | *string* | *Reserved for future use* | |
+| *UpgradeCode* | *string* | *Reserved for future use* | |
+| *UpgradeSourceNumber* | *string* | *Reserved for future use* | |
 
 ### Subscriber
 
@@ -102,33 +76,28 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
  ### RQ Limitations 
 * Only 4 addresses will be accepted, the first 4 phone numbers will be assigned to Phone1, Phone2, Phone3, Phone4 in order.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| SubscriberId | Object | Carrier-specific identifier for the Subscriber | `12121212121` |
-| FirstName | Object | If IsIndividual is true, the first name of the Subscriber | `Joe` |
-| LastName | Object | If IsIndividual is true, the last name of the Subscriber | `Smith` |
-| Addresses | Object | List of addresses for the Subscriber | `` |
-| AssociatedAccount | Object | The account associated with this Subscriber | `` |
-| AssociatedAccount.AccountId | Object | Carrier-specific identifier for the associated account | `343434343` |
-| AssociatedAccount.Notes | String | Custom notes related to the associated account | `` |
-| AssociatedAccount.TrackingNumber | String | Carrier-specific tracking number for the associated account | `5656565656` |
-| BirthDate | Object | Date of birth in MM/DD/YYYY format | `5/16/1980` |
-| CompanyName | Object | If the Subscriber is a business, the name of the business | `Acme Inc` |
-| Email | Object | Email address | `subscriber@example.com` |
-| IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
-| Notes | Object | Notes | `24 Month Term` |
-| PhoneNumbers | Object | List of phone numbers | `` |
-| PhoneNumbers.Type | String | The type of phone number. See PhoneNumberType for the list of acceptable values | `Home` |
-| PhoneNumbers.Value | Object | Phone number | `1234561234` |
-| SSN | Object | Last 4 digits of a SSN | `6789` |
-| TrackingNumber | Object | Carrier-specific tracking number | `2121212121` |
-| SecondName | String | Reserved for future use | `` |
-| PreferredLanguage | String | Reserved for future use | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| SubscriberId | string(64) | Carrier-specific identifier for the Subscriber | `12121212121` |
+| FirstName | string(64) | If IsIndividual is true, the first name of the Subscriber | `Joe` |
+| LastName | string(64) | If IsIndividual is true, the last name of the Subscriber | `Smith` |
+| Addresses | array[[Address](#address)] | List of addresses for the Subscriber |  |
+| AssociatedAccount | object | The account associated with this Subscriber |  |
+| AssociatedAccount.AccountId | string(64) | Carrier-specific identifier for the associated account | `343434343` |
+| AssociatedAccount.Notes | string | Custom notes related to the associated account |  |
+| AssociatedAccount.TrackingNumber | string | Carrier-specific tracking number for the associated account | `5656565656` |
+| BirthDate | datetime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
+| CompanyName | string(64) | If the Subscriber is a business, the name of the business | `Acme Inc` |
+| Email | string(64) | Email address | `subscriber@example.com` |
+| IsIndividual | boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
+| Notes | string(128) | Notes | `24 Month Term` |
+| PhoneNumbers | array[object] | List of phone numbers |  |
+| PhoneNumbers.Type | string | The type of phone number. See [PhoneNumberType](#phonenumbertype) for the list of acceptable values | `Home` |
+| PhoneNumbers.Value | string(32) | Phone number | `1234561234` |
+| SSN | string(4) | Last 4 digits of a SSN | `6789` |
+| TrackingNumber | string(64) | Carrier-specific tracking number | `2121212121` |
+| *SecondName* | *string* | *Reserved for future use* | |
+| *PreferredLanguage* | *string* | *Reserved for future use* | |
 
 ### Address
 
@@ -138,154 +107,115 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 * A maximum of 2 additional Addresses (excluding Work address) will be accepted
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| AddressLine1 | Object | Line 1 of the Address | `123 Main Street` |
-| AddressLine2 | Object | Line 2 of the Address | `Apt 200` |
-| City | Object | City | `Dover` |
-| Country | Object | Country | `USA` |
-| County | Object | County | `Fairfield` |
-| POBox | Object | Post office box | `PO Box 123` |
-| PostalCode | Object | Postal code or zip code | `19901` |
-| Province | Object | Province or state | `DE` |
-| SuiteNumber | Object | Suite number | `100` |
-| Type | String | The type of this Address. See AddressType for a list of acceptable values | `Residential` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| AddressLine1 | string(128) | Line 1 of the Address | `123 Main Street` |
+| AddressLine2 | string(128) | Line 2 of the Address | `Apt 200` |
+| City | string(64) | City | `Dover` |
+| Country | string(64) | Country | `USA` |
+| County | string(64) | County | `Fairfield` |
+| POBox | string(64) | Post office box | `PO Box 123` |
+| PostalCode | string(32) | Postal code or zip code | `19901` |
+| Province | string(64) | Province or state | `DE` |
+| SuiteNumber | string(32) | Suite number | `100` |
+| Type | string | The type of this Address. See [AddressType](#addresstype) for a list of acceptable values | `Residential` |
 
-
-
-
-
-
-### Rateplan
+### RatePlan
 
 #### RQ Limitations
 
 * A maximum of 2 Rate Plans will be accepted
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| RatePlanId | Object | Carrier-specific identifier for the RatePlan | `ABC1234` |
-| Name | Object | Name | `Country-wide Unlimited` |
-| ContractTerms | Object | Terms and conditions | `Some terms` |
-| Description | Object | Description. May be set to an empty string | `The perfect plan for lots of calling!` |
-| IncludedRatePlanFeatures | Object | Features are included with the RatePlan | `` |
-| MonthlyRecurringCharges | Object | Monthly cost | `55` |
-| RatePlanFeatureAddons | Object | Additional RatePlan features the Subscriber chose to pay for | `` |
-| SOCCode | Object | Carrier-specific SOC code | `ABC1234` |
-| CommissionAmount | Object | Reserved for future use | `` |
-| IsSharedPlan | Boolean | Reserved for future use | `` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| RatePlanId | string(64) | Carrier-specific identifier for the RatePlan | `ABC1234` |
+| Name | string(64) | Name | `Country-wide Unlimited` |
+| ContractTerms | string(256) | Terms and conditions | `Some terms` |
+| Description | string(128) | Description. May be set to an empty string | `The perfect plan for lots of calling!` |
+| IncludedRatePlanFeatures | array[[RatePlanFeature](#rateplanfeature)] | Features are included with the RatePlan |  |
+| MonthlyRecurringCharges | decimal | Monthly cost | `55` |
+| RatePlanFeatureAddons | array[[RatePlanFeature](#rateplanfeature)] | Additional RatePlan features the Subscriber chose to pay for |  |
+| SOCCode | string(64) | Carrier-specific SOC code | `ABC1234` |
+| *CommissionAmount* | *decimal* | *Reserved for future use* | |
+| *IsSharedPlan* | *boolean* | *Reserved for future use* | |
 
+### RatePlanFeature
 
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| RatePlanAddonId | string(64) | Carrier-specific identifier for the RatePlanFeature | `XYZ5678` |
+| Name | string(64) | Name | `TEXT100` |
+| Description | string(128) | Description | `One hundred additional text messages.` |
+| MonthlyRecurringCharges | decimal | Monthly cost | `5` |
+| SOCCode | string(64) | Carrier-specific SOC code | `XYZ5678` |
+| *CommissionAmount* | *decimal* | *Reserved for future use* | |
 
+### ActivatedProduct
 
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Description | string(128) | Description | `Samsung Galaxy S5` |
+| ESN | string(32) | Electronic Serial Number. This is the first value used to search for a product in your inventory when importing a new activation | `35854205829867` |
+| IMEI | string(32) | International Mobile Station Equipment Identity | `351756051523999` |
+| Make | string(64) | Make | `Samsung` |
+| MobileDeviceNumber | string(32) | Phone number. Customer Telephone Number and MDN in RQ | `5555550123` |
+| Model | string(64) | Model | `Galaxy S5` |
+| Price | decimal | Price | `499` |
+| ProductId | string(64) | Used to identify the product in other iQmetrix systems. May be set to an empty string |  |
+| SerialNumber | string(64) | Serial number | `98769456321` |
+| SIM | string(32) | Subscriber identity module | `89000000000000001234` |
+| SKU | string(64) | Stockkeeping Unit. This value is used when activating a customer-owned phone | `DEF987` |
+| SOCCode | string(64) | Carrier-specific SOC | `DEF987` |
+| Tab | object | A discount that is added to or subtracted from the Product's price |  |
+| Tab.Amount | decimal | Amount | `50` |
+| Tab.Commission | [VendorRebate](#vendorrebate) |  |  |
+| Tab.ReferenceNumber | string | Carrier reference number | `abc123` |
+| *IsCarrierSupplied* | *boolean* | *Reserved for future use* | |
+| *NumberPortedIn* | *boolean* | *Reserved for future use* | |
 
+### AdditionalFee
 
-### Rateplanfeature
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Name | string(64) | Name | `Roaming` |
+| Description | string(128) | Description | `Roam like home` |
+| Amount | decimal | Amount | `55``` |
+| Notes | string(512) | Notes | `US` |
+| Rebate | [VendorRebate](#vendorrebate) |  |  |
+| ReferenceNumber | string(64) | Carrier reference number, this value should be used for storing an identifier from an external system | `abc123` |
+| SOCCode | string(64) | Carrier-specific SOC code | `BB3221` |
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| RatePlanAddonId | Object | Carrier-specific identifier for the RatePlanFeature | `XYZ5678` |
-| Name | Object | Name | `TEXT100` |
-| Description | Object | Description | `One hundred additional text messages.` |
-| MonthlyRecurringCharges | Object | Monthly cost | `5` |
-| SOCCode | Object | Carrier-specific SOC code | `XYZ5678` |
-| CommissionAmount | Object | Reserved for future use | `` |
+### VendorRebate
 
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Name | string(64) | Name | `Promo` |
+| Description | string(128) | Description | `FREE Roam Like Home` |
+| Amount | decimal | Amount | `55` |
+| Notes | string(512) | Notes | `US` |
+| ReferenceNumber | string(64) | Carrier reference number | `abc123` |
+| SOCCode | string(64) | Carrier-specific SOC code | `AGG242` |
 
-
-
-
-
-### Activatedproduct
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Description | Object | Description | `Samsung Galaxy S5` |
-| ESN | Object | Electronic Serial Number. This is the first value used to search for a product in your inventory when importing a new activation | `35854205829867` |
-| IMEI | Object | International Mobile Station Equipment Identity | `351756051523999` |
-| Make | Object | Make | `Samsung` |
-| MobileDeviceNumber |  | Phone number. Customer Telephone Number and MDN in RQ | `5555550123` |
-| Model | Object | Model | `Galaxy S5` |
-| Price | Object | Price | `499` |
-| ProductId | Object | Used to identify the product in other iQmetrix systems. May be set to an empty string | `` |
-| SerialNumber | Object | Serial number | `98769456321` |
-| SIM | Object | Subscriber identity module | `89000000000000001234` |
-| SKU | Object | Stockkeeping Unit. This value is used when activating a customer-owned phone | `DEF987` |
-| SOCCode | Object | Carrier-specific SOC | `DEF987` |
-| Tab | Object | A discount that is added to or subtracted from the Product's price | `` |
-| Tab.Amount | Object | Amount | `50` |
-| Tab.Commission | Object |  | `` |
-| Tab.ReferenceNumber | String | Carrier reference number | `abc123` |
-| IsCarrierSupplied | Boolean | Reserved for future use | `` |
-| NumberPortedIn | Boolean | Reserved for future use | `` |
-
-
-
-
-
-
-### Additionalfee
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Name | Object | Name | `Roaming` |
-| Description | Object | Description | `Roam like home` |
-| Amount | Object | Amount | `55``` |
-| Notes | Object | Notes | `US` |
-| Rebate | Object |  | `` |
-| ReferenceNumber | Object | Carrier reference number, this value should be used for storing an identifier from an external system | `abc123` |
-| SOCCode | Object | Carrier-specific SOC code | `BB3221` |
-
-
-
-
-
-
-### Vendorrebate
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Name | Object | Name | `Promo` |
-| Description | Object | Description | `FREE Roam Like Home` |
-| Amount | Object | Amount | `55` |
-| Notes | Object | Notes | `US` |
-| ReferenceNumber | Object | Carrier reference number | `abc123` |
-| SOCCode | Object | Carrier-specific SOC code | `AGG242` |
-
-
-
-
-
-
-### Confirmedactivation
+### ConfirmedActivation
 
 A ConfirmedActivation resource represents a payment transaction that completed the activation of one or more phones.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Service-generated identifier for the activation confirmation | `58` |
-| ActivationConfirmationDetails | Object | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation | `` |
-| ActivationConfirmationDetails.ActivationID | Object | Identifier of the activation that is being confirmed (see CarrierActivationDetails.ActivationId) | `153` |
-| ActivationConfirmationDetails.BAN | String | The billing account number of the account associated with this line | `681883059` |
-| ActivationConfirmationDetails.IMEI | String | The IMEI of the device that was activated | `990000862471854` |
-| ActivationConfirmationDetails.OrderNumber | String | The order number of the activation that is being confirmed (see CarrierActivationDetails.OrderNumber) | `ORD1234` |
-| ActivationConfirmationDetails.PhoneNumber | String | The phone number of the device that was activated | `3023997373` |
-| ActivationConfirmationDetails.RemoteActivationID | String | Carrier-specific identifier for the activation that is being confirmed (see CarrierActivationDetails.RemoteActivationID) | `3023997373` |
-| ConfirmationDateUTC | Object | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
-| InvoiceId | String | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
-| InvoiceSubtotal | Object | The subtotal amount from the invoice | `53.38` |
-| InvoiceTotal | Object | The total amount from the invoice | `61.54` |
-| LocationId | Object | Identifier of the Location where the transaction occurred | `1` |
-| Taxes | Object | The taxes from the invoice | `8.16` |
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Service-generated identifier for the activation confirmation | `58` |
+| ActivationConfirmationDetails | array[object] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
+| ActivationConfirmationDetails.ActivationID | integer | Identifier of the activation that is being confirmed (see CarrierActivationDetails.ActivationId) | `153` |
+| ActivationConfirmationDetails.BAN | string | The billing account number of the account associated with this line | `681883059` |
+| ActivationConfirmationDetails.IMEI | string | The IMEI of the device that was activated | `990000862471854` |
+| ActivationConfirmationDetails.OrderNumber | string | The order number of the activation that is being confirmed (see CarrierActivationDetails.OrderNumber) | `ORD1234` |
+| ActivationConfirmationDetails.PhoneNumber | string | The phone number of the device that was activated | `3023997373` |
+| ActivationConfirmationDetails.RemoteActivationID | string | Carrier-specific identifier for the activation that is being confirmed (see CarrierActivationDetails.RemoteActivationID) | `3023997373` |
+| ConfirmationDateUTC | datetime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
+| InvoiceId | string | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
+| InvoiceSubtotal | decimal | The subtotal amount from the invoice | `53.38` |
+| InvoiceTotal | decimal | The total amount from the invoice | `61.54` |
+| LocationId | integer | Identifier of the [Location](/api/company-tree/#location) where the transaction occurred | `1` |
+| Taxes | decimal | The taxes from the invoice | `8.16` |
 
 
 
@@ -339,61 +269,34 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 | Pager |
 | Work |
 
-
-
-
-
-
-
-
 ## Creating an Activation
 
 
 
 #### Request
 
-```
-PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activations({ActivationId})
-```
+    PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activations({ActivationId})
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - Identifier for the {{Location}}
-
-* `CarrierId` (**Required**) - Identifier for the {{Carrier}}
-
-* `ActivationId` (**Required**) - Identifier for the {{Activation}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} * `CarrierId` (**Required**)  - Identifier for the {{Carrier}} * `ActivationId` (**Required**)  - Identifier for the {{Activation}} 
 
 
 #### Request Parameters
 
   * `Id` (**Required**) - Must match the ActivationId provided in the URI
   * `CarrierActivationDetails` (**Required**)
-    * `ActivatedProduct` (Optional)
-      * `ProductId` (Optional) - May be set to an empty string
+    * `ActivatedProduct` (**Required**)
+      * `ProductId` (**Required**) - May be set to an empty string
       * `Description` (Optional)
       * `ESN` (Optional)
       * `IMEI` (Optional)
@@ -406,28 +309,28 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
       * `SKU` (Optional)
       * `SOCCode` (Optional)
       * `Tab` (Optional)
-      * `TabCommission` (Optional) - Required if Tab is not null
-          * `Name` (Optional) - Required if Commission is not null
-          * `Description` (Optional) - Required if Commission is not null
-          * `ReferenceNumber` (Optional) - Required if Commission is not null
+        * `Commission` (**Required**) - Required if Tab is not null
+          * `Name` (**Required**) - Required if Commission is not null
+          * `Description` (**Required**) - Required if Commission is not null
+          * `ReferenceNumber` (**Required**) - Required if Commission is not null
           * `Amount` (Optional)
           * `Notes` (Optional)
-        * `SOCCode` (Optional) - Required if Commission is not null
-        * `ReferenceNumber` (Optional) - Required if Tab is not null
+        * `SOCCode` (**Required**) - Required if Commission is not null
+        * `ReferenceNumber` (**Required**) - Required if Tab is not null
         * `Amount` (Optional)
-    * `ActivationType` (Optional)
-    * `Subscriber` (Optional)
-      * `FirstName` (Optional) - Required if IsIndividual is set to true, otherwise must be omitted
-      * `LastName` (Optional) - Required if IsIndividual is set to true, otherwise must be omitted
-      * `CompanyName` (Optional) - Required if IsIndividual is set to false, otherwise must be omitted
+    * `ActivationType` (**Required**)
+    * `Subscriber` (**Required**)
+      * `FirstName` (**Required**) - Required if `IsIndividual` is set to `true`, otherwise must be omitted
+      * `LastName` (**Required**) - Required if `IsIndividual` is set to `true`, otherwise must be omitted
+      * `CompanyName` (**Required**) - Required if `IsIndividual` is set to `false`, otherwise must be omitted
       * `SubscriberId` (Optional)
       * `Addresses` (Optional)
-        * `Type` (Optional)
-        * `AddressLine1` (Optional) - Required if Addresses is not null
-        * `City` (Optional) - Required if Addresses is not null
-        * `Country` (Optional) - Required if Addresses is not null
-        * `PostalCode` (Optional) - Required if Addresses is not null
-        * `Province` (Optional) - Required if Addresses is not null
+        * `Type` (**Required**)
+        * `AddressLine1` (**Required**) - Required if Addresses is not null
+        * `City` (**Required**) - Required if Addresses is not null
+        * `Country` (**Required**) - Required if Addresses is not null
+        * `PostalCode` (**Required**) - Required if Addresses is not null
+        * `Province` (**Required**) - Required if Addresses is not null
         * `AddressLine2` (Optional)
         * `County` (Optional)
         * `POBox` (Optional)
@@ -438,29 +341,29 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
         * `TrackingNumber` (Optional)
       * `BirthDate` (Optional)
       * `Email` (Optional)
-      * `IsIndividual` (Optional)
+      * `IsIndividual` (Optional) - Defaults to false
       * `Notes` (Optional)
       * `PhoneNumbers` (Optional)
-        * `Value` (Optional)
+        * `Value` (**Required**)
         * `Type` (Optional) - Defaults to Home
       * `SSN` (Optional)
       * `TrackingNumber` (Optional)
-    * `RatePlans` (Optional)
-      * `Description` (Optional) - Required if IncludedRatePlanFeatures is not null. May be set to an empty string
-      * `SOCCode` (Optional) - Required if IncludedRatePlanFeatures is not null
+    * `RatePlans` (**Required**)
+      * `Description` (**Required**) - Required if IncludedRatePlanFeatures is not null. May be set to an empty string
+      * `SOCCode` (**Required**) - Required if IncludedRatePlanFeatures is not null
       * `RatePlanId` (Optional)
       * `Name` (Optional)
       * `ContractTerms` (Optional)
       * `IncludedRatePlanFeatures` (Optional)
-        * `Description` (Optional) - Required if IncludedRatePlanFeatures is not null
-        * `SOCCode` (Optional) - Required if IncludedRatePlanFeatures is not null
+        * `Description` (**Required**) - Required if IncludedRatePlanFeatures is not null
+        * `SOCCode` (**Required**) - Required if IncludedRatePlanFeatures is not null
         * `RatePlanAddonId` (Optional)
         * `Name` (Optional)
         * `MonthlyRecurringCharges` (Optional)
       * `MonthlyRecurringCharges` (Optional)
       * `RatePlanFeatureAddons` (Optional)
-        * `Description` (Optional) - Required if RatePlanFeatureAddOns is not null
-        * `SOCCode` (Optional) - Required if RatePlanFeatureAddOns is not null
+        * `Description` (**Required**) - Required if RatePlanFeatureAddOns is not null
+        * `SOCCode` (**Required**) - Required if RatePlanFeatureAddOns is not null
         * `RatePlanAddonId` (Optional)
         * `Name` (Optional)
         * `MonthlyRecurringCharges` (Optional)
@@ -473,15 +376,15 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
       * `Amount` (Optional)
       * `Notes` (Optional)
       * `Rebate` (Optional)
-        * `Name` (Optional) - Required if Rebate is not null
-        * `Description` (Optional) - Required if Rebate is not null
-        * `Notes` (Optional) - Required if Rebate is not null
-        * `ReferenceNumber` (Optional) - Required if Rebate is not null
-        * `SOCCode` (Optional) - Required if Rebate is not null
+        * `Name` (**Required**) - Required if Rebate is not null
+        * `Description` (**Required**) - Required if Rebate is not null
+        * `Notes` (**Required**) - Required if Rebate is not null
+        * `ReferenceNumber` (**Required**) - Required if Rebate is not null
+        * `SOCCode` (**Required**) - Required if Rebate is not null
         * `Amount` (Optional)
       * `ReferenceNumber` (Optional)
       * `SOCCode` (Optional)
-    * `ContractLengthInMonths` (Optional) - For a list of acceptable values, see ContractTerms
+    * `ContractLengthInMonths` (Optional) - For a list of acceptable values, see [ContractTerms](#contractterms)
     * `ContractNumberIsAccountNumber` (Optional) - Defaults to false
     * `DealerName` (Optional)
     * `DealerCode` (Optional)
@@ -498,27 +401,16 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
     * `TrackingNumber` (Optional)
   * `CarrierId` (**Required**) - Must match the CarrierId provided in the URI, must be greater than 0
   * `CompanyId` (**Required**)
-  * `LocationId` (**Required**) - Must match the LocationId provided in the UR
- 
-
+  * `LocationId` (**Required**) - Must match the LocationId provided in the URI
 
 
 ###### Example
 
 ```
 PUT /Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
   "Id": "1=35854205829867",
   "CarrierActivationDetails": {
@@ -656,20 +548,10 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (string) - The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma
-  * `CarrierActivationDetails` (carrieractivationdetails) - The details of this Activation
-  * `CarrierId` (integer) - Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service
-  * `CompanyId` (integer) - Identifier of the Company making this request
-  * `LocationId` (integer) - Identifier of the Location making this request
-
-
-
 ###### Example
+
 ```
-HTTP 200 Content-Type: application/json
+HTTP 201 Content-Type: application/json
 {
     "Id": "1=35854205829867",
     "CarrierActivationDetails": {
@@ -799,76 +681,34 @@ HTTP 200 Content-Type: application/json
     "LocationId": "4"
 }
  
-
-```
-
-
-
-
-
-
-
-
-
 ## Retrieving Completed Activations
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=ConfirmationDateUTC gt DateTime'{ConfirmationDate}'&$skip={Skip}&$top={Top}
-```
+    GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'{ConfirmationDate}'&$skip={Skip}&$top={Top}
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `CarrierId` (**Required**) - Identifier for the {{Carrier}}
-
-* `ConfirmationDate` (Optional) - Limits returned records to ones that were created after the specified date
-
-* `Skip` (Optional) - Number of records to skip before returning.  See Pagination for more details
-
-* `Top` (Optional) - Maximum number of records return.  See Pagination for more details
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CarrierId` (**Required**)  - Identifier for the {{Carrier}} * `ConfirmationDate` (Optional)  - Limits returned records to ones that were created after the specified date * `Skip` (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details * `Top` (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
 
 
 
 ###### Example
 
 ```
-GET /Companies(1)/Carriers(41)/ConfirmedActivations?$filter=ConfirmationDateUTC gt DateTime'Thu Jul 16 2015 09:29:31 GMT-0600 (Canada Central Standard Time)'&$skip=0&$top=5
-
-
+GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'Thu Jul 16 2015 09:29:31 GMT-0600 (Canada Central Standard Time)'&$skip=0&$top=5
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -876,27 +716,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Service-generated identifier for the activation confirmation
-  * `ActivationConfirmationDetails` (array[object]) - Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation
-    * `ActivationConfirmationDetails.ActivationID` (integer) - Identifier of the activation that is being confirmed (see CarrierActivationDetails.ActivationId)
-    * `ActivationConfirmationDetails.BAN` (string) - The billing account number of the account associated with this line
-    * `ActivationConfirmationDetails.IMEI` (string) - The IMEI of the device that was activated
-    * `ActivationConfirmationDetails.OrderNumber` (string) - The order number of the activation that is being confirmed (see CarrierActivationDetails.OrderNumber)
-    * `ActivationConfirmationDetails.PhoneNumber` (string) - The phone number of the device that was activated
-    * `ActivationConfirmationDetails.RemoteActivationID` (string) - Carrier-specific identifier for the activation that is being confirmed (see CarrierActivationDetails.RemoteActivationID)
-  * `ConfirmationDateUTC` (datetime) - When this activation confirmation occurred
-  * `InvoiceId` (string) - Identifier of the invoice that caused these activations to be confirmed
-  * `InvoiceSubtotal` (decimal) - The subtotal amount from the invoice
-  * `InvoiceTotal` (decimal) - The total amount from the invoice
-  * `LocationId` (integer) - Identifier of the Location where the transaction occurred
-  * `Taxes` (decimal) - The taxes from the invoice
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -921,15 +742,56 @@ HTTP 200 Content-Type: application/json
     },
 ]
 
+
+
+###### Example
+
 ```
+HTTP 200 Content-Type: application/hal+json
+{
+    "_links": {
+        "self": {
+            "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=0&top=5",
+            "templated": false
+        },
+        "next": {
+            "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=5&top=5",
+            "templated": false                
+        }
+    },
+    "_embedded": {
+        "self": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "v2/Companies(123)/Carriers(45)/ConfirmedActivations(58)",
+                        "templated": false
+                    }
+                },
+                "_embedded": {},
+                "Id": 58,
+                "ActivationConfirmationDetails": [
+                    {
+                        "ActivationID": "153",
+                        "BAN": "681883059",
+                        "IMEI": "990000862471854",
+                        "OrderNumber": "ORD1234",
+                        "PhoneNumber": "3023997373",
+                        "RemoteActivationID": "3023997373"
+                    }
+                ],
+                "ConfirmationDateUTC": "2015-07-21T15:25:45.323",
+                "InvoiceId": "INV0001",
+                "InvoiceSubtotal": 53.38,
+                "InvoiceTotal": 61.54,
+                "LocationId": 1,
+                "Taxes": 8.16
+            },
+            ...
+        ]
 
-
-
-
-
-
-
-
+    }
+}
 
 
 ## Errors
@@ -940,10 +802,6 @@ HTTP 200 Content-Type: application/json
 | `HTTP 400` | `Carrier {x} not found` | Ensure Carrier provided in URI is correct |
 | `HTTP 400` | `Invalid Request: the {x} `<br/>`field is required` | Ensure all required fields are provided |
 | `HTTP 400` | `Invalid Request: Type field must`<br/>` be one of the following values: {x}` | Ensure AddressType is one of the values in [AddressType](#addresstype) |
-
-
-
-
 
 ## Pagination
 
@@ -996,8 +854,3 @@ The `self`.`href` value is the encoded version of the API request that returned 
 The `next`.`href` refers to a resource containing a page with the **next** 10 items.
 
 The `prev`.`href` refers to a resource containing a page with the **previous** 10 items.
-
-
-
-
-

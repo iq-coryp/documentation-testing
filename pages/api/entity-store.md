@@ -1,22 +1,17 @@
 ---
-title: Entities
+title:  Entities
 permalink: /api/entity-store/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 ## Overview
 
 The Entity Store helps manage your Company structure. It also manages relationships your Company has with Suppliers, Manufacturers and Carriers. 
-
-
 
 
 ## Endpoints
@@ -26,108 +21,77 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ## Resources
 
-
-
-
-
 ### Carrier
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `9` |
-| Name | String | Name | `SampleCarrier` |
-| Description | String | Description | `Carrier creating great experiences.` |
-| Attributes | Object | Set of key-value pairs that contain extra data | `` |
-| CreatedUTC | Object | Created date, in UTC | `2015-05-20T23:06:29.7700813Z` |
-| ClientEntityId | String | Identifier in an external system | `123` |
-| LastModifiedUTC | Object | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Logo | Object | A reference to an asset | `` |
-| Relationships | Object | Relationships | `` |
-| Role | String | Role | `Carrier` |
-| Roles | Object | The value must be Carrier | `{ 'Name': 'Carrier' }` |
-| SortName | String | A string used for sorting | `samplecarrier` |
-| Version | Object | Latest revision number | `1` |
-| CorrelationId | String | Reserved for internal use | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique identifier | `9` |
+| Name | string | Name | `SampleCarrier` |
+| Description | string | Description | `Carrier creating great experiences.` |
+| Attributes | object | Set of key-value pairs that contain extra data |  |
+| CreatedUTC | datetime | Created date, in UTC | `2015-05-20T23:06:29.7700813Z` |
+| ClientEntityId | string | Identifier in an external system | `123` |
+| LastModifiedUTC | datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Logo | object | A reference to an [Asset](/api/assets/#asset) |  |
+| Relationships | array[object] | Relationships |  |
+| Role | string | Role | `Carrier` |
+| Roles | object | The value must be Carrier | `{ 'Name': 'Carrier' }` |
+| SortName | string | A string used for sorting | `samplecarrier` |
+| Version | integer | Latest revision number | `1` |
+| *CorrelationId* | *string* | *Reserved for internal use* | |
 
 ### Manufacturer
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `4` |
-| Name | String | Name | `SampleManufacturer` |
-| Description | String | Description | `Manufacturer creating great experiences.` |
-| Attributes | Object | Set of key-value pairs that contain extra data | `` |
-| CreatedUTC | Object | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| ClientEntityId | String | Identifier in an external system | `123` |
-| LastModifiedUTC | Object | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Logo | Object | A reference to an asset | `` |
-| Relationships | Object | Relationships | `` |
-| Role | String | Role | `Manufacturer` |
-| Roles | Object | The value must be Manufacturer | `{ 'Name': 'Manufacturer' }` |
-| SortName | String | A string used for sorting | `samplemanufacturer` |
-| Version | Object | Latest revision number | `1` |
-| CorrelationId | String | Reserved for internal use | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique identifier | `4` |
+| Name | string | Name | `SampleManufacturer` |
+| Description | string | Description | `Manufacturer creating great experiences.` |
+| Attributes | object | Set of key-value pairs that contain extra data |  |
+| CreatedUTC | datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| ClientEntityId | string | Identifier in an external system | `123` |
+| LastModifiedUTC | datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Logo | object | A reference to an [Asset](/api/assets/#asset) |  |
+| Relationships | array[object] | Relationships |  |
+| Role | string | Role | `Manufacturer` |
+| Roles | object | The value must be Manufacturer | `{ 'Name': 'Manufacturer' }` |
+| SortName | string | A string used for sorting | `samplemanufacturer` |
+| Version | integer | Latest revision number | `1` |
+| *CorrelationId* | *string* | *Reserved for internal use* | |
 
 ### Supplier
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `14` |
-| Name | String | Name | `SampleSupplier` |
-| Description | String | Description | `Supplier creating great experiences.` |
-| Attributes | Object | Set of key-value pairs that contain extra data | `` |
-| CreatedUTC | Object | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| ClientEntityId | String | Identifier in an external system | `123` |
-| LastModifiedUTC | Object | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Logo | Object | A reference to an asset | `` |
-| Relationships | Object | Relationships | `` |
-| Role | String | Role | `Supplier` |
-| Roles | Object | The value must be Supplier | `{ 'Name': 'Supplier' }` |
-| SortName | String | A string used for sorting | `samplesupplier` |
-| Version | Object | Latest revision number | `1` |
-| CorrelationId | String | Reserved for internal use | `` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique identifier | `14` |
+| Name | string | Name | `SampleSupplier` |
+| Description | string | Description | `Supplier creating great experiences.` |
+| Attributes | object | Set of key-value pairs that contain extra data |  |
+| CreatedUTC | datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| ClientEntityId | string | Identifier in an external system | `123` |
+| LastModifiedUTC | datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Logo | object | A reference to an [Asset](/api/assets/#asset) |  |
+| Relationships | array[object] | Relationships |  |
+| Role | string | Role | `Supplier` |
+| Roles | object | The value must be Supplier | `{ 'Name': 'Supplier' }` |
+| SortName | string | A string used for sorting | `samplesupplier` |
+| Version | integer | Latest revision number | `1` |
+| *CorrelationId* | *string* | *Reserved for internal use* | |
 
 
 
 
+## Getting All Carriers
 
 
-
-
-
-
-
-
-
-
-## 
-
-Getting All Carriers
 
 #### Request
 
-```
-GET /Carriers
-```
+    GET /Carriers
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 
@@ -135,24 +99,12 @@ GET /Carriers
 
 
 
-
-
-
 ###### Example
 
 ```
 GET /Carriers
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -160,27 +112,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string) - Name
-  * `Description` (string) - Description
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `CreatedUTC` (object) - Created date, in UTC
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (object) - A reference to an asset
-  * `Relationships` (object) - Relationships
-  * `Role` (string) - Role
-  * `Roles` (object) - The value must be Carrier
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -208,52 +141,25 @@ HTTP 200 Content-Type: application/json
   ...
 ]        
  
-
-```
-
+## Getting a Carrier
 
 
-
-
-
-
-
-
-## 
-
-Getting a Carrier
 
 #### Request
 
-```
-GET /Carriers({CarrierId})
-```
+    GET /Carriers({CarrierId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `CarrierId` (**Required**) - Identifier for the {{Carrier}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
 
 
 
@@ -261,17 +167,8 @@ GET /Carriers({CarrierId})
 
 ```
 GET /Carriers(9)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -279,27 +176,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string) - Name
-  * `Description` (string) - Description
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `CreatedUTC` (object) - Created date, in UTC
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (object) - A reference to an asset
-  * `Relationships` (object) - Relationships
-  * `Role` (string) - Role
-  * `Roles` (object) - The value must be Carrier
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -324,35 +202,17 @@ HTTP 200 Content-Type: application/json
   "Version": 1
 }
 
-
-```
-
+## Getting All Manufacturers
 
 
-
-
-
-
-
-
-## 
-
-Getting All Manufacturers
 
 #### Request
 
-```
-GET /Manufacturers
-```
+    GET /Manufacturers
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
@@ -360,24 +220,12 @@ GET /Manufacturers
 
 
 
-
-
-
 ###### Example
 
 ```
 GET /Manufacturers
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -385,27 +233,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string) - Name
-  * `Description` (string) - Description
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `CreatedUTC` (object) - Created date in UTC
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (object) - A reference to an asset
-  * `Relationships` (object) - Relationships
-  * `Role` (string) - Role
-  * `Roles` (object) - The value must be Manufacturer
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -433,52 +262,25 @@ HTTP 200 Content-Type: application/json
   ...
 ]
  
-
-```
-
+## Getting a Manufacturer
 
 
-
-
-
-
-
-
-## 
-
-Getting a Manufacturer
 
 #### Request
 
-```
-GET /Manufacturers({ManufacturerId})
-```
+    GET /Manufacturers({ManufacturerId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `ManufacturerId` (**Required**) - Identifier for the {{Manufacturer}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `ManufacturerId` (**Required**)  - Identifier for the {{Manufacturer}} 
 
 
 
@@ -486,17 +288,8 @@ GET /Manufacturers({ManufacturerId})
 
 ```
 GET /Manufacturers(4)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -504,27 +297,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string) - Name
-  * `Description` (string) - Description
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `CreatedUTC` (object) - Created date in UTC
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `LastModifiedUTC` (object) - Last modified date in UTC
-  * `Logo` (object) - A reference to an asset
-  * `Relationships` (object) - Relationships
-  * `Role` (string) - Role
-  * `Roles` (object) - The value must be Manufacturer
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -549,35 +323,17 @@ HTTP 200 Content-Type: application/json
   "Version": 1
 }
 
-
-```
-
-
-
-
-
-
-
-
-
 ## 
 
 Getting all Suppliers
 
 #### Request
 
-```
-GET /Suppliers
-```
+    GET /Suppliers
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
@@ -585,24 +341,12 @@ GET /Suppliers
 
 
 
-
-
-
 ###### Example
 
 ```
 GET /Suppliers
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -610,27 +354,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string) - Name
-  * `Description` (string) - Description
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Logo` (object) - A reference to an asset
-  * `Relationships` (array[object]) - Relationships
-  * `Role` (string) - Role
-  * `Roles` (object) - The value must be Supplier
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -658,52 +383,25 @@ HTTP 200 Content-Type: application/json
   ...
 ]
  
-
-```
-
+## Getting a Supplier
 
 
-
-
-
-
-
-
-## 
-
-Getting a Supplier
 
 #### Request
 
-```
-GET /Suppliers({SupplierId})
-```
+    GET /Suppliers({SupplierId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `SupplierId` (**Required**) - Identifier for the {{Supplier}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `SupplierId` (**Required**)  - Identifier for the {{Supplier}} 
 
 
 
@@ -711,17 +409,8 @@ GET /Suppliers({SupplierId})
 
 ```
 GET /Suppliers(14)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -729,27 +418,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string) - Name
-  * `Description` (string) - Description
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Logo` (object) - A reference to an asset
-  * `Relationships` (array[object]) - Relationships
-  * `Role` (string) - Role
-  * `Roles` (object) - The value must be Supplier
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -773,16 +443,4 @@ HTTP 200 Content-Type: application/json
   "SortName": "samplesupplier",
   "Version": 1
 }
-
-
-```
-
-
-
-
-
-
-
-
-
 

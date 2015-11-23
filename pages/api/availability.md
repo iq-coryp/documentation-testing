@@ -1,16 +1,13 @@
 ---
-title: Availability
-permalink: /api/availability/
+title:  Availability
+permalink: /api/Availability/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 
 
@@ -21,28 +18,14 @@ summary:
 
 ## Resources
 
-
-
-
-
 ### Availability
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier for a CatalogItem | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
-| EntityId | Object | Identifier for a CompanyTreeNode | `1` |
-| Quantity | Object | Quantity | `15` |
-| IsDropShippable | Boolean | A flag to indicate if the CatalogItem can be shipped | `true` |
-
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Guid | Unique identifier for a CatalogItem | `4c2d0ab3-f1bc-4323-abad-33aadd68049b` |
+| EntityId | integer | Identifier for a CompanyTreeNode | `1` |
+| Quantity | integer | Quantity | `15` |
+| IsDropShippable | boolean | A flag to indicate if the CatalogItem can be shipped | `true` |
 
 
 
@@ -53,37 +36,19 @@ summary:
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
-```
+    GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - Identifier for the {{Location}}
-
-* `CatalogItemId` (**Required**) - Unique identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} * `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -91,17 +56,8 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 
 ```
 GET /Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -109,17 +65,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (GUID) - Unique identifier for a CatalogItem
-  * `EntityId` (integer) - Identifier for a CompanyTreeNode
-  * `Quantity` (integer) - Quantity
-  * `IsDropShippable` (boolean) - A flag to indicate if the CatalogItem can be shipped
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -129,52 +76,25 @@ HTTP 200 Content-Type: application/json
   "IsDropShippable": true
 }
 
-
-```
-
-
-
-
-
-
-
-
-
 ## Getting Availability For a Catalog Item By Locations
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
-```
+    GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `CatalogItemId` (**Required**) - Identifier for the {{CatalogItem}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CatalogItemId` (**Required**)  - Identifier for the {{CatalogItem}} 
 
 
 
@@ -182,17 +102,8 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 
 ```
 GET /Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -200,17 +111,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (GUID) - Unique identifier for a CatalogItem
-  * `EntityId` (integer) - Identifier for a CompanyTreeNode
-  * `Quantity` (integer) - Quantity
-  * `IsDropShippable` (boolean) - A flag to indicate if the CatalogItem can be shipped
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -230,22 +132,9 @@ HTTP 200 Content-Type: application/json
 ]
 
 
-```
-
-
-
-
-
-
-
-
-
-
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 404` | `InventoryAvailability resource with EntityId {x}` <br/> `and ProductId {y} cannot be found, nor is there`<br> `availability in the tree branch.` | Ensure CatalogItemId is valid and belongs to the [Location](/api/company-tree/#location) specified in the request |
 | `HTTP 500` | `Entity is not related to company` | Ensure [Location](/api/company-tree/#location) belongs to Company specified in request |  
-
-

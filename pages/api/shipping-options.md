@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 19-11-2015
+last_updated: 23-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -22,6 +22,7 @@ For this call, you will need to create an endpoint based on the specification pr
 Copy the contents of the yaml file and paste into Swagger Editor: http://editor.swagger.io/
 
 -->
+
 
 ## Endpoint Format
 
@@ -52,6 +53,7 @@ API key must be provided in header and is configurable.
 
     Api-Key: 890g8f90dfgsd890fs89          
 
+
 ## Resources
 
 ### ShippingQuery
@@ -59,23 +61,28 @@ API key must be provided in header and is configurable.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
-| Items | Array[object] | List of Products to be added to shipping query |  |
-| Items.ProductName | String | Product name  | `Galaxy S6 Defender Case - Glacier` |
-| Items.Quantity | Integer | Amount of products | `11` |
-| Items.Sku | String | Product sku | `87932OTS45S6` |
-| PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
+| Items | array[object] | List of Products to be added to shipping query |  |
+| Items.ProductName | string | Product name  | `Galaxy S6 Defender Case - Glacier` |
+| Items.Quantity | integer | Amount of products | `11` |
+| Items.Sku | string | Product sku | `87932OTS45S6` |
+| PostalCode | string | Postal or zip code of shipping address | `A1A1A1` |
 
 ### ShippingOptions
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | String | Identifier for the shipping option | `350` |
-| Name | String | Shipping option name | `PurolatorExpress` |
-| Cost | Decimal | Cost for shipping option | `7.94` |
-| Currency | String(3) | Cost currency (USD or CAD) | `CAD` |
-| EstimatedTransitTime | String | Total time to be in transit, where units are provided by supplier | `1 week` |
+| Id | string | Identifier for the shipping option | `350` |
+| Cost | decimal | Cost for shipping option | `7.94` |
+| Currency | string(3) | Cost currency (USD or CAD) | `CAD` |
+| EstimatedTransitTime | string | Total time to be in transit, where units are provided by supplier | `1 week` |
+| Name | string | Shipping option name | `PurolatorExpress` |
+
+
+
 
 ## Get Shipping Options
+
+
 
 #### Request
 
@@ -85,10 +92,15 @@ The specification for the request must be in the format below:
 
 #### Headers
 
+
+
 * `Authorization: Basic`
 * `Accept: application/json`
 * `Content-Type: application/json`
 * `Host: supplier.azure-api.net`
+
+
+
 
 #### Request Parameters
 
@@ -98,6 +110,7 @@ The specification for the request must be in the format below:
     * `Quantity` (**Required**)
     * `Sku` (**Required**)
   * `PostalCode` (**Required**)
+
 
 ###### Example
 
@@ -127,10 +140,11 @@ Host: supplier.azure-api.net
 The specification of the response must be in the format below:
 
   * `Id` (**Required**)
-  * `Name` (Optional)
   * `Cost` (**Required**)
   * `Currency` (**Required**)
   * `EstimatedTransitTime` (Optional)
+  * `Name` (Optional)
+
 
 ###### Example
 
@@ -140,23 +154,23 @@ HTTP 200 Content-Type: application/json
     "ShippingOptions": [
         {
             "Id": "350",
-            "Name": "PurolatorExpress",
             "Cost": 7.94,
             "Currency": "CAD",
-            "EstimatedTransitTime": "1 hour"
+            "EstimatedTransitTime": "1 hour",
+            "Name": "PurolatorExpress"
         },
         {
             "Id": "352",
-            "Name": "PurolatorGround",
             "Cost": 12.58,
             "Currency": "CAD",
-            "EstimatedTransitTime": "1 hour"
+            "EstimatedTransitTime": "1 hour",
+            "Name": "PurolatorGround"
         },
         {
             "Id": "349",
-            "Name": "PurolatorExpress10:30AM",
             "Cost": 20.31,
             "Currency": "CAD",
-            "EstimatedTransitTime": "10:30 AM"
+            "EstimatedTransitTime": "10:30 AM",
+            "Name": "PurolatorExpress10:30AM"
        }
     ]

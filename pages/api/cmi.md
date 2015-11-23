@@ -4,11 +4,12 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience:
-last_updated: 19-11-2015
+last_updated: 23-11-2015
 summary:
 ---
 
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -22,6 +23,7 @@ The Customer Managed Inventory (CMI) API can be used to:
 * Create shipping notices for POs
 * See a list of all CMI enabled stores in RQ
 
+
 ## Endpoints
 
 * Sandbox: https://vmidemo.iqmetrix.net/VMIClientService.asmx
@@ -29,30 +31,35 @@ The Customer Managed Inventory (CMI) API can be used to:
 * Production (Toronto): https://vmi3.iqmetrix.net/VMIClientService.asmx
 * Production (Philadelphia): https://vmi10.iqmetrix.net/VMIClientService.asmx
 
-%7B%7Bimportant%7D%7D
+{{important}}
 You should choose a production endpoint that is geographically closest to your data center 
-%7B%7Bend%7D%7D
+{{end}}
+
 
 ## Resources
+
+
 
 ### ClientIdentity
 
 Authentication for the CMI API is done by including a ClientIdentity resource in a `<client>` section at the beginning of each request.
+
 ClientIdentitiy information is supplied by iQmetrix and used to authenticate requests made to the CMI API.
 {{note}}ClientIdentity authentication information is <a href="{{'/environments/' | prepend: site.api_baseurl}}">Environment</a> specific{{end}}
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ClientID | guid | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
+| ClientID | Guid | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
 | Username | String | Username | `sampleusername` |
 | Password | String | Password | `samplepassword` |
 | *StoreId* | *Integer* | *Reserved for future use. Use value of -1* | |
+
 
 ### PurchaseOrderShipmentNotice
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| PurchaseOrderID | guid | Unique identifier | `84DACFD3-4095-4D50-A02E-781B86B7408E` |
+| PurchaseOrderID | Guid | Unique identifier | `84DACFD3-4095-4D50-A02E-781B86B7408E` |
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
 | Quantity | Integer | Number of items shipped | `1` |
 | RQPurchaseOrderID | Integer | Identifier for the Purchase Order in RQ | `22073` |
@@ -61,21 +68,23 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorInvoiceNumber | String | Value supplied by the vendor when creating the purchase order | `1002` |
 | VendorSKU | String | The vendor part number/sku | `ABC123` |
 
+
 ### PurchaseOrderInformation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| PurchaseOrderID | guid | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
+| PurchaseOrderID | Guid | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
 | PurchaseOrderData | [PurchaseOrderData](#purcahseorderdata) | Purchase order |  |
 | ProductsOrdered | Array[[ProductInformation](#productinformation)] | Products ordered |  |
 | ProductsReceived | Array[[ProductInformation](#productinformation)] | Products received |  |
 | SerialsReceived | Array[[ProductSerialNumber](#productserialnumber)] | Serials received |  |
 
+
 ### PurchaseOrderData
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| PurchaseOrderID | guid | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
+| PurchaseOrderID | Guid | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
 | BillToStoreID | Integer | RQ StoreId | `55` |
 | BillToStoreName | String | RQ store name | `Cornwall west` |
 | BillToVendorAccountNumber | String | Vendor account number to use for billing | `1` |
@@ -94,11 +103,12 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorInvoiceNumber | String | Invoice number for the vendor | `1` |
 | VendorName | String | Name of the vendor | `SampleVendor` |
 
+
 ### ProductInformation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ProductID | guid | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
+| ProductID | Guid | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
 | ProductName | String | Name | `Samsung Galaxy S6` |
 | DateEOL | DateTime | End of life date | `1/01/2016 12:00:00 AM` |
 | DoNotOrder | Boolean | A flag to indicate if the product should not be ordered | `false` |
@@ -130,6 +140,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | SalePrice | Decimal | Sale price | `79.99` |
 | VendorSKU | String | Vendor SKU | `ABC123` |
 
+
 ### ProductSerialNumber
 
 | Name | Data Type | Description | Example |
@@ -138,6 +149,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | DateReceived | Date | Date recieved | `3/11/2014 2:29:25 PM` |
 | NonSellable | Boolean | A flag to indicate if the product is sellable (`false`) or nonsellable (`true`) in RQ | `true` |
 | SerialNumber | String | Serial number | `132456456456111` |
+
 
 ### StoreInformation
 
@@ -157,6 +169,14 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | ShipToStoreID | Integer | Shipping store ID | `55` |
 | BillToStoreID | Integer | RQ StoreID | `55` |
 
+
+
+
+
+
+
+
+
 ## Creating a Purchase Order Shipment Notice
 
 This method allows the vendor to create a shipment notice for an existing purchase order. 
@@ -172,6 +192,7 @@ This method allows the vendor to create a shipment notice for an existing purcha
 This request accepts an array of PurchaseOrderShipmentNotices, so you do not need to call the CMI service multiple times for products in an order
 {{end}}
 
+
 #### Request
 
 #### Headers
@@ -184,6 +205,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
 #### Request Parameters
 
   * `Quantity` (**Required**)
@@ -194,6 +216,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
   * `ProductItemID` (Optional) - Either this value or VendorSKU must be provided
   * `ShipmentNumber` (Optional) - If this value is not provided, the service will automatically assign one
   * `VendorSKU` (Optional) - Either this value or ProductItemId must be provided
+
 
 ###### Example
 
@@ -255,6 +278,9 @@ PurchaseOrderShipmentNotice snReturn = cmiService.CreatePurchaseOrderShipmentNot
 
 #### Response
 
+
+
+
 ###### Example
 
 ```
@@ -293,6 +319,7 @@ This method will return all purchase orders in the client database that match th
 
 Therefore, if a dealer creates a Purchase Order within RQ, it will be available in this list.
 
+
 #### Request
 
 #### Headers
@@ -305,12 +332,14 @@ Therefore, if a dealer creates a Purchase Order within RQ, it will be available 
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
 #### Request Parameters
 
   * `isCommitted` (**Required**) - Flag to indicate if committed or uncommitted purchase orders should be searched for
   * `isCompleted` (**Required**) - Flag to indicate if complete or incomplete purchase orders should be searched for
   * `startDate` (**Required**) - Purchase orders committed and/or completed on or after this day at midnight will be searched for
   * `endDate` (**Required**) - Purchase orders committed and/or completed up to the end of this day will be searched for
+
 
 ###### Example
 
@@ -353,6 +382,9 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
 ```
 
 #### Response
+
+
+
 
 ###### Example
 
@@ -442,6 +474,8 @@ HTTP 200 Content-Type: application/xml
 
 ## Getting Purchase Orders by Reference Number
 
+
+
 #### Request
 
 #### Headers
@@ -454,9 +488,11 @@ HTTP 200 Content-Type: application/xml
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
 #### Request Parameters
 
   * `PurchaseOrderReferenceNumber` (**Required**) - Reference Number on the Purchase Order in RQ
+
 
 ###### Example
 
@@ -492,6 +528,9 @@ PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(clie
 ```
 
 #### Response
+
+
+
 
 ###### Example
 
@@ -584,6 +623,7 @@ This method allows you find a purchase order based on the RQ business key, the v
 
 This call is useful in the situation where a user has created a PO in RQ for a vendor. The vendor can get the PO data and product info to help with creation of shipping notifications.      
 
+
 #### Request
 
 #### Headers
@@ -596,9 +636,11 @@ This call is useful in the situation where a user has created a PO in RQ for a v
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
 #### Request Parameters
 
   * `purchaseOrderIdByStore` (**Required**) - The business key of the purchase order in RQ
+
 
 ###### Example
 
@@ -634,6 +676,9 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByBusinessID(client,
 ```
 
 #### Response
+
+
+
 
 ###### Example
 
@@ -722,9 +767,7 @@ HTTP 200 Content-Type: application/xml
 
 ## Getting All CMI Enabled Stores
 
-This method allows you find a purchase order based on the RQ business key, the visual ID by store seen on RQ printouts.
 
-This call is useful in the situation where a user has created a PO in RQ for a vendor. The vendor can get the PO data and product info to help with creation of shipping notifications.      
 
 #### Request
 
@@ -737,6 +780,8 @@ This call is useful in the situation where a user has created a PO in RQ for a v
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
+
+
 
 ###### Example
 
@@ -757,6 +802,9 @@ StoreInformation[] stores = cmiService.GetStoreList(client);
 ```
 
 #### Response
+
+
+
 
 ###### Example
 

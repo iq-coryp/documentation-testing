@@ -1,26 +1,19 @@
 ---
-title: Classification Tree
+title:  Classification Tree
 permalink: /api/classification-tree/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 ## Overview
 
 A **Classification Tree** is a hierarchical structure describing a taxonomy of {{Products}}. 
 
 To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
-
-
-
-
 
 
 ## Endpoints
@@ -30,29 +23,20 @@ To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 ## Resources
 
-
-
-
-
 ### Classification
 
 Classifications are used to group Products together by similar features.
 A Product can only have a single Classification.
 For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a Classification of Smartphones.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Identifier | `1` |
-| Name | String | Name | `Smartphones` |
-| Order | Object | Sorting order | `2` |
-| ProductTemplate | Object | A reference to a ProductTemplate | `` |
-| ProductTemplate.Id | Object | Identifier | `60` |
-| ProductTemplate.Name | String | Name | `Wireless Device` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Identifier | `1` |
+| Name | string | Name | `Smartphones` |
+| Order | integer | Sorting order | `2` |
+| ProductTemplate | object | A reference to a [ProductTemplate](/api/glossary/#producttemplate) |  |
+| ProductTemplate.Id | integer | Identifier | `60` |
+| ProductTemplate.Name | string | Name | `Wireless Device` |
 
 ### Category
 
@@ -60,82 +44,51 @@ A Category is a node in a Classification Tree that represents a logical grouping
 For example, 'iPhone' and 'Tablet' Classifications might both be children of a 'Device' Category.
 There is a limit to 20 levels of depth for Categories.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Identifier | `2` |
-| Name | String | Name | `Device` |
-| Categories | Object | Child Categories | `` |
-| Classifications | Object | Child Classifications | `` |
-| Order | Object | Sorting order | `1` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Identifier | `2` |
+| Name | string | Name | `Device` |
+| Categories | array[[Category](#category)] | Child Categories |  |
+| Classifications | array[[Classification](#classification)]  | Child Classifications |  |
+| Order | integer | Sorting order | `1` |
+
+### ClassificationTree
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Identifier | `21` |
+| Name | string | Name | `Cellular & Accessories` |
+| Description | string | Description | `Classification of products for wireless retail` |
+| Categories | array[[Category](#category)] | Categories in the Tree |  |
+| Classifications | array[[Classification](#classification)] | Classifications for the Tree |  |
+| Owner | object | Information about the [Company](/api/company-tree/#company) that owns this Tree |  |
+| Owner.Id | integer | [Company](/api/company-tree/#company) Identifier | `1` |
+| Owner.Name | string | [Company](/api/company-tree/#company) Name | `SampleCompany` |
+| Version | integer | Latest revision number | `41` |
+| *IsCanonical* | *boolean* | *Reserved for internal use* | |
 
 
 
 
+## Getting a Classification Tree
 
 
-### Classificationtree
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Identifier | `21` |
-| Name | String | Name | `Cellular & Accessories` |
-| Description | String | Description | `Classification of products for wireless retail` |
-| Categories | Object | Categories in the Tree | `` |
-| Classifications | Object | Classifications for the Tree | `` |
-| Owner | Object | Information about the Company that owns this Company Tree | `` |
-| Owner.Id | Object | Company Identifier | `1` |
-| Owner.Name | String | Company Name | `SampleCompany` |
-| Version | Object | Latest revision number | `41` |
-| IsCanonical | Boolean | Reserved for internal use | `` |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 
-
-Getting a Company Tree
 
 #### Request
 
-```
-GET /ClassificationTrees({ClassificationTreeId})
-```
+    GET /ClassificationTrees({ClassificationTreeId})
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `ClassificationTreeId` (**Required**) - Identifier for the {{ClassificationTree}}
-
-
-
+* `ClassificationTreeId` (**Required**)  - Identifier for the {{ClassificationTree}} 
 
 
 
@@ -143,17 +96,8 @@ GET /ClassificationTrees({ClassificationTreeId})
 
 ```
 GET /ClassificationTrees(21)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -161,23 +105,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `Name` (string) - Name
-  * `Description` (string) - Description
-  * `Categories` (object) - Categories in the Tree
-  * `Classifications` (object) - Classifications for the Tree
-  * `Owner` (object) - Information about the Company that owns this Company Tree
-    * `Owner.Id` (integer) - Company Identifier
-    * `Owner.Name` (string) - Company Name
-  * `Version` (integer) - Latest revision number
-  * `IsCanonical` (boolean) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -218,25 +147,9 @@ HTTP 200 Content-Type: application/json
 }
  
 
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 404` | `Unable to find document id {x}` | Ensure ClassificationTreeId is correct |
 | `HTTP 406` | `Locale not available` | This error occurs with some browser extensions such as Postman. To resolve, add the header `Accept-Language: en-US` |
-
-

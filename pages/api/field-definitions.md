@@ -1,16 +1,13 @@
 ---
-title: Field Definitions
+title:  Field Definitions
 permalink: /api/field-definitions/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 ## Overview
 
@@ -56,12 +53,6 @@ The result displayed on the page, with some styling, is shown below
 <img src="{{ "/images/fielddefinition.png" | prepend: site.url }}" />
 
 
-
-
-
-
-
-
 ## Endpoints
 
 * Sandbox: https://productlibrarydemo.iqmetrix.net/v1
@@ -69,35 +60,22 @@ The result displayed on the page, with some styling, is shown below
 
 ## Resources
 
-
-
-
-
-### Fielddefinition
+### FieldDefinition
 
 {{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Identifier | `84` |
-| StringId | String | Consistent identifier across all Environments | `CDMA` |
-| InputType | String | Type of UI element this FieldDefinition uses, see InputTypes for a list of acceptable values | `YesNo` |
-| IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `false` |
-| LanguageInvariantUnit | String | Unit | `mm` |
-| DisplayName | String | Value to be displayed in the UI | `CDMA` |
-| Options | Object | List of Options, only used when InputType is SingleSelect or MultiSelect | `` |
-| Options.Id | Object | Identifier for the Option | `1` |
-| Options.Value | String | Value of the Option | `Blue` |
-| LanguageInvariantName | String | Deprecated | `` |
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Identifier | `84` |
+| StringId | string | Consistent identifier across all [Environments](/api/environments) | `CDMA` |
+| InputType | string | Type of UI element this FieldDefinition uses, see [InputTypes](#inputypes) for a list of acceptable values | `YesNo` |
+| IsRequired | boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `false` |
+| LanguageInvariantUnit | string | Unit | `mm` |
+| DisplayName | string | Value to be displayed in the UI | `CDMA` |
+| Options | array[object] | List of Options, only used when InputType is SingleSelect or MultiSelect |  |
+| Options.Id | integer | Identifier for the Option | `1` |
+| Options.Value | string | Value of the Option | `Blue` |
+| *LanguageInvariantName* | *string* | *This is a legacy property that should not be used* | |
 
 
 
@@ -117,31 +95,17 @@ The result displayed on the page, with some styling, is shown below
 | TextMultipleLine | 
 | YesNo | 
 
-
-
-
-
-
-
-
-## Getting a FieldDefinition
+## Getting All FieldDefinitions
 
 
 
 #### Request
 
-```
-GET /FieldDefinitions
-```
+    GET /FieldDefinitions
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 
@@ -149,24 +113,12 @@ GET /FieldDefinitions
 
 
 
-
-
-
 ###### Example
 
 ```
 GET /FieldDefinitions
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -174,23 +126,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `StringId` (string) - Consistent identifier across all Environments
-  * `InputType` (string) - Type of UI element this FieldDefinition uses, see InputTypes for a list of acceptable values
-  * `IsRequired` (boolean) - A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true)
-  * `LanguageInvariantUnit` (string) - Unit
-  * `DisplayName` (string) - Value to be displayed in the UI
-  * `Options` (array[object]) - List of Options, only used when InputType is SingleSelect or MultiSelect
-    * `Options.Id` (integer) - Identifier for the Option
-    * `Options.Value` (string) - Value of the Option
-  * `LanguageInvariantName` (string) - Deprecated
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -242,50 +179,25 @@ HTTP 200 Content-Type: application/json
    ...
 ]
  
-
-```
-
-
-
-
-
-
-
-
-
-## Getting All FieldDefinitions
+## Getting a FieldDefinition
 
 
 
 #### Request
 
-```
-GET /FieldDefinitions({FieldDefinitionId})
-```
+    GET /FieldDefinitions({FieldDefinitionId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `FieldDefinitionId` (**Required**) - Identifier for the {{FieldDefinition}}
-
-
-
+* `FieldDefinitionId` (**Required**)  - Identifier for the {{FieldDefinition}} 
 
 
 
@@ -293,17 +205,8 @@ GET /FieldDefinitions({FieldDefinitionId})
 
 ```
 GET /FieldDefinitions(84)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -311,23 +214,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Identifier
-  * `StringId` (string) - Consistent identifier across all Environments
-  * `InputType` (string) - Type of UI element this FieldDefinition uses, see InputTypes for a list of acceptable values
-  * `IsRequired` (boolean) - A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true)
-  * `LanguageInvariantUnit` (string) - Unit
-  * `DisplayName` (string) - Value to be displayed in the UI
-  * `Options` (array[object]) - List of Options, only used when InputType is SingleSelect or MultiSelect
-    * `Options.Id` (integer) - Identifier for the Option
-    * `Options.Value` (string) - Value of the Option
-  * `LanguageInvariantName` (string) - Deprecated
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -339,29 +227,11 @@ HTTP 200 Content-Type: application/json
    "DisplayName": "CDMA",
    "Unit": null,
    "Options": []
-} 
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
+}
+ 
 
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 404` | `Document not found` | Ensure FieldDefinitionId is correct |
-
-
-
-
-

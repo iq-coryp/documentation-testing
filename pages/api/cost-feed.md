@@ -1,16 +1,13 @@
 ---
-title: Cost Feed
+title:  Cost Feed
 permalink: /api/cost-feed/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 ## Overview
 
@@ -26,10 +23,6 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 {{end}}
 
 
-
-
-
-
 ## Endpoints
 
 * Sandbox: https://dropshipdemo.iqmetrix.net/v1
@@ -37,31 +30,15 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ## Resources
 
-
-
-
-
 ### Cost
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | String | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
-| Products | Object | List of products for which the cost is being updated | `` |
-| Products.Sku | String | SKU identifier for the product from product feed | `1115884` |
-| Products.Cost | Object | Wholesale cost for the associated companies | `12.99` |
-| Products.CompanyIds | Object | List of Company identifiers that are applied to the products cost | `` |
-
-
-
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Guid | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
+| Products | Array[Object] | List of products for which the cost is being updated |  |
+| Products.Sku | string | SKU identifier for the product from product feed | `1115884` |
+| Products.Cost | decimal | Wholesale cost for the associated companies | `12.99` |
+| Products.CompanyIds | Array[Integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the products cost |  |
 
 
 
@@ -72,34 +49,20 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 #### Request
 
-```
-POST /Suppliers({SupplierId})/Cost
-```
+    POST /Suppliers({SupplierId})/Cost
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `SupplierId` (**Required**) - Identifier of the Supplier
-
-
-
+* `SupplierId` (**Required**)  - Identifier of the Supplier 
 
 
 #### Request Parameters
@@ -109,26 +72,15 @@ POST /Suppliers({SupplierId})/Cost
     * `Sku` (**Required**)
     * `Cost` (**Required**)
     * `CompanyIds` (**Required**)
- 
-
 
 
 ###### Example
 
 ```
 POST /Suppliers(1324)/Cost
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
    "Products": [
        {
@@ -159,20 +111,10 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (String) - Identifer for the cost feed
-  * `Products` (Array[Object]) - List of products for which the cost is being updated
-    * `Products.Sku` (string) - SKU identifier for the product from product feed
-    * `Products.Cost` (decimal) - Wholesale cost for the associated companies
-    * `Products.CompanyIds` (Array[Integer]) - List of Company identifiers that are applied to the products cost
-
-
-
 ###### Example
+
 ```
-HTTP 201 Content-Type: application/json
+HTTP 202 Content-Type: application/json
 {
    "Id": "91a57ddb-2d42-402b-85b4-fe327a347313",
    "Products": [
@@ -198,24 +140,8 @@ HTTP 201 Content-Type: application/json
 }
 
 
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 400` | `Cannot find supplier identifier in the uri` | Occurs when entering an incorrect `SupplierId` in the uri |
-
-

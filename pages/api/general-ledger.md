@@ -1,16 +1,13 @@
 ---
-title: General Ledger
+title:  General Ledger
 permalink: /api/general-ledger/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
-
-
 
 ## Overview
 
@@ -27,12 +24,6 @@ Account balances will be affected by Debits and Credits in the following ways:
 | Expense | <i class="fa fa-arrow-up"></i> | <i class="fa fa-arrow-down"></i> |
 
 
-
-
-
-
-
-
 ## Endpoints
 
 * Sandbox: https://generalledgerdemo.iqmetrix.net/v1
@@ -40,35 +31,26 @@ Account balances will be affected by Debits and Credits in the following ways:
 
 ## Resources
 
-
-
-
-
 ### Account
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
-| AccountName | Object | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
-| AccountNumber | Object | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
-| AccountCategory | String | Account Category, acceptable values include: Asset, Liability, Equity, Revenue and Expense | `Asset` |
-| SubCategory | Object | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
-| CreatedByUserId | Object | Auditing column, the identifier of the User that created this Account | `22212` |
-| UpdatedByUserId | Object | Auditing column, the identifier of the User that last updated this Account | `22212` |
-| CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
-| CustomProperties | Object | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters | `` |
-| DateCreatedUTC | Object | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
-| DateUpdatedUTC | Object | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
-| Description | Object | Description | `This is a Canadian $ account` |
-| IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` |
-| Version | Object | Latest revision number | `1` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Guid | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
+| AccountName | string(128) | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
+| AccountNumber | string(128) | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
+| AccountCategory | string | Account Category, acceptable values include: **Asset, Liability, Equity, Revenue and Expense** | `Asset` |
+| SubCategory | string(256) | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
+| CreatedByUserId | integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
+| UpdatedByUserId | integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that last updated this Account | `22212` |
+| CurrencyCode | string | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
+| CustomProperties | object(4000) | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters |  |
+| DateCreatedUTC | datetime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
+| DateUpdatedUTC | datetime | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
+| Description | string(1024) | Description | `This is a Canadian $ account` |
+| IsEnabled | boolean | A flag to indicate if this Account is Enabled | `true` |
+| Version | integer | Latest revision number | `1` |
 
 ### Transaction
 
@@ -76,17 +58,12 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 
 A **Transaction** is a financial record that affects two or more **Accounts**.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
-| TransactionDateUTC | Object | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
-| CreatedByUserId | Object | Auditing column, the identifier of the User that created this Account | `22212` |
-| Entries | Object | The collection of Entries for this Transaction | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Guid | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
+| TransactionDateUTC | datetime | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
+| CreatedByUserId | integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
+| Entries | Array[[Entry](#entry) | The collection of Entries for this Transaction |  |
 
 ### Entry
 
@@ -94,26 +71,17 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 * Debit and Credit are decimal values without an associated currency
 * All transactions within the context of this {{Account}} will use the currency configured at the Account level
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| AccountID | Object | Identifier for the Account this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` |
-| Credit | Object | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` |
-| CustomProperties | Object | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters | `` |
-| Debit | Object | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
-| EntityId | Object | Identifier for the Location this Entry applies to | `25` |
-| LineNumber | Object | A value indicating the sort order of this entry within the Transaction | `1` |
-| Memo | Object | Memo string for this Entry | `Memo` |
-| ReferenceID | Object | Reference number string, such as the invoice that caused the Transaction | `INV005` |
-| ReferenceType | Object | String value to indicate what ReferenceID is referring to. See ReferenceType | `Invoice` |
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| AccountID | Guid | Identifier for the [Account](#account) this Entry affects | `cea681f0-0017-4daa-816f-2be7e7412680` |
+| Credit | decimal | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` |
+| CustomProperties | object(4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters |  |
+| Debit | decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
+| EntityId | integer | Identifier for the [Location](/api/company-tree/#location) this Entry applies to | `25` |
+| LineNumber | integer | A value indicating the sort order of this entry within the Transaction | `1` |
+| Memo | string(1024) | Memo string for this Entry | `Memo` |
+| ReferenceID | string(128) | Reference number string, such as the invoice that caused the Transaction | `INV005` |
+| ReferenceType | string(128) | String value to indicate what ReferenceID is referring to. See [ReferenceType](#referencetype) | `Invoice` |
 
 
 
@@ -144,13 +112,6 @@ The following table lists the ReferencType values used in RQ.
 | Vendor Deposit | 
 | Vendor Rebate Adjustment |       
 
-
-
-
-
-
-
-
 ## Getting Accounts
 
 {{callout_info}}<b>Sorting Order</b><br/>Accounts are ordered alphabetically by <code>AccountName</code>{{end}}
@@ -158,59 +119,28 @@ The following table lists the ReferencType values used in RQ.
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
-```
+    GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `skip` (Optional) - Number of records to skip
-
-* `top` (Optional) - Number of records to take
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `Skip` (**Required**) - 
-
-* `Top` (**Required**) - 
-
-
-
+* `skip` (Optional)  - Number of records to skip * `top` (Optional)  - Number of records to take * `CompanyId` (**Required**)  - Identifier for the {{Company}} * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take 
 
 
 
 ###### Example
 
 ```
-GET /Companies(1)/Accounts?$skip=undefined&$top=undefined
-
-
+GET /Companies(1)/Accounts?$skip=0&$top=5
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -218,27 +148,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (GUID) - Unique identifier
-  * `AccountName` (string(128)) - Account name. Must be unique across the entire list of Accounts and cannot be empty
-  * `AccountNumber` (string(128)) - Account number. Must be unique across the entire list of Accounts and cannot be empty
-  * `AccountCategory` (string) - Account Category, acceptable values include: Asset, Liability, Equity, Revenue and Expense
-  * `SubCategory` (string(256)) - A string that can be used to further group Accounts into sub-categories
-  * `CreatedByUserId` (integer) - Auditing column, the identifier of the User that created this Account
-  * `UpdatedByUserId` (integer) - Auditing column, the identifier of the User that last updated this Account
-  * `CurrencyCode` (string) - The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case
-  * `CustomProperties` (object(4000)) - A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters
-  * `DateCreatedUTC` (datetime) - Auditing column showing when this Account was first created, in UTC
-  * `DateUpdatedUTC` (datetime) - Auditing column showing when this Account was last updated, in UTC
-  * `Description` (string(1024)) - Description
-  * `IsEnabled` (boolean) - A flag to indicate if this Account is Enabled
-  * `Version` (integer) - Latest revision number
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -261,12 +172,9 @@ HTTP 200 Content-Type: application/json
 ]
  
 
-```
-
-
-
 
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/hal+json
 {
@@ -310,80 +218,34 @@ HTTP 200 Content-Type: application/hal+json
   }
 }
 
-
-```
-
-
-
-
-
-
-
-
-
 ## Getting Transactions By Date
 
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top}
-```
+    GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top}
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `skip` (Optional) - Number of records to skip
-
-* `top` (Optional) - Number of records to take
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `StartDate` (**Required**) - Date at which to begin search request, in UTC
-
-* `EndDate` (**Required**) - Date at which to end search request, in UTC
-
-* `Skip` (**Required**) - 
-
-* `Top` (**Required**) - 
-
-
-
+* `skip` (Optional)  - Number of records to skip * `top` (Optional)  - Number of records to take * `CompanyId` (**Required**)  - Identifier for the {{Company}} * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take * `StartDate` (**Required**)  - Date at which to begin search request, in UTC * `EndDate` (**Required**)  - Date at which to end search request, in UTC 
 
 
 
 ###### Example
 
 ```
-GET /Companies(1)/Transactions?$filter=TransactionDateUTC ge datetime'Wed Dec 31 2014 18:00:00 GMT-0600 (Canada Central Standard Time)' and TransactionDateUTC le datetime'Thu Dec 31 2015 17:59:59 GMT-0600 (Canada Central Standard Time)'&$skip=undefined&$top=undefined
-
-
+GET /Companies(1)/Transactions?$filter=TransactionDateUTC ge datetime'Wed Dec 31 2014 18:00:00 GMT-0600 (Canada Central Standard Time)' and TransactionDateUTC le datetime'Thu Dec 31 2015 17:59:59 GMT-0600 (Canada Central Standard Time)'&$skip=0&$top=5
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -391,17 +253,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (GUID) - Unique identifier
-  * `TransactionDateUTC` (datetime) - The date and time that this Transaction occurred, in UTC
-  * `CreatedByUserId` (integer) - Auditing column, the identifier of the User that created this Account
-  * `Entries` (array[entry]) - The collection of Entries for this Transaction
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -437,12 +290,9 @@ HTTP 200 Content-Type: application/json
 ]
  
 
-```
-
-
-
 
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/hal+json
 [
@@ -502,20 +352,6 @@ HTTP 200 Content-Type: application/hal+json
 ]
 
 
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
@@ -527,7 +363,50 @@ HTTP 200 Content-Type: application/hal+json
 | `HTTP 404` | `Resource cannot be found` | Ensure the `Id` specified in the URI is valid and the resource exists | 
 | `HTTP 409` | `The account has a non-unique name`<br/>` or account number` | Account names and numbers must be unique for the Company |
 
+## Pagination
 
-
-
-
+The General Ledger API supports pagination of collections of resources by default.
+ 
+### Query Parameters
+ 
+Pagination is done through the use of `$skip` and `$top` query string parameters.
+ 
+`$skip` denotes the number of items to skip from the entire set of results. This value defaults to 0 if no `$skip` value is specified. If a value less than 0 is specified, the URI is considered malformed.
+ 
+`$top` denotes the maximum number of items to include in the response. This value defaults to 50 if no `$top` value is specified. Acceptable values are in the range [0-500]. If a value more than 500 is specified, the URI is considered malformed.
+ 
+### Navigation Links
+ 
+Pagination links for 'self', 'prev' and 'next' are returned by default when the media type is a hypermedia-enabled media type (i.e. HAL).
+ 
+These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to prepend the appropriate endpoint.
+ 
+##### Example
+ 
+    {
+        "_links": {
+            "self": {
+                "href": "Companies(1)/Accounts?$skip=10&$top=10",
+                "templated": false
+            },
+            "next": {
+                "href": "Companies(1)/Accounts?$skip=20&$top=10",
+                "templated": false
+            },
+            "prev": {
+                "href": "Companies(1)/Accounts?$skip=0&$top=10",
+                "templated": false
+            }
+        },
+        "_embedded": {
+            "self": []
+        }
+    }
+ 
+In the example above, the `_links` section is included in the data returned from an API call to get General Ledger Accounts, where `$skip=10` and `$top=10`.
+ 
+The `self`.`href` value is the encoded version of the API request that returned these results.
+ 
+The `next`.`href` refers to a resource containing a page with the **next** 10 items.
+ 
+The `prev`.`href` refers to a resource containing a page with the **previous** 10 items.

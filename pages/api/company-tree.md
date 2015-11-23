@@ -1,17 +1,24 @@
 ---
-title: Company Tree
-permalink: /api/Company Tree/
+title:  Company Tree
+permalink: /api/Company-Tree/
 tags: []
 keywords: 
-audience:
-last_updated: 16-11-2015
-summary:
+audience: 
+last_updated: 23-11-2015
+summary: 
 ---
-
 {% include linkrefs.html %}
 
+## Overview
 
+A Company Tree is a representation of how a Company is structured and is used to: 
 
+* Organize Locations
+* Manage nuances within iQmetrix APIs, which can be passed down hierarchically 
+* Structure reporting
+* Manage security access
+
+To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 
 ## Endpoints
@@ -22,154 +29,118 @@ summary:
 ## Resources
 
 
-
-
-
-### Groupdivisionpost
-
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Name |  |  | `` |
-| Description |  |  | `` |
-| ClientEntityId |  |  | `` |
-
-
-
-
-
-
 ### Company
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `1` |
-| Name | Object | Name | `SampleCompany` |
-| Description | Object | Description | `Company creating great experiences.` |
-| Roles | Object | The value must be Company | `{'Name': 'Company' }` |
-| ClientEntityId | String | Identifier in an external system | `123` |
-| CreatedUTC | Object | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | Object | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Attributes | Object | Set of key-value pairs that contain extra data | `` |
-| Logo | Object | A reference to an Asset | `` |
-| Logo.Id | Object | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
-| Logo.Name | String | File name | `iqmetrix.jpg` |
-| Logo.Height | Object | Height in pixels | `145` |
-| Logo.Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| Logo.Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
-| Logo.MimeType | String | The mime type | `image/jpeg` |
-| Logo.Width | Object | Width in pixels | `240` |
-| Relationships | Object | Relationship information, such child Locations, Suppliers and Carriers | `` |
-| SortName | String | A string used for sorting | `samplecompany` |
-| Version | Object | Latest revision number | `1` |
-| CorrelationId | String | Reserved for internal use | `` |
-| Role | String | Reserved for internal use | `` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique identifier | `1` |
+| Name | string(250) | Name | `SampleCompany` |
+| Description | string(255) | Description | `Company creating great experiences.` |
+| Roles | object | The value must be Company | `{'Name': 'Company' }` |
+| ClientEntityId | string | Identifier in an external system | `123` |
+| CreatedUTC | datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | object | Set of key-value pairs that contain extra data |  |
+| Logo | object | A reference to an [Asset](/api/assets/#asset) |  |
+| Logo.Id | Guid | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Logo.Name | string | File name | `iqmetrix.jpg` |
+| Logo.Height | integer | Height in pixels | `145` |
+| Logo.Href | string | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
+| Logo.Md5Checksum | string | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
+| Logo.MimeType | string | The mime type | `image/jpeg` |
+| Logo.Width | integer | Width in pixels | `240` |
+| Relationships | array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
+| SortName | string | A string used for sorting | `samplecompany` |
+| Version | integer | Latest revision number | `1` |
+| *CorrelationId* | *string* | *Reserved for internal use* | |
+| *Role* | *string* | *Reserved for internal use* | |
 
-
-
-
-
-
-### Companytree
+### CompanyTree
 
 Your Company Tree is a hierarchial representation of how your Company is structured, including the root Company, Groups, Divisions and Locations.
 
 To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Company identifier | `1` |
-| Name | Object | Company name | `SampleCompany` |
-| Description | Object | Description | `Company creating great experiences.` |
-| Role | String | Role | `Company` |
-| Nodes | Object | The Company Tree hierarchy made up of Nodes | `` |
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Company identifier | `1` |
+| Name | string(250) | Company name | `SampleCompany` |
+| Description | string(255) | Description | `Company creating great experiences.` |
+| Role | string | Role | `Company` |
+| Nodes | Array[[CompanyTreeNode](#companytreenode)] | The Company Tree hierarchy made up of Nodes |  |
 
-
-
-
-
-
-### Companytreenode
+### CompanyTreeNode
 
 CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{Group}}, {{Division}}, {{Location}} or device.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Identifier | `55` |
-| Name | Object | Name | `Western BC` |
-| Description | Object | Description | `Western area of BC.` |
-| Role | String | Role, possible values include: Company, Group, Division and Location | `Division` |
-| Nodes | Object | Children | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Identifier | `55` |
+| Name | string(250) | Name | `Western BC` |
+| Description | string(255) | Description | `Western area of BC.` |
+| Role | string | Role, possible values include: Company, Group, Division and Location | `Division` |
+| Nodes | Array[[CompanyTreeNode](#companytreenode)] | Children |  |
 
 ### Location
 
 A **Location** is a physical or virtual presence that may hold inventory or process transactions.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `2` |
-| Name | Object | Name | `SampleLocation` |
-| Description | Object | Description | `The SampleLocation is used to clear out discounted inventory` |
-| Roles | Object | The Role of this Location , the value must be Location | `` |
-| Roles.Name | String | The name of the Role | `Location` |
-| CreatedUTC | Object | Created date in UTC | `2015-02-26T00:03:01.372Z` |
-| LastModifiedUTC | Object | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
-| Area | Object | Measurement of floor space | `` |
-| Area.Value | Object | Value of the Area | `1100` |
-| Area.Unit | String | Unit used for the Value, acceptable values are SqFt and SqM | `SqFt` |
-| Address | Object | Address | `` |
-| Address.AddressLine1 | String | First line of Address | `123 Sample Street` |
-| Address.AddressLine2 | String | Second line of Address | `Unit 200` |
-| Address.City | String | City | `Regina` |
-| Address.StateCode | String | State/Province. Uses the ISO 3166-2 standard | `SK` |
-| Address.StateName | String | State/Province. Uses the ISO 3166-2 standard | `Saskatchewan` |
-| Address.CountryCode | String | Country Code. Uses the ISO 3166-1 alpha-2 standard | `CA` |
-| Address.CountryName | String | Country | `Canada` |
-| Address.Zip | String | Zip or Postal Code | `S4P2L1` |
-| Attributes | Object | Set of key-value pairs that contain extra data | `` |
-| ClientEntityId | String | Identifier in an external system | `123` |
-| Contacts | Object | Contact information | `` |
-| Contacts.Name | String | Name | `John Smith` |
-| Contacts.Description | String | Description | `Store Manager` |
-| Contacts.PhoneNumbers | Object |  | `` |
-| Contacts.PhoneNumbers.Description | String | Description | `Main Line` |
-| Contacts.PhoneNumbers.Number | String | Phone Number | `5555555555` |
-| Contacts.PhoneNumbers.Extension | String | Extension | `1234` |
-| Geography | Object | Geographic coordinates of this Location | `` |
-| Geography.Longitude | Object | Longitude, must be between -180 and 180 | `-104.612034` |
-| Geography.Latitude | Object | Latitude, must be between -90 and 90 | `50.443559` |
-| Relationships | Object | Relationship information, such as the parent node in the Company Tree | `` |
-| SortName | String | A string used for sorting | `samplecompany` |
-| StoreHours | Object | Store hours for this Location | `` |
-| StoreHours.Monday | Object | Store hours for a day of the week, such as Monday | `` |
-| StoreHours.Monday.Open | Object | Opening time | `` |
-| StoreHours.Monday.Open.Hour | Object | Opening time hour, in the range of [0-24] | `10` |
-| StoreHours.Monday.Open.Minute | Object | Opening time minute, in the range of [0-59] | `0` |
-| StoreHours.Monday.Close | Object | Closing time | `` |
-| StoreHours.Monday.Close.Hour | Object | Closing time hour, in the range of [0-24] | `18` |
-| StoreHours.Monday.Close.Minute | Object | Closing time minute, in the range of [0-59] | `0` |
-| StorePhoneNumbers | Object | Phone numbers | `` |
-| StorePhoneNumbers.Description | String | Description | `Main Phone` |
-| StorePhoneNumbers.Number | String | Phone Number | `5555555555` |
-| StorePhoneNumbers.Extension | String | Extension | `5555` |
-| TimeZone | Object | Timezone information for the Location | `` |
-| TimeZone.Id | String | TimeZone name | `Alaskan Standard Time` |
-| TimeZone.DaylightSavingTimeEnabled | Boolean | A flag indicating if the TimeZone observes daylight saving time | `true` |
-| Version | Object | Latest revision number | `13` |
-| CorrelationId | String | Reserved for internal use | `` |
-| LocationType | String | Reserved for future use | `` |
-| LocationSubType | String | Reserved for future use | `` |
-| Logo | Object | Reserved for internal use | `` |
-| Role | String | Reserved for internal use | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique identifier | `2` |
+| Name | string(250) | Name | `SampleLocation` |
+| Description | string(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
+| Roles | array[object] | The Role of this Location, the value must be Location |  |
+| Roles.Name | string | The name of the Role | `Location` |
+| CreatedUTC | datetime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
+| LastModifiedUTC | datetime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
+| Area | object | Measurement of floor space |  |
+| Area.Value | integer | Value of the Area | `1100` |
+| Area.Unit | string | Unit used for the Value, acceptable values are SqFt and SqM | `SqFt` |
+| Address | object | Address |  |
+| Address.AddressLine1 | string | First line of Address | `123 Sample Street` |
+| Address.AddressLine2 | string | Second line of Address | `Unit 200` |
+| Address.City | string | City | `Regina` |
+| Address.StateCode | string | State/Province. Uses the ISO 3166-2 standard | `SK` |
+| Address.StateName | string | State/Province. Uses the ISO 3166-2 standard | `Saskatchewan` |
+| Address.CountryCode | string | Country Code. Uses the ISO 3166-1 alpha-2 standard | `CA` |
+| Address.CountryName | string | Country | `Canada` |
+| Address.Zip | string | Zip or Postal Code | `S4P2L1` |
+| Attributes | object | Set of key-value pairs that contain extra data |  |
+| ClientEntityId | string | Identifier in an external system | `123` |
+| Contacts | object | Contact information |  |
+| Contacts.Name | string | Name | `John Smith` |
+| Contacts.Description | string | Description | `Store Manager` |
+| Contacts.PhoneNumbers | object |  |  |
+| Contacts.PhoneNumbers.Description | string | Description | `Main Line` |
+| Contacts.PhoneNumbers.Number | string | Phone Number | `5555555555` |
+| Contacts.PhoneNumbers.Extension | string | Extension | `1234` |
+| Geography | object | Geographic coordinates of this Location |  |
+| Geography.Longitude | decimal | Longitude, must be between -180 and 180 | `-104.612034` |
+| Geography.Latitude | decimal | Latitude, must be between -90 and 90 | `50.443559` |
+| Relationships | array[object] | Relationship information, such as the parent node in the Company Tree |  |
+| SortName | string | A string used for sorting | `samplecompany` |
+| StoreHours | object | Store hours for this Location |  |
+| StoreHours.WeekDay | object | Store hours for a day of the week, such as Monday |  |
+| StoreHours.WeekDay.Open | object | Opening time |  |
+| StoreHours.WeekDay.Open.Hour | integer | Opening time hour, in the range of [0-24] | `10` |
+| StoreHours.WeekDay.Open.Minute | integer | Opening time minute, in the range of [0-59] | `0` |
+| StoreHours.WeekDay.Close | object | Closing time |  |
+| StoreHours.WeekDay.Close.Hour | integer | Closing time hour, in the range of [0-24] | `18` |
+| StoreHours.WeekDay.Close.Minute | integer | Closing time minute, in the range of [0-59] | `0` |
+| StorePhoneNumbers | array[object] | Phone numbers |  |
+| StorePhoneNumbers.Description | string | Description | `Main Phone` |
+| StorePhoneNumbers.Number | string | Phone Number | `5555555555` |
+| StorePhoneNumbers.Extension | string | Extension | `5555` |
+| TimeZone | object | Timezone information for the Location |  |
+| TimeZone.Id | string | TimeZone name | `Alaskan Standard Time` |
+| TimeZone.DaylightSavingTimeEnabled | boolean | A flag indicating if the TimeZone observes daylight saving time | `true` |
+| Version | integer | Latest revision number | `13` |
+| *CorrelationId* | *string* | *Reserved for internal use* | |
+| *LocationType* | *string* | *Reserved for future use* | |
+| *LocationSubType* | *string* | *Reserved for future use* | |
+| *Logo* | *object* | *Reserved for internal use* | |
+| *Role* | *string* | *Reserved for internal use* | |
 
 ### Division
 
@@ -177,74 +148,59 @@ Division, as well as Groups, serve as generic buckets clients can use to organiz
 
 To learn more about Divisions, see {{Division_Concept}}.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `5` |
-| Name | Object | Name | `SampleDivision` |
-| Description | Object | Description | `Division creating great experiences.` |
-| Roles | Object | The value must be Division | `{ 'Name': 'Division' }` |
-| ClientEntityId | String | Identifier in an external system | `112` |
-| CreatedUTC | Object | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | Object | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Attributes | Object | Set of key-value pairs that contain extra data | `` |
-| Logo | Object | A reference to an Asset | `` |
-| Logo.Id | Object | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
-| Logo.Name | String | File name | `iqmetrix.jpg` |
-| Logo.Height | Object | Height in pixels | `145` |
-| Logo.Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| Logo.Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
-| Logo.MimeType | String | The mime type | `image/jpeg` |
-| Logo.Width | Object | Width in pixels | `240` |
-| Relationships | Object | Relationship information, such child Locations, Suppliers and Carriers | `` |
-| SortName | String | A string used for sorting | `sampledivision` |
-| Version | Object | Latest revision number | `1` |
-| CorrelationId | String | Reserved for internal use | `` |
-| Role | String | Reserved for internal use | `` |
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique identifier | `5` |
+| Name | string(250) | Name | `SampleDivision` |
+| Description | string(255) | Description | `Division creating great experiences.` |
+| Roles | object | The value must be Division | `{ 'Name': 'Division' }` |
+| ClientEntityId | string | Identifier in an external system | `112` |
+| CreatedUTC | datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | object | Set of key-value pairs that contain extra data |  |
+| Logo | object | A reference to an Asset |  |
+| Logo.Id | Guid | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Logo.Name | string | File name | `iqmetrix.jpg` |
+| Logo.Height | integer | Height in pixels | `145` |
+| Logo.Href | string | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
+| Logo.Md5Checksum | string | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
+| Logo.MimeType | string | The mime type | `image/jpeg` |
+| Logo.Width | integer | Width in pixels | `240` |
+| Relationships | array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
+| SortName | string | A string used for sorting | `sampledivision` |
+| Version | integer | Latest revision number | `1` |
+| *CorrelationId* | *string* | *Reserved for internal use* | |
+| *Role* | *string* | *Reserved for internal use* | |
 
 ### Group
 
-Groups, as well as Divisions, serve as generic buckets clients can use to organize the company tree. Groups could be used to represent managerial or geographical groupings.
+nagerial or geographical groupings.
 
  To learn more about Groups, see {{Group_Concept}}.
 
-| Name  | Data Type | Description | Example |
-|:------|:----------|:------------|:--------|
-| Id | Object | Unique identifier | `16` |
-| Name | Object | Name | `SampleGroup` |
-| Description | Object | Description | `Group creating great experiences.` |
-| Roles | Object | The value must be Group | `{ 'Name': 'Group' }` |
-| ClientEntityId | String | Identifier in an external system | `187` |
-| CreatedUTC | Object | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | Object | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| Attributes | Object | Set of key-value pairs that contain extra data | `` |
-| Logo | Object | A reference to an Asset | `` |
-| Logo.Id | Object | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
-| Logo.Name | String | File name | `iqmetrix.jpg` |
-| Logo.Height | Object | Height in pixels | `145` |
-| Logo.Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| Logo.Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
-| Logo.MimeType | String | The mime type | `image/jpeg` |
-| Logo.Width | Object | Width in pixels | `240` |
-| Relationships | Object | Relationship information, such child Locations, Suppliers and Carriers | `` |
-| SortName | String | A string used for sorting | `samplegroup` |
-| Version | Object | Latest revision number | `1` |
-| CorrelationId | String | Reserved for internal use | `` |
-| Role | String | Reserved for internal use | `` |
-
-
-
-
-
-
-
-
-
-
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | integer | Unique identifier | `16` |
+| Name | string(250) | Name | `SampleGroup` |
+| Description | string(255) | Description | `Group creating great experiences.` |
+| Roles | object | The value must be Group | `{ 'Name': 'Group' }` |
+| ClientEntityId | string | Identifier in an external system | `187` |
+| CreatedUTC | datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| Attributes | object | Set of key-value pairs that contain extra data |  |
+| Logo | object | A reference to an Asset |  |
+| Logo.Id | Guid | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Logo.Name | string | File name | `iqmetrix.jpg` |
+| Logo.Height | integer | Height in pixels | `145` |
+| Logo.Href | string | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
+| Logo.Md5Checksum | string | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
+| Logo.MimeType | string | The mime type | `image/jpeg` |
+| Logo.Width | integer | Width in pixels | `240` |
+| Relationships | array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
+| SortName | string | A string used for sorting | `samplegroup` |
+| Version | integer | Latest revision number | `1` |
+| *CorrelationId* | *string* | *Reserved for internal use* | |
+| *Role* | *string* | *Reserved for internal use* | |
 
 
 
@@ -255,33 +211,19 @@ Groups, as well as Divisions, serve as generic buckets clients can use to organi
 
 #### Request
 
-```
-GET /Companies({CompanyId})
-```
+    GET /Companies({CompanyId})
 
 #### Headers
 
-
 * `Authorization: Bearer` ({{AccessToken_Glossary}})
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -289,17 +231,8 @@ GET /Companies({CompanyId})
 
 ```
 GET /Companies(1)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -307,34 +240,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(250)) - Description
-  * `Roles` (object) - The value must be Company
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `Logo` (object) - A reference to an Asset
-    * `Logo.Id` (GUID) - Unique identifier
-    * `Logo.Name` (string) - File name
-    * `Logo.Height` (integer) - Height in pixels
-    * `Logo.Href` (string) - URL that points to an actual file where the digital asset is stored
-    * `Logo.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
-    * `Logo.MimeType` (string) - The mime type
-    * `Logo.Width` (integer) - Width in pixels
-  * `Relationships` (array[object]) - Relationship information, such child Locations, Suppliers and Carriers
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -366,50 +273,25 @@ HTTP 200 Content-Type: application/json
    "Version": 1
 }
               
-
-```
-
-
-
-
-
-
-
-
-
 ## Getting a Company Tree
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Tree
-```
+    GET /Companies({CompanyId})/Tree
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -417,17 +299,8 @@ GET /Companies({CompanyId})/Tree
 
 ```
 GET /Companies(1)/Tree
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -435,18 +308,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Company identifier
-  * `Name` (string(250)) - Company name
-  * `Description` (string(255)) - Description
-  * `Role` (string) - Role
-  * `Nodes` (array[companytreenode]) - The Company Tree hierarchy made up of Nodes
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -486,74 +349,47 @@ HTTP 200 Content-Type: application/json
    ]
 }
                              
-
-```
-
-
-
-
-
-
-
-
-
 ## Creating a Location
 
 
 
 #### Request
 
-```
-POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
-```
+    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `NodeId` (**Required**) - Identifier of parent of the {{Location}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} 
 
 
 #### Request Parameters
 
-  * `Id` (Optional)
+  * `Id` (Optional) - Required for PUT requests
   * `Name` (**Required**)
   * `Description` (Optional)
-  * `Roles` (**Required**)
+  * `Roles` (**Required**) - Must be `Location`
     * `Name` (Optional)
   * `CreatedUTC` (Optional)
   * `LastModifiedUTC` (Optional)
   * `Area` (Optional)
-    * `Value` (**Required**)
-    * `Unit` (**Required**)
+    * `Value` (**Required**) - Only required if Area is not null. If provided, `Unit` must also be provided
+    * `Unit` (**Required**) - Only required if Area is not null. If provided, `Value` must also be provided
   * `Address` (Optional)
     * `AddressLine1` (Optional)
     * `AddressLine2` (Optional)
     * `City` (Optional)
     * `StateCode` (Optional)
     * `StateName` (Optional)
-    * `CountryCode` (Optional)
+    * `CountryCode` (Optional) - Required if `StateCode` is provided
     * `CountryName` (Optional)
     * `Zip` (Optional)
   * `Attributes` (Optional)
@@ -566,16 +402,16 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
       * `Number` (Optional)
       * `Extension` (Optional)
   * `Geography` (Optional)
-    * `Longitude` (**Required**)
-    * `Latitude` (**Required**)
+    * `Longitude` (**Required**) - Only required if Geography is not null. If provided, `Longitude` must also be provided
+    * `Latitude` (**Required**) - Only required if Geography is not null. If provided, `Latitude` must also be provided
   * `Relationships` (Optional)
   * `SortName` (Optional)
   * `StoreHours` (Optional)
-    * `Monday` (Optional)
-      * `Open` (Optional)
+    * `WeekDay` (Optional) - A day with no hours provided is considered closed
+      * `Open` (Optional) - If provided, `Close` must also be provided. 24hr format, H:MM
         * `Hour` (Optional)
         * `Minute` (Optional)
-      * `Close` (Optional)
+      * `Close` (Optional) - If provided, `Open` must also be provided. 24hr format, H:MM
         * `Hour` (Optional)
         * `Minute` (Optional)
   * `StorePhoneNumbers` (Optional)
@@ -591,26 +427,15 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
   
   
   
- 
-
 
 
 ###### Example
 
 ```
 POST /Companies(1)/Tree/Nodes(2)/Locations
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
    "Name": "SampleLocation",
    "Roles": [
@@ -682,67 +507,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(255)) - Description
-  * `Roles` (array[object]) - The Role of this Location , the value must be Location
-    * `Roles.Name` (string) - The name of the Role
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Area` (object) - Measurement of floor space
-    * `Area.Value` (integer) - Value of the Area
-    * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (object) - Address
-    * `Address.AddressLine1` (string) - First line of Address
-    * `Address.AddressLine2` (string) - Second line of Address
-    * `Address.City` (string) - City
-    * `Address.StateCode` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.StateName` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.CountryCode` (string) - Country Code. Uses the ISO 3166-1 alpha-2 standard
-    * `Address.CountryName` (string) - Country
-    * `Address.Zip` (string) - Zip or Postal Code
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `Contacts` (object) - Contact information
-    * `Contacts.Name` (string) - Name
-    * `Contacts.Description` (string) - Description
-    * `Contacts.PhoneNumbers` (object)
-      * `Contacts.PhoneNumbers.Description` (string) - Description
-      * `Contacts.PhoneNumbers.Number` (string) - Phone Number
-      * `Contacts.PhoneNumbers.Extension` (string) - Extension
-  * `Geography` (object) - Geographic coordinates of this Location
-    * `Geography.Longitude` (decimal) - Longitude, must be between -180 and 180
-    * `Geography.Latitude` (decimal) - Latitude, must be between -90 and 90
-  * `Relationships` (array[object]) - Relationship information, such as the parent node in the Company Tree
-  * `SortName` (string) - A string used for sorting
-  * `StoreHours` (object) - Store hours for this Location
-    * `StoreHours.Monday` (object) - Store hours for a day of the week, such as Monday
-      * `StoreHours.Monday.Open` (object) - Opening time
-        * `StoreHours.Monday.Open.Hour` (integer) - Opening time hour, in the range of [0-24]
-        * `StoreHours.Monday.Open.Minute` (integer) - Opening time minute, in the range of [0-59]
-      * `StoreHours.Monday.Close` (object) - Closing time
-        * `StoreHours.Monday.Close.Hour` (integer) - Closing time hour, in the range of [0-24]
-        * `StoreHours.Monday.Close.Minute` (integer) - Closing time minute, in the range of [0-59]
-  * `StorePhoneNumbers` (array[object]) - Phone numbers
-    * `StorePhoneNumbers.Description` (string) - Description
-    * `StorePhoneNumbers.Number` (string) - Phone Number
-    * `StorePhoneNumbers.Extension` (string) - Extension
-  * `TimeZone` (object) - Timezone information for the Location
-    * `TimeZone.Id` (string) - TimeZone name
-    * `TimeZone.DaylightSavingTimeEnabled` (boolean) - A flag indicating if the TimeZone observes daylight saving time
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `LocationType` (string) - Reserved for future use
-  * `LocationSubType` (string) - Reserved for future use
-  * `Logo` (object) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 201 Content-Type: application/json
 {
@@ -824,76 +590,58 @@ HTTP 201 Content-Type: application/json
    "Version": 1
 }
 
-
-```
-
-
-
-
-
-
-
-
-
 ## Updating a Location
 
+There are **two** different ways to update a location.
+ 
+The only difference between Option 1 and Option 2 is a `NodeId` in the URI, the request body parameters and responses are otherwise identical.
+ 
+#### This Request (Option 1)
+ 
+This option requires knowing the Id of the parent of this {{Location}} in the form of a `NodeId`, but has stronger validation.
+
+#### PUT /Companies({CompanyId})/Locations({LocationId}) (Option 2)
+ 
+This option does not require a `NodeId` but has weaker validation.
 
 
 #### Request
 
-```
-PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
-```
+    PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - Identifier for the {{Location}}
-
-* `NodeId` (**Required**) - 
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} * `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 #### Request Parameters
 
-  * `Id` (Optional)
+  * `Id` (Optional) - Required for PUT requests
   * `Name` (**Required**)
   * `Description` (Optional)
-  * `Roles` (**Required**)
+  * `Roles` (**Required**) - Must be `Location`
     * `Name` (Optional)
   * `CreatedUTC` (Optional)
   * `LastModifiedUTC` (Optional)
   * `Area` (Optional)
-    * `Value` (**Required**)
-    * `Unit` (**Required**)
+    * `Value` (**Required**) - Only required if Area is not null. If provided, `Unit` must also be provided
+    * `Unit` (**Required**) - Only required if Area is not null. If provided, `Value` must also be provided
   * `Address` (Optional)
     * `AddressLine1` (Optional)
     * `AddressLine2` (Optional)
     * `City` (Optional)
     * `StateCode` (Optional)
     * `StateName` (Optional)
-    * `CountryCode` (Optional)
+    * `CountryCode` (Optional) - Required if `StateCode` is provided
     * `CountryName` (Optional)
     * `Zip` (Optional)
   * `Attributes` (Optional)
@@ -906,16 +654,16 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
       * `Number` (Optional)
       * `Extension` (Optional)
   * `Geography` (Optional)
-    * `Longitude` (**Required**)
-    * `Latitude` (**Required**)
+    * `Longitude` (**Required**) - Only required if Geography is not null. If provided, `Longitude` must also be provided
+    * `Latitude` (**Required**) - Only required if Geography is not null. If provided, `Latitude` must also be provided
   * `Relationships` (Optional)
   * `SortName` (Optional)
   * `StoreHours` (Optional)
-    * `Monday` (Optional)
-      * `Open` (Optional)
+    * `WeekDay` (Optional) - A day with no hours provided is considered closed
+      * `Open` (Optional) - If provided, `Close` must also be provided. 24hr format, H:MM
         * `Hour` (Optional)
         * `Minute` (Optional)
-      * `Close` (Optional)
+      * `Close` (Optional) - If provided, `Open` must also be provided. 24hr format, H:MM
         * `Hour` (Optional)
         * `Minute` (Optional)
   * `StorePhoneNumbers` (Optional)
@@ -931,26 +679,15 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
   
   
   
- 
-
 
 
 ###### Example
 
 ```
-PUT /Companies(1)/Tree/Nodes(undefined)/Locations(2)
-
-
+PUT /Companies(1)/Tree/Nodes(2)/Locations(2)
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
    "Id": 2,
    "Name": "SampleLocation",
@@ -1041,67 +778,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(255)) - Description
-  * `Roles` (array[object]) - The Role of this Location , the value must be Location
-    * `Roles.Name` (string) - The name of the Role
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Area` (object) - Measurement of floor space
-    * `Area.Value` (integer) - Value of the Area
-    * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (object) - Address
-    * `Address.AddressLine1` (string) - First line of Address
-    * `Address.AddressLine2` (string) - Second line of Address
-    * `Address.City` (string) - City
-    * `Address.StateCode` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.StateName` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.CountryCode` (string) - Country Code. Uses the ISO 3166-1 alpha-2 standard
-    * `Address.CountryName` (string) - Country
-    * `Address.Zip` (string) - Zip or Postal Code
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `Contacts` (object) - Contact information
-    * `Contacts.Name` (string) - Name
-    * `Contacts.Description` (string) - Description
-    * `Contacts.PhoneNumbers` (object)
-      * `Contacts.PhoneNumbers.Description` (string) - Description
-      * `Contacts.PhoneNumbers.Number` (string) - Phone Number
-      * `Contacts.PhoneNumbers.Extension` (string) - Extension
-  * `Geography` (object) - Geographic coordinates of this Location
-    * `Geography.Longitude` (decimal) - Longitude, must be between -180 and 180
-    * `Geography.Latitude` (decimal) - Latitude, must be between -90 and 90
-  * `Relationships` (array[object]) - Relationship information, such as the parent node in the Company Tree
-  * `SortName` (string) - A string used for sorting
-  * `StoreHours` (object) - Store hours for this Location
-    * `StoreHours.Monday` (object) - Store hours for a day of the week, such as Monday
-      * `StoreHours.Monday.Open` (object) - Opening time
-        * `StoreHours.Monday.Open.Hour` (integer) - Opening time hour, in the range of [0-24]
-        * `StoreHours.Monday.Open.Minute` (integer) - Opening time minute, in the range of [0-59]
-      * `StoreHours.Monday.Close` (object) - Closing time
-        * `StoreHours.Monday.Close.Hour` (integer) - Closing time hour, in the range of [0-24]
-        * `StoreHours.Monday.Close.Minute` (integer) - Closing time minute, in the range of [0-59]
-  * `StorePhoneNumbers` (array[object]) - Phone numbers
-    * `StorePhoneNumbers.Description` (string) - Description
-    * `StorePhoneNumbers.Number` (string) - Phone Number
-    * `StorePhoneNumbers.Extension` (string) - Extension
-  * `TimeZone` (object) - Timezone information for the Location
-    * `TimeZone.Id` (string) - TimeZone name
-    * `TimeZone.DaylightSavingTimeEnabled` (boolean) - A flag indicating if the TimeZone observes daylight saving time
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `LocationType` (string) - Reserved for future use
-  * `LocationSubType` (string) - Reserved for future use
-  * `Logo` (object) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -1187,70 +865,34 @@ HTTP 200 Content-Type: application/json
    ]
 }
     
-
-```
-
-
-
-
-
-
-
-
-
 ## Getting a Location for a Company
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Locations({LocationId})
-```
+    GET /Companies({CompanyId})/Locations({LocationId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - 
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
 ###### Example
 
 ```
-GET /Companies(1)/Locations(undefined)
-
-
+GET /Companies(1)/Locations(2)
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -1258,67 +900,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(255)) - Description
-  * `Roles` (array[object]) - The Role of this Location , the value must be Location
-    * `Roles.Name` (string) - The name of the Role
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Area` (object) - Measurement of floor space
-    * `Area.Value` (integer) - Value of the Area
-    * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (object) - Address
-    * `Address.AddressLine1` (string) - First line of Address
-    * `Address.AddressLine2` (string) - Second line of Address
-    * `Address.City` (string) - City
-    * `Address.StateCode` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.StateName` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.CountryCode` (string) - Country Code. Uses the ISO 3166-1 alpha-2 standard
-    * `Address.CountryName` (string) - Country
-    * `Address.Zip` (string) - Zip or Postal Code
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `Contacts` (object) - Contact information
-    * `Contacts.Name` (string) - Name
-    * `Contacts.Description` (string) - Description
-    * `Contacts.PhoneNumbers` (object)
-      * `Contacts.PhoneNumbers.Description` (string) - Description
-      * `Contacts.PhoneNumbers.Number` (string) - Phone Number
-      * `Contacts.PhoneNumbers.Extension` (string) - Extension
-  * `Geography` (object) - Geographic coordinates of this Location
-    * `Geography.Longitude` (decimal) - Longitude, must be between -180 and 180
-    * `Geography.Latitude` (decimal) - Latitude, must be between -90 and 90
-  * `Relationships` (array[object]) - Relationship information, such as the parent node in the Company Tree
-  * `SortName` (string) - A string used for sorting
-  * `StoreHours` (object) - Store hours for this Location
-    * `StoreHours.Monday` (object) - Store hours for a day of the week, such as Monday
-      * `StoreHours.Monday.Open` (object) - Opening time
-        * `StoreHours.Monday.Open.Hour` (integer) - Opening time hour, in the range of [0-24]
-        * `StoreHours.Monday.Open.Minute` (integer) - Opening time minute, in the range of [0-59]
-      * `StoreHours.Monday.Close` (object) - Closing time
-        * `StoreHours.Monday.Close.Hour` (integer) - Closing time hour, in the range of [0-24]
-        * `StoreHours.Monday.Close.Minute` (integer) - Closing time minute, in the range of [0-59]
-  * `StorePhoneNumbers` (array[object]) - Phone numbers
-    * `StorePhoneNumbers.Description` (string) - Description
-    * `StorePhoneNumbers.Number` (string) - Phone Number
-    * `StorePhoneNumbers.Extension` (string) - Extension
-  * `TimeZone` (object) - Timezone information for the Location
-    * `TimeZone.Id` (string) - TimeZone name
-    * `TimeZone.DaylightSavingTimeEnabled` (boolean) - A flag indicating if the TimeZone observes daylight saving time
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `LocationType` (string) - Reserved for future use
-  * `LocationSubType` (string) - Reserved for future use
-  * `Logo` (object) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -1435,71 +1018,47 @@ HTTP 200 Content-Type: application/json
    "Version": 3
 }
          
-
-```
-
-
-
-
-
-
 ## Updating a Location
 
 
 
 #### Request
 
-```
-PUT /Companies({CompanyId})/Locations({LocationId})
-```
+    PUT /Companies({CompanyId})/Locations({LocationId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `LocationId` (**Required**) - 
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 #### Request Parameters
 
-  * `Id` (Optional)
+  * `Id` (Optional) - Required for PUT requests
   * `Name` (**Required**)
   * `Description` (Optional)
-  * `Roles` (**Required**)
+  * `Roles` (**Required**) - Must be `Location`
     * `Name` (Optional)
   * `CreatedUTC` (Optional)
   * `LastModifiedUTC` (Optional)
   * `Area` (Optional)
-    * `Value` (**Required**)
-    * `Unit` (**Required**)
+    * `Value` (**Required**) - Only required if Area is not null. If provided, `Unit` must also be provided
+    * `Unit` (**Required**) - Only required if Area is not null. If provided, `Value` must also be provided
   * `Address` (Optional)
     * `AddressLine1` (Optional)
     * `AddressLine2` (Optional)
     * `City` (Optional)
     * `StateCode` (Optional)
     * `StateName` (Optional)
-    * `CountryCode` (Optional)
+    * `CountryCode` (Optional) - Required if `StateCode` is provided
     * `CountryName` (Optional)
     * `Zip` (Optional)
   * `Attributes` (Optional)
@@ -1512,16 +1071,16 @@ PUT /Companies({CompanyId})/Locations({LocationId})
       * `Number` (Optional)
       * `Extension` (Optional)
   * `Geography` (Optional)
-    * `Longitude` (**Required**)
-    * `Latitude` (**Required**)
+    * `Longitude` (**Required**) - Only required if Geography is not null. If provided, `Longitude` must also be provided
+    * `Latitude` (**Required**) - Only required if Geography is not null. If provided, `Latitude` must also be provided
   * `Relationships` (Optional)
   * `SortName` (Optional)
   * `StoreHours` (Optional)
-    * `Monday` (Optional)
-      * `Open` (Optional)
+    * `WeekDay` (Optional) - A day with no hours provided is considered closed
+      * `Open` (Optional) - If provided, `Close` must also be provided. 24hr format, H:MM
         * `Hour` (Optional)
         * `Minute` (Optional)
-      * `Close` (Optional)
+      * `Close` (Optional) - If provided, `Open` must also be provided. 24hr format, H:MM
         * `Hour` (Optional)
         * `Minute` (Optional)
   * `StorePhoneNumbers` (Optional)
@@ -1537,26 +1096,15 @@ PUT /Companies({CompanyId})/Locations({LocationId})
   
   
   
- 
-
 
 
 ###### Example
 
 ```
-PUT /Companies(1)/Locations(undefined)
-
-
+PUT /Companies(1)/Locations(2)
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
    "Id": 2,
    "Name": "SampleLocation",
@@ -1678,67 +1226,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(255)) - Description
-  * `Roles` (array[object]) - The Role of this Location , the value must be Location
-    * `Roles.Name` (string) - The name of the Role
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Area` (object) - Measurement of floor space
-    * `Area.Value` (integer) - Value of the Area
-    * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (object) - Address
-    * `Address.AddressLine1` (string) - First line of Address
-    * `Address.AddressLine2` (string) - Second line of Address
-    * `Address.City` (string) - City
-    * `Address.StateCode` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.StateName` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.CountryCode` (string) - Country Code. Uses the ISO 3166-1 alpha-2 standard
-    * `Address.CountryName` (string) - Country
-    * `Address.Zip` (string) - Zip or Postal Code
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `Contacts` (object) - Contact information
-    * `Contacts.Name` (string) - Name
-    * `Contacts.Description` (string) - Description
-    * `Contacts.PhoneNumbers` (object)
-      * `Contacts.PhoneNumbers.Description` (string) - Description
-      * `Contacts.PhoneNumbers.Number` (string) - Phone Number
-      * `Contacts.PhoneNumbers.Extension` (string) - Extension
-  * `Geography` (object) - Geographic coordinates of this Location
-    * `Geography.Longitude` (decimal) - Longitude, must be between -180 and 180
-    * `Geography.Latitude` (decimal) - Latitude, must be between -90 and 90
-  * `Relationships` (array[object]) - Relationship information, such as the parent node in the Company Tree
-  * `SortName` (string) - A string used for sorting
-  * `StoreHours` (object) - Store hours for this Location
-    * `StoreHours.Monday` (object) - Store hours for a day of the week, such as Monday
-      * `StoreHours.Monday.Open` (object) - Opening time
-        * `StoreHours.Monday.Open.Hour` (integer) - Opening time hour, in the range of [0-24]
-        * `StoreHours.Monday.Open.Minute` (integer) - Opening time minute, in the range of [0-59]
-      * `StoreHours.Monday.Close` (object) - Closing time
-        * `StoreHours.Monday.Close.Hour` (integer) - Closing time hour, in the range of [0-24]
-        * `StoreHours.Monday.Close.Minute` (integer) - Closing time minute, in the range of [0-59]
-  * `StorePhoneNumbers` (array[object]) - Phone numbers
-    * `StorePhoneNumbers.Description` (string) - Description
-    * `StorePhoneNumbers.Number` (string) - Phone Number
-    * `StorePhoneNumbers.Extension` (string) - Extension
-  * `TimeZone` (object) - Timezone information for the Location
-    * `TimeZone.Id` (string) - TimeZone name
-    * `TimeZone.DaylightSavingTimeEnabled` (boolean) - A flag indicating if the TimeZone observes daylight saving time
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `LocationType` (string) - Reserved for future use
-  * `LocationSubType` (string) - Reserved for future use
-  * `Logo` (object) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -1855,50 +1344,25 @@ HTTP 200 Content-Type: application/json
    "Version": 3
 }
    
-
-```
-
-
-
-
-
-
-
-
-
 ## Getting All Locations for a Company
 
 
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Locations
-```
+    GET /Companies({CompanyId})/Locations
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -1906,17 +1370,8 @@ GET /Companies({CompanyId})/Locations
 
 ```
 GET /Companies(1)/Locations
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -1924,67 +1379,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(255)) - Description
-  * `Roles` (array[object]) - The Role of this Location , the value must be Location
-    * `Roles.Name` (string) - The name of the Role
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Area` (object) - Measurement of floor space
-    * `Area.Value` (integer) - Value of the Area
-    * `Area.Unit` (string) - Unit used for the Value, acceptable values are SqFt and SqM
-  * `Address` (object) - Address
-    * `Address.AddressLine1` (string) - First line of Address
-    * `Address.AddressLine2` (string) - Second line of Address
-    * `Address.City` (string) - City
-    * `Address.StateCode` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.StateName` (string) - State/Province. Uses the ISO 3166-2 standard
-    * `Address.CountryCode` (string) - Country Code. Uses the ISO 3166-1 alpha-2 standard
-    * `Address.CountryName` (string) - Country
-    * `Address.Zip` (string) - Zip or Postal Code
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `Contacts` (object) - Contact information
-    * `Contacts.Name` (string) - Name
-    * `Contacts.Description` (string) - Description
-    * `Contacts.PhoneNumbers` (object)
-      * `Contacts.PhoneNumbers.Description` (string) - Description
-      * `Contacts.PhoneNumbers.Number` (string) - Phone Number
-      * `Contacts.PhoneNumbers.Extension` (string) - Extension
-  * `Geography` (object) - Geographic coordinates of this Location
-    * `Geography.Longitude` (decimal) - Longitude, must be between -180 and 180
-    * `Geography.Latitude` (decimal) - Latitude, must be between -90 and 90
-  * `Relationships` (array[object]) - Relationship information, such as the parent node in the Company Tree
-  * `SortName` (string) - A string used for sorting
-  * `StoreHours` (object) - Store hours for this Location
-    * `StoreHours.Monday` (object) - Store hours for a day of the week, such as Monday
-      * `StoreHours.Monday.Open` (object) - Opening time
-        * `StoreHours.Monday.Open.Hour` (integer) - Opening time hour, in the range of [0-24]
-        * `StoreHours.Monday.Open.Minute` (integer) - Opening time minute, in the range of [0-59]
-      * `StoreHours.Monday.Close` (object) - Closing time
-        * `StoreHours.Monday.Close.Hour` (integer) - Closing time hour, in the range of [0-24]
-        * `StoreHours.Monday.Close.Minute` (integer) - Closing time minute, in the range of [0-59]
-  * `StorePhoneNumbers` (array[object]) - Phone numbers
-    * `StorePhoneNumbers.Description` (string) - Description
-    * `StorePhoneNumbers.Number` (string) - Phone Number
-    * `StorePhoneNumbers.Extension` (string) - Extension
-  * `TimeZone` (object) - Timezone information for the Location
-    * `TimeZone.Id` (string) - TimeZone name
-    * `TimeZone.DaylightSavingTimeEnabled` (boolean) - A flag indicating if the TimeZone observes daylight saving time
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `LocationType` (string) - Reserved for future use
-  * `LocationSubType` (string) - Reserved for future use
-  * `Logo` (object) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 {
@@ -2007,53 +1403,26 @@ HTTP 200 Content-Type: application/json
    "Version": 1
 }
                              
-
-```
-
-
-
-
-
-
-
-
-
 ## 
 
 
 
 #### Request
 
-```
-POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
-```
+    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `NodeId` (**Required**) - Identifier of a Node
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `NodeId` (**Required**)  - Identifier of a Node 
 
 
 #### Request Parameters
@@ -2061,26 +1430,15 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
   * `Name` (**Required**)
   * `Description` (Optional)
   * `ClientEntityId` (Optional)
- 
-
 
 
 ###### Example
 
 ```
 POST /Companies(1)/Tree/Nodes(16)/Divisions
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
    "Name": "SampleGroup",
    "Description": "Group creating great experiences.",
@@ -2094,34 +1452,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(250)) - Description
-  * `Roles` (object) - The value must be Division
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `Logo` (object) - A reference to an Asset
-    * `Logo.Id` (GUID) - Unique identifier
-    * `Logo.Name` (string) - File name
-    * `Logo.Height` (integer) - Height in pixels
-    * `Logo.Href` (string) - URL that points to an actual file where the digital asset is stored
-    * `Logo.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
-    * `Logo.MimeType` (string) - The mime type
-    * `Logo.Width` (integer) - Width in pixels
-  * `Relationships` (array[object]) - Relationship information, such child Locations, Suppliers and Carriers
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 201 Content-Type: application/json
 {
@@ -2144,49 +1476,25 @@ HTTP 201 Content-Type: application/json
    "Version": 1
 }
 
-
-```
-
-
-
-
-
-
 ## Creating a Division
 
 Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
-```
+    GET /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `NodeId` (**Required**) - Identifier of a Node
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `NodeId` (**Required**)  - Identifier of a Node 
 
 
 
@@ -2194,28 +1502,12 @@ GET /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 
 ```
 GET /Companies(1)/Tree/Nodes(16)/Divisions
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
 #### Response
-
-
-
-
-
-
-
 
 ## 
 
@@ -2223,36 +1515,20 @@ Accept: application/json
 
 #### Request
 
-```
-POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
-```
+    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 * `Content-Type: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `NodeId` (**Required**) - Identifier of a Node
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `NodeId` (**Required**)  - Identifier of a Node 
 
 
 #### Request Parameters
@@ -2260,26 +1536,15 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
   * `Name` (**Required**)
   * `Description` (Optional)
   * `ClientEntityId` (Optional)
- 
-
 
 
 ###### Example
 
 ```
 POST /Companies(1)/Tree/Nodes(16)/Groups
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
 Content-Type: application/json
-
-
-
-
 {
   "Name": "SampleGroup",
   "Description": "Group creating great experiences.",
@@ -2293,34 +1558,8 @@ Content-Type: application/json
 
 
 
-
-
-
-  * `Id` (integer) - Unique identifier
-  * `Name` (string(250)) - Name
-  * `Description` (string(255)) - Description
-  * `Roles` (object) - The value must be Group
-  * `ClientEntityId` (string) - Identifier in an external system
-  * `CreatedUTC` (datetime) - Created date in UTC
-  * `LastModifiedUTC` (datetime) - Last modified date in UTC
-  * `Attributes` (object) - Set of key-value pairs that contain extra data
-  * `Logo` (object) - A reference to an Asset
-    * `Logo.Id` (GUID) - Unique identifier
-    * `Logo.Name` (string) - File name
-    * `Logo.Height` (integer) - Height in pixels
-    * `Logo.Href` (string) - URL that points to an actual file where the digital asset is stored
-    * `Logo.Md5Checksum` (string) - String that can be used for upload integrity checks or comparing two assets
-    * `Logo.MimeType` (string) - The mime type
-    * `Logo.Width` (integer) - Width in pixels
-  * `Relationships` (array[object]) - Relationship information, such child Locations, Suppliers and Carriers
-  * `SortName` (string) - A string used for sorting
-  * `Version` (integer) - Latest revision number
-  * `CorrelationId` (string) - Reserved for internal use
-  * `Role` (string) - Reserved for internal use
-
-
-
 ###### Example
+
 ```
 HTTP 201 Content-Type: application/json
 {
@@ -2343,49 +1582,25 @@ HTTP 201 Content-Type: application/json
   "Version": 1
 }       
 
-
-```
-
-
-
-
-
-
 ## Creating a Group
 
 Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
 
 #### Request
 
-```
-GET /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
-```
+    GET /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `NodeId` (**Required**) - Identifier of a Node
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `NodeId` (**Required**)  - Identifier of a Node 
 
 
 
@@ -2393,28 +1608,12 @@ GET /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 
 ```
 GET /Companies(1)/Tree/Nodes(16)/Groups
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
 #### Response
-
-
-
-
-
-
-
 
 ## Deleting a Group or Division
 
@@ -2427,35 +1626,19 @@ This request removes the Node refered to by NodeId from the Company Tree along w
 
 #### Request
 
-```
-DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
-```
+    DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `NodeId` (**Required**) - Identifier of a Node to be deleted
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `NodeId` (**Required**)  - Identifier of a Node to be deleted 
 
 
 
@@ -2463,31 +1646,19 @@ DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
 
 ```
 DELETE /Companies(1)/Tree/Nodes(16)
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
 #### Response
 
 
+```
 
+###### Example
 
-
-
-
-
-
-
+```HTTP 200```
 ## Searching by ClientEntityId
 
 This request allows you to search your Company Tree using the `ClientEntityId` field. This request returns an array of objects that summarize Entities matching the search criteria. The following resource types are considered 'Entities': {{Company}}, {{Division}}, {{Group}}, {{Location}}, device
@@ -2495,35 +1666,19 @@ This request allows you to search your Company Tree using the `ClientEntityId` f
 
 #### Request
 
-```
-GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
-```
+    GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
 
 #### Headers
 
-
 * `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
-
-
-
-
 
 * `Accept: application/json`
 
 
 
-
-
-
 #### URI Parameters
 
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-* `ClientEntityId` (**Required**) - The value to search for
-
-
-
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `ClientEntityId` (**Required**)  - The value to search for 
 
 
 
@@ -2531,17 +1686,8 @@ GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
 
 ```
 GET /Entities(1)/Nodes?$filter=123
-
-
 Authorization: Bearer (Access Token)
-
-
-
 Accept: application/json
-
-
-
-
 
 ```
 
@@ -2549,22 +1695,8 @@ Accept: application/json
 
 
 
-
-
-
-  * `Id` (integer)
-  * `Name` (string)
-  * `Description` (string)
-  * `Role` (string) - Role of the Entity
-  * `Path` (array[object]) - Parents of the Entity. The order of elements is important, reflecting the hierarchy of parents (self, parent, parent-of-parent, etc) 
-    * `Path.Id` (integer)
-    * `Path.Name` (string)
-    * `Path.Description` (string)
-    * `Path.Role` (string) - Role of the Entity
-
-
-
 ###### Example
+
 ```
 HTTP 200 Content-Type: application/json
 [
@@ -2619,17 +1751,6 @@ HTTP 200 Content-Type: application/json
 ]
                              
 
-```
-
-
-
-
-
-
-
-
-
-
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
@@ -2644,5 +1765,3 @@ HTTP 200 Content-Type: application/json
 | `HTTP 404` | `Entity Not Found` | Ensure `CompanyId` and `LocationId` are accurate and the Location belongs to the Company |
 | `HTTP 409` | `Entity resource already modified by an`<br/>` earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
 | `HTTP 409` | `An Entity already exists with the same name `<br/>`and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |    
-
-
