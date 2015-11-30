@@ -35,31 +35,31 @@ Commission earned by an employee.
 | CommissionSplitUserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the split commissionable employee | `22214` |
 | CommissionType | Byte | Type of commission applied. If this is a Coupon commission, see [CouponCommissionTypes](#couponcommissiontypes) for a list of acceptable values, otherwise see [CommissionTypes](#commissiontypes) for a list of acceptable values | `1` |
 | CouponID | Integer | Identifier for a coupon associated with this commission in RQ | `8` |
-| DateCreatedUtc | Datetime | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
+| DateCreatedUtc | DateTime | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
 | EmployeeSpecialId | Integer | Special Identifier for the Employee in RQ | `1002` |
 | UserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the primary commissionable employee | `22212` |
 | GlobalProductID | Integer | Identifier of product associated with this commission in RQ | `1210` |
 | HasBeenReversed | Boolean | A flag to indicate if this CommissionEntry has been reversed | `false` |
-| InvoiceEditedDate | Datetime | Time last edited with the Invoice Editor in RQ | `2015-09-10T20:01:49.00` |
+| InvoiceEditedDate | DateTime | Time last edited with the Invoice Editor in RQ | `2015-09-10T20:01:49.00` |
 | InvoiceNumber | String(14) | Invoice Number of the transaction which created this commission in RQ | `84WEAIN5703` |
 | IsChargeback | Boolean | A flag to indicate if this commission was created by a chargeback in RQ | `false` |
 | IsCommissionSplit | Boolean | A flag to indicate if the commission is split with a second employee | `true` |
 | IsFullChargeback | Boolean | A flag to indicate if this commission was created by a full chargeback in RQ | `false` |
 | IsSuspended | Boolean | A flag to indicate if this commission has been suspended | `false` |
-| LastUpdateDateUtc | Datetime | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
+| LastUpdateDateUtc | DateTime | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
 | LocationCode | String | An identifier for the Location in an external system | `LOC123` |
 | LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
-| MilestoneID | Guid | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
+| MilestoneID | GUID | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
 | Priority | Integer | Priority of product on sale invoice associated with this commission in RQ | `1` |
 | Quantity | Integer | The number of times the unit commission is to be applied | `1` |
 | RQCommissionId | Integer | Identifier of the associated commission RQ | `445` |
-| SaleInvoiceAndCouponID | Guid | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
+| SaleInvoiceAndCouponID | GUID | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
 | SaleInvoiceID | Integer | Identifier of the sale invoice which created this commission in RQ | `7` |
 | SerialNumber | String(100) | Serial number of the product associated with this commission in RQ | `8508194953` |
 | SplitRate1 | Decimal | Percentage of the commission the primary employee receives, defaults to 100 | `50.0` |
 | SplitRate2 | Decimal | Percentage of the commission the split employee receives, defaults to 0 | `50.0` |
 | TotalCommission | Decimal | The total commission amount to be applied equal to (UnitCommission * Quantity) | `5.32` |
-| TransactionGUID | Guid | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
+| TransactionGUID | GUID | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
 | TransactionType | Byte | Type of transaction which created this commission. See [TransactionTypes](#transactiontypes) for a list of acceptable values | `1` |
 | UnitCommission | Decimal | The individual unit Commission amount | `5.32` |
 
@@ -136,22 +136,21 @@ By default, the sorting order of the response to this request will be **descendi
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T00:00:00.000Z" and LastUpdateDateUtc le datetime"2015-12-31T23:59:59.000Z"&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{CommissionEntry}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -195,12 +194,10 @@ HTTP 200 Content-Type: application/json
         "UnitCommission": 5.32
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -268,6 +265,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 
 ## Pagination
 

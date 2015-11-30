@@ -27,13 +27,13 @@ Suppliers have the ability to add products to their subscribable lists and retri
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Companies | Array[[Company](#company)] | Companies for the subscription |  |
-| ListId | Guid | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
+| ListId | GUID | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 
 ### Company
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| DateSubscribedUtc | Datetime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
+| DateSubscribedUtc | DateTime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
 | Id | Integer | Company identifier | `60454` |
 | Name | String | Company Name | `Mark Inc` |
 
@@ -42,7 +42,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | EntityId | Integer | [Supplier](/api/entity-store/#supplier) identifier | `14` |
-| Id | Guid | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
+| Id | GUID | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 | Name | String | Title of product subscription | `Joe's Subscription List` |
 | Products | Array[[Product](#product)] | Products for the subscribable list |  |
 | Version | Integer | Subscription revision | `12` |
@@ -86,22 +86,21 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 ###### Example
 
-```
+<pre>
 GET /subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Subscription}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -122,6 +121,7 @@ HTTP 200 Content-Type: application/json
 }
 
 
+</pre>
 ## Getting a Subscribable List
 
 
@@ -147,22 +147,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{SubscribableList}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -183,8 +182,7 @@ HTTP 200 Content-Type: application/json
     ],
     "Version": 12
 }
-```
-
+</pre>
 ## Updating Products in a Subscribable List
 
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
@@ -223,7 +221,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -241,17 +239,16 @@ Content-Type: application/json
    ]          
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{SubscribableList}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -272,6 +269,7 @@ HTTP 200 Content-Type: application/json
 }
 
 
+</pre>
 
 ## Errors
 

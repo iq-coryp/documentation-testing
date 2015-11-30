@@ -112,7 +112,7 @@ A User represents an account that can be used to perform actions on your data wi
 
 ###### Example
 
-```
+<pre>
 POST /Users/importExisting
 
 {
@@ -146,17 +146,16 @@ POST /Users/importExisting
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{User}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -190,8 +189,7 @@ HTTP 201 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }
-```
-
+</pre>
 ## Getting a User
 
 
@@ -217,22 +215,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Users(22212)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{User}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -266,8 +263,7 @@ HTTP 200 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }
-```
-
+</pre>
 ## Updating a User
 
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
@@ -315,7 +311,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Users(22212)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -352,17 +348,16 @@ Content-Type: application/json
     "Version": 1
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{User}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -396,8 +391,7 @@ HTTP 200 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }
-```
-
+</pre>
 ## Disabling a User
 
 {{note}}
@@ -425,19 +419,18 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 ###### Example
 
-```
+<pre>
 DELETE /Users(22212)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Getting All Users for a Company
 
@@ -466,15 +459,14 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 GET /Entities(1)/Users?$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
   * `_links` (object) - Relative URL's used for Pagination
     * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
@@ -492,7 +484,7 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -540,8 +532,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## Searching for Users
 
 
@@ -570,15 +561,14 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
   * `_links` (object) - Relative URL's used for Pagination
     * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
@@ -596,7 +586,7 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -644,8 +634,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## Assigning a User to a Location
 
 {{note}}
@@ -676,23 +665,23 @@ Users can be assigned to multiple locations
 
 ###### Example
 
-```
+<pre>
 PUT /Users(22212)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```
+<pre>
 HTTP 204 Content-Type: application/json
 
+</pre>
 ## Unassigning a User from a Location
 
 
@@ -719,20 +708,19 @@ HTTP 204 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Users(22212)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 204```
+<pre>HTTP 204</pre>
 
 ## Getting Assigned Locations for a User
 
@@ -759,15 +747,14 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Users(22212)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
   * `UserId` (integer)
   * `LocationIDs` (array) - Location Ids for {{Locations}} assigned to the {{User}}
@@ -775,7 +762,7 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -784,8 +771,7 @@ HTTP 200 Content-Type: application/json
         4
     ]
 }
-```
-
+</pre>
 ## Getting Users by ClientUserId
 
 
@@ -814,22 +800,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{User}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -865,8 +850,7 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
+</pre>
 ## Locking a User
 
 {{note}}
@@ -893,20 +877,20 @@ Once locked, a User will not be able to log in or obtain an access token until t
 
 ###### Example
 
-```
+<pre>
 POST /Users(22212)/Lock
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```
+<pre>
 HTTP 204 Content-Type: application/json
 
+</pre>
 ## Unlocking a User
 
 Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
@@ -935,20 +919,20 @@ A User can be unlocked if their account is locked and their parent Entity is not
 
 ###### Example
 
-```
+<pre>
 POST /Users(22212)/Unlock
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```
+<pre>
 HTTP 204 Content-Type: application/json
 
+</pre>
 ## Enabling a User
 
 
@@ -972,20 +956,19 @@ HTTP 204 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 POST /Users(22212)/Enable
 
-```
+</pre>
 
 #### Response
-
 
 {{User}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1019,8 +1002,7 @@ HTTP 200 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }
-```
-
+</pre>
 
 ## Errors
 

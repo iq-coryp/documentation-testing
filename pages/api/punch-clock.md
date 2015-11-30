@@ -27,17 +27,17 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Unique Identifier | `1953` |
-| CreatedDateUtc | Datetime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
+| CreatedDateUtc | DateTime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
 | EmployeeVerified | Boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
 | EmployeeSpecialId | Boolean | Special identifier for Employee in RQ | `1002` |
-| LastUpdateDateUtc | Datetime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
+| LastUpdateDateUtc | DateTime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
 | LocationCode | String(100) | An identifier for the Location in an external system | `CWW` |
 | LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
 | ManagerVerified | Boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
 | PunchInComments | String(100) | Punch in comments | `IN - FingerPrint/HomeConsole` |
 | PunchOutComments | String(100) | Punch out comments | `OUT - HomeConsole` |
-| TimeInAtStore | Datetime | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
-| TimeOutAtStore | Datetime | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
+| TimeInAtStore | DateTime | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
+| TimeOutAtStore | DateTime | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
 | UserId | Integer | Identifier for a [User](/api/user-manager/#user) | `22212` |
 | Version | Integer | Latest revision number | `1` |
 | *RQPunchId* | *Integer* | *Reserved for internal use* | |
@@ -78,22 +78,21 @@ Don't forget <code>$filter=</code> in the request!
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{PunchEntry}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -114,12 +113,10 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -165,6 +162,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 
 ## Pagination
 

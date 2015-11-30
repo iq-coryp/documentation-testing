@@ -29,7 +29,7 @@ summary:
 | Assets | Array[object] | Asset information |  |
 | CanonicalClassification | Object | ClassificationTree details |  |
 | Entity | Object | Entity information, used for Entity revisions |  |
-| HeroShotId | Guid | [Hero Shot](/api/glossary/#hero-shot) identifier | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
@@ -38,7 +38,7 @@ summary:
 | MSRP | [MSRP](#msrp) | Manufacturers suggested retail price information |  |
 | Owner | Object | Owner information, used for Private products and Carrier Revisions |  |
 | Region | Object | Region information, for Regional Carrier Revisions |  |
-| ReleaseDate | Datetime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
+| ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
 | Specifications | Array[[Specification](#specification)] | Details such as color, dimension, etc |  |
 | UpcCodes | Array[[UpcCode](#upccode)] | UPC codes |  |
 | VariationId | Integer | Identifier for the Variation | `1` |
@@ -169,22 +169,21 @@ See the table below for available options and the syntax of using each one.
 
 ###### Example
 
-```
+<pre>
 GET /Products/FindByIdentifier?value=ABC123&type=VendorSKU&entityId=4
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{ProductSearch}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -251,8 +250,7 @@ HTTP 200 Content-Type: application/json
         "M1-1"
     ]
 }
-```
-
+</pre>
 
 ## Errors
 

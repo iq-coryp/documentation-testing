@@ -34,7 +34,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 | Classification | [Classification](#classification) | Refer to [Classification](/concepts/classification-tree) for more information |  |
 | ClassificationTreeName | String | Name of the classification tree | `Cellular & Accessories` |
 | Fields | Array[[Field](#field)] | A list of fields for the product. For the product being added, only include the definitions that apply |  |
-| LastModifiedByVendorUtc | Datetime | Provides the last date that the product feed was modified by the vendor, in UTC | `2015-09-16T10:40:31.101Z` |
+| LastModifiedByVendorUtc | DateTime | Provides the last date that the product feed was modified by the vendor, in UTC | `2015-09-16T10:40:31.101Z` |
 | Manufacturer | String | The company that produces the product | `Motorola` |
 | ManufacturerSku | String | The Product SKU from the manufacturer | `1234` |
 | ModelName | String | [Master Product](/concepts/product-structure/#Master-Products) name | `Agent18 SlimShield Case for iPhone 6` |
@@ -85,7 +85,7 @@ Refer to {{Asset_Glossary}} for more information.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Asset identifier | `31294366-948a-420c-972f-ed1450e3cdd8` |
+| Id | GUID | Asset identifier | `31294366-948a-420c-972f-ed1450e3cdd8` |
 | AssetUrl | String | Original URL of asset provided in request | `http://image.sample.com/b.png` |
 | FileName | String | Filename of the asset | `Note4-white.png` |
 | IsConverted | Boolean | Indicates if the asset have been converted | `false` |
@@ -99,7 +99,7 @@ Refer to {{Asset_Glossary}} for more information.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Product Feed identifier | `34` |
-| LastReceivedUpdatesFromProviderUtc | Datetime | Date and time of last received update, in UTC | `2014-11-13T19:40:57.102Z` |
+| LastReceivedUpdatesFromProviderUtc | DateTime | Date and time of last received update, in UTC | `2014-11-13T19:40:57.102Z` |
 | Products | Array[[Product](#product)] | List of [Products](#product) |  |
 | ProviderName | String | Name of the Product Feed | `Joe's Product Feed` |
 | Version | Integer | Latest revision number | `8` |
@@ -155,7 +155,7 @@ Refer to {{Asset_Glossary}} for more information.
 
 ###### Example
 
-```
+<pre>
 POST /ProductFeeds(34)/Products
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -195,17 +195,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Product}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -255,8 +254,7 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]
-```
-
+</pre>
 ## Getting All Products in a Feed
 
 Returns all the **Products** in a particular **Product Feed** indicated by the feed's **Feed ID** parameter. \n\nUseful when testing to ensure that products have been successfully added or removed.
@@ -283,22 +281,21 @@ Returns all the **Products** in a particular **Product Feed** indicated by the f
 
 ###### Example
 
-```
+<pre>
 GET /ProductFeeds(34)/Products
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Product}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -348,8 +345,7 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]
-```
-
+</pre>
 ## Getting a Product Feed
 
 Returns an array of [Products](#product), as well as additional parameters.
@@ -376,22 +372,21 @@ Returns an array of [Products](#product), as well as additional parameters.
 
 ###### Example
 
-```
+<pre>
 GET /ProductFeeds(34)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{ProductFeed}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -447,8 +442,7 @@ HTTP 200 Content-Type: application/json
     "ProviderName": "Joe's Product Feed",
     "Version": 8
 }
-```
-
+</pre>
 ## Removing a Product from a Feed
 
 Updates a Product Feed (FeedId) by removing a Product (ProductId). 
@@ -474,19 +468,18 @@ Updates a Product Feed (FeedId) by removing a Product (ProductId).
 
 ###### Example
 
-```
+<pre>
 DELETE /ProductFeeds(34)/Products(2)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 204```
+<pre>HTTP 204</pre>
 
 
 ## Errors

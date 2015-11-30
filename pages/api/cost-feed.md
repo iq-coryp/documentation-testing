@@ -34,7 +34,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
+| Id | GUID | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
 | Products | Array[[Product](#product)] | List of products for which the cost is being updated |  |
 
 ### Product
@@ -83,7 +83,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ###### Example
 
-```
+<pre>
 POST /Suppliers(1324)/Cost
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -104,17 +104,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Cost}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 202 Content-Type: application/json
 
 {
@@ -131,8 +130,7 @@ HTTP 202 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 
 ## Errors
 

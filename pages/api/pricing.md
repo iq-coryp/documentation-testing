@@ -33,7 +33,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `41614` |
-| CatalogItemId | Guid | [CatalogItem](/api/catalog/#catalogitem) identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| CatalogItemId | GUID | [CatalogItem](/api/catalog/#catalogitem) identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | CompanyId | Integer | Identifier for the Company associated with this Pricing | `1` |
 | EntityId | Integer | [CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set | `2` |
 | RegularPrice | Decimal | The regular price, must be greater than 0 | `10.0` |
@@ -95,7 +95,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -111,17 +111,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Pricing}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -133,8 +132,7 @@ HTTP 201 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }
-```
-
+</pre>
 ## Creating Product Pricing at Location Level
 
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
@@ -175,7 +173,7 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -191,17 +189,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Pricing}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -213,8 +210,7 @@ HTTP 201 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }
-```
-
+</pre>
 ## Getting Product Pricing for a Retail Location
 
 
@@ -242,22 +238,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Pricing}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -269,8 +264,7 @@ HTTP 200 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }
-```
-
+</pre>
 ## Updating Product Pricing for a Retail Location
 
 
@@ -296,13 +290,12 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 
-```
+</pre>
 
 #### Response
-
 ## Creating Product Pricing at Company Level
 
 
@@ -341,7 +334,7 @@ PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -357,17 +350,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Pricing}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -379,8 +371,7 @@ HTTP 201 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }
-```
-
+</pre>
 ## Getting Product Pricing at Company Level
 
 
@@ -407,22 +398,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Pricing}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -436,8 +426,7 @@ HTTP 200 Content-Type: application/json
         "PricingTermId": 20
     }
 ]
-```
-
+</pre>
 ## Updating Product Pricing at Company Level
 
 
@@ -462,13 +451,12 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 
-```
+</pre>
 
 #### Response
-
 ## Getting all Active Pricing Terms
 
 
@@ -494,22 +482,21 @@ PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/PricingTerms
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{PricingTerm}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -523,8 +510,7 @@ HTTP 200 Content-Type: application/json
         "TermLengthInYears": 3
     }
 ]
-```
-
+</pre>
 ## Getting a Pricing Term
 
 
@@ -551,22 +537,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/PricingTerms(20)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{PricingTerm}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -578,8 +563,7 @@ HTTP 200 Content-Type: application/json
     "NumberOfPayments": 1,
     "TermLengthInYears": 3
 }
-```
-
+</pre>
 ## Getting Product Pricing by Pricing Term
 
 
@@ -607,22 +591,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing?$filter=20
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Pricing}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -636,8 +619,7 @@ HTTP 200 Content-Type: application/json
         "PricingTermId": 20
     }
 ]
-```
-
+</pre>
 
 ## Errors
 

@@ -37,8 +37,8 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Description | String(255) | Description | `Company creating great experiences.` |
 | Roles | Array[[CompanyRole](#companyrole)] | The value must be Company |  |
 | ClientEntityId | String | Identifier in an external system | `123` |
-| CreatedUtc | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUtc | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUtc | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | [Asset](#asset) | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
@@ -52,7 +52,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid |  | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Id | GUID |  | `732130d2-b673-461c-812b-f2b614d6076e` |
 | Name | String |  | `iqmetrix.jpg` |
 | Height | Integer |  | `145` |
 | Href | String |  | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
@@ -96,8 +96,8 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | Name | String(250) | Name | `SampleLocation` |
 | Description | String(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
 | Roles | Array[[LocationRole](#locationrole)] | The Role of this Location, the value must be Location |  |
-| CreatedUTC | Datetime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
-| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
 | Area | [Area](#area) | Measurement of floor space |  |
 | Area.Value | Integer | Value of the Area |  |
 | Area.Unit | String | Unit used for the Value, acceptable values are SqFt and SqM |  |
@@ -135,8 +135,8 @@ To learn more about Divisions, see {{Division_Concept}}.
 | Description | String(255) | Description | `Division creating great experiences.` |
 | Roles | Array[[DivisionRole](#divisionrole)] | The value must be Division |  |
 | ClientEntityId | String | Identifier in an external system | `187` |
-| CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | [Asset](#asset) | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
@@ -159,8 +159,8 @@ Managerial or geographical groupings.
 | Description | String(255) | Description | `Group creating great experiences.` |
 | Roles | Array[[GroupRole](#grouprole)] | The value must be Group |  |
 | ClientEntityId | String | Identifier in an external system | `187` |
-| CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | [Asset](#asset) | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
@@ -218,22 +218,21 @@ Managerial or geographical groupings.
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Company}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -262,8 +261,7 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplecompany",
     "Version": 1
 }
-```
-
+</pre>
 ## Getting a Company Tree
 
 
@@ -289,22 +287,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Tree
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{CompanyTree}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -322,8 +319,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## Creating a Location
 
 
@@ -382,7 +378,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Tree/Nodes(2)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -519,17 +515,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Location}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -661,8 +656,7 @@ HTTP 201 Content-Type: application/json
     },
     "Version": 13
 }
-```
-
+</pre>
 ## Updating a Location
 
 There are **two** different ways to update a location.
@@ -702,23 +696,22 @@ This option does not require a `NodeId` but has weaker validation.
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Tree/Nodes(2)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Location}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -850,8 +843,7 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 13
 }
-```
-
+</pre>
 ## Getting a Location for a Company
 
 
@@ -878,22 +870,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Location}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1025,8 +1016,7 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 13
 }
-```
-
+</pre>
 ## Updating a Location
 
 
@@ -1085,7 +1075,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -1220,17 +1210,16 @@ Content-Type: application/json
     "Version": 13
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{Location}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1362,8 +1351,7 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 13
 }
-```
-
+</pre>
 ## Getting All Locations for a Company
 
 
@@ -1389,22 +1377,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Location}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -1538,8 +1525,7 @@ HTTP 200 Content-Type: application/json
         "Version": 13
     }
 ]
-```
-
+</pre>
 ## Creating a Division
 
 Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
@@ -1585,7 +1571,7 @@ Divisions may be added to the root Company node, or to a Division or Group node.
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Tree/Nodes(16)/Divisions
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -1600,17 +1586,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Division}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -1640,8 +1625,7 @@ HTTP 201 Content-Type: application/json
     "SortName": "sampledivision",
     "Version": 1
 }
-```
-
+</pre>
 ## Creating a Group
 
 Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
@@ -1687,7 +1671,7 @@ Groups may be added to the root Company node, or to a Division or Group node. A 
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Tree/Nodes(16)/Groups
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -1702,17 +1686,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Group}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -1742,8 +1725,7 @@ HTTP 201 Content-Type: application/json
     "SortName": "samplegroup",
     "Version": 1
 }
-```
-
+</pre>
 ## Deleting a Group or Division
 
 {{warning}}
@@ -1774,19 +1756,18 @@ This request removes the Node refered to by NodeId from the Company Tree along w
 
 ###### Example
 
-```
+<pre>
 DELETE /Companies(1)/Tree/Nodes(16)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Searching by ClientEntityId
 
@@ -1814,22 +1795,21 @@ This request allows you to search your Company Tree using the `ClientEntityId` f
 
 ###### Example
 
-```
+<pre>
 GET /Entities(1)/Nodes?$filter=123
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{ClientIdSearch}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -1848,8 +1828,7 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]
-```
-
+</pre>
 
 ## Errors
 

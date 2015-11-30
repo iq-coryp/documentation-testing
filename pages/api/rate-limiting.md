@@ -4,7 +4,7 @@ permalink: /api/rate-limiting/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 03-11-2015
 summary: 
 ---
 

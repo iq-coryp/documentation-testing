@@ -49,7 +49,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ClientID | Guid | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
+| ClientID | GUID | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
 | Username | String | Username | `sampleusername` |
 | Password | String | Password | `samplepassword` |
 | *StoreId* | *Integer* | *Reserved for future use. Use value of -1* | |
@@ -59,7 +59,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| PurchaseOrderID | Guid | Unique identifier | `84DACFD3-4095-4D50-A02E-781B86B7408E` |
+| PurchaseOrderID | GUID | Unique identifier | `84DACFD3-4095-4D50-A02E-781B86B7408E` |
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
 | Quantity | Integer | Number of items shipped | `1` |
 | RQPurchaseOrderID | Integer | Identifier for the Purchase Order in RQ | `22073` |
@@ -73,7 +73,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| PurchaseOrderID | Guid | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
+| PurchaseOrderID | GUID | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
 | PurchaseOrderData | [PurchaseOrderData](#purcahseorderdata) | Purchase order |  |
 | ProductsOrdered | Array[[ProductInformation](#productinformation)] | Products ordered |  |
 | ProductsReceived | Array[[ProductInformation](#productinformation)] | Products received |  |
@@ -84,15 +84,15 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| PurchaseOrderID | Guid | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
+| PurchaseOrderID | GUID | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
 | BillToStoreID | Integer | RQ StoreId | `55` |
 | BillToStoreName | String | RQ store name | `Cornwall west` |
 | BillToVendorAccountNumber | String | Vendor account number to use for billing | `1` |
 | IsDeleted | Boolean | A flag to indicate if this purchase order has been deleted in RQ | `false` |
 | CreatedByVMI | Boolean | A flag to indicate if this was created by the VMI API (true) or RQ (false) | `false` |
-| CreatedDate | Datetime | The date and time the purchase order was created, if it was created in RQ | `3/16/2014 12:00:00 AM` |
+| CreatedDate | DateTime | The date and time the purchase order was created, if it was created in RQ | `3/16/2014 12:00:00 AM` |
 | Comments | String | Any comments for the purchase order | `comments` |
-| EstimatedArrivalDate | Datetime | Estimated date of arrival | `3/2/2014 12:00:00 AM` |
+| EstimatedArrivalDate | DateTime | Estimated date of arrival | `3/2/2014 12:00:00 AM` |
 | OrderTotal | Decimal | Cost of the order, provided by a vendor for informational purposes only | `99.99` |
 | RetailiQPurchaseOrderID | Integer | Identifier of purchase order in RQ | `22075` |
 | RetailiQPurchaseOrderNumber | String | Purchase order number in RQ | `DALEKPO5` |
@@ -108,9 +108,9 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ProductID | Guid | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
+| ProductID | GUID | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
 | ProductName | String | Name | `Samsung Galaxy S6` |
-| DateEOL | Datetime | End of life date | `1/01/2016 12:00:00 AM` |
+| DateEOL | DateTime | End of life date | `1/01/2016 12:00:00 AM` |
 | DoNotOrder | Boolean | A flag to indicate if the product should not be ordered | `false` |
 | Enabled | Boolean | A flag to indicate if product is enabled | `true` |
 | GrossQuantitySold | Integer | Gross amount sold | `-1` |
@@ -135,8 +135,8 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | QuantitySold | Integer | Amount sold | `-1` |
 | QuantitySuggestedByVendor | Integer | Amount suggested by vendor | `0` |
 | RetailPrice | Decimal | Retail price | `99.99` |
-| SaleBegin | Datetime | Sale begin date | `01/01/2014 12:00:00 AM` |
-| SaleEnd | Datetime | Sale end date | `01/10/2014 12:00:00 AM` |
+| SaleBegin | DateTime | Sale begin date | `01/01/2014 12:00:00 AM` |
+| SaleEnd | DateTime | Sale end date | `01/10/2014 12:00:00 AM` |
 | SalePrice | Decimal | Sale price | `79.99` |
 | VendorSKU | String | Vendor SKU | `ABC123` |
 

@@ -22,7 +22,7 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| Id | GUID | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | EntityId | Integer | Identifier for a [CompanyTreeNode](/api/company-tree/#companytreenode) | `1` |
 | Quantity | Integer | Quantity | `15` |
 | IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#catalogitem) can be shipped | `true` |
@@ -58,22 +58,21 @@ summary:
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Availability}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -82,8 +81,7 @@ HTTP 200 Content-Type: application/json
     "Quantity": 15,
     "IsDropShippable": true
 }
-```
-
+</pre>
 ## Getting Availability For a Catalog Item By Locations
 
 
@@ -110,22 +108,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Availability}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -136,8 +133,7 @@ HTTP 200 Content-Type: application/json
         "IsDropShippable": true
     }
 ]
-```
-
+</pre>
 
 ## Errors
 

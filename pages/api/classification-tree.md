@@ -105,22 +105,21 @@ There is a limit to 20 levels of depth for Categories.
 
 ###### Example
 
-```
+<pre>
 GET /ClassificationTrees(21)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{ClassificationTree}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -153,8 +152,7 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 41
 }
-```
-
+</pre>
 
 ## Errors
 

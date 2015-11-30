@@ -29,9 +29,9 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Name | String | The value must be Carrier | `Carrier` |
 | Description | String | Description | `Carrier creating great experiences.` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| CreatedUTC | Datetime | Created date, in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date, in UTC | `2015-05-20T23:06:29.7700813Z` |
 | ClientEntityId | String | Identifier in an external system | `123` |
-| LastModifiedUtc | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Carrier` |
@@ -50,9 +50,9 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Name | String | Name | `SampleManufacturer` |
 | Description | String | Description | `Manufacturer creating great experiences.` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| CreatedUtc | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUtc | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | ClientEntityId | String | Identifier in an external system | `123` |
-| LastModifiedUtc | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Manufacturer` |
@@ -71,9 +71,9 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Name | String | Name | `SampleSupplier` |
 | Description | String | Description | `Supplier creating great experiences.` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| CreatedUtc | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUtc | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | ClientEntityId | String | Identifier in an external system | `123` |
-| LastModifiedUtc | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Supplier` |
@@ -108,22 +108,21 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ###### Example
 
-```
+<pre>
 GET /Carriers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Carrier}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -147,8 +146,7 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
+</pre>
 ## Getting a Carrier
 
 
@@ -174,22 +172,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Carriers(9)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Carrier}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -211,8 +208,7 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplecarrier",
     "Version": 1
 }
-```
-
+</pre>
 ## Getting All Manufacturers
 
 
@@ -233,22 +229,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Manufacturers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Manufacturer}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -272,8 +267,7 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
+</pre>
 ## Getting a Manufacturer
 
 
@@ -299,22 +293,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Manufacturers(4)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Manufacturer}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -336,8 +329,7 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplemanufacturer",
     "Version": 1
 }
-```
-
+</pre>
 ## 
 
 Getting all Suppliers
@@ -358,22 +350,21 @@ Getting all Suppliers
 
 ###### Example
 
-```
+<pre>
 GET /Suppliers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Supplier}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -397,8 +388,7 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
+</pre>
 ## Getting a Supplier
 
 
@@ -424,22 +414,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Suppliers(14)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Supplier}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -461,5 +450,4 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplesupplier",
     "Version": 1
 }
-```
-
+</pre>

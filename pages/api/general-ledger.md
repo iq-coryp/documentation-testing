@@ -37,7 +37,7 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
+| Id | GUID | Unique identifier | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
 | AccountName | String(128) | Account name. Must be unique across the entire list of Accounts and cannot be empty | `CAD Bank Account: 790` |
 | AccountNumber | String(128) | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
 | AccountCategory | String | Account Category, acceptable values include: **Asset, Liability, Equity, Revenue and Expense** | `Asset` |
@@ -46,8 +46,8 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | UpdatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that last updated this Account | `22212` |
 | CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
 | CustomProperties | Object(4000) | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters |  |
-| DateCreatedUTC | Datetime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
-| DateUpdatedUTC | Datetime | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
+| DateCreatedUTC | DateTime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
+| DateUpdatedUTC | DateTime | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
 | Description | String(1024) | Description | `This is a Canadian $ account` |
 | IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` |
 | Version | Integer | Latest revision number | `1` |
@@ -60,8 +60,8 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
-| TransactionDateUTC | Datetime | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
+| Id | GUID | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
+| TransactionDateUTC | DateTime | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
 | CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
 | Entries | Array[[Entry](#entry)] | The collection of Entries for this Transaction |  |
 
@@ -73,7 +73,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| AccountID | Guid | Identifier for the [Account](#account) this Entry affects | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
+| AccountID | GUID | Identifier for the [Account](#account) this Entry affects | `97e2519d-c48c-420b-97e9-0dc9bfce6a1c` |
 | Credit | Decimal | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` |
 | CustomProperties | Object(4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters |  |
 | Debit | Decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
@@ -140,22 +140,21 @@ The following table lists the ReferencType values used in RQ.
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Accounts?$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Account}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -176,12 +175,10 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -227,6 +224,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 ## Getting Transactions By Date
 
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
@@ -256,22 +254,21 @@ HTTP 200 Content-Type: application/hal+json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T00:00:00.000Z' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000Z'&$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Transaction}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -294,12 +291,10 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 [
@@ -360,6 +355,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 
 ## Errors
 

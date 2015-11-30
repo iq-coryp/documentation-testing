@@ -112,14 +112,13 @@ public static OAuth2TokenResponse ObtainingAnAccessToken()
 
 ###### Example
 
-```
+<pre>
 POST /oauth2/token
 Content-Type: application/x-www-form-urlencoded
 
-```
+</pre>
 
 #### Response
-
 
   * `access_token` (string) - The access token issued by the authorization server
   * `expires_in` (integer) - Seconds remaining until the access token expires, **12 hours** or less if revoked
@@ -128,7 +127,7 @@ Content-Type: application/x-www-form-urlencoded
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -136,8 +135,7 @@ HTTP 200 Content-Type: application/json
     "expires_in": 43199,
     "refresh_token": "f8bk56n40f7gi34j49g7bh4n430gf874h"
 }
-```
-
+</pre>
 
 ## Errors
 

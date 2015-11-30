@@ -38,7 +38,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | ActivationId | Integer | System-generated identifier for the [Activation](#activation) | `354` |
-| ActivationDate | Datetime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
+| ActivationDate | DateTime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
 | ActivatedProduct | [ActivatedProduct](#activatedproduct) | The Product that is being activated |  |
 | ActivationState | String | State of the [Activation](#activation). See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
 | ActivationTermCode | String(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
@@ -83,7 +83,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | LastName | String(64) | If IsIndividual is true, the last name of the Subscriber | `Smith` |
 | Addresses | Array[[Address](#address)] | List of addresses for the Subscriber |  |
 | AssociatedAccount | [Account](#account) | The account associated with this Subscriber |  |
-| BirthDate | Datetime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
+| BirthDate | DateTime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
 | CompanyName | String(64) | If the Subscriber is a business, the name of the business |  |
 | Email | String(64) | Email address | `subscriber@example.com` |
 | IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
@@ -219,7 +219,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Service-generated identifier for the activation confirmation | `58` |
 | ActivationConfirmationDetails | Array[[ActivationDetails](#activationdetails)] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
-| ConfirmationDateUTC | Datetime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
+| ConfirmationDateUTC | DateTime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
 | InvoiceId | String | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
 | InvoiceSubtotal | Decimal | The subtotal amount from the invoice | `53.38` |
 | InvoiceTotal | Decimal | The total amount from the invoice | `61.54` |
@@ -431,7 +431,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -583,17 +583,16 @@ Content-Type: application/json
     "LocationId": 5678
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{Activation}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -742,8 +741,7 @@ HTTP 201 Content-Type: application/json
     "CompanyId": 1234,
     "LocationId": 5678
 }
-```
-
+</pre>
 ## Retrieving Completed Activations
 
 
@@ -773,22 +771,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{ConfirmedActivation}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -812,12 +809,10 @@ HTTP 200 Content-Type: application/json
         "Taxes": 8.16
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -867,6 +862,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 
 ## Errors
 

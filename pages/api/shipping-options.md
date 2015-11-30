@@ -115,7 +115,7 @@ The specification for the request must be in the format below:
 
 ###### Example
 
-```
+<pre>
 POST /ShippingOptions
 Authorization: Basic
 Accept: application/json
@@ -136,7 +136,7 @@ Host: supplier.azure-api.net
 }
 
 
-```
+</pre>
 
 #### Response
 
@@ -151,7 +151,7 @@ The specification of the response must be in the format below:
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 [
     {
@@ -161,4 +161,7 @@ HTTP 200 Content-Type: application/json
         "EstimatedTransitTime": "1 week",
         "Name": "PurolatorExpress"
     }
-]```
+]
+</pre>
+
+

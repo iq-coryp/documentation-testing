@@ -24,7 +24,7 @@ An **Asset** is an image or video associated with a Product.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| id | Guid | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | name | String | File name | `iqmetrix.jpg` |
 | height | Integer | Height in pixels | `145` |
 | href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
@@ -59,23 +59,22 @@ An **Asset** is an image or video associated with a Product.
 
 ###### Example
 
-```
+<pre>
 POST /assets
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: multipart/form-data
 
-```
+</pre>
 
 #### Response
-
 
 {{Asset}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -88,8 +87,7 @@ HTTP 201 Content-Type: application/json
     "width": 240,
     "success": true
 }
-```
-
+</pre>
 ## Getting an Asset
 
 
@@ -114,21 +112,20 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /assets/732130d2-b673-461c-812b-f2b614d6076e
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Asset}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -141,8 +138,7 @@ HTTP 200 Content-Type: application/json
     "width": 240,
     "success": true
 }
-```
-
+</pre>
 ## Redirecting to an Image Asset
 
 A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
@@ -166,22 +162,22 @@ A successful response to this request is a `HTTP 303` redirect with a `Location`
 
 ###### Example
 
-```
+<pre>
 GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```
+<pre>
 HTTP 303 Content-Type: application/text
 
 Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg
 
+</pre>
 
 ## Errors
 

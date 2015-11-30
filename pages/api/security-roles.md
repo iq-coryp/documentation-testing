@@ -103,22 +103,21 @@ This request will return all [Permissions](#permission) within the [SecurityRole
 
 ###### Example
 
-```
+<pre>
 GET /Entities(1)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Permission}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -132,8 +131,7 @@ HTTP 200 Content-Type: application/json
         "ParentPermissionId": 108
     }
 ]
-```
-
+</pre>
 ## Creating a Security Role
 
 
@@ -166,7 +164,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 POST /Entities(1)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -177,25 +175,23 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{SecurityRole}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
     "Id": 4457,
     "Name": "Store Manager"
 }
-```
-
+</pre>
 ## Getting All Security Roles for an Entity
 
 
@@ -221,22 +217,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Entities(1)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{SecurityRole}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -245,8 +240,7 @@ HTTP 200 Content-Type: application/json
         "Name": "Store Manager"
     }
 ]
-```
-
+</pre>
 ## Enabling a Permission for a Security Role
 
 
@@ -275,21 +269,20 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Entities(1)/SecurityRoles(4457)/Permissions(55)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 204```
+<pre>HTTP 204</pre>
 
 ## Disabling a Permission for a Security Role
 
@@ -317,19 +310,18 @@ Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Entities(1)/SecurityRoles(4457)/Permissions(55)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 204```
+<pre>HTTP 204</pre>
 
 ## Getting Permissions for a Security Role
 
@@ -357,22 +349,21 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 GET /Entities(1)/SecurityRoles(4457)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Permission}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -386,8 +377,7 @@ HTTP 200 Content-Type: application/json
         "ParentPermissionId": 108
     }
 ]
-```
-
+</pre>
 ## Assigning a Security Role to a User
 
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
@@ -422,7 +412,7 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 ###### Example
 
-```
+<pre>
 POST /Users(22212)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -434,17 +424,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{AssignedRole}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -453,8 +442,7 @@ HTTP 201 Content-Type: application/json
     "SecurityRoleId": 4457,
     "UserId": 22212
 }
-```
-
+</pre>
 ## Getting Assigned Roles for a User
 
 
@@ -480,22 +468,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Users(22212)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{AssignedRole}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -506,8 +493,7 @@ HTTP 200 Content-Type: application/json
         "UserId": 22212
     }
 ]
-```
-
+</pre>
 ## Unassigning a Security Role from a User
 
 
@@ -533,19 +519,18 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Users(2212)/AssignedRoles(4457)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 204```
+<pre>HTTP 204</pre>
 
 
 ## Errors

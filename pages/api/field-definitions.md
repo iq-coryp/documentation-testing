@@ -116,22 +116,21 @@ The result displayed on the page, with some styling, is shown below
 
 ###### Example
 
-```
+<pre>
 GET /FieldDefinitions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{FieldDefinition}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -145,8 +144,7 @@ HTTP 200 Content-Type: application/json
         "Options": []
     }
 ]
-```
-
+</pre>
 ## Getting a FieldDefinition
 
 
@@ -172,22 +170,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /FieldDefinitions(84)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{FieldDefinition}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -199,8 +196,7 @@ HTTP 200 Content-Type: application/json
     "DisplayName": "CDMA",
     "Options": []
 }
-```
-
+</pre>
 
 ## Errors
 

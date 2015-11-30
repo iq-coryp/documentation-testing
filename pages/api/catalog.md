@@ -28,7 +28,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| CatalogItemId | Guid | Unique identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| CatalogItemId | GUID | Unique identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
 | RmsId | String | Identifier for the CatalogItem in an external inventory system | `1` |
 | Slug | String | Unique identifier for a [Product](/api/product-library/#product) | `M3-V1` |
@@ -75,22 +75,21 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Catalog/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{CatalogItem}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -101,8 +100,7 @@ HTTP 200 Content-Type: application/json
         "Slug": "M3-V1"
     }
 ]
-```
-
+</pre>
 ## Getting Product Details
 
 
@@ -129,15 +127,14 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
   * `Id` (string) - Identifier
   * `Name` (string) - Name
@@ -153,7 +150,7 @@ Accept: application/json
     
   
   * `Entity` (object) - Entity information, used for Entity revisions
-  * `HeroShotId` (guid) - [Hero Shot](/api/glossary/#hero-shot) identifier
+  * `HeroShotId` (GUID) - [Hero Shot](/api/glossary/#hero-shot) identifier
   * `HeroShotUri` (string) - URI to a Hero Shot Asset
   * `IsLinkedToCuratedProduct` (boolean) - A flag to indicate if this version of this Product is publicly accessible (true), or private (false)
   * `IsSaleable` (boolean) - A flag to indicate if this product can be sold
@@ -166,7 +163,7 @@ Accept: application/json
 
   * `Owner` (object) - Owner information, used for Private products and Carrier Revisions
   * `Region` (object) - Region information, for Regional Carrier Revisions
-  * `ReleaseDate` (datetime) - Release Date, in UTC
+  * `ReleaseDate` (DateTime) - Release Date, in UTC
   * `Specifications` (array) - Details such as color, dimension, etc - Array[{{Specification}}]
 
   * `UpcCodes` (array) - UPC codes - Array[{{UpcCode}}]
@@ -179,7 +176,7 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -255,8 +252,7 @@ HTTP 200 Content-Type: application/json
     ],
     "Version": 1
 }
-```
-
+</pre>
 ## Getting Compatible Products for a Catalog Item
 
 
@@ -283,15 +279,14 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Compatible
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
   * `Items` (array) - Products matching the search criteria - Array[{{CatalogItem}}]
 
@@ -316,7 +311,7 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -354,8 +349,7 @@ HTTP 200 Content-Type: application/json
         "TotalResults": 5
     }
 }
-```
-
+</pre>
 ## Getting Variations for a Catalog Item
 
 For more information about Variations, see [Variations](/concepts/product-structure/#variations).
@@ -383,29 +377,28 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Variations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
 
-
   * `Name` (string)
   * `Slug` (string)
-  * `CatalogItemId` (guid)
+  * `CatalogItemId` (GUID)
   * `Revisions` (array)
     * `Name` (string)
     * `Slug` (string)
-    * `CatalogItemId` (guid)
+    * `CatalogItemId` (GUID)
   
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -420,8 +413,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## Searching For Products
 
 {{note}}
@@ -459,15 +451,14 @@ SearchTerms specified in the URI are compared against the following Product fiel
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
   * `Items` (array) - Products matching the search criteria - Array[{{CatalogItem}}]
 
@@ -492,7 +483,7 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -530,8 +521,7 @@ HTTP 200 Content-Type: application/json
         "TotalResults": 5
     }
 }
-```
-
+</pre>
 ## Getting Products by Vendor SKU
 
 
@@ -559,15 +549,14 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
   * `Sku` (string) - Vendor Sku specified in the URI
   * `VendorId` (integer) - Vendor Id specified in the URI
@@ -577,7 +566,7 @@ Accept: application/json
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -592,8 +581,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 
 ## Errors
 

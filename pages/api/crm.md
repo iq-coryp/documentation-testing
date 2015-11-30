@@ -25,14 +25,14 @@ A Customer is a person or organization that buys goods or services from a store 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
 | AlternateName | String | Alias or preferred name | `Bob` |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
-| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
@@ -46,8 +46,8 @@ An Address represents a valid address somewhere on the planet.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | AddressType | String | Name of the [AddressType](#addresstype) | `Business` |
 | AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
 | AttentionTo | String | Attention To (Attn:) | `iQmetrix` |
@@ -74,8 +74,8 @@ A Contact Method is a method of contacting a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ContactMethodCategory | String | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
 | ContactMethodCategoryId | Integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values | `3` |
 | ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype | `Work phone` |
@@ -93,8 +93,8 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ExtensionType | String | Name of the [CustomerExtensionType](#customerextensiontype) | `ExternalCustomerId` |
 | ExtensionTypeId | Integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `1` |
 | Value | String | Value | `66432` |
@@ -116,7 +116,7 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
@@ -126,7 +126,7 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 | CustomerExtensions | Array[[CustomerExtension](#customerextension)] | A collection of CustomerExtensions |  |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
-| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | MemberOf | Array[object] | A collection of Customers that the Customer is a MemberOf (parent relation) |  |
@@ -239,7 +239,7 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -259,17 +259,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Customer}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -287,8 +286,7 @@ HTTP 201 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }
-```
-
+</pre>
 ## Getting All Customers
 
 
@@ -314,22 +312,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Customer}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -349,12 +346,10 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -422,6 +417,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 ## Getting a Customer
 
 
@@ -448,22 +444,21 @@ HTTP 200 Content-Type: application/hal+json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Customer}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -481,8 +476,7 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }
-```
-
+</pre>
 ## Updating a Customer
 
 
@@ -527,7 +521,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -548,17 +542,16 @@ Content-Type: application/json
     "Version": 1
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{Customer}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -576,8 +569,7 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }
-```
-
+</pre>
 ## Deleting a Customer
 
 
@@ -603,19 +595,18 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Adding a Customer Address
 
@@ -668,7 +659,7 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -692,17 +683,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Address}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -727,8 +717,7 @@ HTTP 201 Content-Type: application/json
     "StreetAddress2": "Suite 500",
     "Version": 1
 }
-```
-
+</pre>
 ## Getting All Addresses for a Customer
 
 
@@ -755,22 +744,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Address}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -797,12 +785,10 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -845,6 +831,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 ## Getting a Customer Address
 
 
@@ -872,22 +859,21 @@ HTTP 200 Content-Type: application/hal+json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Address}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -912,8 +898,7 @@ HTTP 200 Content-Type: application/json
     "StreetAddress2": "Suite 500",
     "Version": 1
 }
-```
-
+</pre>
 ## Updating a Customer Address
 
 
@@ -966,7 +951,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -994,17 +979,16 @@ Content-Type: application/json
     "Version": 1
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{Address}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1029,8 +1013,7 @@ HTTP 200 Content-Type: application/json
     "StreetAddress2": "Suite 500",
     "Version": 1
 }
-```
-
+</pre>
 ## Removing an Address from a Customer
 
 
@@ -1057,19 +1040,18 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Creating a Full Customer
 
@@ -1138,7 +1120,7 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -1196,17 +1178,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{CustomerFull}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -1275,8 +1256,7 @@ HTTP 201 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }
-```
-
+</pre>
 ## Getting All Full Customers
 
 
@@ -1302,22 +1282,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{CustomerFull}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -1388,12 +1367,10 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -1494,6 +1471,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 ## Getting a Full Customer
 
 
@@ -1520,22 +1498,21 @@ HTTP 200 Content-Type: application/hal+json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{CustomerFull}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1604,8 +1581,7 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }
-```
-
+</pre>
 ## Updating a Full Customer
 
 
@@ -1674,7 +1650,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -1746,17 +1722,16 @@ Content-Type: application/json
     "Version": 1
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{CustomerFull}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1825,8 +1800,7 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }
-```
-
+</pre>
 ## Deleting a Full Customer
 
 
@@ -1852,19 +1826,18 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Adding a Customer Contact Method
 
@@ -1908,7 +1881,7 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -1925,17 +1898,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{ContactMethod}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -1951,8 +1923,7 @@ HTTP 201 Content-Type: application/json
     "Value": "(306) 222-3333",
     "Version": 1
 }
-```
-
+</pre>
 ## Getting All Contact Methods for a Customer
 
 
@@ -1979,22 +1950,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{ContactMethod}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -2012,12 +1982,10 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/hal+json
 
 {
@@ -2051,6 +2019,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
+</pre>
 ## Getting a Customer Contact Method
 
 
@@ -2078,22 +2047,21 @@ HTTP 200 Content-Type: application/hal+json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{ContactMethod}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -2109,8 +2077,7 @@ HTTP 200 Content-Type: application/json
     "Value": "(306) 222-3333",
     "Version": 1
 }
-```
-
+</pre>
 ## Updating a Customer Contact Method
 
 
@@ -2154,7 +2121,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -2173,17 +2140,16 @@ Content-Type: application/json
     "Version": 1
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{ContactMethod}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -2199,8 +2165,7 @@ HTTP 200 Content-Type: application/json
     "Value": "(306) 222-3333",
     "Version": 1
 }
-```
-
+</pre>
 ## Removing a Customer Contact Method
 
 
@@ -2227,19 +2192,18 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Searching for Customers
 
@@ -2269,22 +2233,21 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Customer}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -2304,8 +2267,7 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]
-```
-
+</pre>
 ## Customer Search
 
 [CustomerSearch](#customersearch) resources use a special property, `criteria`.
@@ -2349,22 +2311,21 @@ The Criteria filter will search the properties below for the given value.
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{CustomerFull}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -2433,8 +2394,7 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }
-```
-
+</pre>
 
 
 ## Searching

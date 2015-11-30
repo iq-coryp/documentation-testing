@@ -24,27 +24,27 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Name | `iPhone 5 Order` |
-| BillingAddressId | Guid | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | Guid | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| CreatedDateUtc | Datetime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| BillingAddressId | GUID | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| CreatedDateUtc | DateTime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
 | DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | A description of the discount | `Military discount` |
 | EmployeeId | String | Identifier for the Employee who created this Order | `15` |
 | EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
-| OrderExpiryDate | Datetime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryDate | DateTime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
 | OrderExpiryHours | Integer | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
 | OrderType | String | Name of the [OrderType](#ordertype) | `Sales` |
 | OrderTypeId | Integer | See [OrderType](#ordertype) for a list of acceptable values | `3` |
 | PrintableId | String | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
-| ShippingAddressId | Guid | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | Guid | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingAddressId | GUID | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `2` |
 | State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
 | *CustomerId* | *String* | *This is a legacy property that should not be used* | |
-| *TenderId* | *String* | *Reserved for future use* | |
+| TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `INV112` |
 | *TenderOrigin* | *String* | *Reserved for future use* | |
 
 
@@ -52,7 +52,7 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier for this Item | `65a13420-5673-45cd-b455-9bbe7f27f694` |
+| Id | GUID | Unique identifier for this Item | `65a13420-5673-45cd-b455-9bbe7f27f694` |
 | Cost | Decimal | Cost of this Item, defaults to 0 | `5.99` |
 | Description | String | Description of this Item | `LG G3 phone case` |
 | ItemStatus | String | Name of the [ItemStatus](#itemstatus) | `New` |
@@ -62,8 +62,8 @@ summary:
 | Index | Integer | A value used for sorting Items, such as in a shopping cart | `0` |
 | ListPrice | Decimal | List Price of this Item, defaults to 0 | `12.99` |
 | Notes | String | Notes for this Item | `Dented corner` |
-| OrderId | Guid | Unique identifier for the [Order](#order), specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
-| ProductId | String | Identifier for the Product | `M3-V1` |
+| OrderId | GUID | Unique identifier for the [Order](#order), specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
+| ProductId | String | Identifier for the Product. Generally, this is a CatalogItemId | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | Quantity | Integer | Amount of this Item In Stock, defaults to 0 | `2` |
 | SellingPrice | Decimal | Selling Price of this Item, defaults to 0 | `9.99` |
 | SerialNumbers | Array[string] | Serial numbers | `abc321` |
@@ -81,27 +81,27 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Name | `iPhone 5 Order` |
-| BillingAddressId | Guid | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | Guid | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| CreatedDateUtc | Datetime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| BillingAddressId | GUID | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| CreatedDateUtc | DateTime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
 | DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | A description of the discount | `Military discount` |
 | EmployeeId | String | Identifier for the Employee who created this Order | `15` |
 | EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
-| OrderExpiryDate | Datetime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryDate | DateTime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
 | OrderExpiryHours | Integer | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
 | OrderType | String | Name of the [OrderType](#ordertype) | `Sales` |
 | OrderTypeId | Integer | See [OrderType](#ordertype) for a list of acceptable values | `3` |
 | PrintableId | String | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
-| ShippingAddressId | Guid | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | Guid | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingAddressId | GUID | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `2` |
 | State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
 | *CustomerId* | *String* | *This is a legacy property that should not be used* | |
-| *TenderId* | *String* | *Reserved for future use* | |
+| TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `INV112` |
 | *TenderOrigin* | *String* | *Reserved for future use* | |
 | Items | Array[[Item](#item)] | The Items in the [Order](#order) |  |
 
@@ -207,13 +207,13 @@ summary:
   * `ShippingEntityId` (Optional) - If this value is provided, ShippingCustomerId must be excluded
   
   
-  
+  * `TenderId` (Optional)
   
 
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Orders
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -232,21 +232,21 @@ Content-Type: application/json
     "OrderTypeId": 3,
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "ShippingEntityId": 2
+    "ShippingEntityId": 2,
+    "TenderId": "INV112"
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Order}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -268,10 +268,10 @@ HTTP 201 Content-Type: application/json
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
-    "State": "Created"
+    "State": "Created",
+    "TenderId": "INV112"
 }
-```
-
+</pre>
 ## Getting a Single Order
 
 
@@ -297,22 +297,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Orders
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Order}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -335,11 +334,11 @@ HTTP 200 Content-Type: application/json
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingEntityId": 2,
-        "State": "Created"
+        "State": "Created",
+        "TenderId": "INV112"
     }
 ]
-```
-
+</pre>
 ## Adding an Item to an Order
 
 
@@ -391,7 +390,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -405,7 +404,7 @@ Content-Type: application/json
     "Index": 0,
     "ListPrice": 12.99,
     "Notes": "Dented corner",
-    "ProductId": "M3-V1",
+    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
     "Quantity": 2,
     "SellingPrice": 9.99,
     "SerialNumbers": [
@@ -424,17 +423,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Item}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -449,7 +447,7 @@ HTTP 201 Content-Type: application/json
     "ListPrice": 12.99,
     "Notes": "Dented corner",
     "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-    "ProductId": "M3-V1",
+    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
     "Quantity": 2,
     "SellingPrice": 9.99,
     "SerialNumbers": [
@@ -466,8 +464,7 @@ HTTP 201 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## Getting all Items on an Order
 
 
@@ -494,22 +491,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Item}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -525,7 +521,7 @@ HTTP 200 Content-Type: application/json
         "ListPrice": 12.99,
         "Notes": "Dented corner",
         "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-        "ProductId": "M3-V1",
+        "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
         "Quantity": 2,
         "SellingPrice": 9.99,
         "SerialNumbers": [
@@ -543,8 +539,7 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]
-```
-
+</pre>
 ## Getting an Order
 
 
@@ -571,22 +566,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Order}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -608,10 +602,10 @@ HTTP 200 Content-Type: application/json
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
-    "State": "Created"
+    "State": "Created",
+    "TenderId": "INV112"
 }
-```
-
+</pre>
 ## Updating an Order
 
 
@@ -659,13 +653,13 @@ HTTP 200 Content-Type: application/json
   * `ShippingEntityId` (Optional) - If this value is provided, ShippingCustomerId must be excluded
   * `State` (**Required**)
   
-  
+  * `TenderId` (Optional)
   
 
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -689,20 +683,20 @@ Content-Type: application/json
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
-    "State": "Created"
+    "State": "Created",
+    "TenderId": "INV112"
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{Order}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -724,10 +718,10 @@ HTTP 200 Content-Type: application/json
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
-    "State": "Created"
+    "State": "Created",
+    "TenderId": "INV112"
 }
-```
-
+</pre>
 ## 
 
 
@@ -753,19 +747,18 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Processing an Order
 
@@ -799,7 +792,7 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -810,17 +803,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{Order}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -842,10 +834,10 @@ HTTP 201 Content-Type: application/json
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
-    "State": "Created"
+    "State": "Created",
+    "TenderId": "INV112"
 }
-```
-
+</pre>
 ## 
 
 
@@ -872,22 +864,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{Order}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -909,10 +900,10 @@ HTTP 200 Content-Type: application/json
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
-    "State": "Created"
+    "State": "Created",
+    "TenderId": "INV112"
 }
-```
-
+</pre>
 ## Creating an Order with Items
 
 {{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}
@@ -977,7 +968,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 POST /Companies(1)/OrderFull
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -997,6 +988,7 @@ Content-Type: application/json
     "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
+    "TenderId": "INV112",
     "Items": [
         {
             "Cost": 5.99,
@@ -1006,7 +998,7 @@ Content-Type: application/json
             "Index": 0,
             "ListPrice": 12.99,
             "Notes": "Dented corner",
-            "ProductId": "M3-V1",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1027,17 +1019,16 @@ Content-Type: application/json
 }
 
 
-```
+</pre>
 
 #### Response
-
 
 {{OrderFull}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 201 Content-Type: application/json
 
 {
@@ -1060,6 +1051,7 @@ HTTP 201 Content-Type: application/json
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
     "State": "Created",
+    "TenderId": "INV112",
     "Items": [
         {
             "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
@@ -1073,7 +1065,7 @@ HTTP 201 Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "M3-V1",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1092,8 +1084,7 @@ HTTP 201 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## Getting All Orders for a Company
 
 
@@ -1119,22 +1110,21 @@ HTTP 201 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/OrderFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{OrderFull}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -1158,6 +1148,7 @@ HTTP 200 Content-Type: application/json
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingEntityId": 2,
         "State": "Created",
+        "TenderId": "INV112",
         "Items": [
             {
                 "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
@@ -1171,7 +1162,7 @@ HTTP 200 Content-Type: application/json
                 "ListPrice": 12.99,
                 "Notes": "Dented corner",
                 "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-                "ProductId": "M3-V1",
+                "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
                 "Quantity": 2,
                 "SellingPrice": 9.99,
                 "SerialNumbers": [
@@ -1191,8 +1182,7 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]
-```
-
+</pre>
 ## Getting an Order with Items
 
 
@@ -1219,22 +1209,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 {{OrderFull}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1257,6 +1246,7 @@ HTTP 200 Content-Type: application/json
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
     "State": "Created",
+    "TenderId": "INV112",
     "Items": [
         {
             "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
@@ -1270,7 +1260,7 @@ HTTP 200 Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "M3-V1",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1289,8 +1279,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## Updating an Order with Items
 
 {{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
@@ -1356,7 +1345,7 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 PUT /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
@@ -1381,6 +1370,7 @@ Content-Type: application/json
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
     "State": "Created",
+    "TenderId": "INV112",
     "Items": [
         {
             "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
@@ -1394,7 +1384,7 @@ Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "M3-V1",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1414,17 +1404,16 @@ Content-Type: application/json
     ]
 }
 
-```
+</pre>
 
 #### Response
-
 
 {{OrderFull}}
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 {
@@ -1447,6 +1436,7 @@ HTTP 200 Content-Type: application/json
     "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ShippingEntityId": 2,
     "State": "Created",
+    "TenderId": "INV112",
     "Items": [
         {
             "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
@@ -1460,7 +1450,7 @@ HTTP 200 Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "M3-V1",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1479,8 +1469,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }
-```
-
+</pre>
 ## 
 
 
@@ -1506,19 +1495,18 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 DELETE /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 
-```
+</pre>
 
 #### Response
 
 
-
 ###### Example
 
-```HTTP 200```
+<pre>HTTP 200</pre>
 
 ## Getting Pending Orders by Location
 
@@ -1546,22 +1534,21 @@ Authorization: Bearer (Access Token)
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 2
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Order}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -1584,11 +1571,11 @@ HTTP 200 Content-Type: application/json
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingEntityId": 2,
-        "State": "Created"
+        "State": "Created",
+        "TenderId": "INV112"
     }
 ]
-```
-
+</pre>
 ## Getting Orders by PrintableId
 
 {{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
@@ -1615,22 +1602,21 @@ HTTP 200 Content-Type: application/json
 
 ###### Example
 
-```
+<pre>
 GET /Companies(1)/Orders?$filter=PrintableId eq '8675-1234-987'
 Authorization: Bearer (Access Token)
 Accept: application/json
 
-```
+</pre>
 
 #### Response
-
 
 Array[{{Order}}]
 
 
 ###### Example
 
-```
+<pre>
 HTTP 200 Content-Type: application/json
 
 [
@@ -1653,11 +1639,11 @@ HTTP 200 Content-Type: application/json
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
         "ShippingEntityId": 2,
-        "State": "Created"
+        "State": "Created",
+        "TenderId": "INV112"
     }
 ]
-```
-
+</pre>
 
 ## Errors
 
