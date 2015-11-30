@@ -31,7 +31,7 @@ Account balances will be affected by Debits and Credits in the following ways:
 
 ## Resources
 
-### Account
+<h3>Account</h3>
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
@@ -52,7 +52,7 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` |
 | Version | Integer | Latest revision number | `1` |
 
-### Transaction
+<h3>Transaction</h3>
 
 {{note}}A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries is the same value, this is called a Balanced Transaction{{end}}
 
@@ -65,7 +65,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
 | Entries | Array[[Entry](#entry)] | The collection of Entries for this Transaction |  |
 
-### Entry
+<h3>Entry</h3>
 
 * A Transaction is <b>immutable</b> and permanent after it has been created it cannot be updated or deleted
 * Debit and Credit are decimal values without an associated currency
@@ -149,8 +149,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Account}}]
-
+Array[[Account](#account)]
 
 ###### Example
 
@@ -174,7 +173,7 @@ HTTP 200 Content-Type: application/json
         "IsEnabled": true,
         "Version": 1
     }
-]
+]</pre>
 
 ###### Example
 
@@ -223,7 +222,6 @@ HTTP 200 Content-Type: application/hal+json
 }
 
 
-
 </pre>
 ## Getting Transactions By Date
 
@@ -263,8 +261,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Transaction}}]
-
+Array[[Transaction](#transaction)]
 
 ###### Example
 
@@ -290,7 +287,7 @@ HTTP 200 Content-Type: application/json
             }
         ]
     }
-]
+]</pre>
 
 ###### Example
 
@@ -354,7 +351,6 @@ HTTP 200 Content-Type: application/hal+json
 ]
 
 
-
 </pre>
 
 ## Errors
@@ -362,11 +358,11 @@ HTTP 200 Content-Type: application/hal+json
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 400` | `Error converting value {x} to type {y}` | Ensure `AccountCategory` is set to one of: Asset, Liability, Equity, Revenue, Expense |
-| `HTTP 400` | `The supplied currency code {x} `<br/>`is not supported` | Ensure `CurrencyCode` is one of the supported values such as `USD` or `CAD` |
+| `HTTP 400` | `The supplied currency code {x}  is not supported` | Ensure `CurrencyCode` is one of the supported values such as `USD` or `CAD` |
 | `HTTP 400` | `The {x} field is required` | Ensure all Required fields are provided |
-| `HTTP 400` | `Uri parameter representing resource id`<br/>`{x} don't match` | Ensure given request body parameters match URI parameters |
+| `HTTP 400` | `Uri parameter representing resource id {x} don't match` | Ensure given request body parameters match URI parameters |
 | `HTTP 404` | `Resource cannot be found` | Ensure the `Id` specified in the URI is valid and the resource exists | 
-| `HTTP 409` | `The account has a non-unique name`<br/>` or account number` | Account names and numbers must be unique for the Company |
+| `HTTP 409` | `The account has a non-unique name  or account number` | Account names and numbers must be unique for the Company |
 
 ## Pagination
 

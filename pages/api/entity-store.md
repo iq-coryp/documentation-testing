@@ -21,7 +21,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ## Resources
 
-### Carrier
+<h3>Carrier</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -42,7 +42,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-### Manufacturer
+<h3>Manufacturer</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -63,7 +63,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-### Supplier
+<h3>Supplier</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -117,8 +117,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Carrier}}]
-
+Array[[Carrier](#carrier)]
 
 ###### Example
 
@@ -145,8 +144,7 @@ HTTP 200 Content-Type: application/json
         "SortName": "samplecarrier",
         "Version": 1
     }
-]
-</pre>
+]</pre>
 ## Getting a Carrier
 
 
@@ -181,8 +179,7 @@ Accept: application/json
 
 #### Response
 
-{{Carrier}}
-
+[Carrier](#carrier)
 
 ###### Example
 
@@ -207,8 +204,7 @@ HTTP 200 Content-Type: application/json
     ],
     "SortName": "samplecarrier",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting All Manufacturers
 
 
@@ -238,8 +234,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Manufacturer}}]
-
+Array[[Manufacturer](#manufacturer)]
 
 ###### Example
 
@@ -266,8 +261,7 @@ HTTP 200 Content-Type: application/json
         "SortName": "samplemanufacturer",
         "Version": 1
     }
-]
-</pre>
+]</pre>
 ## Getting a Manufacturer
 
 
@@ -302,8 +296,7 @@ Accept: application/json
 
 #### Response
 
-{{Manufacturer}}
-
+[Manufacturer](#manufacturer)
 
 ###### Example
 
@@ -328,8 +321,7 @@ HTTP 200 Content-Type: application/json
     ],
     "SortName": "samplemanufacturer",
     "Version": 1
-}
-</pre>
+}</pre>
 ## 
 
 Getting all Suppliers
@@ -359,8 +351,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Supplier}}]
-
+Array[[Supplier](#supplier)]
 
 ###### Example
 
@@ -387,8 +378,7 @@ HTTP 200 Content-Type: application/json
         "SortName": "samplesupplier",
         "Version": 1
     }
-]
-</pre>
+]</pre>
 ## Getting a Supplier
 
 
@@ -423,8 +413,7 @@ Accept: application/json
 
 #### Response
 
-{{Supplier}}
-
+[Supplier](#supplier)
 
 ###### Example
 
@@ -449,5 +438,4 @@ HTTP 200 Content-Type: application/json
     ],
     "SortName": "samplesupplier",
     "Version": 1
-}
-</pre>
+}</pre>

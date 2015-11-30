@@ -30,14 +30,14 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ## Resources
 
-### Cost
+<h3>Cost</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
 | Products | Array[[Product](#product)] | List of products for which the cost is being updated |  |
 
-### Product
+<h3>Product</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -108,8 +108,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Cost}}
-
+[Cost](#cost)
 
 ###### Example
 
@@ -129,8 +128,7 @@ HTTP 202 Content-Type: application/json
             ]
         }
     ]
-}
-</pre>
+}</pre>
 
 ## Errors
 

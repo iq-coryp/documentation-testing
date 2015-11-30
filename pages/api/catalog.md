@@ -22,7 +22,7 @@ Retailers can select products from the {{ProductLibrary_Concept}} to create a **
 ## Resources
 
 
-### CatalogItem
+<h3>CatalogItem</h3>
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
@@ -84,8 +84,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{CatalogItem}}]
-
+Array[[CatalogItem](#catalogitem)]
 
 ###### Example
 
@@ -99,8 +98,7 @@ HTTP 200 Content-Type: application/json
         "RmsId": "1",
         "Slug": "M3-V1"
     }
-]
-</pre>
+]</pre>
 ## Getting Product Details
 
 
@@ -154,23 +152,17 @@ Accept: application/json
   * `HeroShotUri` (string) - URI to a Hero Shot Asset
   * `IsLinkedToCuratedProduct` (boolean) - A flag to indicate if this version of this Product is publicly accessible (true), or private (false)
   * `IsSaleable` (boolean) - A flag to indicate if this product can be sold
-  * `Manufacturer` (object) - Manufacturer information - {{Manufacturer}}
-
-  * `ManufacturerSkus` (array) - Manufacturer SKUs - Array[{{ManufacturerSku}}]
-
+    * `IsSaleable` (boolean) - A flag to indicate if this product can be sold* `Manufacturer` ([Manufacturer](#manufacturer)) - Manufacturer information
+      * `IsSaleable` (boolean) - A flag to indicate if this product can be sold* `Manufacturer` ([Manufacturer](#manufacturer)) - Manufacturer information* `ManufacturerSkus` (Array[[ManufacturerSku](#manufacturersku)]) - Manufacturer SKUs
   * `MasterProductId` (integer) - Identifier for the Master Product
-  * `MSRP` (object) - Manufacturers suggested retail price information - {{MSRP}}
-
+    * `MasterProductId` (integer) - Identifier for the Master Product* `MSRP` ([MSRP](#msrp)) - Manufacturers suggested retail price information
   * `Owner` (object) - Owner information, used for Private products and Carrier Revisions
   * `Region` (object) - Region information, for Regional Carrier Revisions
   * `ReleaseDate` (DateTime) - Release Date, in UTC
-  * `Specifications` (array) - Details such as color, dimension, etc - Array[{{Specification}}]
-
-  * `UpcCodes` (array) - UPC codes - Array[{{UpcCode}}]
-
+    * `ReleaseDate` (DateTime) - Release Date, in UTC* `Specifications` (Array[[Specification](#specification)]) - Details such as color, dimension, etc
+      * `ReleaseDate` (DateTime) - Release Date, in UTC* `Specifications` (Array[[Specification](#specification)]) - Details such as color, dimension, etc* `UpcCodes` (Array[[UpcCode](#upccode)]) - UPC codes
   * `VariationId` (integer) - Identifier for the Variation
-  * `VendorSkus` (array) - Vendor SKUs - Array[{{VendorSku}}]
-
+    * `VariationId` (integer) - Identifier for the Variation* `VendorSkus` (Array[[VendorSku](#vendorsku)]) - Vendor SKUs
   * `Version` (integer) - Latest revision number
 
 
@@ -251,8 +243,7 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting Compatible Products for a Catalog Item
 
 
@@ -288,18 +279,15 @@ Accept: application/json
 
 #### Response
 
-  * `Items` (array) - Products matching the search criteria - Array[{{CatalogItem}}]
-
+  * `Items` (Array[[CatalogItem](#catalogitem)]) - Products matching the search criteria
   * `Facets` (object) - Summary of Manufacturer and Vendor information for the Items
     * `Manufacturers` (array) - Manufacturer information for the Items
       * `Count` (integer) - Number of Items
-      * `Item` (object) - Information about this Manufacturer - {{Manufacturer}}
-    
+        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
     
     * `Vendors` (array) - Vendor information for the Items
       * `Count` (integer) - Number of Items
-      * `Item` (object) - Information about this Manufacturer - {{Manufacturer}}
-    
+        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
     
   
   * `MetaData` (object) - Data representing pagination details
@@ -348,8 +336,7 @@ HTTP 200 Content-Type: application/json
         "PageSize": 20,
         "TotalResults": 5
     }
-}
-</pre>
+}</pre>
 ## Getting Variations for a Catalog Item
 
 For more information about Variations, see [Variations](/concepts/product-structure/#variations).
@@ -412,8 +399,7 @@ HTTP 200 Content-Type: application/json
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27"
         }
     ]
-}
-</pre>
+}</pre>
 ## Searching For Products
 
 {{note}}
@@ -460,18 +446,15 @@ Accept: application/json
 
 #### Response
 
-  * `Items` (array) - Products matching the search criteria - Array[{{CatalogItem}}]
-
+  * `Items` (Array[[CatalogItem](#catalogitem)]) - Products matching the search criteria
   * `Facets` (object) - Summary of Manufacturer and Vendor information for the Items
     * `Manufacturers` (array) - Manufacturer information for the Items
       * `Count` (integer) - Number of Items
-      * `Item` (object) - Information about this Manufacturer - {{Manufacturer}}
-    
+        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
     
     * `Vendors` (array) - Vendor information for the Items
       * `Count` (integer) - Number of Items
-      * `Item` (object) - Information about this Manufacturer - {{Manufacturer}}
-    
+        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
     
   
   * `MetaData` (object) - Data representing pagination details
@@ -520,8 +503,7 @@ HTTP 200 Content-Type: application/json
         "PageSize": 20,
         "TotalResults": 5
     }
-}
-</pre>
+}</pre>
 ## Getting Products by Vendor SKU
 
 
@@ -560,8 +542,7 @@ Accept: application/json
 
   * `Sku` (string) - Vendor Sku specified in the URI
   * `VendorId` (integer) - Vendor Id specified in the URI
-  * `Items` (array) - Array[{{CatalogItem}}]
-
+    * `VendorId` (integer) - Vendor Id specified in the URI* `Items` (Array[[CatalogItem](#catalogitem)])
 
 
 ###### Example
@@ -580,8 +561,7 @@ HTTP 200 Content-Type: application/json
             "Slug": "M3-V1"
         }
     ]
-}
-</pre>
+}</pre>
 
 ## Errors
 

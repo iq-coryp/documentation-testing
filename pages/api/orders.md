@@ -20,7 +20,7 @@ summary:
 
 
 
-### Order
+<h3>Order</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -48,7 +48,7 @@ summary:
 | *TenderOrigin* | *String* | *Reserved for future use* | |
 
 
-### Item
+<h3>Item</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -75,7 +75,7 @@ summary:
 
 
 
-### OrderFull
+<h3>OrderFull</h3>
 
 **OrderFull** is an extension on the Order resource
 
@@ -241,8 +241,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Order}}
-
+[Order](#order)
 
 ###### Example
 
@@ -270,8 +269,7 @@ HTTP 201 Content-Type: application/json
     "ShippingEntityId": 2,
     "State": "Created",
     "TenderId": "INV112"
-}
-</pre>
+}</pre>
 ## Getting a Single Order
 
 
@@ -306,8 +304,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Order}}]
-
+Array[[Order](#order)]
 
 ###### Example
 
@@ -337,8 +334,7 @@ HTTP 200 Content-Type: application/json
         "State": "Created",
         "TenderId": "INV112"
     }
-]
-</pre>
+]</pre>
 ## Adding an Item to an Order
 
 
@@ -427,8 +423,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Item}}
-
+[Item](#item)
 
 ###### Example
 
@@ -463,8 +458,7 @@ HTTP 201 Content-Type: application/json
             "TrackingNumber": "`1TTTTN4421"
         }
     ]
-}
-</pre>
+}</pre>
 ## Getting all Items on an Order
 
 
@@ -500,8 +494,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Item}}]
-
+Array[[Item](#item)]
 
 ###### Example
 
@@ -538,8 +531,7 @@ HTTP 200 Content-Type: application/json
             }
         ]
     }
-]
-</pre>
+]</pre>
 ## Getting an Order
 
 
@@ -575,8 +567,7 @@ Accept: application/json
 
 #### Response
 
-{{Order}}
-
+[Order](#order)
 
 ###### Example
 
@@ -604,8 +595,7 @@ HTTP 200 Content-Type: application/json
     "ShippingEntityId": 2,
     "State": "Created",
     "TenderId": "INV112"
-}
-</pre>
+}</pre>
 ## Updating an Order
 
 
@@ -691,8 +681,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Order}}
-
+[Order](#order)
 
 ###### Example
 
@@ -720,8 +709,7 @@ HTTP 200 Content-Type: application/json
     "ShippingEntityId": 2,
     "State": "Created",
     "TenderId": "INV112"
-}
-</pre>
+}</pre>
 ## 
 
 
@@ -807,8 +795,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Order}}
-
+[Order](#order)
 
 ###### Example
 
@@ -836,8 +823,7 @@ HTTP 201 Content-Type: application/json
     "ShippingEntityId": 2,
     "State": "Created",
     "TenderId": "INV112"
-}
-</pre>
+}</pre>
 ## 
 
 
@@ -873,8 +859,7 @@ Accept: application/json
 
 #### Response
 
-{{Order}}
-
+[Order](#order)
 
 ###### Example
 
@@ -902,8 +887,7 @@ HTTP 200 Content-Type: application/json
     "ShippingEntityId": 2,
     "State": "Created",
     "TenderId": "INV112"
-}
-</pre>
+}</pre>
 ## Creating an Order with Items
 
 {{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}
@@ -1023,8 +1007,7 @@ Content-Type: application/json
 
 #### Response
 
-{{OrderFull}}
-
+[OrderFull](#orderfull)
 
 ###### Example
 
@@ -1083,8 +1066,7 @@ HTTP 201 Content-Type: application/json
             ]
         }
     ]
-}
-</pre>
+}</pre>
 ## Getting All Orders for a Company
 
 
@@ -1119,8 +1101,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{OrderFull}}]
-
+Array[[OrderFull](#orderfull)]
 
 ###### Example
 
@@ -1181,8 +1162,7 @@ HTTP 200 Content-Type: application/json
             }
         ]
     }
-]
-</pre>
+]</pre>
 ## Getting an Order with Items
 
 
@@ -1218,8 +1198,7 @@ Accept: application/json
 
 #### Response
 
-{{OrderFull}}
-
+[OrderFull](#orderfull)
 
 ###### Example
 
@@ -1278,8 +1257,7 @@ HTTP 200 Content-Type: application/json
             ]
         }
     ]
-}
-</pre>
+}</pre>
 ## Updating an Order with Items
 
 {{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
@@ -1408,8 +1386,7 @@ Content-Type: application/json
 
 #### Response
 
-{{OrderFull}}
-
+[OrderFull](#orderfull)
 
 ###### Example
 
@@ -1468,8 +1445,7 @@ HTTP 200 Content-Type: application/json
             ]
         }
     ]
-}
-</pre>
+}</pre>
 ## 
 
 
@@ -1543,8 +1519,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Order}}]
-
+Array[[Order](#order)]
 
 ###### Example
 
@@ -1574,8 +1549,7 @@ HTTP 200 Content-Type: application/json
         "State": "Created",
         "TenderId": "INV112"
     }
-]
-</pre>
+]</pre>
 ## Getting Orders by PrintableId
 
 {{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
@@ -1611,8 +1585,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Order}}]
-
+Array[[Order](#order)]
 
 ###### Example
 
@@ -1642,8 +1615,7 @@ HTTP 200 Content-Type: application/json
         "State": "Created",
         "TenderId": "INV112"
     }
-]
-</pre>
+]</pre>
 
 ## Errors
 

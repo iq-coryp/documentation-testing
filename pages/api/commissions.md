@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-### CommissionEntry
+<h3>CommissionEntry</h3>
 
 Commission earned by an employee.
 {{callout_info}}<b>RQ Connection</b>For more information on Commissions in RQ, see <a href='http://iqmetrix.helpdocsonline.com/employee-commission-setup'>Employee Commission Setup</a>{{end}}
@@ -145,8 +145,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{CommissionEntry}}]
-
+Array[[CommissionEntry](#commissionentry)]
 
 ###### Example
 
@@ -193,7 +192,7 @@ HTTP 200 Content-Type: application/json
         "TransactionType": 1,
         "UnitCommission": 5.32
     }
-]
+]</pre>
 
 ###### Example
 
@@ -262,7 +261,6 @@ HTTP 200 Content-Type: application/hal+json
       ]
   }
 }
-
 
 
 </pre>

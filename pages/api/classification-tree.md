@@ -23,7 +23,7 @@ To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 ## Resources
 
-### Classification
+<h3>Classification</h3>
 
 Classifications are used to group Products together by similar features.
 A Product can only have a single Classification.
@@ -36,14 +36,14 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 | Order | Integer | Sorting order | `1` |
 | ProductTemplate | [ProductTemplate](#producttemplate) |  |  |
 
-### ProductTemplate
+<h3>ProductTemplate</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `60` |
 | Name | String | Name | `Wireless Device` |
 
-### Category
+<h3>Category</h3>
 
 A Category is a node in a Classification Tree that represents a logical grouping of related Classifications.
 For example, 'iPhone' and 'Tablet' Classifications might both be children of a 'Device' Category.
@@ -57,7 +57,7 @@ There is a limit to 20 levels of depth for Categories.
 | Classifications | Array[object] | Child Classifications |  |
 | Order | Integer | Sorting order | `1` |
 
-### ClassificationTree
+<h3>ClassificationTree</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -70,7 +70,7 @@ There is a limit to 20 levels of depth for Categories.
 | Version | Integer | Latest revision number | `41` |
 | *IsCanonical* | *Boolean* | *Reserved for internal use* | |
 
-### Owner
+<h3>Owner</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -114,8 +114,7 @@ Accept: application/json
 
 #### Response
 
-{{ClassificationTree}}
-
+[ClassificationTree](#classificationtree)
 
 ###### Example
 
@@ -151,8 +150,7 @@ HTTP 200 Content-Type: application/json
         "Name": "SampleCompany"
     },
     "Version": 41
-}
-</pre>
+}</pre>
 
 ## Errors
 

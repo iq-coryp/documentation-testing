@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-### Product
+<h3>Product</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -45,35 +45,35 @@ summary:
 | VendorSkus | Array[[VendorSku](#vendorsku)] | Vendor SKUs |  |
 | Version | Integer | Latest revision number | `1` |
 
-### Specification
+<h3>Specification</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Name | String | Specification name | `Color` |
 | Fields | Array[[Field](#field)] | Specification Fields |  |
 
-### MSRP
+<h3>MSRP</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Amount | Decimal | Manufacturers suggested retail price | `100` |
 | CurrencyCode | String | Currency | `USD` |
 
-### ProductSearch
+<h3>ProductSearch</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Products | Array[[Product](#product)] | Array of Slug attributes for [Product](#product)'s matching the search options |  |
 | Products.Slug | Array[[Id](#id)] |  | `M1-1` |
 
-### Manufacturer
+<h3>Manufacturer</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer |  | `4` |
 | Name | String |  | `SampleManufacturer` |
 
-### ManufacturerSku
+<h3>ManufacturerSku</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -81,14 +81,14 @@ summary:
 | Description | String |  | `Manufacturer SKU` |
 | Entity | Integer |  | `4` |
 
-### Specification
+<h3>Specification</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Name | String | Specification name | `Color` |
 | Fields | Array[[Field](#field)] | Specification Fields |  |
 
-### Field
+<h3>Field</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -100,7 +100,7 @@ summary:
 | Type | String |  | `TextSingleLine` |
 | Unit | String |  | `mm` |
 
-### UpcCode
+<h3>UpcCode</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -108,7 +108,7 @@ summary:
 | Description | String |  | `UPC` |
 | Entity | Integer |  | `2` |
 
-### VendorSku
+<h3>VendorSku</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -178,8 +178,7 @@ Accept: application/json
 
 #### Response
 
-{{ProductSearch}}
-
+[ProductSearch](#productsearch)
 
 ###### Example
 
@@ -249,8 +248,7 @@ HTTP 200 Content-Type: application/json
     "Products.Slug": [
         "M1-1"
     ]
-}
-</pre>
+}</pre>
 
 ## Errors
 

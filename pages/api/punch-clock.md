@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-### PunchEntry
+<h3>PunchEntry</h3>
 
 An instance of a clock punch for an employee at a location, with a punch-in time and (optionally) a punch-out time.
 
@@ -87,8 +87,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{PunchEntry}}]
-
+Array[[PunchEntry](#punchentry)]
 
 ###### Example
 
@@ -112,7 +111,7 @@ HTTP 200 Content-Type: application/json
         "UserId": 22212,
         "Version": 1
     }
-]
+]</pre>
 
 ###### Example
 
@@ -159,7 +158,6 @@ HTTP 200 Content-Type: application/hal+json
       ]
   }
 }
-
 
 
 </pre>

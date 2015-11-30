@@ -1,6 +1,6 @@
 ---
 title:  Availability
-permalink: /api/Availability/
+permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-### Availability
+<h3>Availability</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -67,8 +67,7 @@ Accept: application/json
 
 #### Response
 
-{{Availability}}
-
+[Availability](#availability)
 
 ###### Example
 
@@ -80,8 +79,7 @@ HTTP 200 Content-Type: application/json
     "EntityId": 1,
     "Quantity": 15,
     "IsDropShippable": true
-}
-</pre>
+}</pre>
 ## Getting Availability For a Catalog Item By Locations
 
 
@@ -117,8 +115,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Availability}}]
-
+Array[[Availability](#availability)]
 
 ###### Example
 
@@ -132,8 +129,7 @@ HTTP 200 Content-Type: application/json
         "Quantity": 15,
         "IsDropShippable": true
     }
-]
-</pre>
+]</pre>
 
 ## Errors
 

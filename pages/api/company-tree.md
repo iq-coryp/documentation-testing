@@ -1,6 +1,6 @@
 ---
 title:  Company Tree
-permalink: /api/Company-Tree/
+permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
@@ -28,7 +28,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 ## Resources
 
-### Company
+<h3>Company</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -48,7 +48,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | *Role* | *String* | *Reserved for internal use* | |
 
 
-### Asset
+<h3>Asset</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -60,7 +60,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | MimeType | String |  | `image/jpeg` |
 | Width | Integer |  | `240` |
 
-### CompanyTree
+<h3>CompanyTree</h3>
 
 Your Company Tree is a hierarchial representation of how your Company is structured, including the root Company, Groups, Divisions and Locations.
 
@@ -74,7 +74,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Role | String | Role | `Company` |
 | Nodes | Array[[CompanyTreeNode](#companytreenode)] | The Company Tree hierarchy made up of Nodes |  |
 
-### CompanyTreeNode
+<h3>CompanyTreeNode</h3>
 
 CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{Group}}, {{Division}}, {{Location}} or device.
 
@@ -86,7 +86,7 @@ CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can r
 | Role | String | Role, possible values include: Company, Group, Division and Location | `Division` |
 | Nodes | Array[object] | Children |  |
 
-### Location
+<h3>Location</h3>
 
 A **Location** is a physical or virtual presence that may hold inventory or process transactions.
 
@@ -122,7 +122,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 
 
 
-### Division
+<h3>Division</h3>
 
 Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company.
 
@@ -146,7 +146,7 @@ To learn more about Divisions, see {{Division_Concept}}.
 | *Role* | *String* | *Reserved for internal use* | |
 
 
-### Group
+<h3>Group</h3>
 
 Managerial or geographical groupings.
 
@@ -170,7 +170,7 @@ Managerial or geographical groupings.
 | *Role* | *String* | *Reserved for internal use* | |
 
 
-### ClientIdSearch
+<h3>ClientIdSearch</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -227,8 +227,7 @@ Accept: application/json
 
 #### Response
 
-{{Company}}
-
+[Company](#company)
 
 ###### Example
 
@@ -260,8 +259,7 @@ HTTP 200 Content-Type: application/json
     "Relationships": [],
     "SortName": "samplecompany",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting a Company Tree
 
 
@@ -296,8 +294,7 @@ Accept: application/json
 
 #### Response
 
-{{CompanyTree}}
-
+[CompanyTree](#companytree)
 
 ###### Example
 
@@ -318,8 +315,7 @@ HTTP 200 Content-Type: application/json
             "Nodes": []
         }
     ]
-}
-</pre>
+}</pre>
 ## Creating a Location
 
 
@@ -519,8 +515,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Location}}
-
+[Location](#location)
 
 ###### Example
 
@@ -655,8 +650,7 @@ HTTP 201 Content-Type: application/json
         "DaylightSavingTimeEnabled": true
     },
     "Version": 13
-}
-</pre>
+}</pre>
 ## Updating a Location
 
 There are **two** different ways to update a location.
@@ -706,8 +700,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Location}}
-
+[Location](#location)
 
 ###### Example
 
@@ -842,8 +835,7 @@ HTTP 200 Content-Type: application/json
         "DaylightSavingTimeEnabled": true
     },
     "Version": 13
-}
-</pre>
+}</pre>
 ## Getting a Location for a Company
 
 
@@ -879,8 +871,7 @@ Accept: application/json
 
 #### Response
 
-{{Location}}
-
+[Location](#location)
 
 ###### Example
 
@@ -1015,8 +1006,7 @@ HTTP 200 Content-Type: application/json
         "DaylightSavingTimeEnabled": true
     },
     "Version": 13
-}
-</pre>
+}</pre>
 ## Updating a Location
 
 
@@ -1214,8 +1204,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Location}}
-
+[Location](#location)
 
 ###### Example
 
@@ -1350,8 +1339,7 @@ HTTP 200 Content-Type: application/json
         "DaylightSavingTimeEnabled": true
     },
     "Version": 13
-}
-</pre>
+}</pre>
 ## Getting All Locations for a Company
 
 
@@ -1386,8 +1374,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Location}}]
-
+Array[[Location](#location)]
 
 ###### Example
 
@@ -1524,8 +1511,7 @@ HTTP 200 Content-Type: application/json
         },
         "Version": 13
     }
-]
-</pre>
+]</pre>
 ## Creating a Division
 
 Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
@@ -1590,8 +1576,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Division}}
-
+[Division](#division)
 
 ###### Example
 
@@ -1624,8 +1609,7 @@ HTTP 201 Content-Type: application/json
     "Relationships": [],
     "SortName": "sampledivision",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Creating a Group
 
 Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
@@ -1690,8 +1674,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Group}}
-
+[Group](#group)
 
 ###### Example
 
@@ -1724,8 +1707,7 @@ HTTP 201 Content-Type: application/json
     "Relationships": [],
     "SortName": "samplegroup",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Deleting a Group or Division
 
 {{warning}}
@@ -1804,8 +1786,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{ClientIdSearch}}]
-
+Array[[ClientIdSearch](#clientidsearch)]
 
 ###### Example
 
@@ -1827,20 +1808,19 @@ HTTP 200 Content-Type: application/json
             }
         ]
     }
-]
-</pre>
+]</pre>
 
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 400` | `Request Parameter Doesn't Match Expected Value` | Ensure all **Required** parameters are provided, see `Description` of Error for more details |
-| `HTTP 400` | `Please move or delete attached`<br/>`locations before deleting this entity` | Ensure Node to be deleted does not have child Locations |
+| `HTTP 400` | `Please move or delete attached locations before deleting this entity` | Ensure Node to be deleted does not have child Locations |
 | `HTTP 400` | `'{x}' should not be empty.` | Ensure required parameters are included |
-| `HTTP 400` | `'{x}' must be between 0 and {y} characters.`<br/>` You entered {z} characters.` | Ensure required parameters are within size limitations |
+| `HTTP 400` | `'{x}' must be between 0 and {y} characters.  You entered {z} characters.` | Ensure required parameters are within size limitations |
 | `HTTP 400` | `'Latitude/Longitude' should not be empty` | Ensure both `Latitude` and `Longitude` are provided, or `Geography` is null |
-| `HTTP 400` | `'Latitude' must be between -90 and 90. `<br/>`You entered {x}` | Ensure `Latitude` is between -90 and 90 |
-| `HTTP 400` | `'Longitude' must be between -180 and 180.`<br/>`You entered {x}` | Ensure `Longitude` is between -180 and 180 |
+| `HTTP 400` | `'Latitude' must be between -90 and 90.  You entered {x}` | Ensure `Latitude` is between -90 and 90 |
+| `HTTP 400` | `'Longitude' must be between -180 and 180. You entered {x}` | Ensure `Longitude` is between -180 and 180 |
 | `HTTP 404` | `Entity Not Found` | Ensure `CompanyId` and `LocationId` are accurate and the Location belongs to the Company |
-| `HTTP 409` | `Entity resource already modified by an`<br/>` earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
-| `HTTP 409` | `An Entity already exists with the same name `<br/>`and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |    
+| `HTTP 409` | `Entity resource already modified by an  earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
+| `HTTP 409` | `An Entity already exists with the same name  and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |    

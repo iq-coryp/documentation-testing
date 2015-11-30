@@ -31,11 +31,9 @@ Changes within the Security Roles API involve complex actions behind the scenes 
 
 ## Resources
 
-### SecurityRole
+<h3>SecurityRole</h3>
 
-A SecurityRole represents the relationship between a {{User}} and a set of Permissions.
-
-SecurityRoles allow you create custom groups that can hold Permissions
+A SecurityRole represents the relationship between a {{User}} and a set of Permissions. SecurityRoles allow you create custom groups that can hold Permissions
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -43,7 +41,7 @@ SecurityRoles allow you create custom groups that can hold Permissions
 | Name | String | Name | `Store Manager` |
 
 
-### AssignedRole
+<h3>AssignedRole</h3>
 
 An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity.
 
@@ -55,7 +53,7 @@ An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}}
 | UserId | Integer | Identifier of a [User](/api/usermanager/#user) | `22212` |
 
 
-### Permission
+<h3>Permission</h3>
 
 Permissions are the building blocks of SecurityRoles and represent the ability to perform an action within iQmetrix APIs.
 
@@ -69,7 +67,7 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 | Name | String | Descriptive name | `Edit Products` |
 | Category | String | This field is used internally to group Permissions by how they impact the iQmetrix ecosystem | `Products` |
 | Code | String | Unique, system generated name used for sorting Permissions | `editproducts` |
-| Description | String | Describes the function of the Permission | `Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.` |
+| Description | String | Describes the function of the Permission | `Enables the user to create, update and archive their private products and retailer revisions.` |
 | IsAssignable | Boolean | A flag to indicate if this Permission is Restricted, see Notes above | `true` |
 | ParentPermissionId | Integer | Identifier of a similar Permission, used for organizing Permissions into groups | `108` |
 
@@ -112,8 +110,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Permission}}]
-
+Array[[Permission](#permission)]
 
 ###### Example
 
@@ -126,12 +123,11 @@ HTTP 200 Content-Type: application/json
         "Name": "Edit Products",
         "Category": "Products",
         "Code": "editproducts",
-        "Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
+        "Description": "Enables the user to create, update and archive their private products and retailer revisions.",
         "IsAssignable": true,
         "ParentPermissionId": 108
     }
-]
-</pre>
+]</pre>
 ## Creating a Security Role
 
 
@@ -179,8 +175,7 @@ Content-Type: application/json
 
 #### Response
 
-{{SecurityRole}}
-
+[SecurityRole](#securityrole)
 
 ###### Example
 
@@ -190,8 +185,7 @@ HTTP 201 Content-Type: application/json
 {
     "Id": 4457,
     "Name": "Store Manager"
-}
-</pre>
+}</pre>
 ## Getting All Security Roles for an Entity
 
 
@@ -226,8 +220,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{SecurityRole}}]
-
+Array[[SecurityRole](#securityrole)]
 
 ###### Example
 
@@ -239,8 +232,7 @@ HTTP 200 Content-Type: application/json
         "Id": 4457,
         "Name": "Store Manager"
     }
-]
-</pre>
+]</pre>
 ## Enabling a Permission for a Security Role
 
 
@@ -358,8 +350,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Permission}}]
-
+Array[[Permission](#permission)]
 
 ###### Example
 
@@ -372,12 +363,11 @@ HTTP 200 Content-Type: application/json
         "Name": "Edit Products",
         "Category": "Products",
         "Code": "editproducts",
-        "Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
+        "Description": "Enables the user to create, update and archive their private products and retailer revisions.",
         "IsAssignable": true,
         "ParentPermissionId": 108
     }
-]
-</pre>
+]</pre>
 ## Assigning a Security Role to a User
 
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
@@ -428,8 +418,7 @@ Content-Type: application/json
 
 #### Response
 
-{{AssignedRole}}
-
+[AssignedRole](#assignedrole)
 
 ###### Example
 
@@ -441,8 +430,7 @@ HTTP 201 Content-Type: application/json
     "EntityId": 2,
     "SecurityRoleId": 4457,
     "UserId": 22212
-}
-</pre>
+}</pre>
 ## Getting Assigned Roles for a User
 
 
@@ -477,8 +465,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{AssignedRole}}]
-
+Array[[AssignedRole](#assignedrole)]
 
 ###### Example
 
@@ -492,8 +479,7 @@ HTTP 200 Content-Type: application/json
         "SecurityRoleId": 4457,
         "UserId": 22212
     }
-]
-</pre>
+]</pre>
 ## Unassigning a Security Role from a User
 
 
@@ -537,7 +523,7 @@ Authorization: Bearer (Access Token)
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
-| `HTTP 400` | `The field {x} is a required field`<br/>`but was not found in the request` | Ensure all required parameters are included |
+| `HTTP 400` | `The field {x} is a required field but was not found in the request` | Ensure all required parameters are included |
 | `HTTP 400` | `Expected {x} to contain {y} but found {z}` | Ensure parameters that are in both Request URI and body match |
 | `HTTP 404` | `{x} not found` | Ensure URI parameters are correct | 
-| `HTTP 409` | `The SecurityRole name {x}`<br/>`already exists for entity {y}` | SecurityRole names must be unique across the Company |
+| `HTTP 409` | `The SecurityRole name {x} already exists for entity {y}` | SecurityRole names must be unique across the Company |

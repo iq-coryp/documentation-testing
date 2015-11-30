@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-### Asset
+<h3>Asset</h3>
 
 An **Asset** is an image or video associated with a Product.
 
@@ -69,8 +69,7 @@ Content-Type: multipart/form-data
 
 #### Response
 
-{{Asset}}
-
+[Asset](#asset)
 
 ###### Example
 
@@ -86,8 +85,7 @@ HTTP 201 Content-Type: application/json
     "mimeType": "image/jpeg",
     "width": 240,
     "success": true
-}
-</pre>
+}</pre>
 ## Getting an Asset
 
 
@@ -120,8 +118,7 @@ Accept: application/json
 
 #### Response
 
-{{Asset}}
-
+[Asset](#asset)
 
 ###### Example
 
@@ -137,8 +134,7 @@ HTTP 200 Content-Type: application/json
     "mimeType": "image/jpeg",
     "width": 240,
     "success": true
-}
-</pre>
+}</pre>
 ## Redirecting to an Image Asset
 
 A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
@@ -176,7 +172,6 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 HTTP 303 Content-Type: application/text
 
 Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg
-
 </pre>
 
 ## Errors

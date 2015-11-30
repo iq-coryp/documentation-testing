@@ -60,7 +60,7 @@ The result displayed on the page, with some styling, is shown below
 
 ## Resources
 
-### FieldDefinition
+<h3>FieldDefinition</h3>
 
 {{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}
 
@@ -125,8 +125,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{FieldDefinition}}]
-
+Array[[FieldDefinition](#fielddefinition)]
 
 ###### Example
 
@@ -143,8 +142,7 @@ HTTP 200 Content-Type: application/json
         "DisplayName": "CDMA",
         "Options": []
     }
-]
-</pre>
+]</pre>
 ## Getting a FieldDefinition
 
 
@@ -179,8 +177,7 @@ Accept: application/json
 
 #### Response
 
-{{FieldDefinition}}
-
+[FieldDefinition](#fielddefinition)
 
 ###### Example
 
@@ -195,8 +192,7 @@ HTTP 200 Content-Type: application/json
     "LanguageInvariantUnit": "mm",
     "DisplayName": "CDMA",
     "Options": []
-}
-</pre>
+}</pre>
 
 ## Errors
 

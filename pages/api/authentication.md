@@ -134,8 +134,7 @@ HTTP 200 Content-Type: application/json
     "access_token": "3dae10c05e894011b5b3ae15972ffbf4",
     "expires_in": 43199,
     "refresh_token": "f8bk56n40f7gi34j49g7bh4n430gf874h"
-}
-</pre>
+}</pre>
 
 ## Errors
 

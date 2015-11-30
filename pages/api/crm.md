@@ -19,7 +19,7 @@ summary:
 ## Resources
 
 
-### Customer
+<h3>Customer</h3>
 
 A Customer is a person or organization that buys goods or services from a store or business.
 
@@ -40,7 +40,7 @@ A Customer is a person or organization that buys goods or services from a store 
 | Version | Integer | Latest revision number | `1` |
 
 
-### Address
+<h3>Address</h3>
 
 An Address represents a valid address somewhere on the planet.
 
@@ -68,7 +68,7 @@ An Address represents a valid address somewhere on the planet.
 | Version | Integer | Latest revision number | `1` |
 
 
-### ContactMethod
+<h3>ContactMethod</h3>
 
 A Contact Method is a method of contacting a Customer.
 
@@ -87,7 +87,7 @@ A Contact Method is a method of contacting a Customer.
 | Version | Integer | Latest revision number | `1` |
 
 
-### CustomerExtension
+<h3>CustomerExtension</h3>
 
 A CustomerExtension resource is used for adding custom properties to a Customer.
 
@@ -100,7 +100,7 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 | Value | String | Value | `66432` |
 | Version | Integer | Latest revision number | `1` |
 
-### CustomerExtensionType
+<h3>CustomerExtensionType</h3>
 
 CustomerExtensionType resources are created by iQmetrix and are used to provide custom properties for the CustomerExtension resource.
 
@@ -110,7 +110,7 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 | Name | String | Name | `ExternalCustomerId` |
 | Data Type | String | Data type | `Integer` |
 
-### CustomerFull
+<h3>CustomerFull</h3>
 
 CustomerFull is an extension on the Customer resource, it consists of all Customer properties plus the following:
 
@@ -136,7 +136,7 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 | Version | Integer | Latest revision number | `1` |
 
 
-### CustomerSearch
+<h3>CustomerSearch</h3>
 
 CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource, it consists of all CustomerFull properties plus the following
 
@@ -263,8 +263,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Customer}}
-
+[Customer](#customer)
 
 ###### Example
 
@@ -285,8 +284,7 @@ HTTP 201 Content-Type: application/json
     "Notes": "Interested in iPhone 6",
     "Title": "Mr",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting All Customers
 
 
@@ -321,8 +319,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Customer}}]
-
+Array[[Customer](#customer)]
 
 ###### Example
 
@@ -345,7 +342,7 @@ HTTP 200 Content-Type: application/json
         "Title": "Mr",
         "Version": 1
     }
-]
+]</pre>
 
 ###### Example
 
@@ -416,7 +413,6 @@ HTTP 200 Content-Type: application/hal+json
 }     
 
 
-
 </pre>
 ## Getting a Customer
 
@@ -453,8 +449,7 @@ Accept: application/json
 
 #### Response
 
-{{Customer}}
-
+[Customer](#customer)
 
 ###### Example
 
@@ -475,8 +470,7 @@ HTTP 200 Content-Type: application/json
     "Notes": "Interested in iPhone 6",
     "Title": "Mr",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Updating a Customer
 
 
@@ -546,8 +540,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Customer}}
-
+[Customer](#customer)
 
 ###### Example
 
@@ -568,8 +561,7 @@ HTTP 200 Content-Type: application/json
     "Notes": "Interested in iPhone 6",
     "Title": "Mr",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Deleting a Customer
 
 
@@ -687,8 +679,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Address}}
-
+[Address](#address)
 
 ###### Example
 
@@ -716,8 +707,7 @@ HTTP 201 Content-Type: application/json
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting All Addresses for a Customer
 
 
@@ -753,8 +743,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Address}}]
-
+Array[[Address](#address)]
 
 ###### Example
 
@@ -784,7 +773,7 @@ HTTP 200 Content-Type: application/json
         "StreetAddress2": "Suite 500",
         "Version": 1
     }
-]
+]</pre>
 
 ###### Example
 
@@ -830,7 +819,6 @@ HTTP 200 Content-Type: application/hal+json
 }
 
 
-
 </pre>
 ## Getting a Customer Address
 
@@ -868,8 +856,7 @@ Accept: application/json
 
 #### Response
 
-{{Address}}
-
+[Address](#address)
 
 ###### Example
 
@@ -897,8 +884,7 @@ HTTP 200 Content-Type: application/json
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Updating a Customer Address
 
 
@@ -983,8 +969,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Address}}
-
+[Address](#address)
 
 ###### Example
 
@@ -1012,8 +997,7 @@ HTTP 200 Content-Type: application/json
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Removing an Address from a Customer
 
 
@@ -1182,8 +1166,7 @@ Content-Type: application/json
 
 #### Response
 
-{{CustomerFull}}
-
+[CustomerFull](#customerfull)
 
 ###### Example
 
@@ -1255,8 +1238,7 @@ HTTP 201 Content-Type: application/json
     "RelatedCustomers": [],
     "Title": "Mr",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting All Full Customers
 
 
@@ -1291,8 +1273,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{CustomerFull}}]
-
+Array[[CustomerFull](#customerfull)]
 
 ###### Example
 
@@ -1366,7 +1347,7 @@ HTTP 200 Content-Type: application/json
         "Title": "Mr",
         "Version": 1
     }
-]
+]</pre>
 
 ###### Example
 
@@ -1470,7 +1451,6 @@ HTTP 200 Content-Type: application/hal+json
 }
 
 
-
 </pre>
 ## Getting a Full Customer
 
@@ -1507,8 +1487,7 @@ Accept: application/json
 
 #### Response
 
-{{CustomerFull}}
-
+[CustomerFull](#customerfull)
 
 ###### Example
 
@@ -1580,8 +1559,7 @@ HTTP 200 Content-Type: application/json
     "RelatedCustomers": [],
     "Title": "Mr",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Updating a Full Customer
 
 
@@ -1726,8 +1704,7 @@ Content-Type: application/json
 
 #### Response
 
-{{CustomerFull}}
-
+[CustomerFull](#customerfull)
 
 ###### Example
 
@@ -1799,8 +1776,7 @@ HTTP 200 Content-Type: application/json
     "RelatedCustomers": [],
     "Title": "Mr",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Deleting a Full Customer
 
 
@@ -1902,8 +1878,7 @@ Content-Type: application/json
 
 #### Response
 
-{{ContactMethod}}
-
+[ContactMethod](#contactmethod)
 
 ###### Example
 
@@ -1922,8 +1897,7 @@ HTTP 201 Content-Type: application/json
     "Notes": "After 6pm",
     "Value": "(306) 222-3333",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting All Contact Methods for a Customer
 
 
@@ -1959,8 +1933,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{ContactMethod}}]
-
+Array[[ContactMethod](#contactmethod)]
 
 ###### Example
 
@@ -1981,7 +1954,7 @@ HTTP 200 Content-Type: application/json
         "Value": "(306) 222-3333",
         "Version": 1
     }
-]
+]</pre>
 
 ###### Example
 
@@ -2016,7 +1989,6 @@ HTTP 200 Content-Type: application/hal+json
   "Value": "(306) 222-3333",
   "Version": 1
 }       
-
 
 
 </pre>
@@ -2056,8 +2028,7 @@ Accept: application/json
 
 #### Response
 
-{{ContactMethod}}
-
+[ContactMethod](#contactmethod)
 
 ###### Example
 
@@ -2076,8 +2047,7 @@ HTTP 200 Content-Type: application/json
     "Notes": "After 6pm",
     "Value": "(306) 222-3333",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Updating a Customer Contact Method
 
 
@@ -2144,8 +2114,7 @@ Content-Type: application/json
 
 #### Response
 
-{{ContactMethod}}
-
+[ContactMethod](#contactmethod)
 
 ###### Example
 
@@ -2164,8 +2133,7 @@ HTTP 200 Content-Type: application/json
     "Notes": "After 6pm",
     "Value": "(306) 222-3333",
     "Version": 1
-}
-</pre>
+}</pre>
 ## Removing a Customer Contact Method
 
 
@@ -2242,8 +2210,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Customer}}]
-
+Array[[Customer](#customer)]
 
 ###### Example
 
@@ -2266,8 +2233,7 @@ HTTP 200 Content-Type: application/json
         "Title": "Mr",
         "Version": 1
     }
-]
-</pre>
+]</pre>
 ## Customer Search
 
 [CustomerSearch](#customersearch) resources use a special property, `criteria`.
@@ -2320,8 +2286,7 @@ Accept: application/json
 
 #### Response
 
-{{CustomerFull}}
-
+[CustomerFull](#customerfull)
 
 ###### Example
 
@@ -2393,8 +2358,7 @@ HTTP 200 Content-Type: application/json
     "RelatedCustomers": [],
     "Title": "Mr",
     "Version": 1
-}
-</pre>
+}</pre>
 
 
 ## Searching

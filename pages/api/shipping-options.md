@@ -57,7 +57,7 @@ API key must be provided in header and is configurable.
 ## Resources
 
 
-### ShippingQuery
+<h3>ShippingQuery</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -65,7 +65,7 @@ API key must be provided in header and is configurable.
 | Items | Array[[Item](#item)] | List of Products to be added to shipping query |  |
 | PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
 
-### Item
+<h3>Item</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -73,7 +73,7 @@ API key must be provided in header and is configurable.
 | Quantity | Integer | Amount of products | `11` |
 | Sku | String | Product sku | `87932OTS45S6` |
 
-### ShippingOptions
+<h3>ShippingOptions</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -98,7 +98,11 @@ The specification for the request must be in the format below:
 
 #### Headers
 
-* `Authorization: Basic`* `Accept: application/json`* `Content-Type: application/json`* `Host: supplier.azure-api.net`
+* `Authorization: Basic`
+* `Accept: application/json`
+* `Content-Type: application/json`
+* `Host: supplier.azure-api.net`
+
 
 
 

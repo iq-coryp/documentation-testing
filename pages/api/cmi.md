@@ -40,7 +40,7 @@ You should choose a production endpoint that is geographically closest to your d
 
 
 
-### ClientIdentity
+<h3>ClientIdentity</h3>
 
 Authentication for the CMI API is done by including a ClientIdentity resource in a `<client>` section at the beginning of each request.
 
@@ -55,7 +55,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | *StoreId* | *Integer* | *Reserved for future use. Use value of -1* | |
 
 
-### PurchaseOrderShipmentNotice
+<h3>PurchaseOrderShipmentNotice</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -69,7 +69,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorSKU | String | The vendor part number/sku | `ABC123` |
 
 
-### PurchaseOrderInformation
+<h3>PurchaseOrderInformation</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -80,7 +80,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | SerialsReceived | Array[[ProductSerialNumber](#productserialnumber)] | Serials received |  |
 
 
-### PurchaseOrderData
+<h3>PurchaseOrderData</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -104,7 +104,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorName | String | Name of the vendor | `SampleVendor` |
 
 
-### ProductInformation
+<h3>ProductInformation</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -141,7 +141,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorSKU | String | Vendor SKU | `ABC123` |
 
 
-### ProductSerialNumber
+<h3>ProductSerialNumber</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -151,7 +151,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | SerialNumber | String | Serial number | `132456456456111` |
 
 
-### StoreInformation
+<h3>StoreInformation</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -279,8 +279,7 @@ PurchaseOrderShipmentNotice snReturn = cmiService.CreatePurchaseOrderShipmentNot
 #### Response
 
 
-{{undefined}}
-
+[PurchaseOrderShipmentNotice](#purchaseordershipmentnotice)
 
 ###### Example
 
@@ -385,8 +384,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
 #### Response
 
 
-{{undefined}}
-
+[PurchaseOrderInformation](#purchaseorderinformation)
 
 ###### Example
 
@@ -532,8 +530,7 @@ PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(clie
 #### Response
 
 
-{{undefined}}
-
+[PurchaseOrderInformation](#purchaseorderinformation)
 
 ###### Example
 
@@ -681,8 +678,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByBusinessID(client,
 #### Response
 
 
-{{undefined}}
-
+[PurchaseOrderInformation](#purchaseorderinformation)
 
 ###### Example
 
@@ -808,8 +804,7 @@ StoreInformation[] stores = cmiService.GetStoreList(client);
 #### Response
 
 
-{{undefined}}
-
+[StoreInformation](#storeinformation)
 
 ###### Example
 

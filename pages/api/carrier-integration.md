@@ -19,7 +19,7 @@ summary:
 ## Resources
 
 
-### Activation
+<h3>Activation</h3>
 
 An **Activation** contains IDs necessary to identify an activation, and all the activation details.
 
@@ -31,7 +31,7 @@ An **Activation** contains IDs necessary to identify an activation, and all the 
 | CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) making this request | `5678` |
 
-### CarrierActivationDetails
+<h3>CarrierActivationDetails</h3>
 
 A **CarrierActivationDetails** contains all of the customer, product, and rate plan information necessary to process an activation.
 
@@ -69,7 +69,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | *UpgradeCode* | *String* | *Reserved for future use* | |
 | *UpgradeSourceNumber* | *String* | *Reserved for future use* | |
 
-### Subscriber
+<h3>Subscriber</h3>
 
  A **Subscriber** contains all of the customer information related to an activation. 
 
@@ -94,7 +94,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | *SecondName* | *String* | *Reserved for future use* | |
 | *PreferredLanguage* | *String* | *Reserved for future use* | |
 
-### Account
+<h3>Account</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -102,14 +102,14 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Notes | String | Custom notes related to the associated account |  |
 | TrackingNumber | String | Carrier-specific tracking number for the associated account | `5656565656` |
 
-### PhoneNumber
+<h3>PhoneNumber</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String | The type of phone number. See [PhoneNumberType](#phonenumbertype) for the list of acceptable values | `Home` |
 | Value | String(32) | Phone number | `1234561234` |
 
-### Address
+<h3>Address</h3>
 
 #### RQ Limitations 
 
@@ -130,7 +130,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SuiteNumber | String(32) | Suite number | `100` |
 | Type | String | The type of this Address. See [AddressType](#addresstype) for a list of acceptable values | `Residential` |
 
-### RatePlan
+<h3>RatePlan</h3>
 
 #### RQ Limitations
 
@@ -149,7 +149,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 | *IsSharedPlan* | *Boolean* | *Reserved for future use* | |
 
-### RatePlanFeature
+<h3>RatePlanFeature</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -160,7 +160,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SOCCode | String(64) | Carrier-specific SOC code | `XYZ5678` |
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 
-### ActivatedProduct
+<h3>ActivatedProduct</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -180,7 +180,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | *IsCarrierSupplied* | *Boolean* | *Reserved for future use* | |
 | *NumberPortedIn* | *Boolean* | *Reserved for future use* | |
 
-### Tab
+<h3>Tab</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -188,7 +188,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Commission | [VendorRebate](#vendorrebate) |  |  |
 | ReferenceNumber | String | Carrier reference number | `abc123` |
 
-### AdditionalFee
+<h3>AdditionalFee</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -200,7 +200,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | ReferenceNumber | String(64) | Carrier reference number, this value should be used for storing an identifier from an external system | `abc123` |
 | SOCCode | String(64) | Carrier-specific SOC code | `BB3221` |
 
-### VendorRebate
+<h3>VendorRebate</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -211,7 +211,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | ReferenceNumber | String(64) | Carrier reference number | `abc123` |
 | SOCCode | String(64) | Carrier-specific SOC code | `AGG242` |
 
-### ConfirmedActivation
+<h3>ConfirmedActivation</h3>
 
 A ConfirmedActivation resource represents a payment transaction that completed the activation of one or more phones.
 
@@ -226,7 +226,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) where the transaction occurred | `1` |
 | Taxes | Decimal | The taxes from the invoice | `8.16` |
 
-### ActivationDetails
+<h3>ActivationDetails</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -587,8 +587,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Activation}}
-
+[Activation](#activation)
 
 ###### Example
 
@@ -740,8 +739,7 @@ HTTP 201 Content-Type: application/json
     "CarrierId": 41,
     "CompanyId": 1234,
     "LocationId": 5678
-}
-</pre>
+}</pre>
 ## Retrieving Completed Activations
 
 
@@ -780,8 +778,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{ConfirmedActivation}}]
-
+Array[[ConfirmedActivation](#confirmedactivation)]
 
 ###### Example
 
@@ -808,7 +805,7 @@ HTTP 200 Content-Type: application/json
         "LocationId": 1,
         "Taxes": 8.16
     }
-]
+]</pre>
 
 ###### Example
 
@@ -861,17 +858,16 @@ HTTP 200 Content-Type: application/hal+json
 }
 
 
-
 </pre>
 
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
-| `HTTP 400` | `Invalid Request: The field {x}`<br/>`must be greater than or equal to 1` | Ensure CarrierId in request matches CarrierId in URI |
+| `HTTP 400` | `Invalid Request: The field {x} must be greater than or equal to 1` | Ensure CarrierId in request matches CarrierId in URI |
 | `HTTP 400` | `Carrier {x} not found` | Ensure Carrier provided in URI is correct |
-| `HTTP 400` | `Invalid Request: the {x} `<br/>`field is required` | Ensure all required fields are provided |
-| `HTTP 400` | `Invalid Request: Type field must`<br/>` be one of the following values: {x}` | Ensure AddressType is one of the values in [AddressType](#addresstype) |
+| `HTTP 400` | `Invalid Request: the {x}  field is required` | Ensure all required fields are provided |
+| `HTTP 400` | `Invalid Request: Type field must  be one of the following values: {x}` | Ensure AddressType is one of the values in [AddressType](#addresstype) |
 
 ## Pagination
 

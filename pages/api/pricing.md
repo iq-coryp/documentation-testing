@@ -28,7 +28,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ## Resources
 
-### Pricing
+<h3>Pricing</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -41,7 +41,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 | PricingTermId | Integer | [PricingTerm](#pricingterm) identifier | `20` |
 
 
-### PricingTerm
+<h3>PricingTerm</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -115,8 +115,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Pricing}}
-
+[Pricing](#pricing)
 
 ###### Example
 
@@ -131,8 +130,7 @@ HTTP 201 Content-Type: application/json
     "RegularPrice": 10,
     "OverridePrice": 5,
     "PricingTermId": 20
-}
-</pre>
+}</pre>
 ## Creating Product Pricing at Location Level
 
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
@@ -193,8 +191,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Pricing}}
-
+[Pricing](#pricing)
 
 ###### Example
 
@@ -209,8 +206,7 @@ HTTP 201 Content-Type: application/json
     "RegularPrice": 10,
     "OverridePrice": 5,
     "PricingTermId": 20
-}
-</pre>
+}</pre>
 ## Getting Product Pricing for a Retail Location
 
 
@@ -247,8 +243,7 @@ Accept: application/json
 
 #### Response
 
-{{Pricing}}
-
+[Pricing](#pricing)
 
 ###### Example
 
@@ -263,8 +258,7 @@ HTTP 200 Content-Type: application/json
     "RegularPrice": 10,
     "OverridePrice": 5,
     "PricingTermId": 20
-}
-</pre>
+}</pre>
 ## Updating Product Pricing for a Retail Location
 
 
@@ -354,8 +348,7 @@ Content-Type: application/json
 
 #### Response
 
-{{Pricing}}
-
+[Pricing](#pricing)
 
 ###### Example
 
@@ -370,8 +363,7 @@ HTTP 201 Content-Type: application/json
     "RegularPrice": 10,
     "OverridePrice": 5,
     "PricingTermId": 20
-}
-</pre>
+}</pre>
 ## Getting Product Pricing at Company Level
 
 
@@ -407,8 +399,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Pricing}}]
-
+Array[[Pricing](#pricing)]
 
 ###### Example
 
@@ -425,8 +416,7 @@ HTTP 200 Content-Type: application/json
         "OverridePrice": 5,
         "PricingTermId": 20
     }
-]
-</pre>
+]</pre>
 ## Updating Product Pricing at Company Level
 
 
@@ -491,8 +481,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{PricingTerm}}]
-
+Array[[PricingTerm](#pricingterm)]
 
 ###### Example
 
@@ -509,8 +498,7 @@ HTTP 200 Content-Type: application/json
         "NumberOfPayments": 1,
         "TermLengthInYears": 3
     }
-]
-</pre>
+]</pre>
 ## Getting a Pricing Term
 
 
@@ -546,8 +534,7 @@ Accept: application/json
 
 #### Response
 
-{{PricingTerm}}
-
+[PricingTerm](#pricingterm)
 
 ###### Example
 
@@ -562,8 +549,7 @@ HTTP 200 Content-Type: application/json
     "CanFinance": true,
     "NumberOfPayments": 1,
     "TermLengthInYears": 3
-}
-</pre>
+}</pre>
 ## Getting Product Pricing by Pricing Term
 
 
@@ -600,8 +586,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Pricing}}]
-
+Array[[Pricing](#pricing)]
 
 ###### Example
 
@@ -618,8 +603,7 @@ HTTP 200 Content-Type: application/json
         "OverridePrice": 5,
         "PricingTermId": 20
     }
-]
-</pre>
+]</pre>
 
 ## Errors
 

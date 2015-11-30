@@ -22,14 +22,14 @@ Suppliers have the ability to add products to their subscribable lists and retri
 ## Resources
 
 
-### Subscription
+<h3>Subscription</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Companies | Array[[Company](#company)] | Companies for the subscription |  |
 | ListId | GUID | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 
-### Company
+<h3>Company</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -37,7 +37,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 | Id | Integer | Company identifier | `60454` |
 | Name | String | Company Name | `Mark Inc` |
 
-### SubscribableList
+<h3>SubscribableList</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -47,7 +47,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 | Products | Array[[Product](#product)] | Products for the subscribable list |  |
 | Version | Integer | Subscription revision | `12` |
 
-### Product
+<h3>Product</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -95,8 +95,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Subscription}}]
-
+Array[[Subscription](#subscription)]
 
 ###### Example
 
@@ -119,7 +118,6 @@ HTTP 200 Content-Type: application/json
       ...  
   ]
 }
-
 
 </pre>
 ## Getting a Subscribable List
@@ -156,8 +154,7 @@ Accept: application/json
 
 #### Response
 
-{{SubscribableList}}
-
+[SubscribableList](#subscribablelist)
 
 ###### Example
 
@@ -181,8 +178,7 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Version": 12
-}
-</pre>
+}</pre>
 ## Updating Products in a Subscribable List
 
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
@@ -243,8 +239,7 @@ Content-Type: application/json
 
 #### Response
 
-{{SubscribableList}}
-
+[SubscribableList](#subscribablelist)
 
 ###### Example
 
@@ -267,7 +262,6 @@ HTTP 200 Content-Type: application/json
     ],
     "Version": 2
 }
-
 
 </pre>
 

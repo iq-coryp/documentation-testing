@@ -23,7 +23,7 @@ To learn more about User Manager, see {{UserManager_Concept}}.
 
 ## Resources
 
-### User
+<h3>User</h3>
 
 A User represents an account that can be used to perform actions on your data within iQmetrix APIs.
 
@@ -46,7 +46,7 @@ A User represents an account that can be used to perform actions on your data wi
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Profiles* | *Object* | *This is a legacy property that should not be used* | |
 
-### Address
+<h3>Address</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -57,7 +57,7 @@ A User represents an account that can be used to perform actions on your data wi
 | CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
 | Zip | String | Zip or Postal Code | `94043` |
 
-### PhoneNumber
+<h3>PhoneNumber</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -150,8 +150,7 @@ POST /Users/importExisting
 
 #### Response
 
-{{User}}
-
+[User](#user)
 
 ###### Example
 
@@ -188,8 +187,7 @@ HTTP 201 Content-Type: application/json
     ],
     "Picture": {},
     "Version": 1
-}
-</pre>
+}</pre>
 ## Getting a User
 
 
@@ -224,8 +222,7 @@ Accept: application/json
 
 #### Response
 
-{{User}}
-
+[User](#user)
 
 ###### Example
 
@@ -262,8 +259,7 @@ HTTP 200 Content-Type: application/json
     ],
     "Picture": {},
     "Version": 1
-}
-</pre>
+}</pre>
 ## Updating a User
 
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
@@ -352,8 +348,7 @@ Content-Type: application/json
 
 #### Response
 
-{{User}}
-
+[User](#user)
 
 ###### Example
 
@@ -390,8 +385,7 @@ HTTP 200 Content-Type: application/json
     ],
     "Picture": {},
     "Version": 1
-}
-</pre>
+}</pre>
 ## Disabling a User
 
 {{note}}
@@ -478,8 +472,11 @@ Accept: application/json
     * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
     * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
   
-  * `items` (array) - Array[{{User}}]
-
+    * `_metadata` (object) - Data representing Pagination details
+    * `count` (integer) - The total number of results returned from the request
+    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
+    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
+  * `items` (Array[[User](#user)])
 
 
 ###### Example
@@ -531,8 +528,7 @@ HTTP 200 Content-Type: application/json
             "Version": 1
         }
     ]
-}
-</pre>
+}</pre>
 ## Searching for Users
 
 
@@ -580,8 +576,11 @@ Accept: application/json
     * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
     * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
   
-  * `items` (array) - Array[{{User}}]
-
+    * `_metadata` (object) - Data representing Pagination details
+    * `count` (integer) - The total number of results returned from the request
+    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
+    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
+  * `items` (Array[[User](#user)])
 
 
 ###### Example
@@ -633,8 +632,7 @@ HTTP 200 Content-Type: application/json
             "Version": 1
         }
     ]
-}
-</pre>
+}</pre>
 ## Assigning a User to a Location
 
 {{note}}
@@ -680,7 +678,6 @@ Content-Type: application/json
 
 <pre>
 HTTP 204 Content-Type: application/json
-
 </pre>
 ## Unassigning a User from a Location
 
@@ -770,8 +767,7 @@ HTTP 200 Content-Type: application/json
     "LocationIDs": [
         4
     ]
-}
-</pre>
+}</pre>
 ## Getting Users by ClientUserId
 
 
@@ -809,8 +805,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{User}}]
-
+Array[[User](#user)]
 
 ###### Example
 
@@ -849,8 +844,7 @@ HTTP 200 Content-Type: application/json
         "Picture": {},
         "Version": 1
     }
-]
-</pre>
+]</pre>
 ## Locking a User
 
 {{note}}
@@ -889,7 +883,6 @@ POST /Users(22212)/Lock
 
 <pre>
 HTTP 204 Content-Type: application/json
-
 </pre>
 ## Unlocking a User
 
@@ -931,7 +924,6 @@ POST /Users(22212)/Unlock
 
 <pre>
 HTTP 204 Content-Type: application/json
-
 </pre>
 ## Enabling a User
 
@@ -963,8 +955,7 @@ POST /Users(22212)/Enable
 
 #### Response
 
-{{User}}
-
+[User](#user)
 
 ###### Example
 
@@ -1001,8 +992,7 @@ HTTP 200 Content-Type: application/json
     ],
     "Picture": {},
     "Version": 1
-}
-</pre>
+}</pre>
 
 ## Errors
 
@@ -1010,7 +1000,7 @@ HTTP 200 Content-Type: application/json
 |:-----------------|:------------|:---------------|
 | `HTTP 400` | `Bad Request` | Ensure all of the required fields are provided and formatted accurately, for more details see error message |
 | `HTTP 400` | `No search terms provided` | Ensure search terms are provided in URI |
-| `HTTP 400` | `Query string parameter '$top'`<br/>`should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
+| `HTTP 400` | `Query string parameter '$top' should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
 | `HTTP 400` | `Query string parameter '$skip'<br/>`should be non-negative but was -1` | Ensure `$top` is non-negative |
 | `HTTP 404` | `User not found` | Ensure UserId is valid |
 | `HTTP 404` | `Entity not found` | Ensure LocationId is valid |

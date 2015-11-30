@@ -23,7 +23,7 @@ Each feed will have its own unique **Feed ID**.
 ## Resources
 
 
-### Product
+<h3>Product</h3>
 
 Product information for the feed. It is **highly recommended** to include `ModelName` for every product created. See {{ProductStructure_Concept}} for more information.
 
@@ -43,7 +43,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 | *ProviderClassification* | *String* | *Reserved for internal use* | |
 | *UnsupportedAssets* | *Array[object]* | *This is a legacy property that should not be used* | |
 
-### VendorSku
+<h3>VendorSku</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -51,7 +51,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 | Sku | String | The Product SKU from the vendor | `1115884` |
 | VendorName | String | The name of the vendor | `Amazon` |
 
-### Classification
+<h3>Classification</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -60,7 +60,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 | TreeId | Integer | Classification Tree identifier | `21` |
 
 
-### Field
+<h3>Field</h3>
 
 At minimum, the Product Name field is required along with a corresponding value.
 
@@ -71,13 +71,13 @@ To get a list of all field definitions, use the {{Get_Field_Definitions}} method
 | Definition | [Definition](#definition) | The field definition |  |
 | Value | String | The value for the field | `Android` |
 
-### Definition
+<h3>Definition</h3>
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | The field definition identifier. The definition for this parameter varies based on the Environments | `84` |
 
-### Asset
+<h3>Asset</h3>
 
 During the request, only the asset URLs are required. The response will contain additional information provided by the server.
 
@@ -92,7 +92,7 @@ Refer to {{Asset_Glossary}} for more information.
 | MimeType | String | Type of Mime | `image/jpg` |
 | OriginalUrl | String | Original URL of asset | `http://image.sample.com/b.png` |
 
-### ProductFeed
+<h3>ProductFeed</h3>
 
 **Product Feeds** are used to group all Products together for a particular vendor.
 
@@ -199,8 +199,7 @@ Content-Type: application/json
 
 #### Response
 
-Array[{{Product}}]
-
+Array[[Product](#product)]
 
 ###### Example
 
@@ -253,8 +252,7 @@ HTTP 200 Content-Type: application/json
             }
         ]
     }
-]
-</pre>
+]</pre>
 ## Getting All Products in a Feed
 
 Returns all the **Products** in a particular **Product Feed** indicated by the feed's **Feed ID** parameter. \n\nUseful when testing to ensure that products have been successfully added or removed.
@@ -290,8 +288,7 @@ Accept: application/json
 
 #### Response
 
-Array[{{Product}}]
-
+Array[[Product](#product)]
 
 ###### Example
 
@@ -344,8 +341,7 @@ HTTP 200 Content-Type: application/json
             }
         ]
     }
-]
-</pre>
+]</pre>
 ## Getting a Product Feed
 
 Returns an array of [Products](#product), as well as additional parameters.
@@ -381,8 +377,7 @@ Accept: application/json
 
 #### Response
 
-{{ProductFeed}}
-
+[ProductFeed](#productfeed)
 
 ###### Example
 
@@ -441,8 +436,7 @@ HTTP 200 Content-Type: application/json
     ],
     "ProviderName": "Joe's Product Feed",
     "Version": 8
-}
-</pre>
+}</pre>
 ## Removing a Product from a Feed
 
 Updates a Product Feed (FeedId) by removing a Product (ProductId). 
