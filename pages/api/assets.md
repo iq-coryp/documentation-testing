@@ -36,7 +36,7 @@ An **Asset** is an image or video associated with a Product.
 
 
 
-## Creating an Asset
+<h2>Creating an Asset</h2>
 
 
 
@@ -57,7 +57,7 @@ An **Asset** is an image or video associated with a Product.
 * `Filename` (**Required**) - File to be uploaded
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /assets
@@ -71,7 +71,7 @@ Content-Type: multipart/form-data
 
 [Asset](#asset)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -86,7 +86,8 @@ HTTP 201 Content-Type: application/json
     "width": 240,
     "success": true
 }</pre>
-## Getting an Asset
+
+<h2>Getting an Asset</h2>
 
 
 
@@ -108,7 +109,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /assets/732130d2-b673-461c-812b-f2b614d6076e
@@ -120,7 +121,7 @@ Accept: application/json
 
 [Asset](#asset)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -135,7 +136,8 @@ HTTP 200 Content-Type: application/json
     "width": 240,
     "success": true
 }</pre>
-## Redirecting to an Image Asset
+
+<h2>Redirecting to an Image Asset</h2>
 
 A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
 
@@ -156,7 +158,7 @@ A successful response to this request is a `HTTP 303` redirect with a `Location`
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /images/732130d2-b673-461c-812b-f2b614d6076e
@@ -166,13 +168,14 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 303 Content-Type: application/text
 
 Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg
 </pre>
+
 
 ## Errors
 

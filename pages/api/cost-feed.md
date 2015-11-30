@@ -48,7 +48,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 
 
-## Adding a Product to Cost Feed
+<h2>Adding a Product to Cost Feed</h2>
 
 
 
@@ -81,7 +81,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
     * `CompanyIds` (**Required**)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Suppliers(1324)/Cost
@@ -110,7 +110,7 @@ Content-Type: application/json
 
 [Cost](#cost)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 202 Content-Type: application/json
@@ -129,6 +129,7 @@ HTTP 202 Content-Type: application/json
         }
     ]
 }</pre>
+
 
 ## Errors
 

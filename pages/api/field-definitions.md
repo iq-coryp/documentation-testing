@@ -96,7 +96,7 @@ The result displayed on the page, with some styling, is shown below
 | TextMultipleLine | 
 | YesNo | 
 
-## Getting All FieldDefinitions
+<h2>Getting All FieldDefinitions</h2>
 
 
 
@@ -114,7 +114,7 @@ The result displayed on the page, with some styling, is shown below
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /FieldDefinitions
@@ -127,7 +127,7 @@ Accept: application/json
 
 Array[[FieldDefinition](#fielddefinition)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -143,7 +143,8 @@ HTTP 200 Content-Type: application/json
         "Options": []
     }
 ]</pre>
-## Getting a FieldDefinition
+
+<h2>Getting a FieldDefinition</h2>
 
 
 
@@ -166,7 +167,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /FieldDefinitions(84)
@@ -179,7 +180,7 @@ Accept: application/json
 
 [FieldDefinition](#fielddefinition)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -193,6 +194,7 @@ HTTP 200 Content-Type: application/json
     "DisplayName": "CDMA",
     "Options": []
 }</pre>
+
 
 ## Errors
 

@@ -112,7 +112,7 @@ The following table lists the ReferencType values used in RQ.
 | Vendor Deposit | 
 | Vendor Rebate Adjustment |       
 
-## Getting Accounts
+<h2>Getting Accounts</h2>
 
 {{callout_info}}<b>Sorting Order</b><br/>Accounts are ordered alphabetically by <code>AccountName</code>{{end}}
 
@@ -138,7 +138,7 @@ The following table lists the ReferencType values used in RQ.
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Accounts?$skip=0&$top=5
@@ -151,7 +151,7 @@ Accept: application/json
 
 Array[[Account](#account)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -175,7 +175,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -223,7 +224,8 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
-## Getting Transactions By Date
+
+<h2>Getting Transactions By Date</h2>
 
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
 
@@ -250,7 +252,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T00:00:00.000Z' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000Z'&$skip=0&$top=5
@@ -263,7 +265,7 @@ Accept: application/json
 
 Array[[Transaction](#transaction)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -289,7 +291,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -352,6 +355,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
+
 
 ## Errors
 

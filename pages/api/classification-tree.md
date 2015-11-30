@@ -80,7 +80,7 @@ There is a limit to 20 levels of depth for Categories.
 
 
 
-## Getting a Classification Tree
+<h2>Getting a Classification Tree</h2>
 
 
 
@@ -103,7 +103,7 @@ There is a limit to 20 levels of depth for Categories.
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /ClassificationTrees(21)
@@ -116,7 +116,7 @@ Accept: application/json
 
 [ClassificationTree](#classificationtree)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -151,6 +151,7 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 41
 }</pre>
+
 
 ## Errors
 

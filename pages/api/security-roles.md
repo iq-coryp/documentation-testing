@@ -75,7 +75,7 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 
 
 
-## Getting All Permissions for an Entity
+<h2>Getting All Permissions for an Entity</h2>
 
 This request will return all [Permissions](#permission) within the [SecurityRoles](#security-role) belonging to the specified Entity.
 
@@ -99,7 +99,7 @@ This request will return all [Permissions](#permission) within the [SecurityRole
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Entities(1)/Permissions
@@ -112,7 +112,7 @@ Accept: application/json
 
 Array[[Permission](#permission)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -128,7 +128,8 @@ HTTP 200 Content-Type: application/json
         "ParentPermissionId": 108
     }
 ]</pre>
-## Creating a Security Role
+
+<h2>Creating a Security Role</h2>
 
 
 
@@ -158,7 +159,7 @@ HTTP 200 Content-Type: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Entities(1)/SecurityRoles
@@ -177,7 +178,7 @@ Content-Type: application/json
 
 [SecurityRole](#securityrole)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -186,7 +187,8 @@ HTTP 201 Content-Type: application/json
     "Id": 4457,
     "Name": "Store Manager"
 }</pre>
-## Getting All Security Roles for an Entity
+
+<h2>Getting All Security Roles for an Entity</h2>
 
 
 
@@ -209,7 +211,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Entities(1)/SecurityRoles
@@ -222,7 +224,7 @@ Accept: application/json
 
 Array[[SecurityRole](#securityrole)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -233,7 +235,8 @@ HTTP 200 Content-Type: application/json
         "Name": "Store Manager"
     }
 ]</pre>
-## Enabling a Permission for a Security Role
+
+<h2>Enabling a Permission for a Security Role</h2>
 
 
 
@@ -259,7 +262,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Entities(1)/SecurityRoles(4457)/Permissions(55)
@@ -272,11 +275,11 @@ Content-Type: application/json
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 204</pre>
 
-## Disabling a Permission for a Security Role
+<h2>Disabling a Permission for a Security Role</h2>
 
 
 
@@ -300,7 +303,7 @@ Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Entities(1)/SecurityRoles(4457)/Permissions(55)
@@ -311,11 +314,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 204</pre>
 
-## Getting Permissions for a Security Role
+<h2>Getting Permissions for a Security Role</h2>
 
 
 
@@ -339,7 +342,7 @@ Authorization: Bearer (Access Token)
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Entities(1)/SecurityRoles(4457)/Permissions
@@ -352,7 +355,7 @@ Accept: application/json
 
 Array[[Permission](#permission)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -368,7 +371,8 @@ HTTP 200 Content-Type: application/json
         "ParentPermissionId": 108
     }
 ]</pre>
-## Assigning a Security Role to a User
+
+<h2>Assigning a Security Role to a User</h2>
 
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
 
@@ -400,7 +404,7 @@ If the User is assigned a SecurityRole they already have, the result will be a `
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Users(22212)/AssignedRoles
@@ -420,7 +424,7 @@ Content-Type: application/json
 
 [AssignedRole](#assignedrole)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -431,7 +435,8 @@ HTTP 201 Content-Type: application/json
     "SecurityRoleId": 4457,
     "UserId": 22212
 }</pre>
-## Getting Assigned Roles for a User
+
+<h2>Getting Assigned Roles for a User</h2>
 
 
 
@@ -454,7 +459,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Users(22212)/AssignedRoles
@@ -467,7 +472,7 @@ Accept: application/json
 
 Array[[AssignedRole](#assignedrole)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -480,7 +485,8 @@ HTTP 200 Content-Type: application/json
         "UserId": 22212
     }
 ]</pre>
-## Unassigning a Security Role from a User
+
+<h2>Unassigning a Security Role from a User</h2>
 
 
 
@@ -503,7 +509,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Users(2212)/AssignedRoles(4457)
@@ -514,7 +520,7 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 204</pre>
 

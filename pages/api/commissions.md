@@ -107,7 +107,7 @@ To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline
 | 3 | Reversal |
 | 4 | Vendor Rebate Adjustment |    
 
-## Getting All Commission Entries
+<h2>Getting All Commission Entries</h2>
 
 By default, the sorting order of the response to this request will be **descending** order by `LastUpdateDateUtc`
 
@@ -134,7 +134,7 @@ By default, the sorting order of the response to this request will be **descendi
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T00:00:00.000Z" and LastUpdateDateUtc le datetime"2015-12-31T23:59:59.000Z"&$skip=1&$top=10
@@ -147,7 +147,7 @@ Accept: application/json
 
 Array[[CommissionEntry](#commissionentry)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -194,7 +194,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -264,6 +265,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
+
 
 ## Pagination
 

@@ -160,7 +160,7 @@ summary:
 | 1 | Sales | An Order placed by a Customer |
 | 2 | Transfer | An Order to relocate inventory |
 
-## Creating an Order
+<h2>Creating an Order</h2>
 
 {{note}}The <code>EntityId</code> used in the request parameters must belong to the <code>CompanyId</code> used in the URI.{{end}}
 
@@ -211,7 +211,7 @@ summary:
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Orders
@@ -243,7 +243,7 @@ Content-Type: application/json
 
 [Order](#order)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -270,7 +270,8 @@ HTTP 201 Content-Type: application/json
     "State": "Created",
     "TenderId": "INV112"
 }</pre>
-## Getting a Single Order
+
+<h2>Getting a Single Order</h2>
 
 
 
@@ -293,7 +294,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Orders
@@ -306,7 +307,7 @@ Accept: application/json
 
 Array[[Order](#order)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -335,7 +336,8 @@ HTTP 200 Content-Type: application/json
         "TenderId": "INV112"
     }
 ]</pre>
-## Adding an Item to an Order
+
+<h2>Adding an Item to an Order</h2>
 
 
 
@@ -384,7 +386,7 @@ HTTP 200 Content-Type: application/json
   * `TrackingInformation` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
@@ -425,7 +427,7 @@ Content-Type: application/json
 
 [Item](#item)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -459,7 +461,8 @@ HTTP 201 Content-Type: application/json
         }
     ]
 }</pre>
-## Getting all Items on an Order
+
+<h2>Getting all Items on an Order</h2>
 
 
 
@@ -483,7 +486,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
@@ -496,7 +499,7 @@ Accept: application/json
 
 Array[[Item](#item)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -532,7 +535,8 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]</pre>
-## Getting an Order
+
+<h2>Getting an Order</h2>
 
 
 
@@ -556,7 +560,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
@@ -569,7 +573,7 @@ Accept: application/json
 
 [Order](#order)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -596,7 +600,8 @@ HTTP 200 Content-Type: application/json
     "State": "Created",
     "TenderId": "INV112"
 }</pre>
-## Updating an Order
+
+<h2>Updating an Order</h2>
 
 
 
@@ -647,7 +652,7 @@ HTTP 200 Content-Type: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
@@ -683,7 +688,7 @@ Content-Type: application/json
 
 [Order](#order)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -710,7 +715,8 @@ HTTP 200 Content-Type: application/json
     "State": "Created",
     "TenderId": "INV112"
 }</pre>
-## 
+
+<h2></h2>
 
 
 
@@ -733,7 +739,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
@@ -744,11 +750,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Processing an Order
+<h2>Processing an Order</h2>
 
 
 
@@ -778,7 +784,7 @@ Authorization: Bearer (Access Token)
   * `OrderId` (**Required**)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
@@ -797,7 +803,7 @@ Content-Type: application/json
 
 [Order](#order)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -824,7 +830,8 @@ HTTP 201 Content-Type: application/json
     "State": "Created",
     "TenderId": "INV112"
 }</pre>
-## 
+
+<h2></h2>
 
 
 
@@ -848,7 +855,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
@@ -861,7 +868,7 @@ Accept: application/json
 
 [Order](#order)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -888,7 +895,8 @@ HTTP 200 Content-Type: application/json
     "State": "Created",
     "TenderId": "INV112"
 }</pre>
-## Creating an Order with Items
+
+<h2>Creating an Order with Items</h2>
 
 {{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}
 
@@ -950,7 +958,7 @@ HTTP 200 Content-Type: application/json
       * `TrackingNumber` (**Required**)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/OrderFull
@@ -1009,7 +1017,7 @@ Content-Type: application/json
 
 [OrderFull](#orderfull)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -1067,7 +1075,8 @@ HTTP 201 Content-Type: application/json
         }
     ]
 }</pre>
-## Getting All Orders for a Company
+
+<h2>Getting All Orders for a Company</h2>
 
 
 
@@ -1090,7 +1099,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/OrderFull
@@ -1103,7 +1112,7 @@ Accept: application/json
 
 Array[[OrderFull](#orderfull)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1163,7 +1172,8 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]</pre>
-## Getting an Order with Items
+
+<h2>Getting an Order with Items</h2>
 
 
 
@@ -1187,7 +1197,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
@@ -1200,7 +1210,7 @@ Accept: application/json
 
 [OrderFull](#orderfull)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1258,7 +1268,8 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
-## Updating an Order with Items
+
+<h2>Updating an Order with Items</h2>
 
 {{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
 
@@ -1321,7 +1332,7 @@ HTTP 200 Content-Type: application/json
       * `TrackingNumber` (**Required**)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
@@ -1388,7 +1399,7 @@ Content-Type: application/json
 
 [OrderFull](#orderfull)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1446,7 +1457,8 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
-## 
+
+<h2></h2>
 
 
 
@@ -1469,7 +1481,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
@@ -1480,11 +1492,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Getting Pending Orders by Location
+<h2>Getting Pending Orders by Location</h2>
 
 
 
@@ -1508,7 +1520,7 @@ Authorization: Bearer (Access Token)
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 2
@@ -1521,7 +1533,7 @@ Accept: application/json
 
 Array[[Order](#order)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1550,7 +1562,8 @@ HTTP 200 Content-Type: application/json
         "TenderId": "INV112"
     }
 ]</pre>
-## Getting Orders by PrintableId
+
+<h2>Getting Orders by PrintableId</h2>
 
 {{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
 
@@ -1574,7 +1587,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Orders?$filter=PrintableId eq '8675-1234-987'
@@ -1587,7 +1600,7 @@ Accept: application/json
 
 Array[[Order](#order)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1616,6 +1629,7 @@ HTTP 200 Content-Type: application/json
         "TenderId": "INV112"
     }
 ]</pre>
+
 
 ## Errors
 

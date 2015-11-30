@@ -107,7 +107,7 @@ Refer to {{Asset_Glossary}} for more information.
 
 
 
-## Adding a Product to a Feed
+<h2>Adding a Product to a Feed</h2>
 
 
 
@@ -153,7 +153,7 @@ Refer to {{Asset_Glossary}} for more information.
     * `VendorName` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /ProductFeeds(34)/Products
@@ -201,7 +201,7 @@ Content-Type: application/json
 
 Array[[Product](#product)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -253,7 +253,8 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]</pre>
-## Getting All Products in a Feed
+
+<h2>Getting All Products in a Feed</h2>
 
 Returns all the **Products** in a particular **Product Feed** indicated by the feed's **Feed ID** parameter. \n\nUseful when testing to ensure that products have been successfully added or removed.
 
@@ -277,7 +278,7 @@ Returns all the **Products** in a particular **Product Feed** indicated by the f
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /ProductFeeds(34)/Products
@@ -290,7 +291,7 @@ Accept: application/json
 
 Array[[Product](#product)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -342,7 +343,8 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]</pre>
-## Getting a Product Feed
+
+<h2>Getting a Product Feed</h2>
 
 Returns an array of [Products](#product), as well as additional parameters.
 
@@ -366,7 +368,7 @@ Returns an array of [Products](#product), as well as additional parameters.
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /ProductFeeds(34)
@@ -379,7 +381,7 @@ Accept: application/json
 
 [ProductFeed](#productfeed)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -437,7 +439,8 @@ HTTP 200 Content-Type: application/json
     "ProviderName": "Joe's Product Feed",
     "Version": 8
 }</pre>
-## Removing a Product from a Feed
+
+<h2>Removing a Product from a Feed</h2>
 
 Updates a Product Feed (FeedId) by removing a Product (ProductId). 
 
@@ -460,7 +463,7 @@ Updates a Product Feed (FeedId) by removing a Product (ProductId).
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /ProductFeeds(34)/Products(2)
@@ -471,7 +474,7 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 204</pre>
 

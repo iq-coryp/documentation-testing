@@ -196,7 +196,7 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 | 2 | Person |
 | 3 | Company |
 
-## Creating a Customer
+<h2>Creating a Customer</h2>
 
 
 
@@ -237,7 +237,7 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Customers
@@ -265,7 +265,7 @@ Content-Type: application/json
 
 [Customer](#customer)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -285,7 +285,8 @@ HTTP 201 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }</pre>
-## Getting All Customers
+
+<h2>Getting All Customers</h2>
 
 
 
@@ -308,7 +309,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Customers
@@ -321,7 +322,7 @@ Accept: application/json
 
 Array[[Customer](#customer)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -344,7 +345,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -414,7 +416,8 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
-## Getting a Customer
+
+<h2>Getting a Customer</h2>
 
 
 
@@ -438,7 +441,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
@@ -451,7 +454,7 @@ Accept: application/json
 
 [Customer](#customer)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -471,7 +474,8 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }</pre>
-## Updating a Customer
+
+<h2>Updating a Customer</h2>
 
 
 
@@ -513,7 +517,7 @@ HTTP 200 Content-Type: application/json
   * `Version` (**Required**)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
@@ -542,7 +546,7 @@ Content-Type: application/json
 
 [Customer](#customer)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -562,7 +566,8 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }</pre>
-## Deleting a Customer
+
+<h2>Deleting a Customer</h2>
 
 
 
@@ -585,7 +590,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
@@ -596,11 +601,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Adding a Customer Address
+<h2>Adding a Customer Address</h2>
 
 
 
@@ -649,7 +654,7 @@ Authorization: Bearer (Access Token)
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
@@ -681,7 +686,7 @@ Content-Type: application/json
 
 [Address](#address)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -708,7 +713,8 @@ HTTP 201 Content-Type: application/json
     "StreetAddress2": "Suite 500",
     "Version": 1
 }</pre>
-## Getting All Addresses for a Customer
+
+<h2>Getting All Addresses for a Customer</h2>
 
 
 
@@ -732,7 +738,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
@@ -745,7 +751,7 @@ Accept: application/json
 
 Array[[Address](#address)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -775,7 +781,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -820,7 +827,8 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
-## Getting a Customer Address
+
+<h2>Getting a Customer Address</h2>
 
 
 
@@ -845,7 +853,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
@@ -858,7 +866,7 @@ Accept: application/json
 
 [Address](#address)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -885,7 +893,8 @@ HTTP 200 Content-Type: application/json
     "StreetAddress2": "Suite 500",
     "Version": 1
 }</pre>
-## Updating a Customer Address
+
+<h2>Updating a Customer Address</h2>
 
 
 
@@ -935,7 +944,7 @@ HTTP 200 Content-Type: application/json
   * `Version` (**Required**)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
@@ -971,7 +980,7 @@ Content-Type: application/json
 
 [Address](#address)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -998,7 +1007,8 @@ HTTP 200 Content-Type: application/json
     "StreetAddress2": "Suite 500",
     "Version": 1
 }</pre>
-## Removing an Address from a Customer
+
+<h2>Removing an Address from a Customer</h2>
 
 
 
@@ -1022,7 +1032,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
@@ -1033,11 +1043,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Creating a Full Customer
+<h2>Creating a Full Customer</h2>
 
 
 
@@ -1102,7 +1112,7 @@ Authorization: Bearer (Access Token)
   * `RelatedCustomers` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/CustomerFull
@@ -1168,7 +1178,7 @@ Content-Type: application/json
 
 [CustomerFull](#customerfull)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -1239,7 +1249,8 @@ HTTP 201 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }</pre>
-## Getting All Full Customers
+
+<h2>Getting All Full Customers</h2>
 
 
 
@@ -1262,7 +1273,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/CustomerFull
@@ -1275,7 +1286,7 @@ Accept: application/json
 
 Array[[CustomerFull](#customerfull)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1349,7 +1360,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -1452,7 +1464,8 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
-## Getting a Full Customer
+
+<h2>Getting a Full Customer</h2>
 
 
 
@@ -1476,7 +1489,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
@@ -1489,7 +1502,7 @@ Accept: application/json
 
 [CustomerFull](#customerfull)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1560,7 +1573,8 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }</pre>
-## Updating a Full Customer
+
+<h2>Updating a Full Customer</h2>
 
 
 
@@ -1626,7 +1640,7 @@ HTTP 200 Content-Type: application/json
   * `RelatedCustomers` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
@@ -1706,7 +1720,7 @@ Content-Type: application/json
 
 [CustomerFull](#customerfull)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1777,7 +1791,8 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }</pre>
-## Deleting a Full Customer
+
+<h2>Deleting a Full Customer</h2>
 
 
 
@@ -1800,7 +1815,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
@@ -1811,11 +1826,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Adding a Customer Contact Method
+<h2>Adding a Customer Contact Method</h2>
 
 
 
@@ -1855,7 +1870,7 @@ Authorization: Bearer (Access Token)
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
@@ -1880,7 +1895,7 @@ Content-Type: application/json
 
 [ContactMethod](#contactmethod)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -1898,7 +1913,8 @@ HTTP 201 Content-Type: application/json
     "Value": "(306) 222-3333",
     "Version": 1
 }</pre>
-## Getting All Contact Methods for a Customer
+
+<h2>Getting All Contact Methods for a Customer</h2>
 
 
 
@@ -1922,7 +1938,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
@@ -1935,7 +1951,7 @@ Accept: application/json
 
 Array[[ContactMethod](#contactmethod)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1956,7 +1972,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -1992,7 +2009,8 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
-## Getting a Customer Contact Method
+
+<h2>Getting a Customer Contact Method</h2>
 
 
 
@@ -2017,7 +2035,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
@@ -2030,7 +2048,7 @@ Accept: application/json
 
 [ContactMethod](#contactmethod)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -2048,7 +2066,8 @@ HTTP 200 Content-Type: application/json
     "Value": "(306) 222-3333",
     "Version": 1
 }</pre>
-## Updating a Customer Contact Method
+
+<h2>Updating a Customer Contact Method</h2>
 
 
 
@@ -2089,7 +2108,7 @@ HTTP 200 Content-Type: application/json
   * `Version` (**Required**)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
@@ -2116,7 +2135,7 @@ Content-Type: application/json
 
 [ContactMethod](#contactmethod)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -2134,7 +2153,8 @@ HTTP 200 Content-Type: application/json
     "Value": "(306) 222-3333",
     "Version": 1
 }</pre>
-## Removing a Customer Contact Method
+
+<h2>Removing a Customer Contact Method</h2>
 
 
 
@@ -2158,7 +2178,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
@@ -2169,11 +2189,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Searching for Customers
+<h2>Searching for Customers</h2>
 
 
 
@@ -2199,7 +2219,7 @@ Authorization: Bearer (Access Token)
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
@@ -2212,7 +2232,7 @@ Accept: application/json
 
 Array[[Customer](#customer)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -2234,7 +2254,8 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]</pre>
-## Customer Search
+
+<h2>Customer Search</h2>
 
 [CustomerSearch](#customersearch) resources use a special property, `criteria`.
 
@@ -2275,7 +2296,7 @@ The Criteria filter will search the properties below for the given value.
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'
@@ -2288,7 +2309,7 @@ Accept: application/json
 
 [CustomerFull](#customerfull)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -2359,6 +2380,7 @@ HTTP 200 Content-Type: application/json
     "Title": "Mr",
     "Version": 1
 }</pre>
+
 
 
 ## Searching

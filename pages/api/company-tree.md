@@ -193,7 +193,7 @@ Managerial or geographical groupings.
 
 
 
-## Getting a Company
+<h2>Getting a Company</h2>
 
 
 
@@ -216,7 +216,7 @@ Managerial or geographical groupings.
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)
@@ -229,7 +229,7 @@ Accept: application/json
 
 [Company](#company)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -260,7 +260,8 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplecompany",
     "Version": 1
 }</pre>
-## Getting a Company Tree
+
+<h2>Getting a Company Tree</h2>
 
 
 
@@ -283,7 +284,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Tree
@@ -296,7 +297,7 @@ Accept: application/json
 
 [CompanyTree](#companytree)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -316,7 +317,8 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
-## Creating a Location
+
+<h2>Creating a Location</h2>
 
 
 
@@ -372,7 +374,7 @@ HTTP 200 Content-Type: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Tree/Nodes(2)/Locations
@@ -517,7 +519,7 @@ Content-Type: application/json
 
 [Location](#location)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -651,7 +653,8 @@ HTTP 201 Content-Type: application/json
     },
     "Version": 13
 }</pre>
-## Updating a Location
+
+<h2>Updating a Location</h2>
 
 There are **two** different ways to update a location.
  
@@ -688,7 +691,7 @@ This option does not require a `NodeId` but has weaker validation.
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Tree/Nodes(2)/Locations(2)
@@ -702,7 +705,7 @@ Content-Type: application/json
 
 [Location](#location)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -836,7 +839,8 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 13
 }</pre>
-## Getting a Location for a Company
+
+<h2>Getting a Location for a Company</h2>
 
 
 
@@ -860,7 +864,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Locations(2)
@@ -873,7 +877,7 @@ Accept: application/json
 
 [Location](#location)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1007,7 +1011,8 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 13
 }</pre>
-## Updating a Location
+
+<h2>Updating a Location</h2>
 
 
 
@@ -1063,7 +1068,7 @@ HTTP 200 Content-Type: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Locations(2)
@@ -1206,7 +1211,7 @@ Content-Type: application/json
 
 [Location](#location)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1340,7 +1345,8 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 13
 }</pre>
-## Getting All Locations for a Company
+
+<h2>Getting All Locations for a Company</h2>
 
 
 
@@ -1363,7 +1369,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Locations
@@ -1376,7 +1382,7 @@ Accept: application/json
 
 Array[[Location](#location)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1512,7 +1518,8 @@ HTTP 200 Content-Type: application/json
         "Version": 13
     }
 ]</pre>
-## Creating a Division
+
+<h2>Creating a Division</h2>
 
 Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
 
@@ -1555,7 +1562,7 @@ Divisions may be added to the root Company node, or to a Division or Group node.
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Tree/Nodes(16)/Divisions
@@ -1578,7 +1585,7 @@ Content-Type: application/json
 
 [Division](#division)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -1610,7 +1617,8 @@ HTTP 201 Content-Type: application/json
     "SortName": "sampledivision",
     "Version": 1
 }</pre>
-## Creating a Group
+
+<h2>Creating a Group</h2>
 
 Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
 
@@ -1653,7 +1661,7 @@ Groups may be added to the root Company node, or to a Division or Group node. A 
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Tree/Nodes(16)/Groups
@@ -1676,7 +1684,7 @@ Content-Type: application/json
 
 [Group](#group)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -1708,7 +1716,8 @@ HTTP 201 Content-Type: application/json
     "SortName": "samplegroup",
     "Version": 1
 }</pre>
-## Deleting a Group or Division
+
+<h2>Deleting a Group or Division</h2>
 
 {{warning}}
 This operation <strong>cannot be undone</strong>.
@@ -1736,7 +1745,7 @@ This request removes the Node refered to by NodeId from the Company Tree along w
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Companies(1)/Tree/Nodes(16)
@@ -1747,11 +1756,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Searching by ClientEntityId
+<h2>Searching by ClientEntityId</h2>
 
 This request allows you to search your Company Tree using the `ClientEntityId` field. This request returns an array of objects that summarize Entities matching the search criteria. The following resource types are considered 'Entities': {{Company}}, {{Division}}, {{Group}}, {{Location}}, device
 
@@ -1775,7 +1784,7 @@ This request allows you to search your Company Tree using the `ClientEntityId` f
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Entities(1)/Nodes?$filter=123
@@ -1788,7 +1797,7 @@ Accept: application/json
 
 Array[[ClientIdSearch](#clientidsearch)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -1809,6 +1818,7 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]</pre>
+
 
 ## Errors
 

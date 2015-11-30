@@ -289,7 +289,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 | Pager |
 | Work |
 
-## Creating an Activation
+<h2>Creating an Activation</h2>
 
 
 
@@ -429,7 +429,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
   * `LocationId` (**Required**) - Must match the LocationId provided in the URI
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
@@ -589,7 +589,7 @@ Content-Type: application/json
 
 [Activation](#activation)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -740,7 +740,8 @@ HTTP 201 Content-Type: application/json
     "CompanyId": 1234,
     "LocationId": 5678
 }</pre>
-## Retrieving Completed Activations
+
+<h2>Retrieving Completed Activations</h2>
 
 
 
@@ -767,7 +768,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=0&$top=5
@@ -780,7 +781,7 @@ Accept: application/json
 
 Array[[ConfirmedActivation](#confirmedactivation)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -807,7 +808,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -859,6 +861,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
+
 
 ## Errors
 

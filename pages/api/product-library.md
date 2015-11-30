@@ -119,7 +119,7 @@ summary:
 
 
 
-## Searching for Products by Identifier
+<h2>Searching for Products by Identifier</h2>
 
 `FindByIdentifier` can be used to search for {{Product}} resources by the following identifiers:
  
@@ -167,7 +167,7 @@ See the table below for available options and the syntax of using each one.
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Products/FindByIdentifier?value=ABC123&type=VendorSKU&entityId=4
@@ -180,7 +180,7 @@ Accept: application/json
 
 [ProductSearch](#productsearch)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -249,6 +249,7 @@ HTTP 200 Content-Type: application/json
         "M1-1"
     ]
 }</pre>
+
 
 ## Errors
 

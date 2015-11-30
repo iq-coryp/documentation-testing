@@ -61,7 +61,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 
 
-## Getting All Companies in a Product Subscription
+<h2>Getting All Companies in a Product Subscription</h2>
 
 
 
@@ -84,7 +84,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
@@ -97,7 +97,7 @@ Accept: application/json
 
 Array[[Subscription](#subscription)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -120,7 +120,8 @@ HTTP 200 Content-Type: application/json
 }
 
 </pre>
-## Getting a Subscribable List
+
+<h2>Getting a Subscribable List</h2>
 
 
 
@@ -143,7 +144,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
@@ -156,7 +157,7 @@ Accept: application/json
 
 [SubscribableList](#subscribablelist)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -179,7 +180,8 @@ HTTP 200 Content-Type: application/json
     ],
     "Version": 12
 }</pre>
-## Updating Products in a Subscribable List
+
+<h2>Updating Products in a Subscribable List</h2>
 
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
 
@@ -215,7 +217,7 @@ HTTP 200 Content-Type: application/json
     * `Version` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
@@ -241,7 +243,7 @@ Content-Type: application/json
 
 [SubscribableList](#subscribablelist)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -264,6 +266,7 @@ HTTP 200 Content-Type: application/json
 }
 
 </pre>
+
 
 ## Errors
 

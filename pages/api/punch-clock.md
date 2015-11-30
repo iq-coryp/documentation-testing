@@ -45,7 +45,7 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 
 
 
-## Getting All Punch Entries
+<h2>Getting All Punch Entries</h2>
 
 By default, the sorting order of the response to this request will be **descending** order by `LastUpdateDateUtc`.
 
@@ -76,7 +76,7 @@ Don't forget <code>$filter=</code> in the request!
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10
@@ -89,7 +89,7 @@ Accept: application/json
 
 Array[[PunchEntry](#punchentry)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -113,7 +113,8 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-###### Example
+
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
@@ -161,6 +162,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
+
 
 ## Pagination
 

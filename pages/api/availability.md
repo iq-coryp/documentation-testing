@@ -31,7 +31,7 @@ summary:
 
 
 
-## Getting Availability For a Catalog Item By Location
+<h2>Getting Availability For a Catalog Item By Location</h2>
 
 
 
@@ -56,7 +56,7 @@ summary:
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)
@@ -69,7 +69,7 @@ Accept: application/json
 
 [Availability](#availability)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -80,7 +80,8 @@ HTTP 200 Content-Type: application/json
     "Quantity": 15,
     "IsDropShippable": true
 }</pre>
-## Getting Availability For a Catalog Item By Locations
+
+<h2>Getting Availability For a Catalog Item By Locations</h2>
 
 
 
@@ -104,7 +105,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability
@@ -117,7 +118,7 @@ Accept: application/json
 
 Array[[Availability](#availability)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -130,6 +131,7 @@ HTTP 200 Content-Type: application/json
         "IsDropShippable": true
     }
 ]</pre>
+
 
 ## Errors
 

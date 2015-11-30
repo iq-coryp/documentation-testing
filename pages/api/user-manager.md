@@ -73,7 +73,7 @@ A User represents an account that can be used to perform actions on your data wi
 
 
 
-## Importing an Existing User
+<h2>Importing an Existing User</h2>
 
 {{tip}}This request allows existing Users to be imported from another system. Users created this way will <b>not</b> get a temporary password and the User will <b>not</b> be forced to change their password when logging in for the first time. If no password is supplied, the User will not be able to log in, obtain a token or reset their password.{{end}}
 
@@ -110,7 +110,7 @@ A User represents an account that can be used to perform actions on your data wi
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Users/importExisting
@@ -152,7 +152,7 @@ POST /Users/importExisting
 
 [User](#user)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -188,7 +188,8 @@ HTTP 201 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }</pre>
-## Getting a User
+
+<h2>Getting a User</h2>
 
 
 
@@ -211,7 +212,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Users(22212)
@@ -224,7 +225,7 @@ Accept: application/json
 
 [User](#user)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -260,7 +261,8 @@ HTTP 200 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }</pre>
-## Updating a User
+
+<h2>Updating a User</h2>
 
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
 
@@ -305,7 +307,7 @@ HTTP 200 Content-Type: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Users(22212)
@@ -350,7 +352,7 @@ Content-Type: application/json
 
 [User](#user)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -386,7 +388,8 @@ HTTP 200 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }</pre>
-## Disabling a User
+
+<h2>Disabling a User</h2>
 
 {{note}}
 Disabling a User does <b>NOT</b> free up their email address or username to be used to create another User. To free up an email address or username, you must instead <a href="#updating-a-user">update</a> the email or username of the original User to something else.
@@ -411,7 +414,7 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Users(22212)
@@ -422,11 +425,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-## Getting All Users for a Company
+<h2>Getting All Users for a Company</h2>
 
 
 
@@ -451,7 +454,7 @@ Authorization: Bearer (Access Token)
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Entities(1)/Users?$skip=1&$top=10
@@ -479,7 +482,7 @@ Accept: application/json
   * `items` (Array[[User](#user)])
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -529,7 +532,8 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
-## Searching for Users
+
+<h2>Searching for Users</h2>
 
 
 
@@ -555,7 +559,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
@@ -583,7 +587,7 @@ Accept: application/json
   * `items` (Array[[User](#user)])
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -633,7 +637,8 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
-## Assigning a User to a Location
+
+<h2>Assigning a User to a Location</h2>
 
 {{note}}
 Users can be assigned to multiple locations
@@ -661,7 +666,7 @@ Users can be assigned to multiple locations
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Users(22212)/Locations(2)
@@ -674,12 +679,13 @@ Content-Type: application/json
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
-## Unassigning a User from a Location
+
+<h2>Unassigning a User from a Location</h2>
 
 
 
@@ -703,7 +709,7 @@ HTTP 204 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 DELETE /Users(22212)/Locations(2)
@@ -715,11 +721,11 @@ Accept: application/json
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>HTTP 204</pre>
 
-## Getting Assigned Locations for a User
+<h2>Getting Assigned Locations for a User</h2>
 
 
 
@@ -742,7 +748,7 @@ Accept: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Users(22212)/Locations
@@ -757,7 +763,7 @@ Accept: application/json
   * `LocationIDs` (array) - Location Ids for {{Locations}} assigned to the {{User}}
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -768,7 +774,8 @@ HTTP 200 Content-Type: application/json
         4
     ]
 }</pre>
-## Getting Users by ClientUserId
+
+<h2>Getting Users by ClientUserId</h2>
 
 
 
@@ -794,7 +801,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
@@ -807,7 +814,7 @@ Accept: application/json
 
 Array[[User](#user)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -845,7 +852,8 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]</pre>
-## Locking a User
+
+<h2>Locking a User</h2>
 
 {{note}}
 Once locked, a User will not be able to log in or obtain an access token until they are unlocked 
@@ -869,7 +877,7 @@ Once locked, a User will not be able to log in or obtain an access token until t
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Users(22212)/Lock
@@ -879,12 +887,13 @@ POST /Users(22212)/Lock
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
-## Unlocking a User
+
+<h2>Unlocking a User</h2>
 
 Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
 
@@ -910,7 +919,7 @@ A User can be unlocked if their account is locked and their parent Entity is not
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Users(22212)/Unlock
@@ -920,12 +929,13 @@ POST /Users(22212)/Unlock
 #### Response
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
-## Enabling a User
+
+<h2>Enabling a User</h2>
 
 
 
@@ -946,7 +956,7 @@ HTTP 204 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Users(22212)/Enable
@@ -957,7 +967,7 @@ POST /Users(22212)/Enable
 
 [User](#user)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -993,6 +1003,7 @@ HTTP 200 Content-Type: application/json
     "Picture": {},
     "Version": 1
 }</pre>
+
 
 ## Errors
 

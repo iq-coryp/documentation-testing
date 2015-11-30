@@ -88,7 +88,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-## Getting All Carriers
+<h2>Getting All Carriers</h2>
 
 
 
@@ -106,7 +106,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Carriers
@@ -119,7 +119,7 @@ Accept: application/json
 
 Array[[Carrier](#carrier)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -145,7 +145,8 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]</pre>
-## Getting a Carrier
+
+<h2>Getting a Carrier</h2>
 
 
 
@@ -168,7 +169,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Carriers(9)
@@ -181,7 +182,7 @@ Accept: application/json
 
 [Carrier](#carrier)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -205,7 +206,8 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplecarrier",
     "Version": 1
 }</pre>
-## Getting All Manufacturers
+
+<h2>Getting All Manufacturers</h2>
 
 
 
@@ -223,7 +225,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Manufacturers
@@ -236,7 +238,7 @@ Accept: application/json
 
 Array[[Manufacturer](#manufacturer)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -262,7 +264,8 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]</pre>
-## Getting a Manufacturer
+
+<h2>Getting a Manufacturer</h2>
 
 
 
@@ -285,7 +288,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Manufacturers(4)
@@ -298,7 +301,7 @@ Accept: application/json
 
 [Manufacturer](#manufacturer)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -322,7 +325,8 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplemanufacturer",
     "Version": 1
 }</pre>
-## 
+
+<h2></h2>
 
 Getting all Suppliers
 
@@ -340,7 +344,7 @@ Getting all Suppliers
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Suppliers
@@ -353,7 +357,7 @@ Accept: application/json
 
 Array[[Supplier](#supplier)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -379,7 +383,8 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]</pre>
-## Getting a Supplier
+
+<h2>Getting a Supplier</h2>
 
 
 
@@ -402,7 +407,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Suppliers(14)
@@ -415,7 +420,7 @@ Accept: application/json
 
 [Supplier](#supplier)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -439,3 +444,4 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplesupplier",
     "Version": 1
 }</pre>
+

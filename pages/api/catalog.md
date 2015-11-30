@@ -50,7 +50,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 
 
-## Getting All Catalog Items
+<h2>Getting All Catalog Items</h2>
 
 
 
@@ -73,7 +73,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Catalog/Items
@@ -86,7 +86,7 @@ Accept: application/json
 
 Array[[CatalogItem](#catalogitem)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -99,7 +99,8 @@ HTTP 200 Content-Type: application/json
         "Slug": "M3-V1"
     }
 ]</pre>
-## Getting Product Details
+
+<h2>Getting Product Details</h2>
 
 
 
@@ -123,7 +124,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails
@@ -166,7 +167,7 @@ Accept: application/json
   * `Version` (integer) - Latest revision number
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -244,7 +245,8 @@ HTTP 200 Content-Type: application/json
     ],
     "Version": 1
 }</pre>
-## Getting Compatible Products for a Catalog Item
+
+<h2>Getting Compatible Products for a Catalog Item</h2>
 
 
 
@@ -268,7 +270,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Compatible
@@ -297,7 +299,7 @@ Accept: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -337,7 +339,8 @@ HTTP 200 Content-Type: application/json
         "TotalResults": 5
     }
 }</pre>
-## Getting Variations for a Catalog Item
+
+<h2>Getting Variations for a Catalog Item</h2>
 
 For more information about Variations, see [Variations](/concepts/product-structure/#variations).
 
@@ -362,7 +365,7 @@ For more information about Variations, see [Variations](/concepts/product-struct
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Variations
@@ -383,7 +386,7 @@ Accept: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -400,7 +403,8 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
-## Searching For Products
+
+<h2>Searching For Products</h2>
 
 {{note}}
 SearchTerms specified in the URI are compared against the following Product fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
@@ -435,7 +439,7 @@ SearchTerms specified in the URI are compared against the following Product fiel
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
@@ -464,7 +468,7 @@ Accept: application/json
   
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -504,7 +508,8 @@ HTTP 200 Content-Type: application/json
         "TotalResults": 5
     }
 }</pre>
-## Getting Products by Vendor SKU
+
+<h2>Getting Products by Vendor SKU</h2>
 
 
 
@@ -529,7 +534,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47
@@ -545,7 +550,7 @@ Accept: application/json
     * `VendorId` (integer) - Vendor Id specified in the URI* `Items` (Array[[CatalogItem](#catalogitem)])
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -562,6 +567,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
+
 
 ## Errors
 

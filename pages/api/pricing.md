@@ -57,7 +57,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 
 
-## Creating Product Pricing at Company Level
+<h2>Creating Product Pricing at Company Level</h2>
 
 {{note}}When Product Pricing is set at the Company level, all Locations within the Company will use this Product Pricing by default unless <b>overridden</b> by a Location level Pricing. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
 
@@ -93,7 +93,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
   * `PricingTermId` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Pricing
@@ -117,7 +117,7 @@ Content-Type: application/json
 
 [Pricing](#pricing)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -131,7 +131,8 @@ HTTP 201 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }</pre>
-## Creating Product Pricing at Location Level
+
+<h2>Creating Product Pricing at Location Level</h2>
 
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
 
@@ -169,7 +170,7 @@ HTTP 201 Content-Type: application/json
   * `PricingTermId` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
@@ -193,7 +194,7 @@ Content-Type: application/json
 
 [Pricing](#pricing)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -207,7 +208,8 @@ HTTP 201 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }</pre>
-## Getting Product Pricing for a Retail Location
+
+<h2>Getting Product Pricing for a Retail Location</h2>
 
 
 
@@ -232,7 +234,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
@@ -245,7 +247,7 @@ Accept: application/json
 
 [Pricing](#pricing)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -259,7 +261,8 @@ HTTP 200 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }</pre>
-## Updating Product Pricing for a Retail Location
+
+<h2>Updating Product Pricing for a Retail Location</h2>
 
 
 
@@ -282,7 +285,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
@@ -290,7 +293,7 @@ PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 </pre>
 
 #### Response
-## Creating Product Pricing at Company Level
+<h2>Creating Product Pricing at Company Level</h2>
 
 
 
@@ -326,7 +329,7 @@ PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
   * `PricingTermId` (Optional)
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 POST /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
@@ -350,7 +353,7 @@ Content-Type: application/json
 
 [Pricing](#pricing)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 201 Content-Type: application/json
@@ -364,7 +367,8 @@ HTTP 201 Content-Type: application/json
     "OverridePrice": 5,
     "PricingTermId": 20
 }</pre>
-## Getting Product Pricing at Company Level
+
+<h2>Getting Product Pricing at Company Level</h2>
 
 
 
@@ -388,7 +392,7 @@ HTTP 201 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
@@ -401,7 +405,7 @@ Accept: application/json
 
 Array[[Pricing](#pricing)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -417,7 +421,8 @@ HTTP 200 Content-Type: application/json
         "PricingTermId": 20
     }
 ]</pre>
-## Updating Product Pricing at Company Level
+
+<h2>Updating Product Pricing at Company Level</h2>
 
 
 
@@ -439,7 +444,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
@@ -447,7 +452,7 @@ PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 </pre>
 
 #### Response
-## Getting all Active Pricing Terms
+<h2>Getting all Active Pricing Terms</h2>
 
 
 
@@ -470,7 +475,7 @@ PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/PricingTerms
@@ -483,7 +488,7 @@ Accept: application/json
 
 Array[[PricingTerm](#pricingterm)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -499,7 +504,8 @@ HTTP 200 Content-Type: application/json
         "TermLengthInYears": 3
     }
 ]</pre>
-## Getting a Pricing Term
+
+<h2>Getting a Pricing Term</h2>
 
 
 
@@ -523,7 +529,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/PricingTerms(20)
@@ -536,7 +542,7 @@ Accept: application/json
 
 [PricingTerm](#pricingterm)
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -550,7 +556,8 @@ HTTP 200 Content-Type: application/json
     "NumberOfPayments": 1,
     "TermLengthInYears": 3
 }</pre>
-## Getting Product Pricing by Pricing Term
+
+<h2>Getting Product Pricing by Pricing Term</h2>
 
 
 
@@ -575,7 +582,7 @@ HTTP 200 Content-Type: application/json
 
 
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 GET /Companies(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing?$filter=20
@@ -588,7 +595,7 @@ Accept: application/json
 
 Array[[Pricing](#pricing)]
 
-###### Example
+<h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
@@ -604,6 +611,7 @@ HTTP 200 Content-Type: application/json
         "PricingTermId": 20
     }
 ]</pre>
+
 
 ## Errors
 
