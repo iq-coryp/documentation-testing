@@ -34,7 +34,7 @@ A User represents an account that can be used to perform actions on your data wi
 | LastName | String | Last name | `Smith` |
 | UserName | String | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
 | Address | [Address](#address) | Address |  |
-| Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `'Department': 'Sales'` |
+| Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `{"Department": "Sales"}` |
 | ClientUserId | String | Identifier for the User in an external system | `132` |
 | Email | String | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
 | IsActive | Boolean | Flag to indicate if the Users login is enabled, false if it is disabled | `true` |
@@ -115,37 +115,34 @@ A User represents an account that can be used to perform actions on your data wi
 ```
 POST /Users/importExisting
 
-```
-```json
-
 {
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
-}
-]
-,
-"Picture": {},
-"Version": 1
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
 }
 
 
@@ -161,39 +158,40 @@ POST /Users/importExisting
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
+    "Id": 22212,
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
 }
-]
-,
-"Picture": {},
-"Version": 1
-}```
+```
+
 ## Getting a User
 
 
@@ -225,9 +223,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -239,39 +234,40 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
+    "Id": 22212,
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
 }
-]
-,
-"Picture": {},
-"Version": 1
-}```
+```
+
 ## Updating a User
 
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
@@ -324,40 +320,36 @@ PUT /Users(22212)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
-```
-```json
-
 {
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
-}
-]
-,
-"Picture": {},
-"Version": 1
+    "Id": 22212,
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
 }
 
 ```
@@ -372,39 +364,40 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
+    "Id": 22212,
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
 }
-]
-,
-"Picture": {},
-"Version": 1
-}```
+```
+
 ## Disabling a User
 
 {{note}}
@@ -437,9 +430,6 @@ DELETE /Users(22212)
 Authorization: Bearer (Access Token)
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -448,6 +438,7 @@ Authorization: Bearer (Access Token)
 ###### Example
 
 ```HTTP 200```
+
 ## Getting All Users for a Company
 
 
@@ -481,9 +472,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -506,56 +494,54 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"_links": 
-{
-"prev": "null",
-"self": "null",
-"next": "null"
-},
-"_metadata": 
-{
-"count": 15,
-"skip": 0,
-"top": 5
-},
-"items": [
-{
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
-}
-]
-,
-"Picture": {},
-"Version": 1
-}
-]
 
-}```
+{
+    "_links": {
+        "prev": "null",
+        "self": "null",
+        "next": "null"
+    },
+    "_metadata": {
+        "count": 15,
+        "skip": 0,
+        "top": 5
+    },
+    "items": [
+        {
+            "Id": 22212,
+            "FirstName": "Sam",
+            "LastName": "Smith",
+            "UserName": "sample@iqmetrix.com",
+            "Address": {
+                "AddressLine1": "1600 Amphitheatre Pkwy",
+                "AddressLine2": "Suite 500",
+                "City": "Smith",
+                "StateCode": "BC",
+                "CountryCode": "CA",
+                "Zip": "94043"
+            },
+            "Attributes": {
+                "Department": "Sales"
+            },
+            "ClientUserId": "132",
+            "Email": "sample@iqmetrix.com",
+            "IsActive": true,
+            "JobTitle": "Sales Clerk",
+            "ParentEntityId": 1,
+            "PhoneNumbers": [
+                {
+                    "Number": "5555555555",
+                    "Extension": "1234",
+                    "Type": "Home"
+                }
+            ],
+            "Picture": {},
+            "Version": 1
+        }
+    ]
+}
+```
+
 ## Searching for Users
 
 
@@ -590,9 +576,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -615,56 +598,54 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"_links": 
-{
-"prev": "null",
-"self": "null",
-"next": "null"
-},
-"_metadata": 
-{
-"count": 15,
-"skip": 0,
-"top": 5
-},
-"items": [
-{
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
-}
-]
-,
-"Picture": {},
-"Version": 1
-}
-]
 
-}```
+{
+    "_links": {
+        "prev": "null",
+        "self": "null",
+        "next": "null"
+    },
+    "_metadata": {
+        "count": 15,
+        "skip": 0,
+        "top": 5
+    },
+    "items": [
+        {
+            "Id": 22212,
+            "FirstName": "Sam",
+            "LastName": "Smith",
+            "UserName": "sample@iqmetrix.com",
+            "Address": {
+                "AddressLine1": "1600 Amphitheatre Pkwy",
+                "AddressLine2": "Suite 500",
+                "City": "Smith",
+                "StateCode": "BC",
+                "CountryCode": "CA",
+                "Zip": "94043"
+            },
+            "Attributes": {
+                "Department": "Sales"
+            },
+            "ClientUserId": "132",
+            "Email": "sample@iqmetrix.com",
+            "IsActive": true,
+            "JobTitle": "Sales Clerk",
+            "ParentEntityId": 1,
+            "PhoneNumbers": [
+                {
+                    "Number": "5555555555",
+                    "Extension": "1234",
+                    "Type": "Home"
+                }
+            ],
+            "Picture": {},
+            "Version": 1
+        }
+    ]
+}
+```
+
 ## Assigning a User to a Location
 
 {{note}}
@@ -702,9 +683,6 @@ Accept: application/json
 Content-Type: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -714,9 +692,7 @@ Content-Type: application/json
 
 ```
 HTTP 204 Content-Type: application/json
-```
-```json
-```
+
 ## Unassigning a User from a Location
 
 
@@ -749,9 +725,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -760,6 +733,7 @@ Accept: application/json
 ###### Example
 
 ```HTTP 204```
+
 ## Getting Assigned Locations for a User
 
 
@@ -791,9 +765,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -806,12 +777,15 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"UserId": 22212,
-"LocationIDs": [4]
-}```
+    "UserId": 22212,
+    "LocationIDs": [
+        4
+    ]
+}
+```
+
 ## Getting Users by ClientUserId
 
 
@@ -846,9 +820,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -860,43 +831,42 @@ Array[{{User}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
-}
-]
-,
-"Picture": {},
-"Version": 1
-}
+    {
+        "Id": 22212,
+        "FirstName": "Sam",
+        "LastName": "Smith",
+        "UserName": "sample@iqmetrix.com",
+        "Address": {
+            "AddressLine1": "1600 Amphitheatre Pkwy",
+            "AddressLine2": "Suite 500",
+            "City": "Smith",
+            "StateCode": "BC",
+            "CountryCode": "CA",
+            "Zip": "94043"
+        },
+        "Attributes": {
+            "Department": "Sales"
+        },
+        "ClientUserId": "132",
+        "Email": "sample@iqmetrix.com",
+        "IsActive": true,
+        "JobTitle": "Sales Clerk",
+        "ParentEntityId": 1,
+        "PhoneNumbers": [
+            {
+                "Number": "5555555555",
+                "Extension": "1234",
+                "Type": "Home"
+            }
+        ],
+        "Picture": {},
+        "Version": 1
+    }
 ]
 ```
+
 ## Locking a User
 
 {{note}}
@@ -927,9 +897,6 @@ Once locked, a User will not be able to log in or obtain an access token until t
 POST /Users(22212)/Lock
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -939,9 +906,7 @@ POST /Users(22212)/Lock
 
 ```
 HTTP 204 Content-Type: application/json
-```
-```json
-```
+
 ## Unlocking a User
 
 Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
@@ -974,9 +939,6 @@ A User can be unlocked if their account is locked and their parent Entity is not
 POST /Users(22212)/Unlock
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -986,9 +948,7 @@ POST /Users(22212)/Unlock
 
 ```
 HTTP 204 Content-Type: application/json
-```
-```json
-```
+
 ## Enabling a User
 
 
@@ -1016,9 +976,6 @@ HTTP 204 Content-Type: application/json
 POST /Users(22212)/Enable
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1030,39 +987,40 @@ POST /Users(22212)/Enable
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 22212,
-"FirstName": "Sam",
-"LastName": "Smith",
-"UserName": "sample@iqmetrix.com",
-"Address": 
-{
-"AddressLine1": "1600 Amphitheatre Pkwy",
-"AddressLine2": "Suite 500",
-"City": "Smith",
-"StateCode": "BC",
-"CountryCode": "CA",
-"Zip": "94043"
-},
-"Attributes": 'Department': 'Sales',
-"ClientUserId": "132",
-"Email": "sample@iqmetrix.com",
-"IsActive": true,
-"JobTitle": "Sales Clerk",
-"ParentEntityId": 1,
-"PhoneNumbers": [
-{
-"Number": "5555555555",
-"Extension": "1234",
-"Type": "Home"
+    "Id": 22212,
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
 }
-]
-,
-"Picture": {},
-"Version": 1
-}```
+```
+
 
 ## Errors
 

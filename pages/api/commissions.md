@@ -31,12 +31,12 @@ Commission earned by an employee.
 | CommissionFloatingCost | Decimal | Floating cost of commission applied. This value is determined by adding anything above this value to average cost | `10` |
 | CommissionRate | Decimal | Commission rate applied | `35.0` |
 | CommissionSpiff | Decimal | A type of commission structure used to pay employees, where a fixed dollar amount is paid per unit sold | `15.0` |
-| CommissionSplitEmployeeSpecialId | Integer | Special Identifier for the split commission Employee in RQ | `0002` |
+| CommissionSplitEmployeeSpecialId | Integer | Special Identifier for the split commission Employee in RQ | `10002` |
 | CommissionSplitUserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the split commissionable employee | `22214` |
 | CommissionType | Byte | Type of commission applied. If this is a Coupon commission, see [CouponCommissionTypes](#couponcommissiontypes) for a list of acceptable values, otherwise see [CommissionTypes](#commissiontypes) for a list of acceptable values | `1` |
 | CouponID | Integer | Identifier for a coupon associated with this commission in RQ | `8` |
 | DateCreatedUtc | Datetime | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
-| EmployeeSpecialId | Integer | Special Identifier for the Employee in RQ | `0001` |
+| EmployeeSpecialId | Integer | Special Identifier for the Employee in RQ | `1002` |
 | UserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the primary commissionable employee | `22212` |
 | GlobalProductID | Integer | Identifier of product associated with this commission in RQ | `1210` |
 | HasBeenReversed | Boolean | A flag to indicate if this CommissionEntry has been reversed | `false` |
@@ -142,9 +142,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -156,58 +153,56 @@ Array[{{CommissionEntry}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 24,
-"Comments": "Shared with Nick",
-"CommissionFixedCost": 10.0,
-"CommissionFloatingCost": 10,
-"CommissionRate": 35.0,
-"CommissionSpiff": 15.0,
-"CommissionSplitEmployeeSpecialId": 0002,
-"CommissionSplitUserId": 22214,
-"CommissionType": 1,
-"CouponID": 8,
-"DateCreatedUtc": "2015-08-18T15:00:00",
-"EmployeeSpecialId": 0001,
-"UserId": 22212,
-"GlobalProductID": 1210,
-"HasBeenReversed": false,
-"InvoiceEditedDate": "2015-09-10T20:01:49.00",
-"InvoiceNumber": "84WEAIN5703",
-"IsChargeback": false,
-"IsCommissionSplit": true,
-"IsFullChargeback": false,
-"IsSuspended": false,
-"LastUpdateDateUtc": "2015-09-09T20:41:59.69",
-"LocationCode": "LOC123",
-"LocationId": 2,
-"MilestoneID": "74b95526-e46b-42da-baa5-19971dfe5b18",
-"Priority": 1,
-"Quantity": 1,
-"RQCommissionId": 445,
-"SaleInvoiceAndCouponID": "d6ee8427-eac6-44ef-ac69-4617e18d2f66",
-"SaleInvoiceID": 7,
-"SerialNumber": "8508194953",
-"SplitRate1": 50.0,
-"SplitRate2": 50.0,
-"TotalCommission": 5.32,
-"TransactionGUID": "a929571e-c432-4e9a-aef7-4302ed791251",
-"TransactionType": 1,
-"UnitCommission": 5.32
-}
+    {
+        "Id": 24,
+        "Comments": "Shared with Nick",
+        "CommissionFixedCost": 10,
+        "CommissionFloatingCost": 10,
+        "CommissionRate": 35,
+        "CommissionSpiff": 15,
+        "CommissionSplitEmployeeSpecialId": 10002,
+        "CommissionSplitUserId": 22214,
+        "CommissionType": 1,
+        "CouponID": 8,
+        "DateCreatedUtc": "2015-08-18T15:00:00",
+        "EmployeeSpecialId": 1002,
+        "UserId": 22212,
+        "GlobalProductID": 1210,
+        "HasBeenReversed": false,
+        "InvoiceEditedDate": "2015-09-10T20:01:49.00",
+        "InvoiceNumber": "84WEAIN5703",
+        "IsChargeback": false,
+        "IsCommissionSplit": true,
+        "IsFullChargeback": false,
+        "IsSuspended": false,
+        "LastUpdateDateUtc": "2015-09-09T20:41:59.69",
+        "LocationCode": "LOC123",
+        "LocationId": 2,
+        "MilestoneID": "74b95526-e46b-42da-baa5-19971dfe5b18",
+        "Priority": 1,
+        "Quantity": 1,
+        "RQCommissionId": 445,
+        "SaleInvoiceAndCouponID": "d6ee8427-eac6-44ef-ac69-4617e18d2f66",
+        "SaleInvoiceID": 7,
+        "SerialNumber": "8508194953",
+        "SplitRate1": 50,
+        "SplitRate2": 50,
+        "TotalCommission": 5.32,
+        "TransactionGUID": "a929571e-c432-4e9a-aef7-4302ed791251",
+        "TransactionType": 1,
+        "UnitCommission": 5.32
+    }
 ]
+```
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/hal+json
-```
-```json
+
 {
   "_links": {
       "self": {
@@ -271,7 +266,8 @@ HTTP 200 Content-Type: application/hal+json
   }
 }
 
-```
+
+
 
 ## Pagination
 

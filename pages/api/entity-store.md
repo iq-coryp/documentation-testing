@@ -26,7 +26,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Unique identifier | `9` |
-| Name | String | Name | `SampleCarrier` |
+| Name | String | The value must be Carrier | `Carrier` |
 | Description | String | Description | `Carrier creating great experiences.` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | CreatedUTC | Datetime | Created date, in UTC | `2015-05-20T23:06:29.7700813Z` |
@@ -35,10 +35,11 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Carrier` |
-| Roles | Array[object] | The value must be Carrier | `{ 'Name': 'Carrier' }` |
+| Roles | Array[[CarrierRole](#carrierrole)] | The value must be Carrier |  |
 | SortName | String | A string used for sorting | `samplecarrier` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
+
 
 
 ### Manufacturer
@@ -55,10 +56,11 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Manufacturer` |
-| Roles | Array[object] | The value must be Manufacturer | `{ 'Name': 'Manufacturer' }` |
+| Roles | Array[[ManufacturerRole](#manufacturerrole)] | The value must be Manufacturer |  |
 | SortName | String | A string used for sorting | `samplemanufacturer` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
+
 
 
 ### Supplier
@@ -75,10 +77,12 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Supplier` |
-| Roles | Array[object] | The value must be Supplier | `{ 'Name': 'Supplier' }` |
+| Roles | Array[[SupplierRole](#supplierrole)] | The value must be Supplier |  |
+| Roles.Name | String | The value must be Supplier | `Supplier` |
 | SortName | String | A string used for sorting | `samplesupplier` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
+
 
 
 
@@ -110,9 +114,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -124,27 +125,30 @@ Array[{{Carrier}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 9,
-"Name": "SampleCarrier",
-"Description": "Carrier creating great experiences.",
-"Attributes": {},
-"CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-"ClientEntityId": "123",
-"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-"Logo": {},
-"Relationships": [],
-"Role": "Carrier",
-"Roles": [{ 'Name': 'Carrier' }],
-"SortName": "samplecarrier",
-"Version": 1
-}
+    {
+        "Id": 9,
+        "Name": "Carrier",
+        "Description": "Carrier creating great experiences.",
+        "Attributes": {},
+        "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
+        "ClientEntityId": "123",
+        "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+        "Logo": {},
+        "Relationships": [],
+        "Role": "Carrier",
+        "Roles": [
+            {
+                "Name": "Carrier"
+            }
+        ],
+        "SortName": "samplecarrier",
+        "Version": 1
+    }
 ]
 ```
+
 ## Getting a Carrier
 
 
@@ -176,9 +180,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -190,23 +191,28 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 9,
-"Name": "SampleCarrier",
-"Description": "Carrier creating great experiences.",
-"Attributes": {},
-"CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-"ClientEntityId": "123",
-"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-"Logo": {},
-"Relationships": [],
-"Role": "Carrier",
-"Roles": [{ 'Name': 'Carrier' }],
-"SortName": "samplecarrier",
-"Version": 1
-}```
+    "Id": 9,
+    "Name": "Carrier",
+    "Description": "Carrier creating great experiences.",
+    "Attributes": {},
+    "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
+    "ClientEntityId": "123",
+    "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+    "Logo": {},
+    "Relationships": [],
+    "Role": "Carrier",
+    "Roles": [
+        {
+            "Name": "Carrier"
+        }
+    ],
+    "SortName": "samplecarrier",
+    "Version": 1
+}
+```
+
 ## Getting All Manufacturers
 
 
@@ -233,9 +239,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -247,27 +250,30 @@ Array[{{Manufacturer}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 4,
-"Name": "SampleManufacturer",
-"Description": "Manufacturer creating great experiences.",
-"Attributes": {},
-"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-"ClientEntityId": "123",
-"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-"Logo": {},
-"Relationships": [],
-"Role": "Manufacturer",
-"Roles": [{ 'Name': 'Manufacturer' }],
-"SortName": "samplemanufacturer",
-"Version": 1
-}
+    {
+        "Id": 4,
+        "Name": "SampleManufacturer",
+        "Description": "Manufacturer creating great experiences.",
+        "Attributes": {},
+        "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+        "ClientEntityId": "123",
+        "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+        "Logo": {},
+        "Relationships": [],
+        "Role": "Manufacturer",
+        "Roles": [
+            {
+                "Name": "Manufacturer"
+            }
+        ],
+        "SortName": "samplemanufacturer",
+        "Version": 1
+    }
 ]
 ```
+
 ## Getting a Manufacturer
 
 
@@ -299,9 +305,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -313,23 +316,28 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 4,
-"Name": "SampleManufacturer",
-"Description": "Manufacturer creating great experiences.",
-"Attributes": {},
-"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-"ClientEntityId": "123",
-"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-"Logo": {},
-"Relationships": [],
-"Role": "Manufacturer",
-"Roles": [{ 'Name': 'Manufacturer' }],
-"SortName": "samplemanufacturer",
-"Version": 1
-}```
+    "Id": 4,
+    "Name": "SampleManufacturer",
+    "Description": "Manufacturer creating great experiences.",
+    "Attributes": {},
+    "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+    "ClientEntityId": "123",
+    "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+    "Logo": {},
+    "Relationships": [],
+    "Role": "Manufacturer",
+    "Roles": [
+        {
+            "Name": "Manufacturer"
+        }
+    ],
+    "SortName": "samplemanufacturer",
+    "Version": 1
+}
+```
+
 ## 
 
 Getting all Suppliers
@@ -356,9 +364,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -370,27 +375,30 @@ Array[{{Supplier}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 14,
-"Name": "SampleSupplier",
-"Description": "Supplier creating great experiences.",
-"Attributes": {},
-"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-"ClientEntityId": "123",
-"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-"Logo": {},
-"Relationships": [],
-"Role": "Supplier",
-"Roles": [{ 'Name': 'Supplier' }],
-"SortName": "samplesupplier",
-"Version": 1
-}
+    {
+        "Id": 14,
+        "Name": "SampleSupplier",
+        "Description": "Supplier creating great experiences.",
+        "Attributes": {},
+        "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+        "ClientEntityId": "123",
+        "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+        "Logo": {},
+        "Relationships": [],
+        "Role": "Supplier",
+        "Roles": [
+            {
+                "Name": "Supplier"
+            }
+        ],
+        "SortName": "samplesupplier",
+        "Version": 1
+    }
 ]
 ```
+
 ## Getting a Supplier
 
 
@@ -422,9 +430,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -436,20 +441,25 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 14,
-"Name": "SampleSupplier",
-"Description": "Supplier creating great experiences.",
-"Attributes": {},
-"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-"ClientEntityId": "123",
-"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-"Logo": {},
-"Relationships": [],
-"Role": "Supplier",
-"Roles": [{ 'Name': 'Supplier' }],
-"SortName": "samplesupplier",
-"Version": 1
-}```
+    "Id": 14,
+    "Name": "SampleSupplier",
+    "Description": "Supplier creating great experiences.",
+    "Attributes": {},
+    "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+    "ClientEntityId": "123",
+    "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+    "Logo": {},
+    "Relationships": [],
+    "Role": "Supplier",
+    "Roles": [
+        {
+            "Name": "Supplier"
+        }
+    ],
+    "SortName": "samplesupplier",
+    "Version": 1
+}
+```
+

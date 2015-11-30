@@ -42,8 +42,8 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | AccountNumber | String(128) | Account number. Must be unique across the entire list of Accounts and cannot be empty | `1790` |
 | AccountCategory | String | Account Category, acceptable values include: **Asset, Liability, Equity, Revenue and Expense** | `Asset` |
 | SubCategory | String(256) | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
-| CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `user-manager.User.Id` |
-| UpdatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that last updated this Account | `user-manager.User.Id` |
+| CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
+| UpdatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that last updated this Account | `22212` |
 | CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
 | CustomProperties | Object(4000) | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters |  |
 | DateCreatedUTC | Datetime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
@@ -77,7 +77,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | Credit | Decimal | The value of the Credit side of this Entry must be a positive value. If Credit is positive, Debit must be 0 | `0` |
 | CustomProperties | Object(4000) | Key-value pairs that contain extra data related to this Entry, maximum length when serialized to JSON is 4000 characters |  |
 | Debit | Decimal | The value of the Debit side of this entry, this must be a positive value. If Debit is positive, Credit must be 0 | `5000` |
-| EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) this Entry applies to | `Company Tree.Location.Id` |
+| EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) this Entry applies to | `2` |
 | LineNumber | Integer | A value indicating the sort order of this entry within the Transaction | `1` |
 | Memo | String(1024) | Memo string for this Entry | `Memo` |
 | ReferenceID | String(128) | Reference number string, such as the invoice that caused the Transaction | `INV005` |
@@ -146,9 +146,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -160,35 +157,33 @@ Array[{{Account}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c",
-"AccountName": "CAD Bank Account: 790",
-"AccountNumber": "1790",
-"AccountCategory": "Asset",
-"SubCategory": "Current Assets",
-"CreatedByUserId": user-manager.User.Id,
-"UpdatedByUserId": user-manager.User.Id,
-"CurrencyCode": "CAD",
-"CustomProperties": {},
-"DateCreatedUTC": "2015-04-22T19:27:12.557",
-"DateUpdatedUTC": "2015-04-22T19:27:12.557",
-"Description": "This is a Canadian $ account",
-"IsEnabled": true,
-"Version": 1
-}
+    {
+        "Id": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c",
+        "AccountName": "CAD Bank Account: 790",
+        "AccountNumber": "1790",
+        "AccountCategory": "Asset",
+        "SubCategory": "Current Assets",
+        "CreatedByUserId": 22212,
+        "UpdatedByUserId": 22212,
+        "CurrencyCode": "CAD",
+        "CustomProperties": {},
+        "DateCreatedUTC": "2015-04-22T19:27:12.557",
+        "DateUpdatedUTC": "2015-04-22T19:27:12.557",
+        "Description": "This is a Canadian $ account",
+        "IsEnabled": true,
+        "Version": 1
+    }
 ]
+```
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/hal+json
-```
-```json
+
 {
   "_links": {
       "self": {
@@ -230,7 +225,8 @@ HTTP 200 Content-Type: application/hal+json
   }
 }
 
-```
+
+
 ## Getting Transactions By Date
 
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
@@ -266,9 +262,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -280,38 +273,35 @@ Array[{{Transaction}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "6f29405f-6124-4919-b839-b84fbd53f6e0",
-"TransactionDateUTC": "2015-04-22T19:31:03.5159086+00:00",
-"CreatedByUserId": 22212,
-"Entries": [
-{
-"AccountID": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c",
-"Credit": 0,
-"CustomProperties": {},
-"Debit": 5000,
-"EntityId": Company Tree.Location.Id,
-"LineNumber": 1,
-"Memo": "Memo",
-"ReferenceID": "INV005",
-"ReferenceType": "Invoice"
-}
+    {
+        "Id": "6f29405f-6124-4919-b839-b84fbd53f6e0",
+        "TransactionDateUTC": "2015-04-22T19:31:03.5159086+00:00",
+        "CreatedByUserId": 22212,
+        "Entries": [
+            {
+                "AccountID": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c",
+                "Credit": 0,
+                "CustomProperties": {},
+                "Debit": 5000,
+                "EntityId": 2,
+                "LineNumber": 1,
+                "Memo": "Memo",
+                "ReferenceID": "INV005",
+                "ReferenceType": "Invoice"
+            }
+        ]
+    }
 ]
-
-}
-]
+```
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/hal+json
-```
-```json
+
 [
     {
         "_links": {
@@ -368,7 +358,8 @@ HTTP 200 Content-Type: application/hal+json
   ...
 ]
 
-```
+
+
 
 ## Errors
 

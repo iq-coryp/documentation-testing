@@ -66,9 +66,6 @@ Accept: application/json
 Content-Type: multipart/form-data
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -80,18 +77,19 @@ Content-Type: multipart/form-data
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"id": "732130d2-b673-461c-812b-f2b614d6076e",
-"name": "iqmetrix.jpg",
-"height": 145,
-"href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-"md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-"mimeType": "image/jpeg",
-"width": 240,
-"success": true
-}```
+    "id": "732130d2-b673-461c-812b-f2b614d6076e",
+    "name": "iqmetrix.jpg",
+    "height": 145,
+    "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+    "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+    "mimeType": "image/jpeg",
+    "width": 240,
+    "success": true
+}
+```
+
 ## Getting an Asset
 
 
@@ -121,9 +119,6 @@ GET /assets/732130d2-b673-461c-812b-f2b614d6076e
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -135,18 +130,19 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"id": "732130d2-b673-461c-812b-f2b614d6076e",
-"name": "iqmetrix.jpg",
-"height": 145,
-"href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-"md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-"mimeType": "image/jpeg",
-"width": 240,
-"success": true
-}```
+    "id": "732130d2-b673-461c-812b-f2b614d6076e",
+    "name": "iqmetrix.jpg",
+    "height": 145,
+    "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+    "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+    "mimeType": "image/jpeg",
+    "width": 240,
+    "success": true
+}
+```
+
 ## Redirecting to an Image Asset
 
 A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
@@ -174,9 +170,6 @@ A successful response to this request is a `HTTP 303` redirect with a `Location`
 GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -186,9 +179,9 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
 ```
 HTTP 303 Content-Type: application/text
-```
-```json
-Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg```
+
+Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg
+
 
 ## Errors
 

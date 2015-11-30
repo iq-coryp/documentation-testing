@@ -219,23 +219,20 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryHours": 20,
-"OrderTypeId": 3,
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2
 }
 
 
@@ -251,29 +248,30 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}```
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created"
+}
+```
+
 ## Getting a Single Order
 
 
@@ -305,9 +303,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -319,33 +314,32 @@ Array[{{Order}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
+        "OrderTypeId": 3,
+        "PrintableId": "8765-1234-987",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 2,
+        "State": "Created"
+    }
 ]
 ```
+
 ## Adding an Item to an Order
 
 
@@ -403,32 +397,30 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
-
+    "Cost": 5.99,
+    "Description": "LG G3 phone case",
+    "ItemStatus": "New",
+    "ItemTypeId": "1",
+    "Index": 0,
+    "ListPrice": 12.99,
+    "Notes": "Dented corner",
+    "ProductId": "M3-V1",
+    "Quantity": 2,
+    "SellingPrice": 9.99,
+    "SerialNumbers": [
+        "abc321"
+    ],
+    "SKU": "00001",
+    "ShippingOptionId": "1",
+    "SupplierEntityId": 14,
+    "SupplierReference": "10",
+    "TrackingInformation": [
+        {
+            "Quantity": 1,
+            "TrackingNumber": "`1TTTTN4421"
+        }
+    ]
 }
 
 
@@ -444,36 +436,38 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
-{
-"Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemStatusId": 1,
-"ItemType": "DropShip",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
 
-}```
+{
+    "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+    "Cost": 5.99,
+    "Description": "LG G3 phone case",
+    "ItemStatus": "New",
+    "ItemStatusId": 1,
+    "ItemType": "DropShip",
+    "ItemTypeId": "1",
+    "Index": 0,
+    "ListPrice": 12.99,
+    "Notes": "Dented corner",
+    "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+    "ProductId": "M3-V1",
+    "Quantity": 2,
+    "SellingPrice": 9.99,
+    "SerialNumbers": [
+        "abc321"
+    ],
+    "SKU": "00001",
+    "ShippingOptionId": "1",
+    "SupplierEntityId": 14,
+    "SupplierReference": "10",
+    "TrackingInformation": [
+        {
+            "Quantity": 1,
+            "TrackingNumber": "`1TTTTN4421"
+        }
+    ]
+}
+```
+
 ## Getting all Items on an Order
 
 
@@ -506,9 +500,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -520,40 +511,40 @@ Array[{{Item}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemStatusId": 1,
-"ItemType": "DropShip",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
-
-}
+    {
+        "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+        "Cost": 5.99,
+        "Description": "LG G3 phone case",
+        "ItemStatus": "New",
+        "ItemStatusId": 1,
+        "ItemType": "DropShip",
+        "ItemTypeId": "1",
+        "Index": 0,
+        "ListPrice": 12.99,
+        "Notes": "Dented corner",
+        "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+        "ProductId": "M3-V1",
+        "Quantity": 2,
+        "SellingPrice": 9.99,
+        "SerialNumbers": [
+            "abc321"
+        ],
+        "SKU": "00001",
+        "ShippingOptionId": "1",
+        "SupplierEntityId": 14,
+        "SupplierReference": "10",
+        "TrackingInformation": [
+            {
+                "Quantity": 1,
+                "TrackingNumber": "`1TTTTN4421"
+            }
+        ]
+    }
 ]
 ```
+
 ## Getting an Order
 
 
@@ -586,9 +577,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -600,29 +588,30 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}```
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created"
+}
+```
+
 ## Updating an Order
 
 
@@ -681,30 +670,26 @@ PUT /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
-```
-```json
-
 {
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created"
 }
 
 ```
@@ -719,29 +704,30 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}```
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created"
+}
+```
+
 ## 
 
 
@@ -772,9 +758,6 @@ DELETE /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -783,6 +766,7 @@ Authorization: Bearer (Access Token)
 ###### Example
 
 ```HTTP 200```
+
 ## Processing an Order
 
 
@@ -821,11 +805,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
+    "OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
 }
 
 
@@ -841,29 +822,30 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}```
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created"
+}
+```
+
 ## 
 
 
@@ -896,9 +878,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -910,29 +889,30 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}```
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created"
+}
+```
+
 ## Creating an Order with Items
 
 {{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}
@@ -1003,50 +983,47 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryHours": 20,
-"OrderTypeId": 3,
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"Items": [
-{
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
-
-}
-]
-
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "Items": [
+        {
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "ProductId": "M3-V1",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
 }
 
 
@@ -1062,60 +1039,61 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+
+{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "M3-V1",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}
 ```
-```json
-{
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created",
-"Items": [
-{
-"Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemStatusId": 1,
-"ItemType": "DropShip",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
 
-}
-]
-
-}```
 ## Getting All Orders for a Company
 
 
@@ -1147,9 +1125,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1161,64 +1136,63 @@ Array[{{OrderFull}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created",
-"Items": [
-{
-"Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemStatusId": 1,
-"ItemType": "DropShip",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
-
-}
-]
-
-}
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
+        "OrderTypeId": 3,
+        "PrintableId": "8765-1234-987",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 2,
+        "State": "Created",
+        "Items": [
+            {
+                "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+                "Cost": 5.99,
+                "Description": "LG G3 phone case",
+                "ItemStatus": "New",
+                "ItemStatusId": 1,
+                "ItemType": "DropShip",
+                "ItemTypeId": "1",
+                "Index": 0,
+                "ListPrice": 12.99,
+                "Notes": "Dented corner",
+                "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+                "ProductId": "M3-V1",
+                "Quantity": 2,
+                "SellingPrice": 9.99,
+                "SerialNumbers": [
+                    "abc321"
+                ],
+                "SKU": "00001",
+                "ShippingOptionId": "1",
+                "SupplierEntityId": 14,
+                "SupplierReference": "10",
+                "TrackingInformation": [
+                    {
+                        "Quantity": 1,
+                        "TrackingNumber": "`1TTTTN4421"
+                    }
+                ]
+            }
+        ]
+    }
 ]
 ```
+
 ## Getting an Order with Items
 
 
@@ -1251,9 +1225,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1265,60 +1236,61 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+
+{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "M3-V1",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}
 ```
-```json
-{
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created",
-"Items": [
-{
-"Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemStatusId": 1,
-"ItemType": "DropShip",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
 
-}
-]
-
-}```
 ## Updating an Order with Items
 
 {{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
@@ -1389,61 +1361,57 @@ PUT /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
-```
-```json
-
 {
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created",
-"Items": [
-{
-"Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemStatusId": 1,
-"ItemType": "DropShip",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
-
-}
-]
-
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "M3-V1",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
 }
 
 ```
@@ -1458,60 +1426,61 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+
+{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "M3-V1",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}
 ```
-```json
-{
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created",
-"Items": [
-{
-"Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
-"Cost": 5.99,
-"Description": "LG G3 phone case",
-"ItemStatus": "New",
-"ItemStatusId": 1,
-"ItemType": "DropShip",
-"ItemTypeId": "1",
-"Index": 0,
-"ListPrice": 12.99,
-"Notes": "Dented corner",
-"OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-"ProductId": "M3-V1",
-"Quantity": 2,
-"SellingPrice": 9.99,
-"SerialNumbers": ["abc321"],
-"SKU": "00001",
-"ShippingOptionId": "1",
-"SupplierEntityId": 14,
-"SupplierReference": "10",
-"TrackingInformation": [
-{
-"Quantity": 1,
-"TrackingNumber": "`1TTTTN4421"
-}
-]
 
-}
-]
-
-}```
 ## 
 
 
@@ -1542,9 +1511,6 @@ DELETE /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1553,6 +1519,7 @@ Authorization: Bearer (Access Token)
 ###### Example
 
 ```HTTP 200```
+
 ## Getting Pending Orders by Location
 
 
@@ -1585,9 +1552,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1599,33 +1563,32 @@ Array[{{Order}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
+        "OrderTypeId": 3,
+        "PrintableId": "8765-1234-987",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 2,
+        "State": "Created"
+    }
 ]
 ```
+
 ## Getting Orders by PrintableId
 
 {{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
@@ -1658,9 +1621,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1672,33 +1632,32 @@ Array[{{Order}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "216f7424-ae18-4c69-9597-984b430d0759",
-"Name": "iPhone 5 Order",
-"BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-"DiscountAmount": 15.0,
-"DiscountCode": "MTRY-15",
-"DiscountDescription": "Military discount",
-"EmployeeId": "15",
-"EntityId": 2,
-"OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-"OrderExpiryHours": 20,
-"OrderType": "Sales",
-"OrderTypeId": 3,
-"PrintableId": "8765-1234-987",
-"ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-"ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-"ShippingEntityId": 2,
-"State": "Created"
-}
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
+        "OrderTypeId": 3,
+        "PrintableId": "8765-1234-987",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 2,
+        "State": "Created"
+    }
 ]
 ```
+
 
 ## Errors
 

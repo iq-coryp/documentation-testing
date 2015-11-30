@@ -436,170 +436,151 @@ PUT /Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
-```
-```json
-
 {
-"Id": "1=35854205829867",
-"CarrierActivationDetails": 
-{
-"ActivationId": 354,
-"ActivationDate": "2015-06-19T05:44:39.7163989Z",
-"ActivatedProduct": 
-{
-"Description": "Samsung Galaxy S5",
-"ESN": "35854205829867",
-"IMEI": "351756051523999",
-"Make": "Samsung",
-"MobileDeviceNumber": "5555550123",
-"Model": "Galaxy S5",
-"Price": 499,
-"ProductId": "",
-"SerialNumber": "98769456321",
-"SIM": "89000000000000001234",
-"SKU": "DEF987",
-"SOCCode": "DEF987",
-"Tab": 
-{
-"Amount": 50,
-"Commission": 
-{
-"Name": "Promo",
-"Description": "FREE Roam Like Home",
-"Amount": 55,
-"Notes": "US",
-"ReferenceNumber": "abc123",
-"SOCCode": "AGG242"
-},
-"ReferenceNumber": "abc123"
-}
-},
-"ActivationState": "Pending",
-"ActivationTermCode": "EarlyUpgrade",
-"ActivationType": "NewActivation",
-"AdditionalFees": [
-{
-"Name": "Roaming",
-"Description": "Roam like home",
-"Amount": 55,
-"Notes": "US",
-"Rebate": 
-{
-"Name": "Promo",
-"Description": "FREE Roam Like Home",
-"Amount": 55,
-"Notes": "US",
-"ReferenceNumber": "abc123",
-"SOCCode": "AGG242"
-},
-"ReferenceNumber": "abc123",
-"SOCCode": "BB3221"
-}
-]
-,
-"ContractLengthInMonths": 24,
-"ContractNumberIsAccountNumber": false,
-"DealerName": "IAPR",
-"DealerCode": "IAPR",
-"Deposit": 
-{
-"Name": "Roaming",
-"Description": "Roam like home",
-"Amount": 55,
-"Notes": "US",
-"Rebate": 
-{
-"Name": "Promo",
-"Description": "FREE Roam Like Home",
-"Amount": 55,
-"Notes": "US",
-"ReferenceNumber": "abc123",
-"SOCCode": "AGG242"
-},
-"ReferenceNumber": "abc123",
-"SOCCode": "BB3221"
-},
-"Notes": "Notes go here!",
-"OrderNumber": "ORD1234",
-"RatePlans": [
-{
-"RatePlanId": "ABC1234",
-"Name": "Country-wide Unlimited",
-"ContractTerms": "Some terms",
-"Description": "The perfect plan for lots of calling!",
-"IncludedRatePlanFeatures": [
-{
-"RatePlanAddonId": "XYZ5678",
-"Name": "TEXT100",
-"Description": "One hundred additional text messages.",
-"MonthlyRecurringCharges": 5,
-"SOCCode": "XYZ5678"
-}
-]
-,
-"MonthlyRecurringCharges": 55,
-"RatePlanFeatureAddons": [
-{
-"RatePlanAddonId": "XYZ5678",
-"Name": "TEXT100",
-"Description": "One hundred additional text messages.",
-"MonthlyRecurringCharges": 5,
-"SOCCode": "XYZ5678"
-}
-]
-,
-"SOCCode": "ABC1234"
-}
-]
-,
-"RemoteActivationID": "3023997373",
-"Subscriber": 
-{
-"SubscriberId": "12121212121",
-"FirstName": "Joe",
-"LastName": "Smith",
-"Addresses": [
-{
-"AddressLine1": "123 Main Street",
-"AddressLine2": "Apt 200",
-"City": "Dover",
-"Country": "USA",
-"County": "Fairfield",
-"POBox": "PO Box 123",
-"PostalCode": "19901",
-"Province": "DE",
-"SuiteNumber": "100",
-"Type": "Residential"
-}
-]
-,
-"AssociatedAccount": 
-{
-"AccountId": "343434343",
-"Notes": "",
-"TrackingNumber": "5656565656"
-},
-"BirthDate": "5/16/1980",
-"CompanyName": "",
-"Email": "subscriber@example.com",
-"IsIndividual": true,
-"Notes": "24 Month Term",
-"PhoneNumbers": [
-{
-"Type": "Home",
-"Value": "1234561234"
-}
-]
-,
-"SSN": "6789",
-"TrackingNumber": "2121212121"
-},
-"TrackingNumber": "3023997373"
-},
-"CarrierId": 41,
-"CompanyId": 1234,
-"LocationId": 5678
+    "Id": "1=35854205829867",
+    "CarrierActivationDetails": {
+        "ActivationId": 354,
+        "ActivationDate": "2015-06-19T05:44:39.7163989Z",
+        "ActivatedProduct": {
+            "Description": "Samsung Galaxy S5",
+            "ESN": "35854205829867",
+            "IMEI": "351756051523999",
+            "Make": "Samsung",
+            "MobileDeviceNumber": "5555550123",
+            "Model": "Galaxy S5",
+            "Price": 499,
+            "ProductId": "",
+            "SerialNumber": "98769456321",
+            "SIM": "89000000000000001234",
+            "SKU": "DEF987",
+            "SOCCode": "DEF987",
+            "Tab": {
+                "Amount": 50,
+                "Commission": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123"
+            }
+        },
+        "ActivationState": "Pending",
+        "ActivationTermCode": "EarlyUpgrade",
+        "ActivationType": "NewActivation",
+        "AdditionalFees": [
+            {
+                "Name": "Roaming",
+                "Description": "Roam like home",
+                "Amount": 55,
+                "Notes": "US",
+                "Rebate": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123",
+                "SOCCode": "BB3221"
+            }
+        ],
+        "ContractLengthInMonths": 24,
+        "ContractNumberIsAccountNumber": false,
+        "DealerName": "IAPR",
+        "DealerCode": "IAPR",
+        "Deposit": {
+            "Name": "Roaming",
+            "Description": "Roam like home",
+            "Amount": 55,
+            "Notes": "US",
+            "Rebate": {
+                "Name": "Promo",
+                "Description": "FREE Roam Like Home",
+                "Amount": 55,
+                "Notes": "US",
+                "ReferenceNumber": "abc123",
+                "SOCCode": "AGG242"
+            },
+            "ReferenceNumber": "abc123",
+            "SOCCode": "BB3221"
+        },
+        "Notes": "Notes go here!",
+        "OrderNumber": "ORD1234",
+        "RatePlans": [
+            {
+                "RatePlanId": "ABC1234",
+                "Name": "Country-wide Unlimited",
+                "ContractTerms": "Some terms",
+                "Description": "The perfect plan for lots of calling!",
+                "IncludedRatePlanFeatures": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "MonthlyRecurringCharges": 55,
+                "RatePlanFeatureAddons": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "SOCCode": "ABC1234"
+            }
+        ],
+        "RemoteActivationID": "3023997373",
+        "Subscriber": {
+            "SubscriberId": "12121212121",
+            "FirstName": "Joe",
+            "LastName": "Smith",
+            "Addresses": [
+                {
+                    "AddressLine1": "123 Main Street",
+                    "AddressLine2": "Apt 200",
+                    "City": "Dover",
+                    "Country": "USA",
+                    "County": "Fairfield",
+                    "POBox": "PO Box 123",
+                    "PostalCode": "19901",
+                    "Province": "DE",
+                    "SuiteNumber": "100",
+                    "Type": "Residential"
+                }
+            ],
+            "AssociatedAccount": {
+                "AccountId": "343434343",
+                "Notes": "",
+                "TrackingNumber": "5656565656"
+            },
+            "BirthDate": "5/16/1980",
+            "CompanyName": "",
+            "Email": "subscriber@example.com",
+            "IsIndividual": true,
+            "Notes": "24 Month Term",
+            "PhoneNumbers": [
+                {
+                    "Type": "Home",
+                    "Value": "1234561234"
+                }
+            ],
+            "SSN": "6789",
+            "TrackingNumber": "2121212121"
+        },
+        "TrackingNumber": "3023997373"
+    },
+    "CarrierId": 41,
+    "CompanyId": 1234,
+    "LocationId": 5678
 }
 
 ```
@@ -614,169 +595,155 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+
+{
+    "Id": "1=35854205829867",
+    "CarrierActivationDetails": {
+        "ActivationId": 354,
+        "ActivationDate": "2015-06-19T05:44:39.7163989Z",
+        "ActivatedProduct": {
+            "Description": "Samsung Galaxy S5",
+            "ESN": "35854205829867",
+            "IMEI": "351756051523999",
+            "Make": "Samsung",
+            "MobileDeviceNumber": "5555550123",
+            "Model": "Galaxy S5",
+            "Price": 499,
+            "ProductId": "",
+            "SerialNumber": "98769456321",
+            "SIM": "89000000000000001234",
+            "SKU": "DEF987",
+            "SOCCode": "DEF987",
+            "Tab": {
+                "Amount": 50,
+                "Commission": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123"
+            }
+        },
+        "ActivationState": "Pending",
+        "ActivationTermCode": "EarlyUpgrade",
+        "ActivationType": "NewActivation",
+        "AdditionalFees": [
+            {
+                "Name": "Roaming",
+                "Description": "Roam like home",
+                "Amount": 55,
+                "Notes": "US",
+                "Rebate": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123",
+                "SOCCode": "BB3221"
+            }
+        ],
+        "ContractLengthInMonths": 24,
+        "ContractNumberIsAccountNumber": false,
+        "DealerName": "IAPR",
+        "DealerCode": "IAPR",
+        "Deposit": {
+            "Name": "Roaming",
+            "Description": "Roam like home",
+            "Amount": 55,
+            "Notes": "US",
+            "Rebate": {
+                "Name": "Promo",
+                "Description": "FREE Roam Like Home",
+                "Amount": 55,
+                "Notes": "US",
+                "ReferenceNumber": "abc123",
+                "SOCCode": "AGG242"
+            },
+            "ReferenceNumber": "abc123",
+            "SOCCode": "BB3221"
+        },
+        "Notes": "Notes go here!",
+        "OrderNumber": "ORD1234",
+        "RatePlans": [
+            {
+                "RatePlanId": "ABC1234",
+                "Name": "Country-wide Unlimited",
+                "ContractTerms": "Some terms",
+                "Description": "The perfect plan for lots of calling!",
+                "IncludedRatePlanFeatures": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "MonthlyRecurringCharges": 55,
+                "RatePlanFeatureAddons": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "SOCCode": "ABC1234"
+            }
+        ],
+        "RemoteActivationID": "3023997373",
+        "Subscriber": {
+            "SubscriberId": "12121212121",
+            "FirstName": "Joe",
+            "LastName": "Smith",
+            "Addresses": [
+                {
+                    "AddressLine1": "123 Main Street",
+                    "AddressLine2": "Apt 200",
+                    "City": "Dover",
+                    "Country": "USA",
+                    "County": "Fairfield",
+                    "POBox": "PO Box 123",
+                    "PostalCode": "19901",
+                    "Province": "DE",
+                    "SuiteNumber": "100",
+                    "Type": "Residential"
+                }
+            ],
+            "AssociatedAccount": {
+                "AccountId": "343434343",
+                "Notes": "",
+                "TrackingNumber": "5656565656"
+            },
+            "BirthDate": "5/16/1980",
+            "CompanyName": "",
+            "Email": "subscriber@example.com",
+            "IsIndividual": true,
+            "Notes": "24 Month Term",
+            "PhoneNumbers": [
+                {
+                    "Type": "Home",
+                    "Value": "1234561234"
+                }
+            ],
+            "SSN": "6789",
+            "TrackingNumber": "2121212121"
+        },
+        "TrackingNumber": "3023997373"
+    },
+    "CarrierId": 41,
+    "CompanyId": 1234,
+    "LocationId": 5678
+}
 ```
-```json
-{
-"Id": "1=35854205829867",
-"CarrierActivationDetails": 
-{
-"ActivationId": 354,
-"ActivationDate": "2015-06-19T05:44:39.7163989Z",
-"ActivatedProduct": 
-{
-"Description": "Samsung Galaxy S5",
-"ESN": "35854205829867",
-"IMEI": "351756051523999",
-"Make": "Samsung",
-"MobileDeviceNumber": "5555550123",
-"Model": "Galaxy S5",
-"Price": 499,
-"ProductId": "",
-"SerialNumber": "98769456321",
-"SIM": "89000000000000001234",
-"SKU": "DEF987",
-"SOCCode": "DEF987",
-"Tab": 
-{
-"Amount": 50,
-"Commission": 
-{
-"Name": "Promo",
-"Description": "FREE Roam Like Home",
-"Amount": 55,
-"Notes": "US",
-"ReferenceNumber": "abc123",
-"SOCCode": "AGG242"
-},
-"ReferenceNumber": "abc123"
-}
-},
-"ActivationState": "Pending",
-"ActivationTermCode": "EarlyUpgrade",
-"ActivationType": "NewActivation",
-"AdditionalFees": [
-{
-"Name": "Roaming",
-"Description": "Roam like home",
-"Amount": 55,
-"Notes": "US",
-"Rebate": 
-{
-"Name": "Promo",
-"Description": "FREE Roam Like Home",
-"Amount": 55,
-"Notes": "US",
-"ReferenceNumber": "abc123",
-"SOCCode": "AGG242"
-},
-"ReferenceNumber": "abc123",
-"SOCCode": "BB3221"
-}
-]
-,
-"ContractLengthInMonths": 24,
-"ContractNumberIsAccountNumber": false,
-"DealerName": "IAPR",
-"DealerCode": "IAPR",
-"Deposit": 
-{
-"Name": "Roaming",
-"Description": "Roam like home",
-"Amount": 55,
-"Notes": "US",
-"Rebate": 
-{
-"Name": "Promo",
-"Description": "FREE Roam Like Home",
-"Amount": 55,
-"Notes": "US",
-"ReferenceNumber": "abc123",
-"SOCCode": "AGG242"
-},
-"ReferenceNumber": "abc123",
-"SOCCode": "BB3221"
-},
-"Notes": "Notes go here!",
-"OrderNumber": "ORD1234",
-"RatePlans": [
-{
-"RatePlanId": "ABC1234",
-"Name": "Country-wide Unlimited",
-"ContractTerms": "Some terms",
-"Description": "The perfect plan for lots of calling!",
-"IncludedRatePlanFeatures": [
-{
-"RatePlanAddonId": "XYZ5678",
-"Name": "TEXT100",
-"Description": "One hundred additional text messages.",
-"MonthlyRecurringCharges": 5,
-"SOCCode": "XYZ5678"
-}
-]
-,
-"MonthlyRecurringCharges": 55,
-"RatePlanFeatureAddons": [
-{
-"RatePlanAddonId": "XYZ5678",
-"Name": "TEXT100",
-"Description": "One hundred additional text messages.",
-"MonthlyRecurringCharges": 5,
-"SOCCode": "XYZ5678"
-}
-]
-,
-"SOCCode": "ABC1234"
-}
-]
-,
-"RemoteActivationID": "3023997373",
-"Subscriber": 
-{
-"SubscriberId": "12121212121",
-"FirstName": "Joe",
-"LastName": "Smith",
-"Addresses": [
-{
-"AddressLine1": "123 Main Street",
-"AddressLine2": "Apt 200",
-"City": "Dover",
-"Country": "USA",
-"County": "Fairfield",
-"POBox": "PO Box 123",
-"PostalCode": "19901",
-"Province": "DE",
-"SuiteNumber": "100",
-"Type": "Residential"
-}
-]
-,
-"AssociatedAccount": 
-{
-"AccountId": "343434343",
-"Notes": "",
-"TrackingNumber": "5656565656"
-},
-"BirthDate": "5/16/1980",
-"CompanyName": "",
-"Email": "subscriber@example.com",
-"IsIndividual": true,
-"Notes": "24 Month Term",
-"PhoneNumbers": [
-{
-"Type": "Home",
-"Value": "1234561234"
-}
-]
-,
-"SSN": "6789",
-"TrackingNumber": "2121212121"
-},
-"TrackingNumber": "3023997373"
-},
-"CarrierId": 41,
-"CompanyId": 1234,
-"LocationId": 5678
-}```
+
 ## Retrieving Completed Activations
 
 
@@ -812,9 +779,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -826,39 +790,36 @@ Array[{{ConfirmedActivation}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 58,
-"ActivationConfirmationDetails": [
-{
-"ActivationID": 153,
-"BAN": "681883059",
-"IMEI": "990000862471854",
-"OrderNumber": "ORD1234",
-"PhoneNumber": "3023997373",
-"RemoteActivationID": "3023997373"
-}
+    {
+        "Id": 58,
+        "ActivationConfirmationDetails": [
+            {
+                "ActivationID": 153,
+                "BAN": "681883059",
+                "IMEI": "990000862471854",
+                "OrderNumber": "ORD1234",
+                "PhoneNumber": "3023997373",
+                "RemoteActivationID": "3023997373"
+            }
+        ],
+        "ConfirmationDateUTC": "2015-07-21T15:25:45.323",
+        "InvoiceId": "INV0001",
+        "InvoiceSubtotal": 53.38,
+        "InvoiceTotal": 61.54,
+        "LocationId": 1,
+        "Taxes": 8.16
+    }
 ]
-,
-"ConfirmationDateUTC": "2015-07-21T15:25:45.323",
-"InvoiceId": "INV0001",
-"InvoiceSubtotal": 53.38,
-"InvoiceTotal": 61.54,
-"LocationId": 1,
-"Taxes": 8.16
-}
-]
+```
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/hal+json
-```
-```json
+
 {
     "_links": {
         "self": {
@@ -904,7 +865,8 @@ HTTP 200 Content-Type: application/hal+json
     }
 }
 
-```
+
+
 
 ## Errors
 

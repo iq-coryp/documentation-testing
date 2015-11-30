@@ -35,7 +35,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Id | Integer | Unique identifier | `1` |
 | Name | String(250) | Name | `SampleCompany` |
 | Description | String(255) | Description | `Company creating great experiences.` |
-| Roles | Array[object] | The value must be Company | `{'Name': 'Company' }` |
+| Roles | Array[[CompanyRole](#companyrole)] | The value must be Company |  |
 | ClientEntityId | String | Identifier in an external system | `123` |
 | CreatedUtc | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUtc | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
@@ -46,6 +46,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Role* | *String* | *Reserved for internal use* | |
+
 
 ### Asset
 
@@ -94,7 +95,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | Id | Integer | Unique identifier | `2` |
 | Name | String(250) | Name | `SampleLocation` |
 | Description | String(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
-| Roles | Array[object] | The Role of this Location, the value must be Location | `{'Role':'Location'}` |
+| Roles | Array[[LocationRole](#locationrole)] | The Role of this Location, the value must be Location |  |
 | CreatedUTC | Datetime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
 | LastModifiedUTC | Datetime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
 | Area | [Area](#area) | Measurement of floor space |  |
@@ -120,6 +121,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | *Role* | *String* | *Reserved for internal use* | |
 
 
+
 ### Division
 
 Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company.
@@ -131,7 +133,7 @@ To learn more about Divisions, see {{Division_Concept}}.
 | Id | Integer | Unique identifier | `5` |
 | Name | String(250) | Name | `SampleDivision` |
 | Description | String(255) | Description | `Division creating great experiences.` |
-| Roles | Array[object] | The value must be Division | `{ 'Name': 'Division' }` |
+| Roles | Array[[DivisionRole](#divisionrole)] | The value must be Division |  |
 | ClientEntityId | String | Identifier in an external system | `187` |
 | CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
@@ -142,6 +144,7 @@ To learn more about Divisions, see {{Division_Concept}}.
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Role* | *String* | *Reserved for internal use* | |
+
 
 ### Group
 
@@ -154,7 +157,7 @@ Managerial or geographical groupings.
 | Id | Integer | Unique identifier | `16` |
 | Name | String(250) | Name | `SampleGroup` |
 | Description | String(255) | Description | `Group creating great experiences.` |
-| Roles | Array[object] | The value must be Group | `{ 'Name': 'Group' }` |
+| Roles | Array[[GroupRole](#grouprole)] | The value must be Group |  |
 | ClientEntityId | String | Identifier in an external system | `187` |
 | CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
@@ -165,6 +168,7 @@ Managerial or geographical groupings.
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Role* | *String* | *Reserved for internal use* | |
+
 
 ### ClientIdSearch
 
@@ -220,9 +224,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -234,31 +235,35 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+
+{
+    "Id": 1,
+    "Name": "SampleCompany",
+    "Description": "Company creating great experiences.",
+    "Roles": [
+        {
+            "Name": "Company"
+        }
+    ],
+    "ClientEntityId": "123",
+    "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
+    "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
+    "Attributes": {},
+    "Logo": {
+        "Id": "732130d2-b673-461c-812b-f2b614d6076e",
+        "Name": "iqmetrix.jpg",
+        "Height": 145,
+        "Href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+        "Md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+        "MimeType": "image/jpeg",
+        "Width": 240
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "Version": 1
+}
 ```
-```json
-{
-"Id": 1,
-"Name": "SampleCompany",
-"Description": "Company creating great experiences.",
-"Roles": [{'Name': 'Company' }],
-"ClientEntityId": "123",
-"CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-"LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
-"Attributes": {},
-"Logo": 
-{
-"Id": "732130d2-b673-461c-812b-f2b614d6076e",
-"Name": "iqmetrix.jpg",
-"Height": 145,
-"Href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-"Md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-"MimeType": "image/jpeg",
-"Width": 240
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"Version": 1
-}```
+
 ## Getting a Company Tree
 
 
@@ -290,9 +295,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -304,24 +306,24 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Id": 1,
-"Name": "SampleCompany",
-"Description": "Company creating great experiences.",
-"Role": "Company",
-"Nodes": [
-{
-"Id": 55,
-"Name": "Western BC",
-"Description": "Western area of BC.",
-"Role": "Division",
-"Nodes": []
-}
-]
 
-}```
+{
+    "Id": 1,
+    "Name": "SampleCompany",
+    "Description": "Company creating great experiences.",
+    "Role": "Company",
+    "Nodes": [
+        {
+            "Id": 55,
+            "Name": "Western BC",
+            "Description": "Western area of BC.",
+            "Role": "Division",
+            "Nodes": []
+        }
+    ]
+}
+```
+
 ## Creating a Location
 
 
@@ -386,162 +388,134 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Roles": [{'Role':'Location'}],
-"CreatedUTC": "2015-02-26T00:03:01.372Z",
-"LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-"Area": 
-{
-"Value": 1100,
-"Unit": "SqFt"
-},
-"Address": 
-{
-"AddressLine1": "123 Sample Street",
-"AddressLine2": "Unit 200",
-"City": "Regina",
-"StateCode": "SK",
-"StateName": "Saskatchewan",
-"CountryCode": "CA",
-"CountryName": "Canada",
-"Zip": "S4P2L1"
-},
-"Attributes": {},
-"ClientEntityId": "123",
-"Contacts": 
-{
-"Name": "John Smith",
-"Description": "Store Manager",
-"PhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-
-},
-"Geography": 
-{
-"Longitude": -104.612034,
-"Latitude": 50.443559
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"StoreHours": 
-{
-"Monday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Tuesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Wednesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Thursday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Friday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Saturday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Sunday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-}
-},
-"StorePhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-,
-"TimeZone": 
-{
-"Id": "Alaskan Standard Time",
-"DaylightSavingTimeEnabled": true
-},
-"Version": 13
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Regina",
+        "StateCode": "SK",
+        "StateName": "Saskatchewan",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
 }
 
 
@@ -557,162 +531,138 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
-{
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Roles": [{'Role':'Location'}],
-"CreatedUTC": "2015-02-26T00:03:01.372Z",
-"LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-"Area": 
-{
-"Value": 1100,
-"Unit": "SqFt"
-},
-"Address": 
-{
-"AddressLine1": "123 Sample Street",
-"AddressLine2": "Unit 200",
-"City": "Regina",
-"StateCode": "SK",
-"StateName": "Saskatchewan",
-"CountryCode": "CA",
-"CountryName": "Canada",
-"Zip": "S4P2L1"
-},
-"Attributes": {},
-"ClientEntityId": "123",
-"Contacts": 
-{
-"Name": "John Smith",
-"Description": "Store Manager",
-"PhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
 
-},
-"Geography": 
 {
-"Longitude": -104.612034,
-"Latitude": 50.443559
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"StoreHours": 
-{
-"Monday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Regina",
+        "StateCode": "SK",
+        "StateName": "Saskatchewan",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
 }
-},
-"Tuesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Wednesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Thursday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Friday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Saturday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Sunday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-}
-},
-"StorePhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-,
-"TimeZone": 
-{
-"Id": "Alaskan Standard Time",
-"DaylightSavingTimeEnabled": true
-},
-"Version": 13
-}```
+```
+
 ## Updating a Location
 
 There are **two** different ways to update a location.
@@ -759,9 +709,6 @@ Accept: application/json
 Content-Type: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -773,162 +720,138 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Roles": [{'Role':'Location'}],
-"CreatedUTC": "2015-02-26T00:03:01.372Z",
-"LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-"Area": 
-{
-"Value": 1100,
-"Unit": "SqFt"
-},
-"Address": 
-{
-"AddressLine1": "123 Sample Street",
-"AddressLine2": "Unit 200",
-"City": "Regina",
-"StateCode": "SK",
-"StateName": "Saskatchewan",
-"CountryCode": "CA",
-"CountryName": "Canada",
-"Zip": "S4P2L1"
-},
-"Attributes": {},
-"ClientEntityId": "123",
-"Contacts": 
-{
-"Name": "John Smith",
-"Description": "Store Manager",
-"PhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
 
-},
-"Geography": 
 {
-"Longitude": -104.612034,
-"Latitude": 50.443559
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"StoreHours": 
-{
-"Monday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Regina",
+        "StateCode": "SK",
+        "StateName": "Saskatchewan",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
 }
-},
-"Tuesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Wednesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Thursday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Friday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Saturday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Sunday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-}
-},
-"StorePhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-,
-"TimeZone": 
-{
-"Id": "Alaskan Standard Time",
-"DaylightSavingTimeEnabled": true
-},
-"Version": 13
-}```
+```
+
 ## Getting a Location for a Company
 
 
@@ -961,9 +884,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -975,162 +895,138 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Roles": [{'Role':'Location'}],
-"CreatedUTC": "2015-02-26T00:03:01.372Z",
-"LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-"Area": 
-{
-"Value": 1100,
-"Unit": "SqFt"
-},
-"Address": 
-{
-"AddressLine1": "123 Sample Street",
-"AddressLine2": "Unit 200",
-"City": "Regina",
-"StateCode": "SK",
-"StateName": "Saskatchewan",
-"CountryCode": "CA",
-"CountryName": "Canada",
-"Zip": "S4P2L1"
-},
-"Attributes": {},
-"ClientEntityId": "123",
-"Contacts": 
-{
-"Name": "John Smith",
-"Description": "Store Manager",
-"PhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
 
-},
-"Geography": 
 {
-"Longitude": -104.612034,
-"Latitude": 50.443559
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"StoreHours": 
-{
-"Monday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Regina",
+        "StateCode": "SK",
+        "StateName": "Saskatchewan",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
 }
-},
-"Tuesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Wednesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Thursday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Friday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Saturday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Sunday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-}
-},
-"StorePhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-,
-"TimeZone": 
-{
-"Id": "Alaskan Standard Time",
-"DaylightSavingTimeEnabled": true
-},
-"Version": 13
-}```
+```
+
 ## Updating a Location
 
 
@@ -1194,163 +1090,134 @@ PUT /Companies(1)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
-```
-```json
-
 {
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Roles": [{'Role':'Location'}],
-"CreatedUTC": "2015-02-26T00:03:01.372Z",
-"LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-"Area": 
-{
-"Value": 1100,
-"Unit": "SqFt"
-},
-"Address": 
-{
-"AddressLine1": "123 Sample Street",
-"AddressLine2": "Unit 200",
-"City": "Regina",
-"StateCode": "SK",
-"StateName": "Saskatchewan",
-"CountryCode": "CA",
-"CountryName": "Canada",
-"Zip": "S4P2L1"
-},
-"Attributes": {},
-"ClientEntityId": "123",
-"Contacts": 
-{
-"Name": "John Smith",
-"Description": "Store Manager",
-"PhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-
-},
-"Geography": 
-{
-"Longitude": -104.612034,
-"Latitude": 50.443559
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"StoreHours": 
-{
-"Monday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Tuesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Wednesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Thursday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Friday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Saturday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Sunday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-}
-},
-"StorePhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-,
-"TimeZone": 
-{
-"Id": "Alaskan Standard Time",
-"DaylightSavingTimeEnabled": true
-},
-"Version": 13
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Regina",
+        "StateCode": "SK",
+        "StateName": "Saskatchewan",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
 }
 
 ```
@@ -1365,162 +1232,138 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Roles": [{'Role':'Location'}],
-"CreatedUTC": "2015-02-26T00:03:01.372Z",
-"LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-"Area": 
-{
-"Value": 1100,
-"Unit": "SqFt"
-},
-"Address": 
-{
-"AddressLine1": "123 Sample Street",
-"AddressLine2": "Unit 200",
-"City": "Regina",
-"StateCode": "SK",
-"StateName": "Saskatchewan",
-"CountryCode": "CA",
-"CountryName": "Canada",
-"Zip": "S4P2L1"
-},
-"Attributes": {},
-"ClientEntityId": "123",
-"Contacts": 
-{
-"Name": "John Smith",
-"Description": "Store Manager",
-"PhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
 
-},
-"Geography": 
 {
-"Longitude": -104.612034,
-"Latitude": 50.443559
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"StoreHours": 
-{
-"Monday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Regina",
+        "StateCode": "SK",
+        "StateName": "Saskatchewan",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
 }
-},
-"Tuesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Wednesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Thursday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Friday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Saturday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Sunday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-}
-},
-"StorePhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-,
-"TimeZone": 
-{
-"Id": "Alaskan Standard Time",
-"DaylightSavingTimeEnabled": true
-},
-"Version": 13
-}```
+```
+
 ## Getting All Locations for a Company
 
 
@@ -1552,9 +1395,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1566,166 +1406,140 @@ Array[{{Location}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Roles": [{'Role':'Location'}],
-"CreatedUTC": "2015-02-26T00:03:01.372Z",
-"LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-"Area": 
-{
-"Value": 1100,
-"Unit": "SqFt"
-},
-"Address": 
-{
-"AddressLine1": "123 Sample Street",
-"AddressLine2": "Unit 200",
-"City": "Regina",
-"StateCode": "SK",
-"StateName": "Saskatchewan",
-"CountryCode": "CA",
-"CountryName": "Canada",
-"Zip": "S4P2L1"
-},
-"Attributes": {},
-"ClientEntityId": "123",
-"Contacts": 
-{
-"Name": "John Smith",
-"Description": "Store Manager",
-"PhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-
-},
-"Geography": 
-{
-"Longitude": -104.612034,
-"Latitude": 50.443559
-},
-"Relationships": [],
-"SortName": "samplecompany",
-"StoreHours": 
-{
-"Monday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Tuesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Wednesday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Thursday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Friday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Saturday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-},
-"Sunday": 
-{
-"Open": 
-{
-"Hour": 10,
-"Minute": 0
-},
-"Close": 
-{
-"Hour": 10,
-"Minute": 0
-}
-}
-},
-"StorePhoneNumbers": [
-{
-"Description": "Main Line",
-"Number": "5555555555",
-"Extension": "1234"
-}
-]
-,
-"TimeZone": 
-{
-"Id": "Alaskan Standard Time",
-"DaylightSavingTimeEnabled": true
-},
-"Version": 13
-}
+    {
+        "Id": 2,
+        "Name": "SampleLocation",
+        "Description": "The SampleLocation is used to clear out discounted inventory",
+        "Roles": [
+            {
+                "Name": "Location"
+            }
+        ],
+        "CreatedUTC": "2015-02-26T00:03:01.372Z",
+        "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+        "Area": {
+            "Value": 1100,
+            "Unit": "SqFt"
+        },
+        "Address": {
+            "AddressLine1": "123 Sample Street",
+            "AddressLine2": "Unit 200",
+            "City": "Regina",
+            "StateCode": "SK",
+            "StateName": "Saskatchewan",
+            "CountryCode": "CA",
+            "CountryName": "Canada",
+            "Zip": "S4P2L1"
+        },
+        "Attributes": {},
+        "ClientEntityId": "123",
+        "Contacts": {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        },
+        "Geography": {
+            "Longitude": -104.612034,
+            "Latitude": 50.443559
+        },
+        "Relationships": [],
+        "SortName": "samplecompany",
+        "StoreHours": {
+            "Monday": {
+                "Open": {
+                    "Hour": 10,
+                    "Minute": 0
+                },
+                "Close": {
+                    "Hour": 10,
+                    "Minute": 0
+                }
+            },
+            "Tuesday": {
+                "Open": {
+                    "Hour": 10,
+                    "Minute": 0
+                },
+                "Close": {
+                    "Hour": 10,
+                    "Minute": 0
+                }
+            },
+            "Wednesday": {
+                "Open": {
+                    "Hour": 10,
+                    "Minute": 0
+                },
+                "Close": {
+                    "Hour": 10,
+                    "Minute": 0
+                }
+            },
+            "Thursday": {
+                "Open": {
+                    "Hour": 10,
+                    "Minute": 0
+                },
+                "Close": {
+                    "Hour": 10,
+                    "Minute": 0
+                }
+            },
+            "Friday": {
+                "Open": {
+                    "Hour": 10,
+                    "Minute": 0
+                },
+                "Close": {
+                    "Hour": 10,
+                    "Minute": 0
+                }
+            },
+            "Saturday": {
+                "Open": {
+                    "Hour": 10,
+                    "Minute": 0
+                },
+                "Close": {
+                    "Hour": 10,
+                    "Minute": 0
+                }
+            },
+            "Sunday": {
+                "Open": {
+                    "Hour": 10,
+                    "Minute": 0
+                },
+                "Close": {
+                    "Hour": 10,
+                    "Minute": 0
+                }
+            }
+        },
+        "StorePhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ],
+        "TimeZone": {
+            "Id": "Alaskan Standard Time",
+            "DaylightSavingTimeEnabled": true
+        },
+        "Version": 13
+    }
 ]
 ```
+
 ## Creating a Division
 
 Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
@@ -1777,15 +1591,12 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Name": "SampleDivision",
-"Description": "Division creating great experiences.",
-"ClientEntityId": "187",
-"Attributes": {},
-"Relationships": []
+    "Name": "SampleDivision",
+    "Description": "Division creating great experiences.",
+    "ClientEntityId": "187",
+    "Attributes": {},
+    "Relationships": []
 }
 
 
@@ -1801,32 +1612,36 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+
+{
+    "Id": 5,
+    "Name": "SampleDivision",
+    "Description": "Division creating great experiences.",
+    "Roles": [
+        {
+            "Name": "Division"
+        }
+    ],
+    "ClientEntityId": "187",
+    "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
+    "LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
+    "Attributes": {},
+    "Logo": {
+        "id": "732130d2-b673-461c-812b-f2b614d6076e",
+        "name": "iqmetrix.jpg",
+        "height": 145,
+        "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+        "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+        "mimeType": "image/jpeg",
+        "width": 240,
+        "success": true
+    },
+    "Relationships": [],
+    "SortName": "sampledivision",
+    "Version": 1
+}
 ```
-```json
-{
-"Id": 5,
-"Name": "SampleDivision",
-"Description": "Division creating great experiences.",
-"Roles": [{ 'Name': 'Division' }],
-"ClientEntityId": "187",
-"CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-"LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
-"Attributes": {},
-"Logo": 
-{
-"id": "732130d2-b673-461c-812b-f2b614d6076e",
-"name": "iqmetrix.jpg",
-"height": 145,
-"href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-"md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-"mimeType": "image/jpeg",
-"width": 240,
-"success": true
-},
-"Relationships": [],
-"SortName": "sampledivision",
-"Version": 1
-}```
+
 ## Creating a Group
 
 Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
@@ -1878,15 +1693,12 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Name": "SampleGroup",
-"Description": "Group creating great experiences.",
-"ClientEntityId": "187",
-"Attributes": {},
-"Relationships": []
+    "Name": "SampleGroup",
+    "Description": "Group creating great experiences.",
+    "ClientEntityId": "187",
+    "Attributes": {},
+    "Relationships": []
 }
 
 
@@ -1902,32 +1714,36 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+
+{
+    "Id": 16,
+    "Name": "SampleGroup",
+    "Description": "Group creating great experiences.",
+    "Roles": [
+        {
+            "Name": "Group"
+        }
+    ],
+    "ClientEntityId": "187",
+    "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
+    "LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
+    "Attributes": {},
+    "Logo": {
+        "id": "732130d2-b673-461c-812b-f2b614d6076e",
+        "name": "iqmetrix.jpg",
+        "height": 145,
+        "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+        "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+        "mimeType": "image/jpeg",
+        "width": 240,
+        "success": true
+    },
+    "Relationships": [],
+    "SortName": "samplegroup",
+    "Version": 1
+}
 ```
-```json
-{
-"Id": 16,
-"Name": "SampleGroup",
-"Description": "Group creating great experiences.",
-"Roles": [{ 'Name': 'Group' }],
-"ClientEntityId": "187",
-"CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-"LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
-"Attributes": {},
-"Logo": 
-{
-"id": "732130d2-b673-461c-812b-f2b614d6076e",
-"name": "iqmetrix.jpg",
-"height": 145,
-"href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-"md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-"mimeType": "image/jpeg",
-"width": 240,
-"success": true
-},
-"Relationships": [],
-"SortName": "samplegroup",
-"Version": 1
-}```
+
 ## Deleting a Group or Division
 
 {{warning}}
@@ -1963,9 +1779,6 @@ DELETE /Companies(1)/Tree/Nodes(16)
 Authorization: Bearer (Access Token)
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -1974,6 +1787,7 @@ Authorization: Bearer (Access Token)
 ###### Example
 
 ```HTTP 200```
+
 ## Searching by ClientEntityId
 
 This request allows you to search your Company Tree using the `ClientEntityId` field. This request returns an array of objects that summarize Entities matching the search criteria. The following resource types are considered 'Entities': {{Company}}, {{Division}}, {{Group}}, {{Location}}, device
@@ -2006,9 +1820,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -2020,27 +1831,25 @@ Array[{{ClientIdSearch}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Role": "undefined",
-"Path": [
-{
-"Id": 2,
-"Name": "SampleLocation",
-"Description": "The SampleLocation is used to clear out discounted inventory",
-"Role": "undefined"
-}
-]
-
-}
+    {
+        "Id": 2,
+        "Name": "SampleLocation",
+        "Description": "The SampleLocation is used to clear out discounted inventory",
+        "Role": "undefined",
+        "Path": [
+            {
+                "Id": 2,
+                "Name": "SampleLocation",
+                "Description": "The SampleLocation is used to clear out discounted inventory",
+                "Role": "undefined"
+            }
+        ]
+    }
 ]
 ```
+
 
 ## Errors
 

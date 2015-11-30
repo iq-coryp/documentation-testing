@@ -175,9 +175,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -189,77 +186,73 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Products": [
-{
-"Id": "M3-V1",
-"Name": "iPhone 4S 16GB White",
-"ShortDescription": "Better than iPhone 3G",
-"LongDescription": "The iPhone 4S is a gradual step over the iPhone 4.",
-"Assets": [],
-"CanonicalClassification": {},
-"Entity": {},
-"HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-"HeroShotUri": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-"IsLinkedToCuratedProduct": true,
-"IsSaleable": true,
-"Manufacturer": 
-{
-"Id": 4,
-"Name": "SampleManufacturer"
-},
-"MasterProductId": 3,
-"MSRP": 
-{
-"Amount": 100,
-"CurrencyCode": "USD"
-},
-"Owner": {},
-"Region": {},
-"ReleaseDate": "2011-10-14T12:00:00.000",
-"Specifications": [
-{
-"Name": "Color",
-"Fields": [
-{
-"Id": 1,
-"StringId": "Color",
-"DisplayName": "Color",
-"Name": "Color",
-"Value": "White",
-"Type": "TextSingleLine",
-"Unit": "mm"
-}
-]
 
-}
-]
-,
-"UpcCodes": [
 {
-"Value": "874688002478/16W",
-"Description": "UPC",
-"Entity": 2
+    "Products": [
+        {
+            "Id": "M3-V1",
+            "Name": "iPhone 4S 16GB White",
+            "ShortDescription": "Better than iPhone 3G",
+            "LongDescription": "The iPhone 4S is a gradual step over the iPhone 4.",
+            "Assets": [],
+            "CanonicalClassification": {},
+            "Entity": {},
+            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "HeroShotUri": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "IsLinkedToCuratedProduct": true,
+            "IsSaleable": true,
+            "Manufacturer": {
+                "Id": 4,
+                "Name": "SampleManufacturer"
+            },
+            "MasterProductId": 3,
+            "MSRP": {
+                "Amount": 100,
+                "CurrencyCode": "USD"
+            },
+            "Owner": {},
+            "Region": {},
+            "ReleaseDate": "2011-10-14T12:00:00.000",
+            "Specifications": [
+                {
+                    "Name": "Color",
+                    "Fields": [
+                        {
+                            "Id": 1,
+                            "StringId": "Color",
+                            "DisplayName": "Color",
+                            "Name": "Color",
+                            "Value": "White",
+                            "Type": "TextSingleLine",
+                            "Unit": "mm"
+                        }
+                    ]
+                }
+            ],
+            "UpcCodes": [
+                {
+                    "Value": "874688002478/16W",
+                    "Description": "UPC",
+                    "Entity": 2
+                }
+            ],
+            "VariationId": 1,
+            "VendorSkus": [
+                {
+                    "Value": "403405",
+                    "Description": "SKU",
+                    "Entity": 3
+                }
+            ],
+            "Version": 1
+        }
+    ],
+    "Products.Slug": [
+        "M1-1"
+    ]
 }
-]
-,
-"VariationId": 1,
-"VendorSkus": [
-{
-"Value": "403405",
-"Description": "SKU",
-"Entity": 3
-}
-]
-,
-"Version": 1
-}
-]
-,
-"Products.Slug": ["M1-1"]
-}```
+```
+
 
 ## Errors
 

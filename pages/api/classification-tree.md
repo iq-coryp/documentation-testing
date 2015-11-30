@@ -111,9 +111,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -125,42 +122,39 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+
+{
+    "Id": 21,
+    "Name": "Cellular & Accessories",
+    "Description": "Classification of products for wireless retail",
+    "Categories": [
+        {
+            "Id": 2,
+            "Name": "Device",
+            "Categories": [],
+            "Classifications": [],
+            "Order": 1
+        }
+    ],
+    "Classifications": [
+        {
+            "Id": 1,
+            "Name": "Smartphones",
+            "Order": 1,
+            "ProductTemplate": {
+                "Id": 60,
+                "Name": "Wireless Device"
+            }
+        }
+    ],
+    "Owner": {
+        "Id": 1,
+        "Name": "SampleCompany"
+    },
+    "Version": 41
+}
 ```
-```json
-{
-"Id": 21,
-"Name": "Cellular & Accessories",
-"Description": "Classification of products for wireless retail",
-"Categories": [
-{
-"Id": 2,
-"Name": "Device",
-"Categories": [],
-"Classifications": [],
-"Order": 1
-}
-]
-,
-"Classifications": [
-{
-"Id": 1,
-"Name": "Smartphones",
-"Order": 1,
-"ProductTemplate": 
-{
-"Id": 60,
-"Name": "Wireless Device"
-}
-}
-]
-,
-"Owner": 
-{
-"Id": 1,
-"Name": "SampleCompany"
-},
-"Version": 41
-}```
+
 
 ## Errors
 

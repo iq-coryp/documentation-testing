@@ -161,45 +161,37 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Assets": [
-{
-"AssetUrl": "http://image.sample.com/b.png"
-}
-]
-,
-"Classification": 
-{
-"Id": 1,
-"TreeId": 21
-},
-"ClassificationTreeName": "Cellular & Accessories",
-"Fields": [
-{
-"Definition": 
-{
-"Id": 84
-},
-"Value": "Android"
-}
-]
-,
-"LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
-"Manufacturer": "Motorola",
-"ManufacturerSku": "1234",
-"ModelName": "Agent18 SlimShield Case for iPhone 6",
-"UPC": "723755004337",
-"VendorSkus": [
-{
-"Description": "Phone case",
-"Sku": "1115884",
-"VendorName": "Amazon"
-}
-]
-
+    "Assets": [
+        {
+            "AssetUrl": "http://image.sample.com/b.png"
+        }
+    ],
+    "Classification": {
+        "Id": 1,
+        "TreeId": 21
+    },
+    "ClassificationTreeName": "Cellular & Accessories",
+    "Fields": [
+        {
+            "Definition": {
+                "Id": 84
+            },
+            "Value": "Android"
+        }
+    ],
+    "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
+    "Manufacturer": "Motorola",
+    "ManufacturerSku": "1234",
+    "ModelName": "Agent18 SlimShield Case for iPhone 6",
+    "UPC": "723755004337",
+    "VendorSkus": [
+        {
+            "Description": "Phone case",
+            "Sku": "1115884",
+            "VendorName": "Amazon"
+        }
+    ]
 }
 
 
@@ -215,62 +207,56 @@ Array[{{Product}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 34,
-"Assets": [
-{
-"Id": "31294366-948a-420c-972f-ed1450e3cdd8",
-"AssetUrl": "http://image.sample.com/b.png",
-"FileName": "Note4-white.png",
-"IsConverted": false,
-"MimeType": "image/jpg",
-"OriginalUrl": "http://image.sample.com/b.png"
-}
-]
-,
-"Classification": 
-{
-"Id": 1,
-"Name": "Smartphones",
-"TreeId": 21
-},
-"ClassificationTreeName": "Cellular & Accessories",
-"Fields": [
-{
-"Definition": 
-{
-"Id": 84,
-"StringId": "CDMA",
-"InputType": "YesNo",
-"IsRequired": false,
-"LanguageInvariantUnit": "mm",
-"DisplayName": "CDMA",
-"Options": []
-},
-"Value": "Android"
-}
-]
-,
-"LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
-"Manufacturer": "Motorola",
-"ManufacturerSku": "1234",
-"ModelName": "Agent18 SlimShield Case for iPhone 6",
-"UPC": "723755004337",
-"VendorSkus": [
-{
-"Description": "Phone case",
-"Sku": "1115884",
-"VendorName": "Amazon"
-}
-]
-
-}
+    {
+        "Id": 34,
+        "Assets": [
+            {
+                "Id": "31294366-948a-420c-972f-ed1450e3cdd8",
+                "AssetUrl": "http://image.sample.com/b.png",
+                "FileName": "Note4-white.png",
+                "IsConverted": false,
+                "MimeType": "image/jpg",
+                "OriginalUrl": "http://image.sample.com/b.png"
+            }
+        ],
+        "Classification": {
+            "Id": 1,
+            "Name": "Smartphones",
+            "TreeId": 21
+        },
+        "ClassificationTreeName": "Cellular & Accessories",
+        "Fields": [
+            {
+                "Definition": {
+                    "Id": 84,
+                    "StringId": "CDMA",
+                    "InputType": "YesNo",
+                    "IsRequired": false,
+                    "LanguageInvariantUnit": "mm",
+                    "DisplayName": "CDMA",
+                    "Options": []
+                },
+                "Value": "Android"
+            }
+        ],
+        "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
+        "Manufacturer": "Motorola",
+        "ManufacturerSku": "1234",
+        "ModelName": "Agent18 SlimShield Case for iPhone 6",
+        "UPC": "723755004337",
+        "VendorSkus": [
+            {
+                "Description": "Phone case",
+                "Sku": "1115884",
+                "VendorName": "Amazon"
+            }
+        ]
+    }
 ]
 ```
+
 ## Getting All Products in a Feed
 
 Returns all the **Products** in a particular **Product Feed** indicated by the feed's **Feed ID** parameter. \n\nUseful when testing to ensure that products have been successfully added or removed.
@@ -303,9 +289,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -317,62 +300,56 @@ Array[{{Product}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 34,
-"Assets": [
-{
-"Id": "31294366-948a-420c-972f-ed1450e3cdd8",
-"AssetUrl": "http://image.sample.com/b.png",
-"FileName": "Note4-white.png",
-"IsConverted": false,
-"MimeType": "image/jpg",
-"OriginalUrl": "http://image.sample.com/b.png"
-}
-]
-,
-"Classification": 
-{
-"Id": 1,
-"Name": "Smartphones",
-"TreeId": 21
-},
-"ClassificationTreeName": "Cellular & Accessories",
-"Fields": [
-{
-"Definition": 
-{
-"Id": 84,
-"StringId": "CDMA",
-"InputType": "YesNo",
-"IsRequired": false,
-"LanguageInvariantUnit": "mm",
-"DisplayName": "CDMA",
-"Options": []
-},
-"Value": "Android"
-}
-]
-,
-"LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
-"Manufacturer": "Motorola",
-"ManufacturerSku": "1234",
-"ModelName": "Agent18 SlimShield Case for iPhone 6",
-"UPC": "723755004337",
-"VendorSkus": [
-{
-"Description": "Phone case",
-"Sku": "1115884",
-"VendorName": "Amazon"
-}
-]
-
-}
+    {
+        "Id": 34,
+        "Assets": [
+            {
+                "Id": "31294366-948a-420c-972f-ed1450e3cdd8",
+                "AssetUrl": "http://image.sample.com/b.png",
+                "FileName": "Note4-white.png",
+                "IsConverted": false,
+                "MimeType": "image/jpg",
+                "OriginalUrl": "http://image.sample.com/b.png"
+            }
+        ],
+        "Classification": {
+            "Id": 1,
+            "Name": "Smartphones",
+            "TreeId": 21
+        },
+        "ClassificationTreeName": "Cellular & Accessories",
+        "Fields": [
+            {
+                "Definition": {
+                    "Id": 84,
+                    "StringId": "CDMA",
+                    "InputType": "YesNo",
+                    "IsRequired": false,
+                    "LanguageInvariantUnit": "mm",
+                    "DisplayName": "CDMA",
+                    "Options": []
+                },
+                "Value": "Android"
+            }
+        ],
+        "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
+        "Manufacturer": "Motorola",
+        "ManufacturerSku": "1234",
+        "ModelName": "Agent18 SlimShield Case for iPhone 6",
+        "UPC": "723755004337",
+        "VendorSkus": [
+            {
+                "Description": "Phone case",
+                "Sku": "1115884",
+                "VendorName": "Amazon"
+            }
+        ]
+    }
 ]
 ```
+
 ## Getting a Product Feed
 
 Returns an array of [Products](#product), as well as additional parameters.
@@ -405,9 +382,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -419,67 +393,62 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Id": 34,
-"LastReceivedUpdatesFromProviderUtc": "2014-11-13T19:40:57.102Z",
-"Products": [
-{
-"Id": 34,
-"Assets": [
-{
-"Id": "31294366-948a-420c-972f-ed1450e3cdd8",
-"AssetUrl": "http://image.sample.com/b.png",
-"FileName": "Note4-white.png",
-"IsConverted": false,
-"MimeType": "image/jpg",
-"OriginalUrl": "http://image.sample.com/b.png"
-}
-]
-,
-"Classification": 
-{
-"Id": 1,
-"Name": "Smartphones",
-"TreeId": 21
-},
-"ClassificationTreeName": "Cellular & Accessories",
-"Fields": [
-{
-"Definition": 
-{
-"Id": 84,
-"StringId": "CDMA",
-"InputType": "YesNo",
-"IsRequired": false,
-"LanguageInvariantUnit": "mm",
-"DisplayName": "CDMA",
-"Options": []
-},
-"Value": "Android"
-}
-]
-,
-"LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
-"Manufacturer": "Motorola",
-"ManufacturerSku": "1234",
-"ModelName": "Agent18 SlimShield Case for iPhone 6",
-"UPC": "723755004337",
-"VendorSkus": [
-{
-"Description": "Phone case",
-"Sku": "1115884",
-"VendorName": "Amazon"
-}
-]
 
+{
+    "Id": 34,
+    "LastReceivedUpdatesFromProviderUtc": "2014-11-13T19:40:57.102Z",
+    "Products": [
+        {
+            "Id": 34,
+            "Assets": [
+                {
+                    "Id": "31294366-948a-420c-972f-ed1450e3cdd8",
+                    "AssetUrl": "http://image.sample.com/b.png",
+                    "FileName": "Note4-white.png",
+                    "IsConverted": false,
+                    "MimeType": "image/jpg",
+                    "OriginalUrl": "http://image.sample.com/b.png"
+                }
+            ],
+            "Classification": {
+                "Id": 1,
+                "Name": "Smartphones",
+                "TreeId": 21
+            },
+            "ClassificationTreeName": "Cellular & Accessories",
+            "Fields": [
+                {
+                    "Definition": {
+                        "Id": 84,
+                        "StringId": "CDMA",
+                        "InputType": "YesNo",
+                        "IsRequired": false,
+                        "LanguageInvariantUnit": "mm",
+                        "DisplayName": "CDMA",
+                        "Options": []
+                    },
+                    "Value": "Android"
+                }
+            ],
+            "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
+            "Manufacturer": "Motorola",
+            "ManufacturerSku": "1234",
+            "ModelName": "Agent18 SlimShield Case for iPhone 6",
+            "UPC": "723755004337",
+            "VendorSkus": [
+                {
+                    "Description": "Phone case",
+                    "Sku": "1115884",
+                    "VendorName": "Amazon"
+                }
+            ]
+        }
+    ],
+    "ProviderName": "Joe's Product Feed",
+    "Version": 8
 }
-]
-,
-"ProviderName": "Joe's Product Feed",
-"Version": 8
-}```
+```
+
 ## Removing a Product from a Feed
 
 Updates a Product Feed (FeedId) by removing a Product (ProductId). 
@@ -510,9 +479,6 @@ DELETE /ProductFeeds(34)/Products(2)
 Authorization: Bearer (Access Token)
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -521,6 +487,7 @@ Authorization: Bearer (Access Token)
 ###### Example
 
 ```HTTP 204```
+
 
 ## Errors
 

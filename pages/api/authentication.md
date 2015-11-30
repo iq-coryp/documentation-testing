@@ -117,9 +117,6 @@ POST /oauth2/token
 Content-Type: application/x-www-form-urlencoded
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -133,13 +130,14 @@ Content-Type: application/x-www-form-urlencoded
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"access_token": "3dae10c05e894011b5b3ae15972ffbf4",
-"expires_in": 43199,
-"refresh_token": "f8bk56n40f7gi34j49g7bh4n430gf874h"
-}```
+    "access_token": "3dae10c05e894011b5b3ae15972ffbf4",
+    "expires_in": 43199,
+    "refresh_token": "f8bk56n40f7gi34j49g7bh4n430gf874h"
+}
+```
+
 
 ## Errors
 

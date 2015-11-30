@@ -124,16 +124,15 @@ Host: supplier.azure-api.net
 
 
 {
-"CompanyId": 123,
-"Items": [
-{
-"ProductName": "Galaxy S6 Defender Case - Glacier",
-"Quantity": 11,
-"Sku": "87932OTS45S6"
-}
-]
-,
-"PostalCode": "A1A1A1"
+    "CompanyId": 123,
+    "Items": [
+        {
+            "ProductName": "Galaxy S6 Defender Case - Glacier",
+            "Quantity": 11,
+            "Sku": "87932OTS45S6"
+        }
+    ],
+    "PostalCode": "A1A1A1"
 }
 
 
@@ -154,14 +153,12 @@ The specification of the response must be in the format below:
 
 ```
 HTTP 200 Content-Type: application/json
-
 [
-{
-"Id": "350",
-"Cost": 7.94,
-"Currency": "CAD",
-"EstimatedTransitTime": "1 week",
-"Name": "PurolatorExpress"
-}
-]
-```
+    {
+        "Id": "350",
+        "Cost": 7.94,
+        "Currency": "CAD",
+        "EstimatedTransitTime": "1 week",
+        "Name": "PurolatorExpress"
+    }
+]```

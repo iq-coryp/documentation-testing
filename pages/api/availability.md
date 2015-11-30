@@ -64,9 +64,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -78,14 +75,15 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"EntityId": 1,
-"Quantity": 15,
-"IsDropShippable": true
-}```
+    "Id": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "EntityId": 1,
+    "Quantity": 15,
+    "IsDropShippable": true
+}
+```
+
 ## Getting Availability For a Catalog Item By Locations
 
 
@@ -118,9 +116,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -132,18 +127,17 @@ Array[{{Availability}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"EntityId": 1,
-"Quantity": 15,
-"IsDropShippable": true
-}
+    {
+        "Id": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "EntityId": 1,
+        "Quantity": 15,
+        "IsDropShippable": true
+    }
 ]
 ```
+
 
 ## Errors
 

@@ -109,9 +109,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -123,21 +120,20 @@ Array[{{Permission}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 108,
-"Name": "Edit Products",
-"Category": "Products",
-"Code": "editproducts",
-"Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
-"IsAssignable": true,
-"ParentPermissionId": 108
-}
+    {
+        "Id": 108,
+        "Name": "Edit Products",
+        "Category": "Products",
+        "Code": "editproducts",
+        "Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
+        "IsAssignable": true,
+        "ParentPermissionId": 108
+    }
 ]
 ```
+
 ## Creating a Security Role
 
 
@@ -176,11 +172,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"Name": "Store Manager"
+    "Name": "Store Manager"
 }
 
 
@@ -196,12 +189,13 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": 4457,
-"Name": "Store Manager"
-}```
+    "Id": 4457,
+    "Name": "Store Manager"
+}
+```
+
 ## Getting All Security Roles for an Entity
 
 
@@ -233,9 +227,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -247,16 +238,15 @@ Array[{{SecurityRole}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 4457,
-"Name": "Store Manager"
-}
+    {
+        "Id": 4457,
+        "Name": "Store Manager"
+    }
 ]
 ```
+
 ## Enabling a Permission for a Security Role
 
 
@@ -292,9 +282,6 @@ Accept: application/json
 Content-Type: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -303,6 +290,7 @@ Content-Type: application/json
 ###### Example
 
 ```HTTP 204```
+
 ## Disabling a Permission for a Security Role
 
 
@@ -334,9 +322,6 @@ DELETE /Entities(1)/SecurityRoles(4457)/Permissions(55)
 Authorization: Bearer (Access Token)
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -345,6 +330,7 @@ Authorization: Bearer (Access Token)
 ###### Example
 
 ```HTTP 204```
+
 ## Getting Permissions for a Security Role
 
 
@@ -377,9 +363,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -391,21 +374,20 @@ Array[{{Permission}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 108,
-"Name": "Edit Products",
-"Category": "Products",
-"Code": "editproducts",
-"Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
-"IsAssignable": true,
-"ParentPermissionId": 108
-}
+    {
+        "Id": 108,
+        "Name": "Edit Products",
+        "Category": "Products",
+        "Code": "editproducts",
+        "Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
+        "IsAssignable": true,
+        "ParentPermissionId": 108
+    }
 ]
 ```
+
 ## Assigning a Security Role to a User
 
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
@@ -446,12 +428,9 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"EntityId": 2,
-"SecurityRoleId": 4457
+    "EntityId": 2,
+    "SecurityRoleId": 4457
 }
 
 
@@ -467,14 +446,15 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": 6548,
-"EntityId": 2,
-"SecurityRoleId": 4457,
-"UserId": 22212
-}```
+    "Id": 6548,
+    "EntityId": 2,
+    "SecurityRoleId": 4457,
+    "UserId": 22212
+}
+```
+
 ## Getting Assigned Roles for a User
 
 
@@ -506,9 +486,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -520,18 +497,17 @@ Array[{{AssignedRole}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 6548,
-"EntityId": 2,
-"SecurityRoleId": 4457,
-"UserId": 22212
-}
+    {
+        "Id": 6548,
+        "EntityId": 2,
+        "SecurityRoleId": 4457,
+        "UserId": 22212
+    }
 ]
 ```
+
 ## Unassigning a Security Role from a User
 
 
@@ -562,9 +538,6 @@ DELETE /Users(2212)/AssignedRoles(4457)
 Authorization: Bearer (Access Token)
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -573,6 +546,7 @@ Authorization: Bearer (Access Token)
 ###### Example
 
 ```HTTP 204```
+
 
 ## Errors
 

@@ -81,9 +81,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -95,18 +92,17 @@ Array[{{CatalogItem}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"IsArchived": false,
-"RmsId": "1",
-"Slug": "M3-V1"
-}
+    {
+        "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "IsArchived": false,
+        "RmsId": "1",
+        "Slug": "M3-V1"
+    }
 ]
 ```
+
 ## Getting Product Details
 
 
@@ -137,9 +133,6 @@ HTTP 200 Content-Type: application/json
 GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails
 Authorization: Bearer (Access Token)
 Accept: application/json
-
-```
-```json
 
 ```
 
@@ -188,90 +181,82 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+
+{
+    "Id": "M3-V1",
+    "Name": "iPhone 4S 16GB White",
+    "ShortDescription": "Better than iPhone 3G",
+    "LongDescription": "The iPhone 4S is a gradual step over the iPhone 4.",
+    "Assets": [],
+    "CanonicalClassification": {
+        "Id": 1,
+        "Name": "1",
+        "ParentCategories": [
+            {
+                "Id": 2,
+                "Name": "Device"
+            }
+        ]
+    },
+    "Entity": {},
+    "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+    "HeroShotUri": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+    "IsLinkedToCuratedProduct": true,
+    "IsSaleable": true,
+    "Manufacturer": {
+        "Id": 4,
+        "Name": "SampleManufacturer"
+    },
+    "ManufacturerSkus": [
+        {
+            "Value": "ABC123",
+            "Description": "Manufacturer SKU",
+            "Entity": 4
+        }
+    ],
+    "MasterProductId": 3,
+    "MSRP": {
+        "Amount": 100,
+        "CurrencyCode": "USD"
+    },
+    "Owner": {},
+    "Region": {},
+    "ReleaseDate": "2011-10-14T12:00:00.000",
+    "Specifications": [
+        {
+            "Name": "Color",
+            "Fields": [
+                {
+                    "Id": 1,
+                    "StringId": "Color",
+                    "DisplayName": "Color",
+                    "Name": "Color",
+                    "Value": "White",
+                    "Type": "TextSingleLine",
+                    "Unit": "mm"
+                }
+            ]
+        }
+    ],
+    "UpcCodes": [
+        {
+            "Value": "874688002478/16W",
+            "Description": "UPC",
+            "Entity": 2
+        }
+    ],
+    "VariationId": 1,
+    "VendorSkus": [
+        {
+            "Value": "403405",
+            "Description": "SKU",
+            "Entity": 3
+        }
+    ],
+    "Version": 1
+}
 ```
-```json
-{
-"Id": "M3-V1",
-"Name": "iPhone 4S 16GB White",
-"ShortDescription": "Better than iPhone 3G",
-"LongDescription": "The iPhone 4S is a gradual step over the iPhone 4.",
-"Assets": [],
-"CanonicalClassification": 
-{
-"Id": 1,
-"Name": "1",
-"ParentCategories": [
-{
-"Id": 2,
-"Name": "Device"
-}
-]
 
-},
-"Entity": {},
-"HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-"HeroShotUri": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-"IsLinkedToCuratedProduct": true,
-"IsSaleable": true,
-"Manufacturer": 
-{
-"Id": 4,
-"Name": "SampleManufacturer"
-},
-"ManufacturerSkus": [
-{
-"Value": "ABC123",
-"Description": "Manufacturer SKU",
-"Entity": 4
-}
-]
-,
-"MasterProductId": 3,
-"MSRP": 
-{
-"Amount": 100,
-"CurrencyCode": "USD"
-},
-"Owner": {},
-"Region": {},
-"ReleaseDate": "2011-10-14T12:00:00.000",
-"Specifications": [
-{
-"Name": "Color",
-"Fields": [
-{
-"Id": 1,
-"StringId": "Color",
-"DisplayName": "Color",
-"Name": "Color",
-"Value": "White",
-"Type": "TextSingleLine",
-"Unit": "mm"
-}
-]
-
-}
-]
-,
-"UpcCodes": [
-{
-"Value": "874688002478/16W",
-"Description": "UPC",
-"Entity": 2
-}
-]
-,
-"VariationId": 1,
-"VendorSkus": [
-{
-"Value": "403405",
-"Description": "SKU",
-"Entity": 3
-}
-]
-,
-"Version": 1
-}```
 ## Getting Compatible Products for a Catalog Item
 
 
@@ -304,9 +289,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -336,50 +318,44 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Items": [
-{
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"IsArchived": false,
-"RmsId": "1",
-"Slug": "M3-V1"
-}
-]
-,
-"Facets": 
-{
-"Manufacturers": [
-{
-"Count": 1,
-"Item": 
-{
-"Id": 4,
-"Name": "SampleManufacturer"
-}
-}
-]
-,
-"Vendors": [
-{
-"Count": 1,
-"Item": 
-{
-"Id": 4,
-"Name": "SampleManufacturer"
-}
-}
-]
 
-},
-"MetaData": 
 {
-"Page": 1,
-"PageSize": 20,
-"TotalResults": 5
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ],
+    "Facets": {
+        "Manufacturers": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ],
+        "Vendors": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ]
+    },
+    "MetaData": {
+        "Page": 1,
+        "PageSize": 20,
+        "TotalResults": 5
+    }
 }
-}```
+```
+
 ## Getting Variations for a Catalog Item
 
 For more information about Variations, see [Variations](/concepts/product-structure/#variations).
@@ -413,9 +389,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -434,21 +407,21 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Name": "iPhone 4/4s Screen Protector",
-"Slug": "M3-V1",
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"Revisions": [
-{
-"Name": "iPhone 4/4s Screen Protector",
-"Slug": "M3-V1",
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27"
-}
-]
 
-}```
+{
+    "Name": "iPhone 4/4s Screen Protector",
+    "Slug": "M3-V1",
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "Revisions": [
+        {
+            "Name": "iPhone 4/4s Screen Protector",
+            "Slug": "M3-V1",
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27"
+        }
+    ]
+}
+```
+
 ## Searching For Products
 
 {{note}}
@@ -492,9 +465,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -524,50 +494,44 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Items": [
-{
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"IsArchived": false,
-"RmsId": "1",
-"Slug": "M3-V1"
-}
-]
-,
-"Facets": 
-{
-"Manufacturers": [
-{
-"Count": 1,
-"Item": 
-{
-"Id": 4,
-"Name": "SampleManufacturer"
-}
-}
-]
-,
-"Vendors": [
-{
-"Count": 1,
-"Item": 
-{
-"Id": 4,
-"Name": "SampleManufacturer"
-}
-}
-]
 
-},
-"MetaData": 
 {
-"Page": 1,
-"PageSize": 20,
-"TotalResults": 5
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ],
+    "Facets": {
+        "Manufacturers": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ],
+        "Vendors": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ]
+    },
+    "MetaData": {
+        "Page": 1,
+        "PageSize": 20,
+        "TotalResults": 5
+    }
 }
-}```
+```
+
 ## Getting Products by Vendor SKU
 
 
@@ -601,9 +565,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -618,21 +579,21 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
-{
-"Sku": "403405",
-"VendorId": 47,
-"Items": [
-{
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"IsArchived": false,
-"RmsId": "1",
-"Slug": "M3-V1"
-}
-]
 
-}```
+{
+    "Sku": "403405",
+    "VendorId": 47,
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ]
+}
+```
+
 
 ## Errors
 

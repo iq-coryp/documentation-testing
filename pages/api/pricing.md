@@ -101,16 +101,13 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
 }
 
 
@@ -126,17 +123,18 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": 41614,
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
-}```
+    "Id": 41614,
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}
+```
+
 ## Creating Product Pricing at Location Level
 
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
@@ -183,16 +181,13 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
 }
 
 
@@ -208,17 +203,18 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": 41614,
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
-}```
+    "Id": 41614,
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}
+```
+
 ## Getting Product Pricing for a Retail Location
 
 
@@ -252,9 +248,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -266,17 +259,18 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 41614,
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
-}```
+    "Id": 41614,
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}
+```
+
 ## Updating Product Pricing for a Retail Location
 
 
@@ -304,9 +298,6 @@ HTTP 200 Content-Type: application/json
 
 ```
 PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-```
-```json
 
 ```
 
@@ -356,16 +347,13 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
-```
-```json
-
 {
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
 }
 
 
@@ -381,17 +369,18 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
-```
-```json
+
 {
-"Id": 41614,
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
-}```
+    "Id": 41614,
+    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}
+```
+
 ## Getting Product Pricing at Company Level
 
 
@@ -424,9 +413,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -438,21 +424,20 @@ Array[{{Pricing}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 41614,
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
-}
+    {
+        "Id": 41614,
+        "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "CompanyId": 1,
+        "EntityId": 2,
+        "RegularPrice": 10,
+        "OverridePrice": 5,
+        "PricingTermId": 20
+    }
 ]
 ```
+
 ## Updating Product Pricing at Company Level
 
 
@@ -479,9 +464,6 @@ HTTP 200 Content-Type: application/json
 
 ```
 PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
-
-```
-```json
 
 ```
 
@@ -518,9 +500,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -532,21 +511,20 @@ Array[{{PricingTerm}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 20,
-"EntityId": 2,
-"Name": "$60 4G LTE Unlimited",
-"Active": true,
-"CanFinance": true,
-"NumberOfPayments": 1,
-"TermLengthInYears": 3
-}
+    {
+        "Id": 20,
+        "EntityId": 2,
+        "Name": "$60 4G LTE Unlimited",
+        "Active": true,
+        "CanFinance": true,
+        "NumberOfPayments": 1,
+        "TermLengthInYears": 3
+    }
 ]
 ```
+
 ## Getting a Pricing Term
 
 
@@ -579,9 +557,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -593,17 +568,18 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 20,
-"EntityId": 2,
-"Name": "$60 4G LTE Unlimited",
-"Active": true,
-"CanFinance": true,
-"NumberOfPayments": 1,
-"TermLengthInYears": 3
-}```
+    "Id": 20,
+    "EntityId": 2,
+    "Name": "$60 4G LTE Unlimited",
+    "Active": true,
+    "CanFinance": true,
+    "NumberOfPayments": 1,
+    "TermLengthInYears": 3
+}
+```
+
 ## Getting Product Pricing by Pricing Term
 
 
@@ -637,9 +613,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -651,21 +624,20 @@ Array[{{Pricing}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 41614,
-"CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-"CompanyId": 1,
-"EntityId": 2,
-"RegularPrice": 10.0,
-"OverridePrice": 5.0,
-"PricingTermId": 20
-}
+    {
+        "Id": 41614,
+        "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "CompanyId": 1,
+        "EntityId": 2,
+        "RegularPrice": 10,
+        "OverridePrice": 5,
+        "PricingTermId": 20
+    }
 ]
 ```
+
 
 ## Errors
 

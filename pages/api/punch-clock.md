@@ -29,7 +29,7 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 | Id | Integer | Unique Identifier | `1953` |
 | CreatedDateUtc | Datetime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
 | EmployeeVerified | Boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
-| EmployeeSpecialId | Boolean | Special identifier for Employee in RQ | `0001` |
+| EmployeeSpecialId | Boolean | Special identifier for Employee in RQ | `1002` |
 | LastUpdateDateUtc | Datetime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
 | LocationCode | String(100) | An identifier for the Location in an external system | `CWW` |
 | LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
@@ -84,9 +84,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -98,35 +95,33 @@ Array[{{PunchEntry}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 1953,
-"CreatedDateUtc": "2015-09-23T15:41:59.403",
-"EmployeeVerified": false,
-"EmployeeSpecialId": 0001,
-"LastUpdateDateUtc": "2015-09-23T15:55:09.927",
-"LocationCode": "CWW",
-"LocationId": 2,
-"ManagerVerified": false,
-"PunchInComments": "IN - FingerPrint/HomeConsole",
-"PunchOutComments": "OUT - HomeConsole",
-"TimeInAtStore": "2015-09-23T09:41:52.653",
-"TimeOutAtStore": "2015-09-23T09:55:03.973",
-"UserId": 22212,
-"Version": 1
-}
+    {
+        "Id": 1953,
+        "CreatedDateUtc": "2015-09-23T15:41:59.403",
+        "EmployeeVerified": false,
+        "EmployeeSpecialId": 1002,
+        "LastUpdateDateUtc": "2015-09-23T15:55:09.927",
+        "LocationCode": "CWW",
+        "LocationId": 2,
+        "ManagerVerified": false,
+        "PunchInComments": "IN - FingerPrint/HomeConsole",
+        "PunchOutComments": "OUT - HomeConsole",
+        "TimeInAtStore": "2015-09-23T09:41:52.653",
+        "TimeOutAtStore": "2015-09-23T09:55:03.973",
+        "UserId": 22212,
+        "Version": 1
+    }
 ]
+```
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/hal+json
-```
-```json
+
 {
   "_links": {
       "self": {
@@ -168,7 +163,8 @@ HTTP 200 Content-Type: application/hal+json
   }
 }
 
-```
+
+
 
 ## Pagination
 

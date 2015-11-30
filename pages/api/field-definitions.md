@@ -122,9 +122,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -136,21 +133,20 @@ Array[{{FieldDefinition}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
 
 [
-{
-"Id": 84,
-"StringId": "CDMA",
-"InputType": "YesNo",
-"IsRequired": false,
-"LanguageInvariantUnit": "mm",
-"DisplayName": "CDMA",
-"Options": []
-}
+    {
+        "Id": 84,
+        "StringId": "CDMA",
+        "InputType": "YesNo",
+        "IsRequired": false,
+        "LanguageInvariantUnit": "mm",
+        "DisplayName": "CDMA",
+        "Options": []
+    }
 ]
 ```
+
 ## Getting a FieldDefinition
 
 
@@ -182,9 +178,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -196,17 +189,18 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"Id": 84,
-"StringId": "CDMA",
-"InputType": "YesNo",
-"IsRequired": false,
-"LanguageInvariantUnit": "mm",
-"DisplayName": "CDMA",
-"Options": []
-}```
+    "Id": 84,
+    "StringId": "CDMA",
+    "InputType": "YesNo",
+    "IsRequired": false,
+    "LanguageInvariantUnit": "mm",
+    "DisplayName": "CDMA",
+    "Options": []
+}
+```
+
 
 ## Errors
 

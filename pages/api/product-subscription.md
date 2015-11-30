@@ -92,9 +92,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -106,8 +103,7 @@ Array[{{Subscription}}]
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
   "ListId": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
   "Companies": [
@@ -124,7 +120,8 @@ HTTP 200 Content-Type: application/json
       ...  
   ]
 }
-```
+
+
 ## Getting a Subscribable List
 
 
@@ -156,9 +153,6 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 
 ```
-```json
-
-```
 
 #### Response
 
@@ -170,25 +164,27 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
-"EntityId": 14,
-"Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-"Name": "Joe's Subscription List",
-"Products": [
-{
-"Dropshippable": true,
-"Price": 28.99,
-"ProductName": "iPhone 6 Flexshield Case",
-"ProductSlugs": ["M5218"],
-"VendorSku": "9101AGAP6",
-"Version": 2
+    "EntityId": 14,
+    "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
+    "Name": "Joe's Subscription List",
+    "Products": [
+        {
+            "Dropshippable": true,
+            "Price": 28.99,
+            "ProductName": "iPhone 6 Flexshield Case",
+            "ProductSlugs": [
+                "M5218"
+            ],
+            "VendorSku": "9101AGAP6",
+            "Version": 2
+        }
+    ],
+    "Version": 12
 }
-]
-,
-"Version": 12
-}```
+```
+
 ## Updating Products in a Subscribable List
 
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
@@ -232,10 +228,6 @@ PUT /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
-```
-```json
- 
 {
    "EntityId": 60455,
    "Name": "Joe's Product List",
@@ -249,7 +241,6 @@ Content-Type: application/json
    ]          
 }
 
-
 ```
 
 #### Response
@@ -262,8 +253,7 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
-```
-```json
+
 {
   "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
     "EntityId": 60455,
@@ -280,7 +270,8 @@ HTTP 200 Content-Type: application/json
     ],
     "Version": 2
 }
-```
+
+
 
 ## Errors
 
