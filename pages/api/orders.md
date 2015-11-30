@@ -219,6 +219,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Name": "iPhone 5 Order",
@@ -249,6 +251,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -300,6 +304,8 @@ GET /Companies(1)/Orders
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -313,6 +319,8 @@ Array[{{Order}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -395,6 +403,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Cost": 5.99,
@@ -434,6 +444,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
 "Cost": 5.99,
@@ -493,6 +505,8 @@ GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -506,6 +520,8 @@ Array[{{Item}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -569,6 +585,8 @@ GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -582,6 +600,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -662,6 +682,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
@@ -697,6 +719,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -747,6 +771,8 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -795,6 +821,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
@@ -813,6 +841,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -865,6 +895,8 @@ GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -878,6 +910,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -969,6 +1003,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Name": "iPhone 5 Order",
@@ -1026,6 +1062,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -1108,6 +1146,8 @@ GET /Companies(1)/OrderFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1121,6 +1161,8 @@ Array[{{OrderFull}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -1208,6 +1250,8 @@ GET /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1221,6 +1265,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -1344,6 +1390,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
@@ -1410,6 +1458,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "216f7424-ae18-4c69-9597-984b430d0759",
 "Name": "iPhone 5 Order",
@@ -1491,6 +1541,8 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -1532,6 +1584,8 @@ GET /Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 2
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1545,6 +1599,8 @@ Array[{{Order}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -1601,6 +1657,8 @@ GET /Companies(1)/Orders?$filter=PrintableId eq '8675-1234-987'
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1614,6 +1672,8 @@ Array[{{Order}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {

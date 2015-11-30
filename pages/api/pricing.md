@@ -101,6 +101,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
@@ -124,6 +126,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 41614,
 "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
@@ -179,6 +183,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
@@ -202,6 +208,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 41614,
 "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
@@ -243,6 +251,8 @@ GET /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -256,6 +266,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 41614,
 "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
@@ -293,6 +305,8 @@ HTTP 200 Content-Type: application/json
 ```
 PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 
+```
+```json
 
 ```
 
@@ -342,6 +356,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
@@ -365,6 +381,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 41614,
 "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
@@ -405,6 +423,8 @@ GET /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -418,6 +438,8 @@ Array[{{Pricing}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -458,6 +480,8 @@ HTTP 200 Content-Type: application/json
 ```
 PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing
 
+```
+```json
 
 ```
 
@@ -493,6 +517,8 @@ GET /Companies(1)/PricingTerms
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -506,6 +532,8 @@ Array[{{PricingTerm}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -550,6 +578,8 @@ GET /Companies(1)/PricingTerms(20)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -563,6 +593,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 20,
 "EntityId": 2,
@@ -604,6 +636,8 @@ GET /Companies(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing?$fi
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -617,6 +651,8 @@ Array[{{Pricing}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {

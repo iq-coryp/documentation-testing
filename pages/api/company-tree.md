@@ -219,6 +219,8 @@ GET /Companies(1)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -232,6 +234,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 1,
 "Name": "SampleCompany",
@@ -285,6 +289,8 @@ GET /Companies(1)/Tree
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -298,6 +304,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 1,
 "Name": "SampleCompany",
@@ -378,6 +386,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": 2,
@@ -547,6 +557,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 2,
 "Name": "SampleLocation",
@@ -746,6 +758,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 ```
 
@@ -759,6 +773,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 2,
 "Name": "SampleLocation",
@@ -944,6 +960,8 @@ GET /Companies(1)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -957,6 +975,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 2,
 "Name": "SampleLocation",
@@ -1175,6 +1195,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": 2,
@@ -1343,6 +1365,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 2,
 "Name": "SampleLocation",
@@ -1527,6 +1551,8 @@ GET /Companies(1)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1540,6 +1566,8 @@ Array[{{Location}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -1749,6 +1777,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Name": "SampleDivision",
@@ -1771,6 +1801,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 5,
 "Name": "SampleDivision",
@@ -1846,6 +1878,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Name": "SampleGroup",
@@ -1868,6 +1902,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 16,
 "Name": "SampleGroup",
@@ -1926,6 +1962,8 @@ This request removes the Node refered to by NodeId from the Company Tree along w
 DELETE /Companies(1)/Tree/Nodes(16)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -1967,6 +2005,8 @@ GET /Entities(1)/Nodes?$filter=123
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1980,6 +2020,8 @@ Array[{{ClientIdSearch}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {

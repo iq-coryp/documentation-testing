@@ -108,6 +108,8 @@ GET /Entities(1)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -121,6 +123,8 @@ Array[{{Permission}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -172,6 +176,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Name": "Store Manager"
@@ -190,6 +196,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 4457,
 "Name": "Store Manager"
@@ -224,6 +232,8 @@ GET /Entities(1)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -237,6 +247,8 @@ Array[{{SecurityRole}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -279,6 +291,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 ```
 
@@ -319,6 +333,8 @@ Content-Type: application/json
 DELETE /Entities(1)/SecurityRoles(4457)/Permissions(55)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -360,6 +376,8 @@ GET /Entities(1)/SecurityRoles(4457)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -373,6 +391,8 @@ Array[{{Permission}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -426,6 +446,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "EntityId": 2,
@@ -445,6 +467,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 6548,
 "EntityId": 2,
@@ -481,6 +505,8 @@ GET /Users(22212)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -494,6 +520,8 @@ Array[{{AssignedRole}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -533,6 +561,8 @@ HTTP 200 Content-Type: application/json
 DELETE /Users(2212)/AssignedRoles(4457)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 

@@ -109,6 +109,8 @@ GET /Carriers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -122,6 +124,8 @@ Array[{{Carrier}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -171,6 +175,8 @@ GET /Carriers(9)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -184,6 +190,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 9,
 "Name": "SampleCarrier",
@@ -224,6 +232,8 @@ GET /Manufacturers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -237,6 +247,8 @@ Array[{{Manufacturer}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -286,6 +298,8 @@ GET /Manufacturers(4)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -299,6 +313,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 4,
 "Name": "SampleManufacturer",
@@ -339,6 +355,8 @@ GET /Suppliers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -352,6 +370,8 @@ Array[{{Supplier}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -401,6 +421,8 @@ GET /Suppliers(14)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -414,6 +436,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 14,
 "Name": "SampleSupplier",

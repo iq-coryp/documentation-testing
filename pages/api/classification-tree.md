@@ -110,6 +110,8 @@ GET /ClassificationTrees(21)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -123,6 +125,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 21,
 "Name": "Cellular & Accessories",

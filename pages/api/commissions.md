@@ -141,6 +141,8 @@ GET /Companies(1)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-0
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -154,6 +156,8 @@ Array[{{CommissionEntry}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -202,6 +206,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 {
   "_links": {
       "self": {

@@ -63,6 +63,8 @@ GET /Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -76,6 +78,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "f6642545-9136-4f44-a163-0e97e32e2e27",
 "EntityId": 1,
@@ -113,6 +117,8 @@ GET /Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availabilit
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -126,6 +132,8 @@ Array[{{Availability}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {

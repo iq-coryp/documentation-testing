@@ -65,6 +65,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: multipart/form-data
 
+```
+```json
 
 ```
 
@@ -78,6 +80,8 @@ Content-Type: multipart/form-data
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "id": "732130d2-b673-461c-812b-f2b614d6076e",
 "name": "iqmetrix.jpg",
@@ -116,6 +120,8 @@ HTTP 201 Content-Type: application/json
 GET /assets/732130d2-b673-461c-812b-f2b614d6076e
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -129,6 +135,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "id": "732130d2-b673-461c-812b-f2b614d6076e",
 "name": "iqmetrix.jpg",
@@ -165,6 +173,8 @@ A successful response to this request is a `HTTP 303` redirect with a `Location`
 ```
 GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
+```
+```json
 
 ```
 
@@ -176,6 +186,8 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
 ```
 HTTP 303 Content-Type: application/text
+```
+```json
 Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg```
 
 ## Errors

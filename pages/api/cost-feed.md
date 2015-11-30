@@ -89,6 +89,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Products": [
@@ -114,6 +116,8 @@ Content-Type: application/json
 
 ```
 HTTP 202 Content-Type: application/json
+```
+```json
 {
 "Id": "91a57ddb-2d42-402b-85b4-fe327a347313",
 "Products": [

@@ -174,6 +174,8 @@ GET /Products/FindByIdentifier?value=ABC123&type=VendorSKU&entityId=4
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -187,6 +189,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Products": [
 {

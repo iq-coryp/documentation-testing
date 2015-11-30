@@ -116,6 +116,8 @@ public static OAuth2TokenResponse ObtainingAnAccessToken()
 POST /oauth2/token
 Content-Type: application/x-www-form-urlencoded
 
+```
+```json
 
 ```
 
@@ -131,6 +133,8 @@ Content-Type: application/x-www-form-urlencoded
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "access_token": "3dae10c05e894011b5b3ae15972ffbf4",
 "expires_in": 43199,

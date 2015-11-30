@@ -145,6 +145,8 @@ GET /Companies(1)/Accounts?$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -158,6 +160,8 @@ Array[{{Account}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -183,6 +187,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 {
   "_links": {
       "self": {
@@ -259,6 +265,8 @@ GET /Companies(1)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -272,6 +280,8 @@ Array[{{Transaction}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -300,6 +310,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 [
     {
         "_links": {

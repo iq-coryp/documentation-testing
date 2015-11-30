@@ -245,6 +245,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "PrimaryName": "Robert",
@@ -272,6 +274,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
 "PrimaryName": "Robert",
@@ -317,6 +321,8 @@ GET /Companies(1)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -330,6 +336,8 @@ Array[{{Customer}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -354,6 +362,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 {
   "_links": {
     "self": {
@@ -449,6 +459,8 @@ GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -462,6 +474,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
 "PrimaryName": "Robert",
@@ -527,6 +541,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -556,6 +572,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
 "PrimaryName": "Robert",
@@ -600,6 +618,8 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -667,6 +687,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "AddressTypeId": 3,
@@ -698,6 +720,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
 "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -751,6 +775,8 @@ GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -764,6 +790,8 @@ Array[{{Address}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -795,6 +823,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 {
   "_links": {
     "self": {
@@ -866,6 +896,8 @@ GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -879,6 +911,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
 "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -959,6 +993,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
@@ -995,6 +1031,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
 "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -1047,6 +1085,8 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -1130,6 +1170,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "PrimaryName": "Robert",
@@ -1198,6 +1240,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
 "PrimaryName": "Robert",
@@ -1297,6 +1341,8 @@ GET /Companies(1)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1310,6 +1356,8 @@ Array[{{CustomerFull}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -1388,6 +1436,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 {
   "_links": {
     "self": {
@@ -1516,6 +1566,8 @@ GET /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1529,6 +1581,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
 "PrimaryName": "Robert",
@@ -1672,6 +1726,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -1755,6 +1811,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
 "PrimaryName": "Robert",
@@ -1853,6 +1911,8 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -1911,6 +1971,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -1935,6 +1997,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
 "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -1979,6 +2043,8 @@ GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -1992,6 +2058,8 @@ Array[{{ContactMethod}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -2014,6 +2082,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 {
   "_links": {
     "self": {
@@ -2076,6 +2146,8 @@ GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -2089,6 +2161,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
 "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -2151,6 +2225,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
@@ -2178,6 +2254,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
 "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
@@ -2221,6 +2299,8 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -2264,6 +2344,8 @@ GET /Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -2277,6 +2359,8 @@ Array[{{Customer}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -2344,6 +2428,8 @@ GET /Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -2357,6 +2443,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
 "PrimaryName": "Robert",

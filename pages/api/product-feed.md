@@ -161,6 +161,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Assets": [
@@ -213,6 +215,8 @@ Array[{{Product}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -298,6 +302,8 @@ GET /ProductFeeds(34)/Products
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -311,6 +317,8 @@ Array[{{Product}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -396,6 +404,8 @@ GET /ProductFeeds(34)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -409,6 +419,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 34,
 "LastReceivedUpdatesFromProviderUtc": "2014-11-13T19:40:57.102Z",
@@ -497,6 +509,8 @@ Updates a Product Feed (FeedId) by removing a Product (ProductId).
 DELETE /ProductFeeds(34)/Products(2)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 

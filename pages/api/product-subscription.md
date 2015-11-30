@@ -91,6 +91,8 @@ GET /subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -104,6 +106,8 @@ Array[{{Subscription}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
   "ListId": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
   "Companies": [
@@ -151,6 +155,8 @@ GET /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -164,6 +170,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "EntityId": 14,
 "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
@@ -225,6 +233,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
  
 {
    "EntityId": 60455,
@@ -252,6 +262,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
   "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
     "EntityId": 60455,

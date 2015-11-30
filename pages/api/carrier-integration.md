@@ -437,6 +437,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": "1=35854205829867",
@@ -612,6 +614,8 @@ Content-Type: application/json
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": "1=35854205829867",
 "CarrierActivationDetails": 
@@ -807,6 +811,8 @@ GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUT
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -820,6 +826,8 @@ Array[{{ConfirmedActivation}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -849,6 +857,8 @@ HTTP 200 Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/hal+json
+```
+```json
 {
     "_links": {
         "self": {

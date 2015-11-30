@@ -115,6 +115,8 @@ A User represents an account that can be used to perform actions on your data wi
 ```
 POST /Users/importExisting
 
+```
+```json
 
 {
 "FirstName": "Sam",
@@ -159,6 +161,8 @@ POST /Users/importExisting
 
 ```
 HTTP 201 Content-Type: application/json
+```
+```json
 {
 "Id": 22212,
 "FirstName": "Sam",
@@ -220,6 +224,8 @@ GET /Users(22212)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -233,6 +239,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 22212,
 "FirstName": "Sam",
@@ -317,6 +325,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 {
 "Id": 22212,
@@ -362,6 +372,8 @@ Content-Type: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 22212,
 "FirstName": "Sam",
@@ -424,6 +436,8 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 DELETE /Users(22212)
 Authorization: Bearer (Access Token)
 
+```
+```json
 
 ```
 
@@ -466,6 +480,8 @@ GET /Entities(1)/Users?$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -490,6 +506,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "_links": 
 {
@@ -571,6 +589,8 @@ GET /Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -595,6 +615,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "_links": 
 {
@@ -679,6 +701,8 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+```
+```json
 
 ```
 
@@ -690,6 +714,8 @@ Content-Type: application/json
 
 ```
 HTTP 204 Content-Type: application/json
+```
+```json
 ```
 ## Unassigning a User from a Location
 
@@ -722,6 +748,8 @@ DELETE /Users(22212)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -762,6 +790,8 @@ GET /Users(22212)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -776,6 +806,8 @@ Accept: application/json
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "UserId": 22212,
 "LocationIDs": [4]
@@ -813,6 +845,8 @@ GET /Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+```
+```json
 
 ```
 
@@ -826,6 +860,8 @@ Array[{{User}}]
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 
 [
 {
@@ -890,6 +926,8 @@ Once locked, a User will not be able to log in or obtain an access token until t
 ```
 POST /Users(22212)/Lock
 
+```
+```json
 
 ```
 
@@ -901,6 +939,8 @@ POST /Users(22212)/Lock
 
 ```
 HTTP 204 Content-Type: application/json
+```
+```json
 ```
 ## Unlocking a User
 
@@ -933,6 +973,8 @@ A User can be unlocked if their account is locked and their parent Entity is not
 ```
 POST /Users(22212)/Unlock
 
+```
+```json
 
 ```
 
@@ -944,6 +986,8 @@ POST /Users(22212)/Unlock
 
 ```
 HTTP 204 Content-Type: application/json
+```
+```json
 ```
 ## Enabling a User
 
@@ -971,6 +1015,8 @@ HTTP 204 Content-Type: application/json
 ```
 POST /Users(22212)/Enable
 
+```
+```json
 
 ```
 
@@ -984,6 +1030,8 @@ POST /Users(22212)/Enable
 
 ```
 HTTP 200 Content-Type: application/json
+```
+```json
 {
 "Id": 22212,
 "FirstName": "Sam",
