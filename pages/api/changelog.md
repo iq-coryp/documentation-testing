@@ -4,7 +4,7 @@ permalink: /api/changelog/
 tags: []
 keywords: 
 audience: 
-last_updated: 09-11-2015
+last_updated: 20-11-2015
 summary: 
 datatable: true
 metadata: false
@@ -40,6 +40,10 @@ The date format used in the table below is mm/dd/yyyy
 
 | Date | Changes |
 |:-----|:--------|
+| 11/20/2015 | Updated links in Dropship Order Guide and Dropship Onboarding Guide. Rearranged headings in Dropship Order Guide |
+| 11/19/2015 | Updated links in Supplier Orders. Updated EPC to remove DefaultLocationVendor and add Cost, DiscontinuedDate, DoNotOrder, EndOfLife, SpecialOrder and WriteOff to Vendors |
+| 11/17/2015 | Added Supplier Orders and Dropship Order Management pages. Updated Dropship Onboarding Guide |
+| 11/10/2015 | Added User Manager concept page |
 | 11/09/2015 | Added image to Product Structure, minor consistency changes |
 | 11/04/2015 | Cleanup of many pages to maintain consistency of formatting. Added ExtendedAttributes to EPC |
 | 10/30/2015 | Updated Product Feed field definition section  |

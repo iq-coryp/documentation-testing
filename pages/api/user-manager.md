@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -29,26 +29,42 @@ A User represents an account that can be used to perform actions on your data wi
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `22212` |
-| FirstName | string | First name | `Sam` |
-| LastName | string | Last name | `Smith` |
-| UserName | string | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
-| Attributes | object | Set of key-value pairs that contain extra data to store with the User | `'Department': 'Sales'` |
-| ClientUserId | string | Identifier for the User in an external system | `132` |
-| Email | string | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
-| IsActive | boolean | Flag to indicate if the Users login is enabled, false if it is disabled | `true` |
-| ParentEntityId | integer | Identifier for the Company to which this User belongs | `1` |
-| Picture | object | A reference to an Asset that is a photo of the User |  |
-| Picture.Id | Guid | Unique identifier for the Asset | `732130d2-b673-461c-812b-f2b614d6076e` |
-| Picture.Name | string | File name of the asset | `iqmetrix.jpg` |
-| Picture.Height | integer | Height in pixels | `145` |
-| Picture.Href | string | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net`<br/>`/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| Picture.Md5Checksum | string | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
-| Picture.MimeType | string | The mime type of the Asset | `image/jpeg` |
-| Picture.Width | integer | Width in pixels | `240` |
-| Version | integer | Latest revision number | `1` |
-| *CorrelationId* | *string* | *Reserved for internal use* | |
-| *Profiles* | *object* | *This is a legacy property that should not be used* | |
+| Id | Integer | Identifier | `22212` |
+| FirstName | String | First name | `Sam` |
+| LastName | String | Last name | `Smith` |
+| UserName | String | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
+| Address | [Address](#address) | Address |  |
+| Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `'Department': 'Sales'` |
+| ClientUserId | String | Identifier for the User in an external system | `132` |
+| Email | String | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
+| IsActive | Boolean | Flag to indicate if the Users login is enabled, false if it is disabled | `true` |
+| JobTitle | String | Job title | `Sales Clerk` |
+| ParentEntityId | Integer | Identifier for the Company to which this User belongs | `1` |
+| PhoneNumbers | Array[[PhoneNumber](#phonenumber)] | Phone numbers |  |
+| Picture | Object | A reference to an Asset that is a photo of the User |  |
+| Version | Integer | Latest revision number | `1` |
+| *CorrelationId* | *String* | *Reserved for internal use* | |
+| *Profiles* | *Object* | *This is a legacy property that should not be used* | |
+
+### Address
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| AddressLine1 | String |  | `1600 Amphitheatre Pkwy` |
+| AddressLine2 | String |  | `Suite 500` |
+| City | String |  | `Smith` |
+| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
+| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
+| Zip | String | Zip or Postal Code | `94043` |
+
+### PhoneNumber
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Number | String | Must be at least 7 characters | `5555555555` |
+| Extension | String | Extension | `1234` |
+| Type | String | Type of phone number | `Home` |
+
 
 
 
@@ -70,22 +86,28 @@ A User represents an account that can be used to perform actions on your data wi
 
 
 
-* `Accept: application/json`
-* `Content-Type: application/json`
 
 
 
 
 #### Request Parameters
 
-  * `UserName` (**Required**)
+  * `FirstName` (**Required**)
+  * `LastName` (**Required**)
+  * `UserName` (**Required**) - The name used to identify this User. Must be unique
+  * `Attributes` (**Required**)
+  * `ClientUserId` (**Required**)
+  * `Email` (**Required**) - The User's email address. Must be unique. No notification will be sent when this User is updated
   * `ParentEntityId` (**Required**)
-  * `FirstName` (Optional)
-  * `LastName` (Optional)
-  * `Password` (Optional)
-  * `Email` (Optional)
-  * `Attributes` (Optional)
-  * `ClientUserId` (Optional)
+  
+  * `Address` (Optional)
+  
+  * `JobTitle` (Optional)
+  * `PhoneNumbers` (Optional)
+  * `Picture` (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest
+  * `Version` (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date
+  
+  
 
 
 ###### Example
@@ -93,25 +115,44 @@ A User represents an account that can be used to perform actions on your data wi
 ```
 POST /Users/importExisting
 
-Accept: application/json
-Content-Type: application/json
+
 {
-  "Username": "sample@iqmetrix.com",
-  "ParentEntityId": 1,
-  "FirstName": "Sam",
-  "LastName": "Smith",
-  "Password": "smith123",
-  "Email" : "sample@iqmetrix.com",
-  "Attributes": {
-      "Department": "Sales"
-  },
-  "ClientUserId": "132"
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
+]
+,
+"Picture": {},
+"Version": 1
+}
+
 
 ```
 
 #### Response
 
+
+{{User}}
 
 
 ###### Example
@@ -119,20 +160,36 @@ Content-Type: application/json
 ```
 HTTP 201 Content-Type: application/json
 {
-  "Id": 22212,
-  "FirstName": "Sam",
-  "LastName": "Smith",
-  "UserName": "sample@iqmetrix.com",
-  "Attributes": {
-      "Department": "Sales"
-  },
-  "ClientUserId": "132",
-  "Email": "sample@iqmetrix.com",
-  "IsActive": true,
-  "ParentEntityId": 1,
-  "Picture": null,
-  "Version": 1
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
+]
+,
+"Picture": {},
+"Version": 1
+}```
 ## Getting a User
 
 
@@ -143,13 +200,14 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `UserId` (**Required**)  - Identifier for the {{User}} 
 
@@ -162,10 +220,13 @@ GET /Users(22212)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{User}}
 
 
 ###### Example
@@ -173,29 +234,36 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": 22212,
-  "FirstName": "Sam",
-  "LastName": "Smith",
-  "UserName": "sample@iqmetrix.com",
-  "Attributes": {
-    "Department": "Sales"
-  },
-  "ClientUserId": "132",
-  "Email": "sample@iqmetrix.com",
-  "IsActive": true,
-  "ParentEntityId": 1,
-  "Picture": {
-    "Id": "732130d2-b673-461c-812b-f2b614d6076e",
-    "Name": "iqmetrix.jpg",
-    "Height": 145,
-    "Href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-    "Md5Checksum": "c8f3b3774df219b8246ca02a2a2a892",
-    "MimeType": "image/jpeg",
-    "Width": 200,
-  },
-  "Version": 4
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
- 
+]
+,
+"Picture": {},
+"Version": 1
+}```
 ## Updating a User
 
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
@@ -207,8 +275,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -216,28 +284,26 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
+
 * `UserId` (**Required**)  - Identifier for the {{User}} 
+
 
 
 #### Request Parameters
 
-  * `Id` (**Required**)
   * `FirstName` (**Required**)
   * `LastName` (**Required**)
   * `UserName` (**Required**) - The name used to identify this User. Must be unique
   * `Attributes` (**Required**)
   * `ClientUserId` (**Required**)
   * `Email` (**Required**) - The User's email address. Must be unique. No notification will be sent when this User is updated
-  * `IsActive` (**Required**)
   * `ParentEntityId` (**Required**)
+  * `Id` (**Required**)
+  * `Address` (Optional)
+  * `IsActive` (**Required**)
+  * `JobTitle` (Optional)
+  * `PhoneNumbers` (Optional)
   * `Picture` (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest
-    * `Id` (**Required**)
-    * `Name` (**Required**)
-    * `Height` (**Required**)
-    * `Href` (**Required**)
-    * `Md5Checksum` (Optional)
-    * `MimeType` (**Required**)
-    * `Width` (**Required**)
   * `Version` (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date
   
   
@@ -250,35 +316,46 @@ PUT /Users(22212)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-  "Id": 22212,
-  "FirstName": "Sam",
-  "LastName": "Smith",
-  "UserName": "sample@iqmetrix.com",
-  "Attributes": {
-    "Department": "Sales"
-  },
-  "ClientUserId": "132",
-  "Email": "sample@iqmetrix.com",
-  "IsActive": true,
-  "ParentEntityId": 1,
-  "Picture": {
-    "Id": "732130d2-b673-461c-812b-f2b614d6076e",
-    "Name": "iqmetrix.jpg",
-    "Height": 145,
-    "Href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-    "Md5Checksum": "c8f3b3774df219b8246ca02a2a2a892",
-    "MimeType": "image/jpeg",
-    "Width": 200,
-  },
-  "Version": 4
-}
 
+
+{
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
+}
+]
+,
+"Picture": {},
+"Version": 1
+}
 
 ```
 
 #### Response
 
+
+{{User}}
 
 
 ###### Example
@@ -286,29 +363,36 @@ Content-Type: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": 22212,
-  "FirstName": "Sam",
-  "LastName": "Smith",
-  "UserName": "sample@iqmetrix.com",
-  "Attributes": {
-    "Department": "Sales"
-  },
-  "ClientUserId": "132",
-  "Email": "sample@iqmetrix.com",
-  "IsActive": true,
-  "ParentEntityId": 1,
-  "Picture": {
-    "Id": "732130d2-b673-461c-812b-f2b614d6076e",
-    "Name": "iqmetrix.jpg",
-    "Height": 145,
-    "Href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-    "Md5Checksum": "c8f3b3774df219b8246ca02a2a2a892",
-    "MimeType": "image/jpeg",
-    "Width": 200,
-  },
-  "Version": 4
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
-
+]
+,
+"Picture": {},
+"Version": 1
+}```
 ## Disabling a User
 
 {{note}}
@@ -322,13 +406,13 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
-* `Accept: application/json`
+* `Authorization: Bearer (Access Token)`
 
 
 
 #### URI Parameters
+
 
 * `UserId` (**Required**)  - Identifier for the {{User}} 
 
@@ -339,7 +423,7 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 ```
 DELETE /Users(22212)
 Authorization: Bearer (Access Token)
-Accept: application/json
+
 
 ```
 
@@ -349,23 +433,7 @@ Accept: application/json
 
 ###### Example
 
-```
-HTTP 200 Content-Type: application/json
-{
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
-    "Attributes": {
-        "Department": "Sales"
-    },
-    "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
-    "IsActive": false,
-    "ParentEntityId": 1,
-    "Picture": null,
-    "Version": 2
-} 
+```HTTP 200```
 ## Getting All Users for a Company
 
 
@@ -376,15 +444,18 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -395,19 +466,24 @@ GET /Entities(1)/Users?$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
   * `_links` (object) - Relative URL's used for Pagination
-    * `_links.prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
-    * `_links.self` (string) - The request that returned these results
-    * `_links.next` (string) - Refers to a resource containing the next page of results, `null` if this is the last page
+    * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
+    * `self` (string) - The request that returned these results
+    * `next` (string) - Refers to a resource containing the next page of results, `null` if this is the last page
+  
   * `_metadata` (object) - Data representing Pagination details
-    * `_metadata.count` (integer) - The total number of results returned from the request
-    * `_metadata.skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
-    * `_metadata.top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
-  * `items` (array[user])
+    * `count` (integer) - The total number of results returned from the request
+    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
+    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
+  
+  * `items` (array) - Array[{{User}}]
+
 
 
 ###### Example
@@ -415,36 +491,53 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "_links": {
-    "prev": null,
-    "self": "/v1/Entities(1)/Users?$skip=0&$top=5",
-    "next": "/v1/Entities(1)/Users?$skip=5&$top=5"
-  },
-    "_metadata": {
-    "count": 15,
-    "skip": 0,
-    "top": 5
-  },
-  items: [
-    {
-      "Id": 22212,
-      "FirstName": "Sam",
-      "LastName": "Smith",
-      "UserName": "sample@iqmetrix.com",
-      "Attributes": {
-        "Department": "Sales"
-      },
-      "ClientUserId": "132",
-      "Email": "sample@iqmetrix.com",
-      "IsActive": true,
-      "ParentEntityId": 1,
-      "Picture": null,
-      "Version": 1
-    },
-    ...
-  ]
+"_links": 
+{
+"prev": "null",
+"self": "null",
+"next": "null"
+},
+"_metadata": 
+{
+"count": 15,
+"skip": 0,
+"top": 5
+},
+"items": [
+{
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
- 
+]
+,
+"Picture": {},
+"Version": 1
+}
+]
+
+}```
 ## Searching for Users
 
 
@@ -455,15 +548,19 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `Terms` (**Required**)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive. * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `Terms` (**Required**)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive. 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -474,19 +571,24 @@ GET /Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
   * `_links` (object) - Relative URL's used for Pagination
-    * `_links.prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
-    * `_links.self` (string) - The request that returned these results
-    * `_links.next` (string) - Refers to a resource containing the next page of results, `null` if this is the last page
+    * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
+    * `self` (string) - The request that returned these results
+    * `next` (string) - Refers to a resource containing the next page of results, `null` if this is the last page
+  
   * `_metadata` (object) - Data representing Pagination details
-    * `_metadata.count` (integer) - The total number of results returned from the request
-    * `_metadata.skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
-    * `_metadata.top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
-  * `items` (array[user])
+    * `count` (integer) - The total number of results returned from the request
+    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
+    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
+  
+  * `items` (array) - Array[{{User}}]
+
 
 
 ###### Example
@@ -494,51 +596,53 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "_links": {
-      "prev": null,
-      "self": "/v1/Entities(1)/Users?$skip=0&$top=5",
-      "next": "/v1/Entities(1)/Users?$skip=5&$top=5"
-  },
-  "_metadata": {
-      "count": 15,
-      "skip": 0,
-      "top": 5
-  },
-  items: [
-      {
-          "Id": 22212,
-          "FirstName": "Sam",
-          "LastName": "Smith",
-          "UserName": "sample@iqmetrix.com",
-          "Attributes": {
-              "Department": "Sales"
-          },
-          "ClientUserId": "132",
-          "Email": "sample@iqmetrix.com",
-          "IsActive": true,
-          "ParentEntityId": 1,
-          "Picture": null,
-          "Version": 1
-      },
-      {
-          "Id": 22218,
-          "FirstName": "Sam",
-          "LastName": "Smithitherson",
-          "UserName": "samples@iqmetrix.com",
-          "Attributes": {
-              "Department": "IT"
-          },
-          "ClientUserId": "142",
-          "Email": "samples@iqmetrix.com",
-          "IsActive": true,
-          "ParentEntityId": 1,
-          "Picture": null,
-          "Version": 1
-      },
-      ...
-  ]
+"_links": 
+{
+"prev": "null",
+"self": "null",
+"next": "null"
+},
+"_metadata": 
+{
+"count": 15,
+"skip": 0,
+"top": 5
+},
+"items": [
+{
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
- 
+]
+,
+"Picture": {},
+"Version": 1
+}
+]
+
+}```
 ## Assigning a User to a Location
 
 {{note}}
@@ -552,8 +656,8 @@ Users can be assigned to multiple locations
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -561,7 +665,9 @@ Users can be assigned to multiple locations
 
 #### URI Parameters
 
-* `UserId` (**Required**)  - Identifier for the {{User}} * `LocationId` (**Required**)  - Identifier for the {{Location}} 
+
+* `UserId` (**Required**)  - Identifier for the {{User}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -573,6 +679,7 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+
 ```
 
 #### Response
@@ -583,6 +690,7 @@ Content-Type: application/json
 
 ```
 HTTP 204 Content-Type: application/json
+```
 ## Unassigning a User from a Location
 
 
@@ -593,15 +701,17 @@ HTTP 204 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `UserId` (**Required**)  - Identifier for the {{User}} * `LocationId` (**Required**)  - Identifier for the {{Location}} 
+
+* `UserId` (**Required**)  - Identifier for the {{User}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -612,12 +722,12 @@ DELETE /Users(22212)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 
@@ -632,13 +742,14 @@ Accept: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `UserId` (**Required**)  - Identifier for the {{User}} 
 
@@ -651,10 +762,14 @@ GET /Users(22212)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+  * `UserId` (integer)
+  * `LocationIDs` (array) - Location Ids for {{Locations}} assigned to the {{User}}
 
 
 ###### Example
@@ -662,10 +777,9 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "UserId": 22212,
-  "LocationIDs": [2]
-}
- 
+"UserId": 22212,
+"LocationIDs": [4]
+}```
 ## Getting Users by ClientUserId
 
 
@@ -676,15 +790,19 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `ClientUserId` (**Required**)  - Identifier for the {{User}} in an external system * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `ClientUserId` (**Required**)  - Identifier for the {{User}} in an external system 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -695,47 +813,54 @@ GET /Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{User}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
+[
 {
-  "_links": {
-    "prev": null,
-    "self": "/v1/Entities(1)/Users?$skip=0&$top=5",
-    "next": "/v1/Entities(1)/Users?$skip=5&$top=5"
-  },
-    "_metadata": {
-    "count": 15,
-    "skip": 0,
-    "top": 5
-  },
-  items: [
-    {
-      "Id": 22212,
-      "FirstName": "Sam",
-      "LastName": "Smith",
-      "UserName": "sample@iqmetrix.com",
-      "Attributes": {
-        "Department": "Sales"
-      },
-      "ClientUserId": "132",
-      "Email": "sample@iqmetrix.com",
-      "IsActive": true,
-      "ParentEntityId": 1,
-      "Picture": null,
-      "Version": 1
-    },
-    ...
-  ]
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
- 
+]
+,
+"Picture": {},
+"Version": 1
+}
+]
+```
 ## Locking a User
 
 {{note}}
@@ -751,12 +876,10 @@ Once locked, a User will not be able to log in or obtain an access token until t
 
 
 
-* `Accept: application/json`
-* `Content-Type: application/json`
-
 
 
 #### URI Parameters
+
 
 * `UserId` (**Required**)  - Identifier for the {{User}} 
 
@@ -767,8 +890,6 @@ Once locked, a User will not be able to log in or obtain an access token until t
 ```
 POST /Users(22212)/Lock
 
-Accept: application/json
-Content-Type: application/json
 
 ```
 
@@ -780,6 +901,7 @@ Content-Type: application/json
 
 ```
 HTTP 204 Content-Type: application/json
+```
 ## Unlocking a User
 
 Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
@@ -797,12 +919,10 @@ A User can be unlocked if their account is locked and their parent Entity is not
 
 
 
-* `Accept: application/json`
-* `Content-Type: application/json`
-
 
 
 #### URI Parameters
+
 
 * `UserId` (**Required**)  - Identifier for the {{User}} 
 
@@ -813,8 +933,6 @@ A User can be unlocked if their account is locked and their parent Entity is not
 ```
 POST /Users(22212)/Unlock
 
-Accept: application/json
-Content-Type: application/json
 
 ```
 
@@ -826,6 +944,7 @@ Content-Type: application/json
 
 ```
 HTTP 204 Content-Type: application/json
+```
 ## Enabling a User
 
 
@@ -838,12 +957,10 @@ HTTP 204 Content-Type: application/json
 
 
 
-* `Accept: application/json`
-* `Content-Type: application/json`
-
 
 
 #### URI Parameters
+
 
 * `UserId` (**Required**)  - Identifier for the {{User}} 
 
@@ -854,13 +971,13 @@ HTTP 204 Content-Type: application/json
 ```
 POST /Users(22212)/Enable
 
-Accept: application/json
-Content-Type: application/json
 
 ```
 
 #### Response
 
+
+{{User}}
 
 
 ###### Example
@@ -868,20 +985,37 @@ Content-Type: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": 22212,
-  "FirstName": "Sam",
-  "LastName": "Smith",
-  "UserName": "sample@iqmetrix.com",
-  "Attributes": {
-      "Department": "Sales"
-  },
-  "ClientUserId": "132",
-  "Email": "sample@iqmetrix.com",
-  "IsActive": true,
-  "ParentEntityId": 1,
-  "Picture": null,
-  "Version": 3
+"Id": 22212,
+"FirstName": "Sam",
+"LastName": "Smith",
+"UserName": "sample@iqmetrix.com",
+"Address": 
+{
+"AddressLine1": "1600 Amphitheatre Pkwy",
+"AddressLine2": "Suite 500",
+"City": "Smith",
+"StateCode": "BC",
+"CountryCode": "CA",
+"Zip": "94043"
+},
+"Attributes": 'Department': 'Sales',
+"ClientUserId": "132",
+"Email": "sample@iqmetrix.com",
+"IsActive": true,
+"JobTitle": "Sales Clerk",
+"ParentEntityId": 1,
+"PhoneNumbers": [
+{
+"Number": "5555555555",
+"Extension": "1234",
+"Type": "Home"
 }
+]
+,
+"Picture": {},
+"Version": 1
+}```
+
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |

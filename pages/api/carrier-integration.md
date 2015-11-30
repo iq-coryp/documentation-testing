@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -25,11 +25,11 @@ An **Activation** contains IDs necessary to identify an activation, and all the 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | string | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma | `1=35854205829867` |
+| Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma | `1=35854205829867` |
 | CarrierActivationDetails | [CarrierActivationDetails](#carrieractivationdetails) | The details of this Activation |  |
-| CarrierId | integer | Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
-| CompanyId | integer | Identifier of the Company making this request | `1234` |
-| LocationId | integer | Identifier of the Location making this request | `5678` |
+| CarrierId | Integer | Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
+| CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
+| LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) making this request | `5678` |
 
 ### CarrierActivationDetails
 
@@ -37,37 +37,37 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ActivationId | integer | System-generated identifier for the [Activation](#activation) | `354` |
-| ActivationDate | datetime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
+| ActivationId | Integer | System-generated identifier for the [Activation](#activation) | `354` |
+| ActivationDate | Datetime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
 | ActivatedProduct | [ActivatedProduct](#activatedproduct) | The Product that is being activated |  |
-| ActivationState | string | State of the [Activation](#activation). See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
-| ActivationTermCode | string(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
-| ActivationType | string | The type of this [Activation](#activation), such as a new [Activation](#activation) or an upgrade. See [ActivationType](#activationtype) for a list of acceptable values | `NewActivation` |
-| AdditionalFees | array[[AdditionalFee](#additionalfee)] | The additional fees that are applicable to this [Activation](#activation), not including the deposit fee or tab |  |
-| ContractLengthInMonths | integer | Number of months the [Activation](#activation) has been contracted for. ContractTerm in RQ. For a list of acceptable values, see [ContractTerms](#contractterms) | `24` |
-| ContractNumberIsAccountNumber | boolean | A flag to indicate if the contract number of the [Activation](#activation) can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
-| DealerName | string | Carrier-specific dealer name | `IAPR` |
-| DealerCode | string(64) | Carrier-specific dealer code | `IAPR` |
-| Deposit | [AdditionalFee](#additionalfee) | The security deposit that the [Activation](#activation) requires the Subscriber to pay | `Credit check performed, deposit required` |
-| Notes | string(256) | Free form text with any additional notes related to the [Activation](#activation) | `Notes go here!` |
-| OrderNumber | string(64) | Carrier-specific identifier for the order this activation is associated with. Activations may have the same order number if they were part of a multi-line activation in the carrier system | `ORD1234` |
-| RatePlans | array[[RatePlan](#rateplan)] | The Rate Plan(s) that are applied to the [Activation](#activation) |  |
-| RemoteActivationID | string | Carrier-specific identifier for the [Activation](#activation) | `3023997373` |
-| Subscriber | subscriber | The Subscriber (customer) that the [Activation](#activation) is for |  |
-| TrackingNumber | string(64) | Carrier-specific tracking number for this [Activation](#activation) | `3023997373` |
-| *BillingCode* | *string* | *Reserved for future use* | |
-| *BillingCycle* | *string* | *Reserved for future use* | |
-| *BillingCycleDate* | *string* | *Reserved for future use* | |
-| *Commission* | *decimal* | *Reserved for future use* | |
-| *CompanyCode* | *string* | *Reserved for future use* | |
-| *IsCommissionable* | *boolean* | *Reserved for future use* | |
-| *OriginalIMEI* | *string* | *Reserved for future use* | |
-| *OriginalSIM* | *string* | *Reserved for future use* | |
-| *OriginalRatePlanCode* | *string* | *Reserved for future use* | |
-| *OriginalRatePlanMRC* | *string* | *Reserved for future use* | |
-| *SalesRepresentativeName* | *string* | *Reserved for future use* | |
-| *UpgradeCode* | *string* | *Reserved for future use* | |
-| *UpgradeSourceNumber* | *string* | *Reserved for future use* | |
+| ActivationState | String | State of the [Activation](#activation). See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
+| ActivationTermCode | String(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
+| ActivationType | String | The type of this [Activation](#activation), such as a new [Activation](#activation) or an upgrade. See [ActivationType](#activationtype) for a list of acceptable values | `NewActivation` |
+| AdditionalFees | Array[[AdditionalFee](#additionalfee)] | The additional fees that are applicable to this [Activation](#activation), not including the deposit fee or tab |  |
+| ContractLengthInMonths | Integer | Number of months the [Activation](#activation) has been contracted for. ContractTerm in RQ. For a list of acceptable values, see [ContractTerms](#contractterms) | `24` |
+| ContractNumberIsAccountNumber | Boolean | A flag to indicate if the contract number of the [Activation](#activation) can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
+| DealerName | String | Carrier-specific dealer name | `IAPR` |
+| DealerCode | String(64) | Carrier-specific dealer code | `IAPR` |
+| Deposit | [AdditionalFee](#additionalfee) | The security deposit that the [Activation](#activation) requires the Subscriber to pay |  |
+| Notes | String(256) | Free form text with any additional notes related to the [Activation](#activation) | `Notes go here!` |
+| OrderNumber | String(64) | Carrier-specific identifier for the order this activation is associated with. Activations may have the same order number if they were part of a multi-line activation in the carrier system | `ORD1234` |
+| RatePlans | Array[[RatePlan](#rateplan)] | The Rate Plan(s) that are applied to the [Activation](#activation) |  |
+| RemoteActivationID | String(64) | Carrier-specific identifier for the [Activation](#activation) | `3023997373` |
+| Subscriber | [Subscriber](#subscriber) | The Subscriber (customer) that the [Activation](#activation) is for |  |
+| TrackingNumber | String(64) | Carrier-specific tracking number for this [Activation](#activation) | `3023997373` |
+| *BillingCode* | *String* | *Reserved for future use* | |
+| *BillingCycle* | *String* | *Reserved for future use* | |
+| *BillingCycleDate* | *String* | *Reserved for future use* | |
+| *Commission* | *Decimal* | *Reserved for future use* | |
+| *CompanyCode* | *String* | *Reserved for future use* | |
+| *IsCommissionable* | *Boolean* | *Reserved for future use* | |
+| *OriginalIMEI* | *String* | *Reserved for future use* | |
+| *OriginalSIM* | *String* | *Reserved for future use* | |
+| *OriginalRatePlanCode* | *String* | *Reserved for future use* | |
+| *OriginalRatePlanMRC* | *String* | *Reserved for future use* | |
+| *SalesRepresentativeName* | *String* | *Reserved for future use* | |
+| *UpgradeCode* | *String* | *Reserved for future use* | |
+| *UpgradeSourceNumber* | *String* | *Reserved for future use* | |
 
 ### Subscriber
 
@@ -78,26 +78,36 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| SubscriberId | string(64) | Carrier-specific identifier for the Subscriber | `12121212121` |
-| FirstName | string(64) | If IsIndividual is true, the first name of the Subscriber | `Joe` |
-| LastName | string(64) | If IsIndividual is true, the last name of the Subscriber | `Smith` |
-| Addresses | array[[Address](#address)] | List of addresses for the Subscriber |  |
-| AssociatedAccount | object | The account associated with this Subscriber |  |
-| AssociatedAccount.AccountId | string(64) | Carrier-specific identifier for the associated account | `343434343` |
-| AssociatedAccount.Notes | string | Custom notes related to the associated account |  |
-| AssociatedAccount.TrackingNumber | string | Carrier-specific tracking number for the associated account | `5656565656` |
-| BirthDate | datetime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
-| CompanyName | string(64) | If the Subscriber is a business, the name of the business | `Acme Inc` |
-| Email | string(64) | Email address | `subscriber@example.com` |
-| IsIndividual | boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
-| Notes | string(128) | Notes | `24 Month Term` |
-| PhoneNumbers | array[object] | List of phone numbers |  |
-| PhoneNumbers.Type | string | The type of phone number. See [PhoneNumberType](#phonenumbertype) for the list of acceptable values | `Home` |
-| PhoneNumbers.Value | string(32) | Phone number | `1234561234` |
-| SSN | string(4) | Last 4 digits of a SSN | `6789` |
-| TrackingNumber | string(64) | Carrier-specific tracking number | `2121212121` |
-| *SecondName* | *string* | *Reserved for future use* | |
-| *PreferredLanguage* | *string* | *Reserved for future use* | |
+| SubscriberId | String(64) | Carrier-specific identifier for the Subscriber | `12121212121` |
+| FirstName | String(64) | If IsIndividual is true, the first name of the Subscriber | `Joe` |
+| LastName | String(64) | If IsIndividual is true, the last name of the Subscriber | `Smith` |
+| Addresses | Array[[Address](#address)] | List of addresses for the Subscriber |  |
+| AssociatedAccount | [Account](#account) | The account associated with this Subscriber |  |
+| BirthDate | Datetime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
+| CompanyName | String(64) | If the Subscriber is a business, the name of the business |  |
+| Email | String(64) | Email address | `subscriber@example.com` |
+| IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
+| Notes | String(128) | Notes | `24 Month Term` |
+| PhoneNumbers | Array[[PhoneNumber](#phonenumber)] | List of phone numbers |  |
+| SSN | String(4) | Last 4 digits of a SSN | `6789` |
+| TrackingNumber | String(64) | Carrier-specific tracking number | `2121212121` |
+| *SecondName* | *String* | *Reserved for future use* | |
+| *PreferredLanguage* | *String* | *Reserved for future use* | |
+
+### Account
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| AccountId | String(64) | Carrier-specific identifier for the associated account | `343434343` |
+| Notes | String | Custom notes related to the associated account |  |
+| TrackingNumber | String | Carrier-specific tracking number for the associated account | `5656565656` |
+
+### PhoneNumber
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Type | String | The type of phone number. See [PhoneNumberType](#phonenumbertype) for the list of acceptable values | `Home` |
+| Value | String(32) | Phone number | `1234561234` |
 
 ### Address
 
@@ -109,16 +119,16 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| AddressLine1 | string(128) | Line 1 of the Address | `123 Main Street` |
-| AddressLine2 | string(128) | Line 2 of the Address | `Apt 200` |
-| City | string(64) | City | `Dover` |
-| Country | string(64) | Country | `USA` |
-| County | string(64) | County | `Fairfield` |
-| POBox | string(64) | Post office box | `PO Box 123` |
-| PostalCode | string(32) | Postal code or zip code | `19901` |
-| Province | string(64) | Province or state | `DE` |
-| SuiteNumber | string(32) | Suite number | `100` |
-| Type | string | The type of this Address. See [AddressType](#addresstype) for a list of acceptable values | `Residential` |
+| AddressLine1 | String(128) | Line 1 of the Address | `123 Main Street` |
+| AddressLine2 | String(128) | Line 2 of the Address | `Apt 200` |
+| City | String(64) | City | `Dover` |
+| Country | String(64) | Country | `USA` |
+| County | String(64) | County | `Fairfield` |
+| POBox | String(64) | Post office box | `PO Box 123` |
+| PostalCode | String(32) | Postal code or zip code | `19901` |
+| Province | String(64) | Province or state | `DE` |
+| SuiteNumber | String(32) | Suite number | `100` |
+| Type | String | The type of this Address. See [AddressType](#addresstype) for a list of acceptable values | `Residential` |
 
 ### RatePlan
 
@@ -128,73 +138,78 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| RatePlanId | string(64) | Carrier-specific identifier for the RatePlan | `ABC1234` |
-| Name | string(64) | Name | `Country-wide Unlimited` |
-| ContractTerms | string(256) | Terms and conditions | `Some terms` |
-| Description | string(128) | Description. May be set to an empty string | `The perfect plan for lots of calling!` |
-| IncludedRatePlanFeatures | array[[RatePlanFeature](#rateplanfeature)] | Features are included with the RatePlan |  |
-| MonthlyRecurringCharges | decimal | Monthly cost | `55` |
-| RatePlanFeatureAddons | array[[RatePlanFeature](#rateplanfeature)] | Additional RatePlan features the Subscriber chose to pay for |  |
-| SOCCode | string(64) | Carrier-specific SOC code | `ABC1234` |
-| *CommissionAmount* | *decimal* | *Reserved for future use* | |
-| *IsSharedPlan* | *boolean* | *Reserved for future use* | |
+| RatePlanId | String(64) | Carrier-specific identifier for the RatePlan | `ABC1234` |
+| Name | String(64) | Name | `Country-wide Unlimited` |
+| ContractTerms | String(256) | Terms and conditions | `Some terms` |
+| Description | String(128) | Description. May be set to an empty string | `The perfect plan for lots of calling!` |
+| IncludedRatePlanFeatures | Array[[RatePlanFeature](#rateplanfeature)] | Features are included with the RatePlan |  |
+| MonthlyRecurringCharges | Decimal | Monthly cost | `55` |
+| RatePlanFeatureAddons | Array[[RatePlanFeature](#rateplanfeature)] | Additional RatePlan features the Subscriber chose to pay for |  |
+| SOCCode | String(64) | Carrier-specific SOC code | `ABC1234` |
+| *CommissionAmount* | *Decimal* | *Reserved for future use* | |
+| *IsSharedPlan* | *Boolean* | *Reserved for future use* | |
 
 ### RatePlanFeature
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| RatePlanAddonId | string(64) | Carrier-specific identifier for the RatePlanFeature | `XYZ5678` |
-| Name | string(64) | Name | `TEXT100` |
-| Description | string(128) | Description | `One hundred additional text messages.` |
-| MonthlyRecurringCharges | decimal | Monthly cost | `5` |
-| SOCCode | string(64) | Carrier-specific SOC code | `XYZ5678` |
-| *CommissionAmount* | *decimal* | *Reserved for future use* | |
+| RatePlanAddonId | String(64) | Carrier-specific identifier for the RatePlanFeature | `XYZ5678` |
+| Name | String(64) | Name | `TEXT100` |
+| Description | String(128) | Description | `One hundred additional text messages.` |
+| MonthlyRecurringCharges | Decimal | Monthly cost | `5` |
+| SOCCode | String(64) | Carrier-specific SOC code | `XYZ5678` |
+| *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 
 ### ActivatedProduct
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Description | string(128) | Description | `Samsung Galaxy S5` |
-| ESN | string(32) | Electronic Serial Number. This is the first value used to search for a product in your inventory when importing a new activation | `35854205829867` |
-| IMEI | string(32) | International Mobile Station Equipment Identity | `351756051523999` |
-| Make | string(64) | Make | `Samsung` |
-| MobileDeviceNumber | string(32) | Phone number. Customer Telephone Number and MDN in RQ | `5555550123` |
-| Model | string(64) | Model | `Galaxy S5` |
-| Price | decimal | Price | `499` |
-| ProductId | string(64) | Used to identify the product in other iQmetrix systems. May be set to an empty string |  |
-| SerialNumber | string(64) | Serial number | `98769456321` |
-| SIM | string(32) | Subscriber identity module | `89000000000000001234` |
-| SKU | string(64) | Stockkeeping Unit. This value is used when activating a customer-owned phone | `DEF987` |
-| SOCCode | string(64) | Carrier-specific SOC | `DEF987` |
-| Tab | object | A discount that is added to or subtracted from the Product's price |  |
-| Tab.Amount | decimal | Amount | `50` |
-| Tab.Commission | [VendorRebate](#vendorrebate) |  |  |
-| Tab.ReferenceNumber | string | Carrier reference number | `abc123` |
-| *IsCarrierSupplied* | *boolean* | *Reserved for future use* | |
-| *NumberPortedIn* | *boolean* | *Reserved for future use* | |
+| Description | String(128) | Description | `Samsung Galaxy S5` |
+| ESN | String(32) | Electronic Serial Number. This is the first value used to search for a product in your inventory when importing a new activation | `35854205829867` |
+| IMEI | String(32) | International Mobile Station Equipment Identity | `351756051523999` |
+| Make | String(64) | Make | `Samsung` |
+| MobileDeviceNumber | String(32) | Phone number. Customer Telephone Number and MDN in RQ | `5555550123` |
+| Model | String(64) | Model | `Galaxy S5` |
+| Price | Decimal | Price | `499` |
+| ProductId | String(64) | Used to identify the product in other iQmetrix systems. May be set to an empty string |  |
+| SerialNumber | String(64) | Serial number | `98769456321` |
+| SIM | String(32) | Subscriber identity module | `89000000000000001234` |
+| SKU | String(64) | Stockkeeping Unit. This value is used when activating a customer-owned phone | `DEF987` |
+| SOCCode | String(64) | Carrier-specific SOC | `DEF987` |
+| Tab | [Tab](#tab) | A discount that is added to or subtracted from the Product's price |  |
+| *IsCarrierSupplied* | *Boolean* | *Reserved for future use* | |
+| *NumberPortedIn* | *Boolean* | *Reserved for future use* | |
+
+### Tab
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Amount | Decimal | Amount | `50` |
+| Commission | [VendorRebate](#vendorrebate) |  |  |
+| ReferenceNumber | String | Carrier reference number | `abc123` |
 
 ### AdditionalFee
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Name | string(64) | Name | `Roaming` |
-| Description | string(128) | Description | `Roam like home` |
-| Amount | decimal | Amount | `55``` |
-| Notes | string(512) | Notes | `US` |
+| Name | String(64) | Name | `Roaming` |
+| Description | String(128) | Description | `Roam like home` |
+| Amount | Decimal | Amount | `55` |
+| Notes | String(512) | Notes | `US` |
 | Rebate | [VendorRebate](#vendorrebate) |  |  |
-| ReferenceNumber | string(64) | Carrier reference number, this value should be used for storing an identifier from an external system | `abc123` |
-| SOCCode | string(64) | Carrier-specific SOC code | `BB3221` |
+| ReferenceNumber | String(64) | Carrier reference number, this value should be used for storing an identifier from an external system | `abc123` |
+| SOCCode | String(64) | Carrier-specific SOC code | `BB3221` |
 
 ### VendorRebate
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Name | string(64) | Name | `Promo` |
-| Description | string(128) | Description | `FREE Roam Like Home` |
-| Amount | decimal | Amount | `55` |
-| Notes | string(512) | Notes | `US` |
-| ReferenceNumber | string(64) | Carrier reference number | `abc123` |
-| SOCCode | string(64) | Carrier-specific SOC code | `AGG242` |
+| Name | String(64) | Name | `Promo` |
+| Description | String(128) | Description | `FREE Roam Like Home` |
+| Amount | Decimal | Amount | `55` |
+| Notes | String(512) | Notes | `US` |
+| ReferenceNumber | String(64) | Carrier reference number | `abc123` |
+| SOCCode | String(64) | Carrier-specific SOC code | `AGG242` |
 
 ### ConfirmedActivation
 
@@ -202,20 +217,25 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Service-generated identifier for the activation confirmation | `58` |
-| ActivationConfirmationDetails | array[object] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
-| ActivationConfirmationDetails.ActivationID | integer | Identifier of the activation that is being confirmed (see CarrierActivationDetails.ActivationId) | `153` |
-| ActivationConfirmationDetails.BAN | string | The billing account number of the account associated with this line | `681883059` |
-| ActivationConfirmationDetails.IMEI | string | The IMEI of the device that was activated | `990000862471854` |
-| ActivationConfirmationDetails.OrderNumber | string | The order number of the activation that is being confirmed (see CarrierActivationDetails.OrderNumber) | `ORD1234` |
-| ActivationConfirmationDetails.PhoneNumber | string | The phone number of the device that was activated | `3023997373` |
-| ActivationConfirmationDetails.RemoteActivationID | string | Carrier-specific identifier for the activation that is being confirmed (see CarrierActivationDetails.RemoteActivationID) | `3023997373` |
-| ConfirmationDateUTC | datetime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
-| InvoiceId | string | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
-| InvoiceSubtotal | decimal | The subtotal amount from the invoice | `53.38` |
-| InvoiceTotal | decimal | The total amount from the invoice | `61.54` |
-| LocationId | integer | Identifier of the [Location](/api/company-tree/#location) where the transaction occurred | `1` |
-| Taxes | decimal | The taxes from the invoice | `8.16` |
+| Id | Integer | Service-generated identifier for the activation confirmation | `58` |
+| ActivationConfirmationDetails | Array[[ActivationDetails](#activationdetails)] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
+| ConfirmationDateUTC | Datetime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
+| InvoiceId | String | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
+| InvoiceSubtotal | Decimal | The subtotal amount from the invoice | `53.38` |
+| InvoiceTotal | Decimal | The total amount from the invoice | `61.54` |
+| LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) where the transaction occurred | `1` |
+| Taxes | Decimal | The taxes from the invoice | `8.16` |
+
+### ActivationDetails
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| ActivationID | Integer | Identifier of the activation that is being confirmed (see CarrierActivationDetails.ActivationId) | `153` |
+| BAN | String | The billing account number of the account associated with this line | `681883059` |
+| IMEI | String | The IMEI of the device that was activated | `990000862471854` |
+| OrderNumber | String | The order number of the activation that is being confirmed (see CarrierActivationDetails.OrderNumber) | `ORD1234` |
+| PhoneNumber | String | The phone number of the device that was activated | `3023997373` |
+| RemoteActivationID | String | Carrier-specific identifier for the activation that is being confirmed (see CarrierActivationDetails.RemoteActivationID) | `3023997373` |
 
 
 
@@ -279,8 +299,8 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -288,7 +308,12 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `LocationId` (**Required**)  - Identifier for the {{Location}} * `CarrierId` (**Required**)  - Identifier for the {{Carrier}} * `ActivationId` (**Required**)  - Identifier for the {{Activation}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
+* `ActivationId` (**Required**)  - Identifier for the {{Activation}} 
+
 
 
 #### Request Parameters
@@ -411,141 +436,176 @@ PUT /Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-  "Id": "1=35854205829867",
-  "CarrierActivationDetails": {
-      "ActivatedProduct": {
-          "ProductId": "",
-          "Description": "Samsung Galaxy S5",
-          "ESN": "35854205829867",
-          "IMEI": "351756051523999",
-          "Make": "Samsung",
-          "MobileDeviceNumber": "5555550123",
-          "Model": "Galaxy S5",
-          "Price": 499,
-          "SerialNumber": "98769456321",
-          "SIM": "89000000000000000000",
-          "SKU": "DEF987",
-          "SOCCode": "DEF987",
-          "Tab": {
-              "Commission": {
-                  "Name": "Commission",
-                  "Description": "commission",
-                  "Amount": 20,
-                  "Notes": "",
-                  "ReferenceNumber": "abc123",
-                  "SOCCode": "BBC324",
-              },
-              "ReferenceNumber": "ABC1234",
-              "Amount": 50
-          },
-      },
-      "ActivationType": "NewActivation",
-      "Subscriber": {
-          "FirstName": "Joe",
-          "LastName": "Smith",
-          "CompanyName": "Acme Inc",
-          "SubscriberId": "12121212121",
-          "Addresses": [
-              {
-                  "Type": "Residential",
-                  "AddressLine1": "123 Main Street",
-                  "AddressLine2": "",
-                  "City": "Dover",
-                  "Country": "USA",
-                  "PostalCode": "19901",
-                  "Province": "DE",
-                  "County": "",
-                  "POBox": "",
-                  "SuiteNumber": ""
-              }
-          ],
-          "AssociatedAccount": {
-              "AccountId": "343434343",
-              "Notes": "",
-              "TrackingNumber": "5656565656"
-          },
-          "BirthDate": "5/16/1980",
-          "Email": "joes@test.com",
-          "IsIndividual": "true",
-          "Notes": "24 month term",
-           "PhoneNumbers": {
-              "Type": "Home",
-              "Value": "1234561234"
-          },
-          "SSN": "6789",
-          "TrackingNumber": "3023997373"
-      },
-      "RatePlans": [
-          {
-              "Description": "The perfect plan for lots of calling!",
-              "SOCCode": "ABC1234",
-              "RatePlanId": "ABC1234",
-              "Name": "Country-wide Unlimited",
-              "ContractTerms": "Some terms",
-              "IncludedRatePlanFeatures": {
-                  "Description": "One hundred additional text messages.",
-                  "SOCCode": "XYZ5678",
-                  "RatePlanAddonId": "XYZ5678"
-                  "Name": "TEXT100",
-                  "MonthlyRecurringCharges": 5
-              },
-              "MonthlyRecurringCharges": 55,
-              "RatePlanFeatureAddons": {
-                  "Description": "25 US Text Messages",
-                  "SOCCode": "VVA223",
-                  "RatePlanAddonId": "SSA1112",
-                  "Name": "USTEXT25",
-                  "MonthlyRecurringCharges": 5
-              },
-          },
-      ]            
-      "ActivationId": 354,
-      "ActivationState": "Pending",
-      "ActivationTermCode": "EarlyUpgrade",
-      "AdditionalFees": {
-          "Name": "Roaming",
-          "Description": "Roam like home",
-          "Amount": 55,
-          "Notes": "US",
-          "Rebate": {
-              "Name": "Promo",
-              "Description": "Free Roam Like Home",
-              "Notes": "Applied once",
-              "ReferenceNumber": "ABC1234",
-              "SOCCode": "AGG242",
-              "Amount": 40,
-          },
-          "ReferenceNumber": "ABC1234",
-          "SOCCode": "BB3221"
-      }
-      "ContractLengthInMonths": 24,
-      "ContractNumberIsAccountNumber": "false",
-      "DealerName": "IAPR",
-      "DealerCode": "IAPR",
-      "Deposit": {
-          "Name": "Deposit",
-          "Description": "Deposit required",
-          "Amount": 200,
-          "Notes": "Due to credit",
-          "Rebate": null,
-          "SOCCode": "BB3221"
-      },
-      "Notes": "Credit check performed, deposit required",
-      "OrderNumber": "ORD1234",
-      "RemoteActivationID": "3023997373",
-      "TrackingNumber": "1TTTTN4421"
-  },
-  "CarrierId": "41",
-  "CompanyId": "1",
-  "LocationId": "4"
-}
 
+
+{
+"Id": "1=35854205829867",
+"CarrierActivationDetails": 
+{
+"ActivationId": 354,
+"ActivationDate": "2015-06-19T05:44:39.7163989Z",
+"ActivatedProduct": 
+{
+"Description": "Samsung Galaxy S5",
+"ESN": "35854205829867",
+"IMEI": "351756051523999",
+"Make": "Samsung",
+"MobileDeviceNumber": "5555550123",
+"Model": "Galaxy S5",
+"Price": 499,
+"ProductId": "",
+"SerialNumber": "98769456321",
+"SIM": "89000000000000001234",
+"SKU": "DEF987",
+"SOCCode": "DEF987",
+"Tab": 
+{
+"Amount": 50,
+"Commission": 
+{
+"Name": "Promo",
+"Description": "FREE Roam Like Home",
+"Amount": 55,
+"Notes": "US",
+"ReferenceNumber": "abc123",
+"SOCCode": "AGG242"
+},
+"ReferenceNumber": "abc123"
+}
+},
+"ActivationState": "Pending",
+"ActivationTermCode": "EarlyUpgrade",
+"ActivationType": "NewActivation",
+"AdditionalFees": [
+{
+"Name": "Roaming",
+"Description": "Roam like home",
+"Amount": 55,
+"Notes": "US",
+"Rebate": 
+{
+"Name": "Promo",
+"Description": "FREE Roam Like Home",
+"Amount": 55,
+"Notes": "US",
+"ReferenceNumber": "abc123",
+"SOCCode": "AGG242"
+},
+"ReferenceNumber": "abc123",
+"SOCCode": "BB3221"
+}
+]
+,
+"ContractLengthInMonths": 24,
+"ContractNumberIsAccountNumber": false,
+"DealerName": "IAPR",
+"DealerCode": "IAPR",
+"Deposit": 
+{
+"Name": "Roaming",
+"Description": "Roam like home",
+"Amount": 55,
+"Notes": "US",
+"Rebate": 
+{
+"Name": "Promo",
+"Description": "FREE Roam Like Home",
+"Amount": 55,
+"Notes": "US",
+"ReferenceNumber": "abc123",
+"SOCCode": "AGG242"
+},
+"ReferenceNumber": "abc123",
+"SOCCode": "BB3221"
+},
+"Notes": "Notes go here!",
+"OrderNumber": "ORD1234",
+"RatePlans": [
+{
+"RatePlanId": "ABC1234",
+"Name": "Country-wide Unlimited",
+"ContractTerms": "Some terms",
+"Description": "The perfect plan for lots of calling!",
+"IncludedRatePlanFeatures": [
+{
+"RatePlanAddonId": "XYZ5678",
+"Name": "TEXT100",
+"Description": "One hundred additional text messages.",
+"MonthlyRecurringCharges": 5,
+"SOCCode": "XYZ5678"
+}
+]
+,
+"MonthlyRecurringCharges": 55,
+"RatePlanFeatureAddons": [
+{
+"RatePlanAddonId": "XYZ5678",
+"Name": "TEXT100",
+"Description": "One hundred additional text messages.",
+"MonthlyRecurringCharges": 5,
+"SOCCode": "XYZ5678"
+}
+]
+,
+"SOCCode": "ABC1234"
+}
+]
+,
+"RemoteActivationID": "3023997373",
+"Subscriber": 
+{
+"SubscriberId": "12121212121",
+"FirstName": "Joe",
+"LastName": "Smith",
+"Addresses": [
+{
+"AddressLine1": "123 Main Street",
+"AddressLine2": "Apt 200",
+"City": "Dover",
+"Country": "USA",
+"County": "Fairfield",
+"POBox": "PO Box 123",
+"PostalCode": "19901",
+"Province": "DE",
+"SuiteNumber": "100",
+"Type": "Residential"
+}
+]
+,
+"AssociatedAccount": 
+{
+"AccountId": "343434343",
+"Notes": "",
+"TrackingNumber": "5656565656"
+},
+"BirthDate": "5/16/1980",
+"CompanyName": "",
+"Email": "subscriber@example.com",
+"IsIndividual": true,
+"Notes": "24 Month Term",
+"PhoneNumbers": [
+{
+"Type": "Home",
+"Value": "1234561234"
+}
+]
+,
+"SSN": "6789",
+"TrackingNumber": "2121212121"
+},
+"TrackingNumber": "3023997373"
+},
+"CarrierId": 41,
+"CompanyId": 1234,
+"LocationId": 5678
+}
 
 ```
 
 #### Response
 
+
+{{Activation}}
 
 
 ###### Example
@@ -553,134 +613,166 @@ Content-Type: application/json
 ```
 HTTP 201 Content-Type: application/json
 {
-    "Id": "1=35854205829867",
-    "CarrierActivationDetails": {
-        "ActivationId": 354,
-        "ActivatedProduct": { 
-            "Description": "Samsung Galaxy S5",
-            "ESN": "35854205829867",
-            "IMEI": "351756051523999",
-            "Make": "Samsung",
-            "MobileDeviceNumber": "5555550123",
-            "Model": "Galaxy S5",
-            "Price": 499,
-            "ProductId": "",
-            "SerialNumber": "98769456321",
-            "SIM": "89000000000000000000",
-            "SKU": "DEF987",
-            "SOCCode": "DEF987",
-            "Tab": {
-                "Amount": 50,
-                "Commission": {
-                    "Name": "Commission",
-                    "Description": "commission",
-                    "Amount": 20,
-                    "Notes": "",
-                    "ReferenceNumber": "abc123",
-                    "SOCCode": "BBC324",
-                },
-                "ReferenceNumber": "ABC1234",
-            },
-        },
-        "ActivationDate": "2015-06-19T05:44:39.7163989Z",
-        "ActivationState": "Pending",
-        "ActivationTermCode": "EarlyUpgrade",
-        "ActivationType": "NewActivation",
-        "Subscriber": {
-            "SubscriberId": "12121212121",
-            "FirstName": "Joe",
-            "LastName": "Smith",
-            "CompanyName": "Acme Inc",
-            "Addresses": [
-                {
-                    "AddressLine1": "123 Main Street",
-                    "AddressLine2": "",
-                    "City": "Dover",
-                    "Country": "USA",
-                    "PostalCode": "19901",
-                    "Province": "DE",
-                    "County": "",
-                    "POBox": "",
-                    "SuiteNumber": "",
-                    "Type": "Residential"
-                }
-            ],
-            "AssociatedAccount": {
-                "AccountId": "343434343",
-                "Notes": "",
-                "TrackingNumber": "5656565656"
-            },
-            "BirthDate": "5/16/1980",
-            "Email": "joes@test.com",
-            "IsIndividual": "true",
-            "Notes": "24 month term",
-            "PhoneNumbers": {
-                "Type": "Home",
-                "Value": "1234561234"
-            },
-            "SSN": "6789",
-            "TrackingNumber": "3023997373"
-        },
-        "AdditionalFees": {
-            "Name": "Roaming",
-            "Description": "Roam like home",
-            "Amount": 55,
-            "Notes": "US",
-            "Rebate": {
-                "Name": "Promo",
-                "Description": "Free Roam Like Home",
-                "Amount": 40,
-                "Notes": "Applied once",
-                "ReferenceNumber": "ABC1234",
-                "SOCCode": "AGG242"
-            },
-            "ReferenceNumber": "ABC1234",
-            "SOCCode": "BB3221"
-        }
-        "ContractLengthInMonths": 24,
-        "ContractNumberIsAccountNumber": "false",
-        "DealerName": "IAPR",
-        "DealerCode": "IAPR",
-        "Deposit": {
-            "Name": "Deposit",
-            "Description": "Deposit required",
-            "Amount": 200,
-            "Notes": "Due to credit",
-            "Rebate": null,
-            "SOCCode": "BB3221"
-        },
-        "Notes": "Credit check performed, deposit required",
-        "OrderNumber": "ORD1234",
-        "RatePlans": {
-            "RatePlanId": "ABC1234",
-            "Name": "Country-wide Unlimited",
-            "Description": "The perfect plan for lots of calling!",
-            "ContractTerms": "Some terms",
-            "IncludedRatePlanFeatures": {
-                "Name": "TEXT100",
-                "Description": "One hundred additional text messages.",
-                "MonthlyRecurringCharges": 5,
-                "RatePlanAddonId": "XYZ5678",
-                "SOCCode": "XYZ5678"
-            },
-            "SOCCode": "ABC1234",
-            "MonthlyRecurringCharges": 55,
-            "RatePlanFeatureAddons": {
-                "Name": "USTEXT25",
-                "Description": "25 US Text Messages",
-                "MonthlyRecurringCharges": 5
-                "RatePlanAddonId": "SSA1112",
-                "SOCCode": "VVA223",
-            },
-        },
-        "RemoteActivationID": "3023997373",
-        "TrackingNumber": "1TTTTN4421"
-    },
-    "CarrierId": "41",
-    "CompanyId": "1",
-    "LocationId": "4"
+"Id": "1=35854205829867",
+"CarrierActivationDetails": 
+{
+"ActivationId": 354,
+"ActivationDate": "2015-06-19T05:44:39.7163989Z",
+"ActivatedProduct": 
+{
+"Description": "Samsung Galaxy S5",
+"ESN": "35854205829867",
+"IMEI": "351756051523999",
+"Make": "Samsung",
+"MobileDeviceNumber": "5555550123",
+"Model": "Galaxy S5",
+"Price": 499,
+"ProductId": "",
+"SerialNumber": "98769456321",
+"SIM": "89000000000000001234",
+"SKU": "DEF987",
+"SOCCode": "DEF987",
+"Tab": 
+{
+"Amount": 50,
+"Commission": 
+{
+"Name": "Promo",
+"Description": "FREE Roam Like Home",
+"Amount": 55,
+"Notes": "US",
+"ReferenceNumber": "abc123",
+"SOCCode": "AGG242"
+},
+"ReferenceNumber": "abc123"
 }
- 
+},
+"ActivationState": "Pending",
+"ActivationTermCode": "EarlyUpgrade",
+"ActivationType": "NewActivation",
+"AdditionalFees": [
+{
+"Name": "Roaming",
+"Description": "Roam like home",
+"Amount": 55,
+"Notes": "US",
+"Rebate": 
+{
+"Name": "Promo",
+"Description": "FREE Roam Like Home",
+"Amount": 55,
+"Notes": "US",
+"ReferenceNumber": "abc123",
+"SOCCode": "AGG242"
+},
+"ReferenceNumber": "abc123",
+"SOCCode": "BB3221"
+}
+]
+,
+"ContractLengthInMonths": 24,
+"ContractNumberIsAccountNumber": false,
+"DealerName": "IAPR",
+"DealerCode": "IAPR",
+"Deposit": 
+{
+"Name": "Roaming",
+"Description": "Roam like home",
+"Amount": 55,
+"Notes": "US",
+"Rebate": 
+{
+"Name": "Promo",
+"Description": "FREE Roam Like Home",
+"Amount": 55,
+"Notes": "US",
+"ReferenceNumber": "abc123",
+"SOCCode": "AGG242"
+},
+"ReferenceNumber": "abc123",
+"SOCCode": "BB3221"
+},
+"Notes": "Notes go here!",
+"OrderNumber": "ORD1234",
+"RatePlans": [
+{
+"RatePlanId": "ABC1234",
+"Name": "Country-wide Unlimited",
+"ContractTerms": "Some terms",
+"Description": "The perfect plan for lots of calling!",
+"IncludedRatePlanFeatures": [
+{
+"RatePlanAddonId": "XYZ5678",
+"Name": "TEXT100",
+"Description": "One hundred additional text messages.",
+"MonthlyRecurringCharges": 5,
+"SOCCode": "XYZ5678"
+}
+]
+,
+"MonthlyRecurringCharges": 55,
+"RatePlanFeatureAddons": [
+{
+"RatePlanAddonId": "XYZ5678",
+"Name": "TEXT100",
+"Description": "One hundred additional text messages.",
+"MonthlyRecurringCharges": 5,
+"SOCCode": "XYZ5678"
+}
+]
+,
+"SOCCode": "ABC1234"
+}
+]
+,
+"RemoteActivationID": "3023997373",
+"Subscriber": 
+{
+"SubscriberId": "12121212121",
+"FirstName": "Joe",
+"LastName": "Smith",
+"Addresses": [
+{
+"AddressLine1": "123 Main Street",
+"AddressLine2": "Apt 200",
+"City": "Dover",
+"Country": "USA",
+"County": "Fairfield",
+"POBox": "PO Box 123",
+"PostalCode": "19901",
+"Province": "DE",
+"SuiteNumber": "100",
+"Type": "Residential"
+}
+]
+,
+"AssociatedAccount": 
+{
+"AccountId": "343434343",
+"Notes": "",
+"TrackingNumber": "5656565656"
+},
+"BirthDate": "5/16/1980",
+"CompanyName": "",
+"Email": "subscriber@example.com",
+"IsIndividual": true,
+"Notes": "24 Month Term",
+"PhoneNumbers": [
+{
+"Type": "Home",
+"Value": "1234561234"
+}
+]
+,
+"SSN": "6789",
+"TrackingNumber": "2121212121"
+},
+"TrackingNumber": "3023997373"
+},
+"CarrierId": 41,
+"CompanyId": 1234,
+"LocationId": 5678
+}```
 ## Retrieving Completed Activations
 
 
@@ -691,57 +783,66 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CarrierId` (**Required**)  - Identifier for the {{Carrier}} * `ConfirmationDate` (Optional)  - Limits returned records to ones that were created after the specified date * `Skip` (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details * `Top` (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
+* `ConfirmationDate` (Optional)  - Limits returned records to ones that were created after the specified date 
+* `Skip` (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details 
+* `Top` (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
 
 
 
 ###### Example
 
 ```
-GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'Thu Jul 16 2015 09:29:31 GMT-0600 (Canada Central Standard Time)'&$skip=0&$top=5
+GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/json
+
 
 ```
 
 #### Response
 
 
+Array[{{ConfirmedActivation}}]
+
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
-[
-    {
-        "Id": 58,
-        "ActivationConfirmationDetails": [
-            {
-                "ActivationID": "153",
-                "BAN": "681883059",
-                "IMEI": "990000862471854",
-                "OrderNumber": "ORD1234",
-                "PhoneNumber": "3023997373",
-                "RemoteActivationID": "3023997373"
-            }
-        ],
-        "ConfirmationDateUTC": "2015-07-21T15:25:45.323",
-        "InvoiceId": "INV0001",
-        "InvoiceSubtotal": 53.38,
-        "InvoiceTotal": 61.54,
-        "LocationId": 1,
-        "Taxes": 8.16
-    },
-]
 
+[
+{
+"Id": 58,
+"ActivationConfirmationDetails": [
+{
+"ActivationID": 153,
+"BAN": "681883059",
+"IMEI": "990000862471854",
+"OrderNumber": "ORD1234",
+"PhoneNumber": "3023997373",
+"RemoteActivationID": "3023997373"
+}
+]
+,
+"ConfirmationDateUTC": "2015-07-21T15:25:45.323",
+"InvoiceId": "INV0001",
+"InvoiceSubtotal": 53.38,
+"InvoiceTotal": 61.54,
+"LocationId": 1,
+"Taxes": 8.16
+}
+]
 
 
 ###### Example
@@ -793,6 +894,7 @@ HTTP 200 Content-Type: application/hal+json
     }
 }
 
+```
 
 ## Errors
 

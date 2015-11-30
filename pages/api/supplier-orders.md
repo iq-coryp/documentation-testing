@@ -4,7 +4,7 @@ permalink: /api/supplier-orders/
 tags: []
 keywords: supplier orders dropship
 audience: 
-last_updated: 16-11-2015
+last_updated: 19-11-2015
 summary: 
 ---
 
@@ -259,7 +259,7 @@ For best practices, it is recommended to store the timestamp for the last order 
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -325,7 +325,7 @@ If products from an order have been split into multiple shipments, then the supp
     
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -423,7 +423,7 @@ The `current` feed endpoint gives access to the most recent (up to 50) entries i
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/atom+xml`
 
 
@@ -558,7 +558,7 @@ The `next-archive` link gives access to a newer (up to 50) list of archive entri
 
 #### Headers
 
-* `Authorization: Bearer` ({{access_token}})
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/atom+xml`
 
 

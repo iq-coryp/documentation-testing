@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -25,43 +25,43 @@ Commission earned by an employee.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Unique Identifier for the [CommissionEntry](#commissionentry) | `24` |
-| Comments | string(255) | Comments | `Shared with Nick` |
-| CommissionFixedCost | decimal | Fixed cost of commission applied. Anything above this value is commission | `10.0` |
-| CommissionFloatingCost | decimal | Floating cost of commission applied. This value is determined by adding anything above this value to average cost | `10` |
-| CommissionRate | decimal | Commission rate applied | `35.0` |
-| CommissionSpiff | decimal | A type of commission structure used to pay employees, where a fixed dollar amount is paid per unit sold | `15.0` |
-| CommissionSplitEmployeeSpecialId | integer | Special Identifier for the split commission Employee in RQ | `0002` |
-| CommissionSplitUserId | integer | Identifier for a [User](/api/user-manager/#user) that is the split commissionable employee | `22212` |
-| CommissionType | byte | Type of commission applied. If this is a Coupon commission, see [CouponCommissionTypes](#couponcommissiontypes) for a list of acceptable values, otherwise see [CommissionTypes](#commissiontypes) for a list of acceptable values | `1` |
-| CouponID | integer | Identifier for a coupon associated with this commission in RQ | `8` |
-| DateCreatedUtc | datetime | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
-| EmployeeSpecialId | integer | Special Identifier for the Employee in RQ | `0001` |
-| UserId | integer | Identifier for a [User](/api/user-manager/#user) that is the primary commissionable employee | `22212` |
-| GlobalProductID | integer | Identifier of product associated with this commission in RQ | `1210` |
-| HasBeenReversed | boolean | A flag to indicate if this CommissionEntry has been reversed | `false` |
-| InvoiceEditedDate | datetime | Time last edited with the Invoice Editor in RQ | `2015-09-10T20:01:49.00` |
-| InvoiceNumber | string(14) | Invoice Number of the transaction which created this commission in RQ | `84WEAIN5703` |
-| IsChargeback | boolean | A flag to indicate if this commission was created by a chargeback in RQ | `false` |
-| IsCommissionSplit | boolean | A flag to indicate if the commission is split with a second employee | `true` |
-| IsFullChargeback | boolean | A flag to indicate if this commission was created by a full chargeback in RQ | `false` |
-| IsSuspended | boolean | A flag to indicate if this commission has been suspended | `false` |
-| LastUpdateDateUtc | datetime | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
-| LocationCode | string | An identifier for the Location in an external system | `LOC123` |
-| LocationId | integer | Identifier for the [Location](/api/company-tree/#location) | `4` |
+| Id | Integer | Unique Identifier | `24` |
+| Comments | String(255) | Comments | `Shared with Nick` |
+| CommissionFixedCost | Decimal | Fixed cost of commission applied. Anything above this value is commission | `10.0` |
+| CommissionFloatingCost | Decimal | Floating cost of commission applied. This value is determined by adding anything above this value to average cost | `10` |
+| CommissionRate | Decimal | Commission rate applied | `35.0` |
+| CommissionSpiff | Decimal | A type of commission structure used to pay employees, where a fixed dollar amount is paid per unit sold | `15.0` |
+| CommissionSplitEmployeeSpecialId | Integer | Special Identifier for the split commission Employee in RQ | `0002` |
+| CommissionSplitUserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the split commissionable employee | `22214` |
+| CommissionType | Byte | Type of commission applied. If this is a Coupon commission, see [CouponCommissionTypes](#couponcommissiontypes) for a list of acceptable values, otherwise see [CommissionTypes](#commissiontypes) for a list of acceptable values | `1` |
+| CouponID | Integer | Identifier for a coupon associated with this commission in RQ | `8` |
+| DateCreatedUtc | Datetime | Time created in RQ, in UTC | `2015-08-18T15:00:00` |
+| EmployeeSpecialId | Integer | Special Identifier for the Employee in RQ | `0001` |
+| UserId | Integer | Identifier for a [User](/api/user-manager/#user) that is the primary commissionable employee | `22212` |
+| GlobalProductID | Integer | Identifier of product associated with this commission in RQ | `1210` |
+| HasBeenReversed | Boolean | A flag to indicate if this CommissionEntry has been reversed | `false` |
+| InvoiceEditedDate | Datetime | Time last edited with the Invoice Editor in RQ | `2015-09-10T20:01:49.00` |
+| InvoiceNumber | String(14) | Invoice Number of the transaction which created this commission in RQ | `84WEAIN5703` |
+| IsChargeback | Boolean | A flag to indicate if this commission was created by a chargeback in RQ | `false` |
+| IsCommissionSplit | Boolean | A flag to indicate if the commission is split with a second employee | `true` |
+| IsFullChargeback | Boolean | A flag to indicate if this commission was created by a full chargeback in RQ | `false` |
+| IsSuspended | Boolean | A flag to indicate if this commission has been suspended | `false` |
+| LastUpdateDateUtc | Datetime | Time created in the API, in UTC | `2015-09-09T20:41:59.69` |
+| LocationCode | String | An identifier for the Location in an external system | `LOC123` |
+| LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
 | MilestoneID | Guid | Identifier for a milestone associated with this commission in RQ | `74b95526-e46b-42da-baa5-19971dfe5b18` |
-| Priority | integer | Priority of product on sale invoice associated with this commission in RQ | `1` |
-| Quantity | integer | The number of times the unit commission is to be applied | `1` |
-| RQCommissionId | integer | Identifier of the associated commission RQ | `445` |
+| Priority | Integer | Priority of product on sale invoice associated with this commission in RQ | `1` |
+| Quantity | Integer | The number of times the unit commission is to be applied | `1` |
+| RQCommissionId | Integer | Identifier of the associated commission RQ | `445` |
 | SaleInvoiceAndCouponID | Guid | Identifier of the coupon on the sale invoice associated with this commission in RQ | `d6ee8427-eac6-44ef-ac69-4617e18d2f66` |
-| SaleInvoiceID | integer | Identifier of the sale invoice which created this commission in RQ | `7` |
-| SerialNumber | string(100) | Serial number of the product associated with this commission in RQ | `8508194953` |
-| SplitRate1 | decimal | Percentage of the commission the primary employee receives, defaults to 100 | `50.0` |
-| SplitRate2 | decimal | Percentage of the commission the split employee receives, defaults to 0 | `50.0` |
-| TotalCommission | decimal | The total commission amount to be applied equal to (UnitCommission * Quantity) | `5.32` |
+| SaleInvoiceID | Integer | Identifier of the sale invoice which created this commission in RQ | `7` |
+| SerialNumber | String(100) | Serial number of the product associated with this commission in RQ | `8508194953` |
+| SplitRate1 | Decimal | Percentage of the commission the primary employee receives, defaults to 100 | `50.0` |
+| SplitRate2 | Decimal | Percentage of the commission the split employee receives, defaults to 0 | `50.0` |
+| TotalCommission | Decimal | The total commission amount to be applied equal to (UnitCommission * Quantity) | `5.32` |
 | TransactionGUID | Guid | Identifier of the transaction which created this commission in RQ | `a929571e-c432-4e9a-aef7-4302ed791251` |
-| TransactionType | byte | Type of transaction which created this commission. See [TransactionTypes](#transactiontypes) for a list of acceptable values | `1` |
-| UnitCommission | decimal | The individual unit Commission amount | `5.32` |
+| TransactionType | Byte | Type of transaction which created this commission. See [TransactionTypes](#transactiontypes) for a list of acceptable values | `1` |
+| UnitCommission | Decimal | The individual unit Commission amount | `5.32` |
 
 
 
@@ -117,98 +117,85 @@ By default, the sorting order of the response to this request will be **descendi
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `skip` (Optional)  - Number of records to skip * `top` (Optional)  - Number of records to take * `CompanyId` (**Required**)  - Identifier for the {{Company}} * `StartDate` (Optional)  - Date at which to begin search request, in UTC * `EndDate` (Optional)  - Date at which to end search request, in UTC * `Skip` (Optional)  - The number of items to skip from the entire set of results. Defaults to 0 if no $skip value is specified. If a value less than 0 is specified, the URI is considered malformed * `Top` (Optional)  - Maximum number of items to include in the response. Defaults to 50 if no $top value is specified. Acceptable values are in the range [0 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `StartDate` (Optional)  - Date at which to begin search request, in UTC 
+* `EndDate` (Optional)  - Date at which to end search request, in UTC 
+* `Skip` (Optional)  - The number of items to skip from the entire set of results. Defaults to 0 if no $skip value is specified. If a value less than 0 is specified, the URI is considered malformed 
+* `Top` (Optional)  - Maximum number of items to include in the response. Defaults to 50 if no $top value is specified. Acceptable values are in the range [0 
 
 
 
 ###### Example
 
 ```
-GET /Companies(1)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"Wed Dec 31 2014 18:00:00 GMT-0600 (Canada Central Standard Time)" and LastUpdateDateUtc le datetime"Thu Dec 31 2015 17:59:59 GMT-0600 (Canada Central Standard Time)"&$skip=1&$top=10
+GET /Companies(1)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T00:00:00.000Z" and LastUpdateDateUtc le datetime"2015-12-31T23:59:59.000Z"&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
+
 
 ```
 
 #### Response
 
 
+Array[{{CommissionEntry}}]
+
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
+[
 {
-  "_links": {
-      "self": {
-          "href": "v1/Companies(1)/CommissionEntries?$filter=ransactionDateUTC ge datetime"2015-01-01T00:00:00.000" and TransactionDateUTC le datetime"2015-12-31T23:59:59.000"&$skip=0&$top=10",
-          "templated": false
-      },
-      "next": {
-          "href": "v1/Companies(1)/CommissionEntries?$filter=ransactionDateUTC ge datetime"2015-01-01T00:00:00.000" and TransactionDateUTC le datetime"2015-12-31T23:59:59.000"&$skip=10&$top=10",
-          "templated": false
-      }
-  },
-  "_embedded": {
-      "self": [
-          {
-              "_links": {
-                  "self": {
-                      "href": "v1/Companies(1)/CommissionEntries(24)",
-                      "templated": false
-                  }
-              },
-              "_embedded": {},
-              "Id" : 24,
-              "Comments" : "Shared with Nick",
-              "CommissionFixedCost" : 10.0,
-              "CommissionFloatingCost" : 10,
-              "CommissionRate" : 35,
-              "CommissionSplitEmployeeSpecialId": "0002",
-              "CommissionSplitUserId": "22222",
-              "CommissionSpiff" : 15,
-              "CommissionType" : 1,
-              "CouponID" : 8,
-              "DateCreatedUtc" : "2015-08-18T15:00:00",
-              "EmployeeSpecialId": "00001",
-              "UserId" : 22212,
-              "GlobalProductID" : 1210,
-              "HasBeenReversed" : false,
-              "InvoiceEditedDate" : "2015-09-10T20:01:49.00",
-              "InvoiceNumber" : "84WEAIN5703",
-              "IsChargeback" : false,
-              "IsCommissionSplit" : true,
-              "IsFullChargeback" : false,
-              "IsSuspended" : false,
-              "LastUpdateDateUtc" : "2015-09-09T20:41:59.69",
-              "LocationCode" : "LOC123",
-              "LocationId" : 4,
-              "MilestoneID" : "74b95526-e46b-42da-baa5-19971dfe5b18",
-              "Priority" : 1,
-              "Quantity" : 1,
-              "RQCommissionId" : 445,
-              "SaleInvoiceAndCouponID" : "d6ee8427-eac6-44ef-ac69-4617e18d2f66",
-              "SaleInvoiceID" : 7,
-              "SerialNumber" : "8508194953",
-              "SplitRate1" : 50,
-              "SplitRate2" : 50,
-              "TotalCommission" : 5.32,
-              "TransactionGUID" : "a929571e-c432-4e9a-aef7-4302ed791251",
-              "TransactionType" : 1,
-              "UnitCommission" : 5.32
-          }
-      ]
-  }
+"Id": 24,
+"Comments": "Shared with Nick",
+"CommissionFixedCost": 10.0,
+"CommissionFloatingCost": 10,
+"CommissionRate": 35.0,
+"CommissionSpiff": 15.0,
+"CommissionSplitEmployeeSpecialId": 0002,
+"CommissionSplitUserId": 22214,
+"CommissionType": 1,
+"CouponID": 8,
+"DateCreatedUtc": "2015-08-18T15:00:00",
+"EmployeeSpecialId": 0001,
+"UserId": 22212,
+"GlobalProductID": 1210,
+"HasBeenReversed": false,
+"InvoiceEditedDate": "2015-09-10T20:01:49.00",
+"InvoiceNumber": "84WEAIN5703",
+"IsChargeback": false,
+"IsCommissionSplit": true,
+"IsFullChargeback": false,
+"IsSuspended": false,
+"LastUpdateDateUtc": "2015-09-09T20:41:59.69",
+"LocationCode": "LOC123",
+"LocationId": 2,
+"MilestoneID": "74b95526-e46b-42da-baa5-19971dfe5b18",
+"Priority": 1,
+"Quantity": 1,
+"RQCommissionId": 445,
+"SaleInvoiceAndCouponID": "d6ee8427-eac6-44ef-ac69-4617e18d2f66",
+"SaleInvoiceID": 7,
+"SerialNumber": "8508194953",
+"SplitRate1": 50.0,
+"SplitRate2": 50.0,
+"TotalCommission": 5.32,
+"TransactionGUID": "a929571e-c432-4e9a-aef7-4302ed791251",
+"TransactionType": 1,
+"UnitCommission": 5.32
 }
- 
+]
 
 
 ###### Example
@@ -278,6 +265,7 @@ HTTP 200 Content-Type: application/hal+json
   }
 }
 
+```
 
 ## Pagination
 

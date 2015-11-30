@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -35,10 +35,15 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Guid | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
-| Products | Array[Object] | List of products for which the cost is being updated |  |
-| Products.Sku | string | SKU identifier for the product from product feed | `1115884` |
-| Products.Cost | decimal | Wholesale cost for the associated companies | `12.99` |
-| Products.CompanyIds | Array[Integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the products cost |  |
+| Products | Array[[Product](#product)] | List of products for which the cost is being updated |  |
+
+### Product
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Sku | String | SKU identifier for the product from product feed | `1115884` |
+| Cost | Decimal | Wholesale cost for the associated companies | `12.99` |
+| CompanyIds | Array[integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the products cost | ` 60454, 123456, 99999` |
 
 
 
@@ -53,8 +58,8 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -62,12 +67,14 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 #### URI Parameters
 
+
 * `SupplierId` (**Required**)  - Identifier of the Supplier 
+
 
 
 #### Request Parameters
 
-  * `Id` (Optional)
+  
   * `Products` (**Required**)
     * `Sku` (**Required**)
     * `Cost` (**Required**)
@@ -81,27 +88,17 @@ POST /Suppliers(1324)/Cost
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+
 {
-   "Products": [
-       {
-           "Sku": "99999999",
-           "Cost": 12.99,
-           "CompanyIds": [
-               60454,
-               123456,
-               99999
-           ]    
-       },
-       {
-           "Sku": "123456abc",
-           "Cost": 1992.99,
-           "CompanyIds": [
-               60454,
-               123456,
-               99999
-           ]    
-       }
-   ]
+"Products": [
+{
+"Sku": "1115884",
+"Cost": 12.99,
+"CompanyIds": [ 60454, 123456, 99999]
+}
+]
+
 }
 
 
@@ -110,35 +107,24 @@ Content-Type: application/json
 #### Response
 
 
+{{Cost}}
+
 
 ###### Example
 
 ```
 HTTP 202 Content-Type: application/json
 {
-   "Id": "91a57ddb-2d42-402b-85b4-fe327a347313",
-   "Products": [
-       {
-           "Sku": "99999999",
-           "Cost": 12.99,
-           "CompanyIds": [
-               60454,
-               123456,
-               99999
-           ]
-       },
-       {
-           "Sku": "123456abc",
-           "Cost": 1992.99,
-           "CompanyIds": [
-               60454,
-               123456,
-               99999
-           ]
-       }
-   ]
+"Id": "91a57ddb-2d42-402b-85b4-fe327a347313",
+"Products": [
+{
+"Sku": "1115884",
+"Cost": 12.99,
+"CompanyIds": [ 60454, 123456, 99999]
 }
+]
 
+}```
 
 ## Errors
 

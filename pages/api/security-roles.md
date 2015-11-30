@@ -4,7 +4,7 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -39,8 +39,9 @@ SecurityRoles allow you create custom groups that can hold Permissions
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `4457` |
-| Name | string | Name | `Store Manager` |
+| Id | Integer | Identifier | `4457` |
+| Name | String | Name | `Store Manager` |
+
 
 ### AssignedRole
 
@@ -48,10 +49,11 @@ An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}}
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `6548` |
-| EntityId | integer | Identifier of an Entity | `4` |
-| SecurityRoleId | integer | Identifier of a [SecurityRole](#securityrole) | `4457` |
-| UserId | integer | Identifier of a [User](/api/usermanager/#user) | `22212` |
+| Id | Integer | Identifier | `6548` |
+| EntityId | Integer | Identifier of an Entity | `2` |
+| SecurityRoleId | Integer | Identifier of a [SecurityRole](#securityrole) | `4457` |
+| UserId | Integer | Identifier of a [User](/api/usermanager/#user) | `22212` |
+
 
 ### Permission
 
@@ -63,13 +65,14 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `108` |
-| Name | string | Descriptive name | `Edit Products` |
-| Category | string | This field is used internally to group Permissions by how they impact the iQmetrix ecosystem | `Products` |
-| Code | string | Unique, system generated name used for sorting Permissions | `editproducts` |
-| Description | string | Describes the function of the Permission | `Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.` |
-| IsAssignable | boolean | A flag to indicate if this Permission is Restricted, see Notes above | `true` |
-| ParentPermissionId | integer | Identifier of a similar Permission, used for organizing Permissions into groups | `22` |
+| Id | Integer | Identifier | `108` |
+| Name | String | Descriptive name | `Edit Products` |
+| Category | String | This field is used internally to group Permissions by how they impact the iQmetrix ecosystem | `Products` |
+| Code | String | Unique, system generated name used for sorting Permissions | `editproducts` |
+| Description | String | Describes the function of the Permission | `Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.` |
+| IsAssignable | Boolean | A flag to indicate if this Permission is Restricted, see Notes above | `true` |
+| ParentPermissionId | Integer | Identifier of a similar Permission, used for organizing Permissions into groups | `108` |
+
 
 
 
@@ -85,13 +88,14 @@ This request will return all [Permissions](#permission) within the [SecurityRole
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
@@ -104,47 +108,32 @@ GET /Entities(1)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{Permission}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
 [
-  {
-      "Id": 4,
-      "Name": "Edit Users",
-      "Category": "User Management",
-      "Code": "canmanageusers",
-      "Description": "Enables the user to add and modify users for your entity.",
-      "IsAssignable": true,
-      "ParentPermissionId": 149
-  },
-  {
-      "Id": 12,
-      "Name": "View Company",
-      "Category": "Entity Management",
-      "Code": "canreadentity",
-      "Description": "Enables the user to view this company"s tree.",
-      "IsAssignable": true,
-      "ParentPermissionId": null
-  },
-  {
-      "Id": 15,
-      "Name": "Add/Remove Catalog Products",
-      "Category": "Products",
-      "Code": "canmanagecatalog",
-      "Description": "Enables the user to add and remove products from a catalog.",
-      "IsAssignable": true,
-      "ParentPermissionId": 16
-  }, 
-  ...
+{
+"Id": 108,
+"Name": "Edit Products",
+"Category": "Products",
+"Code": "editproducts",
+"Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
+"IsAssignable": true,
+"ParentPermissionId": 108
+}
 ]
-  
+```
 ## Creating a Security Role
 
 
@@ -155,8 +144,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -164,7 +153,9 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
+
 * `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+
 
 
 #### Request Parameters
@@ -180,8 +171,10 @@ POST /Entities(1)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+
 {
-  "Name": "{Name}"
+"Name": "Store Manager"
 }
 
 
@@ -190,16 +183,17 @@ Content-Type: application/json
 #### Response
 
 
+{{SecurityRole}}
+
 
 ###### Example
 
 ```
 HTTP 201 Content-Type: application/json
 {
-    "Id": 4457,
-    "Name": "Store Manager"
-}
-
+"Id": 4457,
+"Name": "Store Manager"
+}```
 ## Getting All Security Roles for an Entity
 
 
@@ -210,13 +204,14 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
@@ -229,32 +224,27 @@ GET /Entities(1)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{SecurityRole}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
-[
-  {
-      "Id": 4457,
-      "Name": "Store Manager"
-  },
-  {
-      "Id": 6347,
-      "Name": "Marketer"
-  },
-  {
-      "Id": 6349,
-      "Name": "Marketing Admin"
-  },
-  ...
-]
 
+[
+{
+"Id": 4457,
+"Name": "Store Manager"
+}
+]
+```
 ## Enabling a Permission for a Security Role
 
 
@@ -265,8 +255,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -274,7 +264,10 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} * `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole * `PermissionId` (**Required**)  - Identifier of a Permission 
+
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+* `PermissionId` (**Required**)  - Identifier of a Permission 
 
 
 
@@ -286,12 +279,12 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 
+
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 
@@ -306,15 +299,17 @@ Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
-* `Accept: application/json`
+* `Authorization: Bearer (Access Token)`
 
 
 
 #### URI Parameters
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} * `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole * `PermissionId` (**Required**)  - Identifier of a Permission 
+
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+* `PermissionId` (**Required**)  - Identifier of a Permission 
 
 
 
@@ -323,14 +318,13 @@ Content-Type: application/json
 ```
 DELETE /Entities(1)/SecurityRoles(4457)/Permissions(55)
 Authorization: Bearer (Access Token)
-Accept: application/json
+
 
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 
@@ -345,15 +339,17 @@ Accept: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} * `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
 
 
 
@@ -364,47 +360,32 @@ GET /Entities(1)/SecurityRoles(4457)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{Permission}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
 [
-  {
-      "Id": 55,
-      "Name": "View Products",
-      "Category": "Products",
-      "Code": "viewproducts",
-      "Description": "Enables the user to view public products, their own retailer revisions to products and their private products.",
-      "IsAssignable": true,
-      "ParentPermissionId": null
-  },
-  {
-      "Id": 108,
-      "Name": "Edit Products",
-      "Category": "Products",
-      "Code": "editproducts",
-      "Description": "Enables the user to create, update and archive their private products and retailer revisions.",
-      "IsAssignable": true,
-      "ParentPermissionId": "22"
-  },
-  {
-      "Id": 113,
-      "Name": "Read Classification Trees",
-      "Category": "Products",
-      "Code": "readproductclassificationtrees",
-      "Description": "Enables user to access product classification hierarchies.",
-      "IsAssignable": true,
-      "ParentPermissionId": null
-  },
-  ...
+{
+"Id": 108,
+"Name": "Edit Products",
+"Category": "Products",
+"Code": "editproducts",
+"Description": "Enables the user to create, update`<br/>`and archive their private products`<br/>`and retailer revisions.",
+"IsAssignable": true,
+"ParentPermissionId": 108
+}
 ]
-  
+```
 ## Assigning a Security Role to a User
 
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
@@ -415,8 +396,8 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -424,7 +405,9 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 
 #### URI Parameters
 
+
 * `UserId` (**Required**)  - Identifier of a User 
+
 
 
 #### Request Parameters
@@ -442,9 +425,11 @@ POST /Users(22212)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+
 {
-  "EntityId": 4,
-  "SecurityRoleId": 4457
+"EntityId": 2,
+"SecurityRoleId": 4457
 }
 
 
@@ -453,18 +438,19 @@ Content-Type: application/json
 #### Response
 
 
+{{AssignedRole}}
+
 
 ###### Example
 
 ```
 HTTP 201 Content-Type: application/json
 {
-  "Id": 6548,
-  "EntityId": 4,
-  "SecurityRoleId": 4457,
-  "UserId": 22212
-}
-
+"Id": 6548,
+"EntityId": 2,
+"SecurityRoleId": 4457,
+"UserId": 22212
+}```
 ## Getting Assigned Roles for a User
 
 
@@ -475,13 +461,14 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `UserId` (**Required**)  - Identifier of a User 
 
@@ -494,32 +481,29 @@ GET /Users(22212)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{AssignedRole}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
-[
-  {
-      "Id": 6548,
-      "UserId": 22212,
-      "SecurityRoleId": 4457,
-      "EntityId": 4
-  },
-  {
-      "Id": 6548,
-      "UserId": 22212,
-      "SecurityRoleId": 4424,
-      "EntityId": 4
-  },
-  ...
-]
 
+[
+{
+"Id": 6548,
+"EntityId": 2,
+"SecurityRoleId": 4457,
+"UserId": 22212
+}
+]
+```
 ## Unassigning a Security Role from a User
 
 
@@ -530,15 +514,16 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
-* `Accept: application/json`
+* `Authorization: Bearer (Access Token)`
 
 
 
 #### URI Parameters
 
-* `UserId` (**Required**)  - Identifier of a User * `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+
+* `UserId` (**Required**)  - Identifier of a User 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
 
 
 
@@ -547,14 +532,13 @@ HTTP 200 Content-Type: application/json
 ```
 DELETE /Users(2212)/AssignedRoles(4457)
 Authorization: Bearer (Access Token)
-Accept: application/json
+
 
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 

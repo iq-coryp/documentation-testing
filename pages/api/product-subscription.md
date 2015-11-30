@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -26,27 +26,37 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Companies | array[object] | Companies for the subscription |  |
-| Companies.DateSubscribedUtc | datetime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
-| Companies.Id | integer | Company identifier | `60454` |
-| Companies.Name | string | Company Name | `Mark Inc` |
+| Companies | Array[[Company](#company)] | Companies for the subscription |  |
 | ListId | Guid | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
+
+### Company
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| DateSubscribedUtc | Datetime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
+| Id | Integer | Company identifier | `60454` |
+| Name | String | Company Name | `Mark Inc` |
 
 ### SubscribableList
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| EntityId | integer | [Supplier](/api/entity-store/#supplier) identifier | `60455` |
+| EntityId | Integer | [Supplier](/api/entity-store/#supplier) identifier | `14` |
 | Id | Guid | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
-| Name | string | Title of product subscription | `Joe's Subscription List` |
-| Products | array[product] | Products for the subscribable list |  |
-| Products.Dropshippable | boolean | If the product is dropshippable | `true` |
-| Products.Price | decimal | Product price | `28.99` |
-| Products.ProductName | string | Name of product | `iPhone 6 Flexshield Case` |
-| Products.ProductSlugs | array[string] | List of slugs that match the vendor sku |  |
-| Products.VendorSku | string | Produt Sku | `9101AGAP6` |
-| Products.Version | integer | Product revision | `2` |
-| Version | integer | Subscription revision | `12` |
+| Name | String | Title of product subscription | `Joe's Subscription List` |
+| Products | Array[[Product](#product)] | Products for the subscribable list |  |
+| Version | Integer | Subscription revision | `12` |
+
+### Product
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Dropshippable | Boolean | If the product is dropshippable | `true` |
+| Price | Decimal | Product price | `28.99` |
+| ProductName | String | Name of product | `iPhone 6 Flexshield Case` |
+| ProductSlugs | Array[string] | List of slugs that match the vendor sku | `M5218` |
+| VendorSku | String | Produt Sku | `9101AGAP6` |
+| Version | Integer | Product revision | `2` |
 
 
 
@@ -61,13 +71,14 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `ListId` (**Required**) 
 
@@ -80,10 +91,13 @@ GET /subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{Subscription}}]
 
 
 ###### Example
@@ -91,22 +105,22 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-   "ListId": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-   "Companies": [
-       {
-           "Id": 60454,
-           "Name": "Company 1",
-           "DateSubscribedUtc": "2015-10-01T18:46:25.774Z"
-       },
-       {
-           "Id": 24165,
-           "Name": "Test Partner Setup",
-           "DateSubscribedUtc": "2015-01-15T18:23:02.167Z"
-       },
-       ...
-   ]
+  "ListId": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
+  "Companies": [
+      {
+          "Id": 60454,
+          "Name": "Company 1",
+          "DateSubscribedUtc": "2015-10-01T18:46:25.774Z"
+      },
+      {
+          "Id": 24165,
+          "Name": "Test Partner Setup",
+          "DateSubscribedUtc": "2015-01-15T18:23:02.167Z"
+      },
+      ...  
+  ]
 }
-
+```
 ## Getting a Subscribable List
 
 
@@ -117,13 +131,14 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}}` 
 
@@ -136,10 +151,13 @@ GET /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{SubscribableList}}
 
 
 ###### Example
@@ -147,35 +165,26 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-   "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-   "EntityId": 60454,
-   "Name": "Joe"s Product List",
-   "Products": [
-       {
-           "ProductName": "Product Name",
-           "VendorSku": "123456789",
-           "Price": 11.11,
-           "Dropshippable": true,
-           "ProductSlugs": [
-               "M5218"
-           ],
-           "Version": 1
-       },
-       {
-           "ProductName": "iPhone 6 Flexshield Case",
-           "VendorSku": "987321654",
-           "Price": 28.99,
-           "Dropshippable": true,
-           "ProductSlugs": [],
-           "Version": 1
-       }
-   ],
-   "Version": 2
+"EntityId": 14,
+"Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
+"Name": "Joe's Subscription List",
+"Products": [
+{
+"Dropshippable": true,
+"Price": 28.99,
+"ProductName": "iPhone 6 Flexshield Case",
+"ProductSlugs": ["M5218"],
+"VendorSku": "9101AGAP6",
+"Version": 2
 }
- 
+]
+,
+"Version": 12
+}```
 ## Updating Products in a Subscribable List
 
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
+
 
 #### Request
 
@@ -183,8 +192,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -192,7 +201,9 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
+
 * `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}}` 
+
 
 
 #### Request Parameters
@@ -213,31 +224,19 @@ PUT /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+ 
 {
-   "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-   "EntityId": 60454,
-   "Name": "Joe"s Product List",
+   "EntityId": 60455,
+   "Name": "Joe's Product List",
    "Products": [
        {
            "ProductName": "Product Name",
            "VendorSku": "123456789",
            "Price": 11.11,
-           "Dropshippable": true,
-           "ProductSlugs": [
-               "M5218"
-           ],
-           "Version": 1
-       },
-       {
-           "ProductName": "iPhone 6 Flexshield Case",
-           "VendorSku": "987321654",
-           "Price": 28.99,
-           "Dropshippable": true,
-           "ProductSlugs": [],
-           "Version": 1
+           "Dropshippable": true
        }
-   ],
-   "Version": 2
+   ]          
 }
 
 
@@ -246,38 +245,30 @@ Content-Type: application/json
 #### Response
 
 
+{{SubscribableList}}
+
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
 {
-   "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-   "EntityId": 60454,
-   "Name": "Joe"s Product List",
-   "Products": [
-       {
-           "ProductName": "Product Name",
-           "VendorSku": "123456789",
-           "Price": 11.11,
-           "Dropshippable": true,
-           "ProductSlugs": [
-               "M5218"
-           ],
-           "Version": 1
-       },
-       {
-           "ProductName": "iPhone 6 Flexshield Case",
-           "VendorSku": "987321654",
-           "Price": 28.99,
-           "Dropshippable": true,
-           "ProductSlugs": [],
-           "Version": 1
-       }
-   ],
-   "Version": 2
+  "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
+    "EntityId": 60455,
+    "Name": "Joe's Product List",
+    "Products": [
+        {
+            "ProductName": "Product Name",
+            "VendorSku": "123456789",
+            "Price": 11.11,
+            "Dropshipable": true,
+            "ProductSlugs": [],
+            "Version": 1
+        }
+    ],
+    "Version": 2
 }
-
+```
 
 ## Errors
 

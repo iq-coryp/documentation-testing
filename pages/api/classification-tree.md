@@ -4,7 +4,7 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -31,12 +31,17 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `1` |
-| Name | string | Name | `Smartphones` |
-| Order | integer | Sorting order | `2` |
-| ProductTemplate | object | A reference to a [ProductTemplate](/api/glossary/#producttemplate) |  |
-| ProductTemplate.Id | integer | Identifier | `60` |
-| ProductTemplate.Name | string | Name | `Wireless Device` |
+| Id | Integer | Identifier | `1` |
+| Name | String | Name | `Smartphones` |
+| Order | Integer | Sorting order | `1` |
+| ProductTemplate | [ProductTemplate](#producttemplate) |  |  |
+
+### ProductTemplate
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Integer | Identifier | `60` |
+| Name | String | Name | `Wireless Device` |
 
 ### Category
 
@@ -46,26 +51,31 @@ There is a limit to 20 levels of depth for Categories.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `2` |
-| Name | string | Name | `Device` |
-| Categories | array[[Category](#category)] | Child Categories |  |
-| Classifications | array[[Classification](#classification)]  | Child Classifications |  |
-| Order | integer | Sorting order | `1` |
+| Id | Integer | Identifier | `2` |
+| Name | String | Name | `Device` |
+| Categories | Array[object] | Child Categories |  |
+| Classifications | Array[object] | Child Classifications |  |
+| Order | Integer | Sorting order | `1` |
 
 ### ClassificationTree
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `21` |
-| Name | string | Name | `Cellular & Accessories` |
-| Description | string | Description | `Classification of products for wireless retail` |
-| Categories | array[[Category](#category)] | Categories in the Tree |  |
-| Classifications | array[[Classification](#classification)] | Classifications for the Tree |  |
-| Owner | object | Information about the [Company](/api/company-tree/#company) that owns this Tree |  |
-| Owner.Id | integer | [Company](/api/company-tree/#company) Identifier | `1` |
-| Owner.Name | string | [Company](/api/company-tree/#company) Name | `SampleCompany` |
-| Version | integer | Latest revision number | `41` |
-| *IsCanonical* | *boolean* | *Reserved for internal use* | |
+| Id | Integer | Identifier | `21` |
+| Name | String | Name | `Cellular & Accessories` |
+| Description | String | Description | `Classification of products for wireless retail` |
+| Categories | Array[[Category](#category)] | Categories in the Tree |  |
+| Classifications | Array[[Classification](#classification)] | Classifications for the Tree |  |
+| Owner | [Owner](#owner) | Information about the [Company](/api/company-tree/#company) that owns this Tree |  |
+| Version | Integer | Latest revision number | `41` |
+| *IsCanonical* | *Boolean* | *Reserved for internal use* | |
+
+### Owner
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Integer | [Company](/api/company-tree/#company) Identifier | `1` |
+| Name | String | [Company](/api/company-tree/#company) Name | `SampleCompany` |
 
 
 
@@ -80,13 +90,14 @@ There is a limit to 20 levels of depth for Categories.
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `ClassificationTreeId` (**Required**)  - Identifier for the {{ClassificationTree}} 
 
@@ -99,10 +110,13 @@ GET /ClassificationTrees(21)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{ClassificationTree}}
 
 
 ###### Example
@@ -110,42 +124,39 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": 21,
-  "Name": "Cellular & Accessories",
-  "Description": "Classification of products for wireless retail",
-  "Categories": [
-    {
-      "Id": 2,
-      "Name": "Devices",
-      "Order": 1,
-      "Categories": [
-        ...
-      ],
-      "Classifications": [
-        ...
-      ]
-  },
-  ...
-  ],
-  "Classifications": [
-    {         
-      "Id": 1,
-      "Name": "Smartphones",
-      "Order": 2,
-      "ProductTemplate": {
-        "Id": 60,
-        "Name": "Wireless Device"
-      }
-    },
-    ...
-  ],
-  "Owner": {
-    "Id": 1,
-    "Name": "SampleCompany"
-  },
-  "Version": 41
+"Id": 21,
+"Name": "Cellular & Accessories",
+"Description": "Classification of products for wireless retail",
+"Categories": [
+{
+"Id": 2,
+"Name": "Device",
+"Categories": [],
+"Classifications": [],
+"Order": 1
 }
- 
+]
+,
+"Classifications": [
+{
+"Id": 1,
+"Name": "Smartphones",
+"Order": 1,
+"ProductTemplate": 
+{
+"Id": 60,
+"Name": "Wireless Device"
+}
+}
+]
+,
+"Owner": 
+{
+"Id": 1,
+"Name": "SampleCompany"
+},
+"Version": 41
+}```
 
 ## Errors
 

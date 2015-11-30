@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -26,18 +26,19 @@ A Customer is a person or organization that buys goods or services from a store 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| PrimaryName | string | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
-| MiddleName | string | Middle name. Could also be referred to as Additional name | `Lee` |
-| FamilyName | string | Family name. In the U.S., the last name of a Person | `Smith` |
-| AlternateName | string | Alias or preferred name | `Bob` |
-| CustomerType | string | Name of the [CustomerType](#customertype) | `Company` |
-| CustomerTypeId | integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
-| DateOfBirth | datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
-| Disabled | boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
-| DoNotContact | boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
-| Notes | string | Any notes related to this Customer | `Interested in iPhone 6` |
-| Title | string | Title | `Mr` |
-| Version | integer | Latest revision number | `1` |
+| PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
+| MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
+| FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
+| AlternateName | String | Alias or preferred name | `Bob` |
+| CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
+| CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
+| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
+| DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
+| Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
+| Title | String | Title | `Mr` |
+| Version | Integer | Latest revision number | `1` |
+
 
 ### Address
 
@@ -46,25 +47,26 @@ An Address represents a valid address somewhere on the planet.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Guid | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `f23a104e-0ce3-409e-8b1f-37ae9d1aeaa7` |
-| AddressType | string | Name of the [AddressType](#addresstype) | `Business` |
-| AddressTypeId | integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
-| AttentionTo | string | Attention To (Attn:) | `iQmetrix` |
-| Country | string | The Country. This value is system-generated and read-only | `Canada` |
-| CountryCode | string | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
-| Default | boolean | A flag to indicate if this address is the default address for the customer | `false` |
-| DoNotContact | boolean | A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true | `true` |
-| Email | string | Email | `Test@Test.com` |
-| Locality | string | City, Town, Hamlet | `Mountain View` |
-| Notes | string | Notes related to this Address | `New residence` |
-| Phone | string | Phone number | `(555) 555-5555` |
-| PostalCode | string | The postal code/zip code | `94043` |
-| PostOfficeBoxNumber | string | The post office box number for PO box addresses | `P.O. Box 1022` |
-| State | string | The State/Province | `British Columbia` |
-| StateCode | string | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
-| StreetAddress1 | string | The street address | `1600 Amphitheatre Pkwy` |
-| StreetAddress2 | string | The street address | `Suite 500` |
-| Version | integer | Latest revision number | `1` |
+| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| AddressType | String | Name of the [AddressType](#addresstype) | `Business` |
+| AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
+| AttentionTo | String | Attention To (Attn:) | `iQmetrix` |
+| Country | String | The Country. This value is system-generated and read-only | `Canada` |
+| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
+| Default | Boolean | A flag to indicate if this address is the default address for the customer | `false` |
+| DoNotContact | Boolean | A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true | `true` |
+| Email | String | Email | `Test@Test.com` |
+| Locality | String | City, Town, Hamlet | `Mountain View` |
+| Notes | String | Notes related to this Address | `New residence` |
+| Phone | String | Phone number | `(555) 555-5555` |
+| PostalCode | String | The postal code/zip code | `94043` |
+| PostOfficeBoxNumber | String | The post office box number for PO box addresses | `P.O. Box 1022` |
+| State | String | The State/Province | `British Columbia` |
+| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
+| StreetAddress1 | String | The street address | `1600 Amphitheatre Pkwy` |
+| StreetAddress2 | String | The street address | `Suite 500` |
+| Version | Integer | Latest revision number | `1` |
+
 
 ### ContactMethod
 
@@ -73,16 +75,17 @@ A Contact Method is a method of contacting a Customer.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Guid | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `b8b54200-4c7e-414d-93eb-a3689e473be3` |
-| ContactMethodCategory | string | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
-| ContactMethodCategoryId | integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values | `3` |
-| ContactMethodType | string | Name of the [ContactMethodType](#contactmethodtype | `Work phone` |
-| ContactMethodTypeId | integer | See [ContactMethodType](#contactmethodtype) for a list of acceptable values | `5` |
-| Default | boolean | A flag to indicate if this is the default ContactMethod for the Customer | `true` |
-| DoNotContact | boolean | A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true | `true` |
-| Notes | string | Notes related to this ContactMethod | `After 6pm` |
-| Value | string | The value representing this ContactMethod | `(306) 222-3333` |
-| Version | integer | Latest revision number | `1` |
+| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ContactMethodCategory | String | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
+| ContactMethodCategoryId | Integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values | `3` |
+| ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype | `Work phone` |
+| ContactMethodTypeId | Integer | See [ContactMethodType](#contactmethodtype) for a list of acceptable values | `5` |
+| Default | Boolean | A flag to indicate if this is the default ContactMethod for the Customer | `true` |
+| DoNotContact | Boolean | A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true | `true` |
+| Notes | String | Notes related to this ContactMethod | `After 6pm` |
+| Value | String | The value representing this ContactMethod | `(306) 222-3333` |
+| Version | Integer | Latest revision number | `1` |
+
 
 ### CustomerExtension
 
@@ -92,10 +95,10 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 |:-----|:----------|:------------|:--------|
 | Id | Guid | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
 | CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ExtensionType | string | Name of the [CustomerExtensionType](#customerextensiontype) | `ExternalCustomerId` |
-| ExtensionTypeId | integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `1` |
-| Value | string | Value | `66432` |
-| Version | integer | Latest revision number | `1` |
+| ExtensionType | String | Name of the [CustomerExtensionType](#customerextensiontype) | `ExternalCustomerId` |
+| ExtensionTypeId | Integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `1` |
+| Value | String | Value | `66432` |
+| Version | Integer | Latest revision number | `1` |
 
 ### CustomerExtensionType
 
@@ -103,9 +106,9 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `1` |
-| Name | string | Name | `ExternalCustomerId` |
-| Data Type | string | Data type | `Integer` |
+| Id | Integer | Identifier | `1` |
+| Name | String | Name | `ExternalCustomerId` |
+| Data Type | String | Data type | `Integer` |
 
 ### CustomerFull
 
@@ -113,11 +116,25 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Addresses | array[[Address](#address)] | A collection of Addresses |  |
-| ContactMethods | array[[ContactMethod](#contactmethod)] | A collection of ContactMethods |  |
-| CustomerExtensions | array[[CustomrExtension](#customerextension)] | A collection of CustomerExtensions |  |
-| MemberOf | array[object] | A collection of Customers that the Customer is a MemberOf (parent relation) |  |
-| RelatedCustomers | array[object] | A collection of Customers related to the Customer (child relation) |  |
+| Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
+| MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
+| FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
+| Addresses | Array[[Address](#address)] | A collection of Addresses |  |
+| AlternateName | String | Alias or preferred name | `Bob` |
+| ContactMethods | Array[[ContactMethod](#contactmethod)] | A collection of ContactMethods |  |
+| CustomerExtensions | Array[[CustomerExtension](#customerextension)] | A collection of CustomerExtensions |  |
+| CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
+| CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
+| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
+| DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
+| MemberOf | Array[object] | A collection of Customers that the Customer is a MemberOf (parent relation) |  |
+| Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
+| RelatedCustomers | Array[object] | A collection of Customers related to the Customer (child relation) |  |
+| Title | String | Title | `Mr` |
+| Version | Integer | Latest revision number | `1` |
+
 
 ### CustomerSearch
 
@@ -125,7 +142,7 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Criteria | string | The criteria used to seach for the Customer |  |
+| Criteria | String | The criteria used to seach for the Customer |  |
 
 
 
@@ -189,8 +206,8 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -198,7 +215,9 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 
 #### URI Parameters
 
+
 * `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+
 
 
 #### Request Parameters
@@ -225,17 +244,19 @@ POST /Companies(1)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+
 {
-  "CustomerTypeId": 2,
-  "Title": "Mr",
-  "PrimaryName": "Robert",
-  "AlternateName": "Bob",
-  "MiddleName": "Lee",
-  "FamilyName": "Smith",
-  "DateOfBirth": "1952-07-23T12:00:00",
-  "Notes": "Interested in iPhone 6",
-  "Disabled": true,
-  "DoNotContact": true
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"AlternateName": "Bob",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"Notes": "Interested in iPhone 6",
+"Title": "Mr"
 }
 
 
@@ -244,29 +265,28 @@ Content-Type: application/json
 #### Response
 
 
+{{Customer}}
+
 
 ###### Example
 
 ```
 HTTP 201 Content-Type: application/json
-[
-  {
-    "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-    "CustomerTypeId": 2,
-    "CustomerType": "Person",
-    "Title": "Mr",
-    "PrimaryName": "Robert",
-    "AlternateName": "Bob",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "DateOfBirth": "1952-07-23T12:00:00",
-    "Notes": "Interested in iPhone 6",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Version": 1
-  }
-]
-
+{
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"AlternateName": "Bob",
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"Notes": "Interested in iPhone 6",
+"Title": "Mr",
+"Version": 1
+}```
 ## Getting All Customers
 
 
@@ -277,13 +297,14 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
@@ -296,34 +317,37 @@ GET /Companies(1)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{Customer}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
 [
-  {
-    "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-    "CustomerTypeId": 2,
-    "CustomerType": "Person",
-    "Title": "Mr",
-    "PrimaryName": "Robert",
-    "AlternateName": "Bob",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "DateOfBirth": "1952-07-23T12:00:00",
-    "Notes": "Interested in iPhone 6",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Version": 1
-  }
+{
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"AlternateName": "Bob",
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"Notes": "Interested in iPhone 6",
+"Title": "Mr",
+"Version": 1
+}
 ]
- 
 
 
 ###### Example
@@ -393,6 +417,7 @@ HTTP 200 Content-Type: application/hal+json
   }
 }     
 
+```
 ## Getting a Customer
 
 
@@ -403,15 +428,17 @@ HTTP 200 Content-Type: application/hal+json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
 
 
 
@@ -422,10 +449,13 @@ GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{Customer}}
 
 
 ###### Example
@@ -433,21 +463,20 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-  "CustomerTypeId": 2,
-  "CustomerType": "Person",
-  "Title": "Mr",
-  "PrimaryName": "Robert",
-  "AlternateName": "Bob",
-  "MiddleName": "Lee",
-  "FamilyName": "Smith",
-  "DateOfBirth": "1952-07-23T12:00:00",
-  "Notes": "Interested in iPhone 6",
-  "Disabled": true,
-  "DoNotContact": true,
-  "Version": 1
-}
- 
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"AlternateName": "Bob",
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"Notes": "Interested in iPhone 6",
+"Title": "Mr",
+"Version": 1
+}```
 ## Updating a Customer
 
 
@@ -458,8 +487,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -467,7 +496,10 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+
 
 
 #### Request Parameters
@@ -494,27 +526,30 @@ PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-  "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-  "CustomerTypeId": 2,
-  "CustomerType": "Person",
-  "Title": "Mr",
-  "PrimaryName": "Robert",
-  "AlternateName": "Bob",
-  "MiddleName": "Lee",
-  "FamilyName": "Smith",
-  "DateOfBirth": "1952-07-23T12:00:00",
-  "Notes": "Interested in iPhone 6",
-  "Disabled": true,
-  "DoNotContact": true,
-  "Version": 1
-}
 
+
+{
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"AlternateName": "Bob",
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"Notes": "Interested in iPhone 6",
+"Title": "Mr",
+"Version": 1
+}
 
 ```
 
 #### Response
 
+
+{{Customer}}
 
 
 ###### Example
@@ -522,21 +557,20 @@ Content-Type: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-  "CustomerTypeId": 2,
-  "CustomerType": "Person",
-  "Title": "Mr",
-  "PrimaryName": "Robert",
-  "AlternateName": "Bob",
-  "MiddleName": "Lee",
-  "FamilyName": "Smith",
-  "DateOfBirth": "1952-07-23T12:00:00",
-  "Notes": "Interested in iPhone 6",
-  "Disabled": true,
-  "DoNotContact": true,
-  "Version": 1
-}
-
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"AlternateName": "Bob",
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"Notes": "Interested in iPhone 6",
+"Title": "Mr",
+"Version": 1
+}```
 ## Deleting a Customer
 
 
@@ -547,15 +581,16 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
-* `Accept: application/json`
+* `Authorization: Bearer (Access Token)`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
 
 
 
@@ -564,14 +599,13 @@ HTTP 200 Content-Type: application/json
 ```
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
 Authorization: Bearer (Access Token)
-Accept: application/json
+
 
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 
@@ -586,8 +620,8 @@ Accept: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -595,7 +629,10 @@ Accept: application/json
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+
 
 
 #### Request Parameters
@@ -629,21 +666,23 @@ POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+
 {
-   "AddressTypeId": 2,
-   "CountryCode": "CA",
-   "StateCode": "SK",
-   "AttentionTo": "iQmetrix",
-   "Default": false,
-   "DoNotContact": true,
-   "Email": "Test@Test.com",
-   "Locality": "Regina",
-   "Notes": "",
-   "Phone": "(555) 555-5555",
-   "PostalCode": "S4P 0P7",
-   "PostOfficeBoxNumber": "",
-   "StreetAddress1": "2221 Cornwall Street",
-   "StreetAddress2": ""
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500"
 }
 
 
@@ -652,34 +691,35 @@ Content-Type: application/json
 #### Response
 
 
+{{Address}}
+
 
 ###### Example
 
 ```
 HTTP 201 Content-Type: application/json
 {
-   "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "AddressTypeId": 2,
-   "AddressType": "Home",
-   "AttentionTo": "iQmetrix",
-   "Default": false,
-   "DoNotContact": true,
-   "Email": "Test@Test.com",
-   "CountryCode": "CA",
-   "Country": "Canada",
-   "Locality": "Regina",
-   "StateCode": "SK",
-   "State": "Saskatchewan",
-   "Phone": "(555) 555-5555",
-   "PostalCode": "S4P 0P7",
-   "PostOfficeBoxNumber": "",
-   "StreetAddress1": "2221 Cornwall Street",
-   "StreetAddress2": "",
-   "Notes": "",
-   "Version": 1
-}
-
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
+}```
 ## Getting All Addresses for a Customer
 
 
@@ -690,15 +730,17 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -709,39 +751,44 @@ GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{Address}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
+[
 {
-   "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "AddressTypeId": 2,
-   "AddressType": "Home",
-   "AttentionTo": "iQmetrix",
-   "Default": false,
-   "DoNotContact": true,
-   "Email": "Test@Test.com",
-   "CountryCode": "CA",
-   "Country": "Canada",
-   "Locality": "Regina",
-   "StateCode": "SK",
-   "State": "Saskatchewan",
-   "Phone": "(555) 555-5555",
-   "PostalCode": "S4P 0P7",
-   "PostOfficeBoxNumber": "",
-   "StreetAddress1": "2221 Cornwall Street",
-   "StreetAddress2": "",
-   "Notes": "",
-   "Version": 1
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
 }
- 
+]
 
 
 ###### Example
@@ -786,6 +833,7 @@ HTTP 200 Content-Type: application/hal+json
    "Version": 1
 }
 
+```
 ## Getting a Customer Address
 
 
@@ -796,15 +844,18 @@ HTTP 200 Content-Type: application/hal+json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier of the Company * `CustomerId` (**Required**)  - Identifier for the {{Customer}} * `AddressId` (**Required**)  - Identifier for the {{Address}} 
+
+* `CompanyId` (**Required**)  - Identifier of the Company 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* `AddressId` (**Required**)  - Identifier for the {{Address}} 
 
 
 
@@ -815,10 +866,13 @@ GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{Address}}
 
 
 ###### Example
@@ -826,28 +880,27 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": "5e8d53e2-a414-4e8a-b591-53454bc5321f",
-  "CustomerId": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-  "AddressTypeId": 2,
-  "AddressType": "Home",
-  "Default": false,
-  "DoNotContact": true,
-  "CountryCode": "CA",
-  "Country": "Canada",
-  "Locality": "Regina",
-  "StateCode": "SK",
-  "State": "Saskatchewan",
-  "PostalCode": "S4P 0P7",
-  "PostOfficeBoxNumber": "",
-  "StreetAddress1": "2221 Cornwall Street",
-  "StreetAddress2": "",
-  "Notes": "",
-  "Version": 1,
-  "AttentionTo": "iQmetrix",
-  "Phone": "555-555-5555",
-  "Email": "Test@Test.com"
-}
- 
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
+}```
 ## Updating a Customer Address
 
 
@@ -858,8 +911,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -867,7 +920,11 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier of the Company * `CustomerId` (**Required**)  - Identifier for the {{Customer}} * `AddressId` (**Required**)  - Identifier for the {{Address}} 
+
+* `CompanyId` (**Required**)  - Identifier of the Company 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* `AddressId` (**Required**)  - Identifier for the {{Address}} 
+
 
 
 #### Request Parameters
@@ -901,34 +958,37 @@ PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-  "Id": "5e8d53e2-a414-4e8a-b591-53454bc5321f",
-  "CustomerId": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-  "AddressTypeId": 2,
-  "AddressType": "Home",
-  "Default": false,
-  "DoNotContact": true,
-  "CountryCode": "CA",
-  "Country": "Canada",
-  "Locality": "Regina",
-  "StateCode": "SK",
-  "State": "Saskatchewan",
-  "PostalCode": "S4P 0P7",
-  "PostOfficeBoxNumber": "",
-  "StreetAddress1": "2221 Cornwall Street",
-  "StreetAddress2": "",
-  "Notes": "",
-  "Version": 1,
-  "AttentionTo": "iQmetrix",
-  "Phone": "555-555-5555",
-  "Email": "Test@Test.com"
-}
 
+
+{
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
+}
 
 ```
 
 #### Response
 
+
+{{Address}}
 
 
 ###### Example
@@ -936,28 +996,27 @@ Content-Type: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Id": "5e8d53e2-a414-4e8a-b591-53454bc5321f",
-  "CustomerId": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-  "AddressTypeId": 2,
-  "AddressType": "Home",
-  "Default": false,
-  "DoNotContact": true,
-  "CountryCode": "CA",
-  "Country": "Canada",
-  "Locality": "Regina",
-  "StateCode": "SK",
-  "State": "Saskatchewan",
-  "PostalCode": "S4P 0P7",
-  "PostOfficeBoxNumber": "",
-  "StreetAddress1": "2221 Cornwall Street",
-  "StreetAddress2": "",
-  "Notes": "",
-  "Version": 1,
-  "AttentionTo": "iQmetrix",
-  "Phone": "555-555-5555",
-  "Email": "Test@Test.com"
-}
-
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
+}```
 ## Removing an Address from a Customer
 
 
@@ -968,15 +1027,17 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
-* `Accept: application/json`
+* `Authorization: Bearer (Access Token)`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier of the Company * `CustomerId` (**Required**)  - Identifier for the {{Customer}} * `AddressId` (**Required**)  - Identifier for the {{Address}} 
+
+* `CompanyId` (**Required**)  - Identifier of the Company 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* `AddressId` (**Required**)  - Identifier for the {{Address}} 
 
 
 
@@ -985,14 +1046,13 @@ HTTP 200 Content-Type: application/json
 ```
 DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
 Authorization: Bearer (Access Token)
-Accept: application/json
+
 
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 
@@ -1007,8 +1067,8 @@ Accept: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1016,7 +1076,9 @@ Accept: application/json
 
 #### URI Parameters
 
+
 * `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+
 
 
 #### Request Parameters
@@ -1067,54 +1129,60 @@ POST /Companies(1)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+
 {
-   "CustomerTypeId": 2,
-   "PrimaryName": "Robert",
-   "MiddleName": "Lee",
-   "FamilyName": "Smith",
-   "AlternateName": "Bob",
-   "DateOfBirth": "1952-07-23T12:00:00.000",
-   "Disabled": true,
-   "DoNotContact": true,
-   "Notes": "Interested in iPhone 6",
-   "Title": "Mr",
-   "Addresses": [
-       {
-           "AddressTypeId": 2,
-           "AttentionTo": "iQmetrix",
-           "CountryCode": "CA",
-           "StateCode": "SK",
-           "AddressType": "Home",
-           "Default": false,
-           "DoNotContact": true,
-           "Email": "Test@Test.com"
-           "Locality": "Regina",
-           "Phone": "(555) 555-5555",
-           "PostalCode": "S4P 0P7",
-           "PostOfficeBoxNumber": "",
-           "StreetAddress1": "2221 Cornwall Street",
-           "StreetAddress2": "",
-           "Notes": ""
-       }
-   ],
-   "ContactMethods": [
-       {
-           "ContactMethodCategoryId": 1,
-           "ContactMethodTypeId": 5,
-           "Value": "(306) 222-3333",
-           "DoNotContact": true,
-           "Default": false,
-           "Notes": ""
-       }
-   ],
-   "CustomerExtensions": [
-       {
-           "ExtensionTypeId": 1,
-           "Value": "4421"
-       }
-   ],
-   "MemberOf": [ ],
-   "RelatedCustomers": [ ]
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"Addresses": [
+{
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500"
+}
+]
+,
+"AlternateName": "Bob",
+"ContactMethods": [
+{
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategoryId": 3,
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333"
+}
+]
+,
+"CustomerExtensions": [
+{
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ExtensionTypeId": 1,
+"Value": "66432"
+}
+]
+,
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"MemberOf": [],
+"Notes": "Interested in iPhone 6",
+"RelatedCustomers": [],
+"Title": "Mr"
 }
 
 
@@ -1123,76 +1191,82 @@ Content-Type: application/json
 #### Response
 
 
+{{CustomerFull}}
+
 
 ###### Example
 
 ```
 HTTP 201 Content-Type: application/json
 {
-   "Id": "7f252c18-e07a-47e7-914a-cf2a726b21b7",
-   "PrimaryName": "Robert",
-   "MiddleName": "Lee",
-   "FamilyName": "Smith",
-   "AlternateName": "Bob",
-   "CustomerTypeId": 2,
-   "CustomerType": "Person",
-   "DateOfBirth": "1952-07-23T12:00:00.000",
-   "Disabled": true,
-   "DoNotContact": true,
-   "Notes": "Interested in iPhone 6",
-   "Title": "Mr",
-   "Addresses": [
-       {
-           "AddressTypeId": 2,
-           "AddressType": "Home",
-           "AttentionTo": "iQmetrix",
-           "Default": false,
-           "DoNotContact": true,
-           "Email": "Test@Test.com",
-           "CountryCode": "CA",
-           "Country": "Canada",
-           "Locality": "Regina",
-           "StateCode": "SK",
-           "State": "Saskatchewan",
-           "Phone": "(555) 555-5555",
-           "PostalCode": "S4P 0P7",
-           "PostOfficeBoxNumber": "",
-           "StreetAddress1": "2221 Cornwall Street",
-           "StreetAddress2": "",
-           "Notes": "",
-           "Version": 1
-       }
-   ],
-   "ContactMethods": [
-       {
-           "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-           "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
-           "ContactMethodCategory": "Phone",
-           "ContactMethodCategoryId": 1,
-           "ContactMethodType": "Pager",
-           "ContactMethodTypeId": 5,
-           "Default": false,
-           "DoNotContact": true,
-           "Notes": "",
-           "Value": "(306) 222-3333",
-           "Version": 1
-       }
-   ],
-   "CustomerExtensions": [
-       {
-           "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-           "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
-           "ExtensionType": "ExternalCustomerId",
-           "ExtensionTypeId": 1,
-           "Value": "4421",
-           "Version": 1
-       }
-   ],
-   "MemberOf": [ ],
-   "RelatedCustomers": [ ],
-   "Version": 1
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"Addresses": [
+{
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
 }
-
+]
+,
+"AlternateName": "Bob",
+"ContactMethods": [
+{
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}
+]
+,
+"CustomerExtensions": [
+{
+"Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ExtensionType": "ExternalCustomerId",
+"ExtensionTypeId": 1,
+"Value": "66432",
+"Version": 1
+}
+]
+,
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"MemberOf": [],
+"Notes": "Interested in iPhone 6",
+"RelatedCustomers": [],
+"Title": "Mr",
+"Version": 1
+}```
 ## Getting All Full Customers
 
 
@@ -1203,13 +1277,14 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
@@ -1222,81 +1297,91 @@ GET /Companies(1)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{CustomerFull}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
+[
 {
-   "Id": "7f252c18-e07a-47e7-914a-cf2a726b21b7",
-   "PrimaryName": "Robert",
-   "MiddleName": "Lee",
-   "FamilyName": "Smith",
-   "AlternateName": "Bob",
-   "CustomerTypeId": 2,
-   "CustomerType": "Person",
-   "DateOfBirth": "1952-07-23T12:00:00.000",
-   "Disabled": true,
-   "DoNotContact": true,
-   "Notes": "Interested in iPhone 6",
-   "Title": "Mr",
-   "Addresses": [
-       {
-           "AddressTypeId": 2,
-           "AddressType": "Home",
-           "AttentionTo": "iQmetrix",
-           "Default": false,
-           "DoNotContact": true,
-           "Email": "Test@Test.com",
-           "CountryCode": "CA",
-           "Country": "Canada",
-           "Locality": "Regina",
-           "StateCode": "SK",
-           "State": "Saskatchewan",
-           "Phone": "(555) 555-5555",
-           "PostalCode": "S4P 0P7",
-           "PostOfficeBoxNumber": "",
-           "StreetAddress1": "2221 Cornwall Street",
-           "StreetAddress2": "",
-           "Notes": "",
-           "Version": 1
-       }
-   ],
-   "ContactMethods": [
-       {
-           "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-           "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
-           "ContactMethodCategory": "Phone",
-           "ContactMethodCategoryId": 1,
-           "ContactMethodType": "Pager",
-           "ContactMethodTypeId": 5,
-           "Default": false,
-           "DoNotContact": true,
-           "Notes": "",
-           "Value": "(306) 222-3333",
-           "Version": 1
-       }
-   ],
-   "CustomerExtensions": [
-       {
-           "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-           "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
-           "ExtensionType": "ExternalCustomerId",
-           "ExtensionTypeId": 1,
-           "Value": "4421",
-           "Version": 1
-       }
-   ],
-   "MemberOf": [ ],
-   "RelatedCustomers": [ ],
-   "Version": 1
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"Addresses": [
+{
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
 }
- 
+]
+,
+"AlternateName": "Bob",
+"ContactMethods": [
+{
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}
+]
+,
+"CustomerExtensions": [
+{
+"Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ExtensionType": "ExternalCustomerId",
+"ExtensionTypeId": 1,
+"Value": "66432",
+"Version": 1
+}
+]
+,
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"MemberOf": [],
+"Notes": "Interested in iPhone 6",
+"RelatedCustomers": [],
+"Title": "Mr",
+"Version": 1
+}
+]
 
 
 ###### Example
@@ -1399,6 +1484,7 @@ HTTP 200 Content-Type: application/hal+json
    "Version": 1
 }
 
+```
 ## Getting a Full Customer
 
 
@@ -1409,15 +1495,17 @@ HTTP 200 Content-Type: application/hal+json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
@@ -1428,10 +1516,13 @@ GET /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{CustomerFull}}
 
 
 ###### Example
@@ -1439,64 +1530,74 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-   "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "PrimaryName": "Robert",
-   "MiddleName": "Lee",
-   "FamilyName": "Smith",
-   "AlternateName": "Bob",
-   "CustomerType": "Person",
-   "CustomerTypeId": 2,
-   "DateOfBirth": "1952-07-23T12:00:00.000",
-   "Disabled": true,
-   "DoNotContact": true
-   "Notes": "Interested in iPhone 6",
-   "Title": "Mr",
-   "Addresses": [
-       {
-           "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-           "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-           "AddressTypeId": 2,
-           "AddressType": "Home",
-           "Default": false,
-           "DoNotContact": true,
-           "CountryCode": "CA",
-           "Country": "Canada",
-           "Locality": "Regina",
-           "StateCode": "SK",
-           "State": "Saskatchewan",
-           "PostalCode": "S4P 0P7",
-           "PostOfficeBoxNumber": "",
-           "StreetAddress1": "2221 Cornwall Street",
-           "StreetAddress2": "",
-           "Notes": ""
-       }
-   ],
-   "ContactMethods": [
-       {
-           "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-           "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-           "ContactMethodCategoryId": 1,
-           "ContactMethodCategory": "Phone",
-           "ContactMethodTypeId": 5,
-           "ContactMethodType": "Pager",
-           "Value": "(306) 222-3333",
-           "DoNotContact": true,
-           "Default": false,
-           "Notes": ""
-       }
-   ],
-   "CustomerExtensions": [
-       "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-       "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-       "ExtensionType": "ExternalCustomerId"
-       "ExtensionTypeId": 1,
-       "Value": "4421",
-       "Version": 1
-   ],
-   "MemberOf": [ ],
-   "RelatedCustomers": [ ]
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"Addresses": [
+{
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
 }
- 
+]
+,
+"AlternateName": "Bob",
+"ContactMethods": [
+{
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}
+]
+,
+"CustomerExtensions": [
+{
+"Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ExtensionType": "ExternalCustomerId",
+"ExtensionTypeId": 1,
+"Value": "66432",
+"Version": 1
+}
+]
+,
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"MemberOf": [],
+"Notes": "Interested in iPhone 6",
+"RelatedCustomers": [],
+"Title": "Mr",
+"Version": 1
+}```
 ## Updating a Full Customer
 
 
@@ -1507,8 +1608,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1516,7 +1617,10 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+
 
 
 #### Request Parameters
@@ -1567,70 +1671,84 @@ PUT /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-   "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "PrimaryName": "Robert",
-   "MiddleName": "Lee",
-   "FamilyName": "Smith",
-   "AlternateName": "Bob",
-   "CustomerType": "Person",
-   "CustomerTypeId": 2,
-   "DateOfBirth": "1952-07-23T12:00:00.000",
-   "Disabled": true,
-   "DoNotContact": true
-   "Notes": "Interested in iPhone 6",
-   "Title": "Mr",
-   "Addresses": [
-       {
-           "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-           "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-           "AddressTypeId": 2,
-           "AddressType": "Home",
-           "Default": false,
-           "DoNotContact": true,
-           "CountryCode": "CA",
-           "Country": "Canada",
-           "Locality": "Regina",
-           "StateCode": "SK",
-           "State": "Saskatchewan",
-           "PostalCode": "S4P 0P7",
-           "PostOfficeBoxNumber": "",
-           "StreetAddress1": "2221 Cornwall Street",
-           "StreetAddress2": "",
-           "Notes": ""
-       }
-   ],
-   "ContactMethods": [
-       {
-           "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-           "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-           "ContactMethodCategoryId": 1,
-           "ContactMethodCategory": "Phone",
-           "ContactMethodTypeId": 5,
-           "ContactMethodType": "Pager",
-           "Value": "(306) 222-3333",
-           "DoNotContact": true,
-           "Default": false,
-           "Notes": ""
-       }
-   ],
-   "CustomerExtensions": [
-       "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-       "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-       "ExtensionType": "ExternalCustomerId"
-       "ExtensionTypeId": 1,
-       "Value": "4421",
-       "Version": 1
-   ],
-   "MemberOf": [ ],
-   "RelatedCustomers": [ ]
-}
 
+
+{
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"Addresses": [
+{
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
+}
+]
+,
+"AlternateName": "Bob",
+"ContactMethods": [
+{
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}
+]
+,
+"CustomerExtensions": [
+{
+"Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ExtensionType": "ExternalCustomerId",
+"ExtensionTypeId": 1,
+"Value": "66432",
+"Version": 1
+}
+]
+,
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"MemberOf": [],
+"Notes": "Interested in iPhone 6",
+"RelatedCustomers": [],
+"Title": "Mr",
+"Version": 1
+}
 
 ```
 
 #### Response
 
+
+{{CustomerFull}}
 
 
 ###### Example
@@ -1638,64 +1756,74 @@ Content-Type: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-   "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "PrimaryName": "Robert",
-   "MiddleName": "Lee",
-   "FamilyName": "Smith",
-   "AlternateName": "Bob",
-   "CustomerType": "Person",
-   "CustomerTypeId": 2,
-   "DateOfBirth": "1952-07-23T12:00:00.000",
-   "Disabled": true,
-   "DoNotContact": true
-   "Notes": "Interested in iPhone 6",
-   "Title": "Mr",
-   "Addresses": [
-       {
-           "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-           "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-           "AddressTypeId": 2,
-           "AddressType": "Home",
-           "Default": false,
-           "DoNotContact": true,
-           "CountryCode": "CA",
-           "Country": "Canada",
-           "Locality": "Regina",
-           "StateCode": "SK",
-           "State": "Saskatchewan",
-           "PostalCode": "S4P 0P7",
-           "PostOfficeBoxNumber": "",
-           "StreetAddress1": "2221 Cornwall Street",
-           "StreetAddress2": "",
-           "Notes": ""
-       }
-   ],
-   "ContactMethods": [
-       {
-           "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-           "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-           "ContactMethodCategoryId": 1,
-           "ContactMethodCategory": "Phone",
-           "ContactMethodTypeId": 5,
-           "ContactMethodType": "Pager",
-           "Value": "(306) 222-3333",
-           "DoNotContact": true,
-           "Default": false,
-           "Notes": ""
-       }
-   ],
-   "CustomerExtensions": [
-       "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-       "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-       "ExtensionType": "ExternalCustomerId"
-       "ExtensionTypeId": 1,
-       "Value": "4421",
-       "Version": 1
-   ],
-   "MemberOf": [ ],
-   "RelatedCustomers": [ ]
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"Addresses": [
+{
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
 }
-
+]
+,
+"AlternateName": "Bob",
+"ContactMethods": [
+{
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}
+]
+,
+"CustomerExtensions": [
+{
+"Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ExtensionType": "ExternalCustomerId",
+"ExtensionTypeId": 1,
+"Value": "66432",
+"Version": 1
+}
+]
+,
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"MemberOf": [],
+"Notes": "Interested in iPhone 6",
+"RelatedCustomers": [],
+"Title": "Mr",
+"Version": 1
+}```
 ## Deleting a Full Customer
 
 
@@ -1706,15 +1834,16 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
-* `Accept: application/json`
+* `Authorization: Bearer (Access Token)`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
@@ -1723,14 +1852,13 @@ HTTP 200 Content-Type: application/json
 ```
 DELETE /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
 Authorization: Bearer (Access Token)
-Accept: application/json
+
 
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 
@@ -1745,8 +1873,8 @@ Accept: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1754,7 +1882,10 @@ Accept: application/json
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+
 
 
 #### Request Parameters
@@ -1779,14 +1910,16 @@ POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethod
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+
+
 {
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "ContactMethodCategoryId": 1,
-   "ContactMethodTypeId": 5,
-   "Default": false,
-   "DoNotContact": true,
-   "Notes": "",
-   "Value": "(306) 222-3333"
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategoryId": 3,
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333"
 }
 
 
@@ -1795,25 +1928,26 @@ Content-Type: application/json
 #### Response
 
 
+{{ContactMethod}}
+
 
 ###### Example
 
 ```
 HTTP 201 Content-Type: application/json
 {
-   "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "ContactMethodCategory": "Phone",
-   "ContactMethodCategoryId": 1,
-   "ContactMethodType": "Pager",
-   "ContactMethodTypeId": 5,
-   "Default": false,
-   "DoNotContact": true,
-   "Notes": "",
-   "Value": "(306) 222-3333",
-   "Version": 1
-}
-
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}```
 ## Getting All Contact Methods for a Customer
 
 
@@ -1824,15 +1958,17 @@ HTTP 201 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -1843,30 +1979,35 @@ GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{ContactMethod}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
+[
 {
-   "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "ContactMethodCategory": "Phone",
-   "ContactMethodCategoryId": 1,
-   "ContactMethodType": "Pager",
-   "ContactMethodTypeId": 5,
-   "Default": false,
-   "DoNotContact": true,
-   "Notes": "",
-   "Value": "(306) 222-3333",
-   "Version": 1
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
 }
- 
+]
 
 
 ###### Example
@@ -1902,6 +2043,7 @@ HTTP 200 Content-Type: application/hal+json
   "Version": 1
 }       
 
+```
 ## Getting a Customer Contact Method
 
 
@@ -1912,15 +2054,18 @@ HTTP 200 Content-Type: application/hal+json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated * `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
@@ -1931,10 +2076,13 @@ GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{ContactMethod}}
 
 
 ###### Example
@@ -1942,19 +2090,18 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-   "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "ContactMethodCategory": "Phone",
-   "ContactMethodCategoryId": 1,
-   "ContactMethodType": "Pager",
-   "ContactMethodTypeId": 5,
-   "Default": false,
-   "DoNotContact": true,
-   "Notes": "Updating this contact method",
-   "Value": "(306) 222-3333",
-   "Version": 2
-}
- 
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}```
 ## Updating a Customer Contact Method
 
 
@@ -1965,8 +2112,8 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
@@ -1974,7 +2121,11 @@ HTTP 200 Content-Type: application/json
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated * `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+
 
 
 #### Request Parameters
@@ -1999,25 +2150,28 @@ PUT /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-   "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "ContactMethodCategory": "Phone",
-   "ContactMethodCategoryId": 1,
-   "ContactMethodType": "Pager",
-   "ContactMethodTypeId": 5,
-   "Default": false,
-   "DoNotContact": true,
-   "Notes": "Updating this contact method",
-   "Value": "(306) 222-3333",
-   "Version": 2
-}
 
+
+{
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}
 
 ```
 
 #### Response
 
+
+{{ContactMethod}}
 
 
 ###### Example
@@ -2025,19 +2179,18 @@ Content-Type: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-   "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-   "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-   "ContactMethodCategory": "Phone",
-   "ContactMethodCategoryId": 1,
-   "ContactMethodType": "Pager",
-   "ContactMethodTypeId": 5,
-   "Default": false,
-   "DoNotContact": true,
-   "Notes": "Updating this contact method",
-   "Value": "(306) 222-3333",
-   "Version": 2
-}
-
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}```
 ## Removing a Customer Contact Method
 
 
@@ -2048,15 +2201,17 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
-* `Accept: application/json`
+* `Authorization: Bearer (Access Token)`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated * `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
@@ -2065,14 +2220,13 @@ HTTP 200 Content-Type: application/json
 ```
 DELETE /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
-Accept: application/json
+
 
 ```
 
 #### Response
 
 
-```
 
 ###### Example
 
@@ -2087,15 +2241,19 @@ Accept: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `FilterQuery` (Optional)  - Filter on customers * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `FilterQuery` (Optional)  - Filter on customers 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -2106,34 +2264,38 @@ GET /Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{Customer}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
 [
-  {
-    "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
-    "CustomerTypeId": 2,
-    "CustomerType": "Person",
-    "Title": "Mr",
-    "PrimaryName": "Robert",
-    "AlternateName": "Bob",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "DateOfBirth": "1952-07-23T12:00:00",
-    "Notes": "Interested in iPhone 6",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Version": 1
-  }
+{
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"AlternateName": "Bob",
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"Notes": "Interested in iPhone 6",
+"Title": "Mr",
+"Version": 1
+}
 ]
-                        
+```
 ## Customer Search
 
 [CustomerSearch](#customersearch) resources use a special property, `criteria`.
@@ -2161,15 +2323,17 @@ The Criteria filter will search the properties below for the given value.
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `FilterQuery` (Optional)  - The filter to apply 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `FilterQuery` (Optional)  - The filter to apply 
 
 
 
@@ -2180,10 +2344,13 @@ GET /Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{CustomerFull}}
 
 
 ###### Example
@@ -2191,65 +2358,74 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "Criteria": "Bob",
-  "Id": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-  "PrimaryName": "Robert",
-  "MiddleName": "Lee",
-  "FamilyName": "Smith",
-  "AlternateName": "Bob",
-  "CustomerType": "Person",
-  "CustomerTypeId": 2,
-  "DateOfBirth": "1952-07-23T12:00:00.000",
-  "Disabled": true,
-  "DoNotContact": true
-  "Notes": "Interested in iPhone 6",
-  "Title": "Mr",
-  "Addresses": [
-      {
-          "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
-          "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-          "AddressTypeId": 2,
-          "AddressType": "Home",
-          "Default": false,
-          "DoNotContact": true,
-          "CountryCode": "CA",
-          "Country": "Canada",
-          "Locality": "Regina",
-          "StateCode": "SK",
-          "State": "Saskatchewan",
-          "PostalCode": "S4P 0P7",
-          "PostOfficeBoxNumber": "",
-          "StreetAddress1": "2221 Cornwall Street",
-          "StreetAddress2": "",
-          "Notes": ""
-      }
-  ],
-  "ContactMethods": [
-      {
-          "Id": "0c877e33-e0a4-46ca-be34-49718f29e791",
-          "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-          "ContactMethodCategoryId": 1,
-          "ContactMethodCategory": "Phone",
-          "ContactMethodTypeId": 5,
-          "ContactMethodType": "Pager",
-          "Value": "(306) 222-3333",
-          "DoNotContact": true,
-          "Default": false,
-          "Notes": ""
-      }
-  ],
-  "CustomerExtensions": [
-      "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-      "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
-      "ExtensionType": "ExternalCustomerId"
-      "ExtensionTypeId": 1,
-      "Value": "4421",
-      "Version": 1
-  ],
-  "MemberOf": [ ],
-  "RelatedCustomers": [ ]
+"Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"PrimaryName": "Robert",
+"MiddleName": "Lee",
+"FamilyName": "Smith",
+"Addresses": [
+{
+"Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"AddressType": "Business",
+"AddressTypeId": 3,
+"AttentionTo": "iQmetrix",
+"Country": "Canada",
+"CountryCode": "CA",
+"Default": false,
+"DoNotContact": true,
+"Email": "Test@Test.com",
+"Locality": "Mountain View",
+"Notes": "New residence",
+"Phone": "(555) 555-5555",
+"PostalCode": "94043",
+"PostOfficeBoxNumber": "P.O. Box 1022",
+"State": "British Columbia",
+"StateCode": "BC",
+"StreetAddress1": "1600 Amphitheatre Pkwy",
+"StreetAddress2": "Suite 500",
+"Version": 1
 }
-                        
+]
+,
+"AlternateName": "Bob",
+"ContactMethods": [
+{
+"Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ContactMethodCategory": "Email",
+"ContactMethodCategoryId": 3,
+"ContactMethodType": "Work phone",
+"ContactMethodTypeId": 5,
+"Default": true,
+"DoNotContact": true,
+"Notes": "After 6pm",
+"Value": "(306) 222-3333",
+"Version": 1
+}
+]
+,
+"CustomerExtensions": [
+{
+"Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+"CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+"ExtensionType": "ExternalCustomerId",
+"ExtensionTypeId": 1,
+"Value": "66432",
+"Version": 1
+}
+]
+,
+"CustomerType": "Company",
+"CustomerTypeId": 3,
+"DateOfBirth": "1952-07-23T12:00:00.000",
+"Disabled": true,
+"DoNotContact": true,
+"MemberOf": [],
+"Notes": "Interested in iPhone 6",
+"RelatedCustomers": [],
+"Title": "Mr",
+"Version": 1
+}```
 
 
 ## Searching

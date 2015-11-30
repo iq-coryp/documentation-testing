@@ -4,7 +4,7 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -66,16 +66,17 @@ The result displayed on the page, with some styling, is shown below
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Identifier | `84` |
-| StringId | string | Consistent identifier across all [Environments](/api/environments) | `CDMA` |
-| InputType | string | Type of UI element this FieldDefinition uses, see [InputTypes](#inputypes) for a list of acceptable values | `YesNo` |
-| IsRequired | boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `false` |
-| LanguageInvariantUnit | string | Unit | `mm` |
-| DisplayName | string | Value to be displayed in the UI | `CDMA` |
-| Options | array[object] | List of Options, only used when InputType is SingleSelect or MultiSelect |  |
-| Options.Id | integer | Identifier for the Option | `1` |
-| Options.Value | string | Value of the Option | `Blue` |
-| *LanguageInvariantName* | *string* | *This is a legacy property that should not be used* | |
+| Id | Integer | Identifier | `84` |
+| StringId | String | Consistent identifier across all [Environments](/api/environments) | `CDMA` |
+| InputType | String | Type of UI element this FieldDefinition uses, see [InputTypes](#inputypes) for a list of acceptable values | `YesNo` |
+| IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `false` |
+| LanguageInvariantUnit | String | Unit | `mm` |
+| DisplayName | String | Value to be displayed in the UI | `CDMA` |
+| Options | Array[object] | List of Options, only used when InputType is SingleSelect or MultiSelect |  |
+| Options.Id | Integer | Identifier for the Option | `1` |
+| Options.Value | String | Value of the Option | `Blue` |
+| *LanguageInvariantName* | *String* | *This is a legacy property that should not be used* | |
+
 
 
 
@@ -105,8 +106,8 @@ The result displayed on the page, with some styling, is shown below
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
@@ -120,65 +121,32 @@ GET /FieldDefinitions
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+Array[{{FieldDefinition}}]
 
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
 [
-   {
-       "Id": 110,
-       "StringId": "ProcessingCores",
-       "InputType": "SingleSelect",
-       "IsRequired": false,
-       "LanguageInvariantUnit": null,
-       "DisplayName": "Processing Cores",
-       "Unit": null,
-       "Options": [
-           {
-               "Id": 1,
-               "Value": "Single"
-           },
-           {
-               "Id": 2,
-               "Value": "Dual"
-           },
-           {
-               "Id": 3,
-               "Value": "Quad"
-           },
-           {
-               "Id": 4,
-               "Value": "Hexa"
-           },
-           {
-               "Id": 5,
-               "Value": "Octa"
-           },
-           {
-               "Id": 6,
-               "Value": "Triple"
-           }
-       ]
-   },
-   {
-       "Id": 84,
-       "StringId": "CDMA",
-       "InputType": "YesNo",
-       "IsRequired": false,
-       "LanguageInvariantUnit": null,
-       "DisplayName": "CDMA",
-       "Unit": null,
-       "Options": []
-   },
-   ...
+{
+"Id": 84,
+"StringId": "CDMA",
+"InputType": "YesNo",
+"IsRequired": false,
+"LanguageInvariantUnit": "mm",
+"DisplayName": "CDMA",
+"Options": []
+}
 ]
- 
+```
 ## Getting a FieldDefinition
 
 
@@ -189,13 +157,14 @@ HTTP 200 Content-Type: application/json
 
 #### Headers
 
-* `Authorization: Bearer` (%7B%7BAccessToken_Glossary%7D%7D)
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `FieldDefinitionId` (**Required**)  - Identifier for the {{FieldDefinition}} 
 
@@ -208,10 +177,13 @@ GET /FieldDefinitions(84)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
+
 ```
 
 #### Response
 
+
+{{FieldDefinition}}
 
 
 ###### Example
@@ -219,16 +191,14 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-   "Id": 84,
-   "StringId": "CDMA",
-   "InputType": "YesNo",
-   "IsRequired": false,
-   "LanguageInvariantUnit": null,
-   "DisplayName": "CDMA",
-   "Unit": null,
-   "Options": []
-}
- 
+"Id": 84,
+"StringId": "CDMA",
+"InputType": "YesNo",
+"IsRequired": false,
+"LanguageInvariantUnit": "mm",
+"DisplayName": "CDMA",
+"Options": []
+}```
 
 ## Errors
 

@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -26,21 +26,21 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | integer | Unique Identifier | `1953` |
-| CreatedDateUtc | datetime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
-| EmployeeVerified | boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
-| EmployeeSpecialId | boolean | Special identifier for Employee in RQ | `0001` |
-| LastUpdateDateUtc | datetime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
-| LocationCode | string(100) | An identifier for the Location in an external system | `CWW` |
-| LocationId | integer | Identifier for the [Location](/api/company-tree/#location) | `4` |
-| ManagerVerified | boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
-| PunchInComments | string(100) | Punch in comments | `IN - FingerPrint/HomeConsole` |
-| PunchOutComments | string(100) | Punch out comments | `OUT - HomeConsole` |
-| TimeInAtStore | datetime | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
-| TimeOutAtStore | datetime | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
-| UserId | integer | Identifier for a [User](/api/user-manager/#user) | `22212` |
-| Version | integer | Latest revision number | `1` |
-| *RQPunchId* | *integer* | *Reserved for internal use* | |
+| Id | Integer | Unique Identifier | `1953` |
+| CreatedDateUtc | Datetime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
+| EmployeeVerified | Boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
+| EmployeeSpecialId | Boolean | Special identifier for Employee in RQ | `0001` |
+| LastUpdateDateUtc | Datetime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
+| LocationCode | String(100) | An identifier for the Location in an external system | `CWW` |
+| LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
+| ManagerVerified | Boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
+| PunchInComments | String(100) | Punch in comments | `IN - FingerPrint/HomeConsole` |
+| PunchOutComments | String(100) | Punch out comments | `OUT - HomeConsole` |
+| TimeInAtStore | Datetime | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
+| TimeOutAtStore | Datetime | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
+| UserId | Integer | Identifier for a [User](/api/user-manager/#user) | `22212` |
+| Version | Integer | Latest revision number | `1` |
+| *RQPunchId* | *Integer* | *Reserved for internal use* | |
 
 
 
@@ -59,55 +59,62 @@ Don't forget <code>$filter=</code> in the request!
 
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
 
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 
 
 
 #### URI Parameters
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} * `StartDate` (Optional)  - Date at which to begin search request, in UTC * `EndDate` (Optional)  - Date at which to end search request, in UTC * `Skip` (Optional)  - Number of records to skip * `Top` (Optional)  - Number of records to take 
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `StartDate` (Optional)  - Date at which to begin search request, in UTC 
+* `EndDate` (Optional)  - Date at which to end search request, in UTC 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
 ###### Example
 
 ```
-GET /Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'Wed Dec 31 2014 18:00:00 GMT-0600 (Canada Central Standard Time)' and LastUpdateDateUtc le datetime'Thu Dec 31 2015 17:59:59 GMT-0600 (Canada Central Standard Time)'&$skip=1&$top=10
+GET /Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
+
 
 ```
 
 #### Response
 
 
+Array[{{PunchEntry}}]
+
 
 ###### Example
 
 ```
 HTTP 200 Content-Type: application/json
+
 [
-  {
-    "Id": 1953,
-    "CreatedDateUtc": "2015-09-23T15:41:59.403",
-    "EmployeeVerified": false,
-    "EmployeeSpecialId": "0001",
-    "HasBeenRevised": false,
-    "LastUpdateDateUtc": "2015-09-23T15:55:09.927",
-    "LocationCode": "CWW",
-    "LocationId": 4,
-    "ManagerVerified": false,
-    "PunchInComments": "IN - Fingerprint/HomeConsole",
-    "PunchOutComments": "OUT - HomeConsole",
-    "TimeInAtStore": "2015-09-23T09:41:52.653",
-    "TimeOutAtStore": "2015-09-23T09:55:03.973",
-    "UserId": 22212
-    "Version": 1
-  }
+{
+"Id": 1953,
+"CreatedDateUtc": "2015-09-23T15:41:59.403",
+"EmployeeVerified": false,
+"EmployeeSpecialId": 0001,
+"LastUpdateDateUtc": "2015-09-23T15:55:09.927",
+"LocationCode": "CWW",
+"LocationId": 2,
+"ManagerVerified": false,
+"PunchInComments": "IN - FingerPrint/HomeConsole",
+"PunchOutComments": "OUT - HomeConsole",
+"TimeInAtStore": "2015-09-23T09:41:52.653",
+"TimeOutAtStore": "2015-09-23T09:55:03.973",
+"UserId": 22212,
+"Version": 1
+}
 ]
- 
 
 
 ###### Example
@@ -155,6 +162,7 @@ HTTP 200 Content-Type: application/hal+json
   }
 }
 
+```
 
 ## Pagination
 

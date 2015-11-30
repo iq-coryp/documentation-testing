@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -25,12 +25,13 @@ An **Asset** is an image or video associated with a Product.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | id | Guid | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
-| name | string | File name | `iqmetrix.jpg` |
-| height | integer | Height in pixels | `145` |
-| href | string | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net`<br/>`/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| md5Checksum | string | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
-| mimeType | string | The mime type | `image/jpeg` |
-| width | integer | Width in pixels | `240` |
+| name | String | File name | `iqmetrix.jpg` |
+| height | Integer | Height in pixels | `145` |
+| href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
+| md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
+| mimeType | String | The mime type | `image/jpeg` |
+| width | Integer | Width in pixels | `240` |
+| success | Boolean | A flag to indicate that the Asset was uploaded. This only appears when asset is first uploaded | `true` |
 
 
 
@@ -46,20 +47,21 @@ An **Asset** is an image or video associated with a Product.
 #### Headers
 
 
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: multipart/form-data`
 
-* `Authorization: Bearer ({{AccessToken_Glossary}})`* `Accept: application/json`* `Content-Type: multipart/form-data`
 
 
-
-#### Request Parameters* `Filename` (**Required**) - File to be uploaded
+#### Request Parameters
+* `Filename` (**Required**) - File to be uploaded
 
 
 ###### Example
 
 ```
 POST /assets
-
-Authorization: Bearer (%7B%7BAccessToken_Glossary%7D%7D)
+Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: multipart/form-data
 
@@ -69,21 +71,23 @@ Content-Type: multipart/form-data
 #### Response
 
 
+{{Asset}}
+
 
 ###### Example
 
 ```
 HTTP 201 Content-Type: application/json
 {
-  "id": "732130d2-b673-461c-812b-f2b614d6076e",
-  "name": "iqmetrix.jpg",
-  "height": 145,
-  "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-  "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-  "mimeType": "image/jpeg",
-  "width": 240
-  "success": true
-}
+"id": "732130d2-b673-461c-812b-f2b614d6076e",
+"name": "iqmetrix.jpg",
+"height": 145,
+"href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+"md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+"mimeType": "image/jpeg",
+"width": 240,
+"success": true
+}```
 ## Getting an Asset
 
 
@@ -95,12 +99,12 @@ HTTP 201 Content-Type: application/json
 #### Headers
 
 
-
 * `Accept: application/json`
 
 
 
 #### URI Parameters
+
 
 * `AssetId` (**Required**)  - Identifier for the {{Asset}} 
 
@@ -110,13 +114,15 @@ HTTP 201 Content-Type: application/json
 
 ```
 GET /assets/732130d2-b673-461c-812b-f2b614d6076e
-
 Accept: application/json
+
 
 ```
 
 #### Response
 
+
+{{Asset}}
 
 
 ###### Example
@@ -124,15 +130,15 @@ Accept: application/json
 ```
 HTTP 200 Content-Type: application/json
 {
-  "id": "732130d2-b673-461c-812b-f2b614d6076e",
-  "name": "iqmetrix.jpg",
-  "height": 145,
-  "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-  "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-  "mimeType": "image/jpeg",
-  "width": 240
-}
-
+"id": "732130d2-b673-461c-812b-f2b614d6076e",
+"name": "iqmetrix.jpg",
+"height": 145,
+"href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+"md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+"mimeType": "image/jpeg",
+"width": 240,
+"success": true
+}```
 ## Redirecting to an Image Asset
 
 A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
@@ -145,11 +151,10 @@ A successful response to this request is a `HTTP 303` redirect with a `Location`
 
 
 
-* `Accept: application/json`
-
 
 
 #### URI Parameters
+
 
 * `AssetId` (**Required**)  - Identifier for the {{Asset}} 
 
@@ -160,7 +165,6 @@ A successful response to this request is a `HTTP 303` redirect with a `Location`
 ```
 GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
-Accept: application/json
 
 ```
 
@@ -171,8 +175,9 @@ Accept: application/json
 ###### Example
 
 ```
-HTTP 303 Content-Type: application/x-www-form-urlencoded
-Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg
+HTTP 303 Content-Type: application/text
+Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg```
+
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |

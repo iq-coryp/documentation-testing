@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -56,26 +56,32 @@ API key must be provided in header and is configurable.
 
 ## Resources
 
+
 ### ShippingQuery
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
-| Items | array[object] | List of Products to be added to shipping query |  |
-| Items.ProductName | string | Product name  | `Galaxy S6 Defender Case - Glacier` |
-| Items.Quantity | integer | Amount of products | `11` |
-| Items.Sku | string | Product sku | `87932OTS45S6` |
-| PostalCode | string | Postal or zip code of shipping address | `A1A1A1` |
+| Items | Array[[Item](#item)] | List of Products to be added to shipping query |  |
+| PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
+
+### Item
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| ProductName | String | Product name  | `Galaxy S6 Defender Case - Glacier` |
+| Quantity | Integer | Amount of products | `11` |
+| Sku | String | Product sku | `87932OTS45S6` |
 
 ### ShippingOptions
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | string | Identifier for the shipping option | `350` |
-| Cost | decimal | Cost for shipping option | `7.94` |
-| Currency | string(3) | Cost currency (USD or CAD) | `CAD` |
-| EstimatedTransitTime | string | Total time to be in transit, where units are provided by supplier | `1 week` |
-| Name | string | Shipping option name | `PurolatorExpress` |
+| Id | String | Identifier for the shipping option | `350` |
+| Cost | Decimal | Cost for shipping option | `7.94` |
+| Currency | String(3) | Cost currency (USD or CAD) | `CAD` |
+| EstimatedTransitTime | String | Total time to be in transit, where units are provided by supplier | `1 week` |
+| Name | String | Shipping option name | `PurolatorExpress` |
 
 
 
@@ -92,12 +98,7 @@ The specification for the request must be in the format below:
 
 #### Headers
 
-
-
-* `Authorization: Basic`
-* `Accept: application/json`
-* `Content-Type: application/json`
-* `Host: supplier.azure-api.net`
+* `Authorization: Basic`* `Accept: application/json`* `Content-Type: application/json`* `Host: supplier.azure-api.net`
 
 
 
@@ -121,17 +122,20 @@ Accept: application/json
 Content-Type: application/json
 Host: supplier.azure-api.net
 
+
 {
-  "CompanyId": 123,
-  "PostalCode": "A1A1A1",
-  "Items": [       
-      {
-            "ProductName": "Galaxy S6 Defender Case - Glacier",
-            "Quantity": 11,
-            "Sku": "87932OTS45S6"
-      }
-  ]
+"CompanyId": 123,
+"Items": [
+{
+"ProductName": "Galaxy S6 Defender Case - Glacier",
+"Quantity": 11,
+"Sku": "87932OTS45S6"
 }
+]
+,
+"PostalCode": "A1A1A1"
+}
+
 
 ```
 
@@ -150,27 +154,14 @@ The specification of the response must be in the format below:
 
 ```
 HTTP 200 Content-Type: application/json
+
+[
 {
-    "ShippingOptions": [
-        {
-            "Id": "350",
-            "Cost": 7.94,
-            "Currency": "CAD",
-            "EstimatedTransitTime": "1 hour",
-            "Name": "PurolatorExpress"
-        },
-        {
-            "Id": "352",
-            "Cost": 12.58,
-            "Currency": "CAD",
-            "EstimatedTransitTime": "1 hour",
-            "Name": "PurolatorGround"
-        },
-        {
-            "Id": "349",
-            "Cost": 20.31,
-            "Currency": "CAD",
-            "EstimatedTransitTime": "10:30 AM",
-            "Name": "PurolatorExpress10:30AM"
-       }
-    ]
+"Id": "350",
+"Cost": 7.94,
+"Currency": "CAD",
+"EstimatedTransitTime": "1 week",
+"Name": "PurolatorExpress"
+}
+]
+```

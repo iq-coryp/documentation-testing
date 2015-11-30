@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience:
-last_updated: 23-11-2015
+last_updated: 30-11-2015
 summary:
 ---
 
@@ -63,7 +63,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
 | Quantity | Integer | Number of items shipped | `1` |
 | RQPurchaseOrderID | Integer | Identifier for the Purchase Order in RQ | `22073` |
-| SerialNumbers | Array[String] | Serial numbers. Must match Quantity |  |
+| SerialNumbers | Array[string] | Serial numbers. Must match Quantity |  |
 | ShipmentNumber | String | Vendor defined identifier for the shipment | `SHIP001` |
 | VendorInvoiceNumber | String | Value supplied by the vendor when creating the purchase order | `1002` |
 | VendorSKU | String | The vendor part number/sku | `ABC123` |
@@ -90,9 +90,9 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | BillToVendorAccountNumber | String | Vendor account number to use for billing | `1` |
 | IsDeleted | Boolean | A flag to indicate if this purchase order has been deleted in RQ | `false` |
 | CreatedByVMI | Boolean | A flag to indicate if this was created by the VMI API (true) or RQ (false) | `false` |
-| CreatedDate | DateTime | The date and time the purchase order was created, if it was created in RQ | `3/16/2014 12:00:00 AM` |
+| CreatedDate | Datetime | The date and time the purchase order was created, if it was created in RQ | `3/16/2014 12:00:00 AM` |
 | Comments | String | Any comments for the purchase order | `comments` |
-| EstimatedArrivalDate | DateTime | Estimated date of arrival | `3/2/2014 12:00:00 AM` |
+| EstimatedArrivalDate | Datetime | Estimated date of arrival | `3/2/2014 12:00:00 AM` |
 | OrderTotal | Decimal | Cost of the order, provided by a vendor for informational purposes only | `99.99` |
 | RetailiQPurchaseOrderID | Integer | Identifier of purchase order in RQ | `22075` |
 | RetailiQPurchaseOrderNumber | String | Purchase order number in RQ | `DALEKPO5` |
@@ -110,7 +110,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 |:-----|:----------|:------------|:--------|
 | ProductID | Guid | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
 | ProductName | String | Name | `Samsung Galaxy S6` |
-| DateEOL | DateTime | End of life date | `1/01/2016 12:00:00 AM` |
+| DateEOL | Datetime | End of life date | `1/01/2016 12:00:00 AM` |
 | DoNotOrder | Boolean | A flag to indicate if the product should not be ordered | `false` |
 | Enabled | Boolean | A flag to indicate if product is enabled | `true` |
 | GrossQuantitySold | Integer | Gross amount sold | `-1` |
@@ -135,8 +135,8 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | QuantitySold | Integer | Amount sold | `-1` |
 | QuantitySuggestedByVendor | Integer | Amount suggested by vendor | `0` |
 | RetailPrice | Decimal | Retail price | `99.99` |
-| SaleBegin | DateTime | Sale begin date | `01/01/2014 12:00:00 AM` |
-| SaleEnd | DateTime | Sale end date | `01/10/2014 12:00:00 AM` |
+| SaleBegin | Datetime | Sale begin date | `01/01/2014 12:00:00 AM` |
+| SaleEnd | Datetime | Sale end date | `01/10/2014 12:00:00 AM` |
 | SalePrice | Decimal | Sale price | `79.99` |
 | VendorSKU | String | Vendor SKU | `ABC123` |
 
@@ -279,6 +279,7 @@ PurchaseOrderShipmentNotice snReturn = cmiService.CreatePurchaseOrderShipmentNot
 #### Response
 
 
+{{undefined}}
 
 
 ###### Example
@@ -384,6 +385,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
 #### Response
 
 
+{{undefined}}
 
 
 ###### Example
@@ -530,6 +532,7 @@ PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(clie
 #### Response
 
 
+{{undefined}}
 
 
 ###### Example
@@ -678,6 +681,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByBusinessID(client,
 #### Response
 
 
+{{undefined}}
 
 
 ###### Example
@@ -804,6 +808,7 @@ StoreInformation[] stores = cmiService.GetStoreList(client);
 #### Response
 
 
+{{undefined}}
 
 
 ###### Example
