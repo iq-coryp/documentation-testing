@@ -4,47 +4,51 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 1-12-2015
 summary: 
 ---
-
 {% include linkrefs.html %}
+
+
 
 ## Endpoints
 
-* Sandbox: https://orderdemo.iqmetrix.net/v1
-* Production: https://order.iqmetrix.net/v1
+* Sandbox: <a href="https://orderdemo.iqmetrix.net/v1">https://orderdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://order.iqmetrix.net/v1">https://order.iqmetrix.net/v1</a>
 
 ## Resources
 
-### Order
+
+
+###Order
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
-| Name | String | Optional | Name | `iPhone 5 Order` |
+| Name | String | Name | `iPhone 5 Order` |
 | BillingAddressId | GUID | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
 | BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| CreatedDateUtc | DateTime | The date and time the [Order](#order) was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| CreatedDateUtc | DateTime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
 | DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | A description of the discount | `Military discount` |
 | EmployeeId | String | Identifier for the Employee who created this Order | `15` |
-| EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `8` |
+| EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
 | OrderExpiryDate | DateTime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
 | OrderExpiryHours | Integer | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
 | OrderType | String | Name of the [OrderType](#ordertype) | `Sales` |
 | OrderTypeId | Integer | See [OrderType](#ordertype) for a list of acceptable values | `3` |
-| PrintableId | String  | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
-| ShippingAddressId | String | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | String | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, `ShippingEntityId` must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. If this value is provided, `ShippingCustomerId` must be excluded | `1` |
-| State | OrderState | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
+| PrintableId | String | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
+| ShippingAddressId | GUID | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `2` |
+| State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
 | *CustomerId* | *String* | *This is a legacy property that should not be used* | |
-| *TenderId* | *String* | *Reserved for future use* |  |
-| *TenderOrigin* | *String* | *Reserved for future use* |  |
+| TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `INV112` |
+| *TenderOrigin* | *String* | *Reserved for future use* | |
 
-### Item
+
+###Item
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -54,33 +58,57 @@ summary:
 | ItemStatus | String | Name of the [ItemStatus](#itemstatus) | `New` |
 | ItemStatusId | Integer | See [ItemStatus](#itemstatus) for a list of acceptable values | `1` |
 | ItemType | String | Name of the [ItemType](#itemtype) | `DropShip` |
-| ItemTypeId | String | See [ItemType](#itemtype) for a list of acceptable values| `1` |
-| Index | Integer | A value used for sorting Items, such as in a shopping cart| `0` |
+| ItemTypeId | String | See [ItemType](#itemtype) for a list of acceptable values | `1` |
+| Index | Integer | A value used for sorting Items, such as in a shopping cart | `0` |
 | ListPrice | Decimal | List Price of this Item, defaults to 0 | `12.99` |
 | Notes | String | Notes for this Item | `Dented corner` |
 | OrderId | GUID | Unique identifier for the [Order](#order), specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
-| ProductId | String | Identifier for the Product | `12` |
+| ProductId | String | Identifier for the Product. Generally, this is a CatalogItemId | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | Quantity | Integer | Amount of this Item In Stock, defaults to 0 | `2` |
 | SellingPrice | Decimal | Selling Price of this Item, defaults to 0 | `9.99` |
-| SerialNumbers | Array[String] | Serial numbers | `abc321` |
+| SerialNumbers | Array[string] | Serial numbers | `abc321` |
 | SKU | String | SKU for this Item | `00001` |
 | ShippingOptionId | String | Identifier for the ShippingOption that this Item will use | `1` |
-| SupplierEntityId | Integer | Identifier for the Supplier of this Item | `0` |
+| SupplierEntityId | Integer | Identifier for the Supplier of this Item | `14` |
 | SupplierReference | String | May be used for additional Supplier reference information | `10` |
-| TrackingInformation | Array[Object] | Tracking information in the form of key-value pairs |  |
-| TrackingInformation.Quantity | Integer | Number of items being tracked | `1` |
-| TrackingInformation.TrackingNumber | String | Tracking number | `1TTTTN4421 |
+| TrackingInformation | Array[[TrackingInformation](#trackinginformation)] | Tracking information in the form of key-value pairs |  |
 
-### OrderFull
 
-**OrderFull** is an extension on the Order resource, it consists of all Order properties plus the following:
 
-| Name | Data Type | Description |
-|:-----|:----------|:------------|
-| Items | Array[Items] | The [Items](#items) in the [Order](#order) |
+###OrderFull
+
+**OrderFull** is an extension on the Order resource
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Name | String | Name | `iPhone 5 Order` |
+| BillingAddressId | GUID | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| CreatedDateUtc | DateTime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
+| DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
+| DiscountDescription | String | A description of the discount | `Military discount` |
+| EmployeeId | String | Identifier for the Employee who created this Order | `15` |
+| EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
+| OrderExpiryDate | DateTime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryHours | Integer | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
+| OrderType | String | Name of the [OrderType](#ordertype) | `Sales` |
+| OrderTypeId | Integer | See [OrderType](#ordertype) for a list of acceptable values | `3` |
+| PrintableId | String | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
+| ShippingAddressId | GUID | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `2` |
+| State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
+| *CustomerId* | *String* | *This is a legacy property that should not be used* | |
+| TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `INV112` |
+| *TenderOrigin* | *String* | *Reserved for future use* | |
+| Items | Array[[Item](#item)] | The Items in the [Order](#order) |  |
+
+
+
 
 ## Enumerations
-
 
 ### ItemStatus
 
@@ -132,1047 +160,1247 @@ summary:
 | 1 | Sales | An Order placed by a Customer |
 | 2 | Transfer | An Order to relocate inventory |
 
-## Creating an Order
 
-{{note}}
-The <code>EntityId</code> used in the request parameters must belong to the <code>CompanyId</code> used in the URI.
-{{end}}
 
-#### Request
+<h2 id='creating-an-order' class='clickable-header top-level-header'>Creating an Order</h2>
 
-    POST /Companies({CompanyId})/Orders 
-    {
-        "OrderTypeId": {OrderTypeId},
-        "EntityId": {EntityId},
-        "BillingCustomerId": "{BillingCustomerId}",
-        "Name": "{Name}", 
-        "EmployeeId": {EmployeeId},
-        "OrderExpiryHours": {OrderExpiryHours}
-        "BillingAddressId": "{BillingAddressId}",
-        "ShippingAddressId": "{ShippingAddressId}",
-        "ShippingCustomerId": "{ShippingCustomerId}",
-        "ShippingEntityId": {ShippingEntityId},
-        "DiscountAmount": {DiscountAmount},
-        "DiscountCode": "{DiscountCode}",
-        "DiscountDescription": "{DiscountDescription}"
-    }
-    
+<p>
+{{note}}The <code>EntityId</code> used in the request parameters must belong to the <code>CompanyId</code> used in the URI.{{end}}
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Orders
+</pre>
+
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
+
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
+
+
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+
+
 
 #### Request Parameters
 
-* `OrderTypeId` (**Required**)
-* `EntityId` (**Required**) - Must belong to the Company specified in the URI
-* `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
-* `Name` (Optional)
-* `EmployeeId` (Optional)
-* `OrderExpiryHours` (Optional)
-* `BillingAddressId` (Optional)
-* `ShippingAddressId` (Optional)
-* `ShippingCustomerId` (Optional)
-* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
-* `DiscountAmount` (Optional)
-* `DiscountCode` (Optional)
-* `DiscountDescription` (Optional)
+<ul><li>BillingCustomerId (<strong>Required</strong>)  -  Must belong to the Company specified in the URI</li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>OrderExpiryHours (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>TenderId (Optional) </li></ul>
 
-###### Example
+<h5>Example</h5>
 
-    POST /Companies(1)/Orders
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-        "OrderTypeId": 3,
-        "EntityId": 8,
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "Name": "iPhone 5 Order", 
-        "EmployeeId": 15,
-        "OrderExpiryHours": 72
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0,
-        "DiscountAmount": 15.0,
-        "DiscountCode": "MTRY-15",
-        "DiscountDescription": "Military discount"
-    }
+<pre>
+POST /Companies(1)/Orders
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+
+{
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "TenderId": "INV112"
+}
+</pre>
 
 #### Response
 
-* {{Order}} 
 
-###### Example
+[Order](#order)
 
-    HTTP 201 Content-Type: application/json
-    {
-        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",        
-        "CreatedDateUtc": "2015-05-05T18:05:13.137",        
-        "DiscountCode": "MTRY-15",
-        "DiscountDescription": "Military discount",
-        "DiscountAmount": 15.0,
-        "EmployeeId": 15,
-        "EntityId": 8,
-        "Name": "iPhone 5 Order", 
-        "OrderExpiryDate": "2015-05-08T18:05:13.137",
-        "OrderExpiryHours": 72,
-        "OrderType": "Purchase",
-        "OrderTypeId": 3,
-        "PrintableId": "8765-1234-987"        
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0,
-        "State": "Created"
-    }
+<h5>Example</h5>
 
-## Adding an Item to an Order
+<pre>
+HTTP 201 Content-Type: application/json
+</pre><pre>{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112"
+}</pre>
 
-#### Request
+<h2 id='getting-a-single-order' class='clickable-header top-level-header'>Getting a Single Order</h2>
 
-    POST /Companies({CompanyId})/Orders({OrderId})/Items 
-    {
-        "ItemStatusId": {ItemStatusId},
-        "ItemTypeId": {ItemTypeId},
-        "Cost": {Cost},
-        "Description": "{Description}",
-        "Index": {Index},
-        "ListPrice": {Cost},
-        "Notes": "{Notes}",
-        "ProductId": {ProductId},        
-        "Quantity": {Quantity},
-        "SellingPrice": {SellingPrice},
-        "SerialNumbers":  {SerialNumbers},
-        "ShippingOptionId": "{ShippingOptionId}",
-        "SKU": "{SKU}",
-        "SupplierEntityId": {SupplierEntityId},
-        "SupplierReference": "{SupplierReference}",        
-        "TrackingInformation": [ 
-            {
-                "Quantity": {Quantity},
-                "TrackingNumber": "{TrackingNumber}"
-            }
-        ]
-    }
-    
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders
+</pre>
+
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
+
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
-* `Content-Type: application/json`
+
+
 
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-* `OrderId` (**Required**) - Identifier for the {{Order}} being updated
 
-#### Request Parameters
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
-* `ItemStatusId` (**Required**)
-* `ItemTypeId` (**Required**) 
-* `Cost` (Optional)
-* `Description` (Optional)
-* `Index` (Optional)
-* `ListPrice` (Optional)
-* `Notes` (Optional)
-* `ProductId` (Optional) 
-* `Quantity` (Optional)
-* `SerialNumbers` (Optional)
-* `SellingPrice` (Optional)
-* `SKU` (Optional)
-* `ShippingOptionId` (Optional)
-* `SupplierEntityId` (Optional)
-* `SupplierReference` (Optional)
-* `TrackingInformation` (Optional)
-    * `Quantity` (**Required**)
-    * `TrackingNumber` (**Required**)
 
-###### Example
 
-    POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Items
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-        "ItemStatusId": 1,
-        "ItemTypeId": 1,
-        "Cost": 5.99,
-        "Description": "LG G3 phone case",
-        "Index": 0,
-        "ListPrice": 12.99,
-        "Notes": "",
-        "ProductId": 1,
-        "SellingPrice": 9.99,
-        "Quantity": 2,
-        "SerialNumbers":  ["abc123","abc321"],
-        "SKU": "00001",
-        "ShippingOptionId": "",
-        "SupplierEntityId": 0,
-        "SupplierReference":"10",
-        "TrackingInformation": [ 
-            {
-                "Quantity": 1,
-                "TrackingNumber": "1TTTTN4421"
-            }
-        ]
-    }
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Orders
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
 
 #### Response
 
-* {{OrderItem}}
 
-###### Example
+Array[[Order](#order)]
 
-    HTTP 201 Content-Type: application/json
-    {
-        "Id": "2ad88692-7757-4a72-915b-dfe8f2539279",
-        "Cost": 5.99,
-        "Description": "LG G3 phone case",
-        "Index": 0,
-        "ItemStatus": "New",
-        "ItemStatusId": 1,
-        "ItemTypeId": 1,        
-        "ListPrice": 12.99,        
-        "Notes": "",
-        "OrderId": "2bafefc4-73bb-40ce-bc85-0bae1f11cd92",
-        "ProductId": 1,
-        "Quantity": 2,
-        "SellingPrice": 9.99,
-        "SerialNumbers":  ["abc123","abc321"],
-        "SKU": "00001",
-        "ShippingOptionId": "",
-        "SupplierEntityId": 0,
-        "SupplierReference":"10",
-        "TrackingInformation": [ 
-            {
-                "Quantity": 1,
-                "TrackingNumber": "1TTTTN4421"
-            }
-        ]
-    }
+<h5>Example</h5>
 
-## Updating an Order
-
-#### Request
-
-    POST /Companies({CompanyId})/Orders({OrderId}) 
-    {
-        "Id": "{Id}",
-        "Name": "{Name}",
-        "BillingAddressId": "{BillingAddressId}",
-        "BillingCustomerId": "{BillingCustomerId}",
-        "DiscountAmount": {DiscountAmount},
-        "DiscountCode": "{DiscountCode}",
-        "DiscountDescription": "{DiscountDescription}",
-        "EmployeeId": {EmployeeId},
-        "EntityId": {EntityId},
-        "OrderTypeId": {OrderTypeId},
-        "OrderExpiryHours": {OrderExpiryHours}
-        "ShippingAddressId": "{ShippingAddressId}",
-        "ShippingCustomerId": "{ShippingCustomerId}",
-        "ShippingEntityId": {ShippingEntityId}
-    }
-    
-#### Headers
-
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-#### URI Parameters
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-* `OrderId` (**Required**) - Identifier for the {{Order}} 
-
-#### Request Parameters
-
-* `Id` (**Required**) - Must match the OrderId provided in the URI
-* `Name` (Optional)
-* `BillingAddressId` (Optional)
-* `BillingCustomerId` (Optional) - Must belong to the Company specified in the URI
-* `DiscountAmount` (Optional)
-* `DiscountCode` (Optional)
-* `DiscountDescription` (Optional)
-* `EmployeeId` (Optional)
-* `EntityId` (Optional) - Must belong to the Company specified in the URI
-* `OrderExpiryHours` (Optional)
-* `OrderTypeId` (Optional)
-* `ShippingAddressId` (Optional)
-* `ShippingCustomerId` (Optional)
-* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
-
-###### Example
-
-    POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-        "Name": "iPhone 5 Order", 
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "DiscountCode": "MTRY-15",
-        "DiscountDescription": "Military discount",
-        "DiscountAmount": 15.0,        
-        "EmployeeId": 15,
-        "EntityId": 8,
-        "OrderExpiryHours": 72,
-        "OrderTypeId": 3,
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0
-    }
-
-#### Response
-
-* {{Order}}
-
-###### Example
-
-    HTTP 201 Content-Type: application/json
-    {
-        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-        "Name": "iPhone 5 Order", 
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "CreatedDateUtc": "2015-05-05T18:05:13.137",
-        "DiscountCode": "MTRY-15",
-        "DiscountDescription": "Military discount",
-        "DiscountAmount": 15.0,        
-        "EmployeeId": 15,
-        "EntityId": 8,
-        "OrderExpiryDate": "2015-05-08T18:05:13.137",
-        "OrderExpiryHours": 72,
-        "OrderType": "Purchase",
-        "OrderTypeId": 3,
-        "PrintableId": "",
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0,
-        "State": "Created"
-    }
-
-
-## Processing an Order
-
-#### Request
-
-    POST /Companies({CompanyId})/Orders({OrderId})/Process 
-    {
-        "OrderId": "{OrderId}"
-    }
-    
-#### Headers
-
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-#### URI Parameters
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-* `OrderId` (**Required**) - Identifier for the {{Order}} 
-
-#### Request Parameters
-
-* `OrderId` (**Required**) - Identifier for the {{Order}} 
-
-###### Example
-
-    POST /Companies(1)/Orders(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Process
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-       "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
-    }
-
-#### Response
-
-* `Id` (Integer) - Identifier for the response, this value can be ignored
-* `OrderId` (GUID) - Identifier for the {{Order}}
-
-###### Example
-
-    HTTP 201 Content-Type: application/json
-    {
-        "Id": 1,
-        "OrderId": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3"
-    }
-
-## Creating an Order With Items
-
-{{note}}
-Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.
-{{end}}
-
-#### Request
-
-    POST /Companies({CompanyId})/OrderFull
-    {
-        "BillingCustomerId": "{BillingCustomerId}",
-        "EntityId": {EntityId},
-        "OrderTypeId": {OrderTypeId},
-        "Name": "{Name}, 
-        "EmployeeId": {EmployeeId},
-        "OrderExpiryHours": {OrderExpiryHours},
-        "BillingAddressId": "{BillingAddressId}",
-        "ShippingAddressId": "{ShippingAddressId}",
-        "ShippingCustomerId": "{ShippingCustomerId}",
-        "ShippingEntityId": {ShippingEntityId},
-        "DiscountAmount": {DiscountAmount},
-        "DiscountCode": "{DiscountCode}",
-        "DiscountDescription": "{DiscountDescription}",
-        "Items": [
-            {
-                "ItemStatusId": {ItemStatusId},
-                "ItemTypeId": {ItemTypeId},
-                "Cost": {Cost},
-                "Description": "{Description}",
-                "Index": {Index},
-                "ListPrice": {Cost},
-                "Notes": "{Notes}",
-                "ProductId": {ProductId},        
-                "Quantity": {Quantity},
-                "SellingPrice": {SellingPrice},
-                "SerialNumbers":  {SerialNumbers},
-                "ShippingOptionId": "{ShippingOptionId}",
-                "SKU": "{SKU}",
-                "SupplierEntityId": {SupplierEntityId},
-                "SupplierReference": "{SupplierReference}",        
-                "TrackingInformation": [ 
-                    {
-                        "Quantity": {Quantity},
-                        "TrackingNumber": "{TrackingNumber}"
-                    }
-                ]
-            },
-            ...
-        ]
-    }
-    
-#### Headers
-
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-#### URI Parameters
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-#### Request Parameters
-
-* `BillingCustomerId` (**Required**) - Must belong to the Company specified in the URI
-* `EntityId` (**Required**) - Must belong to the Company specified in the URI
-* `OrderTypeId` (**Required**)
-* `BillingAddressId` (Optional)
-* `DiscountAmount` (Optional)
-* `DiscountCode` (Optional)
-* `DiscountDescription` (Optional)
-* `EmployeeId` (Optional)
-* `Items` (Optional)
-    * `ItemStatusId` (**Required**)
-    * `ItemTypeId` (**Required**) 
-    * `Cost` (Optional)
-    * `Description` (Optional)
-    * `Index` (Optional)
-    * `ListPrice` (Optional)
-    * `Notes` (Optional)
-    * `ProductId` (Optional) 
-    * `Quantity` (Optional)
-    * `SerialNumbers` (Optional)
-    * `SellingPrice` (Optional)
-    * `SKU` (Optional)
-    * `ShippingOptionId` (Optional)
-    * `SupplierEntityId` (Optional)
-    * `SupplierReference` (Optional)
-    * `TrackingInformation` (Optional)
-        * `Quantity` (**Required**)
-        * `TrackingNumber` (**Required**)
-* `Name` (Optional)
-* `OrderExpiryHours` (Optional)
-* `ShippingAddressId` (Optional)
-* `ShippingCustomerId` (Optional)
-* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
-
-###### Example
-
-    POST /Companies(1)/OrderFull
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "EntityId": 8,
-        "OrderTypeId": 3,
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "DiscountAmount": 15.0,
-        "DiscountCode": "MTRY-15",
-        "DiscountDescription": "Military discount",        
-        "EmployeeId": 15,
-        "Items": [
-            {
-                "ItemStatusId": 1,
-                "ItemTypeId": 1,
-                "Cost": 5.99,
-                "Description": "LG G3 phone case",
-                "Index": 0,
-                "ListPrice": 12.99,
-                "Notes": "",
-                "ProductId": 1,
-                "SellingPrice": 9.99,
-                "Quantity": 2,
-                "SerialNumbers":  ["abc123","abc321"],
-                "SKU": "00001",
-                "ShippingOptionId": "",
-                "SupplierEntityId": 0,
-                "SupplierReference":"10",
-                "TrackingInformation": [ 
-                    {
-                        "Quantity": 1,
-                        "TrackingNumber": "1TTTTN4421"
-                    }
-                ]          
-            },
-            ...
-        ], 
-        "Name": "iPhone 5 Order",         
-        "OrderExpiryHours": 72,
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0
-    }
-
-#### Response
-
-* {{OrderFull}}
-
-###### Example
-
-    HTTP 201 Content-Type: application/json
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
     {
         "Id": "216f7424-ae18-4c69-9597-984b430d0759",
         "Name": "iPhone 5 Order",
         "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",        
-        "CreatedDateUtc": "2015-05-05T18:05:13.137",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
-        "DiscountAmount": 15.0,
-        "EmployeeId": 15,
-        "EntityId": 8,
-        "Items": [
-            {
-                "Id": "2ad88692-7757-4a72-915b-dfe8f2539279",
-                "Cost": 5.99,
-                "Description": "LG G3 phone case",
-                "Index": 0,
-                "ItemStatus": "New",
-                "ItemStatusId": 1,
-                "ItemTypeId": 1,        
-                "ListPrice": 12.99,        
-                "Notes": "",
-                "OrderId": "2bafefc4-73bb-40ce-bc85-0bae1f11cd92",
-                "ProductId": 1,
-                "Quantity": 2,
-                "SellingPrice": 9.99,
-                "SerialNumbers":  ["abc123","abc321"],
-                "SKU": "00001",
-                "ShippingOptionId": "",
-                "SupplierEntityId": 0,
-                "SupplierReference":"10",
-                "TrackingInformation": [ 
-                    {
-                        "Quantity": 1,
-                        "TrackingNumber": "1TTTTN4421"
-                    }
-                ]
-            },
-            ...
-        ],        
-        "OrderExpiryDate": "2015-05-08T18:05:13.137",
-        "OrderExpiryHours": 72,
-        "OrderType": "Purchase",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
         "OrderTypeId": 3,
         "PrintableId": "8765-1234-987",
         "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
         "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0,
-        "State": "Created"
+        "ShippingEntityId": 2,
+        "State": "Created",
+        "TenderId": "INV112"
     }
+]</pre>
 
-## Updating an Order With Items
+<h2 id='adding-an-item-to-an-order' class='clickable-header top-level-header'>Adding an Item to an Order</h2>
 
-{{note}}
-The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters
-{{end}}
+<p>
 
-#### Request
+</p>
 
-    POST /Companies({CompanyId})/OrderFull({OrderId})
-    {
-        "Id": "{Id}",
-        "Name": "{Name}, 
-        "BillingAddressId": "{BillingAddressId}",
-        "BillingCustomerId": "{BillingCustomerId}",
-        "DiscountAmount": {DiscountAmount},
-        "DiscountCode": "{DiscountCode}",
-        "DiscountDescription": "{DiscountDescription}",
-        "EntityId": {EntityId},
-        "EmployeeId": {EmployeeId},
-        "Items": [
-            {
-                "ItemStatusId": {ItemStatusId},
-                "ItemTypeId": {ItemTypeId},
-                "Cost": {Cost},
-                "Description": "{Description}",
-                "Index": {Index},
-                "ListPrice": {Cost},
-                "Notes": "{Notes}",
-                "ProductId": {ProductId},        
-                "Quantity": {Quantity},
-                "SellingPrice": {SellingPrice},
-                "SerialNumbers":  {SerialNumbers},
-                "ShippingOptionId": "{ShippingOptionId}",
-                "SKU": "{SKU}",
-                "SupplierEntityId": {SupplierEntityId},
-                "SupplierReference": "{SupplierReference}",        
-                "TrackingInformation": [ 
-                    {
-                        "Quantity": {Quantity},
-                        "TrackingNumber": "{TrackingNumber}"
-                    }
-                ]
-            },
-            ...
-        ],        
-        "OrderExpiryHours": {OrderExpiryHours},
-        "OrderTypeId": {OrderTypeId},
-        "ShippingAddressId": "{ShippingAddressId}",
-        "ShippingCustomerId": "{ShippingCustomerId}",
-        "ShippingEntityId": {ShippingEntityId}
-    }
-    
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Orders({OrderId})/Items
+</pre>
+
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
+
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
+
+
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-* `OrderId` (**Required**) - Identifier for the {{Order}} being updated
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+
+
 
 #### Request Parameters
 
-* `Id` (**Required**) - Must match the OrderId provided in the URI
-* `Name` (Optional)
-* `BillingAddressId` (Optional)
-* `BillingCustomerId` (Optional) - Must belong to the Company specified in the URI
-* `DiscountAmount` (Optional)
-* `DiscountCode` (Optional)
-* `DiscountDescription` (Optional)
-* `EmployeeId` (Optional)
-* `EntityId` (Optional) - Must belong to the Company specified in the URI
-* `Items` (Optional)
-    * `ItemStatusId` (Optional)
-    * `Cost` (Optional)
-    * `Description` (Optional)
-    * `Index` (Optional)
-    * `ItemTypeId` (Optional) 
-    * `ListPrice` (Optional)
-    * `Notes` (Optional)
-    * `ProductId` (Optional) 
-    * `Quantity` (Optional)
-    * `SerialNumbers` (Optional)
-    * `SellingPrice` (Optional)
-    * `SKU` (Optional)
-    * `ShippingOptionId` (Optional)
-    * `SupplierEntityId` (Optional)
-    * `SupplierReference` (Optional)
-    * `TrackingInformation` (Optional)
-        * `Quantity` (**Required**)
-        * `TrackingNumber` (**Required**)
-* `OrderExpiryHours` (Optional)
-* `OrderTypeId` (Optional)
-* `ShippingAddressId` (Optional)
-* `ShippingCustomerId` (Optional)
-* `ShippingEntityId` (Optional) - If this value is provided, `ShippingCustomerId` must be excluded
+<ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>Quantity (Optional) </li><li>TrackingNumber (Optional) </li></ul></ul>
 
-###### Example
+<h5>Example</h5>
 
-    POST /Companies(1)/OrderFull(216f7424-ae18-4c69-9597-984b430d0759)
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-        "Name": "Samsung Galaxy S5 Order",
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "DiscountCode": "",
-        "DiscountDescription": "",
-        "DiscountAmount": 0,
-        "EmployeeId": 15,
-        "EntityId": 8,
-        "Items": [
-            {
-                "ItemStatusId": 1,
-                "ItemTypeId": 1,
-                "Cost": 5.99,
-                "Description": "LG G3 phone case",
-                "Index": 0,
-                "ListPrice": 12.99,
-                "Notes": "",
-                "ProductId": 1,
-                "SellingPrice": 9.99,
-                "Quantity": 2,
-                "SerialNumbers":  ["abc123","abc321"],
-                "SKU": "00001",
-                "ShippingOptionId": "",
-                "SupplierEntityId": 0,
-                "SupplierReference":"10",
-                "TrackingInformation": [ 
-                    {
-                        "Quantity": 1,
-                        "TrackingNumber": "1TTTTN4421"
-                    }
-                ]           
-            },
-            ...
-        ]        
-        "OrderExpiryHours": 72,
-        "OrderTypeId": 3,
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0,
-        "State": "Created"
-    }
+<pre>
+POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
 
-#### Response
-
-* {{OrderFull}}
-
-###### Example
-
-    HTTP 201 Content-Type: application/json
-    {
-        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-        "Name": "Samsung Galaxy S5 Order",
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "DiscountCode": "",
-        "DiscountDescription": "",
-        "DiscountAmount": 0,
-        "EmployeeId": 15,
-        "EntityId": 8,
-        "Items": [
-            {
-                "ItemStatusId": 1,
-                "ItemTypeId": 1,
-                "Cost": 5.99,
-                "Description": "LG G3 phone case",
-                "Index": 0,
-                "ListPrice": 12.99,
-                "Notes": "",
-                "ProductId": 1,
-                "SellingPrice": 9.99,
-                "Quantity": 2,
-                "SerialNumbers":  ["abc123","abc321"],
-                "SKU": "00001",
-                "ShippingOptionId": "",
-                "SupplierEntityId": 0,
-                "SupplierReference":"10",
-                "TrackingInformation": [ 
-                    {
-                        "Quantity": 1,
-                        "TrackingNumber": "1TTTTN4421"
-                    }
-                ]           
-            },
-            ...
-        ]        
-        "OrderExpiryHours": 72,
-        "OrderTypeId": 3,
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0,
-        "State": "Created"
-    }
-
-## Getting an Order With Items
-
-#### Request
-
-    GET /Companies({CompanyId})/OrderFull({OrderId})
-    
-#### Headers
-
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-#### URI Parameters
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-* `OrderId` (**Required**) - Identifier for the {{Order}}
-
-###### Example
-
-    GET /Companies(1)/OrderFull(216f7424-ae18-4c69-9597-984b430d0759)
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-
-#### Response
-
-* {{OrderFull}}
-
-###### Example
-
-    HTTP 200 Content-Type: application/json
-    {
-        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-        "Name": "Samsung Galaxy S5 Order",
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "DiscountCode": "",
-        "DiscountDescription": "",
-        "DiscountAmount": 0,
-        "EmployeeId": 15,
-        "EntityId": 8,
-        "Items": [
-            {
-                "ItemStatusId": 1,
-                "ItemTypeId": 1,
-                "Cost": 5.99,
-                "Description": "LG G3 phone case",
-                "Index": 0,
-                "ListPrice": 12.99,
-                "Notes": "",
-                "ProductId": 1,
-                "SellingPrice": 9.99,
-                "Quantity": 2,
-                "SerialNumbers":  ["abc123","abc321"],
-                "SKU": "00001",
-                "ShippingOptionId": "",
-                "SupplierEntityId": 0,
-                "SupplierReference":"10",
-                "TrackingInformation": [ 
-                    {
-                        "Quantity": 1,
-                        "TrackingNumber": "1TTTTN4421"
-                    }
-                ]          
-            },
-            ...
-        ]        
-        "OrderExpiryHours": 72,
-        "OrderTypeId": 3,
-        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "ShippingEntityId": 0,
-        "State": "Created"
-    }
-    
-## Getting All Orders for a Company
-
-#### Request
-
-    GET /Companies({CompanyId})/OrderFull
-    
-#### Headers
-
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-#### URI Parameters
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-
-###### Example
-
-    GET /Companies(1)/OrderFull
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-
-#### Response
-
-* Array[{{OrderFull}}] 
-
-###### Example
-
-    HTTP 200 Content-Type: application/json
-    [
+{
+    "Cost": 5.99,
+    "Description": "LG G3 phone case",
+    "ItemStatus": "New",
+    "ItemTypeId": "1",
+    "Index": 0,
+    "ListPrice": 12.99,
+    "Notes": "Dented corner",
+    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "Quantity": 2,
+    "SellingPrice": 9.99,
+    "SerialNumbers": [
+        "abc321"
+    ],
+    "SKU": "00001",
+    "ShippingOptionId": "1",
+    "SupplierEntityId": 14,
+    "SupplierReference": "10",
+    "TrackingInformation": [
         {
-            "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-            "Name": "Samsung Galaxy S5 Order",
-            "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "DiscountCode": "",
-            "DiscountDescription": "",
-            "DiscountAmount": 0,
-            "EmployeeId": 15,
-            "EntityId": 8,
-            "Items": [
+            "Quantity": 1,
+            "TrackingNumber": "`1TTTTN4421"
+        }
+    ]
+}
+</pre>
+
+#### Response
+
+
+[Item](#item)
+
+<h5>Example</h5>
+
+<pre>
+HTTP 201 Content-Type: application/json
+</pre><pre>{
+    "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+    "Cost": 5.99,
+    "Description": "LG G3 phone case",
+    "ItemStatus": "New",
+    "ItemStatusId": 1,
+    "ItemType": "DropShip",
+    "ItemTypeId": "1",
+    "Index": 0,
+    "ListPrice": 12.99,
+    "Notes": "Dented corner",
+    "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "Quantity": 2,
+    "SellingPrice": 9.99,
+    "SerialNumbers": [
+        "abc321"
+    ],
+    "SKU": "00001",
+    "ShippingOptionId": "1",
+    "SupplierEntityId": 14,
+    "SupplierReference": "10",
+    "TrackingInformation": [
+        {
+            "Quantity": 1,
+            "TrackingNumber": "`1TTTTN4421"
+        }
+    ]
+}</pre>
+
+<h2 id='getting-all-items-on-an-order' class='clickable-header top-level-header'>Getting all Items on an Order</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders({OrderId})/Items
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+Array[[Item](#item)]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+        "Cost": 5.99,
+        "Description": "LG G3 phone case",
+        "ItemStatus": "New",
+        "ItemStatusId": 1,
+        "ItemType": "DropShip",
+        "ItemTypeId": "1",
+        "Index": 0,
+        "ListPrice": 12.99,
+        "Notes": "Dented corner",
+        "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+        "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "Quantity": 2,
+        "SellingPrice": 9.99,
+        "SerialNumbers": [
+            "abc321"
+        ],
+        "SKU": "00001",
+        "ShippingOptionId": "1",
+        "SupplierEntityId": 14,
+        "SupplierReference": "10",
+        "TrackingInformation": [
+            {
+                "Quantity": 1,
+                "TrackingNumber": "`1TTTTN4421"
+            }
+        ]
+    }
+]</pre>
+
+<h2 id='getting-an-order' class='clickable-header top-level-header'>Getting an Order</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders({OrderId})
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+[Order](#order)
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112"
+}</pre>
+
+<h2 id='updating-an-order' class='clickable-header top-level-header'>Updating an Order</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Orders({OrderId})
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} 
+
+
+
+#### Request Parameters
+
+<ul><li>BillingCustomerId (<strong>Required</strong>)  -  Must belong to the Company specified in the URI</li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li></ul>
+
+<h5>Example</h5>
+
+<pre>
+PUT /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112"
+}
+</pre>
+
+#### Response
+
+
+[Order](#order)
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112"
+}</pre>
+
+<h2 id='processing-an-order' class='clickable-header top-level-header'>Processing an Order</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Orders({OrderId})/Process
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} 
+
+
+
+#### Request Parameters
+
+<ul><li>OrderId (<strong>Required</strong>) </li></ul>
+
+<h5>Example</h5>
+
+<pre>
+POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+
+{
+    "OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
+}
+</pre>
+
+#### Response
+
+
+[Order](#order)
+
+<h5>Example</h5>
+
+<pre>
+HTTP 201 Content-Type: application/json
+</pre><pre>{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112"
+}</pre>
+
+<h2 id='creating-an-order-with-items' class='clickable-header top-level-header'>Creating an Order with Items</h2>
+
+<p>
+{{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/OrderFull
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+
+
+
+#### Request Parameters
+
+<ul><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional)  -  Must belong to the Company specified in the URI</li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>EntityId (Optional) </li><li>OrderExpiryHours (Optional) </li><li>OrderTypeId (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>Quantity (Optional) </li><li>TrackingNumber (Optional) </li></ul></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+POST /Companies(1)/OrderFull
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+
+{
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "TenderId": "INV112",
+    "Items": [
+        {
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
                 {
-                    "ItemStatusId": 1,
-                    "ItemTypeId": 1,
-                    "Cost": 5.99,
-                    "Description": "LG G3 phone case",
-                    "Index": 0,
-                    "ListPrice": 12.99,
-                    "Notes": "",
-                    "ProductId": 1,
-                    "SellingPrice": 9.99,
-                    "Quantity": 2,
-                    "SerialNumbers":  ["abc123","abc321"],
-                    "SKU": "00001",
-                    "ShippingOptionId": "",
-                    "SupplierEntityId": 0,
-                    "SupplierReference":"10",
-                    "TrackingInformation": [ 
-                        {
-                            "Quantity": 1,
-                            "TrackingNumber": "1TTTTN4421"
-                        }
-                    ]         
-                },
-                ...
-            ]        
-            "OrderExpiryHours": 72,
-            "OrderTypeId": 3,
-            "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ShippingEntityId": 0,
-            "State": "Created"
-        },
-        ...
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
     ]
-
-## Getting Pending Orders by Location
-
-#### Request
-
-    GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {LocationId} 
-    
-#### Headers
-
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
-* `Accept: application/json`
-
-#### URI Parameters
-
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-* `LocationId` (**Required**) - Identifier for the {{Location}}
-
-###### Example
-
-    GET /Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 8
-    Authorization: Bearer (Access Token)
-    Accept: application/json
+}
+</pre>
 
 #### Response
 
-* Array[{{Order}}]
 
-###### Example
+[OrderFull](#orderfull)
 
-    HTTP 200 Content-Type: application/json
-    [
+<h5>Example</h5>
+
+<pre>
+HTTP 201 Content-Type: application/json
+</pre><pre>{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112",
+    "Items": [
         {
-            "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-            "Name": "iPhone 5 Order", 
-            "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "CreatedDateUtc": "2015-05-05T18:05:13.137",
-            "DiscountCode": "MTRY-15",
-            "DiscountDescription": "Military discount",
-            "DiscountAmount": 15.0,        
-            "EmployeeId": 15,
-            "EntityId": 8,
-            "OrderExpiryDate": "2015-05-08T18:05:13.137",
-            "OrderExpiryHours": 72,
-            "OrderType": "Purchase",
-            "OrderTypeId": 3,
-            "PrintableId": "",
-            "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ShippingEntityId": 0,
-            "State": "Created"
-        },
-        ...
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
     ]
+}</pre>
 
-## Getting Orders by PrintableId
+<h2 id='getting-all-orders-for-a-company' class='clickable-header top-level-header'>Getting All Orders for a Company</h2>
 
-{{tip}}
-<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.
-{{end}}
+<p>
 
-#### Request
+</p>
 
-    GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
-    
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/OrderFull
+</pre>
+
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/OrderFull
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+Array[[OrderFull](#orderfull)]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
+        "OrderTypeId": 3,
+        "PrintableId": "8765-1234-987",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 2,
+        "State": "Created",
+        "TenderId": "INV112",
+        "Items": [
+            {
+                "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+                "Cost": 5.99,
+                "Description": "LG G3 phone case",
+                "ItemStatus": "New",
+                "ItemStatusId": 1,
+                "ItemType": "DropShip",
+                "ItemTypeId": "1",
+                "Index": 0,
+                "ListPrice": 12.99,
+                "Notes": "Dented corner",
+                "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+                "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+                "Quantity": 2,
+                "SellingPrice": 9.99,
+                "SerialNumbers": [
+                    "abc321"
+                ],
+                "SKU": "00001",
+                "ShippingOptionId": "1",
+                "SupplierEntityId": 14,
+                "SupplierReference": "10",
+                "TrackingInformation": [
+                    {
+                        "Quantity": 1,
+                        "TrackingNumber": "`1TTTTN4421"
+                    }
+                ]
+            }
+        ]
+    }
+]</pre>
+
+<h2 id='getting-an-order-with-items' class='clickable-header top-level-header'>Getting an Order with Items</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/OrderFull({OrderId})
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+[OrderFull](#orderfull)
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}</pre>
+
+<h2 id='updating-an-order-with-items' class='clickable-header top-level-header'>Updating an Order with Items</h2>
+
+<p>
+{{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/OrderFull({OrderId})
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
+
+
 #### URI Parameters
 
-* `CompanyId` (**Required**) - Identifier for the {{Company}}
-* `PrintableId` (**Required**) - PrintableId to search for
 
-###### Example
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
 
-    GET /Companies(1)/Orders?$filter=PrintableId eq '8765-1234-987'
-    Authorization: Bearer (Access Token)
-    Accept: application/json
+
+
+#### Request Parameters
+
+<ul><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional)  -  Must belong to the Company specified in the URI</li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>EntityId (Optional) </li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>OrderTypeId (Optional) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemStatusId (<strong>Required</strong>) </li><li>ItemTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>ItemType (<strong>Required</strong>) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>OrderId (<strong>Required</strong>) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>Quantity (Optional) </li><li>TrackingNumber (Optional) </li></ul></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+PUT /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}
+</pre>
 
 #### Response
 
-* Array[{{Order}}] 
 
-###### Example
+[OrderFull](#orderfull)
 
-    HTTP 200 Content-Type: application/json
-    [
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112",
+    "Items": [
         {
-            "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-            "Name": "iPhone 5 Order", 
-            "EmployeeId": 15,
-            "EntityId": 8,
-            "State": "Created",
-            "OrderExpiryDate": "2015-05-08T18:05:13.137",
-            "OrderExpiryHours": 72,
-            "OrderType": "Purchase",
-            "OrderTypeId": 3,
-            "CreatedDateUtc": "2015-05-05T18:05:13.137",
-            "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ShippingEntityId": 0,
-            "DiscountCode": "MTRY-15",
-            "DiscountDescription": "Military discount",
-            "DiscountAmount": 15.0,
-            "PrintableId": "8765-1234-987"
-        },
-        ...
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
     ]
+}</pre>
+
+<h2 id='getting-pending-orders-by-location' class='clickable-header top-level-header'>Getting Pending Orders by Location</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {LocationId}
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 2
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+Array[[Order](#order)]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
+        "OrderTypeId": 3,
+        "PrintableId": "8765-1234-987",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 2,
+        "State": "Created",
+        "TenderId": "INV112"
+    }
+]</pre>
+
+<h2 id='getting-orders-by-printableid' class='clickable-header top-level-header'>Getting Orders by PrintableId</h2>
+
+<p>
+{{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `PrintableId` (**Required**)  - An {{Order}} identifier printed on invoices 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Orders?$filter=PrintableId eq '8675-1234-987'
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+Array[[Order](#order)]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+        "Name": "iPhone 5 Order",
+        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+        "DiscountAmount": 15,
+        "DiscountCode": "MTRY-15",
+        "DiscountDescription": "Military discount",
+        "EmployeeId": "15",
+        "EntityId": 2,
+        "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+        "OrderExpiryHours": 20,
+        "OrderType": "Sales",
+        "OrderTypeId": 3,
+        "PrintableId": "8765-1234-987",
+        "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "ShippingEntityId": 2,
+        "State": "Created",
+        "TenderId": "INV112"
+    }
+]</pre>
 
 ## Errors
 

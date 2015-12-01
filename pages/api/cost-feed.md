@@ -4,11 +4,11 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 1-12-2015
 summary: 
 ---
-
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -23,116 +23,108 @@ Products can be repeated in this feed with different costs. For example, the iPh
 Ensure each company ID has only <strong>one</strong> cost per product.
 {{end}}
 
+
 ## Endpoints
 
-* Sandbox: https://dropshipdemo.iqmetrix.net/v1
-* Production: https://dropship.iqmetrix.net/v1
+* Sandbox: <a href="https://dropshipdemo.iqmetrix.net/v1">https://dropshipdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://dropship.iqmetrix.net/v1">https://dropship.iqmetrix.net/v1</a>
 
 ## Resources
 
-### Cost
+###Cost
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | Id | GUID | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
-| Products | Array[Object] | List of products for which the cost is being updated |  |
+| Products | Array[object] | List of products for which the cost is being updated |  |
 | Products.Sku | String | SKU identifier for the product from product feed | `1115884` |
 | Products.Cost | Decimal | Wholesale cost for the associated companies | `12.99` |
-| Products.CompanyIds | Array[Integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the product's cost |  |
+| Products.CompanyIds | Array[integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the products cost | ` 60454, 123456, 99999` |
 
-## Adding a Product to Cost Feed
 
-#### Request
 
-    POST /Suppliers({SupplierId})/Cost
-    {
-        "Products": [
-            {
-                "Sku": "{Sku}",
-                "Cost": {Cost},
-                "CompanyIds": {CompanyIds}    
-            },
-            ...
-        ]
-    }
-    
+
+
+
+
+<h2 id='adding-a-product-to-cost-feed' class='clickable-header top-level-header'>Adding a Product to Cost Feed</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Suppliers({SupplierId})/Cost
+</pre>
+
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
+
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
+
+
 #### URI Parameters
 
-* `SupplierId` (**Required**) - Identifier of the {{Supplier}}
+
+* `SupplierId` (**Required**)  - Identifier of the Supplier 
+
+
 
 #### Request Parameters
 
-* `Products` (**Required**)
-    * `Sku` (**Required**)
-    * `Cost` (**Required**)
-    * `CompanyIds` (**Required**)
+<ul><li>Products (<strong>Required</strong>) </li><ul><li>Sku (Optional) </li><li>Cost (Optional) </li><li>CompanyIds (Optional) </li></ul></ul>
 
-###### Example
+<h5>Example</h5>
 
-    POST /Suppliers(1324)/Cost
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    
-    {
-        "Products": [
-            {
-                "Sku": "99999999",
-                "Cost": 12.99,
-                "CompanyIds": [
-                    60454,
-                    123456,
-                    99999
-                ]    
-            },
-            {
-                "Sku": "123456abc",
-                "Cost": 1992.99,
-                "CompanyIds": [
-                    60454,
-                    123456,
-                    99999
-                ]    
-            }
-        ]
-    }
+<pre>
+POST /Suppliers(1324)/Cost
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+
+{
+    "Products": [
+        {
+            "Sku": "1115884",
+            "Cost": 12.99,
+            "CompanyIds": [
+                60454,
+                123456,
+                99999
+            ]
+        }
+    ]
+}
+</pre>
 
 #### Response
 
-* {{Cost}}
 
-###### Example
+[Cost](#cost)
 
-    HTTP 202 Accepted Content-Type: application/json
-    {
-        "Id": "91a57ddb-2d42-402b-85b4-fe327a347313",
-        "Products": [
-            {
-                "Sku": "99999999",
-                "Cost": 12.99,
-                "CompanyIds": [
-                    60454,
-                    123456,
-                    99999
-                ]
-            },
-            {
-                "Sku": "123456abc",
-                "Cost": 1992.99,
-                "CompanyIds": [
-                    60454,
-                    123456,
-                    99999
-                ]
-            }
-        ]
-    }    
+<h5>Example</h5>
+
+<pre>
+HTTP 202 Content-Type: application/json
+</pre><pre>{
+    "Id": "91a57ddb-2d42-402b-85b4-fe327a347313",
+    "Products": [
+        {
+            "Sku": "1115884",
+            "Cost": 12.99,
+            "CompanyIds": [
+                60454,
+                123456,
+                99999
+            ]
+        }
+    ]
+}</pre>
 
 ## Errors
 

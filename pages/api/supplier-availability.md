@@ -1,164 +1,125 @@
 ---
-title: Supplier Availability
+title:  Supplier Availability
 permalink: /api/supplier-availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 09-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
-
 {% include linkrefs.html %}
+
 
 ## Overview
 
-Suppliers have the ability to configure availability of products. 
+Suppliers have the ability to configure availability of products.
+
 
 ## Endpoints
 
-There are two endpoints for supplier availabilty. To get availability information, use the availability endpoint. To post availability information, use the dropship endpoint.
-
-For GET
-
-* Sandbox: https://availabilitydemo.iqmetrix.net/v1
-* Production: https://availability.iqmetrix.net/v1
-
-For POST
-
-* Sandbox: https://dropshipdemo.iqmetrix.net/v1
-* Production: https://dropship.iqmetrix.net/v1
+* Sandbox: <a href="https://dropshipdemo.iqmetrix.net/v1">https://dropshipdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://dropship.iqmetrix.net/v1">https://dropship.iqmetrix.net/v1</a>
 
 ## Resources
 
-### Availability
+###Availability
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
-| Id | GUID | Unique identifer | `a84549a1-3b0d-4ca6-b27f-65136957309b` |
-| Products | Array[Object] | Products for the availability feed | |
-| Products.IsAvailable | Boolean | If the product is available | `true` |
-| Products.Sku | String | Produt Sku | `9101AGAP6` |
+|:-----|:----------|:------------|:--------|
+| Id | Guid | Unique identifier | `a84549a1-3b0d-4ca6-b27f-65136957309b` |
+| Products | Array[object] | Products for the Availability Feed |  |
+| Products.IsAvailable | Boolean | A flag to indicate if the Product is Available | `true` |
+| Products.Sku | String | Product Sku | `9101AGAP6` |
 | Products.Quantity | Integer | Product quantity | `10` |
 
 
-### SupplierSku
+###SupplierSku
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
-| Id | GUID | Unique identifer | `45957dcf-9117-4a0f-bd12-4f737b000f2e` |
-| Products | Array[Object] | Products for the availability feed | |
-| Products.IsAvailable | Boolean | If the product is available | `true` |
-| Products.SupplierEntityId | String | Supplier identifier | `00455` |
-| Products.SupplierSku | String | Produt Sku | `9101AGAP6` |
+|:-----|:----------|:------------|:--------|
+| Id | GUID | Unique identifier | `45957dcf-9117-4a0f-bd12-4f737b000f2e` |
+| Products | Array[object] | Products for the availability feed |  |
+| Products.IsAvailable | Boolean | A flag to indicate if the Product is Available | `true` |
+| Products.SupplierEntityId | Integer | Identifier for the Supplier of this Item | `14` |
+| Products.SupplierSku | String | Product Sku | `9101AGAP6` |
 | Products.Quantity | Integer | Product quantity | `10` |
 
-## Configuring Product Availability
 
-#### Request
 
-{{important}} This request uses dropship and dropshipdemo endpoints. {{end}} 
 
-    POST /Suppliers({SupplierId})/Availability    
-    {
-        {Availability}
-    }
-    
+
+
+
+<h2 id='configuring-product-availability' class='clickable-header top-level-header'>Configuring Product Availability</h2>
+
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Suppliers({SupplierId})/Availability
+</pre>
+
 #### Headers
 
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
+
+* `Authorization: Bearer (Access Token)`
 * `Accept: application/json`
 * `Content-Type: application/json`
 
-#### URI Parameter
 
-* `SupplierId` (**Required**)
+
+#### URI Parameters
+
+
+* `SupplierId` (**Required**)  - Identifier for the {{Supplier}} 
+
+
 
 #### Request Parameters
 
-* `Products` (**Required**)
-  * `Sku` (**Required**)
-  * `IsAvailable` (Optional) - default value is `false`
-  * `Quantity` (Optional) - default value is `0`
+<ul><li>Products (<strong>Required</strong>) </li><ul><li>IsAvailable (Optional) </li><li>Sku (Optional) </li><li>Quantity (Optional) </li></ul></ul>
 
+<h5>Example</h5>
 
-##### Example
+<pre>
+POST /Suppliers(60455)/Availability
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
 
-    POST /Suppliers(60455)/Availability
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-    Content-Type: application/json
-    {
-        "Products": [
-            {
-                "Sku": "123456789",
-                "IsAvailable": true,
-                "Quantity": 3
-            }
-        ]
-    }
-
-#### Response
-
-##### Example
-
-    HTTP 200 OK Content-Type: application/json
-    {
-        "Id": "a84549a1-3b0d-4ca6-b27f-65136957309b",
-        "Products": [
-            {
-                "IsAvailable": true,
-                "Sku": "123456789",
-                "Quantity": 3
-            }
-        ]
-    }
-
-## Getting Supplier Product Availability
-
-#### Request
-
-{{important}} This request uses availability and availabilitydemo endpoints. {{end}} 
-
-    GET /Suppliers({SupplierId})/SupplierSkus
-    
-#### Headers
-
-* `Authorization: Bearer` ({{AccessToken_Glossary}})
-* `Accept: application/json`
-
-
-#### URI Parameter
-
-* `SupplierId` (**Required**)
-
-##### Example
-
-    GET /Suppliers(60455)/SupplierSkus
-    Authorization: Bearer (Access Token)
-    Accept: application/json
-
-#### Response
-
-##### Example
-
-    HTTP 200 OK Content-Type: application/json
-    [
+{
+    "Products": [
         {
-            "Id": "45957dcf-9117-4a0f-bd12-4f737b000f2e",
             "IsAvailable": true,
-            "SupplierSku": "1115884",
-            "SupplierEntityId": 60455,
-            "Quantity": 1
-        },
-        {
-            "Id": "970979cd-825f-44e4-9564-b1bd29eb2de4",
-            "IsAvailable": true,
-            "SupplierSku": "123456789",
-            "SupplierEntityId": 60455,
-            "Quantity": 3
+            "Sku": "9101AGAP6",
+            "Quantity": 10
         }
     ]
+}
+</pre>
 
+#### Response
+
+
+[Availability](#availability)
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "a84549a1-3b0d-4ca6-b27f-65136957309b",
+    "Products": [
+        {
+            "IsAvailable": true,
+            "Sku": "9101AGAP6",
+            "Quantity": 10
+        }
+    ]
+}</pre>
 
 ## Errors
 

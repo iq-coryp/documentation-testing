@@ -4,10 +4,9 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 1-12-2015
 summary: 
 ---
-
 {% include linkrefs.html %}
 
 ## Overview
@@ -24,6 +23,7 @@ Copy the contents of the yaml file and paste into Swagger Editor: http://editor.
 
 -->
 
+
 ## Endpoint Format
 
 You will provide the endpoint for iQmetrix. We recommend keeping the endpoint simple, such as:
@@ -38,7 +38,6 @@ iQmetrix supports two methods for authentication:
 
 Basic authentication. <strong>HTTPS is required.</strong>
 
-
 ##### Example
 
     Username: test_user
@@ -52,122 +51,110 @@ API key must be provided in header and is configurable.
 
 ##### Example
 
-    Api-Key: 890g8f90dfgsd890fs89
-    
+    Api-Key: 890g8f90dfgsd890fs89          
+
 
 ## Resources
 
-### ShippingQuery
+
+###ShippingQuery
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
-| Items | Array[Object] | List of Products to be added to shipping query |  |
-| Items.ProductName | String | Product name | `Galaxy S6 Defender Case - Glacier` |
-| Items.Quantity | Integer | Amount of products | `11` |
-| Items.Sku | String | Product sku | `87932OTS45S6` |
+| Items | Array[[Item](#item)] | List of Products to be added to shipping query |  |
 | PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
 
-### ShippingOptions
+###Item
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
-| Id | String | Identifer for the shipping option | `350` |
-| Name | String | Shipping option name | `PurolatorExpress` |
+|:-----|:----------|:------------|:--------|
+| ProductName | String | Product name  | `Galaxy S6 Defender Case - Glacier` |
+| Quantity | Integer | Amount of products | `11` |
+| Sku | String | Product sku | `87932OTS45S6` |
+
+###ShippingOptions
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | String | Identifier for the shipping option | `350` |
 | Cost | Decimal | Cost for shipping option | `7.94` |
-| Currency | String (3) | Cost currency (USD or CAD) | `CAD` |
+| Currency | String(3) | Cost currency (USD or CAD) | `CAD` |
 | EstimatedTransitTime | String | Total time to be in transit, where units are provided by supplier | `1 week` |
+| Name | String | Shipping option name | `PurolatorExpress` |
+
+
 
 
 ## Get Shipping Options
+
+
 
 #### Request
 
 The specification for the request must be in the format below:
 
     POST /ShippingOptions
-    {
-        {ShippingQuery}
-    }
-    
+
 #### Headers
 
-* `Authorization: Basic` 
+* `Authorization: Basic`
 * `Accept: application/json`
 * `Content-Type: application/json`
+* `Host: supplier.azure-api.net`
+
+
+
+
 
 #### Request Parameters
 
-* `CompanyId` (**Required**)
-* `PostalCode` (**Required**)
-* `Items` (Optional)
-    * `ProductName` (**Required**)
-    * `Quantity` (**Required**)
-    * `Sku` (**Required**)
+<ul><li>CompanyId (<strong>Required</strong>) </li><li>PostalCode (<strong>Required</strong>) </li><li>Items (Optional) </li><ul><li>ProductName (Optional) </li><li>Quantity (Optional) </li><li>Sku (Optional) </li></ul></ul>
 
-##### Example
+###### Example
 
-    POST /ShippingOptions HTTP/1.1
-    Host: supplier.azure-api.net
-    Content-Type: application/json
-    {
-        "CompanyId": 123,
-        "PostalCode": "A1A1A1",
-        "Items": [
-            {
-                  "ProductName": "Galaxy S6 Defender Case - Glacier",
-                  "Quantity": 11,
-                  "Sku": "87932OTS45S6"
-            }
-        ]
-    }
+<pre>
+POST /ShippingOptions
+Authorization: BasicAccept: application/jsonContent-Type: application/jsonHost: supplier.azure-api.net
+{
+    "CompanyId": 123,
+    "Items": [
+        {
+            "ProductName": "Galaxy S6 Defender Case - Glacier",
+            "Quantity": 11,
+            "Sku": "87932OTS45S6"
+        }
+    ],
+    "PostalCode": "A1A1A1"
+}
+</pre>
 
 #### Response
 
 The specification of the response must be in the format below:
 
-    HTTP 200 OK Content-Type: application/json
+  * `Id` (**Required**)
+  * `Cost` (**Required**)
+  * `Currency` (**Required**)
+  * `EstimatedTransitTime` (Optional)
+  * `Name` (Optional)
+
+
+###### Example
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
+<pre>
+[
     {
-        "ShippingOptions": [
-            {ShippingOption1},
-                ...
-        ]
+        "Id": "350",
+        "Cost": 7.94,
+        "Currency": "CAD",
+        "EstimatedTransitTime": "1 week",
+        "Name": "PurolatorExpress"
     }
+]
+</pre>
 
-#### Response Parameters
-
-* `Id` (**Required**)
-* `Name` (Optional)
-* `Cost` (**Required**)
-* `Currency` (**Required**)
-* `EstimatedTransitTime` (Optional)
-
-##### Example
-
-    HTTP 200 OK Content-Type: application/json
-    {
-        "ShippingOptions": [
-            {
-                "Id": "350",
-                "Name": "PurolatorExpress",
-                "Cost": 7.94,
-                "Currency": "CAD",
-                "EstimatedTransitTime": "1 hour"
-            },
-            {
-                "Id": "352",
-                "Name": "PurolatorGround",
-                "Cost": 12.58,
-                "Currency": "CAD",
-                "EstimatedTransitTime": "1 hour"
-            },
-            {
-                "Id": "349",
-                "Name": "PurolatorExpress10:30AM",
-                "Cost": 20.31,
-                "Currency": "CAD",
-                "EstimatedTransitTime": "10:30 AM"
-           }
-        ]
-    }
 

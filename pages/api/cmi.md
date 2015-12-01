@@ -1,14 +1,17 @@
 ---
-title:  Customer Managed Inventory
+title: Customer Managed Inventory
 permalink: /api/cmi/
 tags: []
 keywords: 
-audience: 
-last_updated: 01-12-2015
-summary: 
+audience:
+last_updated: 1-12-2015
+summary:
 ---
 
 {% include linkrefs.html %}
+
+
+## Overview
 
 {{important}}
 The CMI API is a legacy SOAP API and uses different Authentication then other iQmetrix APIs
@@ -20,63 +23,67 @@ The Customer Managed Inventory (CMI) API can be used to:
 * Create shipping notices for POs
 * See a list of all CMI enabled stores in RQ
 
+
 ## Endpoints
 
-* Sandbox: https://vmidemeo.iqmetrix.net/VMIClientService.asmx
-* Production (Denver): https://vmi1.iqmetrix.net/VMIClientService.asmx
-* Production (Toronto): https://vmi3.iqmetrix.net/VMIClientService.asmx
-* Production (Philadelphia): https://vmi10.iqmetrix.net/VMIClientService.asmx
+* Sandbox: <a href="https://vmidemo.iqmetrix.net/VMIClientService.asmx">https://vmidemo.iqmetrix.net/VMIClientService.asmx</a>
+* Production (Denver): <a href="https://vmi1.iqmetrix.net/VMIClientService.asmx">https://vmi1.iqmetrix.net/VMIClientService.asmx</a>
+* Production (Toronto): <a href="https://vmi3.iqmetrix.net/VMIClientService.asmx">https://vmi3.iqmetrix.net/VMIClientService.asmx</a>
+* Production (Philadelphia): <a href="https://vmi10.iqmetrix.net/VMIClientService.asmx">https://vmi10.iqmetrix.net/VMIClientService.asmx</a>
 
 {{important}}
 You should choose a production endpoint that is geographically closest to your data center 
 {{end}}
 
+
 ## Resources
 
-### ClientIdentity
+
+
+###ClientIdentity
 
 Authentication for the CMI API is done by including a ClientIdentity resource in a `<client>` section at the beginning of each request.
 
 ClientIdentitiy information is supplied by iQmetrix and used to authenticate requests made to the CMI API.
-
-{{note}}
-ClientIdentity authentication information is <a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a> specific
-{{end}}
+{{note}}ClientIdentity authentication information is <a href="{{'/environments/' | prepend: site.api_baseurl}}">Environment</a> specific{{end}}
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
-| ClientID | GUID | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` | 
+|:-----|:----------|:------------|:--------|
+| ClientID | GUID | Client identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
 | Username | String | Username | `sampleusername` |
 | Password | String | Password | `samplepassword` |
-| StoreId | Integer | Reserved for future use. Use value of -1 | `-1` | 
+| *StoreId* | *Integer* | *Reserved for future use. Use value of -1* | |
 
-### PurchaseOrderShipmentNotice
+
+###PurchaseOrderShipmentNotice
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | PurchaseOrderID | GUID | Unique identifier | `84DACFD3-4095-4D50-A02E-781B86B7408E` |
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
-| Quantity | Integer | Quantity | `1`  |
-| RQPurchaseOrderID | Integer | Purchase Order identifier | `22073` |
-| SerialNumbers | Array[String] | Serial numbers. Must match `Quantity` above |  |
-| ShipmentNumber | String | Vendor shipment number| `SHIP001` |
+| Quantity | Integer | Number of items shipped | `1` |
+| RQPurchaseOrderID | Integer | Identifier for the Purchase Order in RQ | `22073` |
+| SerialNumbers | Array[string] | Serial numbers. Must match Quantity |  |
+| ShipmentNumber | String | Vendor defined identifier for the shipment | `SHIP001` |
 | VendorInvoiceNumber | String | Value supplied by the vendor when creating the purchase order | `1002` |
 | VendorSKU | String | The vendor part number/sku | `ABC123` |
 
-### PurchaseOrderInformation
+
+###PurchaseOrderInformation
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | PurchaseOrderID | GUID | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
-| PurchaseOrderData | [PurchaseOrderData](#purchaseorderdata) | Purchase order | |
-| ProductsOrdered | Array[[ProductInformation](#purcahseorderinformation)] | Products ordered | |
-| ProductsReceived | Array[[ProductInformation](#purcahseorderinformation)] | Products received  | |
-| SerialsReceived | Array[[ProductSerialNumber](#productserialnumber)] | Serials received | |
+| PurchaseOrderData | [PurchaseOrderData](#purcahseorderdata) | Purchase order |  |
+| ProductsOrdered | Array[[ProductInformation](#productinformation)] | Products ordered |  |
+| ProductsReceived | Array[[ProductInformation](#productinformation)] | Products received |  |
+| SerialsReceived | Array[[ProductSerialNumber](#productserialnumber)] | Serials received |  |
 
-### PurchaseOrderData
+
+###PurchaseOrderData
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | PurchaseOrderID | GUID | Unique identifier | `28890F70-8FC9-4A9B-9458-410A8D08502D` |
 | BillToStoreID | Integer | RQ StoreId | `55` |
 | BillToStoreName | String | RQ store name | `Cornwall west` |
@@ -96,10 +103,11 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 | VendorInvoiceNumber | String | Invoice number for the vendor | `1` |
 | VendorName | String | Name of the vendor | `SampleVendor` |
 
-### ProductInformation
+
+###ProductInformation
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | ProductID | GUID | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
 | ProductName | String | Name | `Samsung Galaxy S6` |
 | DateEOL | DateTime | End of life date | `1/01/2016 12:00:00 AM` |
@@ -111,7 +119,7 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 | MinimumLevel | Integer | Minimum number of Products that can be added to the PurchaseOrder | `-1` |
 | MinMaxLocked | Boolean | A flag to indicate if the Min and Max values are locked (unchangeable) | `false` |
 | ProductCost | Integer | Decimal | `99.99` |
-| ProductItemID | Integer | GlobalProductId from RQ  | `11142` |
+| ProductItemID | Integer | GlobalProductId from RQ | `11142` |
 | ProductRecieved | Boolean | A flag to indicate if product was recieved | `false` |
 | ProductSKU | String | ProductIdentifier in RQ | `CECPSM000017` |
 | QuantityCommittedOnOrderEntry | Integer | Amount committed on an order entry | `-1` |
@@ -132,19 +140,21 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 | SalePrice | Decimal | Sale price | `79.99` |
 | VendorSKU | String | Vendor SKU | `ABC123` |
 
-### ProductSerialNumber
+
+###ProductSerialNumber
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
-| DateReceived | Date | Date recieved | `3/11/2014 2:29:25 PM`|
+| DateReceived | Date | Date recieved | `3/11/2014 2:29:25 PM` |
 | NonSellable | Boolean | A flag to indicate if the product is sellable (`false`) or nonsellable (`true`) in RQ | `true` |
 | SerialNumber | String | Serial number | `132456456456111` |
 
-### StoreInformation
+
+###StoreInformation
 
 | Name | Data Type | Description | Example |
-|:-----|:---------|:------------|:--------|
+|:-----|:----------|:------------|:--------|
 | StoreID | Integer | Identifier | `36` |
 | Name | String | Name | `Cornwall West` |
 | Abbreviation | String | Abbrevation | `CWW` |
@@ -157,7 +167,15 @@ ClientIdentity authentication information is <a href="{{"/environments/" | prepe
 | ProvinceState | String | Province or State | `Saskatchewan` |
 | Region | String | Region | `Regina` |
 | ShipToStoreID | Integer | Shipping store ID | `55` |
-| BillToStoreID | Integer | RQ StoreID | `55` | 
+| BillToStoreID | Integer | RQ StoreID | `55` |
+
+
+
+
+
+
+
+
 
 ## Creating a Purchase Order Shipment Notice
 
@@ -174,57 +192,23 @@ This method allows the vendor to create a shipment notice for an existing purcha
 This request accepts an array of PurchaseOrderShipmentNotices, so you do not need to call the CMI service multiple times for products in an order
 {{end}}
 
+
 #### Request
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <CreatePurchaseOrderShipmentNotice xmlns="http://www.iqmetrix.com">
-      <client>
-        <ClientID>{ClientID}</ClientID>
-        <Username>{Username}</Username>
-        <Password>{Password}</Password>
-        <StoreID>{StoreID}</StoreID>
-      </client>
-      <notice>
-        <PurchaseOrderShipmentNotice>
-          <PurchaseOrderID>{PurchaseOrderID}</PurchaseOrderID>
-          <ProductItemID>{ProductItemID}</ProductItemID>
-          <Quantity>{Quantity}</Quantity>
-          <RQPurchaseOrderID>{RQPurchaseOrderID}</RQPurchaseOrderID>
-          <SerialNumbers>
-            <string>{SerialNumber}</string>
-            ...
-          </SerialNumbers>
-          <ShipmentNumber>{ShipmentNumber}</ShipmentNumber>
-          <VendorInvoiceNumber>{VendorInvoiceNumber}</VendorInvoiceNumber>
-          <VendorSKU>{VendorSKU}</VendorSKU>
-        </PurchaseOrderShipmentNotice>
-        ...
-      </notice>
-    </CreatePurchaseOrderShipmentNotice>
-  </soap:Body>
-</soap:Envelope>
-```
+#### Headers
+
+* `Content-Type: application/xml`
 
 #### Authorization Parameters
-
+ 
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
-* `StoreId` (**Required**) - Identifier for the Store 
+
 
 #### Request Parameters
 
-* `Quantity` (**Required**) - Number of Items shipped 
-* `SerialNumbers` (**Required**) - List of associated serial numbers
-* `VendorInvoiceNumber` (**Required**) - Value supplied by the vendor when creating the purchase order. Either this value **OR** PurchaseOrderID must be provided
-* `RQPurchaseOrderID` (**Required**) - Identifier for the purchase order in RQ
-* `VendorSKU` (Optional) - The vendor part number/sku. Either this value or ProductItemId must be provided
-* `PurchaseOrderID` (Optional) - Unique identifier for the purchase order. Either this value or VendorInvoiceNumber must be provided
-* `ShipmentNumber` (Optional) - Vendor defined identifier for the shipment. If this value is not provided, CMI will automatically assign one
-* `ProductItemID` (Optional) - GlobalProductId from RQ for the item that this shipment notice contains information about. Either this value or VendorSKU must be provided
+<ul><li>Quantity (<strong>Required</strong>) </li><li>RQPurchaseOrderID (<strong>Required</strong>) </li><li>SerialNumbers (<strong>Required</strong>) </li><li>VendorInvoiceNumber (<strong>Required</strong>)  - Either this value **OR** PurchaseOrderID must be provided</li><li>PurchaseOrderID (Optional)  - Either this value or VendorInvoiceNumber must be provided</li><li>ProductItemID (Optional)  - Either this value or VendorSKU must be provided</li><li>ShipmentNumber (Optional)  - If this value is not provided, the service will automatically assign one</li><li>VendorSKU (Optional)  - Either this value or ProductItemId must be provided</li></ul>
 
 ###### Example
 
@@ -258,6 +242,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
     </CreatePurchaseOrderShipmentNotice>
   </soap:Body>
 </soap:Envelope>
+
 ```
 
 ###### Code Example
@@ -285,12 +270,13 @@ PurchaseOrderShipmentNotice snReturn = cmiService.CreatePurchaseOrderShipmentNot
 
 #### Response
 
-* [PurchaseOrderShipmentNotice](#purchaseordershipmentnotice)
 
-##### Example
+[PurchaseOrderShipmentNotice](#purchaseordershipmentnotice)
+
+###### Example
 
 ```
-  HTTP 200
+HTTP 200 Content-Type: application/xml
 ```
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -315,49 +301,33 @@ PurchaseOrderShipmentNotice snReturn = cmiService.CreatePurchaseOrderShipmentNot
             </CreatePurchaseOrderShipmentNoticeResult>
         </CreatePurchaseOrderShipmentNoticeResponse>
     </soap:Body>
-</soap:Envelope>
+</soap:Envelope>              
+
 ```
 
 ## Getting Purchase Orders By Status
-<br/>
 
 This method will return all purchase orders in the client database that match the provided status criteria, including those that were not created through the CMI API.  
 
 Therefore, if a dealer creates a Purchase Order within RQ, it will be available in this list.
 
+
 #### Request
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetPurchaseOrdersByStatus xmlns="http://www.iqmetrix.com">
-      <client>
-        <ClientID>{ClientID}</ClientID>
-        <Username>{Username}</Username>
-        <Password>{Password}</Password>
-      </client>
-      <isCommitted>{IsCommitted}</isCommitted>
-      <isCompleted>{IsCompleted}</isCompleted>
-      <startDate>{StartDate}</startDate>
-      <endDate>{EndDate}</endDate>
-    </GetPurchaseOrdersByStatus>
-  </soap:Body>
-</soap:Envelope>
-```
+#### Headers
+
+* `Content-Type: application/xml`
 
 #### Authorization Parameters
-
+ 
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
 #### Request Parameters
 
-* `IsCommitted` (**Required**) - Flag to indicate if committed or uncommitted purchase orders should be searched for
-* `IsCompleted` (**Required**) - Flag to indicate if complete or incomplete purchase orders should be searched for
-* `StartDate` (**Required**) - Purchase orders committed and/or completed on or after this day at midnight will be searched for
-* `EndDate` (**Required**) - Purchase orders committed and/or completed up to the end of this day will be searched for
+<ul><li>isCommitted (<strong>Required</strong>)  - Flag to indicate if committed or uncommitted purchase orders should be searched for</li><li>isCompleted (<strong>Required</strong>)  - Flag to indicate if complete or incomplete purchase orders should be searched for</li><li>startDate (<strong>Required</strong>)  - Purchase orders committed and/or completed on or after this day at midnight will be searched for</li><li>endDate (<strong>Required</strong>)  - Purchase orders committed and/or completed up to the end of this day will be searched for</li></ul>
 
 ###### Example
 
@@ -378,6 +348,7 @@ Therefore, if a dealer creates a Purchase Order within RQ, it will be available 
     </GetPurchaseOrdersByStatus>
   </soap:Body>
 </soap:Envelope>
+
 ```
 
 ###### Code Example
@@ -394,17 +365,19 @@ boolean isCompleted = true;
 DateTime startDate = new DateTime("2015-01-01T12:00:00.000");
 DateTime endDate = new DateTime("2015-01-30T12:00:00.000");
 
-PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isCommitted, isCompleted, startDate, endDate);
+PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isCommitted, isCompleted, startDate, endDate)    
+
 ```
 
 #### Response
 
-* Array[[PurchaseOrderInformation](#purchaseorderinformation)]
+
+[PurchaseOrderInformation](#purchaseorderinformation)
 
 ###### Example
 
 ```
-  HTTP 200
+HTTP 200 Content-Type: application/xml
 ```
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -483,38 +456,30 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
             </GetPurchaseOrdersByStatusResult>
         </GetPurchaseOrdersByStatusResponse>
     </soap:Body>
-</soap:Envelope>
+</soap:Envelope>           
+
 ```
 
 ## Getting Purchase Orders by Reference Number
 
+
+
 #### Request
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetPurchaseOrderByReferenceNumber xmlns="http://www.iqmetrix.com">
-      <client>
-        <ClientID>{ClientID}</ClientID>
-        <Username>{Username}</Username>
-        <Password>{Password}</Password>
-      </client>
-      <purchaseOrderReferenceNumber>{PurchaseOrderReferenceNumber}</purchaseOrderReferenceNumber>
-    </GetPurchaseOrderByReferenceNumber>
-  </soap:Body>
-</soap:Envelope>
-```
+#### Headers
+
+* `Content-Type: application/xml`
 
 #### Authorization Parameters
-
+ 
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
 #### Request Parameters
 
-* `PurchaseOrderReferenceNumber` (**Required**) - Reference Number on the Purchase Order in RQ
+<ul><li>PurchaseOrderReferenceNumber (<strong>Required</strong>)  - Reference Number on the Purchase Order in RQ</li></ul>
 
 ###### Example
 
@@ -532,6 +497,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
     </GetPurchaseOrderByReferenceNumber>
   </soap:Body>
 </soap:Envelope>
+
 ```
 
 ###### Code Example
@@ -544,17 +510,19 @@ client.Password = "samplepassword";
 
 string purchaseOrderReferenceNumber = "77123";
 
-PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(client, purchaseOrderReferenceNumber);
+PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(client, purchaseOrderReferenceNumber)
+
 ```
 
 #### Response
 
-* [PurchaseOrderInformation](#purchaseorderinformation)
 
-##### Example
+[PurchaseOrderInformation](#purchaseorderinformation)
+
+###### Example
 
 ```
-  HTTP 200
+HTTP 200 Content-Type: application/xml
 ```
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -632,42 +600,33 @@ PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(clie
             </GetPurchaseOrderByReferenceNumberResult>
         </GetPurchaseOrderByReferenceNumberResponse>
     </soap:Body>
-</soap:Envelope>
+</soap:Envelope>              
+
 ```
 
 ## Getting Client Purchase Orders by Business Key
 
 This method allows you find a purchase order based on the RQ business key, the visual ID by store seen on RQ printouts.
 
-This call is useful in the situation where a user has created a PO in RQ for a vendor. The vendor can get the PO data and product info to help with creation of shipping notifications.
+This call is useful in the situation where a user has created a PO in RQ for a vendor. The vendor can get the PO data and product info to help with creation of shipping notifications.      
+
 
 #### Request
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetPurchaseOrderByBusinessID xmlns="http://www.iqmetrix.com">
-      <client>
-        <ClientID>{ClientID}</ClientID>
-        <Username>{Username}</Username>
-        <Password>{Password}</Password>
-      </client>
-      <purchaseOrderIdByStore>{BusinessKey}</purchaseOrderIdByStore>
-    </GetPurchaseOrderByBusinessID>
-  </soap:Body>
-</soap:Envelope>
-```
+#### Headers
+
+* `Content-Type: application/xml`
 
 #### Authorization Parameters
-
+ 
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
 #### Request Parameters
 
-* `BusinessKey` - The business key of the purchase order in RQ
+<ul><li>purchaseOrderIdByStore (<strong>Required</strong>)  - The business key of the purchase order in RQ</li></ul>
 
 ###### Example
 
@@ -684,7 +643,8 @@ This call is useful in the situation where a user has created a PO in RQ for a v
       <purchaseOrderIdByStore>123</purchaseOrderIdByStore>
     </GetPurchaseOrderByBusinessID>
   </soap:Body>
-</soap:Envelope>
+</soap:Envelope>          
+
 ```
 
 ###### Code Example
@@ -698,16 +658,18 @@ client.Password = "samplepassword";
 String businessKey = "123";
 
 PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByBusinessID(client, businessKey);
+
 ```
 
 #### Response
 
-* Array[[PurchaseOrderInformation](#purchaseorderinformation)] 
+
+[PurchaseOrderInformation](#purchaseorderinformation)
 
 ###### Example
 
 ```
-  HTTP 200
+HTTP 200 Content-Type: application/xml
 ```
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -785,49 +747,32 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByBusinessID(client,
             </GetPurchaseOrderByReferenceNumberResult>
         </GetPurchaseOrderByReferenceNumberResponse>
     </soap:Body>
-</soap:Envelope>
+</soap:Envelope>              
+
 ```
 
 ## Getting All CMI Enabled Stores
 
+
+
 #### Request
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetStoreList xmlns="http://www.iqmetrix.com">
-      <client>
-        <ClientID>{ClientID}</ClientID>
-        <Username>{Username}</Username>
-        <Password>{Password}</Password>
-      </client>
-    </GetStoreList>
-  </soap:Body>
-</soap:Envelope>
-```
+#### Headers
+
+* `Content-Type: application/xml`
 
 #### Authorization Parameters
-
+ 
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Client specific username supplied by iQmetrix 
 * `Password` (**Required**) - Client specific password supplied by iQmetrix
 
+
+
 ###### Example
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetStoreList xmlns="http://www.iqmetrix.com">
-      <client>
-        <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-        <Username>sampleusername</Username>
-        <Password>samplepassword</Password>
-      </client>
-    </GetStoreList>
-  </soap:Body>
-</soap:Envelope>
+<?xml version="1.0" encoding="utf-8"?> <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body> <GetStoreList xmlns="http://www.iqmetrix.com"> <client> <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID> <Username>sampleusername</Username> <Password>samplepassword</Password> </client> </GetStoreList> </soap:Body> </soap:Envelope>
 ```
 
 ###### Code Example
@@ -839,16 +784,18 @@ client.Username = "sampleusername";
 client.Password = "samplepassword";
 
 StoreInformation[] stores = cmiService.GetStoreList(client);
+
 ```
 
 #### Response
 
-* Array[[StoreInformation](#storeinformation)] 
+
+[StoreInformation](#storeinformation)
 
 ###### Example
 
 ```
-  HTTP 200
+HTTP 200 Content-Type: application/xml
 ```
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
