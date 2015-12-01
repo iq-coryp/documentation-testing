@@ -4,10 +4,11 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -22,14 +23,14 @@ Suppliers have the ability to add products to their subscribable lists and retri
 ## Resources
 
 
-<h3>Subscription</h3>
+###Subscription
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Companies | Array[[Company](#company)] | Companies for the subscription |  |
+| Companies | Array[[array](#array)] | Companies for the subscription |  |
 | ListId | GUID | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 
-<h3>Company</h3>
+###Company
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -37,17 +38,17 @@ Suppliers have the ability to add products to their subscribable lists and retri
 | Id | Integer | Company identifier | `60454` |
 | Name | String | Company Name | `Mark Inc` |
 
-<h3>SubscribableList</h3>
+###SubscribableList
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | EntityId | Integer | [Supplier](/api/entity-store/#supplier) identifier | `14` |
 | Id | GUID | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 | Name | String | Title of product subscription | `Joe's Subscription List` |
-| Products | Array[[Product](#product)] | Products for the subscribable list |  |
+| Products | Array[[array](#array)] | Products for the subscribable list |  |
 | Version | Integer | Subscription revision | `12` |
 
-<h3>Product</h3>
+###Product
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -61,13 +62,19 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 
 
-<h2>Getting All Companies in a Product Subscription</h2>
 
 
+<h2 id='getting-all-companies-in-a-product-subscription' class='clickable-header top-level-header'>Getting All Companies in a Product Subscription</h2>
 
-#### Request
+<p>
 
-    GET /subscription({ListId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /subscription({ListId})
+</pre>
 
 #### Headers
 
@@ -95,6 +102,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Subscription](#subscription)]
 
 <h5>Example</h5>
@@ -121,13 +129,19 @@ HTTP 200 Content-Type: application/json
 
 </pre>
 
-<h2>Getting a Subscribable List</h2>
 
 
+<h2 id='getting-a-subscribable-list' class='clickable-header top-level-header'>Getting a Subscribable List</h2>
 
-#### Request
+<p>
 
-    GET /subscribablelists({SubscribableListId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /subscribablelists({SubscribableListId})
+</pre>
 
 #### Headers
 
@@ -155,6 +169,7 @@ Accept: application/json
 
 #### Response
 
+
 [SubscribableList](#subscribablelist)
 
 <h5>Example</h5>
@@ -181,14 +196,20 @@ HTTP 200 Content-Type: application/json
     "Version": 12
 }</pre>
 
-<h2>Updating Products in a Subscribable List</h2>
 
+
+<h2 id='updating-products-in-a-subscribable-list' class='clickable-header top-level-header'>Updating Products in a Subscribable List</h2>
+
+<p>
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    PUT /subscribablelists({SubscribableListId})
+<pre>
+PUT /subscribablelists({SubscribableListId})
+</pre>
 
 #### Headers
 
@@ -241,6 +262,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [SubscribableList](#subscribablelist)
 
 <h5>Example</h5>
@@ -266,6 +288,7 @@ HTTP 200 Content-Type: application/json
 }
 
 </pre>
+
 
 
 ## Errors

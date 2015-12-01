@@ -4,10 +4,11 @@ permalink: /api/entity-store/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -21,7 +22,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ## Resources
 
-<h3>Carrier</h3>
+###Carrier
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -35,14 +36,14 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Carrier` |
-| Roles | Array[[CarrierRole](#carrierrole)] | The value must be Carrier |  |
+| Roles | Array[[array](#array)] | The value must be Carrier |  |
 | SortName | String | A string used for sorting | `samplecarrier` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 
 
 
-<h3>Manufacturer</h3>
+###Manufacturer
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -56,14 +57,14 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Manufacturer` |
-| Roles | Array[[ManufacturerRole](#manufacturerrole)] | The value must be Manufacturer |  |
+| Roles | Array[[array](#array)] | The value must be Manufacturer |  |
 | SortName | String | A string used for sorting | `samplemanufacturer` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 
 
 
-<h3>Supplier</h3>
+###Supplier
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -77,7 +78,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Supplier` |
-| Roles | Array[[SupplierRole](#supplierrole)] | The value must be Supplier |  |
+| Roles | Array[[array](#array)] | The value must be Supplier |  |
 | Roles.Name | String | The value must be Supplier | `Supplier` |
 | SortName | String | A string used for sorting | `samplesupplier` |
 | Version | Integer | Latest revision number | `1` |
@@ -88,13 +89,19 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-<h2>Getting All Carriers</h2>
 
 
+<h2 id='getting-all-carriers' class='clickable-header top-level-header'>Getting All Carriers</h2>
 
-#### Request
+<p>
 
-    GET /Carriers
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Carriers
+</pre>
 
 #### Headers
 
@@ -116,6 +123,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Carrier](#carrier)]
 
@@ -146,13 +154,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting a Carrier</h2>
 
 
+<h2 id='getting-a-carrier' class='clickable-header top-level-header'>Getting a Carrier</h2>
 
-#### Request
+<p>
 
-    GET /Carriers({CarrierId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Carriers({CarrierId})
+</pre>
 
 #### Headers
 
@@ -179,6 +193,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [Carrier](#carrier)
 
@@ -207,13 +222,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting All Manufacturers</h2>
 
 
+<h2 id='getting-all-manufacturers' class='clickable-header top-level-header'>Getting All Manufacturers</h2>
 
-#### Request
+<p>
 
-    GET /Manufacturers
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Manufacturers
+</pre>
 
 #### Headers
 
@@ -235,6 +256,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Manufacturer](#manufacturer)]
 
@@ -265,13 +287,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting a Manufacturer</h2>
 
 
+<h2 id='getting-a-manufacturer' class='clickable-header top-level-header'>Getting a Manufacturer</h2>
 
-#### Request
+<p>
 
-    GET /Manufacturers({ManufacturerId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Manufacturers({ManufacturerId})
+</pre>
 
 #### Headers
 
@@ -298,6 +326,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [Manufacturer](#manufacturer)
 
@@ -326,13 +355,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2></h2>
 
-Getting all Suppliers
 
-#### Request
+<h2 id='getting-all-suppliers' class='clickable-header top-level-header'>Getting all Suppliers</h2>
 
-    GET /Suppliers
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Suppliers
+</pre>
 
 #### Headers
 
@@ -354,6 +389,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Supplier](#supplier)]
 
@@ -384,13 +420,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting a Supplier</h2>
 
 
+<h2 id='getting-a-supplier' class='clickable-header top-level-header'>Getting a Supplier</h2>
 
-#### Request
+<p>
 
-    GET /Suppliers({SupplierId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Suppliers({SupplierId})
+</pre>
 
 #### Headers
 
@@ -417,6 +459,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [Supplier](#supplier)
 

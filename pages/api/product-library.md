@@ -4,7 +4,7 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-<h3>Product</h3>
+###Product
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -33,47 +33,47 @@ summary:
 | HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
-| Manufacturer | [Manufacturer](#manufacturer) | Manufacturer information |  |
+| Manufacturer | [object](#object) | Manufacturer information |  |
 | MasterProductId | Integer | Identifier for the Master Product | `3` |
-| MSRP | [MSRP](#msrp) | Manufacturers suggested retail price information |  |
+| MSRP | [object](#object) | Manufacturers suggested retail price information |  |
 | Owner | Object | Owner information, used for Private products and Carrier Revisions |  |
 | Region | Object | Region information, for Regional Carrier Revisions |  |
 | ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
-| Specifications | Array[[Specification](#specification)] | Details such as color, dimension, etc |  |
-| UpcCodes | Array[[UpcCode](#upccode)] | UPC codes |  |
+| Specifications | Array[[array](#array)] | Details such as color, dimension, etc |  |
+| UpcCodes | Array[[array](#array)] | UPC codes |  |
 | VariationId | Integer | Identifier for the Variation | `1` |
-| VendorSkus | Array[[VendorSku](#vendorsku)] | Vendor SKUs |  |
+| VendorSkus | Array[[array](#array)] | Vendor SKUs |  |
 | Version | Integer | Latest revision number | `1` |
 
-<h3>Specification</h3>
+###Specification
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Name | String | Specification name | `Color` |
-| Fields | Array[[Field](#field)] | Specification Fields |  |
+| Fields | Array[[array](#array)] | Specification Fields |  |
 
-<h3>MSRP</h3>
+###MSRP
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Amount | Decimal | Manufacturers suggested retail price | `100` |
 | CurrencyCode | String | Currency | `USD` |
 
-<h3>ProductSearch</h3>
+###ProductSearch
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Products | Array[[Product](#product)] | Array of Slug attributes for [Product](#product)'s matching the search options |  |
-| Products.Slug | Array[[Id](#id)] |  | `M1-1` |
+| Products | Array[[array](#array)] | Array of Slug attributes for [Product](#product)'s matching the search options |  |
+| Products.Slug | Array[[array](#array)] |  | `M1-1` |
 
-<h3>Manufacturer</h3>
+###Manufacturer
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer |  | `4` |
 | Name | String |  | `SampleManufacturer` |
 
-<h3>ManufacturerSku</h3>
+###ManufacturerSku
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -81,14 +81,14 @@ summary:
 | Description | String |  | `Manufacturer SKU` |
 | Entity | Integer |  | `4` |
 
-<h3>Specification</h3>
+###Specification
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Name | String | Specification name | `Color` |
-| Fields | Array[[Field](#field)] | Specification Fields |  |
+| Fields | Array[[array](#array)] | Specification Fields |  |
 
-<h3>Field</h3>
+###Field
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -100,7 +100,7 @@ summary:
 | Type | String |  | `TextSingleLine` |
 | Unit | String |  | `mm` |
 
-<h3>UpcCode</h3>
+###UpcCode
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -108,7 +108,7 @@ summary:
 | Description | String |  | `UPC` |
 | Entity | Integer |  | `2` |
 
-<h3>VendorSku</h3>
+###VendorSku
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -119,8 +119,11 @@ summary:
 
 
 
-<h2>Searching for Products by Identifier</h2>
 
+
+<h2 id='searching-for-products-by-identifier' class='clickable-header top-level-header'>Searching for Products by Identifier</h2>
+
+<p>
 `FindByIdentifier` can be used to search for {{Product}} resources by the following identifiers:
  
 | Searchable Identifiers |
@@ -147,10 +150,13 @@ See the table below for available options and the syntax of using each one.
 | `type` | Search for the given SKU where the given identifier type matches. If no value is provided, all identifiers will be searched | String, see [Searchable Identifiers](#searchable-identifiers) |  `value=ABC123&type=VendorSKU` <br/> `value=ABC123&type=ManufacturerSKU` <br/> `value=ABC123&type=UPC`|
 | `entityId` | Search for the given SKU where the given entityId matches and the identifier type is VendorSKU or ManufacturerSKU | Integer | `value=ABC123&type=VendorSKU&entityId=4` | 
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Products/FindByIdentifier?{Options}
+<pre>
+GET /Products/FindByIdentifier?{Options}
+</pre>
 
 #### Headers
 
@@ -177,6 +183,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [ProductSearch](#productsearch)
 
@@ -249,6 +256,7 @@ HTTP 200 Content-Type: application/json
         "M1-1"
     ]
 }</pre>
+
 
 
 ## Errors

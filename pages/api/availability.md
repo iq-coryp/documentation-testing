@@ -4,7 +4,7 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-<h3>Availability</h3>
+###Availability
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -31,13 +31,19 @@ summary:
 
 
 
-<h2>Getting Availability For a Catalog Item By Location</h2>
 
 
+<h2 id='getting-availability-for-a-catalog-item-by-location' class='clickable-header top-level-header'>Getting Availability For a Catalog Item By Location</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
+</pre>
 
 #### Headers
 
@@ -67,6 +73,7 @@ Accept: application/json
 
 #### Response
 
+
 [Availability](#availability)
 
 <h5>Example</h5>
@@ -81,13 +88,19 @@ HTTP 200 Content-Type: application/json
     "IsDropShippable": true
 }</pre>
 
-<h2>Getting Availability For a Catalog Item By Locations</h2>
 
 
+<h2 id='getting-availability-for-a-catalog-item-by-locations' class='clickable-header top-level-header'>Getting Availability For a Catalog Item By Locations</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
+</pre>
 
 #### Headers
 
@@ -116,6 +129,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Availability](#availability)]
 
 <h5>Example</h5>
@@ -131,6 +145,7 @@ HTTP 200 Content-Type: application/json
         "IsDropShippable": true
     }
 ]</pre>
+
 
 
 ## Errors

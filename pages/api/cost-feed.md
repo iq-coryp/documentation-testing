@@ -4,10 +4,11 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -30,14 +31,14 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ## Resources
 
-<h3>Cost</h3>
+###Cost
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Identifer for the cost feed | `91a57ddb-2d42-402b-85b4-fe327a347313` |
-| Products | Array[[Product](#product)] | List of products for which the cost is being updated |  |
+| Products | Array[[array](#array)] | List of products for which the cost is being updated |  |
 
-<h3>Product</h3>
+###Product
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -48,13 +49,19 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 
 
-<h2>Adding a Product to Cost Feed</h2>
 
 
+<h2 id='adding-a-product-to-cost-feed' class='clickable-header top-level-header'>Adding a Product to Cost Feed</h2>
 
-#### Request
+<p>
 
-    POST /Suppliers({SupplierId})/Cost
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Suppliers({SupplierId})/Cost
+</pre>
 
 #### Headers
 
@@ -108,6 +115,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Cost](#cost)
 
 <h5>Example</h5>
@@ -129,6 +137,7 @@ HTTP 202 Content-Type: application/json
         }
     ]
 }</pre>
+
 
 
 ## Errors

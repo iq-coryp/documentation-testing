@@ -4,10 +4,11 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -23,27 +24,27 @@ Each feed will have its own unique **Feed ID**.
 ## Resources
 
 
-<h3>Product</h3>
+###Product
 
 Product information for the feed. It is **highly recommended** to include `ModelName` for every product created. See {{ProductStructure_Concept}} for more information.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Product Identifier | `34` |
-| Assets | Array[[Asset](#asset)] | Assets |  |
-| Classification | [Classification](#classification) | Refer to [Classification](/concepts/classification-tree) for more information |  |
+| Assets | Array[[array](#array)] | Assets |  |
+| Classification | [object](#object) | Refer to [Classification](/concepts/classification-tree) for more information |  |
 | ClassificationTreeName | String | Name of the classification tree | `Cellular & Accessories` |
-| Fields | Array[[Field](#field)] | A list of fields for the product. For the product being added, only include the definitions that apply |  |
+| Fields | Array[[array](#array)] | A list of fields for the product. For the product being added, only include the definitions that apply |  |
 | LastModifiedByVendorUtc | DateTime | Provides the last date that the product feed was modified by the vendor, in UTC | `2015-09-16T10:40:31.101Z` |
 | Manufacturer | String | The company that produces the product | `Motorola` |
 | ManufacturerSku | String | The Product SKU from the manufacturer | `1234` |
 | ModelName | String | [Master Product](/concepts/product-structure/#Master-Products) name | `Agent18 SlimShield Case for iPhone 6` |
 | UPC | String | Universal Product Code | `723755004337` |
-| VendorSkus | Array[[VendorSku](#vendorsku)] | Vendor SKU information for the product |  |
+| VendorSkus | Array[[array](#array)] | Vendor SKU information for the product |  |
 | *ProviderClassification* | *String* | *Reserved for internal use* | |
 | *UnsupportedAssets* | *Array[object]* | *This is a legacy property that should not be used* | |
 
-<h3>VendorSku</h3>
+###VendorSku
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -51,7 +52,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 | Sku | String | The Product SKU from the vendor | `1115884` |
 | VendorName | String | The name of the vendor | `Amazon` |
 
-<h3>Classification</h3>
+###Classification
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -60,7 +61,7 @@ Product information for the feed. It is **highly recommended** to include `Model
 | TreeId | Integer | Classification Tree identifier | `21` |
 
 
-<h3>Field</h3>
+###Field
 
 At minimum, the Product Name field is required along with a corresponding value.
 
@@ -68,16 +69,16 @@ To get a list of all field definitions, use the {{Get_Field_Definitions}} method
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Definition | [Definition](#definition) | The field definition |  |
+| Definition | [object](#object) | The field definition |  |
 | Value | String | The value for the field | `Android` |
 
-<h3>Definition</h3>
+###Definition
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | The field definition identifier. The definition for this parameter varies based on the Environments | `84` |
 
-<h3>Asset</h3>
+###Asset
 
 During the request, only the asset URLs are required. The response will contain additional information provided by the server.
 
@@ -92,7 +93,7 @@ Refer to {{Asset_Glossary}} for more information.
 | MimeType | String | Type of Mime | `image/jpg` |
 | OriginalUrl | String | Original URL of asset | `http://image.sample.com/b.png` |
 
-<h3>ProductFeed</h3>
+###ProductFeed
 
 **Product Feeds** are used to group all Products together for a particular vendor.
 
@@ -100,20 +101,26 @@ Refer to {{Asset_Glossary}} for more information.
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Product Feed identifier | `34` |
 | LastReceivedUpdatesFromProviderUtc | DateTime | Date and time of last received update, in UTC | `2014-11-13T19:40:57.102Z` |
-| Products | Array[[Product](#product)] | List of [Products](#product) |  |
+| Products | Array[[array](#array)] | List of [Products](#product) |  |
 | ProviderName | String | Name of the Product Feed | `Joe's Product Feed` |
 | Version | Integer | Latest revision number | `8` |
 
 
 
 
-<h2>Adding a Product to a Feed</h2>
 
 
+<h2 id='adding-a-product-to-a-feed' class='clickable-header top-level-header'>Adding a Product to a Feed</h2>
 
-#### Request
+<p>
 
-    POST /ProductFeeds({FeedId})/Products
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /ProductFeeds({FeedId})/Products
+</pre>
 
 #### Headers
 
@@ -199,6 +206,7 @@ Content-Type: application/json
 
 #### Response
 
+
 Array[[Product](#product)]
 
 <h5>Example</h5>
@@ -254,14 +262,20 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting All Products in a Feed</h2>
 
+
+<h2 id='getting-all-products-in-a-feed' class='clickable-header top-level-header'>Getting All Products in a Feed</h2>
+
+<p>
 Returns all the **Products** in a particular **Product Feed** indicated by the feed's **Feed ID** parameter. \n\nUseful when testing to ensure that products have been successfully added or removed.
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /ProductFeeds({FeedId})/Products
+<pre>
+GET /ProductFeeds({FeedId})/Products
+</pre>
 
 #### Headers
 
@@ -289,6 +303,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Product](#product)]
 
 <h5>Example</h5>
@@ -344,14 +359,20 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting a Product Feed</h2>
 
+
+<h2 id='getting-a-product-feed' class='clickable-header top-level-header'>Getting a Product Feed</h2>
+
+<p>
 Returns an array of [Products](#product), as well as additional parameters.
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /ProductFeeds({FeedId})
+<pre>
+GET /ProductFeeds({FeedId})
+</pre>
 
 #### Headers
 
@@ -378,6 +399,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [ProductFeed](#productfeed)
 
@@ -440,13 +462,19 @@ HTTP 200 Content-Type: application/json
     "Version": 8
 }</pre>
 
-<h2>Removing a Product from a Feed</h2>
 
+
+<h2 id='removing-a-product-from-a-feed' class='clickable-header top-level-header'>Removing a Product from a Feed</h2>
+
+<p>
 Updates a Product Feed (FeedId) by removing a Product (ProductId). 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    DELETE /ProductFeeds({FeedId})/Products({ProductId})
+<pre>
+DELETE /ProductFeeds({FeedId})/Products({ProductId})
+</pre>
 
 #### Headers
 
@@ -474,9 +502,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 204</pre>
+
 
 
 ## Errors

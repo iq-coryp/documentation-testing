@@ -4,10 +4,11 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -23,7 +24,7 @@ To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 ## Resources
 
-<h3>Classification</h3>
+###Classification
 
 Classifications are used to group Products together by similar features.
 A Product can only have a single Classification.
@@ -34,16 +35,16 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 | Id | Integer | Identifier | `1` |
 | Name | String | Name | `Smartphones` |
 | Order | Integer | Sorting order | `1` |
-| ProductTemplate | [ProductTemplate](#producttemplate) |  |  |
+| ProductTemplate | [object](#object) |  |  |
 
-<h3>ProductTemplate</h3>
+###ProductTemplate
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `60` |
 | Name | String | Name | `Wireless Device` |
 
-<h3>Category</h3>
+###Category
 
 A Category is a node in a Classification Tree that represents a logical grouping of related Classifications.
 For example, 'iPhone' and 'Tablet' Classifications might both be children of a 'Device' Category.
@@ -57,20 +58,20 @@ There is a limit to 20 levels of depth for Categories.
 | Classifications | Array[object] | Child Classifications |  |
 | Order | Integer | Sorting order | `1` |
 
-<h3>ClassificationTree</h3>
+###ClassificationTree
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `21` |
 | Name | String | Name | `Cellular & Accessories` |
 | Description | String | Description | `Classification of products for wireless retail` |
-| Categories | Array[[Category](#category)] | Categories in the Tree |  |
-| Classifications | Array[[Classification](#classification)] | Classifications for the Tree |  |
-| Owner | [Owner](#owner) | Information about the [Company](/api/company-tree/#company) that owns this Tree |  |
+| Categories | Array[[array](#array)] | Categories in the Tree |  |
+| Classifications | Array[[array](#array)] | Classifications for the Tree |  |
+| Owner | [object](#object) | Information about the [Company](/api/company-tree/#company) that owns this Tree |  |
 | Version | Integer | Latest revision number | `41` |
 | *IsCanonical* | *Boolean* | *Reserved for internal use* | |
 
-<h3>Owner</h3>
+###Owner
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -80,13 +81,19 @@ There is a limit to 20 levels of depth for Categories.
 
 
 
-<h2>Getting a Classification Tree</h2>
 
 
+<h2 id='getting-a-classification-tree' class='clickable-header top-level-header'>Getting a Classification Tree</h2>
 
-#### Request
+<p>
 
-    GET /ClassificationTrees({ClassificationTreeId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /ClassificationTrees({ClassificationTreeId})
+</pre>
 
 #### Headers
 
@@ -113,6 +120,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [ClassificationTree](#classificationtree)
 
@@ -151,6 +159,7 @@ HTTP 200 Content-Type: application/json
     },
     "Version": 41
 }</pre>
+
 
 
 ## Errors

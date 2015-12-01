@@ -4,10 +4,11 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -28,7 +29,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ## Resources
 
-<h3>Pricing</h3>
+###Pricing
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -41,7 +42,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 | PricingTermId | Integer | [PricingTerm](#pricingterm) identifier | `20` |
 
 
-<h3>PricingTerm</h3>
+###PricingTerm
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -57,14 +58,20 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 
 
-<h2>Creating Product Pricing at Company Level</h2>
 
+
+<h2 id='creating-product-pricing-at-company-level' class='clickable-header top-level-header'>Creating Product Pricing at Company Level</h2>
+
+<p>
 {{note}}When Product Pricing is set at the Company level, all Locations within the Company will use this Product Pricing by default unless <b>overridden</b> by a Location level Pricing. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Companies({CompanyId})/Pricing
+<pre>
+POST /Companies({CompanyId})/Pricing
+</pre>
 
 #### Headers
 
@@ -115,6 +122,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Pricing](#pricing)
 
 <h5>Example</h5>
@@ -132,14 +140,20 @@ HTTP 201 Content-Type: application/json
     "PricingTermId": 20
 }</pre>
 
-<h2>Creating Product Pricing at Location Level</h2>
 
+
+<h2 id='creating-product-pricing-at-location-level' class='clickable-header top-level-header'>Creating Product Pricing at Location Level</h2>
+
+<p>
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
+<pre>
+POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
+</pre>
 
 #### Headers
 
@@ -192,6 +206,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Pricing](#pricing)
 
 <h5>Example</h5>
@@ -209,13 +224,19 @@ HTTP 201 Content-Type: application/json
     "PricingTermId": 20
 }</pre>
 
-<h2>Getting Product Pricing for a Retail Location</h2>
 
 
+<h2 id='getting-product-pricing-for-a-retail-location' class='clickable-header top-level-header'>Getting Product Pricing for a Retail Location</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
+</pre>
 
 #### Headers
 
@@ -245,6 +266,7 @@ Accept: application/json
 
 #### Response
 
+
 [Pricing](#pricing)
 
 <h5>Example</h5>
@@ -262,13 +284,19 @@ HTTP 200 Content-Type: application/json
     "PricingTermId": 20
 }</pre>
 
-<h2>Updating Product Pricing for a Retail Location</h2>
 
 
+<h2 id='updating-product-pricing-for-a-retail-location' class='clickable-header top-level-header'>Updating Product Pricing for a Retail Location</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
+</pre>
 
 #### Headers
 
@@ -293,13 +321,20 @@ PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 </pre>
 
 #### Response
-<h2>Creating Product Pricing at Company Level</h2>
 
 
 
-#### Request
+<h2 id='creating-product-pricing-at-company-level' class='clickable-header top-level-header'>Creating Product Pricing at Company Level</h2>
 
-    POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
+</pre>
 
 #### Headers
 
@@ -351,6 +386,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Pricing](#pricing)
 
 <h5>Example</h5>
@@ -368,13 +404,19 @@ HTTP 201 Content-Type: application/json
     "PricingTermId": 20
 }</pre>
 
-<h2>Getting Product Pricing at Company Level</h2>
 
 
+<h2 id='getting-product-pricing-at-company-level' class='clickable-header top-level-header'>Getting Product Pricing at Company Level</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
+</pre>
 
 #### Headers
 
@@ -403,6 +445,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Pricing](#pricing)]
 
 <h5>Example</h5>
@@ -422,13 +465,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Updating Product Pricing at Company Level</h2>
 
 
+<h2 id='updating-product-pricing-at-company-level' class='clickable-header top-level-header'>Updating Product Pricing at Company Level</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
+</pre>
 
 #### Headers
 
@@ -452,13 +501,20 @@ PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 </pre>
 
 #### Response
-<h2>Getting all Active Pricing Terms</h2>
 
 
 
-#### Request
+<h2 id='getting-all-active-pricing-terms' class='clickable-header top-level-header'>Getting all Active Pricing Terms</h2>
 
-    GET /Companies({CompanyId})/PricingTerms
+<p>
+
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/PricingTerms
+</pre>
 
 #### Headers
 
@@ -486,6 +542,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[PricingTerm](#pricingterm)]
 
 <h5>Example</h5>
@@ -505,13 +562,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting a Pricing Term</h2>
 
 
+<h2 id='getting-a-pricing-term' class='clickable-header top-level-header'>Getting a Pricing Term</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/PricingTerms({PricingTermId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/PricingTerms({PricingTermId})
+</pre>
 
 #### Headers
 
@@ -540,6 +603,7 @@ Accept: application/json
 
 #### Response
 
+
 [PricingTerm](#pricingterm)
 
 <h5>Example</h5>
@@ -557,13 +621,19 @@ HTTP 200 Content-Type: application/json
     "TermLengthInYears": 3
 }</pre>
 
-<h2>Getting Product Pricing by Pricing Term</h2>
 
 
+<h2 id='getting-product-pricing-by-pricing-term' class='clickable-header top-level-header'>Getting Product Pricing by Pricing Term</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={PricingTermId}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={PricingTermId}
+</pre>
 
 #### Headers
 
@@ -593,6 +663,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Pricing](#pricing)]
 
 <h5>Example</h5>
@@ -611,6 +682,7 @@ HTTP 200 Content-Type: application/json
         "PricingTermId": 20
     }
 ]</pre>
+
 
 
 ## Errors

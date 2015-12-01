@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -19,19 +19,19 @@ summary:
 ## Resources
 
 
-<h3>Activation</h3>
+###Activation
 
 An **Activation** contains IDs necessary to identify an activation, and all the activation details.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma | `1=35854205829867` |
-| CarrierActivationDetails | [CarrierActivationDetails](#carrieractivationdetails) | The details of this Activation |  |
+| CarrierActivationDetails | [object](#object) | The details of this Activation |  |
 | CarrierId | Integer | Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
 | CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) making this request | `5678` |
 
-<h3>CarrierActivationDetails</h3>
+###CarrierActivationDetails
 
 A **CarrierActivationDetails** contains all of the customer, product, and rate plan information necessary to process an activation.
 
@@ -39,21 +39,21 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 |:-----|:----------|:------------|:--------|
 | ActivationId | Integer | System-generated identifier for the [Activation](#activation) | `354` |
 | ActivationDate | DateTime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
-| ActivatedProduct | [ActivatedProduct](#activatedproduct) | The Product that is being activated |  |
+| ActivatedProduct | [object](#object) | The Product that is being activated |  |
 | ActivationState | String | State of the [Activation](#activation). See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
 | ActivationTermCode | String(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
 | ActivationType | String | The type of this [Activation](#activation), such as a new [Activation](#activation) or an upgrade. See [ActivationType](#activationtype) for a list of acceptable values | `NewActivation` |
-| AdditionalFees | Array[[AdditionalFee](#additionalfee)] | The additional fees that are applicable to this [Activation](#activation), not including the deposit fee or tab |  |
+| AdditionalFees | Array[[array](#array)] | The additional fees that are applicable to this [Activation](#activation), not including the deposit fee or tab |  |
 | ContractLengthInMonths | Integer | Number of months the [Activation](#activation) has been contracted for. ContractTerm in RQ. For a list of acceptable values, see [ContractTerms](#contractterms) | `24` |
 | ContractNumberIsAccountNumber | Boolean | A flag to indicate if the contract number of the [Activation](#activation) can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
 | DealerName | String | Carrier-specific dealer name | `IAPR` |
 | DealerCode | String(64) | Carrier-specific dealer code | `IAPR` |
-| Deposit | [AdditionalFee](#additionalfee) | The security deposit that the [Activation](#activation) requires the Subscriber to pay |  |
+| Deposit | [object](#object) | The security deposit that the [Activation](#activation) requires the Subscriber to pay |  |
 | Notes | String(256) | Free form text with any additional notes related to the [Activation](#activation) | `Notes go here!` |
 | OrderNumber | String(64) | Carrier-specific identifier for the order this activation is associated with. Activations may have the same order number if they were part of a multi-line activation in the carrier system | `ORD1234` |
-| RatePlans | Array[[RatePlan](#rateplan)] | The Rate Plan(s) that are applied to the [Activation](#activation) |  |
+| RatePlans | Array[[array](#array)] | The Rate Plan(s) that are applied to the [Activation](#activation) |  |
 | RemoteActivationID | String(64) | Carrier-specific identifier for the [Activation](#activation) | `3023997373` |
-| Subscriber | [Subscriber](#subscriber) | The Subscriber (customer) that the [Activation](#activation) is for |  |
+| Subscriber | [object](#object) | The Subscriber (customer) that the [Activation](#activation) is for |  |
 | TrackingNumber | String(64) | Carrier-specific tracking number for this [Activation](#activation) | `3023997373` |
 | *BillingCode* | *String* | *Reserved for future use* | |
 | *BillingCycle* | *String* | *Reserved for future use* | |
@@ -69,7 +69,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | *UpgradeCode* | *String* | *Reserved for future use* | |
 | *UpgradeSourceNumber* | *String* | *Reserved for future use* | |
 
-<h3>Subscriber</h3>
+###Subscriber
 
  A **Subscriber** contains all of the customer information related to an activation. 
 
@@ -81,20 +81,20 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SubscriberId | String(64) | Carrier-specific identifier for the Subscriber | `12121212121` |
 | FirstName | String(64) | If IsIndividual is true, the first name of the Subscriber | `Joe` |
 | LastName | String(64) | If IsIndividual is true, the last name of the Subscriber | `Smith` |
-| Addresses | Array[[Address](#address)] | List of addresses for the Subscriber |  |
-| AssociatedAccount | [Account](#account) | The account associated with this Subscriber |  |
+| Addresses | Array[[array](#array)] | List of addresses for the Subscriber |  |
+| AssociatedAccount | [object](#object) | The account associated with this Subscriber |  |
 | BirthDate | DateTime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
 | CompanyName | String(64) | If the Subscriber is a business, the name of the business |  |
 | Email | String(64) | Email address | `subscriber@example.com` |
 | IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
 | Notes | String(128) | Notes | `24 Month Term` |
-| PhoneNumbers | Array[[PhoneNumber](#phonenumber)] | List of phone numbers |  |
+| PhoneNumbers | Array[[array](#array)] | List of phone numbers |  |
 | SSN | String(4) | Last 4 digits of a SSN | `6789` |
 | TrackingNumber | String(64) | Carrier-specific tracking number | `2121212121` |
 | *SecondName* | *String* | *Reserved for future use* | |
 | *PreferredLanguage* | *String* | *Reserved for future use* | |
 
-<h3>Account</h3>
+###Account
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -102,14 +102,14 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Notes | String | Custom notes related to the associated account |  |
 | TrackingNumber | String | Carrier-specific tracking number for the associated account | `5656565656` |
 
-<h3>PhoneNumber</h3>
+###PhoneNumber
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String | The type of phone number. See [PhoneNumberType](#phonenumbertype) for the list of acceptable values | `Home` |
 | Value | String(32) | Phone number | `1234561234` |
 
-<h3>Address</h3>
+###Address
 
 #### RQ Limitations 
 
@@ -130,7 +130,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SuiteNumber | String(32) | Suite number | `100` |
 | Type | String | The type of this Address. See [AddressType](#addresstype) for a list of acceptable values | `Residential` |
 
-<h3>RatePlan</h3>
+###RatePlan
 
 #### RQ Limitations
 
@@ -142,14 +142,14 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Name | String(64) | Name | `Country-wide Unlimited` |
 | ContractTerms | String(256) | Terms and conditions | `Some terms` |
 | Description | String(128) | Description. May be set to an empty string | `The perfect plan for lots of calling!` |
-| IncludedRatePlanFeatures | Array[[RatePlanFeature](#rateplanfeature)] | Features are included with the RatePlan |  |
+| IncludedRatePlanFeatures | Array[[array](#array)] | Features are included with the RatePlan |  |
 | MonthlyRecurringCharges | Decimal | Monthly cost | `55` |
-| RatePlanFeatureAddons | Array[[RatePlanFeature](#rateplanfeature)] | Additional RatePlan features the Subscriber chose to pay for |  |
+| RatePlanFeatureAddons | Array[[array](#array)] | Additional RatePlan features the Subscriber chose to pay for |  |
 | SOCCode | String(64) | Carrier-specific SOC code | `ABC1234` |
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 | *IsSharedPlan* | *Boolean* | *Reserved for future use* | |
 
-<h3>RatePlanFeature</h3>
+###RatePlanFeature
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -160,7 +160,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SOCCode | String(64) | Carrier-specific SOC code | `XYZ5678` |
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 
-<h3>ActivatedProduct</h3>
+###ActivatedProduct
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -176,19 +176,19 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SIM | String(32) | Subscriber identity module | `89000000000000001234` |
 | SKU | String(64) | Stockkeeping Unit. This value is used when activating a customer-owned phone | `DEF987` |
 | SOCCode | String(64) | Carrier-specific SOC | `DEF987` |
-| Tab | [Tab](#tab) | A discount that is added to or subtracted from the Product's price |  |
+| Tab | [object](#object) | A discount that is added to or subtracted from the Product's price |  |
 | *IsCarrierSupplied* | *Boolean* | *Reserved for future use* | |
 | *NumberPortedIn* | *Boolean* | *Reserved for future use* | |
 
-<h3>Tab</h3>
+###Tab
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Amount | Decimal | Amount | `50` |
-| Commission | [VendorRebate](#vendorrebate) |  |  |
+| Commission | [object](#object) |  |  |
 | ReferenceNumber | String | Carrier reference number | `abc123` |
 
-<h3>AdditionalFee</h3>
+###AdditionalFee
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -196,11 +196,11 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Description | String(128) | Description | `Roam like home` |
 | Amount | Decimal | Amount | `55` |
 | Notes | String(512) | Notes | `US` |
-| Rebate | [VendorRebate](#vendorrebate) |  |  |
+| Rebate | [object](#object) |  |  |
 | ReferenceNumber | String(64) | Carrier reference number, this value should be used for storing an identifier from an external system | `abc123` |
 | SOCCode | String(64) | Carrier-specific SOC code | `BB3221` |
 
-<h3>VendorRebate</h3>
+###VendorRebate
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -211,14 +211,14 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | ReferenceNumber | String(64) | Carrier reference number | `abc123` |
 | SOCCode | String(64) | Carrier-specific SOC code | `AGG242` |
 
-<h3>ConfirmedActivation</h3>
+###ConfirmedActivation
 
 A ConfirmedActivation resource represents a payment transaction that completed the activation of one or more phones.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Service-generated identifier for the activation confirmation | `58` |
-| ActivationConfirmationDetails | Array[[ActivationDetails](#activationdetails)] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
+| ActivationConfirmationDetails | Array[[array](#array)] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
 | ConfirmationDateUTC | DateTime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
 | InvoiceId | String | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
 | InvoiceSubtotal | Decimal | The subtotal amount from the invoice | `53.38` |
@@ -226,7 +226,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) where the transaction occurred | `1` |
 | Taxes | Decimal | The taxes from the invoice | `8.16` |
 
-<h3>ActivationDetails</h3>
+###ActivationDetails
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -289,13 +289,19 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 | Pager |
 | Work |
 
-<h2>Creating an Activation</h2>
 
 
+<h2 id='creating-an-activation' class='clickable-header top-level-header'>Creating an Activation</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activations({ActivationId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activations({ActivationId})
+</pre>
 
 #### Headers
 
@@ -587,6 +593,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Activation](#activation)
 
 <h5>Example</h5>
@@ -741,13 +748,19 @@ HTTP 201 Content-Type: application/json
     "LocationId": 5678
 }</pre>
 
-<h2>Retrieving Completed Activations</h2>
 
 
+<h2 id='retrieving-completed-activations' class='clickable-header top-level-header'>Retrieving Completed Activations</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'{ConfirmationDate}'&$skip={Skip}&$top={Top}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'{ConfirmationDate}'&$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -778,6 +791,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[ConfirmedActivation](#confirmedactivation)]
 
@@ -863,6 +877,7 @@ HTTP 200 Content-Type: application/hal+json
 </pre>
 
 
+
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
@@ -871,6 +886,7 @@ HTTP 200 Content-Type: application/hal+json
 | `HTTP 400` | `Carrier {x} not found` | Ensure Carrier provided in URI is correct |
 | `HTTP 400` | `Invalid Request: the {x}  field is required` | Ensure all required fields are provided |
 | `HTTP 400` | `Invalid Request: Type field must  be one of the following values: {x}` | Ensure AddressType is one of the values in [AddressType](#addresstype) |
+
 
 ## Pagination
 

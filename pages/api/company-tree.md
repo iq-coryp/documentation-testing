@@ -4,10 +4,11 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -28,19 +29,19 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 ## Resources
 
-<h3>Company</h3>
+###Company
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Unique identifier | `1` |
 | Name | String(250) | Name | `SampleCompany` |
 | Description | String(255) | Description | `Company creating great experiences.` |
-| Roles | Array[[CompanyRole](#companyrole)] | The value must be Company |  |
+| Roles | Array[[array](#array)] | The value must be Company |  |
 | ClientEntityId | String | Identifier in an external system | `123` |
 | CreatedUtc | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| Logo | [Asset](#asset) | A reference to an [Asset](/api/assets/#asset) |  |
+| Logo | [object](#object) | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String | A string used for sorting | `samplecompany` |
 | Version | Integer | Latest revision number | `1` |
@@ -48,7 +49,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | *Role* | *String* | *Reserved for internal use* | |
 
 
-<h3>Asset</h3>
+###Asset
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -60,7 +61,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | MimeType | String |  | `image/jpeg` |
 | Width | Integer |  | `240` |
 
-<h3>CompanyTree</h3>
+###CompanyTree
 
 Your Company Tree is a hierarchial representation of how your Company is structured, including the root Company, Groups, Divisions and Locations.
 
@@ -72,9 +73,9 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Name | String(250) | Company name | `SampleCompany` |
 | Description | String(255) | Description | `Company creating great experiences.` |
 | Role | String | Role | `Company` |
-| Nodes | Array[[CompanyTreeNode](#companytreenode)] | The Company Tree hierarchy made up of Nodes |  |
+| Nodes | Array[[array](#array)] | The Company Tree hierarchy made up of Nodes |  |
 
-<h3>CompanyTreeNode</h3>
+###CompanyTreeNode
 
 CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{Group}}, {{Division}}, {{Location}} or device.
 
@@ -86,7 +87,7 @@ CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can r
 | Role | String | Role, possible values include: Company, Group, Division and Location | `Division` |
 | Nodes | Array[object] | Children |  |
 
-<h3>Location</h3>
+###Location
 
 A **Location** is a physical or virtual presence that may hold inventory or process transactions.
 
@@ -95,24 +96,24 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | Id | Integer | Unique identifier | `2` |
 | Name | String(250) | Name | `SampleLocation` |
 | Description | String(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
-| Roles | Array[[LocationRole](#locationrole)] | The Role of this Location, the value must be Location |  |
+| Roles | Array[[array](#array)] | The Role of this Location, the value must be Location |  |
 | CreatedUTC | DateTime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
-| Area | [Area](#area) | Measurement of floor space |  |
+| Area | [object](#object) | Measurement of floor space |  |
 | Area.Value | Integer | Value of the Area |  |
 | Area.Unit | String | Unit used for the Value, acceptable values are SqFt and SqM |  |
-| Address | [Address](#address) | Address |  |
+| Address | [object](#object) | Address |  |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | ClientEntityId | String | Identifier in an external system | `123` |
-| Contacts | [Contact](#contact) | Contact information |  |
-| Geography | [Geography](#geography) | Geographic coordinates of this Location |  |
+| Contacts | [object](#object) | Contact information |  |
+| Geography | [object](#object) | Geographic coordinates of this Location |  |
 | Geography.Longitude | Decimal | Longitude, must be between -180 and 180 | `-104.612034` |
 | Geography.Latitude | Decimal | Latitude, must be between -90 and 90 | `50.443559` |
 | Relationships | Array[object] | Relationship information, such as the parent node in the Company Tree |  |
 | SortName | String | A string used for sorting | `samplecompany` |
-| StoreHours | [StoreHours](#storehours) | Store hours for this Location |  |
-| StorePhoneNumbers | Array[[PhoneNumber](#phonenumber)] | Phone numbers |  |
-| TimeZone | [TimeZone](#timezone) | Timezone information for the Location |  |
+| StoreHours | [object](#object) | Store hours for this Location |  |
+| StorePhoneNumbers | Array[[array](#array)] | Phone numbers |  |
+| TimeZone | [object](#object) | Timezone information for the Location |  |
 | Version | Integer | Latest revision number | `13` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *LocationType* | *String* | *Reserved for future use* | |
@@ -122,7 +123,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 
 
 
-<h3>Division</h3>
+###Division
 
 Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company.
 
@@ -133,12 +134,12 @@ To learn more about Divisions, see {{Division_Concept}}.
 | Id | Integer | Unique identifier | `5` |
 | Name | String(250) | Name | `SampleDivision` |
 | Description | String(255) | Description | `Division creating great experiences.` |
-| Roles | Array[[DivisionRole](#divisionrole)] | The value must be Division |  |
+| Roles | Array[[array](#array)] | The value must be Division |  |
 | ClientEntityId | String | Identifier in an external system | `187` |
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| Logo | [Asset](#asset) | A reference to an Asset |  |
+| Logo | [object](#object) | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String | A string used for sorting | `sampledivision` |
 | Version | Integer | Latest revision number | `1` |
@@ -146,7 +147,7 @@ To learn more about Divisions, see {{Division_Concept}}.
 | *Role* | *String* | *Reserved for internal use* | |
 
 
-<h3>Group</h3>
+###Group
 
 Managerial or geographical groupings.
 
@@ -157,12 +158,12 @@ Managerial or geographical groupings.
 | Id | Integer | Unique identifier | `16` |
 | Name | String(250) | Name | `SampleGroup` |
 | Description | String(255) | Description | `Group creating great experiences.` |
-| Roles | Array[[GroupRole](#grouprole)] | The value must be Group |  |
+| Roles | Array[[array](#array)] | The value must be Group |  |
 | ClientEntityId | String | Identifier in an external system | `187` |
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| Logo | [Asset](#asset) | A reference to an Asset |  |
+| Logo | [object](#object) | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String | A string used for sorting | `samplegroup` |
 | Version | Integer | Latest revision number | `1` |
@@ -170,7 +171,7 @@ Managerial or geographical groupings.
 | *Role* | *String* | *Reserved for internal use* | |
 
 
-<h3>ClientIdSearch</h3>
+###ClientIdSearch
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -178,7 +179,7 @@ Managerial or geographical groupings.
 | Name | String |  | `SampleLocation` |
 | Description | String |  | `The SampleLocation is used to clear out discounted inventory` |
 | Role | String | Role of the Entity |  |
-| Path | Array[[Path](#path)] | Parents of the Entity. The order of elements is important, reflecting the hierarchy of parents (self, parent, parent-of-parent, etc)  |  |
+| Path | Array[[array](#array)] | Parents of the Entity. The order of elements is important, reflecting the hierarchy of parents (self, parent, parent-of-parent, etc)  |  |
 
 
 
@@ -193,13 +194,19 @@ Managerial or geographical groupings.
 
 
 
-<h2>Getting a Company</h2>
 
 
+<h2 id='getting-a-company' class='clickable-header top-level-header'>Getting a Company</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})
+</pre>
 
 #### Headers
 
@@ -226,6 +233,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [Company](#company)
 
@@ -261,13 +269,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting a Company Tree</h2>
 
 
+<h2 id='getting-a-company-tree' class='clickable-header top-level-header'>Getting a Company Tree</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Tree
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Tree
+</pre>
 
 #### Headers
 
@@ -295,6 +309,7 @@ Accept: application/json
 
 #### Response
 
+
 [CompanyTree](#companytree)
 
 <h5>Example</h5>
@@ -318,13 +333,19 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Creating a Location</h2>
 
 
+<h2 id='creating-a-location' class='clickable-header top-level-header'>Creating a Location</h2>
 
-#### Request
+<p>
 
-    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
+</pre>
 
 #### Headers
 
@@ -517,6 +538,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Location](#location)
 
 <h5>Example</h5>
@@ -654,8 +676,11 @@ HTTP 201 Content-Type: application/json
     "Version": 13
 }</pre>
 
-<h2>Updating a Location</h2>
 
+
+<h2 id='updating-a-location' class='clickable-header top-level-header'>Updating a Location</h2>
+
+<p>
 There are **two** different ways to update a location.
  
 The only difference between Option 1 and Option 2 is a `NodeId` in the URI, the request body parameters and responses are otherwise identical.
@@ -668,10 +693,13 @@ This option requires knowing the Id of the parent of this {{Location}} in the fo
  
 This option does not require a `NodeId` but has weaker validation.
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
+<pre>
+PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
+</pre>
 
 #### Headers
 
@@ -703,6 +731,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Location](#location)
 
 <h5>Example</h5>
@@ -840,13 +869,19 @@ HTTP 200 Content-Type: application/json
     "Version": 13
 }</pre>
 
-<h2>Getting a Location for a Company</h2>
 
 
+<h2 id='getting-a-location-for-a-company' class='clickable-header top-level-header'>Getting a Location for a Company</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Locations({LocationId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Locations({LocationId})
+</pre>
 
 #### Headers
 
@@ -875,6 +910,7 @@ Accept: application/json
 
 #### Response
 
+
 [Location](#location)
 
 <h5>Example</h5>
@@ -1012,13 +1048,19 @@ HTTP 200 Content-Type: application/json
     "Version": 13
 }</pre>
 
-<h2>Updating a Location</h2>
 
 
+<h2 id='updating-a-location' class='clickable-header top-level-header'>Updating a Location</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Locations({LocationId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Locations({LocationId})
+</pre>
 
 #### Headers
 
@@ -1209,6 +1251,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Location](#location)
 
 <h5>Example</h5>
@@ -1346,13 +1389,19 @@ HTTP 200 Content-Type: application/json
     "Version": 13
 }</pre>
 
-<h2>Getting All Locations for a Company</h2>
 
 
+<h2 id='getting-all-locations-for-a-company' class='clickable-header top-level-header'>Getting All Locations for a Company</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Locations
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Locations
+</pre>
 
 #### Headers
 
@@ -1379,6 +1428,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Location](#location)]
 
@@ -1519,13 +1569,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Creating a Division</h2>
 
+
+<h2 id='creating-a-division' class='clickable-header top-level-header'>Creating a Division</h2>
+
+<p>
 Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
+<pre>
+POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
+</pre>
 
 #### Headers
 
@@ -1583,6 +1639,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Division](#division)
 
 <h5>Example</h5>
@@ -1618,13 +1675,19 @@ HTTP 201 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Creating a Group</h2>
 
+
+<h2 id='creating-a-group' class='clickable-header top-level-header'>Creating a Group</h2>
+
+<p>
 Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
+<pre>
+POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
+</pre>
 
 #### Headers
 
@@ -1682,6 +1745,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Group](#group)
 
 <h5>Example</h5>
@@ -1717,18 +1781,24 @@ HTTP 201 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Deleting a Group or Division</h2>
 
+
+<h2 id='deleting-a-group-or-division' class='clickable-header top-level-header'>Deleting a Group or Division</h2>
+
+<p>
 {{warning}}
 This operation <strong>cannot be undone</strong>.
 {{end}}
 
 This request removes the Node refered to by NodeId from the Company Tree along with all of its children. Only Divisions and Groups can be deleted this way. If the Node or any of its children include Entities other then Groups or Divisions, the request will be rejected.
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
+<pre>
+DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
+</pre>
 
 #### Headers
 
@@ -1756,17 +1826,24 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-<h2>Searching by ClientEntityId</h2>
 
+
+<h2 id='searching-by-cliententityid' class='clickable-header top-level-header'>Searching by ClientEntityId</h2>
+
+<p>
 This request allows you to search your Company Tree using the `ClientEntityId` field. This request returns an array of objects that summarize Entities matching the search criteria. The following resource types are considered 'Entities': {{Company}}, {{Division}}, {{Group}}, {{Location}}, device
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
+<pre>
+GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
+</pre>
 
 #### Headers
 
@@ -1795,6 +1872,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[ClientIdSearch](#clientidsearch)]
 
 <h5>Example</h5>
@@ -1818,6 +1896,7 @@ HTTP 200 Content-Type: application/json
         ]
     }
 ]</pre>
+
 
 
 ## Errors

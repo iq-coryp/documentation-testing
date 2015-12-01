@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-<h3>Asset</h3>
+###Asset
 
 An **Asset** is an image or video associated with a Product.
 
@@ -36,13 +36,19 @@ An **Asset** is an image or video associated with a Product.
 
 
 
-<h2>Creating an Asset</h2>
 
 
+<h2 id='creating-an-asset' class='clickable-header top-level-header'>Creating an Asset</h2>
 
-#### Request
+<p>
 
-    POST /assets
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /assets
+</pre>
 
 #### Headers
 
@@ -53,7 +59,10 @@ An **Asset** is an image or video associated with a Product.
 
 
 
+
+
 #### Request Parameters
+
 * `Filename` (**Required**) - File to be uploaded
 
 
@@ -68,6 +77,7 @@ Content-Type: multipart/form-data
 </pre>
 
 #### Response
+
 
 [Asset](#asset)
 
@@ -87,13 +97,19 @@ HTTP 201 Content-Type: application/json
     "success": true
 }</pre>
 
-<h2>Getting an Asset</h2>
 
 
+<h2 id='getting-an-asset' class='clickable-header top-level-header'>Getting an Asset</h2>
 
-#### Request
+<p>
 
-    GET /assets/{AssetId}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /assets/{AssetId}
+</pre>
 
 #### Headers
 
@@ -119,6 +135,7 @@ Accept: application/json
 
 #### Response
 
+
 [Asset](#asset)
 
 <h5>Example</h5>
@@ -137,13 +154,19 @@ HTTP 200 Content-Type: application/json
     "success": true
 }</pre>
 
-<h2>Redirecting to an Image Asset</h2>
 
+
+<h2 id='redirecting-to-an-image-asset' class='clickable-header top-level-header'>Redirecting to an Image Asset</h2>
+
+<p>
 A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /images/{AssetId}
+<pre>
+GET /images/{AssetId}
+</pre>
 
 #### Headers
 
@@ -168,6 +191,7 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>
@@ -175,6 +199,7 @@ HTTP 303 Content-Type: application/text
 
 Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg
 </pre>
+
 
 
 ## Errors

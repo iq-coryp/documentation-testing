@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -19,7 +19,7 @@ summary:
 ## Resources
 
 
-<h3>Customer</h3>
+###Customer
 
 A Customer is a person or organization that buys goods or services from a store or business.
 
@@ -40,7 +40,7 @@ A Customer is a person or organization that buys goods or services from a store 
 | Version | Integer | Latest revision number | `1` |
 
 
-<h3>Address</h3>
+###Address
 
 An Address represents a valid address somewhere on the planet.
 
@@ -68,7 +68,7 @@ An Address represents a valid address somewhere on the planet.
 | Version | Integer | Latest revision number | `1` |
 
 
-<h3>ContactMethod</h3>
+###ContactMethod
 
 A Contact Method is a method of contacting a Customer.
 
@@ -87,7 +87,7 @@ A Contact Method is a method of contacting a Customer.
 | Version | Integer | Latest revision number | `1` |
 
 
-<h3>CustomerExtension</h3>
+###CustomerExtension
 
 A CustomerExtension resource is used for adding custom properties to a Customer.
 
@@ -100,7 +100,7 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 | Value | String | Value | `66432` |
 | Version | Integer | Latest revision number | `1` |
 
-<h3>CustomerExtensionType</h3>
+###CustomerExtensionType
 
 CustomerExtensionType resources are created by iQmetrix and are used to provide custom properties for the CustomerExtension resource.
 
@@ -110,7 +110,7 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 | Name | String | Name | `ExternalCustomerId` |
 | Data Type | String | Data type | `Integer` |
 
-<h3>CustomerFull</h3>
+###CustomerFull
 
 CustomerFull is an extension on the Customer resource, it consists of all Customer properties plus the following:
 
@@ -120,10 +120,10 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
-| Addresses | Array[[Address](#address)] | A collection of Addresses |  |
+| Addresses | Array[[array](#array)] | A collection of Addresses |  |
 | AlternateName | String | Alias or preferred name | `Bob` |
-| ContactMethods | Array[[ContactMethod](#contactmethod)] | A collection of ContactMethods |  |
-| CustomerExtensions | Array[[CustomerExtension](#customerextension)] | A collection of CustomerExtensions |  |
+| ContactMethods | Array[[array](#array)] | A collection of ContactMethods |  |
+| CustomerExtensions | Array[[array](#array)] | A collection of CustomerExtensions |  |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
 | DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
@@ -136,7 +136,7 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 | Version | Integer | Latest revision number | `1` |
 
 
-<h3>CustomerSearch</h3>
+###CustomerSearch
 
 CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource, it consists of all CustomerFull properties plus the following
 
@@ -196,13 +196,19 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 | 2 | Person |
 | 3 | Company |
 
-<h2>Creating a Customer</h2>
 
 
+<h2 id='creating-a-customer' class='clickable-header top-level-header'>Creating a Customer</h2>
 
-#### Request
+<p>
 
-    POST /Companies({CompanyId})/Customers
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Customers
+</pre>
 
 #### Headers
 
@@ -263,6 +269,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Customer](#customer)
 
 <h5>Example</h5>
@@ -286,13 +293,19 @@ HTTP 201 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting All Customers</h2>
 
 
+<h2 id='getting-all-customers' class='clickable-header top-level-header'>Getting All Customers</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Customers
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Customers
+</pre>
 
 #### Headers
 
@@ -319,6 +332,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Customer](#customer)]
 
@@ -417,13 +431,19 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-<h2>Getting a Customer</h2>
 
 
+<h2 id='getting-a-customer' class='clickable-header top-level-header'>Getting a Customer</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Customers({CustomerId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Customers({CustomerId})
+</pre>
 
 #### Headers
 
@@ -452,6 +472,7 @@ Accept: application/json
 
 #### Response
 
+
 [Customer](#customer)
 
 <h5>Example</h5>
@@ -475,13 +496,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Updating a Customer</h2>
 
 
+<h2 id='updating-a-customer' class='clickable-header top-level-header'>Updating a Customer</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Customers({CustomerId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Customers({CustomerId})
+</pre>
 
 #### Headers
 
@@ -544,6 +571,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Customer](#customer)
 
 <h5>Example</h5>
@@ -567,13 +595,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Deleting a Customer</h2>
 
 
+<h2 id='deleting-a-customer' class='clickable-header top-level-header'>Deleting a Customer</h2>
 
-#### Request
+<p>
 
-    DELETE /Companies({CompanyId})/Customers({CustomerId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Companies({CompanyId})/Customers({CustomerId})
+</pre>
 
 #### Headers
 
@@ -601,17 +635,24 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-<h2>Adding a Customer Address</h2>
 
 
+<h2 id='adding-a-customer-address' class='clickable-header top-level-header'>Adding a Customer Address</h2>
 
-#### Request
+<p>
 
-    POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
+</pre>
 
 #### Headers
 
@@ -684,6 +725,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Address](#address)
 
 <h5>Example</h5>
@@ -714,13 +756,19 @@ HTTP 201 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting All Addresses for a Customer</h2>
 
 
+<h2 id='getting-all-addresses-for-a-customer' class='clickable-header top-level-header'>Getting All Addresses for a Customer</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
+</pre>
 
 #### Headers
 
@@ -748,6 +796,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Address](#address)]
 
@@ -828,13 +877,19 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-<h2>Getting a Customer Address</h2>
 
 
+<h2 id='getting-a-customer-address' class='clickable-header top-level-header'>Getting a Customer Address</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+</pre>
 
 #### Headers
 
@@ -863,6 +918,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [Address](#address)
 
@@ -894,13 +950,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Updating a Customer Address</h2>
 
 
+<h2 id='updating-a-customer-address' class='clickable-header top-level-header'>Updating a Customer Address</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+</pre>
 
 #### Headers
 
@@ -978,6 +1040,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Address](#address)
 
 <h5>Example</h5>
@@ -1008,13 +1071,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Removing an Address from a Customer</h2>
 
 
+<h2 id='removing-an-address-from-a-customer' class='clickable-header top-level-header'>Removing an Address from a Customer</h2>
 
-#### Request
+<p>
 
-    DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
+</pre>
 
 #### Headers
 
@@ -1043,17 +1112,24 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-<h2>Creating a Full Customer</h2>
 
 
+<h2 id='creating-a-full-customer' class='clickable-header top-level-header'>Creating a Full Customer</h2>
 
-#### Request
+<p>
 
-    POST /Companies({CompanyId})/CustomerFull
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/CustomerFull
+</pre>
 
 #### Headers
 
@@ -1176,6 +1252,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [CustomerFull](#customerfull)
 
 <h5>Example</h5>
@@ -1250,13 +1327,19 @@ HTTP 201 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting All Full Customers</h2>
 
 
+<h2 id='getting-all-full-customers' class='clickable-header top-level-header'>Getting All Full Customers</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/CustomerFull
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/CustomerFull
+</pre>
 
 #### Headers
 
@@ -1283,6 +1366,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[CustomerFull](#customerfull)]
 
@@ -1465,13 +1549,19 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-<h2>Getting a Full Customer</h2>
 
 
+<h2 id='getting-a-full-customer' class='clickable-header top-level-header'>Getting a Full Customer</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/CustomerFull({CustomerId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/CustomerFull({CustomerId})
+</pre>
 
 #### Headers
 
@@ -1499,6 +1589,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [CustomerFull](#customerfull)
 
@@ -1574,13 +1665,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Updating a Full Customer</h2>
 
 
+<h2 id='updating-a-full-customer' class='clickable-header top-level-header'>Updating a Full Customer</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/CustomerFull({CustomerId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/CustomerFull({CustomerId})
+</pre>
 
 #### Headers
 
@@ -1718,6 +1815,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [CustomerFull](#customerfull)
 
 <h5>Example</h5>
@@ -1792,13 +1890,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Deleting a Full Customer</h2>
 
 
+<h2 id='deleting-a-full-customer' class='clickable-header top-level-header'>Deleting a Full Customer</h2>
 
-#### Request
+<p>
 
-    DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
+</pre>
 
 #### Headers
 
@@ -1826,17 +1930,24 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-<h2>Adding a Customer Contact Method</h2>
 
 
+<h2 id='adding-a-customer-contact-method' class='clickable-header top-level-header'>Adding a Customer Contact Method</h2>
 
-#### Request
+<p>
 
-    POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
+</pre>
 
 #### Headers
 
@@ -1893,6 +2004,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [ContactMethod](#contactmethod)
 
 <h5>Example</h5>
@@ -1914,13 +2026,19 @@ HTTP 201 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting All Contact Methods for a Customer</h2>
 
 
+<h2 id='getting-all-contact-methods-for-a-customer' class='clickable-header top-level-header'>Getting All Contact Methods for a Customer</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
+</pre>
 
 #### Headers
 
@@ -1948,6 +2066,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[ContactMethod](#contactmethod)]
 
@@ -2010,13 +2129,19 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-<h2>Getting a Customer Contact Method</h2>
 
 
+<h2 id='getting-a-customer-contact-method' class='clickable-header top-level-header'>Getting a Customer Contact Method</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+</pre>
 
 #### Headers
 
@@ -2046,6 +2171,7 @@ Accept: application/json
 
 #### Response
 
+
 [ContactMethod](#contactmethod)
 
 <h5>Example</h5>
@@ -2067,13 +2193,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Updating a Customer Contact Method</h2>
 
 
+<h2 id='updating-a-customer-contact-method' class='clickable-header top-level-header'>Updating a Customer Contact Method</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+</pre>
 
 #### Headers
 
@@ -2133,6 +2265,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [ContactMethod](#contactmethod)
 
 <h5>Example</h5>
@@ -2154,13 +2287,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Removing a Customer Contact Method</h2>
 
 
+<h2 id='removing-a-customer-contact-method' class='clickable-header top-level-header'>Removing a Customer Contact Method</h2>
 
-#### Request
+<p>
 
-    DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+</pre>
 
 #### Headers
 
@@ -2189,17 +2328,24 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-<h2>Searching for Customers</h2>
 
 
+<h2 id='searching-for-customers' class='clickable-header top-level-header'>Searching for Customers</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={Top}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -2230,6 +2376,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Customer](#customer)]
 
 <h5>Example</h5>
@@ -2255,8 +2402,11 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Customer Search</h2>
 
+
+<h2 id='customer-search' class='clickable-header top-level-header'>Customer Search</h2>
+
+<p>
 [CustomerSearch](#customersearch) resources use a special property, `criteria`.
 
 `Criteria` searches all of the searchable properties for the given value and returns the resource if it is found.
@@ -2275,10 +2425,13 @@ The Criteria filter will search the properties below for the given value.
 | [Customer](#customer)| FamilyName |
 | [Customer](#customer) | AlternateName |
 | [CustomerExtension](#customerextension) | Value |
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
+<pre>
+GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
+</pre>
 
 #### Headers
 
@@ -2306,6 +2459,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [CustomerFull](#customerfull)
 
@@ -2424,6 +2578,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
     GET /Companies(1)/Customers?$filter=substringof('bob', tolower(PrimaryName))
 
+
 ## Pagination
 
 The CRM API supports pagination of collections for some resources.
@@ -2475,6 +2630,7 @@ The `self`.`href` value is the encoded version of the API request that returned 
 The `next`.`href` refers to a resource containing a page with the **next** 10 items.
 
 The `prev`.`href` refers to a resource containing a page with the **previous** 10 items.
+
 
 ## Errors
 

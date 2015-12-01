@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience:
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary:
 ---
 
@@ -40,7 +40,7 @@ You should choose a production endpoint that is geographically closest to your d
 
 
 
-<h3>ClientIdentity</h3>
+###ClientIdentity
 
 Authentication for the CMI API is done by including a ClientIdentity resource in a `<client>` section at the beginning of each request.
 
@@ -55,7 +55,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | *StoreId* | *Integer* | *Reserved for future use. Use value of -1* | |
 
 
-<h3>PurchaseOrderShipmentNotice</h3>
+###PurchaseOrderShipmentNotice
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -69,7 +69,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorSKU | String | The vendor part number/sku | `ABC123` |
 
 
-<h3>PurchaseOrderInformation</h3>
+###PurchaseOrderInformation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -80,7 +80,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | SerialsReceived | Array[[ProductSerialNumber](#productserialnumber)] | Serials received |  |
 
 
-<h3>PurchaseOrderData</h3>
+###PurchaseOrderData
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -104,7 +104,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorName | String | Name of the vendor | `SampleVendor` |
 
 
-<h3>ProductInformation</h3>
+###ProductInformation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -141,7 +141,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | VendorSKU | String | Vendor SKU | `ABC123` |
 
 
-<h3>ProductSerialNumber</h3>
+###ProductSerialNumber
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -151,7 +151,7 @@ ClientIdentitiy information is supplied by iQmetrix and used to authenticate req
 | SerialNumber | String | Serial number | `132456456456111` |
 
 
-<h3>StoreInformation</h3>
+###StoreInformation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|

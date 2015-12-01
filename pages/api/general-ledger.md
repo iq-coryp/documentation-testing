@@ -4,10 +4,11 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -31,7 +32,7 @@ Account balances will be affected by Debits and Credits in the following ways:
 
 ## Resources
 
-<h3>Account</h3>
+###Account
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
@@ -52,7 +53,7 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` |
 | Version | Integer | Latest revision number | `1` |
 
-<h3>Transaction</h3>
+###Transaction
 
 {{note}}A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries is the same value, this is called a Balanced Transaction{{end}}
 
@@ -63,9 +64,9 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | Id | GUID | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
 | TransactionDateUTC | DateTime | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
 | CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
-| Entries | Array[[Entry](#entry)] | The collection of Entries for this Transaction |  |
+| Entries | Array[[array](#array)] | The collection of Entries for this Transaction |  |
 
-<h3>Entry</h3>
+###Entry
 
 * A Transaction is <b>immutable</b> and permanent after it has been created it cannot be updated or deleted
 * Debit and Credit are decimal values without an associated currency
@@ -112,14 +113,20 @@ The following table lists the ReferencType values used in RQ.
 | Vendor Deposit | 
 | Vendor Rebate Adjustment |       
 
-<h2>Getting Accounts</h2>
 
+
+<h2 id='getting-accounts' class='clickable-header top-level-header'>Getting Accounts</h2>
+
+<p>
 {{callout_info}}<b>Sorting Order</b><br/>Accounts are ordered alphabetically by <code>AccountName</code>{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
+<pre>
+GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -148,6 +155,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Account](#account)]
 
@@ -225,13 +233,19 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-<h2>Getting Transactions By Date</h2>
 
+
+<h2 id='getting-transactions-by-date' class='clickable-header top-level-header'>Getting Transactions By Date</h2>
+
+<p>
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top}
+<pre>
+GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -262,6 +276,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Transaction](#transaction)]
 
@@ -357,6 +372,7 @@ HTTP 200 Content-Type: application/hal+json
 </pre>
 
 
+
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
@@ -367,6 +383,7 @@ HTTP 200 Content-Type: application/hal+json
 | `HTTP 400` | `Uri parameter representing resource id {x} don't match` | Ensure given request body parameters match URI parameters |
 | `HTTP 404` | `Resource cannot be found` | Ensure the `Id` specified in the URI is valid and the resource exists | 
 | `HTTP 409` | `The account has a non-unique name  or account number` | Account names and numbers must be unique for the Company |
+
 
 ## Pagination
 

@@ -4,10 +4,11 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -31,7 +32,7 @@ Changes within the Security Roles API involve complex actions behind the scenes 
 
 ## Resources
 
-<h3>SecurityRole</h3>
+###SecurityRole
 
 A SecurityRole represents the relationship between a {{User}} and a set of Permissions. SecurityRoles allow you create custom groups that can hold Permissions
 
@@ -41,7 +42,7 @@ A SecurityRole represents the relationship between a {{User}} and a set of Permi
 | Name | String | Name | `Store Manager` |
 
 
-<h3>AssignedRole</h3>
+###AssignedRole
 
 An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity.
 
@@ -53,7 +54,7 @@ An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}}
 | UserId | Integer | Identifier of a [User](/api/usermanager/#user) | `22212` |
 
 
-<h3>Permission</h3>
+###Permission
 
 Permissions are the building blocks of SecurityRoles and represent the ability to perform an action within iQmetrix APIs.
 
@@ -75,14 +76,20 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 
 
 
-<h2>Getting All Permissions for an Entity</h2>
 
+
+<h2 id='getting-all-permissions-for-an-entity' class='clickable-header top-level-header'>Getting All Permissions for an Entity</h2>
+
+<p>
 This request will return all [Permissions](#permission) within the [SecurityRoles](#security-role) belonging to the specified Entity.
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Entities({EntityId})/Permissions
+<pre>
+GET /Entities({EntityId})/Permissions
+</pre>
 
 #### Headers
 
@@ -110,6 +117,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Permission](#permission)]
 
 <h5>Example</h5>
@@ -129,13 +137,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Creating a Security Role</h2>
 
 
+<h2 id='creating-a-security-role' class='clickable-header top-level-header'>Creating a Security Role</h2>
 
-#### Request
+<p>
 
-    POST /Entities({EntityId})/SecurityRoles
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Entities({EntityId})/SecurityRoles
+</pre>
 
 #### Headers
 
@@ -176,6 +190,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [SecurityRole](#securityrole)
 
 <h5>Example</h5>
@@ -188,13 +203,19 @@ HTTP 201 Content-Type: application/json
     "Name": "Store Manager"
 }</pre>
 
-<h2>Getting All Security Roles for an Entity</h2>
 
 
+<h2 id='getting-all-security-roles-for-an-entity' class='clickable-header top-level-header'>Getting All Security Roles for an Entity</h2>
 
-#### Request
+<p>
 
-    GET /Entities({EntityId})/SecurityRoles
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Entities({EntityId})/SecurityRoles
+</pre>
 
 #### Headers
 
@@ -222,6 +243,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[SecurityRole](#securityrole)]
 
 <h5>Example</h5>
@@ -236,13 +258,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Enabling a Permission for a Security Role</h2>
 
 
+<h2 id='enabling-a-permission-for-a-security-role' class='clickable-header top-level-header'>Enabling a Permission for a Security Role</h2>
 
-#### Request
+<p>
 
-    PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
+</pre>
 
 #### Headers
 
@@ -275,17 +303,24 @@ Content-Type: application/json
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 204</pre>
 
-<h2>Disabling a Permission for a Security Role</h2>
 
 
+<h2 id='disabling-a-permission-for-a-security-role' class='clickable-header top-level-header'>Disabling a Permission for a Security Role</h2>
 
-#### Request
+<p>
 
-    DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
+</pre>
 
 #### Headers
 
@@ -314,17 +349,24 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 204</pre>
 
-<h2>Getting Permissions for a Security Role</h2>
 
 
+<h2 id='getting-permissions-for-a-security-role' class='clickable-header top-level-header'>Getting Permissions for a Security Role</h2>
 
-#### Request
+<p>
 
-    GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
+</pre>
 
 #### Headers
 
@@ -353,6 +395,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Permission](#permission)]
 
 <h5>Example</h5>
@@ -372,13 +415,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Assigning a Security Role to a User</h2>
 
+
+<h2 id='assigning-a-security-role-to-a-user' class='clickable-header top-level-header'>Assigning a Security Role to a User</h2>
+
+<p>
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Users({UserId})/AssignedRoles
+<pre>
+POST /Users({UserId})/AssignedRoles
+</pre>
 
 #### Headers
 
@@ -422,6 +471,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [AssignedRole](#assignedrole)
 
 <h5>Example</h5>
@@ -436,13 +486,19 @@ HTTP 201 Content-Type: application/json
     "UserId": 22212
 }</pre>
 
-<h2>Getting Assigned Roles for a User</h2>
 
 
+<h2 id='getting-assigned-roles-for-a-user' class='clickable-header top-level-header'>Getting Assigned Roles for a User</h2>
 
-#### Request
+<p>
 
-    GET /Users({UserId})/AssignedRoles
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Users({UserId})/AssignedRoles
+</pre>
 
 #### Headers
 
@@ -470,6 +526,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[AssignedRole](#assignedrole)]
 
 <h5>Example</h5>
@@ -486,13 +543,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Unassigning a Security Role from a User</h2>
 
 
+<h2 id='unassigning-a-security-role-from-a-user' class='clickable-header top-level-header'>Unassigning a Security Role from a User</h2>
 
-#### Request
+<p>
 
-    DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
+</pre>
 
 #### Headers
 
@@ -520,9 +583,11 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 204</pre>
+
 
 
 ## Errors

@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-<h3>PunchEntry</h3>
+###PunchEntry
 
 An instance of a clock punch for an employee at a location, with a punch-in time and (optionally) a punch-out time.
 
@@ -45,17 +45,23 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 
 
 
-<h2>Getting All Punch Entries</h2>
 
+
+<h2 id='getting-all-punch-entries' class='clickable-header top-level-header'>Getting All Punch Entries</h2>
+
+<p>
 By default, the sorting order of the response to this request will be **descending** order by `LastUpdateDateUtc`.
 
 {{note}}
 Don't forget <code>$filter=</code> in the request!
 {{end}}  
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}
+<pre>
+GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -86,6 +92,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[PunchEntry](#punchentry)]
 
@@ -162,6 +169,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
+
 
 
 ## Pagination

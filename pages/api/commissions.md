@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-<h3>CommissionEntry</h3>
+###CommissionEntry
 
 Commission earned by an employee.
 {{callout_info}}<b>RQ Connection</b>For more information on Commissions in RQ, see <a href='http://iqmetrix.helpdocsonline.com/employee-commission-setup'>Employee Commission Setup</a>{{end}}
@@ -107,13 +107,19 @@ To learn more about Coupons see [Coupon Overview](http://iqmetrix.helpdocsonline
 | 3 | Reversal |
 | 4 | Vendor Rebate Adjustment |    
 
-<h2>Getting All Commission Entries</h2>
 
+
+<h2 id='getting-all-commission-entries' class='clickable-header top-level-header'>Getting All Commission Entries</h2>
+
+<p>
 By default, the sorting order of the response to this request will be **descending** order by `LastUpdateDateUtc`
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"{StartDate}" and LastUpdateDateUtc le datetime"{EndDate}"&$skip={Skip}&$top={Top}
+<pre>
+GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"{StartDate}" and LastUpdateDateUtc le datetime"{EndDate}"&$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -144,6 +150,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[CommissionEntry](#commissionentry)]
 
@@ -265,6 +272,7 @@ HTTP 200 Content-Type: application/hal+json
 
 
 </pre>
+
 
 
 ## Pagination

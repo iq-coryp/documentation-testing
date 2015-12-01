@@ -4,10 +4,11 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -23,7 +24,7 @@ To learn more about User Manager, see {{UserManager_Concept}}.
 
 ## Resources
 
-<h3>User</h3>
+###User
 
 A User represents an account that can be used to perform actions on your data within iQmetrix APIs.
 
@@ -33,20 +34,20 @@ A User represents an account that can be used to perform actions on your data wi
 | FirstName | String | First name | `Sam` |
 | LastName | String | Last name | `Smith` |
 | UserName | String | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
-| Address | [Address](#address) | Address |  |
+| Address | [object](#object) | Address |  |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `{"Department": "Sales"}` |
 | ClientUserId | String | Identifier for the User in an external system | `132` |
 | Email | String | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
 | IsActive | Boolean | Flag to indicate if the Users login is enabled, false if it is disabled | `true` |
 | JobTitle | String | Job title | `Sales Clerk` |
 | ParentEntityId | Integer | Identifier for the Company to which this User belongs | `1` |
-| PhoneNumbers | Array[[PhoneNumber](#phonenumber)] | Phone numbers |  |
+| PhoneNumbers | Array[[array](#array)] | Phone numbers |  |
 | Picture | Object | A reference to an Asset that is a photo of the User |  |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Profiles* | *Object* | *This is a legacy property that should not be used* | |
 
-<h3>Address</h3>
+###Address
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -57,7 +58,7 @@ A User represents an account that can be used to perform actions on your data wi
 | CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
 | Zip | String | Zip or Postal Code | `94043` |
 
-<h3>PhoneNumber</h3>
+###PhoneNumber
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -73,14 +74,20 @@ A User represents an account that can be used to perform actions on your data wi
 
 
 
-<h2>Importing an Existing User</h2>
 
+
+<h2 id='importing-an-existing-user' class='clickable-header top-level-header'>Importing an Existing User</h2>
+
+<p>
 {{tip}}This request allows existing Users to be imported from another system. Users created this way will <b>not</b> get a temporary password and the User will <b>not</b> be forced to change their password when logging in for the first time. If no password is supplied, the User will not be able to log in, obtain a token or reset their password.{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Users/importExisting
+<pre>
+POST /Users/importExisting
+</pre>
 
 #### Headers
 
@@ -150,6 +157,7 @@ POST /Users/importExisting
 
 #### Response
 
+
 [User](#user)
 
 <h5>Example</h5>
@@ -189,13 +197,19 @@ HTTP 201 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting a User</h2>
 
 
+<h2 id='getting-a-user' class='clickable-header top-level-header'>Getting a User</h2>
 
-#### Request
+<p>
 
-    GET /Users({UserId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Users({UserId})
+</pre>
 
 #### Headers
 
@@ -222,6 +236,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [User](#user)
 
@@ -262,14 +277,20 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Updating a User</h2>
 
+
+<h2 id='updating-a-user' class='clickable-header top-level-header'>Updating a User</h2>
+
+<p>
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    PUT /Users({UserId})
+<pre>
+PUT /Users({UserId})
+</pre>
 
 #### Headers
 
@@ -350,6 +371,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [User](#user)
 
 <h5>Example</h5>
@@ -389,16 +411,22 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Disabling a User</h2>
 
+
+<h2 id='disabling-a-user' class='clickable-header top-level-header'>Disabling a User</h2>
+
+<p>
 {{note}}
 Disabling a User does <b>NOT</b> free up their email address or username to be used to create another User. To free up an email address or username, you must instead <a href="#updating-a-user">update</a> the email or username of the original User to something else.
 {{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    DELETE /Users({UserId})
+<pre>
+DELETE /Users({UserId})
+</pre>
 
 #### Headers
 
@@ -425,17 +453,24 @@ Authorization: Bearer (Access Token)
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 200</pre>
 
-<h2>Getting All Users for a Company</h2>
 
 
+<h2 id='getting-all-users-for-a-company' class='clickable-header top-level-header'>Getting All Users for a Company</h2>
 
-#### Request
+<p>
 
-    GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -464,6 +499,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
   * `_links` (object) - Relative URL's used for Pagination
     * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
@@ -533,13 +569,19 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Searching for Users</h2>
 
 
+<h2 id='searching-for-users' class='clickable-header top-level-header'>Searching for Users</h2>
 
-#### Request
+<p>
 
-    GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -570,6 +612,7 @@ Accept: application/json
 
 #### Response
 
+
   * `_links` (object) - Relative URL's used for Pagination
     * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
     * `self` (string) - The request that returned these results
@@ -638,16 +681,22 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Assigning a User to a Location</h2>
 
+
+<h2 id='assigning-a-user-to-a-location' class='clickable-header top-level-header'>Assigning a User to a Location</h2>
+
+<p>
 {{note}}
 Users can be assigned to multiple locations
 {{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    PUT /Users({UserId})/Locations({LocationId})
+<pre>
+PUT /Users({UserId})/Locations({LocationId})
+</pre>
 
 #### Headers
 
@@ -679,19 +728,26 @@ Content-Type: application/json
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
 
-<h2>Unassigning a User from a Location</h2>
 
 
+<h2 id='unassigning-a-user-from-a-location' class='clickable-header top-level-header'>Unassigning a User from a Location</h2>
 
-#### Request
+<p>
 
-    DELETE /Users({UserId})/Locations({LocationId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Users({UserId})/Locations({LocationId})
+</pre>
 
 #### Headers
 
@@ -721,17 +777,24 @@ Accept: application/json
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>HTTP 204</pre>
 
-<h2>Getting Assigned Locations for a User</h2>
 
 
+<h2 id='getting-assigned-locations-for-a-user' class='clickable-header top-level-header'>Getting Assigned Locations for a User</h2>
 
-#### Request
+<p>
 
-    GET /Users({UserId})/Locations
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Users({UserId})/Locations
+</pre>
 
 #### Headers
 
@@ -759,6 +822,7 @@ Accept: application/json
 
 #### Response
 
+
   * `UserId` (integer)
   * `LocationIDs` (array) - Location Ids for {{Locations}} assigned to the {{User}}
 
@@ -775,13 +839,19 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Getting Users by ClientUserId</h2>
 
 
+<h2 id='getting-users-by-clientuserid' class='clickable-header top-level-header'>Getting Users by ClientUserId</h2>
 
-#### Request
+<p>
 
-    GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip={Skip}&$top={Top}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip={Skip}&$top={Top}
+</pre>
 
 #### Headers
 
@@ -811,6 +881,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[User](#user)]
 
@@ -853,16 +924,22 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Locking a User</h2>
 
+
+<h2 id='locking-a-user' class='clickable-header top-level-header'>Locking a User</h2>
+
+<p>
 {{note}}
 Once locked, a User will not be able to log in or obtain an access token until they are unlocked 
 {{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Users({UserId})/Lock
+<pre>
+POST /Users({UserId})/Lock
+</pre>
 
 #### Headers
 
@@ -887,24 +964,31 @@ POST /Users(22212)/Lock
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
 
-<h2>Unlocking a User</h2>
 
+
+<h2 id='unlocking-a-user' class='clickable-header top-level-header'>Unlocking a User</h2>
+
+<p>
 Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
 
 {{note}}
 A User can be unlocked if their account is locked and their parent Entity is not using third-party authentication
 {{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Users({UserId})/Unlock
+<pre>
+POST /Users({UserId})/Unlock
+</pre>
 
 #### Headers
 
@@ -929,19 +1013,26 @@ POST /Users(22212)/Unlock
 #### Response
 
 
+
 <h5>Example</h5>
 
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
 
-<h2>Enabling a User</h2>
 
 
+<h2 id='enabling-a-user' class='clickable-header top-level-header'>Enabling a User</h2>
 
-#### Request
+<p>
 
-    POST /Users({UserId})/Enable
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Users({UserId})/Enable
+</pre>
 
 #### Headers
 
@@ -964,6 +1055,7 @@ POST /Users(22212)/Enable
 </pre>
 
 #### Response
+
 
 [User](#user)
 
@@ -1005,6 +1097,7 @@ HTTP 200 Content-Type: application/json
 }</pre>
 
 
+
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
@@ -1017,6 +1110,7 @@ HTTP 200 Content-Type: application/json
 | `HTTP 404` | `Entity not found` | Ensure LocationId is valid |
 | `HTTP 409` | `Username and email already exist` | Ensure the email chosen does not already belong to a User. <br/> If the email address belongs to a disabled User, change the email for the disabled User before creating a new User with the original email |
 | `HTTP 409` | `User version mismatch` | Ensure the Version value provided in the request data matches the Version for the User in the database |
+
 
 ## Pagination
 

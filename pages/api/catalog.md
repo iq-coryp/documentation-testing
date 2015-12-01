@@ -4,10 +4,11 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -22,7 +23,7 @@ Retailers can select products from the {{ProductLibrary_Concept}} to create a **
 ## Resources
 
 
-<h3>CatalogItem</h3>
+###CatalogItem
 
 Archived CatalogItem resources can still be updated and retrieved individually, but are excluded from search results
 
@@ -50,13 +51,19 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 
 
-<h2>Getting All Catalog Items</h2>
 
 
+<h2 id='getting-all-catalog-items' class='clickable-header top-level-header'>Getting All Catalog Items</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Catalog/Items
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Items
+</pre>
 
 #### Headers
 
@@ -84,6 +91,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[CatalogItem](#catalogitem)]
 
 <h5>Example</h5>
@@ -100,13 +108,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting Product Details</h2>
 
 
+<h2 id='getting-product-details' class='clickable-header top-level-header'>Getting Product Details</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
+</pre>
 
 #### Headers
 
@@ -134,6 +148,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
   * `Id` (string) - Identifier
   * `Name` (string) - Name
@@ -246,13 +261,19 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-<h2>Getting Compatible Products for a Catalog Item</h2>
 
 
+<h2 id='getting-compatible-products-for-a-catalog-item' class='clickable-header top-level-header'>Getting Compatible Products for a Catalog Item</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
+</pre>
 
 #### Headers
 
@@ -280,6 +301,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
   * `Items` (Array[[CatalogItem](#catalogitem)]) - Products matching the search criteria
   * `Facets` (object) - Summary of Manufacturer and Vendor information for the Items
@@ -340,14 +362,20 @@ HTTP 200 Content-Type: application/json
     }
 }</pre>
 
-<h2>Getting Variations for a Catalog Item</h2>
 
+
+<h2 id='getting-variations-for-a-catalog-item' class='clickable-header top-level-header'>Getting Variations for a Catalog Item</h2>
+
+<p>
 For more information about Variations, see [Variations](/concepts/product-structure/#variations).
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
+<pre>
+GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
+</pre>
 
 #### Headers
 
@@ -375,6 +403,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
   * `Name` (string)
   * `Slug` (string)
@@ -404,16 +433,22 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Searching For Products</h2>
 
+
+<h2 id='searching-for-products' class='clickable-header top-level-header'>Searching For Products</h2>
+
+<p>
 {{note}}
 SearchTerms specified in the URI are compared against the following Product fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
 {{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+<pre>
+GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+</pre>
 
 #### Headers
 
@@ -450,6 +485,7 @@ Accept: application/json
 
 #### Response
 
+
   * `Items` (Array[[CatalogItem](#catalogitem)]) - Products matching the search criteria
   * `Facets` (object) - Summary of Manufacturer and Vendor information for the Items
     * `Manufacturers` (array) - Manufacturer information for the Items
@@ -509,13 +545,19 @@ HTTP 200 Content-Type: application/json
     }
 }</pre>
 
-<h2>Getting Products by Vendor SKU</h2>
 
 
+<h2 id='getting-products-by-vendor-sku' class='clickable-header top-level-header'>Getting Products by Vendor SKU</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}
+</pre>
 
 #### Headers
 
@@ -545,6 +587,7 @@ Accept: application/json
 
 #### Response
 
+
   * `Sku` (string) - Vendor Sku specified in the URI
   * `VendorId` (integer) - Vendor Id specified in the URI
     * `VendorId` (integer) - Vendor Id specified in the URI* `Items` (Array[[CatalogItem](#catalogitem)])
@@ -567,6 +610,7 @@ HTTP 200 Content-Type: application/json
         }
     ]
 }</pre>
+
 
 
 ## Errors

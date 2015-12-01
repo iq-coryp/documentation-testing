@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -57,15 +57,15 @@ API key must be provided in header and is configurable.
 ## Resources
 
 
-<h3>ShippingQuery</h3>
+###ShippingQuery
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
-| Items | Array[[Item](#item)] | List of Products to be added to shipping query |  |
+| Items | Array[[array](#array)] | List of Products to be added to shipping query |  |
 | PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
 
-<h3>Item</h3>
+###Item
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -73,7 +73,7 @@ API key must be provided in header and is configurable.
 | Quantity | Integer | Amount of products | `11` |
 | Sku | String | Product sku | `87932OTS45S6` |
 
-<h3>ShippingOptions</h3>
+###ShippingOptions
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|

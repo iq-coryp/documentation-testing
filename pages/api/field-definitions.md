@@ -4,10 +4,11 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
 
 ## Overview
 
@@ -60,7 +61,7 @@ The result displayed on the page, with some styling, is shown below
 
 ## Resources
 
-<h3>FieldDefinition</h3>
+###FieldDefinition
 
 {{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}
 
@@ -96,13 +97,19 @@ The result displayed on the page, with some styling, is shown below
 | TextMultipleLine | 
 | YesNo | 
 
-<h2>Getting All FieldDefinitions</h2>
 
 
+<h2 id='getting-all-fielddefinitions' class='clickable-header top-level-header'>Getting All FieldDefinitions</h2>
 
-#### Request
+<p>
 
-    GET /FieldDefinitions
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /FieldDefinitions
+</pre>
 
 #### Headers
 
@@ -125,6 +132,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[FieldDefinition](#fielddefinition)]
 
 <h5>Example</h5>
@@ -144,13 +152,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting a FieldDefinition</h2>
 
 
+<h2 id='getting-a-fielddefinition' class='clickable-header top-level-header'>Getting a FieldDefinition</h2>
 
-#### Request
+<p>
 
-    GET /FieldDefinitions({FieldDefinitionId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /FieldDefinitions({FieldDefinitionId})
+</pre>
 
 #### Headers
 
@@ -178,6 +192,7 @@ Accept: application/json
 
 #### Response
 
+
 [FieldDefinition](#fielddefinition)
 
 <h5>Example</h5>
@@ -194,6 +209,7 @@ HTTP 200 Content-Type: application/json
     "DisplayName": "CDMA",
     "Options": []
 }</pre>
+
 
 
 ## Errors

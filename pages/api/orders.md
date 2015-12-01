@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 1-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -20,7 +20,7 @@ summary:
 
 
 
-<h3>Order</h3>
+###Order
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -48,7 +48,7 @@ summary:
 | *TenderOrigin* | *String* | *Reserved for future use* | |
 
 
-<h3>Item</h3>
+###Item
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -71,11 +71,11 @@ summary:
 | ShippingOptionId | String | Identifier for the ShippingOption that this Item will use | `1` |
 | SupplierEntityId | Integer | Identifier for the Supplier of this Item | `14` |
 | SupplierReference | String | May be used for additional Supplier reference information | `10` |
-| TrackingInformation | Array[[TrackingInformation](#trackinginformation)] | Tracking information in the form of key-value pairs |  |
+| TrackingInformation | Array[[array](#array)] | Tracking information in the form of key-value pairs |  |
 
 
 
-<h3>OrderFull</h3>
+###OrderFull
 
 **OrderFull** is an extension on the Order resource
 
@@ -103,7 +103,7 @@ summary:
 | *CustomerId* | *String* | *This is a legacy property that should not be used* | |
 | TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `INV112` |
 | *TenderOrigin* | *String* | *Reserved for future use* | |
-| Items | Array[[Item](#item)] | The Items in the [Order](#order) |  |
+| Items | Array[[array](#array)] | The Items in the [Order](#order) |  |
 
 
 
@@ -160,14 +160,20 @@ summary:
 | 1 | Sales | An Order placed by a Customer |
 | 2 | Transfer | An Order to relocate inventory |
 
-<h2>Creating an Order</h2>
 
+
+<h2 id='creating-an-order' class='clickable-header top-level-header'>Creating an Order</h2>
+
+<p>
 {{note}}The <code>EntityId</code> used in the request parameters must belong to the <code>CompanyId</code> used in the URI.{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Companies({CompanyId})/Orders
+<pre>
+POST /Companies({CompanyId})/Orders
+</pre>
 
 #### Headers
 
@@ -241,6 +247,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Order](#order)
 
 <h5>Example</h5>
@@ -271,13 +278,19 @@ HTTP 201 Content-Type: application/json
     "TenderId": "INV112"
 }</pre>
 
-<h2>Getting a Single Order</h2>
 
 
+<h2 id='getting-a-single-order' class='clickable-header top-level-header'>Getting a Single Order</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Orders
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders
+</pre>
 
 #### Headers
 
@@ -304,6 +317,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Order](#order)]
 
@@ -337,13 +351,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Adding an Item to an Order</h2>
 
 
+<h2 id='adding-an-item-to-an-order' class='clickable-header top-level-header'>Adding an Item to an Order</h2>
 
-#### Request
+<p>
 
-    POST /Companies({CompanyId})/Orders({OrderId})/Items
+</p>
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Orders({OrderId})/Items
+</pre>
 
 #### Headers
 
@@ -425,6 +445,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Item](#item)
 
 <h5>Example</h5>
@@ -462,13 +483,19 @@ HTTP 201 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Getting all Items on an Order</h2>
 
 
+<h2 id='getting-all-items-on-an-order' class='clickable-header top-level-header'>Getting all Items on an Order</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Orders({OrderId})/Items
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders({OrderId})/Items
+</pre>
 
 #### Headers
 
@@ -496,6 +523,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[Item](#item)]
 
@@ -536,13 +564,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting an Order</h2>
 
 
+<h2 id='getting-an-order' class='clickable-header top-level-header'>Getting an Order</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/Orders({OrderId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders({OrderId})
+</pre>
 
 #### Headers
 
@@ -570,6 +604,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [Order](#order)
 
@@ -601,13 +636,19 @@ HTTP 200 Content-Type: application/json
     "TenderId": "INV112"
 }</pre>
 
-<h2>Updating an Order</h2>
 
 
+<h2 id='updating-an-order' class='clickable-header top-level-header'>Updating an Order</h2>
 
-#### Request
+<p>
 
-    PUT /Companies({CompanyId})/Orders({OrderId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Orders({OrderId})
+</pre>
 
 #### Headers
 
@@ -686,6 +727,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Order](#order)
 
 <h5>Example</h5>
@@ -716,51 +758,19 @@ HTTP 200 Content-Type: application/json
     "TenderId": "INV112"
 }</pre>
 
-<h2></h2>
 
 
+<h2 id='processing-an-order' class='clickable-header top-level-header'>Processing an Order</h2>
 
-#### Request
+<p>
 
-    DELETE /Companies({CompanyId})/Orders({OrderId})
+</p>
 
-#### Headers
-
-
-* `Authorization: Bearer (Access Token)`
-
-
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
-
-
-
-<h5>Example</h5>
+<h4>Request</h4>
 
 <pre>
-DELETE /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
-Authorization: Bearer (Access Token)
-
+POST /Companies({CompanyId})/Orders({OrderId})/Process
 </pre>
-
-#### Response
-
-
-<h5>Example</h5>
-
-<pre>HTTP 200</pre>
-
-<h2>Processing an Order</h2>
-
-
-
-#### Request
-
-    POST /Companies({CompanyId})/Orders({OrderId})/Process
 
 #### Headers
 
@@ -801,6 +811,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [Order](#order)
 
 <h5>Example</h5>
@@ -831,79 +842,20 @@ HTTP 201 Content-Type: application/json
     "TenderId": "INV112"
 }</pre>
 
-<h2></h2>
 
 
+<h2 id='creating-an-order-with-items' class='clickable-header top-level-header'>Creating an Order with Items</h2>
 
-#### Request
-
-    GET /Companies({CompanyId})/Orders({OrderId})/Process
-
-#### Headers
-
-
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-
-
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
-
-#### Response
-
-[Order](#order)
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-
-{
-    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
-    "Name": "iPhone 5 Order",
-    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
-    "DiscountAmount": 15,
-    "DiscountCode": "MTRY-15",
-    "DiscountDescription": "Military discount",
-    "EmployeeId": "15",
-    "EntityId": 2,
-    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
-    "OrderExpiryHours": 20,
-    "OrderType": "Sales",
-    "OrderTypeId": 3,
-    "PrintableId": "8765-1234-987",
-    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "ShippingEntityId": 2,
-    "State": "Created",
-    "TenderId": "INV112"
-}</pre>
-
-<h2>Creating an Order with Items</h2>
-
+<p>
 {{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    POST /Companies({CompanyId})/OrderFull
+<pre>
+POST /Companies({CompanyId})/OrderFull
+</pre>
 
 #### Headers
 
@@ -1015,6 +967,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [OrderFull](#orderfull)
 
 <h5>Example</h5>
@@ -1076,13 +1029,19 @@ HTTP 201 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Getting All Orders for a Company</h2>
 
 
+<h2 id='getting-all-orders-for-a-company' class='clickable-header top-level-header'>Getting All Orders for a Company</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/OrderFull
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/OrderFull
+</pre>
 
 #### Headers
 
@@ -1109,6 +1068,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 Array[[OrderFull](#orderfull)]
 
@@ -1173,13 +1133,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting an Order with Items</h2>
 
 
+<h2 id='getting-an-order-with-items' class='clickable-header top-level-header'>Getting an Order with Items</h2>
 
-#### Request
+<p>
 
-    GET /Companies({CompanyId})/OrderFull({OrderId})
+</p>
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/OrderFull({OrderId})
+</pre>
 
 #### Headers
 
@@ -1207,6 +1173,7 @@ Accept: application/json
 </pre>
 
 #### Response
+
 
 [OrderFull](#orderfull)
 
@@ -1269,14 +1236,20 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2>Updating an Order with Items</h2>
 
+
+<h2 id='updating-an-order-with-items' class='clickable-header top-level-header'>Updating an Order with Items</h2>
+
+<p>
 {{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
 
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    PUT /Companies({CompanyId})/OrderFull({OrderId})
+<pre>
+PUT /Companies({CompanyId})/OrderFull({OrderId})
+</pre>
 
 #### Headers
 
@@ -1397,6 +1370,7 @@ Content-Type: application/json
 
 #### Response
 
+
 [OrderFull](#orderfull)
 
 <h5>Example</h5>
@@ -1458,51 +1432,19 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2></h2>
 
 
+<h2 id='getting-pending-orders-by-location' class='clickable-header top-level-header'>Getting Pending Orders by Location</h2>
 
-#### Request
+<p>
 
-    DELETE /Companies({CompanyId})/OrderFull({OrderId})
+</p>
 
-#### Headers
-
-
-* `Authorization: Bearer (Access Token)`
-
-
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
-
-
-
-<h5>Example</h5>
+<h4>Request</h4>
 
 <pre>
-DELETE /Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
-Authorization: Bearer (Access Token)
-
+GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {LocationId}
 </pre>
-
-#### Response
-
-
-<h5>Example</h5>
-
-<pre>HTTP 200</pre>
-
-<h2>Getting Pending Orders by Location</h2>
-
-
-
-#### Request
-
-    GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {LocationId}
 
 #### Headers
 
@@ -1531,6 +1473,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Order](#order)]
 
 <h5>Example</h5>
@@ -1563,13 +1506,19 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2>Getting Orders by PrintableId</h2>
 
+
+<h2 id='getting-orders-by-printableid' class='clickable-header top-level-header'>Getting Orders by PrintableId</h2>
+
+<p>
 {{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
+</p>
 
-#### Request
+<h4>Request</h4>
 
-    GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
+<pre>
+GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
+</pre>
 
 #### Headers
 
@@ -1598,6 +1547,7 @@ Accept: application/json
 
 #### Response
 
+
 Array[[Order](#order)]
 
 <h5>Example</h5>
@@ -1629,6 +1579,7 @@ HTTP 200 Content-Type: application/json
         "TenderId": "INV112"
     }
 ]</pre>
+
 
 
 ## Errors
