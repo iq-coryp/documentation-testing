@@ -4,260 +4,139 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 09-11-2015
 summary: 
 ---
+
 {% include linkrefs.html %}
-
-
 
 ## Endpoints
 
-* Sandbox: <a href="https://productlibrarydemo.iqmetrix.net/v1">https://productlibrarydemo.iqmetrix.net/v1</a>
-* Production: <a href="https://productlibrary.iqmetrix.net/v1">https://productlibrary.iqmetrix.net/v1</a>
+* Sandbox: https://productlibrarydemo.iqmetrix.net/v1
+* Production: https://productlibrary.iqmetrix.net/v1
 
 ## Resources
 
-###Product
+### Product
 
 | Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
+|:-----|:---------|:------------|:--------|
 | Id | String | Identifier | `M3-V1` |
-| Name | String | Name | `iPhone 4S 16GB White` |
-| ShortDescription | String | Short Description | `Better than iPhone 3G` |
-| LongDescription | String | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
-| Assets | Array[object] | Asset information |  |
-| CanonicalClassification | Object | ClassificationTree details |  |
+| Name | String(450) | Name | `iPhone 4S 16GB White` |
+| ShortDescription | String(450) | Short Description | `Better than iPhone 3G` |
+| LongDescription | String(20000) | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
+| Assets | Array[Object] | Asset information |  |
+| CanonicalClassification | Object | [ClassificationTree](/concepts/classification-tree) details |  |
 | Entity | Object | Entity information, used for Entity revisions |  |
 | HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
-| HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
-| IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
+| HeroShotUri | String(450) | URI to a Hero Shot [Asset](/api/assets/#asset) | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (`true`), or private (`false`) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
-| Manufacturer | [object](#object) | Manufacturer information |  |
-| MasterProductId | Integer | Identifier for the Master Product | `3` |
-| MSRP | [object](#object) | Manufacturers suggested retail price information |  |
-| Owner | Object | Owner information, used for Private products and Carrier Revisions |  |
-| Region | Object | Region information, for Regional Carrier Revisions |  |
+| Manufacturer | Object | Manufacturer information | |
+| Manufacturer.Id | String | Manufacturer identifier | `123` | 
+| Manufacturer.Name | String | Manufacturer Name | `CaseMate` |
+| ManufacturerSkus | Array[Object] | Manufacturer SKUs | |
+| ManufacturerSkus.Value | String | SKU value | `ABC123` |
+| ManufacturerSkus.Description | String | SKU description | `Manufacturer SKU` |
+| ManufacturerSkus.Entity | Integer | SKU identifier | `1` |
+| MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-Products) | `3` |
+| MSRP | Object | Manufacturer's suggested retail price information |  |
+| MSRP.Amount | Decimal | Manufacturer's suggested retail price | `100` |
+| MSRP.CurrencyCode | Object | Currency | `USD` |
+| Owner | Object | Owner information, used for Private products and [Carrier Revisions](/concepts/product-structure/#carrier-revisions) |  |
+| Region | Object | Region information, for Regional [Carrier Revisions](/concepts/product-structure/#carrier-revisions) |  |
 | ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
-| Specifications | Array[[array](#array)] | Details such as color, dimension, etc |  |
-| UpcCodes | Array[[array](#array)] | UPC codes |  |
-| VariationId | Integer | Identifier for the Variation | `1` |
-| VendorSkus | Array[[array](#array)] | Vendor SKUs |  |
+| Specifications | Array[Object] | Details such as color, dimension, etc |  |
+| Specifications.Name | String | Specification name | `Color` |
+| Specifications.Fields | Object | Specification Fields | |
+| Specifications.Fields.Id | Integer | Field identifier | `1` | 
+| Specifications.Fields.StringId | String | Additional field identifier | `Color`|
+| Specifications.Fields.DisplayName | String | Field display name | `Color` |
+| Specifications.Fields.Name | String | Field name | `Color` |
+| Specifications.Fields.Value | String | Field value | `White` |
+| Specifications.Fields.Type | String | Type of HTML element this field uses | `TextSingleLine` |
+| Specifications.Fields.Unit | String | Unit | `mm` |
+| UpcCodes | Array[Object] | UPC codes | |
+| UpcCodes.Value | String | UPC Code value | `874688002478/16W` |
+| UpcCodes.Description | String | UPC Code description | `UPC` |
+| UpcCodes.Entity | Integer | UPC Code identifier | `2` |
+| VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#variations) | `1` |
+| VendorSkus | Array[Object] | Vendor SKUs | |
+| VendorSkus.Value | String | SKU value | `403405` |
+| VendorSkus.Description | String | SKU description | `SKU` |
+| VendorSkus.Entity | Integer | SKU Identifier | `3` |
 | Version | Integer | Latest revision number | `1` |
 
-###Specification
+## Searching Products By Identifier
 
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Name | String | Specification name | `Color` |
-| Fields | Array[[array](#array)] | Specification Fields |  |
-
-###MSRP
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Amount | Decimal | Manufacturers suggested retail price | `100` |
-| CurrencyCode | String | Currency | `USD` |
-
-###ProductSearch
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Products | Array[[array](#array)] | Array of Slug attributes for [Product](#product)'s matching the search options |  |
-| Products.Slug | Array[[array](#array)] |  | `M1-1` |
-
-###Manufacturer
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer |  | `4` |
-| Name | String |  | `SampleManufacturer` |
-
-###ManufacturerSku
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Value | String |  | `ABC123` |
-| Description | String |  | `Manufacturer SKU` |
-| Entity | Integer |  | `4` |
-
-###Specification
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Name | String | Specification name | `Color` |
-| Fields | Array[[array](#array)] | Specification Fields |  |
-
-###Field
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer |  | `1` |
-| StringId | String |  | `Color` |
-| DisplayName | String |  | `Color` |
-| Name | String |  | `Color` |
-| Value | String |  | `White` |
-| Type | String |  | `TextSingleLine` |
-| Unit | String |  | `mm` |
-
-###UpcCode
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Value | String |  | `874688002478/16W` |
-| Description | String |  | `UPC` |
-| Entity | Integer |  | `2` |
-
-###VendorSku
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Value | String |  | `403405` |
-| Description | String |  | `SKU` |
-| Entity | Integer |  | `3` |
-
-
-
-
-
-
-<h2 id='searching-for-products-by-identifier' class='clickable-header top-level-header'>Searching for Products by Identifier</h2>
-
-<p>
 `FindByIdentifier` can be used to search for {{Product}} resources by the following identifiers:
- 
+
 | Searchable Identifiers |
 |:-----------------------|
 | ManufacturerSKU |
 | VendorSKU |
 | UPC |
- 
+
 ### Search Format
- 
+
 Query parameters are used to specify search criteria using the following format:
- 
+
     {OptionName}={OptionValue}
- 
+
 Multiple options are separated with a `&` symbol.
- 
+
 ### Available Options
- 
+
 See the table below for available options and the syntax of using each one. 
- 
+
 | Keyword | Description | Data Type | Examples |
 |:--------|:------------|:----------|:---------|
 | `value` | Search for the given SKU, this option is **required** | String | `value=ABC123`|
 | `type` | Search for the given SKU where the given identifier type matches. If no value is provided, all identifiers will be searched | String, see [Searchable Identifiers](#searchable-identifiers) |  `value=ABC123&type=VendorSKU` <br/> `value=ABC123&type=ManufacturerSKU` <br/> `value=ABC123&type=UPC`|
 | `entityId` | Search for the given SKU where the given entityId matches and the identifier type is VendorSKU or ManufacturerSKU | Integer | `value=ABC123&type=VendorSKU&entityId=4` | 
 
-</p>
+#### Request
 
-<h4>Request</h4>
-
-<pre>
-GET /Products/FindByIdentifier?{Options}
-</pre>
-
+    GET /Products/FindByIdentifier?{Options}
+    
 #### Headers
 
-
-* `Authorization: Bearer (Access Token)`
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
-
-
 
 #### URI Parameters
 
+* `Options` (**Required**) - The options for the search
 
-* `Options` (**Required**)  - The options for the search 
+###### Example
 
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Products/FindByIdentifier?value=ABC123&type=VendorSKU&entityId=4
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
+    GET /Products/FindByIdentifier?value=ABC123&type=VendorSKU&entityId=4
+    Authorization: Bearer (Access Token)
+    Accept: application/json
 
 #### Response
 
+* Array[Object] - Array of Slug attributes for [Product](#product)'s matching the search options
 
-[ProductSearch](#productsearch)
+###### Example
 
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-
-{
-    "Products": [
-        {
-            "Id": "M3-V1",
-            "Name": "iPhone 4S 16GB White",
-            "ShortDescription": "Better than iPhone 3G",
-            "LongDescription": "The iPhone 4S is a gradual step over the iPhone 4.",
-            "Assets": [],
-            "CanonicalClassification": {},
-            "Entity": {},
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-            "HeroShotUri": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-            "IsLinkedToCuratedProduct": true,
-            "IsSaleable": true,
-            "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
+    HTTP 200 Content-Type: application/json
+    [
+        "Products": [
+            {
+                "Slug": "M1285-V1"
             },
-            "MasterProductId": 3,
-            "MSRP": {
-                "Amount": 100,
-                "CurrencyCode": "USD"
+            {
+                "Slug": "M1285-V2"
             },
-            "Owner": {},
-            "Region": {},
-            "ReleaseDate": "2011-10-14T12:00:00.000",
-            "Specifications": [
-                {
-                    "Name": "Color",
-                    "Fields": [
-                        {
-                            "Id": 1,
-                            "StringId": "Color",
-                            "DisplayName": "Color",
-                            "Name": "Color",
-                            "Value": "White",
-                            "Type": "TextSingleLine",
-                            "Unit": "mm"
-                        }
-                    ]
-                }
-            ],
-            "UpcCodes": [
-                {
-                    "Value": "874688002478/16W",
-                    "Description": "UPC",
-                    "Entity": 2
-                }
-            ],
-            "VariationId": 1,
-            "VendorSkus": [
-                {
-                    "Value": "403405",
-                    "Description": "SKU",
-                    "Entity": 3
-                }
-            ],
-            "Version": 1
-        }
-    ],
-    "Products.Slug": [
-        "M1-1"
+            {
+                "Slug": "M1285-V3"
+            },
+            {
+                "Slug": "M1285-V4"
+            }
+        ]
     ]
-}</pre>
-
-
 
 ## Errors
 

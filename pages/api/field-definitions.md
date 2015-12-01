@@ -1,16 +1,21 @@
 ---
-title:  Field Definitions
+title: Field Definitions
 permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 09-11-2015
 summary: 
 ---
+
 {% include linkrefs.html %}
 
+## Endpoints
 
-## Overview
+* Sandbox: https://productlibrarydemo.iqmetrix.net/v1
+* Production: https://productlibrary.iqmetrix.net/v1
+
+## Notes
 
 A **Field Definition** defines both how {{Product}} specification details are displayed on a screen, such as a website, and how it is stored in the Product Library.
 
@@ -53,33 +58,24 @@ The result displayed on the page, with some styling, is shown below
 
 <img src="{{ "/images/fielddefinition.png" | prepend: site.url }}" />
 
-
-## Endpoints
-
-* Sandbox: <a href="https://productlibrarydemo.iqmetrix.net/v1">https://productlibrarydemo.iqmetrix.net/v1</a>
-* Production: <a href="https://productlibrary.iqmetrix.net/v1">https://productlibrary.iqmetrix.net/v1</a>
-
 ## Resources
 
-###FieldDefinition
+### FieldDefinition
 
 {{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}
 
 | Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
+|:-----|:---------|:------------|:--------|
 | Id | Integer | Identifier | `84` |
 | StringId | String | Consistent identifier across all [Environments](/api/environments) | `CDMA` |
-| InputType | String | Type of UI element this FieldDefinition uses, see [InputTypes](#inputypes) for a list of acceptable values | `YesNo` |
-| IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `false` |
+| InputType | String | Type of UI element this FieldDefinition uses, see [InputTypes](#inputtype) for a list of acceptable values | `YesNo` |
+| IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (`false`) or not (`true`) | `false` |
 | LanguageInvariantUnit | String | Unit | `mm` |
 | DisplayName | String | Value to be displayed in the UI | `CDMA` |
-| Options | Array[object] | List of Options, only used when InputType is SingleSelect or MultiSelect |  |
+| Options | Array[Object] | List of Options, only used when InputType is `SingleSelect` or `MultiSelect` | |
 | Options.Id | Integer | Identifier for the Option | `1` |
 | Options.Value | String | Value of the Option | `Blue` |
-| *LanguageInvariantName* | *String* | *This is a legacy property that should not be used* | |
-
-
-
+| *LanguageInvariantName* | *String* | *Deprecated* |  |
 
 ## Enumerations
 
@@ -97,120 +93,117 @@ The result displayed on the page, with some styling, is shown below
 | TextMultipleLine | 
 | YesNo | 
 
+## Getting Field Definitions
 
+#### Request
 
-<h2 id='getting-all-fielddefinitions' class='clickable-header top-level-header'>Getting All FieldDefinitions</h2>
-
-<p>
-
-</p>
-
-<h4>Request</h4>
-
-<pre>
-GET /FieldDefinitions
-</pre>
+    GET /FieldDefinitions
 
 #### Headers
 
-
-* `Authorization: Bearer (Access Token)`
+* `Authorization: Bearer` {{AccessToken_Glossary}}
 * `Accept: application/json`
 
+###### Example
 
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /FieldDefinitions
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
+    GET /FieldDefinitions
+    Authorization: Bearer (Access Token)
+    Accept: application/json
 
 #### Response
 
+* Array[[FieldDefinition](#fieldefinition)]
 
-Array[[FieldDefinition](#fielddefinition)]
+###### Example
 
-<h5>Example</h5>
+    HTTP 200 Content-Type: application/json
+    [
+        {
+            "Id": 110,
+            "StringId": "ProcessingCores",
+            "InputType": "SingleSelect",
+            "IsRequired": false,
+            "LanguageInvariantUnit": null,
+            "DisplayName": "Processing Cores",
+            "Unit": null,
+            "Options": [
+                {
+                    "Id": 1,
+                    "Value": "Single"
+                },
+                {
+                    "Id": 2,
+                    "Value": "Dual"
+                },
+                {
+                    "Id": 3,
+                    "Value": "Quad"
+                },
+                {
+                    "Id": 4,
+                    "Value": "Hexa"
+                },
+                {
+                    "Id": 5,
+                    "Value": "Octa"
+                },
+                {
+                    "Id": 6,
+                    "Value": "Triple"
+                }
+            ]
+        },
+        {
+            "Id": 84,
+            "StringId": "CDMA",
+            "InputType": "YesNo",
+            "IsRequired": false,
+            "LanguageInvariantUnit": null,
+            "DisplayName": "CDMA",
+            "Unit": null,
+            "Options": []
+        },
+        ...
+    ]
 
-<pre>
-HTTP 200 Content-Type: application/json
+## Getting a Field Definition
 
-[
+#### Request
+
+    GET /FieldDefinitions({FieldDefinitionId})
+
+#### Headers
+
+* `Authorization: Bearer` {{AccessToken_Glossary}}
+* `Accept: application/json`
+
+#### URI Parameters
+
+* `FieldDefinitionId` (**Required**) - Identifier for the {{FieldDefinition}}
+
+###### Example
+
+    GET /FieldDefinitions(84)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+#### Response
+
+* [FieldDefinition](#fieldefinition)
+
+###### Example
+
+    HTTP 200 Content-Type: application/json
     {
         "Id": 84,
         "StringId": "CDMA",
         "InputType": "YesNo",
         "IsRequired": false,
-        "LanguageInvariantUnit": "mm",
+        "LanguageInvariantUnit": null,
         "DisplayName": "CDMA",
+        "Unit": null,
         "Options": []
     }
-]</pre>
-
-
-
-<h2 id='getting-a-fielddefinition' class='clickable-header top-level-header'>Getting a FieldDefinition</h2>
-
-<p>
-
-</p>
-
-<h4>Request</h4>
-
-<pre>
-GET /FieldDefinitions({FieldDefinitionId})
-</pre>
-
-#### Headers
-
-
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-
-
-
-#### URI Parameters
-
-
-* `FieldDefinitionId` (**Required**)  - Identifier for the {{FieldDefinition}} 
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /FieldDefinitions(84)
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
-
-#### Response
-
-
-[FieldDefinition](#fielddefinition)
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-
-{
-    "Id": 84,
-    "StringId": "CDMA",
-    "InputType": "YesNo",
-    "IsRequired": false,
-    "LanguageInvariantUnit": "mm",
-    "DisplayName": "CDMA",
-    "Options": []
-}</pre>
-
-
 
 ## Errors
 

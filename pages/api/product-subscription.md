@@ -4,297 +4,229 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 09-11-2015
 summary: 
 ---
-{% include linkrefs.html %}
 
+{% include linkrefs.html %}
 
 ## Overview
 
 Suppliers have the ability to add products to their subscribable lists and retrieve a list of companies from a subscription.
 
-
 ## Endpoints
 
-* Sandbox: <a href="https://productsubscriptionsdemo.iqmetrix.net/v1">https://productsubscriptionsdemo.iqmetrix.net/v1</a>
-* Production: <a href="https://productsubscriptions.iqmetrix.net/v1">https://productsubscriptions.iqmetrix.net/v1</a>
+* Sandbox: https://productsubscriptionsdemo.iqmetrix.net/v1
+* Production: https://productsubscriptions.iqmetrix.net/v1
 
 ## Resources
 
-
-###Subscription
+### Subscription
 
 | Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Companies | Array[[array](#array)] | Companies for the subscription |  |
+|:-----|:---------|:------------|:--------|
+| Companies | Array[Object] | Companies for the subscription | |
+| Companies.DateSubscribedUtc | DateTime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
+| Companies.Id | Integer | Company identifier | `60454` |
+| Companies.Name | String | Company Name | `Mark Inc` |
 | ListId | GUID | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 
-###Company
+### SubscribableList
 
 | Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| DateSubscribedUtc | DateTime | Date company subscribed to product subscription, in UTC | `2015-09-23T23:48:37.744Z` |
-| Id | Integer | Company identifier | `60454` |
-| Name | String | Company Name | `Mark Inc` |
-
-###SubscribableList
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| EntityId | Integer | [Supplier](/api/entity-store/#supplier) identifier | `14` |
+|:-----|:---------|:------------|:--------|
+| EntityId | Integer | [Supplier](/api/entity-store/#supplier) identifier | `60455` |
 | Id | GUID | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 | Name | String | Title of product subscription | `Joe's Subscription List` |
-| Products | Array[[array](#array)] | Products for the subscribable list |  |
+| Products | Array[Product] | Products for the subscribable list | |
+| Products.Dropshippable | Boolean | If the product is dropshippable | `true` |
+| Products.Price | Decimal | Product price | `28.99` |
+| Products.ProductName | String | Name of product | `iPhone 6 Flexshield Case` |
+| Products.ProductSlugs | Array(String) | List of slugs that match the vendor sku |  |
+| Products.VendorSku | String | Produt Sku | `9101AGAP6` |
+| Products.Version | Integer | Product revision | `2` |
 | Version | Integer | Subscription revision | `12` |
 
-###Product
+## Getting All Companies in a Product Subscription
 
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Dropshippable | Boolean | If the product is dropshippable | `true` |
-| Price | Decimal | Product price | `28.99` |
-| ProductName | String | Name of product | `iPhone 6 Flexshield Case` |
-| ProductSlugs | Array[string] | List of slugs that match the vendor sku | `M5218` |
-| VendorSku | String | Produt Sku | `9101AGAP6` |
-| Version | Integer | Product revision | `2` |
+#### Request
 
-
-
-
-
-
-<h2 id='getting-all-companies-in-a-product-subscription' class='clickable-header top-level-header'>Getting All Companies in a Product Subscription</h2>
-
-<p>
-
-</p>
-
-<h4>Request</h4>
-
-<pre>
-GET /subscription({ListId})
-</pre>
-
+    GET /subscription({ListId})
+    
 #### Headers
 
-
-* `Authorization: Bearer (Access Token)`
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
+#### URI Parameter
 
+* `ListId` (**Required**)
 
-#### URI Parameters
+##### Example
 
-
-* `ListId` (**Required**) 
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
+    GET /subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
 
 #### Response
 
+##### Example
 
-Array[[Subscription](#subscription)]
+    HTTP 200 OK Content-Type: application/json
+    {
+        "ListId": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
+        "Companies": [
+            {
+                "Id": 60454,
+                "Name": "Company 1",
+                "DateSubscribedUtc": "2015-10-01T18:46:25.774Z"
+            },
+            {
+                "Id": 24165,
+                "Name": "Test Partner Setup",
+                "DateSubscribedUtc": "2015-01-15T18:23:02.167Z"
+            },
+            
+            ...
 
-<h5>Example</h5>
+        ]
+    }
 
-<pre>
-HTTP 200 Content-Type: application/json
+## Getting a Subscribable List
 
-{
-  "ListId": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-  "Companies": [
-      {
-          "Id": 60454,
-          "Name": "Company 1",
-          "DateSubscribedUtc": "2015-10-01T18:46:25.774Z"
-      },
-      {
-          "Id": 24165,
-          "Name": "Test Partner Setup",
-          "DateSubscribedUtc": "2015-01-15T18:23:02.167Z"
-      },
-      ...  
-  ]
-}
+#### Request
 
-</pre>
-
-
-
-<h2 id='getting-a-subscribable-list' class='clickable-header top-level-header'>Getting a Subscribable List</h2>
-
-<p>
-
-</p>
-
-<h4>Request</h4>
-
-<pre>
-GET /subscribablelists({SubscribableListId})
-</pre>
-
+    GET /subscribablelists({Id})
+    
 #### Headers
 
-
-* `Authorization: Bearer (Access Token)`
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 
+#### URI Parameter
 
+* `Id` (**Required**) - Identifier for a {{SubscribableList}}
 
-#### URI Parameters
+##### Example
 
-
-* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}}` 
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
+    GET /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
 
 #### Response
 
+* {{SubscribableList}}
 
-[SubscribableList](#subscribablelist)
+##### Example
 
-<h5>Example</h5>
+    HTTP 200 OK Content-Type: application/json
+    {
+        "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
+        "EntityId": 60454,
+        "Name": "Joe's Product List",
+        "Products": [
+            {
+                "ProductName": "Product Name",
+                "VendorSku": "123456789",
+                "Price": 11.11,
+                "Dropshippable": true,
+                "ProductSlugs": [
+                    "M5218"
+                ],
+                "Version": 1
+            },
+            {
+                "ProductName": "iPhone 6 Flexshield Case",
+                "VendorSku": "987321654",
+                "Price": 28.99,
+                "Dropshippable": true,
+                "ProductSlugs": [],
+                "Version": 1
+            }
+        ],
+        "Version": 2
+    }
 
-<pre>
-HTTP 200 Content-Type: application/json
+## Updating Products in a Subscribable List
 
-{
-    "EntityId": 14,
-    "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-    "Name": "Joe's Subscription List",
-    "Products": [
-        {
-            "Dropshippable": true,
-            "Price": 28.99,
-            "ProductName": "iPhone 6 Flexshield Case",
-            "ProductSlugs": [
-                "M5218"
-            ],
-            "VendorSku": "9101AGAP6",
-            "Version": 2
-        }
-    ],
-    "Version": 12
-}</pre>
+{{note}}
+The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.
+{{end}}
 
+#### Request
 
-
-<h2 id='updating-products-in-a-subscribable-list' class='clickable-header top-level-header'>Updating Products in a Subscribable List</h2>
-
-<p>
-{{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
-
-</p>
-
-<h4>Request</h4>
-
-<pre>
-PUT /subscribablelists({SubscribableListId})
-</pre>
-
+    PUT /subscribablelists({Id})
+    {
+        {SubscribableList}
+    }
+   
 #### Headers
 
-
-* `Authorization: Bearer (Access Token)`
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: application/json`
 
+#### URI Parameter
 
-
-#### URI Parameters
-
-
-* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}}` 
-
-
+* `Id` (**Required**) - Identifier for a {{SubscribableList}}
 
 #### Request Parameters
 
-  * `EntityId` (**Required**)
-  * `Name` (**Required**)
-  * `Products` (**Required**)
-    * `Price` (Optional)
-    * `ProductName` (Optional)
-    * `VendorSku` (**Required**)
-    * `Version` (Optional)
+* `EntityId` (**Required**)
+* `Name` (**Required**)
+* `Products` (**Required**)
+  * `ProductName` (**Required**)
+  * `VendorSku` (**Required**)
+  * `Price` (Optional)
+  * `Dropshipable` (Optional)
 
+##### Example
 
-<h5>Example</h5>
-
-<pre>
-PUT /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-   "EntityId": 60455,
-   "Name": "Joe's Product List",
-   "Products": [
-       {
-           "ProductName": "Product Name",
-           "VendorSku": "123456789",
-           "Price": 11.11,
-           "Dropshippable": true
-       }
-   ]          
-}
-
-</pre>
+    PUT /subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+    Content-Type: application/json
+    {
+        "EntityId": 60455,
+        "Name": "Joe's Product List",
+        "Products": [
+            {
+                "ProductName": "Product Name",
+                "VendorSku": "123456789",
+                "Price": 11.11,
+                "Dropshippable": true
+            }
+        ]
+    }
 
 #### Response
 
+* {{SubscribableList}}
 
-[SubscribableList](#subscribablelist)
+##### Example
 
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-
-{
-  "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
-    "EntityId": 60455,
-    "Name": "Joe's Product List",
-    "Products": [
-        {
-            "ProductName": "Product Name",
-            "VendorSku": "123456789",
-            "Price": 11.11,
-            "Dropshipable": true,
-            "ProductSlugs": [],
-            "Version": 1
-        }
-    ],
-    "Version": 2
-}
-
-</pre>
-
-
-
+    HTTP 200 OK Content-Type: application/json
+    {
+        "Id": "2c7dccd9-49ba-42ac-bffb-edcc08f40773",
+        "EntityId": 60455,
+        "Name": "Joe's Product List",
+        "Products": [
+            {
+                "ProductName": "Product Name",
+                "VendorSku": "123456789",
+                "Price": 11.11,
+                "Dropshipable": true,
+                "ProductSlugs": [],
+                "Version": 1
+            }
+        ],
+        "Version": 2
+    }
+    
 ## Errors
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|
 | `HTTP 400` | `Validation failed. EntityId does not belong to vendor` | Occurs when entering an incorrect EntityId during for 'Add Product' |
 | `HTTP 400` | `<Field> should not be empty` | Occurs if Required Parameter is missing for 'Add Product' |
-| `HTTP 404` | `Document not found` | Occurs when entering an incorrect ID in the uri | 
+| `HTTP 404` | `Document not found` | Occurs when entering an incorrect ID in the uri |
