@@ -1,10 +1,10 @@
 ---
-title:  API Reference
+title: 
 permalink: /api/front-page/
 tags: []
 keywords: 
 audience: 
-last_updated: 09-11-2015
+last_updated: 01-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -13,9 +13,9 @@ summary:
 
 ### API Reference
 
-The iQmetrix APIs are centered around [REST](http://en.wikipedia.org/wiki/Representational_state_transfer), while our legacy APIs use SOAP. Our APIs use standard HTTP response codes specific to iQmetrix to indicate API errors.
+The iQmetrix APIs are centered around [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) while our legacy APIs use SOAP. Our APIs use standard HTTP response codes specific to iQmetrix to indicate API errors.
 
-We use built-in HTTP features, such as HTTP authentication and HTTP verbs, which are understood by HTTP clients. [JSON](http://json.org/) is returned by all API responses, while [XML](http://en.wikipedia.org/wiki/XML) is returned from our legacy APIs.
+We use built-in HTTP features, such as HTTP authentication and HTTP verbs, which are understood by HTTP clients. [JSON](http://json.org/) is returned by all API responses while [XML](http://en.wikipedia.org/wiki/XML) is returned from our legacy APIs.
 
 ### Environments
 
@@ -149,5 +149,9 @@ Read our [Security and Access Control User Guide]() to learn more about integrat
 ##### [User Manager API](/api/user-manager)
 
 * Simplify security policies management (password complexity, password changes, etc.)
-* Reduce time to manage users, credentials and access rights
+* Reduce time to manage users, credentials, and access rights
 * Onboarding and offboarding of employees
+
+## Support
+
+For any questions or comments regarding the APIs, please contact <a href="mailto:{{site.support_email}}?subject=API Question">API Support</a>.
