@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -184,7 +184,7 @@ POST /Companies({CompanyId})/Orders
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -270,7 +270,7 @@ GET /Companies({CompanyId})/Orders
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -339,8 +339,8 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
@@ -442,8 +442,8 @@ GET /Companies({CompanyId})/Orders({OrderId})/Items
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
@@ -518,8 +518,8 @@ GET /Companies({CompanyId})/Orders({OrderId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* OrderId (**Required**)  - Identifier for the {{Order}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} 
 
 
 
@@ -586,8 +586,8 @@ PUT /Companies({CompanyId})/Orders({OrderId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* OrderId (**Required**)  - Identifier for the {{Order}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} 
 
 
 
@@ -680,8 +680,8 @@ POST /Companies({CompanyId})/Orders({OrderId})/Process
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* OrderId (**Required**)  - Identifier for the {{Order}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} 
 
 
 
@@ -756,7 +756,7 @@ POST /Companies({CompanyId})/OrderFull
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -900,7 +900,7 @@ GET /Companies({CompanyId})/OrderFull
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -999,8 +999,8 @@ GET /Companies({CompanyId})/OrderFull({OrderId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
@@ -1099,8 +1099,8 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
@@ -1254,8 +1254,8 @@ GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {L
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -1323,8 +1323,8 @@ GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* PrintableId (**Required**)  - An {{Order}} identifier printed on invoices 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `PrintableId` (**Required**)  - An {{Order}} identifier printed on invoices 
 
 
 

@@ -4,7 +4,7 @@ permalink: /api/supplier-availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -72,7 +72,7 @@ POST /Suppliers({SupplierId})/Availability
 #### URI Parameters
 
 
-* SupplierId (**Required**)  - Identifier for the {{Supplier}} 
+* `SupplierId` (**Required**)  - Identifier for the {{Supplier}} 
 
 
 

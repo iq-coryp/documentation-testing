@@ -4,7 +4,7 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -212,7 +212,7 @@ GET /Companies({CompanyId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -282,7 +282,7 @@ GET /Companies({CompanyId})/Tree
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -342,8 +342,8 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* NodeId (**Required**)  - Identifier of the parent for the {{Location}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} 
 
 
 
@@ -655,9 +655,9 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* NodeId (**Required**)  - Identifier of the parent for the {{Location}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -831,8 +831,8 @@ GET /Companies({CompanyId})/Locations({LocationId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -1006,8 +1006,8 @@ PUT /Companies({CompanyId})/Locations({LocationId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -1313,7 +1313,7 @@ GET /Companies({CompanyId})/Locations
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -1494,8 +1494,8 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* NodeId (**Required**)  - Identifier of a Node 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `NodeId` (**Required**)  - Identifier of a Node 
 
 
 
@@ -1574,8 +1574,8 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* NodeId (**Required**)  - Identifier of a Node 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `NodeId` (**Required**)  - Identifier of a Node 
 
 
 
@@ -1656,8 +1656,8 @@ DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* NodeId (**Required**)  - Identifier of a Node to be deleted 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `NodeId` (**Required**)  - Identifier of a Node to be deleted 
 
 
 
@@ -1704,8 +1704,8 @@ GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* ClientEntityId (**Required**)  - The value to search for 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `ClientEntityId` (**Required**)  - The value to search for 
 
 
 

@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -310,10 +310,10 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
-* CarrierId (**Required**)  - Identifier for the {{Carrier}} 
-* ActivationId (**Required**)  - Identifier for the {{Activation}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
+* `ActivationId` (**Required**)  - Identifier for the {{Activation}} 
 
 
 
@@ -653,11 +653,11 @@ GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=C
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CarrierId (**Required**)  - Identifier for the {{Carrier}} 
-* ConfirmationDate (Optional)  - Limits returned records to ones that were created after the specified date 
-* Skip (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details 
-* Top (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
+* `ConfirmationDate` (Optional)  - Limits returned records to ones that were created after the specified date 
+* `Skip` (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details 
+* `Top` (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
 
 
 

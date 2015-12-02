@@ -4,7 +4,7 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -127,7 +127,7 @@ POST /ProductFeeds({FeedId})/Products
 #### URI Parameters
 
 
-* FeedId (**Required**)  - Product Feed identifier 
+* `FeedId` (**Required**)  - Product Feed identifier 
 
 
 
@@ -325,7 +325,7 @@ GET /ProductFeeds({FeedId})/Products
 #### URI Parameters
 
 
-* FeedId (**Required**)  - Product Feed identifier 
+* `FeedId` (**Required**)  - Product Feed identifier 
 
 
 
@@ -411,7 +411,7 @@ GET /ProductFeeds({FeedId})
 #### URI Parameters
 
 
-* FeedId (**Required**) 
+* `FeedId` (**Required**) 
 
 
 
@@ -501,8 +501,8 @@ DELETE /ProductFeeds({FeedId})/Products({ProductId})
 #### URI Parameters
 
 
-* FeedId (**Required**) 
-* ProductId (**Required**) 
+* `FeedId` (**Required**) 
+* `ProductId` (**Required**) 
 
 
 

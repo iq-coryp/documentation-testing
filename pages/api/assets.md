@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -114,7 +114,7 @@ GET /assets/{AssetId}
 #### URI Parameters
 
 
-* AssetId (**Required**)  - Identifier for the {{Asset}} 
+* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
 
 
 
@@ -165,7 +165,7 @@ GET /images/{AssetId}
 #### URI Parameters
 
 
-* AssetId (**Required**)  - Identifier for the {{Asset}} 
+* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
 
 
 

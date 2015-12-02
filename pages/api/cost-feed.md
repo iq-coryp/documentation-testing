@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -69,7 +69,7 @@ POST /Suppliers({SupplierId})/Cost
 #### URI Parameters
 
 
-* SupplierId (**Required**)  - Identifier of the Supplier 
+* `SupplierId` (**Required**)  - Identifier of the Supplier 
 
 
 

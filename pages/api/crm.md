@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -219,7 +219,7 @@ POST /Companies({CompanyId})/Customers
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -294,7 +294,7 @@ GET /Companies({CompanyId})/Customers
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -424,8 +424,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
 
 
 
@@ -485,8 +485,8 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
 
 
 
@@ -563,8 +563,8 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
 
 
 
@@ -608,8 +608,8 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -695,8 +695,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -808,9 +808,9 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier of the Company 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} 
-* AddressId (**Required**)  - Identifier for the {{Address}} 
+* `CompanyId` (**Required**)  - Identifier of the Company 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* `AddressId` (**Required**)  - Identifier for the {{Address}} 
 
 
 
@@ -877,9 +877,9 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier of the Company 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} 
-* AddressId (**Required**)  - Identifier for the {{Address}} 
+* `CompanyId` (**Required**)  - Identifier of the Company 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* `AddressId` (**Required**)  - Identifier for the {{Address}} 
 
 
 
@@ -970,9 +970,9 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier of the Company 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} 
-* AddressId (**Required**)  - Identifier for the {{Address}} 
+* `CompanyId` (**Required**)  - Identifier of the Company 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* `AddressId` (**Required**)  - Identifier for the {{Address}} 
 
 
 
@@ -1016,7 +1016,7 @@ POST /Companies({CompanyId})/CustomerFull
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -1180,7 +1180,7 @@ GET /Companies({CompanyId})/CustomerFull
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -1394,8 +1394,8 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Unique identifier for the {{Customer}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
@@ -1506,8 +1506,8 @@ PUT /Companies({CompanyId})/CustomerFull({CustomerId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Unique identifier for the {{Customer}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
@@ -1686,8 +1686,8 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Unique identifier for the {{Customer}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
@@ -1731,8 +1731,8 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -1802,8 +1802,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -1897,9 +1897,9 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
-* ContactMethodId (**Required**)  - Identifier for the {{ContactMethod}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
@@ -1957,9 +1957,9 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
-* ContactMethodId (**Required**)  - Identifier for the {{ContactMethod}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
@@ -2032,9 +2032,9 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
-* ContactMethodId (**Required**)  - Identifier for the {{ContactMethod}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
@@ -2077,10 +2077,10 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* FilterQuery (Optional)  - Filter on customers 
-* Skip (Optional)  - Number of records to skip 
-* Top (Optional)  - Number of records to take 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `FilterQuery` (Optional)  - Filter on customers 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -2158,8 +2158,8 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* FilterQuery (Optional)  - The filter to apply 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `FilterQuery` (Optional)  - The filter to apply 
 
 
 

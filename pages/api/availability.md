@@ -4,7 +4,7 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -54,9 +54,9 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -106,8 +106,8 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Identifier for the {{CatalogItem}} 
 
 
 

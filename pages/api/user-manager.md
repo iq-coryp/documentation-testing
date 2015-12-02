@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -202,7 +202,7 @@ GET /Users({UserId})
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -279,7 +279,7 @@ PUT /Users({UserId})
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -391,7 +391,7 @@ DELETE /Users({UserId})
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -434,9 +434,9 @@ GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* Skip (Optional)  - Number of records to skip 
-* Top (Optional)  - Number of records to take 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -525,10 +525,10 @@ GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* Terms (**Required**)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive. 
-* Skip (Optional)  - Number of records to skip 
-* Top (Optional)  - Number of records to take 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `Terms` (**Required**)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive. 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -621,8 +621,8 @@ PUT /Users({UserId})/Locations({LocationId})
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -667,8 +667,8 @@ DELETE /Users({UserId})/Locations({LocationId})
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -712,7 +712,7 @@ GET /Users({UserId})/Locations
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -762,10 +762,10 @@ GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip=
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* ClientUserId (**Required**)  - Identifier for the {{User}} in an external system 
-* Skip (Optional)  - Number of records to skip 
-* Top (Optional)  - Number of records to take 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `ClientUserId` (**Required**)  - Identifier for the {{User}} in an external system 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -846,7 +846,7 @@ POST /Users({UserId})/Lock
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -897,7 +897,7 @@ POST /Users({UserId})/Unlock
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -943,7 +943,7 @@ POST /Users({UserId})/Enable
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier for the {{User}} 
+* `UserId` (**Required**)  - Identifier for the {{User}} 
 
 
 

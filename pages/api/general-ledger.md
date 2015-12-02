@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -137,9 +137,9 @@ GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* Skip (Optional)  - Number of records to skip 
-* Top (Optional)  - Number of records to take 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 
@@ -248,11 +248,11 @@ GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* Skip (Optional)  - Number of records to skip 
-* Top (Optional)  - Number of records to take 
-* StartDate (**Required**)  - Date at which to begin search request, in UTC 
-* EndDate (**Required**)  - Date at which to end search request, in UTC 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
+* `StartDate` (**Required**)  - Date at which to begin search request, in UTC 
+* `EndDate` (**Required**)  - Date at which to end search request, in UTC 
 
 
 

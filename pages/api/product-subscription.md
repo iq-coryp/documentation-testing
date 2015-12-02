@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -84,7 +84,7 @@ GET /subscription({ListId})
 #### URI Parameters
 
 
-* ListId (**Required**) 
+* `ListId` (**Required**) 
 
 
 
@@ -145,7 +145,7 @@ GET /subscribablelists({SubscribableListId})
 #### URI Parameters
 
 
-* SubscribableListId (**Required**)  - Identifier for a {{SubscribableList}} 
+* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}} 
 
 
 
@@ -209,7 +209,7 @@ PUT /subscribablelists({SubscribableListId})
 #### URI Parameters
 
 
-* SubscribableListId (**Required**)  - Identifier for a {{SubscribableList}} 
+* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}} 
 
 
 

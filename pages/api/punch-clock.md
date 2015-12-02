@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -72,11 +72,11 @@ GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* StartDate (Optional)  - Date at which to begin search request, in UTC 
-* EndDate (Optional)  - Date at which to end search request, in UTC 
-* Skip (Optional)  - Number of records to skip 
-* Top (Optional)  - Number of records to take 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `StartDate` (Optional)  - Date at which to begin search request, in UTC 
+* `EndDate` (Optional)  - Date at which to end search request, in UTC 
+* `Skip` (Optional)  - Number of records to skip 
+* `Top` (Optional)  - Number of records to take 
 
 
 

@@ -4,7 +4,7 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -100,7 +100,7 @@ GET /Entities({EntityId})/Permissions
 #### URI Parameters
 
 
-* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
 
 
@@ -156,7 +156,7 @@ POST /Entities({EntityId})/SecurityRoles
 #### URI Parameters
 
 
-* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
 
 
@@ -211,7 +211,7 @@ GET /Entities({EntityId})/SecurityRoles
 #### URI Parameters
 
 
-* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
 
 
@@ -262,9 +262,9 @@ PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permissio
 #### URI Parameters
 
 
-* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
-* PermissionId (**Required**)  - Identifier of a Permission 
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+* `PermissionId` (**Required**)  - Identifier of a Permission 
 
 
 
@@ -308,9 +308,9 @@ DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permis
 #### URI Parameters
 
 
-* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
-* PermissionId (**Required**)  - Identifier of a Permission 
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+* `PermissionId` (**Required**)  - Identifier of a Permission 
 
 
 
@@ -353,8 +353,8 @@ GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
 #### URI Parameters
 
 
-* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
+* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
 
 
 
@@ -410,7 +410,7 @@ POST /Users({UserId})/AssignedRoles
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier of a User 
+* `UserId` (**Required**)  - Identifier of a User 
 
 
 
@@ -468,7 +468,7 @@ GET /Users({UserId})/AssignedRoles
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier of a User 
+* `UserId` (**Required**)  - Identifier of a User 
 
 
 
@@ -519,8 +519,8 @@ DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
 #### URI Parameters
 
 
-* UserId (**Required**)  - Identifier of a User 
-* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
+* `UserId` (**Required**)  - Identifier of a User 
+* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
 
 
 

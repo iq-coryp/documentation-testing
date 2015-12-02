@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -74,7 +74,7 @@ GET /Companies({CompanyId})/Catalog/Items
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -126,8 +126,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -245,8 +245,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -326,8 +326,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -383,10 +383,10 @@ GET /Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryO
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CategoryOrClassificationId (Optional)  - Identifier for the {{Category}} or {{Classification}} 
-* Page (Optional)  - Page to display, if not specified defaults to 1 
-* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CategoryOrClassificationId` (Optional)  - Identifier for the {{Category}} or {{Classification}} 
+* `Page` (Optional)  - Page to display, if not specified defaults to 1 
+* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
 
 
@@ -465,10 +465,10 @@ GET /Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Pag
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* ManufacturerIds (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
-* Page (Optional)  - Page to display, if not specified defaults to 1 
-* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `ManufacturerIds` (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
+* `Page` (Optional)  - Page to display, if not specified defaults to 1 
+* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
 
 
@@ -547,10 +547,10 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&Pag
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* VendorIds (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
-* Page (Optional)  - Page to display, if not specified defaults to 1 
-* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `VendorIds` (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
+* `Page` (Optional)  - Page to display, if not specified defaults to 1 
+* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
 
 
@@ -629,9 +629,9 @@ GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vend
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* VendorSku (**Required**)  - Vendor SKU to search for 
-* VendorId (Optional)  - Identifier for a {{Vendor}} to search for 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `VendorSku` (**Required**)  - Vendor SKU to search for 
+* `VendorId` (Optional)  - Identifier for a {{Vendor}} to search for 
 
 
 
@@ -687,10 +687,10 @@ GET /Companies({CompanyId})/Catalog/Search?IsDropshippable={IsDropShippable}&Pag
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* IsDropShippable (Optional)  - True to display products available for shipping, false to display products not available for shipping 
-* Page (Optional)  - Page to display, if not specified defaults to 1 
-* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `IsDropShippable` (Optional)  - True to display products available for shipping, false to display products not available for shipping 
+* `Page` (Optional)  - Page to display, if not specified defaults to 1 
+* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
 
 
@@ -772,12 +772,12 @@ GET /Companies({CompanyId})/Catalog/Search?&SearchTerms={SearchTerms}&OrderBy={O
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* SearchTerms (Optional)  - Search terms 
-* OrderBy (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
-* OrderDir (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
-* Page (Optional)  - Page to display, if not specified defaults to 1 
-* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `SearchTerms` (Optional)  - Search terms 
+* `OrderBy` (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
+* `OrderDir` (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
+* `Page` (Optional)  - Page to display, if not specified defaults to 1 
+* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
 
 
@@ -856,16 +856,16 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* VendorIds (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
-* ManufacturerIds (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
-* IsDropShippable (Optional)  - True to display products available for shipping, false to display products not available for shipping 
-* CategoryOrClassificationId (Optional)  - Identifier for the {{Category}} or {{Classification}} 
-* SearchTerms (Optional)  - Search terms 
-* OrderBy (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
-* OrderDir (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
-* Page (Optional)  - Page to display, if not specified defaults to 1 
-* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `VendorIds` (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
+* `ManufacturerIds` (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
+* `IsDropShippable` (Optional)  - True to display products available for shipping, false to display products not available for shipping 
+* `CategoryOrClassificationId` (Optional)  - Identifier for the {{Category}} or {{Classification}} 
+* `SearchTerms` (Optional)  - Search terms 
+* `OrderBy` (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
+* `OrderDir` (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
+* `Page` (Optional)  - Page to display, if not specified defaults to 1 
+* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
 
 

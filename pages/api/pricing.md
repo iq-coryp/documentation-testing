@@ -4,7 +4,7 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -83,7 +83,7 @@ POST /Companies({CompanyId})/Pricing
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -150,9 +150,9 @@ POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId}
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -217,9 +217,9 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -270,9 +270,9 @@ PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* LocationId (**Required**)  - Identifier for the {{Location}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -309,8 +309,8 @@ POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -375,8 +375,8 @@ GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -429,8 +429,8 @@ PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -466,7 +466,7 @@ GET /Companies({CompanyId})/PricingTerms
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -521,8 +521,8 @@ GET /Companies({CompanyId})/PricingTerms({PricingTermId})
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* PricingTermId (**Required**)  - Identifier for the {{PricingTerm}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
 
 
 
@@ -575,9 +575,9 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={Prici
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
-* PricingTermId (**Required**)  - Identifier for the {{PricingTerm}} 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
 
 
 

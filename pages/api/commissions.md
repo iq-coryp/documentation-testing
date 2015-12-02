@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -130,11 +130,11 @@ GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datet
 #### URI Parameters
 
 
-* CompanyId (**Required**)  - Identifier for the {{Company}} 
-* StartDate (Optional)  - Date at which to begin search request, in UTC 
-* EndDate (Optional)  - Date at which to end search request, in UTC 
-* Skip (Optional)  - The number of items to skip from the entire set of results. Defaults to 0 if no $skip value is specified. If a value less than 0 is specified, the URI is considered malformed 
-* Top (Optional)  - Maximum number of items to include in the response. Defaults to 50 if no $top value is specified. Acceptable values are in the range [0 
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `StartDate` (Optional)  - Date at which to begin search request, in UTC 
+* `EndDate` (Optional)  - Date at which to end search request, in UTC 
+* `Skip` (Optional)  - The number of items to skip from the entire set of results. Defaults to 0 if no $skip value is specified. If a value less than 0 is specified, the URI is considered malformed 
+* `Top` (Optional)  - Maximum number of items to include in the response. Defaults to 50 if no $top value is specified. Acceptable values are in the range [0 
 
 
 

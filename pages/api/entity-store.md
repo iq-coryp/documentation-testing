@@ -4,7 +4,7 @@ permalink: /api/entity-store/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -172,7 +172,7 @@ GET /Carriers({CarrierId})
 #### URI Parameters
 
 
-* CarrierId (**Required**)  - Identifier for the {{Carrier}} 
+* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
 
 
 
@@ -295,7 +295,7 @@ GET /Manufacturers({ManufacturerId})
 #### URI Parameters
 
 
-* ManufacturerId (**Required**)  - Identifier for the {{Manufacturer}} 
+* `ManufacturerId` (**Required**)  - Identifier for the {{Manufacturer}} 
 
 
 
@@ -418,7 +418,7 @@ GET /Suppliers({SupplierId})
 #### URI Parameters
 
 
-* SupplierId (**Required**)  - Identifier for the {{Supplier}} 
+* `SupplierId` (**Required**)  - Identifier for the {{Supplier}} 
 
 
 
