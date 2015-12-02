@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -90,9 +90,9 @@ POST /Users/importExisting
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -100,7 +100,7 @@ POST /Users/importExisting
 
 #### Request Parameters
 
-<ul><li>FirstName (<strong>Required</strong>) </li><li>LastName (<strong>Required</strong>) </li><li>UserName (<strong>Required</strong>) </li><li>Attributes (<strong>Required</strong>) </li><li>ClientUserId (<strong>Required</strong>) </li><li>Email (<strong>Required</strong>) </li><li>ParentEntityId (<strong>Required</strong>) </li><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>CountryCode (Optional) </li><li>Zip (Optional) </li></ul><li>JobTitle (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Number (Optional) </li><li>Extension (Optional) </li><li>Type (Optional) </li></ul><li>Picture (Optional) </li><li>Version (Optional) </li></ul>
+<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>Attributes</code> (<strong>Required</strong>) </li><li><code>ClientUserId</code> (<strong>Required</strong>) </li><li><code>Email</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -194,8 +194,8 @@ GET /Users({UserId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -270,9 +270,9 @@ PUT /Users({UserId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -285,7 +285,7 @@ PUT /Users({UserId})
 
 #### Request Parameters
 
-<ul><li>FirstName (<strong>Required</strong>) </li><li>LastName (<strong>Required</strong>) </li><li>UserName (<strong>Required</strong>) </li><li>Attributes (<strong>Required</strong>) </li><li>ClientUserId (<strong>Required</strong>) </li><li>Email (<strong>Required</strong>) </li><li>ParentEntityId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>CountryCode (Optional) </li><li>Zip (Optional) </li></ul><li>IsActive (<strong>Required</strong>) </li><li>JobTitle (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Number (Optional) </li><li>Extension (Optional) </li><li>Type (Optional) </li></ul><li>Picture (Optional) </li><li>Version (Optional) </li></ul>
+<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>Attributes</code> (<strong>Required</strong>) </li><li><code>ClientUserId</code> (<strong>Required</strong>) </li><li><code>Email</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>IsActive</code> (<strong>Required</strong>) </li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -384,7 +384,7 @@ DELETE /Users({UserId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 
@@ -426,8 +426,8 @@ GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -452,7 +452,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>_links (Object) - Relative URL's used for Pagination</li><ul><li>prev (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li>self (String) - The request that returned these results</li><li>next (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li>_metadata (Object) - Data representing Pagination details</li><ul><li>count (Integer) - The total number of results returned from the request</li><li>skip (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li>top (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li>items (Array[<a href='#user'>User</a>]) </li></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li></ul>
 
 <h5>Example</h5>
 
@@ -517,8 +517,8 @@ GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -544,7 +544,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>_links (Object) - Relative URL's used for Pagination</li><ul><li>prev (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li>self (String) - The request that returned these results</li><li>next (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li>_metadata (Object) - Data representing Pagination details</li><ul><li>count (Integer) - The total number of results returned from the request</li><li>skip (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li>top (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li>items (Array[<a href='#user'>User</a>]) </li></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li></ul>
 
 <h5>Example</h5>
 
@@ -612,9 +612,9 @@ PUT /Users({UserId})/Locations({LocationId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -659,8 +659,8 @@ DELETE /Users({UserId})/Locations({LocationId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -704,8 +704,8 @@ GET /Users({UserId})/Locations
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -728,7 +728,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>UserId (Integer) </li><li>LocationIDs (Array) - Location Ids for {{Locations}} assigned to the {{User}}</li></ul>
+<ul><li><code>UserId</code> (Integer) </li><li><code>LocationIDs</code> (Array) - Location Ids for {{Locations}} assigned to the {{User}}</li></ul>
 
 <h5>Example</h5>
 
@@ -754,8 +754,8 @@ GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip=
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -837,9 +837,9 @@ POST /Users({UserId})/Lock
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -888,9 +888,9 @@ POST /Users({UserId})/Unlock
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -934,9 +934,9 @@ POST /Users({UserId})/Enable
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 

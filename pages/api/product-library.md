@@ -4,7 +4,7 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -154,8 +154,8 @@ GET /Products/FindByIdentifier?{Options}
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -178,7 +178,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Products (Array) </li><ul><li>Slug (String) </li></ul></ul>
+<ul><li><code>Products</code> (Array) </li><ul><li><code>Slug</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 

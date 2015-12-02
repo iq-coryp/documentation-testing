@@ -4,7 +4,7 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -118,9 +118,9 @@ POST /ProductFeeds({FeedId})/Products
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -133,7 +133,7 @@ POST /ProductFeeds({FeedId})/Products
 
 #### Request Parameters
 
-<ul><li>Classification (<strong>Required</strong>) </li><ul><li>Id (<strong>Required</strong>) </li><li>TreeId (<strong>Required</strong>) </li></ul><li>Fields (<strong>Required</strong>) </li><ul><li>Definition (<strong>Required</strong>) </li><ul><li>Id (Optional) </li></ul><li>Value (<strong>Required</strong>) </li></ul><li>ModelName (<strong>Required</strong>) </li><li>Assets (Optional) </li><ul><li>AssetUrl (<strong>Required</strong>) </li></ul><li>ClassificationTreeName (Optional) </li><li>LastModifiedByVendorUtc (Optional) </li><li>Manufacturer (Optional) </li><li>ManufacturerSku (Optional) </li><li>UPC (Optional) </li><li>VendorSkus (Optional) </li><ul><li>Description (Optional) </li><li>Sku (Optional) </li><li>VendorName (Optional) </li></ul></ul>
+<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>TreeId</code> (<strong>Required</strong>) </li></ul><li><code>Fields</code> (<strong>Required</strong>) </li><ul><li><code>Definition</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Value</code> (<strong>Required</strong>) </li></ul><li><code>ModelName</code> (<strong>Required</strong>) </li><li><code>Assets</code> (Optional) </li><ul><li><code>AssetUrl</code> (<strong>Required</strong>) </li></ul><li><code>ClassificationTreeName</code> (Optional) </li><li><code>LastModifiedByVendorUtc</code> (Optional) </li><li><code>Manufacturer</code> (Optional) </li><li><code>ManufacturerSku</code> (Optional) </li><li><code>UPC</code> (Optional) </li><li><code>VendorSkus</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Sku</code> (Optional) </li><li><code>VendorName</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -317,8 +317,8 @@ GET /ProductFeeds({FeedId})/Products
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -403,8 +403,8 @@ GET /ProductFeeds({FeedId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -494,7 +494,7 @@ DELETE /ProductFeeds({FeedId})/Products({ProductId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 

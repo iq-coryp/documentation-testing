@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -175,9 +175,9 @@ POST /Companies({CompanyId})/Orders
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -190,7 +190,7 @@ POST /Companies({CompanyId})/Orders
 
 #### Request Parameters
 
-<ul><li>BillingCustomerId (<strong>Required</strong>) </li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>OrderExpiryHours (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>TenderId (Optional) </li></ul>
+<ul><li><code>BillingCustomerId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -262,8 +262,8 @@ GET /Companies({CompanyId})/Orders
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -330,9 +330,9 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -346,7 +346,7 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 
 #### Request Parameters
 
-<ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>TrackingNumber (<strong>Required</strong>) </li><li>Quantity (Optional) </li></ul></ul>
+<ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>TrackingNumber</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -434,8 +434,8 @@ GET /Companies({CompanyId})/Orders({OrderId})/Items
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -510,8 +510,8 @@ GET /Companies({CompanyId})/Orders({OrderId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -577,9 +577,9 @@ PUT /Companies({CompanyId})/Orders({OrderId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -593,7 +593,7 @@ PUT /Companies({CompanyId})/Orders({OrderId})
 
 #### Request Parameters
 
-<ul><li>BillingCustomerId (<strong>Required</strong>) </li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li></ul>
+<ul><li><code>BillingCustomerId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>CreatedDateUtc</code> (<strong>Required</strong>) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryDate</code> (<strong>Required</strong>) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>OrderType</code> (<strong>Required</strong>) </li><li><code>PrintableId</code> (<strong>Required</strong>) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>TenderId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -671,9 +671,9 @@ POST /Companies({CompanyId})/Orders({OrderId})/Process
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -687,7 +687,7 @@ POST /Companies({CompanyId})/Orders({OrderId})/Process
 
 #### Request Parameters
 
-<ul><li>OrderId (<strong>Required</strong>) </li></ul>
+<ul><li><code>OrderId</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -747,9 +747,9 @@ POST /Companies({CompanyId})/OrderFull
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -762,7 +762,7 @@ POST /Companies({CompanyId})/OrderFull
 
 #### Request Parameters
 
-<ul><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>EntityId (Optional) </li><li>OrderExpiryHours (Optional) </li><li>OrderTypeId (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>TrackingNumber (<strong>Required</strong>) </li><li>Quantity (Optional) </li></ul></ul></ul>
+<ul><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>OrderTypeId</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>TrackingNumber</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (Optional) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -892,8 +892,8 @@ GET /Companies({CompanyId})/OrderFull
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -991,8 +991,8 @@ GET /Companies({CompanyId})/OrderFull({OrderId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1090,9 +1090,9 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1106,7 +1106,7 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 
 #### Request Parameters
 
-<ul><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional) </li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>EntityId (Optional) </li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>OrderTypeId (Optional) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemStatusId (<strong>Required</strong>) </li><li>ItemTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>ItemType (<strong>Required</strong>) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>OrderId (<strong>Required</strong>) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>TrackingNumber (<strong>Required</strong>) </li><li>Quantity (Optional) </li></ul></ul></ul>
+<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>CreatedDateUtc</code> (<strong>Required</strong>) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryDate</code> (<strong>Required</strong>) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>OrderType</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (Optional) </li><li><code>PrintableId</code> (<strong>Required</strong>) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemStatusId</code> (<strong>Required</strong>) </li><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>ItemType</code> (<strong>Required</strong>) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>OrderId</code> (<strong>Required</strong>) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>TrackingNumber</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (Optional) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -1246,8 +1246,8 @@ GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {L
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1315,8 +1315,8 @@ GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 

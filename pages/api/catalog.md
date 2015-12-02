@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -66,8 +66,8 @@ GET /Companies({CompanyId})/Catalog/Items
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -118,8 +118,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -143,7 +143,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Id (String) </li><li>Name (String) </li><li>ShortDescription (String) </li><li>LongDescription (String) </li><li>Assets (Array) </li><li>CanonicalClassification (Object) </li><ul><li>Id (Integer) </li><li>Name (String) </li><li>ParentCategories (Array) </li><ul><li>Id (Integer) </li><li>Name (String) </li></ul></ul><li>Entity (Object) </li><li>HeroShotId (Guid) </li><li>HeroShotUri (String) </li><li>IsLinkedToCuratedProduct (Boolean) </li><li>IsSaleable (Boolean) </li><li>Manufacturer (<a href='#manufacturer'>Manufacturer</a>) </li><li>ManufacturerSkus (Array[<a href='#manufacturersku'>ManufacturerSku</a>]) </li><li>MasterProductId (Integer) </li><li>MSRP (<a href='#msrp'>MSRP</a>) </li><li>Owner (Object) </li><li>Region (Object) </li><li>ReleaseDate (Datetime) </li><li>Specifications (Array[<a href='#specification'>Specification</a>]) </li><li>UpcCodes (Array[<a href='#upccode'>UpcCode</a>]) </li><li>VariationId (Integer) </li><li>VendorSkus (Array[<a href='#vendorsku'>VendorSku</a>]) </li><li>Version (Integer) </li></ul>
+<ul><li><code>Id</code> (String) </li><li><code>Name</code> (String) </li><li><code>ShortDescription</code> (String) </li><li><code>LongDescription</code> (String) </li><li><code>Assets</code> (Array) </li><li><code>CanonicalClassification</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Entity</code> (Object) </li><li><code>HeroShotId</code> (Guid) </li><li><code>HeroShotUri</code> (String) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsSaleable</code> (Boolean) </li><li><code>Manufacturer</code> (<a href='#manufacturer'>Manufacturer</a>) </li><li><code>ManufacturerSkus</code> (Array[<a href='#manufacturersku'>ManufacturerSku</a>]) </li><li><code>MasterProductId</code> (Integer) </li><li><code>MSRP</code> (<a href='#msrp'>MSRP</a>) </li><li><code>Owner</code> (Object) </li><li><code>Region</code> (Object) </li><li><code>ReleaseDate</code> (Datetime) </li><li><code>Specifications</code> (Array[<a href='#specification'>Specification</a>]) </li><li><code>UpcCodes</code> (Array[<a href='#upccode'>UpcCode</a>]) </li><li><code>VariationId</code> (Integer) </li><li><code>VendorSkus</code> (Array[<a href='#vendorsku'>VendorSku</a>]) </li><li><code>Version</code> (Integer) </li></ul>
 
 <h5>Example</h5>
 
@@ -157,6 +157,7 @@ HTTP 200 Content-Type: application/json
     "Assets": [],
     "CanonicalClassification": {
         "Id": 1,
+        "TreeId": 21,
         "Name": "1",
         "ParentCategories": [
             {
@@ -236,8 +237,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -261,7 +262,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -317,8 +318,8 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -342,7 +343,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Name (String) </li><li>Slug (String) </li><li>CatalogItemId (Guid) </li><li>Revisions (Array) </li><ul><li>Name (String) </li><li>Slug (String) </li><li>CatalogItemId (Guid) </li></ul></ul>
+<ul><li><code>Name</code> (String) </li><li><code>Slug</code> (String) </li><li><code>CatalogItemId</code> (Guid) </li><li><code>Revisions</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>Slug</code> (String) </li><li><code>CatalogItemId</code> (Guid) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -374,8 +375,8 @@ GET /Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryO
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -401,7 +402,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -456,8 +457,8 @@ GET /Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Pag
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -483,7 +484,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -538,8 +539,8 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&Pag
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -565,7 +566,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -620,8 +621,8 @@ GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vend
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -646,7 +647,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Sku (String) </li><li>VendorId (Integer) </li><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li></ul>
+<ul><li><code>Sku</code> (String) </li><li><code>VendorId</code> (Integer) </li><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li></ul>
 
 <h5>Example</h5>
 
@@ -678,8 +679,8 @@ GET /Companies({CompanyId})/Catalog/Search?IsDropshippable={IsDropShippable}&Pag
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -705,7 +706,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -763,8 +764,8 @@ GET /Companies({CompanyId})/Catalog/Search?&SearchTerms={SearchTerms}&OrderBy={O
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -792,7 +793,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -847,8 +848,8 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -880,7 +881,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 

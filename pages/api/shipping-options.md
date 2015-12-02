@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -108,7 +108,7 @@ The specification for the request must be in the format below:
 
 #### Request Parameters
 
-<ul><li>CompanyId (<strong>Required</strong>) </li><li>PostalCode (<strong>Required</strong>) </li><li>Items (Optional) </li><ul><li>ProductName (<strong>Required</strong>) </li><li>Quantity (<strong>Required</strong>) </li><li>Sku (<strong>Required</strong>) </li></ul></ul>
+<ul><li><code>CompanyId</code> (<strong>Required</strong>) </li><li><code>PostalCode</code> (<strong>Required</strong>) </li><li><code>Items</code> (Optional) </li><ul><li><code>ProductName</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>Sku</code> (<strong>Required</strong>) </li></ul></ul>
 
 ###### Example
 
@@ -132,11 +132,11 @@ Authorization: BasicAccept: application/jsonContent-Type: application/jsonHost: 
 
 The specification of the response must be in the format below:
 
-  <li>Id (<strong>Required</strong>) </li>
-  <li>Cost (<strong>Required</strong>) </li>
-  <li>Currency (<strong>Required</strong>) </li>
-  <li>EstimatedTransitTime (Optional) </li>
-  <li>Name (Optional) </li>
+  <li><code>Id</code> (<strong>Required</strong>) </li>
+  <li><code>Cost</code> (<strong>Required</strong>) </li>
+  <li><code>Currency</code> (<strong>Required</strong>) </li>
+  <li><code>EstimatedTransitTime</code> (Optional) </li>
+  <li><code>Name</code> (Optional) </li>
 
 
 ###### Example

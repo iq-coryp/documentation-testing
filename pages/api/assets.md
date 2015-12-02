@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -51,9 +51,9 @@ POST /assets
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: multipart/form-data
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: multipart/form-data`
 
 
 
@@ -61,7 +61,7 @@ POST /assets
 
 #### Request Parameters
 
-<li>Filename (<strong>Required</strong>) - File to be uploaded</li>
+<li><code>Filename</code> (<strong>Required</strong>) - File to be uploaded</li>
 
 
 <h5>Example</h5>
@@ -107,7 +107,7 @@ GET /assets/{AssetId}
 #### Headers
 
 
-* Accept: application/json
+* `Accept: application/json`
 
 
 

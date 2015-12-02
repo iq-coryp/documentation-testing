@@ -4,7 +4,7 @@ permalink: /api/supplier-availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -63,9 +63,9 @@ POST /Suppliers({SupplierId})/Availability
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -78,7 +78,7 @@ POST /Suppliers({SupplierId})/Availability
 
 #### Request Parameters
 
-<ul><li>Products (<strong>Required</strong>) </li><ul><li>IsAvailable (Optional) </li><li>Sku (Optional) </li><li>Quantity (Optional) </li></ul></ul>
+<ul><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>IsAvailable</code> (Optional) </li><li><code>Sku</code> (Optional) </li><li><code>Quantity</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 

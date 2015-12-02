@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -76,8 +76,8 @@ GET /subscription({ListId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -137,8 +137,8 @@ GET /subscribablelists({SubscribableListId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -200,9 +200,9 @@ PUT /subscribablelists({SubscribableListId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -215,7 +215,7 @@ PUT /subscribablelists({SubscribableListId})
 
 #### Request Parameters
 
-<ul><li>EntityId (<strong>Required</strong>) </li><li>Name (<strong>Required</strong>) </li><li>Products (<strong>Required</strong>) </li><ul><li>ProductName (<strong>Required</strong>) </li><li>VendorSku (<strong>Required</strong>) </li><li>Dropshippable (Optional) </li><li>Price (Optional) </li><li>ProductSlugs (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>Id (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>ProductName</code> (<strong>Required</strong>) </li><li><code>VendorSku</code> (<strong>Required</strong>) </li><li><code>Dropshippable</code> (Optional) </li><li><code>Price</code> (Optional) </li><li><code>ProductSlugs</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>Id</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 

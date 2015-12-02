@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -24,14 +24,14 @@ A Customer is a person or organization that buys goods or services from a store 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
 | AlternateName | String | Alias or preferred name | `Bob` |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
-| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
@@ -45,8 +45,8 @@ An Address represents a valid address somewhere on the planet.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | AddressType | String | Name of the [AddressType](#addresstype) | `Business` |
 | AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
 | AttentionTo | String | Attention To (Attn:) | `iQmetrix` |
@@ -73,8 +73,8 @@ A Contact Method is a method of contacting a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ContactMethodCategory | String | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
 | ContactMethodCategoryId | Integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values | `3` |
 | ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype | `Work phone` |
@@ -92,8 +92,8 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
-| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ExtensionType | String | Name of the [CustomerExtensionType](#customerextensiontype) | `ExternalCustomerId` |
 | ExtensionTypeId | Integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `1` |
 | Value | String | Value | `66432` |
@@ -115,7 +115,7 @@ CustomerFull is an extension on the Customer resource.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
@@ -125,7 +125,7 @@ CustomerFull is an extension on the Customer resource.
 | CustomerExtensions | Array[<a href='#customerextension'>CustomerExtension</a>] | A collection of CustomerExtensions |  |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
-| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | MemberOf | Array[object] | A collection of Customers that the Customer is a MemberOf (parent relation) |  |
@@ -210,9 +210,9 @@ POST /Companies({CompanyId})/Customers
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -225,7 +225,7 @@ POST /Companies({CompanyId})/Customers
 
 #### Request Parameters
 
-<ul><li>CustomerTypeId (<strong>Required</strong>) </li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>AlternateName (Optional) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Title (Optional) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -286,8 +286,8 @@ GET /Companies({CompanyId})/Customers
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -416,8 +416,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -476,9 +476,9 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -492,7 +492,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 
 #### Request Parameters
 
-<ul><li>CustomerTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>AlternateName (Optional) </li><li>CustomerType (<strong>Required</strong>) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Title (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>CustomerType</code> (<strong>Required</strong>) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -556,7 +556,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 
@@ -599,9 +599,9 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -615,7 +615,7 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 
 #### Request Parameters
 
-<ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li></ul>
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -687,8 +687,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -800,8 +800,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -868,9 +868,9 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -885,7 +885,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 #### Request Parameters
 
-<ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (<strong>Required</strong>) </li><li>AddressType (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Country (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>State (<strong>Required</strong>) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AddressType</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Country</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -963,7 +963,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 
@@ -1007,9 +1007,9 @@ POST /Companies({CompanyId})/CustomerFull
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1022,7 +1022,7 @@ POST /Companies({CompanyId})/CustomerFull
 
 #### Request Parameters
 
-<ul><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li></ul><li>AlternateName (Optional) </li><li>ContactMethods (Optional) </li><ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li></ul><li>CustomerExtensions (Optional) </li><ul><li>ExtensionTypeId (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>Value (Optional) </li></ul><li>CustomerTypeId (Optional) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>MemberOf (Optional) </li><li>Notes (Optional) </li><li>RelatedCustomers (Optional) </li><li>Title (Optional) </li></ul>
+<ul><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerTypeId</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1172,8 +1172,8 @@ GET /Companies({CompanyId})/CustomerFull
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1386,8 +1386,8 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1497,9 +1497,9 @@ PUT /Companies({CompanyId})/CustomerFull({CustomerId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1513,7 +1513,7 @@ PUT /Companies({CompanyId})/CustomerFull({CustomerId})
 
 #### Request Parameters
 
-<ul><li>Id (<strong>Required</strong>) </li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (<strong>Required</strong>) </li><li>AddressType (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Country (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>State (<strong>Required</strong>) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>AlternateName (Optional) </li><li>ContactMethods (Optional) </li><ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>ContactMethodCategory (<strong>Required</strong>) </li><li>ContactMethodType (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>CustomerExtensions (Optional) </li><ul><li>ExtensionTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>ExtensionType (<strong>Required</strong>) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>CustomerType (<strong>Required</strong>) </li><li>CustomerTypeId (Optional) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>MemberOf (Optional) </li><li>Notes (Optional) </li><li>RelatedCustomers (Optional) </li><li>Title (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AddressType</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Country</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>ContactMethodCategory</code> (<strong>Required</strong>) </li><li><code>ContactMethodType</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>ExtensionType</code> (<strong>Required</strong>) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>CustomerType</code> (<strong>Required</strong>) </li><li><code>CustomerTypeId</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -1679,7 +1679,7 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 
@@ -1722,9 +1722,9 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1738,7 +1738,7 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 
 #### Request Parameters
 
-<ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li></ul>
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1794,8 +1794,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1889,8 +1889,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1948,9 +1948,9 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1965,7 +1965,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 
 #### Request Parameters
 
-<ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>ContactMethodCategory (<strong>Required</strong>) </li><li>ContactMethodType (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>ContactMethodCategory</code> (<strong>Required</strong>) </li><li><code>ContactMethodType</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -2025,7 +2025,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 
@@ -2069,8 +2069,8 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -2150,8 +2150,8 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 

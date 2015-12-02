@@ -4,7 +4,7 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -74,9 +74,9 @@ POST /Companies({CompanyId})/Pricing
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -89,7 +89,7 @@ POST /Companies({CompanyId})/Pricing
 
 #### Request Parameters
 
-<ul><li>CatalogItemId (<strong>Required</strong>) </li><li>EntityId (<strong>Required</strong>) </li><li>RegularPrice (<strong>Required</strong>) </li><li>CompanyId (Optional) </li><li>OverridePrice (Optional) </li><li>PricingTermId (Optional) </li></ul>
+<ul><li><code>CatalogItemId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>RegularPrice</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (Optional) </li><li><code>OverridePrice</code> (Optional) </li><li><code>PricingTermId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -141,9 +141,9 @@ POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId}
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -158,7 +158,7 @@ POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId}
 
 #### Request Parameters
 
-<ul><li>CatalogItemId (<strong>Required</strong>) </li><li>EntityId (<strong>Required</strong>) </li><li>RegularPrice (<strong>Required</strong>) </li><li>CompanyId (Optional) </li><li>OverridePrice (Optional) </li><li>PricingTermId (Optional) </li></ul>
+<ul><li><code>CatalogItemId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>RegularPrice</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (Optional) </li><li><code>OverridePrice</code> (Optional) </li><li><code>PricingTermId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -209,8 +209,8 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -300,9 +300,9 @@ POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -316,7 +316,7 @@ POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})
 
 #### Request Parameters
 
-<ul><li>CatalogItemId (<strong>Required</strong>) </li><li>EntityId (<strong>Required</strong>) </li><li>RegularPrice (<strong>Required</strong>) </li><li>CompanyId (Optional) </li><li>OverridePrice (Optional) </li><li>PricingTermId (Optional) </li></ul>
+<ul><li><code>CatalogItemId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>RegularPrice</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (Optional) </li><li><code>OverridePrice</code> (Optional) </li><li><code>PricingTermId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -367,8 +367,8 @@ GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -458,8 +458,8 @@ GET /Companies({CompanyId})/PricingTerms
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -513,8 +513,8 @@ GET /Companies({CompanyId})/PricingTerms({PricingTermId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -567,8 +567,8 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={Prici
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 

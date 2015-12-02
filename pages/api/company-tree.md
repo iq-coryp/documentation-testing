@@ -4,7 +4,7 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -204,8 +204,8 @@ GET /Companies({CompanyId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -274,8 +274,8 @@ GET /Companies({CompanyId})/Tree
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -333,9 +333,9 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -349,7 +349,7 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 
 #### Request Parameters
 
-<ul><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>Roles (<strong>Required</strong>) </li><ul><li>Name (Optional) </li></ul><li>Area (Optional) </li><ul><li>Value (Optional) </li><li>Unit (Optional) </li></ul><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>StateName (Optional) </li><li>CountryCode (Optional) </li><li>CountryName (Optional) </li><li>Zip (Optional) </li></ul><li>Attributes (Optional) </li><li>ClientEntityId (Optional) </li><li>Contacts (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul></ul><li>Geography (Optional) </li><ul><li>Longitude (Optional) </li><li>Latitude (Optional) </li></ul><li>StoreHours (Optional) </li><ul><li>Monday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Tuesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Wednesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Thursday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Friday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Saturday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Sunday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul></ul><li>StorePhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul><li>TimeZone (Optional) </li><ul><li>Id (Optional) </li><li>DaylightSavingTimeEnabled (Optional) </li></ul></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (Optional) </li></ul><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (Optional) </li><li><code>Unit</code> (Optional) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (Optional) </li><li><code>Latitude</code> (Optional) </li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -646,9 +646,9 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -823,8 +823,8 @@ GET /Companies({CompanyId})/Locations({LocationId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -997,9 +997,9 @@ PUT /Companies({CompanyId})/Locations({LocationId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1013,7 +1013,7 @@ PUT /Companies({CompanyId})/Locations({LocationId})
 
 #### Request Parameters
 
-<ul><li>Id (<strong>Required</strong>) </li><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>Roles (<strong>Required</strong>) </li><ul><li>Name (Optional) </li></ul><li>CreatedUTC (<strong>Required</strong>) </li><li>LastModifiedUTC (<strong>Required</strong>) </li><li>Area (Optional) </li><ul><li>Value (Optional) </li><li>Unit (Optional) </li></ul><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>StateName (Optional) </li><li>CountryCode (Optional) </li><li>CountryName (Optional) </li><li>Zip (Optional) </li></ul><li>Attributes (Optional) </li><li>ClientEntityId (Optional) </li><li>Contacts (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul></ul><li>Geography (Optional) </li><ul><li>Longitude (Optional) </li><li>Latitude (Optional) </li></ul><li>Relationships (<strong>Required</strong>) </li><li>SortName (<strong>Required</strong>) </li><li>StoreHours (Optional) </li><ul><li>Monday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Tuesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Wednesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Thursday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Friday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Saturday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Sunday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul></ul><li>StorePhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul><li>TimeZone (Optional) </li><ul><li>Id (Optional) </li><li>DaylightSavingTimeEnabled (Optional) </li></ul><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (Optional) </li></ul><li><code>CreatedUTC</code> (<strong>Required</strong>) </li><li><code>LastModifiedUTC</code> (<strong>Required</strong>) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (Optional) </li><li><code>Unit</code> (Optional) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (Optional) </li><li><code>Latitude</code> (Optional) </li></ul><li><code>Relationships</code> (<strong>Required</strong>) </li><li><code>SortName</code> (<strong>Required</strong>) </li><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -1305,8 +1305,8 @@ GET /Companies({CompanyId})/Locations
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1485,9 +1485,9 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1501,7 +1501,7 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 
 #### Request Parameters
 
-<ul><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>ClientEntityId (Optional) </li><li>Attributes (Optional) </li></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Attributes</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1565,9 +1565,9 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -1581,7 +1581,7 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 
 #### Request Parameters
 
-<ul><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>ClientEntityId (Optional) </li><li>Attributes (Optional) </li></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Attributes</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1649,7 +1649,7 @@ DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 
@@ -1696,8 +1696,8 @@ GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -1721,7 +1721,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li>Id (Integer) </li><li>Name (String) </li><li>Description (String) </li><li>Role (String) </li><li>Path (Array) </li><ul><li>Id (Integer) </li><li>Name (String) </li><li>Description (String) </li><li>Role (String) </li></ul></ul>
+<ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li><li><code>Path</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 

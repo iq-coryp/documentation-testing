@@ -4,7 +4,7 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -92,8 +92,8 @@ GET /Entities({EntityId})/Permissions
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -147,9 +147,9 @@ POST /Entities({EntityId})/SecurityRoles
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -162,7 +162,7 @@ POST /Entities({EntityId})/SecurityRoles
 
 #### Request Parameters
 
-<ul><li>Name (<strong>Required</strong>) </li></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -203,8 +203,8 @@ GET /Entities({EntityId})/SecurityRoles
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -253,9 +253,9 @@ PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permissio
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -301,7 +301,7 @@ DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permis
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 
@@ -345,8 +345,8 @@ GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -401,9 +401,9 @@ POST /Users({UserId})/AssignedRoles
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
-* Content-Type: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+* `Content-Type: application/json`
 
 
 
@@ -416,7 +416,7 @@ POST /Users({UserId})/AssignedRoles
 
 #### Request Parameters
 
-<ul><li>EntityId (<strong>Required</strong>) </li><li>SecurityRoleId (<strong>Required</strong>) </li></ul>
+<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>SecurityRoleId</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -460,8 +460,8 @@ GET /Users({UserId})/AssignedRoles
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
-* Accept: application/json
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
 
 
 
@@ -512,7 +512,7 @@ DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
 #### Headers
 
 
-* Authorization: Bearer (Access Token)
+* `Authorization: Bearer (Access Token)`
 
 
 

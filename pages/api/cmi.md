@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience:
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary:
 ---
 
@@ -208,7 +208,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 
 #### Request Parameters
 
-<ul><li>Quantity (<strong>Required</strong>) </li><li>RQPurchaseOrderID (<strong>Required</strong>) </li><li>SerialNumbers (<strong>Required</strong>) </li><li>VendorInvoiceNumber (<strong>Required</strong>) </li><li>PurchaseOrderID (Optional) </li><li>ProductItemID (Optional) </li><li>ShipmentNumber (Optional) </li><li>VendorSKU (Optional) </li></ul>
+<ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>RQPurchaseOrderID</code> (<strong>Required</strong>) </li><li><code>SerialNumbers</code> (<strong>Required</strong>) </li><li><code>VendorInvoiceNumber</code> (<strong>Required</strong>) </li><li><code>PurchaseOrderID</code> (Optional) </li><li><code>ProductItemID</code> (Optional) </li><li><code>ShipmentNumber</code> (Optional) </li><li><code>VendorSKU</code> (Optional) </li></ul>
 
 ###### Example
 
@@ -327,7 +327,7 @@ Therefore, if a dealer creates a Purchase Order within RQ, it will be available 
 
 #### Request Parameters
 
-<ul><li>isCommitted (<strong>Required</strong>) </li><li>isCompleted (<strong>Required</strong>) </li><li>startDate (<strong>Required</strong>) </li><li>endDate (<strong>Required</strong>) </li></ul>
+<ul><li><code>isCommitted</code> (<strong>Required</strong>) </li><li><code>isCompleted</code> (<strong>Required</strong>) </li><li><code>startDate</code> (<strong>Required</strong>) </li><li><code>endDate</code> (<strong>Required</strong>) </li></ul>
 
 ###### Example
 
@@ -479,7 +479,7 @@ HTTP 200 Content-Type: application/xml
 
 #### Request Parameters
 
-<ul><li>PurchaseOrderReferenceNumber (<strong>Required</strong>) </li></ul>
+<ul><li><code>PurchaseOrderReferenceNumber</code> (<strong>Required</strong>) </li></ul>
 
 ###### Example
 
@@ -626,7 +626,7 @@ This call is useful in the situation where a user has created a PO in RQ for a v
 
 #### Request Parameters
 
-<ul><li>purchaseOrderIdByStore (<strong>Required</strong>) </li></ul>
+<ul><li><code>purchaseOrderIdByStore</code> (<strong>Required</strong>) </li></ul>
 
 ###### Example
 
