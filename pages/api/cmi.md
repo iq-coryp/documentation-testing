@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience:
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary:
 ---
 

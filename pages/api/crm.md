@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -24,14 +24,14 @@ A Customer is a person or organization that buys goods or services from a store 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
 | AlternateName | String | Alias or preferred name | `Bob` |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
-| DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
@@ -45,8 +45,8 @@ An Address represents a valid address somewhere on the planet.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | Guid | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | AddressType | String | Name of the [AddressType](#addresstype) | `Business` |
 | AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
 | AttentionTo | String | Attention To (Attn:) | `iQmetrix` |
@@ -73,8 +73,8 @@ A Contact Method is a method of contacting a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
-| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | Guid | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
+| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ContactMethodCategory | String | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
 | ContactMethodCategoryId | Integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values | `3` |
 | ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype | `Work phone` |
@@ -92,8 +92,8 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
-| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | Guid | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
+| CustomerId | Guid | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ExtensionType | String | Name of the [CustomerExtensionType](#customerextensiontype) | `ExternalCustomerId` |
 | ExtensionTypeId | Integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `1` |
 | Value | String | Value | `66432` |
@@ -115,7 +115,7 @@ CustomerFull is an extension on the Customer resource.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | Guid | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
@@ -125,7 +125,7 @@ CustomerFull is an extension on the Customer resource.
 | CustomerExtensions | Array[<a href='#customerextension'>CustomerExtension</a>] | A collection of CustomerExtensions |  |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
-| DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| DateOfBirth | Datetime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | MemberOf | Array[object] | A collection of Customers that the Customer is a MemberOf (parent relation) |  |

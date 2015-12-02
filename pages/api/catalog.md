@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -361,17 +361,178 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-<h2 id='searching-for-products' class='clickable-header top-level-header'>Searching For Products</h2>
+<h2 id='getting-products-by-category-or-classification' class='clickable-header top-level-header'>Getting Products by Category or Classification</h2>
 
-{{note}}
-SearchTerms specified in the URI are compared against the following Product fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
-{{end}}
 
 
 <h4>Request</h4>
 
 <pre>
-GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+GET /Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryOrClassificationId}&Page={Page}&PageSize={PageSize}
+</pre>
+
+#### Headers
+
+
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+
+
+
+#### URI Parameters
+
+
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CategoryOrClassificationId (Optional)  - Identifier for the {{Category}} or {{Classification}} 
+* Page (Optional)  - Page to display, if not specified defaults to 1 
+* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Catalog/Search?CategoryOrClassificationId=1&Page=1&PageSize=10
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ],
+    "Facets": {
+        "Manufacturers": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ],
+        "Vendors": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ]
+    },
+    "MetaData": {
+        "Page": 1,
+        "PageSize": 20,
+        "TotalResults": 5
+    }
+}</pre>
+
+<h2 id='getting-products-by-manufacturer' class='clickable-header top-level-header'>Getting Products by Manufacturer</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Page={Page}&PageSize={PageSize}
+</pre>
+
+#### Headers
+
+
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+
+
+
+#### URI Parameters
+
+
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* ManufacturerIds (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
+* Page (Optional)  - Page to display, if not specified defaults to 1 
+* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Catalog/Search?ManufacturerIds=4,5&Page=1&PageSize=10
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ],
+    "Facets": {
+        "Manufacturers": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ],
+        "Vendors": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ]
+    },
+    "MetaData": {
+        "Page": 1,
+        "PageSize": 20,
+        "TotalResults": 5
+    }
+}</pre>
+
+<h2 id='searching-for-vendor' class='clickable-header top-level-header'>Searching For Vendor</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&PageSize={PageSize}
 </pre>
 
 #### Headers
@@ -387,12 +548,6 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 
 * CompanyId (**Required**)  - Identifier for the {{Company}} 
 * VendorIds (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
-* ManufacturerIds (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
-* IsDropShippable (Optional)  - True to display products available for shipping, false to display products not available for shipping 
-* CategoryOrClassificationId (Optional)  - Identifier for the {{Category}} or {{Classification}} 
-* SearchTerms (Optional)  - Search terms 
-* OrderBy (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
-* OrderDir (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
 * Page (Optional)  - Page to display, if not specified defaults to 1 
 * PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
@@ -401,7 +556,7 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
+GET /Companies(1)/Catalog/Search?VendorIds=47,42&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -508,6 +663,263 @@ HTTP 200 Content-Type: application/json
             "Slug": "M3-V1"
         }
     ]
+}</pre>
+
+<h2 id='getting-products-available-for-shipping' class='clickable-header top-level-header'>Getting Products Available for Shipping</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Search?IsDropshippable={IsDropShippable}&Page={Page}&PageSize={PageSize}
+</pre>
+
+#### Headers
+
+
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+
+
+
+#### URI Parameters
+
+
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* IsDropShippable (Optional)  - True to display products available for shipping, false to display products not available for shipping 
+* Page (Optional)  - Page to display, if not specified defaults to 1 
+* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Catalog/Search?IsDropshippable=true&Page=1&PageSize=10
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ],
+    "Facets": {
+        "Manufacturers": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ],
+        "Vendors": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ]
+    },
+    "MetaData": {
+        "Page": 1,
+        "PageSize": 20,
+        "TotalResults": 5
+    }
+}</pre>
+
+<h2 id='searching-for-products' class='clickable-header top-level-header'>Searching For Products</h2>
+
+{{note}}
+SearchTerms specified in the URI are compared against the following Product fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
+{{end}}    
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Search?&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+</pre>
+
+#### Headers
+
+
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+
+
+
+#### URI Parameters
+
+
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* SearchTerms (Optional)  - Search terms 
+* OrderBy (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
+* OrderDir (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
+* Page (Optional)  - Page to display, if not specified defaults to 1 
+* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Catalog/Search?&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ],
+    "Facets": {
+        "Manufacturers": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ],
+        "Vendors": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ]
+    },
+    "MetaData": {
+        "Page": 1,
+        "PageSize": 20,
+        "TotalResults": 5
+    }
+}</pre>
+
+<h2 id='combining-search-filters' class='clickable-header top-level-header'>Combining Search Filters</h2>
+
+Search filters can be combined to narrow down results. The example below illustrates a search request using every possible filter.
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+</pre>
+
+#### Headers
+
+
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+
+
+
+#### URI Parameters
+
+
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* VendorIds (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
+* ManufacturerIds (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
+* IsDropShippable (Optional)  - True to display products available for shipping, false to display products not available for shipping 
+* CategoryOrClassificationId (Optional)  - Identifier for the {{Category}} or {{Classification}} 
+* SearchTerms (Optional)  - Search terms 
+* OrderBy (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
+* OrderDir (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
+* Page (Optional)  - Page to display, if not specified defaults to 1 
+* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ],
+    "Facets": {
+        "Manufacturers": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ],
+        "Vendors": [
+            {
+                "Count": 1,
+                "Item": {
+                    "Id": 4,
+                    "Name": "SampleManufacturer"
+                }
+            }
+        ]
+    },
+    "MetaData": {
+        "Page": 1,
+        "PageSize": 20,
+        "TotalResults": 5
+    }
 }</pre>
 
 ## Errors

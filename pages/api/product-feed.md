@@ -4,7 +4,7 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -68,9 +68,10 @@ To get a list of all field definitions, use the {{Get_Field_Definitions}} method
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Definition | Object | The field definition |  |
+| Definition | <a href='#definition'>Definition</a> | The field definition |  |
 | Definition.Id | Integer | The field definition identifier. The definition for this parameter varies based on the [Environments](/api/environments) | `1` |
 | Value | String | The value for the field | `Android` |
+
 
 ###Asset
 
@@ -132,7 +133,7 @@ POST /ProductFeeds({FeedId})/Products
 
 #### Request Parameters
 
-<ul><li>Classification (<strong>Required</strong>) </li><ul><li>Id (<strong>Required</strong>) </li><li>TreeId (<strong>Required</strong>) </li></ul><li>Fields (<strong>Required</strong>) </li><ul><li>Definition (<strong>Required</strong>) </li><li>Value (<strong>Required</strong>) </li></ul><li>ModelName (<strong>Required</strong>) </li><li>Assets (Optional) </li><ul><li>AssetUrl (<strong>Required</strong>) </li></ul><li>ClassificationTreeName (Optional) </li><li>LastModifiedByVendorUtc (Optional) </li><li>Manufacturer (Optional) </li><li>ManufacturerSku (Optional) </li><li>UPC (Optional) </li><li>VendorSkus (Optional) </li><ul><li>Description (Optional) </li><li>Sku (Optional) </li><li>VendorName (Optional) </li></ul></ul>
+<ul><li>Classification (<strong>Required</strong>) </li><ul><li>Id (<strong>Required</strong>) </li><li>TreeId (<strong>Required</strong>) </li></ul><li>Fields (<strong>Required</strong>) </li><ul><li>Definition (<strong>Required</strong>) </li><ul><li>Id (Optional) </li></ul><li>Value (<strong>Required</strong>) </li></ul><li>ModelName (<strong>Required</strong>) </li><li>Assets (Optional) </li><ul><li>AssetUrl (<strong>Required</strong>) </li></ul><li>ClassificationTreeName (Optional) </li><li>LastModifiedByVendorUtc (Optional) </li><li>Manufacturer (Optional) </li><li>ManufacturerSku (Optional) </li><li>UPC (Optional) </li><li>VendorSkus (Optional) </li><ul><li>Description (Optional) </li><li>Sku (Optional) </li><li>VendorName (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -367,7 +368,9 @@ HTTP 200 Content-Type: application/json
         "ClassificationTreeName": "Cellular & Accessories",
         "Fields": [
             {
-                "Definition": {},
+                "Definition": {
+                    "Id": 1
+                },
                 "Value": "Android"
             }
         ],
@@ -454,7 +457,9 @@ HTTP 200 Content-Type: application/json
             "ClassificationTreeName": "Cellular & Accessories",
             "Fields": [
                 {
-                    "Definition": {},
+                    "Definition": {
+                        "Id": 1
+                    },
                     "Value": "Android"
                 }
             ],
