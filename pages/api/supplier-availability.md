@@ -4,7 +4,7 @@ permalink: /api/supplier-availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -26,7 +26,7 @@ Suppliers have the ability to configure availability of products.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `a84549a1-3b0d-4ca6-b27f-65136957309b` |
+| Id | GUID | Unique identifier | `a84549a1-3b0d-4ca6-b27f-65136957309b` |
 | Products | Array[object] | Products for the Availability Feed |  |
 | Products.IsAvailable | Boolean | A flag to indicate if the Product is Available | `true` |
 | Products.Sku | String | Product Sku | `9101AGAP6` |
@@ -52,9 +52,7 @@ Suppliers have the ability to configure availability of products.
 
 <h2 id='configuring-product-availability' class='clickable-header top-level-header'>Configuring Product Availability</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -65,16 +63,16 @@ POST /Suppliers({SupplierId})/Availability
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `SupplierId` (**Required**)  - Identifier for the {{Supplier}} 
+* SupplierId (**Required**)  - Identifier for the {{Supplier}} 
 
 
 
@@ -89,7 +87,6 @@ POST /Suppliers(60455)/Availability
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Products": [
         {
@@ -104,7 +101,7 @@ Content-Type: application/json
 #### Response
 
 
-[Availability](#availability)
+<a href='#availability'>Availability</a>
 
 <h5>Example</h5>
 
@@ -122,6 +119,7 @@ HTTP 200 Content-Type: application/json
 }</pre>
 
 ## Errors
+
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|

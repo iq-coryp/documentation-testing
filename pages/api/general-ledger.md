@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -64,7 +64,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | Id | GUID | Unique identifier | `6f29405f-6124-4919-b839-b84fbd53f6e0` |
 | TransactionDateUTC | DateTime | The date and time that this Transaction occurred, in UTC | `2015-04-22T19:31:03.5159086+00:00` |
 | CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
-| Entries | Array[[Entry](#entry)] | The collection of Entries for this Transaction |  |
+| Entries | Array[<a href='#entry'>Entry</a>] | The collection of Entries for this Transaction |  |
 
 ###Entry
 
@@ -117,10 +117,8 @@ The following table lists the ReferencType values used in RQ.
 
 <h2 id='getting-accounts' class='clickable-header top-level-header'>Getting Accounts</h2>
 
-<p>
 {{callout_info}}<b>Sorting Order</b><br/>Accounts are ordered alphabetically by <code>AccountName</code>{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -131,17 +129,17 @@ GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* Skip (Optional)  - Number of records to skip 
+* Top (Optional)  - Number of records to take 
 
 
 
@@ -157,7 +155,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Account](#account)]
+Array[<a href='#account'>Account</a>]
 
 <h5>Example</h5>
 
@@ -231,9 +229,7 @@ HTTP 200 Content-Type: application/hal+json
 
 <h2 id='getting-transactions-by-date' class='clickable-header top-level-header'>Getting Transactions By Date</h2>
 
-<p>
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
-</p>
 
 <h4>Request</h4>
 
@@ -244,19 +240,19 @@ GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
-* `StartDate` (**Required**)  - Date at which to begin search request, in UTC 
-* `EndDate` (**Required**)  - Date at which to end search request, in UTC 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* Skip (Optional)  - Number of records to skip 
+* Top (Optional)  - Number of records to take 
+* StartDate (**Required**)  - Date at which to begin search request, in UTC 
+* EndDate (**Required**)  - Date at which to end search request, in UTC 
 
 
 
@@ -272,7 +268,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Transaction](#transaction)]
+Array[<a href='#transaction'>Transaction</a>]
 
 <h5>Example</h5>
 

@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -34,14 +34,14 @@ A User represents an account that can be used to perform actions on your data wi
 | FirstName | String | First name | `Sam` |
 | LastName | String | Last name | `Smith` |
 | UserName | String | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
-| Address | [Address](#address) | Address |  |
+| Address | <a href='#address'>Address</a> | Address |  |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `{"Department": "Sales"}` |
 | ClientUserId | String | Identifier for the User in an external system | `132` |
 | Email | String | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
 | IsActive | Boolean | Flag to indicate if the Users login is enabled, false if it is disabled | `true` |
 | JobTitle | String | Job title | `Sales Clerk` |
 | ParentEntityId | Integer | Identifier for the Company to which this User belongs | `1` |
-| PhoneNumbers | Array[[PhoneNumber](#phonenumber)] | Phone numbers |  |
+| PhoneNumbers | Array[<a href='#phonenumber'>PhoneNumber</a>] | Phone numbers |  |
 | Picture | Object | A reference to an Asset that is a photo of the User |  |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
@@ -78,10 +78,8 @@ A User represents an account that can be used to perform actions on your data wi
 
 <h2 id='importing-an-existing-user' class='clickable-header top-level-header'>Importing an Existing User</h2>
 
-<p>
 {{tip}}This request allows existing Users to be imported from another system. Users created this way will <b>not</b> get a temporary password and the User will <b>not</b> be forced to change their password when logging in for the first time. If no password is supplied, the User will not be able to log in, obtain a token or reset their password.{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -92,6 +90,9 @@ POST /Users/importExisting
 #### Headers
 
 
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
@@ -99,13 +100,15 @@ POST /Users/importExisting
 
 #### Request Parameters
 
-<ul><li>FirstName (<strong>Required</strong>) </li><li>LastName (<strong>Required</strong>) </li><li>UserName (<strong>Required</strong>)  - The name used to identify this User. Must be unique</li><li>Attributes (<strong>Required</strong>) </li><li>ClientUserId (<strong>Required</strong>) </li><li>Email (<strong>Required</strong>)  - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li>ParentEntityId (<strong>Required</strong>) </li><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional)  - Must include a valid CountryCode if provided</li><li>CountryCode (Optional) </li><li>Zip (Optional) </li></ul><li>JobTitle (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Number (Optional)  - Must be at least 7 characters</li><li>Extension (Optional)  - If provided, Number must also be provided</li><li>Type (Optional)  - Required if Number is provided</li></ul><li>Picture (Optional)  - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li>Version (Optional)  - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li></ul>
+<ul><li>FirstName (<strong>Required</strong>) </li><li>LastName (<strong>Required</strong>) </li><li>UserName (<strong>Required</strong>) </li><li>Attributes (<strong>Required</strong>) </li><li>ClientUserId (<strong>Required</strong>) </li><li>Email (<strong>Required</strong>) </li><li>ParentEntityId (<strong>Required</strong>) </li><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>CountryCode (Optional) </li><li>Zip (Optional) </li></ul><li>JobTitle (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Number (Optional) </li><li>Extension (Optional) </li><li>Type (Optional) </li></ul><li>Picture (Optional) </li><li>Version (Optional) </li></ul>
 
 <h5>Example</h5>
 
 <pre>
 POST /Users/importExisting
-
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
 {
     "FirstName": "Sam",
     "LastName": "Smith",
@@ -140,7 +143,7 @@ POST /Users/importExisting
 #### Response
 
 
-[User](#user)
+<a href='#user'>User</a>
 
 <h5>Example</h5>
 
@@ -180,9 +183,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-a-user' class='clickable-header top-level-header'>Getting a User</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -193,15 +194,15 @@ GET /Users({UserId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -217,7 +218,7 @@ Accept: application/json
 #### Response
 
 
-[User](#user)
+<a href='#user'>User</a>
 
 <h5>Example</h5>
 
@@ -257,10 +258,8 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-a-user' class='clickable-header top-level-header'>Updating a User</h2>
 
-<p>
 {{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href="{{"/assets/#creating-an-asset" | prepend: site.api_baseurl}}">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -271,22 +270,22 @@ PUT /Users({UserId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
 
 
 
 #### Request Parameters
 
-<ul><li>FirstName (<strong>Required</strong>) </li><li>LastName (<strong>Required</strong>) </li><li>UserName (<strong>Required</strong>)  - The name used to identify this User. Must be unique</li><li>Attributes (<strong>Required</strong>) </li><li>ClientUserId (<strong>Required</strong>) </li><li>Email (<strong>Required</strong>)  - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li>ParentEntityId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional)  - Must include a valid CountryCode if provided</li><li>CountryCode (Optional) </li><li>Zip (Optional) </li></ul><li>IsActive (<strong>Required</strong>) </li><li>JobTitle (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Number (Optional)  - Must be at least 7 characters</li><li>Extension (Optional)  - If provided, Number must also be provided</li><li>Type (Optional)  - Required if Number is provided</li></ul><li>Picture (Optional)  - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li>Version (Optional)  - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li></ul>
+<ul><li>FirstName (<strong>Required</strong>) </li><li>LastName (<strong>Required</strong>) </li><li>UserName (<strong>Required</strong>) </li><li>Attributes (<strong>Required</strong>) </li><li>ClientUserId (<strong>Required</strong>) </li><li>Email (<strong>Required</strong>) </li><li>ParentEntityId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>CountryCode (Optional) </li><li>Zip (Optional) </li></ul><li>IsActive (<strong>Required</strong>) </li><li>JobTitle (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Number (Optional) </li><li>Extension (Optional) </li><li>Type (Optional) </li></ul><li>Picture (Optional) </li><li>Version (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -331,7 +330,7 @@ Content-Type: application/json
 #### Response
 
 
-[User](#user)
+<a href='#user'>User</a>
 
 <h5>Example</h5>
 
@@ -371,12 +370,10 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='disabling-a-user' class='clickable-header top-level-header'>Disabling a User</h2>
 
-<p>
 {{note}}
 Disabling a User does <b>NOT</b> free up their email address or username to be used to create another User. To free up an email address or username, you must instead <a href="#updating-a-user">update</a> the email or username of the original User to something else.
 {{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -387,14 +384,14 @@ DELETE /Users({UserId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -412,15 +409,13 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 200</pre>
-
-
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
 
 <h2 id='getting-all-users-for-a-company' class='clickable-header top-level-header'>Getting All Users for a Company</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -431,17 +426,17 @@ GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* Skip (Optional)  - Number of records to skip 
+* Top (Optional)  - Number of records to take 
 
 
 
@@ -457,22 +452,7 @@ Accept: application/json
 #### Response
 
 
-  * `_links` (object) - Relative URL's used for Pagination
-    * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
-    * `self` (string) - The request that returned these results
-    * `next` (string) - Refers to a resource containing the next page of results, `null` if this is the last page
-  
-  * `_metadata` (object) - Data representing Pagination details
-    * `count` (integer) - The total number of results returned from the request
-    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
-    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
-  
-    * `_metadata` (object) - Data representing Pagination details
-    * `count` (integer) - The total number of results returned from the request
-    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
-    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
-  * `items` (Array[[User](#user)])
-
+<ul><li>_links (Object) - Relative URL's used for Pagination</li><ul><li>prev (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li>self (String) - The request that returned these results</li><li>next (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li>_metadata (Object) - Data representing Pagination details</li><ul><li>count (Integer) - The total number of results returned from the request</li><li>skip (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li>top (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li>items (Array[<a href='#user'>User</a>]) </li></ul>
 
 <h5>Example</h5>
 
@@ -526,9 +506,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='searching-for-users' class='clickable-header top-level-header'>Searching for Users</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -539,18 +517,18 @@ GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Terms` (**Required**)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive. 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* Terms (**Required**)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive. 
+* Skip (Optional)  - Number of records to skip 
+* Top (Optional)  - Number of records to take 
 
 
 
@@ -566,22 +544,7 @@ Accept: application/json
 #### Response
 
 
-  * `_links` (object) - Relative URL's used for Pagination
-    * `prev` (string) - Refers to a resource containing the previous page of results, `null` if there is no previous page
-    * `self` (string) - The request that returned these results
-    * `next` (string) - Refers to a resource containing the next page of results, `null` if this is the last page
-  
-  * `_metadata` (object) - Data representing Pagination details
-    * `count` (integer) - The total number of results returned from the request
-    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
-    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
-  
-    * `_metadata` (object) - Data representing Pagination details
-    * `count` (integer) - The total number of results returned from the request
-    * `skip` (integer) - Value of `skip` in the request URI, if not specified the value will be 0
-    * `top` (integer) - Value of `top` in the request URI, if not specified the value will be 30
-  * `items` (Array[[User](#user)])
-
+<ul><li>_links (Object) - Relative URL's used for Pagination</li><ul><li>prev (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li>self (String) - The request that returned these results</li><li>next (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li>_metadata (Object) - Data representing Pagination details</li><ul><li>count (Integer) - The total number of results returned from the request</li><li>skip (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li>top (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li>items (Array[<a href='#user'>User</a>]) </li></ul>
 
 <h5>Example</h5>
 
@@ -635,12 +598,10 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='assigning-a-user-to-a-location' class='clickable-header top-level-header'>Assigning a User to a Location</h2>
 
-<p>
 {{note}}
 Users can be assigned to multiple locations
 {{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -651,17 +612,17 @@ PUT /Users({UserId})/Locations({LocationId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -683,13 +644,11 @@ Content-Type: application/json
 
 <pre>
 HTTP 204 Content-Type: application/json
-</pre><pre></pre>
+</pre>
 
 <h2 id='unassigning-a-user-from-a-location' class='clickable-header top-level-header'>Unassigning a User from a Location</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -700,16 +659,16 @@ DELETE /Users({UserId})/Locations({LocationId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -728,15 +687,13 @@ Accept: application/json
 
 <h5>Example</h5>
 
-<pre>HTTP 204</pre>
-
-
+<pre>
+HTTP 204 Content-Type: application/json
+</pre>
 
 <h2 id='getting-assigned-locations-for-a-user' class='clickable-header top-level-header'>Getting Assigned Locations for a User</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -747,15 +704,15 @@ GET /Users({UserId})/Locations
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -771,9 +728,7 @@ Accept: application/json
 #### Response
 
 
-  * `UserId` (integer)
-  * `LocationIDs` (array) - Location Ids for {{Locations}} assigned to the {{User}}
-
+<ul><li>UserId (Integer) </li><li>LocationIDs (Array) - Location Ids for {{Locations}} assigned to the {{User}}</li></ul>
 
 <h5>Example</h5>
 
@@ -788,9 +743,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-users-by-clientuserid' class='clickable-header top-level-header'>Getting Users by ClientUserId</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -801,18 +754,18 @@ GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip=
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `ClientUserId` (**Required**)  - Identifier for the {{User}} in an external system 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* ClientUserId (**Required**)  - Identifier for the {{User}} in an external system 
+* Skip (Optional)  - Number of records to skip 
+* Top (Optional)  - Number of records to take 
 
 
 
@@ -828,7 +781,7 @@ Accept: application/json
 #### Response
 
 
-Array[[User](#user)]
+Array[<a href='#user'>User</a>]
 
 <h5>Example</h5>
 
@@ -870,12 +823,10 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='locking-a-user' class='clickable-header top-level-header'>Locking a User</h2>
 
-<p>
 {{note}}
 Once locked, a User will not be able to log in or obtain an access token until they are unlocked 
 {{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -886,13 +837,16 @@ POST /Users({UserId})/Lock
 #### Headers
 
 
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -900,6 +854,9 @@ POST /Users({UserId})/Lock
 
 <pre>
 POST /Users(22212)/Lock
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
 
 </pre>
 
@@ -911,18 +868,16 @@ POST /Users(22212)/Lock
 
 <pre>
 HTTP 204 Content-Type: application/json
-</pre><pre></pre>
+</pre>
 
 <h2 id='unlocking-a-user' class='clickable-header top-level-header'>Unlocking a User</h2>
 
-<p>
 Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
 
 {{note}}
 A User can be unlocked if their account is locked and their parent Entity is not using third-party authentication
 {{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -933,13 +888,16 @@ POST /Users({UserId})/Unlock
 #### Headers
 
 
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -947,6 +905,9 @@ POST /Users({UserId})/Unlock
 
 <pre>
 POST /Users(22212)/Unlock
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
 
 </pre>
 
@@ -958,13 +919,11 @@ POST /Users(22212)/Unlock
 
 <pre>
 HTTP 204 Content-Type: application/json
-</pre><pre></pre>
+</pre>
 
 <h2 id='enabling-a-user' class='clickable-header top-level-header'>Enabling a User</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -975,13 +934,16 @@ POST /Users({UserId})/Enable
 #### Headers
 
 
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+* UserId (**Required**)  - Identifier for the {{User}} 
 
 
 
@@ -989,13 +951,16 @@ POST /Users({UserId})/Enable
 
 <pre>
 POST /Users(22212)/Enable
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
 
 </pre>
 
 #### Response
 
 
-[User](#user)
+<a href='#user'>User</a>
 
 <h5>Example</h5>
 
@@ -1039,8 +1004,8 @@ HTTP 200 Content-Type: application/json
 |:-----------------|:------------|:---------------|
 | `HTTP 400` | `Bad Request` | Ensure all of the required fields are provided and formatted accurately, for more details see error message |
 | `HTTP 400` | `No search terms provided` | Ensure search terms are provided in URI |
-| `HTTP 400` | `Query string parameter '$top' should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
-| `HTTP 400` | `Query string parameter '$skip'<br/>`should be non-negative but was -1` | Ensure `$top` is non-negative |
+| `HTTP 400` | `Query string parameter '$top'`<br/>`should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
+| `HTTP 400` | `Query string parameter '$skip'`<br/>`should be non-negative but was -1` | Ensure `$top` is non-negative |
 | `HTTP 404` | `User not found` | Ensure UserId is valid |
 | `HTTP 404` | `Entity not found` | Ensure LocationId is valid |
 | `HTTP 409` | `Username and email already exist` | Ensure the email chosen does not already belong to a User. <br/> If the email address belongs to a disabled User, change the email for the disabled User before creating a new User with the original email |

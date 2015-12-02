@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -55,9 +55,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 <h2 id='getting-all-catalog-items' class='clickable-header top-level-header'>Getting All Catalog Items</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -68,15 +66,15 @@ GET /Companies({CompanyId})/Catalog/Items
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -92,7 +90,7 @@ Accept: application/json
 #### Response
 
 
-Array[[CatalogItem](#catalogitem)]
+Array[<a href='#catalogitem'>CatalogItem</a>]
 
 <h5>Example</h5>
 
@@ -109,9 +107,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-product-details' class='clickable-header top-level-header'>Getting Product Details</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -122,16 +118,16 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -147,37 +143,7 @@ Accept: application/json
 #### Response
 
 
-  * `Id` (string) - Identifier
-  * `Name` (string) - Name
-  * `ShortDescription` (string) - Short Description
-  * `LongDescription` (string) - Long Description
-  * `Assets` (array) - Asset information
-  * `CanonicalClassification` (object) - ClassificationTree details
-    * `Id` (integer) - Identifier for the [Classification](/api/classification-tree/#classification) or [Category](/api/classification-tree/#category)
-    * `Name` (string) - Name of the Classification/Category
-    * `ParentCategories` (array) - List of Parent Categories
-      * `Id` (integer) - Identifier for this Category
-      * `Name` (string) - Name of this Category
-    
-  
-  * `Entity` (object) - Entity information, used for Entity revisions
-  * `HeroShotId` (GUID) - [Hero Shot](/api/glossary/#hero-shot) identifier
-  * `HeroShotUri` (string) - URI to a Hero Shot Asset
-  * `IsLinkedToCuratedProduct` (boolean) - A flag to indicate if this version of this Product is publicly accessible (true), or private (false)
-  * `IsSaleable` (boolean) - A flag to indicate if this product can be sold
-    * `IsSaleable` (boolean) - A flag to indicate if this product can be sold* `Manufacturer` ([Manufacturer](#manufacturer)) - Manufacturer information
-      * `IsSaleable` (boolean) - A flag to indicate if this product can be sold* `Manufacturer` ([Manufacturer](#manufacturer)) - Manufacturer information* `ManufacturerSkus` (Array[[ManufacturerSku](#manufacturersku)]) - Manufacturer SKUs
-  * `MasterProductId` (integer) - Identifier for the Master Product
-    * `MasterProductId` (integer) - Identifier for the Master Product* `MSRP` ([MSRP](#msrp)) - Manufacturers suggested retail price information
-  * `Owner` (object) - Owner information, used for Private products and Carrier Revisions
-  * `Region` (object) - Region information, for Regional Carrier Revisions
-  * `ReleaseDate` (DateTime) - Release Date, in UTC
-    * `ReleaseDate` (DateTime) - Release Date, in UTC* `Specifications` (Array[[Specification](#specification)]) - Details such as color, dimension, etc
-      * `ReleaseDate` (DateTime) - Release Date, in UTC* `Specifications` (Array[[Specification](#specification)]) - Details such as color, dimension, etc* `UpcCodes` (Array[[UpcCode](#upccode)]) - UPC codes
-  * `VariationId` (integer) - Identifier for the Variation
-    * `VariationId` (integer) - Identifier for the Variation* `VendorSkus` (Array[[VendorSku](#vendorsku)]) - Vendor SKUs
-  * `Version` (integer) - Latest revision number
-
+<ul><li>Id (String) </li><li>Name (String) </li><li>ShortDescription (String) </li><li>LongDescription (String) </li><li>Assets (Array) </li><li>CanonicalClassification (Object) </li><ul><li>Id (Integer) </li><li>Name (String) </li><li>ParentCategories (Array) </li><ul><li>Id (Integer) </li><li>Name (String) </li></ul></ul><li>Entity (Object) </li><li>HeroShotId (Guid) </li><li>HeroShotUri (String) </li><li>IsLinkedToCuratedProduct (Boolean) </li><li>IsSaleable (Boolean) </li><li>Manufacturer (<a href='#manufacturer'>Manufacturer</a>) </li><li>ManufacturerSkus (Array[<a href='#manufacturersku'>ManufacturerSku</a>]) </li><li>MasterProductId (Integer) </li><li>MSRP (<a href='#msrp'>MSRP</a>) </li><li>Owner (Object) </li><li>Region (Object) </li><li>ReleaseDate (Datetime) </li><li>Specifications (Array[<a href='#specification'>Specification</a>]) </li><li>UpcCodes (Array[<a href='#upccode'>UpcCode</a>]) </li><li>VariationId (Integer) </li><li>VendorSkus (Array[<a href='#vendorsku'>VendorSku</a>]) </li><li>Version (Integer) </li></ul>
 
 <h5>Example</h5>
 
@@ -259,9 +225,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-compatible-products-for-a-catalog-item' class='clickable-header top-level-header'>Getting Compatible Products for a Catalog Item</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -272,16 +236,16 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -297,23 +261,7 @@ Accept: application/json
 #### Response
 
 
-  * `Items` (Array[[CatalogItem](#catalogitem)]) - Products matching the search criteria
-  * `Facets` (object) - Summary of Manufacturer and Vendor information for the Items
-    * `Manufacturers` (array) - Manufacturer information for the Items
-      * `Count` (integer) - Number of Items
-        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
-    
-    * `Vendors` (array) - Vendor information for the Items
-      * `Count` (integer) - Number of Items
-        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
-    
-  
-  * `MetaData` (object) - Data representing pagination details
-    * `Page` (integer) - Page of Items to be included in the resource
-    * `PageSize` (integer) - Number of Items included in the resource
-    * `TotalResults` (integer) - Number of Items matching the search criteria
-  
-
+<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -357,10 +305,8 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-variations-for-a-catalog-item' class='clickable-header top-level-header'>Getting Variations for a Catalog Item</h2>
 
-<p>
-For more information about Variations, see [Variations](/concepts/product-structure/#variations).
+For more information about Variations, see <a href='/concepts/product-structure/#variations'>Variations</a>
 
-</p>
 
 <h4>Request</h4>
 
@@ -371,16 +317,16 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -396,15 +342,7 @@ Accept: application/json
 #### Response
 
 
-  * `Name` (string)
-  * `Slug` (string)
-  * `CatalogItemId` (GUID)
-  * `Revisions` (array)
-    * `Name` (string)
-    * `Slug` (string)
-    * `CatalogItemId` (GUID)
-  
-
+<ul><li>Name (String) </li><li>Slug (String) </li><li>CatalogItemId (Guid) </li><li>Revisions (Array) </li><ul><li>Name (String) </li><li>Slug (String) </li><li>CatalogItemId (Guid) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -425,12 +363,10 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='searching-for-products' class='clickable-header top-level-header'>Searching For Products</h2>
 
-<p>
 {{note}}
 SearchTerms specified in the URI are compared against the following Product fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.
 {{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -441,24 +377,24 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `VendorIds` (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
-* `ManufacturerIds` (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
-* `IsDropShippable` (Optional)  - True to display products available for shipping, false to display products not available for shipping 
-* `CategoryOrClassificationId` (Optional)  - Identifier for the {{Category}} or {{Classification}} 
-* `SearchTerms` (Optional)  - Search terms 
-* `OrderBy` (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
-* `OrderDir` (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
-* `Page` (Optional)  - Page to display, if not specified defaults to 1 
-* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* VendorIds (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
+* ManufacturerIds (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
+* IsDropShippable (Optional)  - True to display products available for shipping, false to display products not available for shipping 
+* CategoryOrClassificationId (Optional)  - Identifier for the {{Category}} or {{Classification}} 
+* SearchTerms (Optional)  - Search terms 
+* OrderBy (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
+* OrderDir (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
+* Page (Optional)  - Page to display, if not specified defaults to 1 
+* PageSize (Optional)  - Number of results that will be returned, if not specified defaults to 20 
 
 
 
@@ -474,23 +410,7 @@ Accept: application/json
 #### Response
 
 
-  * `Items` (Array[[CatalogItem](#catalogitem)]) - Products matching the search criteria
-  * `Facets` (object) - Summary of Manufacturer and Vendor information for the Items
-    * `Manufacturers` (array) - Manufacturer information for the Items
-      * `Count` (integer) - Number of Items
-        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
-    
-    * `Vendors` (array) - Vendor information for the Items
-      * `Count` (integer) - Number of Items
-        * `Count` (integer) - Number of Items* `Item` ([Manufacturer](#manufacturer)) - Information about this Manufacturer
-    
-  
-  * `MetaData` (object) - Data representing pagination details
-    * `Page` (integer) - Page of Items to be included in the resource
-    * `PageSize` (integer) - Number of Items included in the resource
-    * `TotalResults` (integer) - Number of Items matching the search criteria
-  
-
+<ul><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li>Facets (Object) </li><ul><li>Manufacturers (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul><li>Vendors (Array) </li><ul><li>Count (Integer) </li><li>Item (<a href='#manufacturer'>Manufacturer</a>) </li></ul></ul><li>MetaData (Object) </li><ul><li>Page (Integer) </li><li>PageSize (Integer) </li><li>TotalResults (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -534,9 +454,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-products-by-vendor-sku' class='clickable-header top-level-header'>Getting Products by Vendor SKU</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -547,17 +465,17 @@ GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vend
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `VendorSku` (**Required**)  - Vendor SKU to search for 
-* `VendorId` (Optional)  - Identifier for a {{Vendor}} to search for 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* VendorSku (**Required**)  - Vendor SKU to search for 
+* VendorId (Optional)  - Identifier for a {{Vendor}} to search for 
 
 
 
@@ -573,10 +491,7 @@ Accept: application/json
 #### Response
 
 
-  * `Sku` (string) - Vendor Sku specified in the URI
-  * `VendorId` (integer) - Vendor Id specified in the URI
-    * `VendorId` (integer) - Vendor Id specified in the URI* `Items` (Array[[CatalogItem](#catalogitem)])
-
+<ul><li>Sku (String) </li><li>VendorId (Integer) </li><li>Items (Array[<a href='#catalogitem'>CatalogItem</a>]) </li></ul>
 
 <h5>Example</h5>
 

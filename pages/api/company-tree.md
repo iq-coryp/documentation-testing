@@ -4,7 +4,7 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -42,7 +42,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | CreatedUtc | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| Logo | [Asset](#asset) | A reference to an [Asset](/api/assets/#asset) |  |
+| Logo | <a href='#asset'>Asset</a> | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String | A string used for sorting | `samplecompany` |
 | Version | Integer | Latest revision number | `1` |
@@ -74,7 +74,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Name | String(250) | Company name | `SampleCompany` |
 | Description | String(255) | Description | `Company creating great experiences.` |
 | Role | String | Role | `Company` |
-| Nodes | Array[[CompanyTreeNode](#companytreenode)] | The Company Tree hierarchy made up of Nodes |  |
+| Nodes | Array[<a href='#companytreenode'>CompanyTreeNode</a>] | The Company Tree hierarchy made up of Nodes |  |
 
 ###CompanyTreeNode
 
@@ -104,18 +104,18 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | Area | Object | Measurement of floor space |  |
 | Area.Value | Integer | Value of the Area |  |
 | Area.Unit | String | Unit used for the Value, acceptable values are SqFt and SqM |  |
-| Address | [Address](#address) | Address |  |
+| Address | <a href='#address'>Address</a> | Address |  |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | ClientEntityId | String | Identifier in an external system | `123` |
-| Contacts | [Contact](#contact) | Contact information |  |
+| Contacts | <a href='#contact'>Contact</a> | Contact information |  |
 | Geography | Object | Geographic coordinates of this Location |  |
 | Geography.Longitude | Decimal | Longitude, must be between -180 and 180 | `-104.612034` |
 | Geography.Latitude | Decimal | Latitude, must be between -90 and 90 | `50.443559` |
 | Relationships | Array[object] | Relationship information, such as the parent node in the Company Tree |  |
 | SortName | String | A string used for sorting | `samplecompany` |
-| StoreHours | [StoreHours](#storehours) | Store hours for this Location |  |
-| StorePhoneNumbers | Array[[PhoneNumber](#phonenumber)] | Phone numbers |  |
-| TimeZone | [TimeZone](#timezone) | Timezone information for the Location |  |
+| StoreHours | <a href='#storehours'>StoreHours</a> | Store hours for this Location |  |
+| StorePhoneNumbers | Array[<a href='#phonenumber'>PhoneNumber</a>] | Phone numbers |  |
+| TimeZone | <a href='#timezone'>TimeZone</a> | Timezone information for the Location |  |
 | Version | Integer | Latest revision number | `13` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *LocationType* | *String* | *Reserved for future use* | |
@@ -142,7 +142,7 @@ To learn more about Divisions, see {{Division_Concept}}.
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| Logo | [Asset](#asset) | A reference to an Asset |  |
+| Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String | A string used for sorting | `sampledivision` |
 | Version | Integer | Latest revision number | `1` |
@@ -167,7 +167,7 @@ Managerial or geographical groupings.
 | CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| Logo | [Asset](#asset) | A reference to an Asset |  |
+| Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
 | SortName | String | A string used for sorting | `samplegroup` |
 | Version | Integer | Latest revision number | `1` |
@@ -193,9 +193,7 @@ Managerial or geographical groupings.
 
 <h2 id='getting-a-company' class='clickable-header top-level-header'>Getting a Company</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -206,15 +204,15 @@ GET /Companies({CompanyId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -230,7 +228,7 @@ Accept: application/json
 #### Response
 
 
-[Company](#company)
+<a href='#company'>Company</a>
 
 <h5>Example</h5>
 
@@ -265,9 +263,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-a-company-tree' class='clickable-header top-level-header'>Getting a Company Tree</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -278,15 +274,15 @@ GET /Companies({CompanyId})/Tree
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -302,7 +298,7 @@ Accept: application/json
 #### Response
 
 
-[CompanyTree](#companytree)
+<a href='#companytree'>CompanyTree</a>
 
 <h5>Example</h5>
 
@@ -326,9 +322,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='creating-a-location' class='clickable-header top-level-header'>Creating a Location</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -339,23 +333,23 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* NodeId (**Required**)  - Identifier of the parent for the {{Location}} 
 
 
 
 #### Request Parameters
 
-<ul><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>Roles (<strong>Required</strong>)  - Must be `Location`</li><ul><li>Name (Optional) </li></ul><li>Area (Optional) </li><ul><li>Value (Optional) </li><li>Unit (Optional) </li></ul><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>StateName (Optional) </li><li>CountryCode (Optional)  - Required if `StateCode` is provided</li><li>CountryName (Optional) </li><li>Zip (Optional) </li></ul><li>Attributes (Optional) </li><li>ClientEntityId (Optional) </li><li>Contacts (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul></ul><li>Geography (Optional) </li><ul><li>Longitude (Optional) </li><li>Latitude (Optional) </li></ul><li>StoreHours (Optional) </li><ul><li>Monday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Tuesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Wednesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Thursday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Friday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Saturday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Sunday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul></ul><li>StorePhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul><li>TimeZone (Optional) </li><ul><li>Id (Optional) </li><li>DaylightSavingTimeEnabled (Optional) </li></ul></ul>
+<ul><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>Roles (<strong>Required</strong>) </li><ul><li>Name (Optional) </li></ul><li>Area (Optional) </li><ul><li>Value (Optional) </li><li>Unit (Optional) </li></ul><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>StateName (Optional) </li><li>CountryCode (Optional) </li><li>CountryName (Optional) </li><li>Zip (Optional) </li></ul><li>Attributes (Optional) </li><li>ClientEntityId (Optional) </li><li>Contacts (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul></ul><li>Geography (Optional) </li><ul><li>Longitude (Optional) </li><li>Latitude (Optional) </li></ul><li>StoreHours (Optional) </li><ul><li>Monday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Tuesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Wednesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Thursday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Friday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Saturday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Sunday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul></ul><li>StorePhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul><li>TimeZone (Optional) </li><ul><li>Id (Optional) </li><li>DaylightSavingTimeEnabled (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -364,7 +358,6 @@ POST /Companies(1)/Tree/Nodes(2)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Name": "SampleLocation",
     "Description": "The SampleLocation is used to clear out discounted inventory",
@@ -493,7 +486,7 @@ Content-Type: application/json
 #### Response
 
 
-[Location](#location)
+<a href='#location'>Location</a>
 
 <h5>Example</h5>
 
@@ -631,8 +624,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='updating-a-location' class='clickable-header top-level-header'>Updating a Location</h2>
 
-<p>
-There are **two** different ways to update a location.
+There are <strong>two</strong> different ways to update a location.
  
 The only difference between Option 1 and Option 2 is a `NodeId` in the URI, the request body parameters and responses are otherwise identical.
  
@@ -644,7 +636,6 @@ This option requires knowing the Id of the parent of this {{Location}} in the fo
  
 This option does not require a `NodeId` but has weaker validation.
 
-</p>
 
 <h4>Request</h4>
 
@@ -655,18 +646,18 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* NodeId (**Required**)  - Identifier of the parent for the {{Location}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -683,7 +674,7 @@ Content-Type: application/json
 #### Response
 
 
-[Location](#location)
+<a href='#location'>Location</a>
 
 <h5>Example</h5>
 
@@ -821,9 +812,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-a-location-for-a-company' class='clickable-header top-level-header'>Getting a Location for a Company</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -834,16 +823,16 @@ GET /Companies({CompanyId})/Locations({LocationId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -859,7 +848,7 @@ Accept: application/json
 #### Response
 
 
-[Location](#location)
+<a href='#location'>Location</a>
 
 <h5>Example</h5>
 
@@ -997,9 +986,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-a-location' class='clickable-header top-level-header'>Updating a Location</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1010,23 +997,23 @@ PUT /Companies({CompanyId})/Locations({LocationId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
 
 
 
 #### Request Parameters
 
-<ul><li>Id (<strong>Required</strong>)  - Required for PUT requests</li><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>Roles (<strong>Required</strong>)  - Must be `Location`</li><ul><li>Name (Optional) </li></ul><li>CreatedUTC (<strong>Required</strong>) </li><li>LastModifiedUTC (<strong>Required</strong>) </li><li>Area (Optional) </li><ul><li>Value (Optional) </li><li>Unit (Optional) </li></ul><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>StateName (Optional) </li><li>CountryCode (Optional)  - Required if `StateCode` is provided</li><li>CountryName (Optional) </li><li>Zip (Optional) </li></ul><li>Attributes (Optional) </li><li>ClientEntityId (Optional) </li><li>Contacts (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul></ul><li>Geography (Optional) </li><ul><li>Longitude (Optional) </li><li>Latitude (Optional) </li></ul><li>Relationships (<strong>Required</strong>) </li><li>SortName (<strong>Required</strong>) </li><li>StoreHours (Optional) </li><ul><li>Monday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Tuesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Wednesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Thursday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Friday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Saturday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Sunday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul></ul><li>StorePhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul><li>TimeZone (Optional) </li><ul><li>Id (Optional) </li><li>DaylightSavingTimeEnabled (Optional) </li></ul><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li>Id (<strong>Required</strong>) </li><li>Name (<strong>Required</strong>) </li><li>Description (Optional) </li><li>Roles (<strong>Required</strong>) </li><ul><li>Name (Optional) </li></ul><li>CreatedUTC (<strong>Required</strong>) </li><li>LastModifiedUTC (<strong>Required</strong>) </li><li>Area (Optional) </li><ul><li>Value (Optional) </li><li>Unit (Optional) </li></ul><li>Address (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>StateCode (Optional) </li><li>StateName (Optional) </li><li>CountryCode (Optional) </li><li>CountryName (Optional) </li><li>Zip (Optional) </li></ul><li>Attributes (Optional) </li><li>ClientEntityId (Optional) </li><li>Contacts (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul></ul><li>Geography (Optional) </li><ul><li>Longitude (Optional) </li><li>Latitude (Optional) </li></ul><li>Relationships (<strong>Required</strong>) </li><li>SortName (<strong>Required</strong>) </li><li>StoreHours (Optional) </li><ul><li>Monday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Tuesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Wednesday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Thursday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Friday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Saturday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul><li>Sunday (Optional) </li><ul><li>Open (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul><li>Close (Optional) </li><ul><li>Hour (Optional) </li><li>Minute (Optional) </li></ul></ul></ul><li>StorePhoneNumbers (Optional) </li><ul><li>Description (Optional) </li><li>Number (Optional) </li><li>Extension (Optional) </li></ul><li>TimeZone (Optional) </li><ul><li>Id (Optional) </li><li>DaylightSavingTimeEnabled (Optional) </li></ul><li>Version (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -1169,7 +1156,7 @@ Content-Type: application/json
 #### Response
 
 
-[Location](#location)
+<a href='#location'>Location</a>
 
 <h5>Example</h5>
 
@@ -1307,9 +1294,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-all-locations-for-a-company' class='clickable-header top-level-header'>Getting All Locations for a Company</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1320,15 +1305,15 @@ GET /Companies({CompanyId})/Locations
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -1344,7 +1329,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Location](#location)]
+Array[<a href='#location'>Location</a>]
 
 <h5>Example</h5>
 
@@ -1484,9 +1469,12 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='creating-a-division' class='clickable-header top-level-header'>Creating a Division</h2>
 
-<p>
-Divisions may be added to the root Company node, or to a Division or Group node. A Division cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
-</p>
+Divisions may be added to the root Company node, or to a Division or Group node. 
+
+A Division cannot created if one already exists at the same level with the same name. 
+
+That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
+
 
 <h4>Request</h4>
 
@@ -1497,17 +1485,17 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of a Node 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* NodeId (**Required**)  - Identifier of a Node 
 
 
 
@@ -1522,7 +1510,6 @@ POST /Companies(1)/Tree/Nodes(16)/Divisions
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Name": "SampleDivision",
     "Description": "Division creating great experiences.",
@@ -1534,7 +1521,7 @@ Content-Type: application/json
 #### Response
 
 
-[Division](#division)
+<a href='#division'>Division</a>
 
 <h5>Example</h5>
 
@@ -1562,9 +1549,12 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='creating-a-group' class='clickable-header top-level-header'>Creating a Group</h2>
 
-<p>
-Groups may be added to the root Company node, or to a Division or Group node. A Group cannot created if one already exists at the same level with the same name. That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
-</p>
+Groups may be added to the root Company node, or to a Division or Group node. 
+
+A Group cannot created if one already exists at the same level with the same name. 
+
+That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
+
 
 <h4>Request</h4>
 
@@ -1575,17 +1565,17 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of a Node 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* NodeId (**Required**)  - Identifier of a Node 
 
 
 
@@ -1600,7 +1590,6 @@ POST /Companies(1)/Tree/Nodes(16)/Groups
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Name": "SampleGroup",
     "Description": "Group creating great experiences.",
@@ -1612,7 +1601,7 @@ Content-Type: application/json
 #### Response
 
 
-[Group](#group)
+<a href='#group'>Group</a>
 
 <h5>Example</h5>
 
@@ -1640,14 +1629,16 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='deleting-a-group-or-division' class='clickable-header top-level-header'>Deleting a Group or Division</h2>
 
-<p>
 {{warning}}
 This operation <strong>cannot be undone</strong>.
 {{end}}
 
-This request removes the Node refered to by NodeId from the Company Tree along with all of its children. Only Divisions and Groups can be deleted this way. If the Node or any of its children include Entities other then Groups or Divisions, the request will be rejected.
+This request removes the Node refered to by NodeId from the Company Tree along with all of its children. 
 
-</p>
+Only Divisions and Groups can be deleted this way. 
+
+If the Node or any of its children include Entities other then Groups or Divisions, the request will be rejected.
+
 
 <h4>Request</h4>
 
@@ -1658,15 +1649,15 @@ DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of a Node to be deleted 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* NodeId (**Required**)  - Identifier of a Node to be deleted 
 
 
 
@@ -1684,15 +1675,17 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 200</pre>
-
-
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
 
 <h2 id='searching-by-cliententityid' class='clickable-header top-level-header'>Searching by ClientEntityId</h2>
 
-<p>
-This request allows you to search your Company Tree using the `ClientEntityId` field. This request returns an array of objects that summarize Entities matching the search criteria. The following resource types are considered 'Entities': {{Company}}, {{Division}}, {{Group}}, {{Location}}, device
-</p>
+This request allows you to search your Company Tree using the `ClientEntityId` field. 
+
+This request returns an array of objects that summarize Entities matching the search criteria. 
+
+The following resource types are considered 'Entities': {{Company}}, {{Division}}, {{Group}}, {{Location}}, device
 
 <h4>Request</h4>
 
@@ -1703,16 +1696,16 @@ GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `ClientEntityId` (**Required**)  - The value to search for 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* ClientEntityId (**Required**)  - The value to search for 
 
 
 
@@ -1728,17 +1721,7 @@ Accept: application/json
 #### Response
 
 
-  * `Id` (integer)
-  * `Name` (string)
-  * `Description` (string)
-  * `Role` (string) - Role of the Entity
-  * `Path` (array) - Parents of the Entity. The order of elements is important, reflecting the hierarchy of parents (self, parent, parent-of-parent, etc) 
-    * `Id` (integer)
-    * `Name` (string)
-    * `Description` (string)
-    * `Role` (string) - Role of the Entity
-  
-
+<ul><li>Id (Integer) </li><li>Name (String) </li><li>Description (String) </li><li>Role (String) </li><li>Path (Array) </li><ul><li>Id (Integer) </li><li>Name (String) </li><li>Description (String) </li><li>Role (String) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -1766,12 +1749,12 @@ HTTP 200 Content-Type: application/json
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 400` | `Request Parameter Doesn't Match Expected Value` | Ensure all **Required** parameters are provided, see `Description` of Error for more details |
-| `HTTP 400` | `Please move or delete attached locations before deleting this entity` | Ensure Node to be deleted does not have child Locations |
+| `HTTP 400` | `Please move or delete attached locations`<br/>` before deleting this entity` | Ensure Node to be deleted does not have child Locations |
 | `HTTP 400` | `'{x}' should not be empty.` | Ensure required parameters are included |
-| `HTTP 400` | `'{x}' must be between 0 and {y} characters.  You entered {z} characters.` | Ensure required parameters are within size limitations |
+| `HTTP 400` | `'{x}' must be between 0 and {y} characters. `<br/>` You entered {z} characters.` | Ensure required parameters are within size limitations |
 | `HTTP 400` | `'Latitude/Longitude' should not be empty` | Ensure both `Latitude` and `Longitude` are provided, or `Geography` is null |
-| `HTTP 400` | `'Latitude' must be between -90 and 90.  You entered {x}` | Ensure `Latitude` is between -90 and 90 |
-| `HTTP 400` | `'Longitude' must be between -180 and 180. You entered {x}` | Ensure `Longitude` is between -180 and 180 |
-| `HTTP 404` | `Entity Not Found` | Ensure `CompanyId` and `LocationId` are accurate and the Location belongs to the Company |
-| `HTTP 409` | `Entity resource already modified by an  earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
-| `HTTP 409` | `An Entity already exists with the same name  and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |    
+| `HTTP 400` | `'Latitude' must be between -90 and 90.  `<br/>`You entered {x}` | Ensure `Latitude` is between -90 and 90 |
+| `HTTP 400` | `'Longitude' must be between -180 and 180. `<br/>`You entered {x}` | Ensure `Longitude` is between -180 and 180 |
+| `HTTP 404` | `Entity Not Found` | Ensure `CompanyId` and `LocationId``<br/>` are accurate and the Location belongs to the Company |
+| `HTTP 409` | `Entity resource already modified by an`<br/>`  earlier request` | Ensure `Version` is included in request and the Version value provided in the request data matches the Version for the resource in the database  |
+| `HTTP 409` | `An Entity already exists with the same name`<br/>` and role at this level.` | Ensure an instance of the resource you are trying to create does not already exist with the same name |    

@@ -4,7 +4,7 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -80,10 +80,8 @@ Permissions are the building blocks of SecurityRoles and represent the ability t
 
 <h2 id='getting-all-permissions-for-an-entity' class='clickable-header top-level-header'>Getting All Permissions for an Entity</h2>
 
-<p>
 This request will return all [Permissions](#permission) within the [SecurityRoles](#security-role) belonging to the specified Entity.
 
-</p>
 
 <h4>Request</h4>
 
@@ -94,15 +92,15 @@ GET /Entities({EntityId})/Permissions
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
 
 
@@ -118,7 +116,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Permission](#permission)]
+Array[<a href='#permission'>Permission</a>]
 
 <h5>Example</h5>
 
@@ -138,9 +136,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='creating-a-security-role' class='clickable-header top-level-header'>Creating a Security Role</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -151,22 +147,22 @@ POST /Entities({EntityId})/SecurityRoles
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
 
 
 #### Request Parameters
 
-<ul><li>Name (<strong>Required</strong>)  - A descriptive name, must be unique within the Company</li></ul>
+<ul><li>Name (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -175,7 +171,6 @@ POST /Entities(1)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Name": "Store Manager"
 }
@@ -184,7 +179,7 @@ Content-Type: application/json
 #### Response
 
 
-[SecurityRole](#securityrole)
+<a href='#securityrole'>SecurityRole</a>
 
 <h5>Example</h5>
 
@@ -197,9 +192,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-all-security-roles-for-an-entity' class='clickable-header top-level-header'>Getting All Security Roles for an Entity</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -210,15 +203,15 @@ GET /Entities({EntityId})/SecurityRoles
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
 
 
 
@@ -234,7 +227,7 @@ Accept: application/json
 #### Response
 
 
-Array[[SecurityRole](#securityrole)]
+Array[<a href='#securityrole'>SecurityRole</a>]
 
 <h5>Example</h5>
 
@@ -249,9 +242,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='enabling-a-permission-for-a-security-role' class='clickable-header top-level-header'>Enabling a Permission for a Security Role</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -262,18 +253,18 @@ PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permissio
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
-* `PermissionId` (**Required**)  - Identifier of a Permission 
+* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
+* PermissionId (**Required**)  - Identifier of a Permission 
 
 
 
@@ -293,15 +284,13 @@ Content-Type: application/json
 
 <h5>Example</h5>
 
-<pre>HTTP 204</pre>
-
-
+<pre>
+HTTP 204 Content-Type: application/json
+</pre>
 
 <h2 id='disabling-a-permission-for-a-security-role' class='clickable-header top-level-header'>Disabling a Permission for a Security Role</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -312,16 +301,16 @@ DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permis
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
-* `PermissionId` (**Required**)  - Identifier of a Permission 
+* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
+* PermissionId (**Required**)  - Identifier of a Permission 
 
 
 
@@ -339,15 +328,13 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 204</pre>
-
-
+<pre>
+HTTP 204 Content-Type: application/json
+</pre>
 
 <h2 id='getting-permissions-for-a-security-role' class='clickable-header top-level-header'>Getting Permissions for a Security Role</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -358,16 +345,16 @@ GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+* EntityId (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
 
 
 
@@ -383,7 +370,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Permission](#permission)]
+Array[<a href='#permission'>Permission</a>]
 
 <h5>Example</h5>
 
@@ -403,9 +390,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='assigning-a-security-role-to-a-user' class='clickable-header top-level-header'>Assigning a Security Role to a User</h2>
 
-<p>
 If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.
-</p>
 
 <h4>Request</h4>
 
@@ -416,16 +401,16 @@ POST /Users({UserId})/AssignedRoles
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier of a User 
+* UserId (**Required**)  - Identifier of a User 
 
 
 
@@ -440,7 +425,6 @@ POST /Users(22212)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "EntityId": 2,
     "SecurityRoleId": 4457
@@ -450,7 +434,7 @@ Content-Type: application/json
 #### Response
 
 
-[AssignedRole](#assignedrole)
+<a href='#assignedrole'>AssignedRole</a>
 
 <h5>Example</h5>
 
@@ -465,9 +449,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-assigned-roles-for-a-user' class='clickable-header top-level-header'>Getting Assigned Roles for a User</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -478,15 +460,15 @@ GET /Users({UserId})/AssignedRoles
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier of a User 
+* UserId (**Required**)  - Identifier of a User 
 
 
 
@@ -502,7 +484,7 @@ Accept: application/json
 #### Response
 
 
-Array[[AssignedRole](#assignedrole)]
+Array[<a href='#assignedrole'>AssignedRole</a>]
 
 <h5>Example</h5>
 
@@ -519,9 +501,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='unassigning-a-security-role-from-a-user' class='clickable-header top-level-header'>Unassigning a Security Role from a User</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -532,15 +512,15 @@ DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `UserId` (**Required**)  - Identifier of a User 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+* UserId (**Required**)  - Identifier of a User 
+* SecurityRoleId (**Required**)  - Identifier of a SecurityRole 
 
 
 
@@ -558,15 +538,15 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 204</pre>
-
-
+<pre>
+HTTP 204 Content-Type: application/json
+</pre>
 
 ## Errors
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
-| `HTTP 400` | `The field {x} is a required field but was not found in the request` | Ensure all required parameters are included |
-| `HTTP 400` | `Expected {x} to contain {y} but found {z}` | Ensure parameters that are in both Request URI and body match |
+| `HTTP 400` | `The field {x} is a required field `<br/>`but was not found in the request` | Ensure all required parameters are included |
+| `HTTP 400` | `Expected {x} to contain {y}`<br/>` but found {z}` | Ensure parameters that are in both Request URI and body match |
 | `HTTP 404` | `{x} not found` | Ensure URI parameters are correct | 
-| `HTTP 409` | `The SecurityRole name {x} already exists for entity {y}` | SecurityRole names must be unique across the Company |
+| `HTTP 409` | `The SecurityRole name {x} `<br/>`already exists for entity {y}` | SecurityRole names must be unique across the Company |

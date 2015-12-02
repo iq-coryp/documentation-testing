@@ -4,7 +4,7 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -35,9 +35,7 @@ summary:
 
 <h2 id='getting-availability-for-a-catalog-item-by-location' class='clickable-header top-level-header'>Getting Availability For a Catalog Item By Location</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -48,17 +46,17 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -74,7 +72,7 @@ Accept: application/json
 #### Response
 
 
-[Availability](#availability)
+<a href='#availability'>Availability</a>
 
 <h5>Example</h5>
 
@@ -89,9 +87,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-availability-for-a-catalog-item-by-locations' class='clickable-header top-level-header'>Getting Availability For a Catalog Item By Locations</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -102,16 +98,16 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Identifier for the {{CatalogItem}} 
 
 
 
@@ -127,7 +123,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Availability](#availability)]
+Array[<a href='#availability'>Availability</a>]
 
 <h5>Example</h5>
 

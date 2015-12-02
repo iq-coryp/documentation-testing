@@ -4,7 +4,7 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -33,16 +33,16 @@ summary:
 | HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
-| Manufacturer | [Manufacturer](#manufacturer) | Manufacturer information |  |
+| Manufacturer | <a href='#manufacturer'>Manufacturer</a> | Manufacturer information |  |
 | MasterProductId | Integer | Identifier for the Master Product | `3` |
-| MSRP | [MSRP](#msrp) | Manufacturers suggested retail price information |  |
+| MSRP | <a href='#msrp'>MSRP</a> | Manufacturers suggested retail price information |  |
 | Owner | Object | Owner information, used for Private products and Carrier Revisions |  |
 | Region | Object | Region information, for Regional Carrier Revisions |  |
 | ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
-| Specifications | Array[[Specification](#specification)] | Details such as color, dimension, etc |  |
-| UpcCodes | Array[[UpcCode](#upccode)] | UPC codes |  |
+| Specifications | Array[<a href='#specification'>Specification</a>] | Details such as color, dimension, etc |  |
+| UpcCodes | Array[<a href='#upccode'>UpcCode</a>] | UPC codes |  |
 | VariationId | Integer | Identifier for the Variation | `1` |
-| VendorSkus | Array[[VendorSku](#vendorsku)] | Vendor SKUs |  |
+| VendorSkus | Array[<a href='#vendorsku'>VendorSku</a>] | Vendor SKUs |  |
 | Version | Integer | Latest revision number | `1` |
 
 ###Specification
@@ -50,7 +50,7 @@ summary:
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Name | String | Specification name | `Color` |
-| Fields | Array[[Field](#field)] | Specification Fields |  |
+| Fields | Array[<a href='#field'>Field</a>] | Specification Fields |  |
 
 ###MSRP
 
@@ -59,12 +59,7 @@ summary:
 | Amount | Decimal | Manufacturers suggested retail price | `100` |
 | CurrencyCode | String | Currency | `USD` |
 
-###ProductSearch
 
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Products | Array[[Product](#product)] | Array of Slug attributes for [Product](#product)'s matching the search options |  |
-| Products.Slug | Array[[Id](#id)] |  | `M1-1` |
 
 ###Manufacturer
 
@@ -86,7 +81,7 @@ summary:
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Name | String | Specification name | `Color` |
-| Fields | Array[[Field](#field)] | Specification Fields |  |
+| Fields | Array[<a href='#field'>Field</a>] | Specification Fields |  |
 
 ###Field
 
@@ -123,7 +118,6 @@ summary:
 
 <h2 id='searching-for-products-by-identifier' class='clickable-header top-level-header'>Searching for Products by Identifier</h2>
 
-<p>
 `FindByIdentifier` can be used to search for {{Product}} resources by the following identifiers:
  
 | Searchable Identifiers |
@@ -132,7 +126,7 @@ summary:
 | VendorSKU |
 | UPC |
  
-### Search Format
+<h3>Search Format</h3>
  
 Query parameters are used to specify search criteria using the following format:
  
@@ -140,7 +134,7 @@ Query parameters are used to specify search criteria using the following format:
  
 Multiple options are separated with a `&` symbol.
  
-### Available Options
+<h3>Available Options</h3>
  
 See the table below for available options and the syntax of using each one. 
  
@@ -150,7 +144,6 @@ See the table below for available options and the syntax of using each one.
 | `type` | Search for the given SKU where the given identifier type matches. If no value is provided, all identifiers will be searched | String, see [Searchable Identifiers](#searchable-identifiers) |  `value=ABC123&type=VendorSKU` <br/> `value=ABC123&type=ManufacturerSKU` <br/> `value=ABC123&type=UPC`|
 | `entityId` | Search for the given SKU where the given entityId matches and the identifier type is VendorSKU or ManufacturerSKU | Integer | `value=ABC123&type=VendorSKU&entityId=4` | 
 
-</p>
 
 <h4>Request</h4>
 
@@ -161,15 +154,15 @@ GET /Products/FindByIdentifier?{Options}
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `Options` (**Required**)  - The options for the search 
+* Options (**Required**)  - The options for the search 
 
 
 
@@ -185,7 +178,7 @@ Accept: application/json
 #### Response
 
 
-[ProductSearch](#productsearch)
+<ul><li>Products (Array) </li><ul><li>Slug (String) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -194,65 +187,8 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Products": [
         {
-            "Id": "M3-V1",
-            "Name": "iPhone 4S 16GB White",
-            "ShortDescription": "Better than iPhone 3G",
-            "LongDescription": "The iPhone 4S is a gradual step over the iPhone 4.",
-            "Assets": [],
-            "CanonicalClassification": {},
-            "Entity": {},
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-            "HeroShotUri": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-            "IsLinkedToCuratedProduct": true,
-            "IsSaleable": true,
-            "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
-            },
-            "MasterProductId": 3,
-            "MSRP": {
-                "Amount": 100,
-                "CurrencyCode": "USD"
-            },
-            "Owner": {},
-            "Region": {},
-            "ReleaseDate": "2011-10-14T12:00:00.000",
-            "Specifications": [
-                {
-                    "Name": "Color",
-                    "Fields": [
-                        {
-                            "Id": 1,
-                            "StringId": "Color",
-                            "DisplayName": "Color",
-                            "Name": "Color",
-                            "Value": "White",
-                            "Type": "TextSingleLine",
-                            "Unit": "mm"
-                        }
-                    ]
-                }
-            ],
-            "UpcCodes": [
-                {
-                    "Value": "874688002478/16W",
-                    "Description": "UPC",
-                    "Entity": 2
-                }
-            ],
-            "VariationId": 1,
-            "VendorSkus": [
-                {
-                    "Value": "403405",
-                    "Description": "SKU",
-                    "Entity": 3
-                }
-            ],
-            "Version": 1
+            "Slug": "M3-V1"
         }
-    ],
-    "Products.Slug": [
-        "M1-1"
     ]
 }</pre>
 

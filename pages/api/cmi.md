@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience:
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary:
 ---
 
@@ -208,7 +208,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 
 #### Request Parameters
 
-<ul><li>Quantity (<strong>Required</strong>) </li><li>RQPurchaseOrderID (<strong>Required</strong>) </li><li>SerialNumbers (<strong>Required</strong>) </li><li>VendorInvoiceNumber (<strong>Required</strong>)  - Either this value **OR** PurchaseOrderID must be provided</li><li>PurchaseOrderID (Optional)  - Either this value or VendorInvoiceNumber must be provided</li><li>ProductItemID (Optional)  - Either this value or VendorSKU must be provided</li><li>ShipmentNumber (Optional)  - If this value is not provided, the service will automatically assign one</li><li>VendorSKU (Optional)  - Either this value or ProductItemId must be provided</li></ul>
+<ul><li>Quantity (<strong>Required</strong>) </li><li>RQPurchaseOrderID (<strong>Required</strong>) </li><li>SerialNumbers (<strong>Required</strong>) </li><li>VendorInvoiceNumber (<strong>Required</strong>) </li><li>PurchaseOrderID (Optional) </li><li>ProductItemID (Optional) </li><li>ShipmentNumber (Optional) </li><li>VendorSKU (Optional) </li></ul>
 
 ###### Example
 
@@ -271,7 +271,7 @@ PurchaseOrderShipmentNotice snReturn = cmiService.CreatePurchaseOrderShipmentNot
 #### Response
 
 
-[PurchaseOrderShipmentNotice](#purchaseordershipmentnotice)
+<a href='#purchaseordershipmentnotice'>PurchaseOrderShipmentNotice</a>
 
 ###### Example
 
@@ -327,7 +327,7 @@ Therefore, if a dealer creates a Purchase Order within RQ, it will be available 
 
 #### Request Parameters
 
-<ul><li>isCommitted (<strong>Required</strong>)  - Flag to indicate if committed or uncommitted purchase orders should be searched for</li><li>isCompleted (<strong>Required</strong>)  - Flag to indicate if complete or incomplete purchase orders should be searched for</li><li>startDate (<strong>Required</strong>)  - Purchase orders committed and/or completed on or after this day at midnight will be searched for</li><li>endDate (<strong>Required</strong>)  - Purchase orders committed and/or completed up to the end of this day will be searched for</li></ul>
+<ul><li>isCommitted (<strong>Required</strong>) </li><li>isCompleted (<strong>Required</strong>) </li><li>startDate (<strong>Required</strong>) </li><li>endDate (<strong>Required</strong>) </li></ul>
 
 ###### Example
 
@@ -372,7 +372,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByStatus(client, isC
 #### Response
 
 
-[PurchaseOrderInformation](#purchaseorderinformation)
+<a href='#purchaseorderinformation'>PurchaseOrderInformation</a>
 
 ###### Example
 
@@ -479,7 +479,7 @@ HTTP 200 Content-Type: application/xml
 
 #### Request Parameters
 
-<ul><li>PurchaseOrderReferenceNumber (<strong>Required</strong>)  - Reference Number on the Purchase Order in RQ</li></ul>
+<ul><li>PurchaseOrderReferenceNumber (<strong>Required</strong>) </li></ul>
 
 ###### Example
 
@@ -517,7 +517,7 @@ PurchaseOrderInformation pos = cmiService.GetPurchaseOrderByReferenceNumber(clie
 #### Response
 
 
-[PurchaseOrderInformation](#purchaseorderinformation)
+<a href='#purchaseorderinformation'>PurchaseOrderInformation</a>
 
 ###### Example
 
@@ -626,7 +626,7 @@ This call is useful in the situation where a user has created a PO in RQ for a v
 
 #### Request Parameters
 
-<ul><li>purchaseOrderIdByStore (<strong>Required</strong>)  - The business key of the purchase order in RQ</li></ul>
+<ul><li>purchaseOrderIdByStore (<strong>Required</strong>) </li></ul>
 
 ###### Example
 
@@ -664,7 +664,7 @@ PurchaseOrderInformation[] pos = cmiService.GetPurchaseOrderByBusinessID(client,
 #### Response
 
 
-[PurchaseOrderInformation](#purchaseorderinformation)
+<a href='#purchaseorderinformation'>PurchaseOrderInformation</a>
 
 ###### Example
 
@@ -790,7 +790,7 @@ StoreInformation[] stores = cmiService.GetStoreList(client);
 #### Response
 
 
-[StoreInformation](#storeinformation)
+<a href='#storeinformation'>StoreInformation</a>
 
 ###### Example
 

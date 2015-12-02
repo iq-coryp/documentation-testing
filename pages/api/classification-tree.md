@@ -4,7 +4,7 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -35,7 +35,7 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 | Id | Integer | Identifier | `1` |
 | Name | String | Name | `Smartphones` |
 | Order | Integer | Sorting order | `1` |
-| ProductTemplate | [ProductTemplate](#producttemplate) |  |  |
+| ProductTemplate | <a href='#producttemplate'>ProductTemplate</a> |  |  |
 
 ###ProductTemplate
 
@@ -65,9 +65,9 @@ There is a limit to 20 levels of depth for Categories.
 | Id | Integer | Identifier | `21` |
 | Name | String | Name | `Cellular & Accessories` |
 | Description | String | Description | `Classification of products for wireless retail` |
-| Categories | Array[[Category](#category)] | Categories in the Tree |  |
-| Classifications | Array[[Classification](#classification)] | Classifications for the Tree |  |
-| Owner | [Owner](#owner) | Information about the [Company](/api/company-tree/#company) that owns this Tree |  |
+| Categories | Array[<a href='#category'>Category</a>] | Categories in the Tree |  |
+| Classifications | Array[<a href='#classification'>Classification</a>] | Classifications for the Tree |  |
+| Owner | <a href='#owner'>Owner</a> | Information about the [Company](/api/company-tree/#company) that owns this Tree |  |
 | Version | Integer | Latest revision number | `41` |
 | *IsCanonical* | *Boolean* | *Reserved for internal use* | |
 
@@ -85,9 +85,7 @@ There is a limit to 20 levels of depth for Categories.
 
 <h2 id='getting-a-classification-tree' class='clickable-header top-level-header'>Getting a Classification Tree</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -98,15 +96,15 @@ GET /ClassificationTrees({ClassificationTreeId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `ClassificationTreeId` (**Required**)  - Identifier for the {{ClassificationTree}} 
+* ClassificationTreeId (**Required**)  - Identifier for the {{ClassificationTree}} 
 
 
 
@@ -122,7 +120,7 @@ Accept: application/json
 #### Response
 
 
-[ClassificationTree](#classificationtree)
+<a href='#classificationtree'>ClassificationTree</a>
 
 <h5>Example</h5>
 

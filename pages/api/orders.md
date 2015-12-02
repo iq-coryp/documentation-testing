@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -17,7 +17,6 @@ summary:
 * Production: <a href="https://order.iqmetrix.net/v1">https://order.iqmetrix.net/v1</a>
 
 ## Resources
-
 
 
 ###Order
@@ -71,7 +70,7 @@ summary:
 | ShippingOptionId | String | Identifier for the ShippingOption that this Item will use | `1` |
 | SupplierEntityId | Integer | Identifier for the Supplier of this Item | `14` |
 | SupplierReference | String | May be used for additional Supplier reference information | `10` |
-| TrackingInformation | Array[[TrackingInformation](#trackinginformation)] | Tracking information in the form of key-value pairs |  |
+| TrackingInformation | Array[<a href='#trackinginformation'>TrackingInformation</a>] | Tracking information in the form of key-value pairs |  |
 
 
 
@@ -103,7 +102,7 @@ summary:
 | *CustomerId* | *String* | *This is a legacy property that should not be used* | |
 | TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `INV112` |
 | *TenderOrigin* | *String* | *Reserved for future use* | |
-| Items | Array[[Item](#item)] | The Items in the [Order](#order) |  |
+| Items | Array[<a href='#item'>Item</a>] | The Items in the [Order](#order) |  |
 
 
 
@@ -113,7 +112,7 @@ summary:
 ### ItemStatus
 
 | OrderType | ItemType | Id | 
-|:----------|:---------|----|
+|:----------|:---------|:---|
 | Dropship | New | 1 |
 | Dropship | Cancelled | 2 |
 | Dropship | Processed | 3 |
@@ -135,7 +134,7 @@ summary:
 ### ItemType
 
 | Id | Item Type | Description | 
-|----|:----------|:------------|
+|:---|:----------|:------------|
 | 1 | DropShip | Item is available to be shipped |
 | 2 | InStock | Item is in stock |
 | 3 | eCommerce | Item is from an eCommerce platform |
@@ -143,8 +142,8 @@ summary:
 
 ### OrderState
 
-| Name    |
-|:--------|
+| Name |
+|:-----|
 | Cancelled |
 | Created |
 | Completed |
@@ -154,7 +153,7 @@ summary:
 ### OrderType
 
 | Id | Name | Description |
-|---:|------|:------------|
+|:---|------|:------------|
 | 3 | Purchase | An Order placed to a Supplier or Vendor |
 | 4 | RMA | Return Merchandise Authorization, an Order for returns, repairs or replacements |
 | 1 | Sales | An Order placed by a Customer |
@@ -164,10 +163,8 @@ summary:
 
 <h2 id='creating-an-order' class='clickable-header top-level-header'>Creating an Order</h2>
 
-<p>
 {{note}}The <code>EntityId</code> used in the request parameters must belong to the <code>CompanyId</code> used in the URI.{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -178,22 +175,22 @@ POST /Companies({CompanyId})/Orders
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
 #### Request Parameters
 
-<ul><li>BillingCustomerId (<strong>Required</strong>)  -  Must belong to the Company specified in the URI</li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>OrderExpiryHours (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>TenderId (Optional) </li></ul>
+<ul><li>BillingCustomerId (<strong>Required</strong>) </li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>OrderExpiryHours (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>TenderId (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -202,7 +199,6 @@ POST /Companies(1)/Orders
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Name": "iPhone 5 Order",
     "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
@@ -224,7 +220,7 @@ Content-Type: application/json
 #### Response
 
 
-[Order](#order)
+<a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -255,9 +251,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-a-single-order' class='clickable-header top-level-header'>Getting a Single Order</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -268,15 +262,15 @@ GET /Companies({CompanyId})/Orders
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -292,7 +286,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Order](#order)]
+Array[<a href='#order'>Order</a>]
 
 <h5>Example</h5>
 
@@ -325,9 +319,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='adding-an-item-to-an-order' class='clickable-header top-level-header'>Adding an Item to an Order</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -338,23 +330,23 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
 #### Request Parameters
 
-<ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>Quantity (Optional) </li><li>TrackingNumber (Optional) </li></ul></ul>
+<ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>TrackingNumber (<strong>Required</strong>) </li><li>Quantity (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -363,7 +355,6 @@ POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Cost": 5.99,
     "Description": "LG G3 phone case",
@@ -394,7 +385,7 @@ Content-Type: application/json
 #### Response
 
 
-[Item](#item)
+<a href='#item'>Item</a>
 
 <h5>Example</h5>
 
@@ -432,9 +423,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-all-items-on-an-order' class='clickable-header top-level-header'>Getting all Items on an Order</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -445,16 +434,16 @@ GET /Companies({CompanyId})/Orders({OrderId})/Items
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
@@ -470,7 +459,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Item](#item)]
+Array[<a href='#item'>Item</a>]
 
 <h5>Example</h5>
 
@@ -510,9 +499,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-an-order' class='clickable-header top-level-header'>Getting an Order</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -523,16 +510,16 @@ GET /Companies({CompanyId})/Orders({OrderId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* OrderId (**Required**)  - Identifier for the {{Order}} 
 
 
 
@@ -548,7 +535,7 @@ Accept: application/json
 #### Response
 
 
-[Order](#order)
+<a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -579,9 +566,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-an-order' class='clickable-header top-level-header'>Updating an Order</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -592,23 +577,23 @@ PUT /Companies({CompanyId})/Orders({OrderId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* OrderId (**Required**)  - Identifier for the {{Order}} 
 
 
 
 #### Request Parameters
 
-<ul><li>BillingCustomerId (<strong>Required</strong>)  -  Must belong to the Company specified in the URI</li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li></ul>
+<ul><li>BillingCustomerId (<strong>Required</strong>) </li><li>EntityId (<strong>Required</strong>) </li><li>OrderTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -644,7 +629,7 @@ Content-Type: application/json
 #### Response
 
 
-[Order](#order)
+<a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -675,9 +660,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='processing-an-order' class='clickable-header top-level-header'>Processing an Order</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -688,17 +671,17 @@ POST /Companies({CompanyId})/Orders({OrderId})/Process
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* OrderId (**Required**)  - Identifier for the {{Order}} 
 
 
 
@@ -713,7 +696,6 @@ POST /Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
 }
@@ -722,7 +704,7 @@ Content-Type: application/json
 #### Response
 
 
-[Order](#order)
+<a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -753,10 +735,8 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='creating-an-order-with-items' class='clickable-header top-level-header'>Creating an Order with Items</h2>
 
-<p>
 {{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -767,22 +747,22 @@ POST /Companies({CompanyId})/OrderFull
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
 #### Request Parameters
 
-<ul><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional)  -  Must belong to the Company specified in the URI</li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>EntityId (Optional) </li><li>OrderExpiryHours (Optional) </li><li>OrderTypeId (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>Quantity (Optional) </li><li>TrackingNumber (Optional) </li></ul></ul></ul>
+<ul><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>EntityId (Optional) </li><li>OrderExpiryHours (Optional) </li><li>OrderTypeId (Optional) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemTypeId (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>TrackingNumber (<strong>Required</strong>) </li><li>Quantity (Optional) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -791,7 +771,6 @@ POST /Companies(1)/OrderFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Name": "iPhone 5 Order",
     "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
@@ -840,7 +819,7 @@ Content-Type: application/json
 #### Response
 
 
-[OrderFull](#orderfull)
+<a href='#orderfull'>OrderFull</a>
 
 <h5>Example</h5>
 
@@ -902,9 +881,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-all-orders-for-a-company' class='clickable-header top-level-header'>Getting All Orders for a Company</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -915,15 +892,15 @@ GET /Companies({CompanyId})/OrderFull
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -939,7 +916,7 @@ Accept: application/json
 #### Response
 
 
-Array[[OrderFull](#orderfull)]
+Array[<a href='#orderfull'>OrderFull</a>]
 
 <h5>Example</h5>
 
@@ -1003,9 +980,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-an-order-with-items' class='clickable-header top-level-header'>Getting an Order with Items</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1016,16 +991,16 @@ GET /Companies({CompanyId})/OrderFull({OrderId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
@@ -1041,7 +1016,7 @@ Accept: application/json
 #### Response
 
 
-[OrderFull](#orderfull)
+<a href='#orderfull'>OrderFull</a>
 
 <h5>Example</h5>
 
@@ -1103,10 +1078,8 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-an-order-with-items' class='clickable-header top-level-header'>Updating an Order with Items</h2>
 
-<p>
 {{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -1117,23 +1090,23 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* OrderId (**Required**)  - Identifier for the {{Order}} being updated 
 
 
 
 #### Request Parameters
 
-<ul><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional)  -  Must belong to the Company specified in the URI</li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional)  - Must belong to the Company specified in the URI</li><li>EntityId (Optional) </li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>OrderTypeId (Optional) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional)  - If this value is provided, ShippingCustomerId must be excluded</li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemStatusId (<strong>Required</strong>) </li><li>ItemTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>ItemType (<strong>Required</strong>) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>OrderId (<strong>Required</strong>) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>Quantity (Optional) </li><li>TrackingNumber (Optional) </li></ul></ul></ul>
+<ul><li>Id (<strong>Required</strong>) </li><li>Name (Optional) </li><li>BillingAddressId (Optional) </li><li>BillingCustomerId (Optional) </li><li>CreatedDateUtc (<strong>Required</strong>) </li><li>DiscountAmount (Optional) </li><li>DiscountCode (Optional) </li><li>DiscountDescription (Optional) </li><li>EmployeeId (Optional) </li><li>EntityId (Optional) </li><li>OrderExpiryDate (<strong>Required</strong>) </li><li>OrderExpiryHours (Optional) </li><li>OrderType (<strong>Required</strong>) </li><li>OrderTypeId (Optional) </li><li>PrintableId (<strong>Required</strong>) </li><li>ShippingAddressId (Optional) </li><li>ShippingCustomerId (Optional) </li><li>ShippingEntityId (Optional) </li><li>State (<strong>Required</strong>) </li><li>TenderId (Optional) </li><li>Items (Optional) </li><ul><li>ItemStatusId (<strong>Required</strong>) </li><li>ItemTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>Cost (Optional) </li><li>Description (Optional) </li><li>ItemStatus (Optional) </li><li>ItemType (<strong>Required</strong>) </li><li>Index (Optional) </li><li>ListPrice (Optional) </li><li>Notes (Optional) </li><li>OrderId (<strong>Required</strong>) </li><li>ProductId (Optional) </li><li>Quantity (Optional) </li><li>SellingPrice (Optional) </li><li>SerialNumbers (Optional) </li><li>SKU (Optional) </li><li>ShippingOptionId (Optional) </li><li>SupplierEntityId (Optional) </li><li>SupplierReference (Optional) </li><li>TrackingInformation (Optional) </li><ul><li>TrackingNumber (<strong>Required</strong>) </li><li>Quantity (Optional) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -1200,7 +1173,7 @@ Content-Type: application/json
 #### Response
 
 
-[OrderFull](#orderfull)
+<a href='#orderfull'>OrderFull</a>
 
 <h5>Example</h5>
 
@@ -1262,9 +1235,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-pending-orders-by-location' class='clickable-header top-level-header'>Getting Pending Orders by Location</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1275,16 +1246,16 @@ GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {L
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
 
 
 
@@ -1300,7 +1271,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Order](#order)]
+Array[<a href='#order'>Order</a>]
 
 <h5>Example</h5>
 
@@ -1333,9 +1304,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-orders-by-printableid' class='clickable-header top-level-header'>Getting Orders by PrintableId</h2>
 
-<p>
 {{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}
-</p>
 
 <h4>Request</h4>
 
@@ -1346,16 +1315,16 @@ GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `PrintableId` (**Required**)  - An {{Order}} identifier printed on invoices 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* PrintableId (**Required**)  - An {{Order}} identifier printed on invoices 
 
 
 
@@ -1371,7 +1340,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Order](#order)]
+Array[<a href='#order'>Order</a>]
 
 <h5>Example</h5>
 

@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -56,13 +56,12 @@ API key must be provided in header and is configurable.
 
 ## Resources
 
-
 ###ShippingQuery
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
-| Items | Array[[Item](#item)] | List of Products to be added to shipping query |  |
+| Items | Array[<a href='#item'>Item</a>] | List of Products to be added to shipping query |  |
 | PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
 
 ###Item
@@ -109,7 +108,7 @@ The specification for the request must be in the format below:
 
 #### Request Parameters
 
-<ul><li>CompanyId (<strong>Required</strong>) </li><li>PostalCode (<strong>Required</strong>) </li><li>Items (Optional) </li><ul><li>ProductName (Optional) </li><li>Quantity (Optional) </li><li>Sku (Optional) </li></ul></ul>
+<ul><li>CompanyId (<strong>Required</strong>) </li><li>PostalCode (<strong>Required</strong>) </li><li>Items (Optional) </li><ul><li>ProductName (<strong>Required</strong>) </li><li>Quantity (<strong>Required</strong>) </li><li>Sku (<strong>Required</strong>) </li></ul></ul>
 
 ###### Example
 
@@ -133,11 +132,11 @@ Authorization: BasicAccept: application/jsonContent-Type: application/jsonHost: 
 
 The specification of the response must be in the format below:
 
-  * `Id` (**Required**)
-  * `Cost` (**Required**)
-  * `Currency` (**Required**)
-  * `EstimatedTransitTime` (Optional)
-  * `Name` (Optional)
+  <li>Id (<strong>Required</strong>) </li>
+  <li>Cost (<strong>Required</strong>) </li>
+  <li>Currency (<strong>Required</strong>) </li>
+  <li>EstimatedTransitTime (Optional) </li>
+  <li>Name (Optional) </li>
 
 
 ###### Example

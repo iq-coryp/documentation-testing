@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -49,13 +49,11 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 
 <h2 id='getting-all-punch-entries' class='clickable-header top-level-header'>Getting All Punch Entries</h2>
 
-<p>
 By default, the sorting order of the response to this request will be **descending** order by `LastUpdateDateUtc`.
 
 {{note}}
 Don't forget <code>$filter=</code> in the request!
 {{end}}  
-</p>
 
 <h4>Request</h4>
 
@@ -66,19 +64,19 @@ GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `StartDate` (Optional)  - Date at which to begin search request, in UTC 
-* `EndDate` (Optional)  - Date at which to end search request, in UTC 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* StartDate (Optional)  - Date at which to begin search request, in UTC 
+* EndDate (Optional)  - Date at which to end search request, in UTC 
+* Skip (Optional)  - Number of records to skip 
+* Top (Optional)  - Number of records to take 
 
 
 
@@ -94,7 +92,7 @@ Accept: application/json
 #### Response
 
 
-Array[[PunchEntry](#punchentry)]
+Array[<a href='#punchentry'>PunchEntry</a>]
 
 <h5>Example</h5>
 

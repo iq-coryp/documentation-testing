@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -22,12 +22,11 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 ## Resources
 
-
 ###Subscription
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Companies | Array[[Company](#company)] | Companies for the subscription |  |
+| Companies | Array[<a href='#company'>Company</a>] | Companies for the subscription |  |
 | ListId | GUID | Subscription identifier | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 
 ###Company
@@ -45,7 +44,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 | EntityId | Integer | [Supplier](/api/entity-store/#supplier) identifier | `14` |
 | Id | GUID | Subscribable List identifer | `2c7dccd9-49ba-42ac-bffb-edcc08f40773` |
 | Name | String | Title of product subscription | `Joe's Subscription List` |
-| Products | Array[[Product](#product)] | Products for the subscribable list |  |
+| Products | Array[<a href='#product'>Product</a>] | Products for the subscribable list |  |
 | Version | Integer | Subscription revision | `12` |
 
 ###Product
@@ -66,9 +65,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 
 <h2 id='getting-all-companies-in-a-product-subscription' class='clickable-header top-level-header'>Getting All Companies in a Product Subscription</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -79,15 +76,15 @@ GET /subscription({ListId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `ListId` (**Required**) 
+* ListId (**Required**) 
 
 
 
@@ -103,7 +100,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Subscription](#subscription)]
+Array[<a href='#subscription'>Subscription</a>]
 
 <h5>Example</h5>
 
@@ -129,9 +126,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-a-subscribable-list' class='clickable-header top-level-header'>Getting a Subscribable List</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -142,15 +137,15 @@ GET /subscribablelists({SubscribableListId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}}` 
+* SubscribableListId (**Required**)  - Identifier for a {{SubscribableList}} 
 
 
 
@@ -166,7 +161,7 @@ Accept: application/json
 #### Response
 
 
-[SubscribableList](#subscribablelist)
+<a href='#subscribablelist'>SubscribableList</a>
 
 <h5>Example</h5>
 
@@ -193,10 +188,8 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-products-in-a-subscribable-list' class='clickable-header top-level-header'>Updating Products in a Subscribable List</h2>
 
-<p>
 {{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -207,22 +200,22 @@ PUT /subscribablelists({SubscribableListId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}}` 
+* SubscribableListId (**Required**)  - Identifier for a {{SubscribableList}} 
 
 
 
 #### Request Parameters
 
-<ul><li>EntityId (<strong>Required</strong>) </li><li>Name (<strong>Required</strong>) </li><li>Products (<strong>Required</strong>) </li><ul><li>Dropshippable (Optional) </li><li>Price (Optional) </li><li>ProductName (Optional) </li><li>ProductSlugs (Optional) </li><li>VendorSku (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>Id (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li>EntityId (<strong>Required</strong>) </li><li>Name (<strong>Required</strong>) </li><li>Products (<strong>Required</strong>) </li><ul><li>ProductName (<strong>Required</strong>) </li><li>VendorSku (<strong>Required</strong>) </li><li>Dropshippable (Optional) </li><li>Price (Optional) </li><li>ProductSlugs (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>Id (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -249,7 +242,7 @@ Content-Type: application/json
 #### Response
 
 
-[SubscribableList](#subscribablelist)
+<a href='#subscribablelist'>SubscribableList</a>
 
 <h5>Example</h5>
 

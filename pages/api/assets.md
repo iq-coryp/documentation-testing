@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -40,9 +40,7 @@ An **Asset** is an image or video associated with a Product.
 
 <h2 id='creating-an-asset' class='clickable-header top-level-header'>Creating an Asset</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -53,9 +51,9 @@ POST /assets
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: multipart/form-data`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: multipart/form-data
 
 
 
@@ -63,7 +61,7 @@ POST /assets
 
 #### Request Parameters
 
-* `Filename` (**Required**) - File to be uploaded
+<li>Filename (<strong>Required</strong>) - File to be uploaded</li>
 
 
 <h5>Example</h5>
@@ -79,7 +77,7 @@ Content-Type: multipart/form-data
 #### Response
 
 
-[Asset](#asset)
+<a href='#asset'>Asset</a>
 
 <h5>Example</h5>
 
@@ -98,9 +96,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-an-asset' class='clickable-header top-level-header'>Getting an Asset</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -111,14 +107,14 @@ GET /assets/{AssetId}
 #### Headers
 
 
-* `Accept: application/json`
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
+* AssetId (**Required**)  - Identifier for the {{Asset}} 
 
 
 
@@ -133,7 +129,7 @@ Accept: application/json
 #### Response
 
 
-[Asset](#asset)
+<a href='#asset'>Asset</a>
 
 <h5>Example</h5>
 
@@ -152,9 +148,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='redirecting-to-an-image-asset' class='clickable-header top-level-header'>Redirecting to an Image Asset</h2>
 
-<p>
 A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
-</p>
 
 <h4>Request</h4>
 
@@ -171,7 +165,7 @@ GET /images/{AssetId}
 #### URI Parameters
 
 
-* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
+* AssetId (**Required**)  - Identifier for the {{Asset}} 
 
 
 

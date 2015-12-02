@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,42 +18,41 @@ summary:
 
 ## Resources
 
-
 ###Activation
 
-An **Activation** contains IDs necessary to identify an activation, and all the activation details.
+An <strong>Activation</strong> contains IDs necessary to identify an activation, and all the activation details.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | String | The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma | `1=35854205829867` |
-| CarrierActivationDetails | [CarrierActivationDetails](#carrieractivationdetails) | The details of this Activation |  |
+| CarrierActivationDetails | <a href='#carrieractivationdetails'>CarrierActivationDetails</a> | The details of this Activation |  |
 | CarrierId | Integer | Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service | `41` |
 | CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) making this request | `5678` |
 
 ###CarrierActivationDetails
 
-A **CarrierActivationDetails** contains all of the customer, product, and rate plan information necessary to process an activation.
+A <strong>CarrierActivationDetails</strong> contains all of the customer, product, and rate plan information necessary to process an activation.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | ActivationId | Integer | System-generated identifier for the [Activation](#activation) | `354` |
 | ActivationDate | Datetime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
-| ActivatedProduct | [ActivatedProduct](#activatedproduct) | The Product that is being activated |  |
+| ActivatedProduct | <a href='#activatedproduct'>ActivatedProduct</a> | The Product that is being activated |  |
 | ActivationState | String | State of the [Activation](#activation). See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
 | ActivationTermCode | String(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
 | ActivationType | String | The type of this [Activation](#activation), such as a new [Activation](#activation) or an upgrade. See [ActivationType](#activationtype) for a list of acceptable values | `NewActivation` |
-| AdditionalFees | Array[[AdditionalFee](#additionalfee)] | The additional fees that are applicable to this [Activation](#activation), not including the deposit fee or tab |  |
+| AdditionalFees | Array[<a href='#additionalfee'>AdditionalFee</a>] | The additional fees that are applicable to this [Activation](#activation), not including the deposit fee or tab |  |
 | ContractLengthInMonths | Integer | Number of months the [Activation](#activation) has been contracted for. ContractTerm in RQ. For a list of acceptable values, see [ContractTerms](#contractterms) | `24` |
 | ContractNumberIsAccountNumber | Boolean | A flag to indicate if the contract number of the [Activation](#activation) can be represented by the account number. IsAccountNumberLocked in RQ | `false` |
 | DealerName | String | Carrier-specific dealer name | `IAPR` |
 | DealerCode | String(64) | Carrier-specific dealer code | `IAPR` |
-| Deposit | [AdditionalFee](#additionalfee) | The security deposit that the [Activation](#activation) requires the Subscriber to pay |  |
+| Deposit | <a href='#additionalfee'>AdditionalFee</a> | The security deposit that the [Activation](#activation) requires the Subscriber to pay |  |
 | Notes | String(256) | Free form text with any additional notes related to the [Activation](#activation) | `Notes go here!` |
 | OrderNumber | String(64) | Carrier-specific identifier for the order this activation is associated with. Activations may have the same order number if they were part of a multi-line activation in the carrier system | `ORD1234` |
-| RatePlans | Array[[RatePlan](#rateplan)] | The Rate Plan(s) that are applied to the [Activation](#activation) |  |
+| RatePlans | Array[<a href='#rateplan'>RatePlan</a>] | The Rate Plan(s) that are applied to the [Activation](#activation) |  |
 | RemoteActivationID | String(64) | Carrier-specific identifier for the [Activation](#activation) | `3023997373` |
-| Subscriber | [Subscriber](#subscriber) | The Subscriber (customer) that the [Activation](#activation) is for |  |
+| Subscriber | <a href='#subscriber'>Subscriber</a> | The Subscriber (customer) that the [Activation](#activation) is for |  |
 | TrackingNumber | String(64) | Carrier-specific tracking number for this [Activation](#activation) | `3023997373` |
 | *BillingCode* | *String* | *Reserved for future use* | |
 | *BillingCycle* | *String* | *Reserved for future use* | |
@@ -71,9 +70,9 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 ###Subscriber
 
- A **Subscriber** contains all of the customer information related to an activation. 
+ A <strong>Subscriber</strong> contains all of the customer information related to an activation. 
 
- ### RQ Limitations 
+ <h4>RQ Limitations</h4> 
 * Only 4 addresses will be accepted, the first 4 phone numbers will be assigned to Phone1, Phone2, Phone3, Phone4 in order.
 
 | Name | Data Type | Description | Example |
@@ -81,14 +80,14 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SubscriberId | String(64) | Carrier-specific identifier for the Subscriber | `12121212121` |
 | FirstName | String(64) | If IsIndividual is true, the first name of the Subscriber | `Joe` |
 | LastName | String(64) | If IsIndividual is true, the last name of the Subscriber | `Smith` |
-| Addresses | Array[[Address](#address)] | List of addresses for the Subscriber |  |
-| AssociatedAccount | [Account](#account) | The account associated with this Subscriber |  |
+| Addresses | Array[<a href='#address'>Address</a>] | List of addresses for the Subscriber |  |
+| AssociatedAccount | <a href='#account'>Account</a> | The account associated with this Subscriber |  |
 | BirthDate | Datetime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
 | CompanyName | String(64) | If the Subscriber is a business, the name of the business |  |
 | Email | String(64) | Email address | `subscriber@example.com` |
 | IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
 | Notes | String(128) | Notes | `24 Month Term` |
-| PhoneNumbers | Array[[PhoneNumber](#phonenumber)] | List of phone numbers |  |
+| PhoneNumbers | Array[<a href='#phonenumber'>PhoneNumber</a>] | List of phone numbers |  |
 | SSN | String(4) | Last 4 digits of a SSN | `6789` |
 | TrackingNumber | String(64) | Carrier-specific tracking number | `2121212121` |
 | *SecondName* | *String* | *Reserved for future use* | |
@@ -111,7 +110,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 ###Address
 
-#### RQ Limitations 
+<h4>RQ Limitations</h4> 
 
 * A maximum of 1 work Address (type set to `Commercial`) will be accepted
 
@@ -132,7 +131,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 
 ###RatePlan
 
-#### RQ Limitations
+<h4>RQ Limitations</h4>
 
 * A maximum of 2 Rate Plans will be accepted
 
@@ -142,9 +141,9 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Name | String(64) | Name | `Country-wide Unlimited` |
 | ContractTerms | String(256) | Terms and conditions | `Some terms` |
 | Description | String(128) | Description. May be set to an empty string | `The perfect plan for lots of calling!` |
-| IncludedRatePlanFeatures | Array[[RatePlanFeature](#rateplanfeature)] | Features are included with the RatePlan |  |
+| IncludedRatePlanFeatures | Array[<a href='#rateplanfeature'>RatePlanFeature</a>] | Features are included with the RatePlan |  |
 | MonthlyRecurringCharges | Decimal | Monthly cost | `55` |
-| RatePlanFeatureAddons | Array[[RatePlanFeature](#rateplanfeature)] | Additional RatePlan features the Subscriber chose to pay for |  |
+| RatePlanFeatureAddons | Array[<a href='#rateplanfeature'>RatePlanFeature</a>] | Additional RatePlan features the Subscriber chose to pay for |  |
 | SOCCode | String(64) | Carrier-specific SOC code | `ABC1234` |
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 | *IsSharedPlan* | *Boolean* | *Reserved for future use* | |
@@ -176,7 +175,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | SIM | String(32) | Subscriber identity module | `89000000000000001234` |
 | SKU | String(64) | Stockkeeping Unit. This value is used when activating a customer-owned phone | `DEF987` |
 | SOCCode | String(64) | Carrier-specific SOC | `DEF987` |
-| Tab | [Tab](#tab) | A discount that is added to or subtracted from the Product's price |  |
+| Tab | <a href='#tab'>Tab</a> | A discount that is added to or subtracted from the Product's price |  |
 | *IsCarrierSupplied* | *Boolean* | *Reserved for future use* | |
 | *NumberPortedIn* | *Boolean* | *Reserved for future use* | |
 
@@ -185,7 +184,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Amount | Decimal | Amount | `50` |
-| Commission | [VendorRebate](#vendorrebate) |  |  |
+| Commission | <a href='#vendorrebate'>VendorRebate</a> |  |  |
 | ReferenceNumber | String | Carrier reference number | `abc123` |
 
 ###AdditionalFee
@@ -196,7 +195,7 @@ A **CarrierActivationDetails** contains all of the customer, product, and rate p
 | Description | String(128) | Description | `Roam like home` |
 | Amount | Decimal | Amount | `55` |
 | Notes | String(512) | Notes | `US` |
-| Rebate | [VendorRebate](#vendorrebate) |  |  |
+| Rebate | <a href='#vendorrebate'>VendorRebate</a> |  |  |
 | ReferenceNumber | String(64) | Carrier reference number, this value should be used for storing an identifier from an external system | `abc123` |
 | SOCCode | String(64) | Carrier-specific SOC code | `BB3221` |
 
@@ -218,7 +217,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Service-generated identifier for the activation confirmation | `58` |
-| ActivationConfirmationDetails | Array[[ActivationDetails](#activationdetails)] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
+| ActivationConfirmationDetails | Array[<a href='#activationdetails'>ActivationDetails</a>] | Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation |  |
 | ConfirmationDateUTC | DateTime | When this activation confirmation occurred | `2015-07-21T15:25:45.323` |
 | InvoiceId | String | Identifier of the invoice that caused these activations to be confirmed | `INV0001` |
 | InvoiceSubtotal | Decimal | The subtotal amount from the invoice | `53.38` |
@@ -291,9 +290,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 
 <h2 id='creating-an-activation' class='clickable-header top-level-header'>Creating an Activation</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -304,25 +301,25 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
-* `ActivationId` (**Required**)  - Identifier for the {{Activation}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
+* CarrierId (**Required**)  - Identifier for the {{Carrier}} 
+* ActivationId (**Required**)  - Identifier for the {{Activation}} 
 
 
 
 #### Request Parameters
 
-<ul><li>Id (Optional) </li><li>CarrierActivationDetails (Optional) </li><ul><li>ActivationId (<strong>Required</strong>) </li><li>ActivationDate (<strong>Required</strong>) </li><li>ActivatedProduct (Optional) </li><ul><li>Description (Optional) </li><li>ESN (Optional) </li><li>IMEI (Optional) </li><li>Make (Optional) </li><li>MobileDeviceNumber (Optional) </li><li>Model (Optional) </li><li>Price (Optional) </li><li>ProductId (Optional) </li><li>SerialNumber (Optional) </li><li>SIM (Optional) </li><li>SKU (Optional) </li><li>SOCCode (Optional) </li><li>Tab (Optional) </li><ul><li>Amount (Optional) </li><li>Commission (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>Amount (Optional) </li><li>Notes (Optional) </li><li>ReferenceNumber (Optional) </li><li>SOCCode (Optional) </li></ul><li>ReferenceNumber (Optional) </li></ul></ul><li>ActivationState (<strong>Required</strong>) </li><li>ActivationTermCode (Optional) </li><li>ActivationType (Optional) </li><li>AdditionalFees (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>Amount (Optional) </li><li>Notes (Optional) </li><li>Rebate (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>Amount (Optional) </li><li>Notes (Optional) </li><li>ReferenceNumber (Optional) </li><li>SOCCode (Optional) </li></ul><li>ReferenceNumber (Optional) </li><li>SOCCode (Optional) </li></ul><li>ContractLengthInMonths (Optional) </li><li>ContractNumberIsAccountNumber (Optional) </li><li>DealerName (Optional) </li><li>DealerCode (Optional) </li><li>Deposit (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>Amount (Optional) </li><li>Notes (Optional) </li><li>Rebate (Optional) </li><ul><li>Name (Optional) </li><li>Description (Optional) </li><li>Amount (Optional) </li><li>Notes (Optional) </li><li>ReferenceNumber (Optional) </li><li>SOCCode (Optional) </li></ul><li>ReferenceNumber (Optional) </li><li>SOCCode (Optional) </li></ul><li>Notes (Optional) </li><li>OrderNumber (Optional) </li><li>RatePlans (Optional) </li><ul><li>RatePlanId (Optional) </li><li>Name (Optional) </li><li>ContractTerms (Optional) </li><li>Description (Optional) </li><li>IncludedRatePlanFeatures (Optional) </li><ul><li>RatePlanAddonId (Optional) </li><li>Name (Optional) </li><li>Description (Optional) </li><li>MonthlyRecurringCharges (Optional) </li><li>SOCCode (Optional) </li></ul><li>MonthlyRecurringCharges (Optional) </li><li>RatePlanFeatureAddons (Optional) </li><ul><li>RatePlanAddonId (Optional) </li><li>Name (Optional) </li><li>Description (Optional) </li><li>MonthlyRecurringCharges (Optional) </li><li>SOCCode (Optional) </li></ul><li>SOCCode (Optional) </li></ul><li>RemoteActivationID (Optional) </li><li>Subscriber (Optional) </li><ul><li>SubscriberId (Optional) </li><li>FirstName (Optional) </li><li>LastName (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressLine1 (Optional) </li><li>AddressLine2 (Optional) </li><li>City (Optional) </li><li>Country (Optional) </li><li>County (Optional) </li><li>POBox (Optional) </li><li>PostalCode (Optional) </li><li>Province (Optional) </li><li>SuiteNumber (Optional) </li><li>Type (Optional) </li></ul><li>AssociatedAccount (Optional) </li><ul><li>AccountId (Optional) </li><li>Notes (Optional) </li><li>TrackingNumber (Optional) </li></ul><li>BirthDate (Optional) </li><li>CompanyName (Optional) </li><li>Email (Optional) </li><li>IsIndividual (Optional) </li><li>Notes (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Type (Optional) </li><li>Value (Optional) </li></ul><li>SSN (Optional) </li><li>TrackingNumber (Optional) </li></ul><li>TrackingNumber (Optional) </li></ul><li>CarrierId (Optional) </li><li>CompanyId (Optional) </li><li>LocationId (Optional) </li></ul>
+<ul><li>Id (<strong>Required</strong>) </li><li>CarrierActivationDetails (<strong>Required</strong>) </li><ul><li>ActivatedProduct (<strong>Required</strong>) </li><ul><li>ProductId (<strong>Required</strong>) </li><li>Description (Optional) </li><li>ESN (Optional) </li><li>IMEI (Optional) </li><li>Make (Optional) </li><li>MobileDeviceNumber (Optional) </li><li>Model (Optional) </li><li>Price (Optional) </li><li>SerialNumber (Optional) </li><li>SIM (Optional) </li><li>SKU (Optional) </li><li>SOCCode (Optional) </li><li>Tab (Optional) </li><ul><li>Commission (<strong>Required</strong>) </li><ul><li>Name (<strong>Required</strong>) </li><li>Description (<strong>Required</strong>) </li><li>ReferenceNumber (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>Amount (Optional) </li><li>Notes (Optional) </li></ul><li>ReferenceNumber (<strong>Required</strong>) </li><li>Amount (Optional) </li></ul></ul><li>ActivationType (<strong>Required</strong>) </li><li>RatePlans (<strong>Required</strong>) </li><ul><li>Description (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>RatePlanId (Optional) </li><li>Name (Optional) </li><li>ContractTerms (Optional) </li><li>IncludedRatePlanFeatures (Optional) </li><ul><li>Description (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>RatePlanAddonId (Optional) </li><li>Name (Optional) </li><li>MonthlyRecurringCharges (Optional) </li></ul><li>MonthlyRecurringCharges (Optional) </li><li>RatePlanFeatureAddons (Optional) </li><ul><li>Description (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>RatePlanAddonId (Optional) </li><li>Name (Optional) </li><li>MonthlyRecurringCharges (Optional) </li></ul></ul><li>Subscriber (<strong>Required</strong>) </li><ul><li>FirstName (<strong>Required</strong>) </li><li>LastName (<strong>Required</strong>) </li><li>CompanyName (<strong>Required</strong>) </li><li>SubscriberId (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressLine1 (<strong>Required</strong>) </li><li>AddressLine2 (<strong>Required</strong>) </li><li>City (<strong>Required</strong>) </li><li>Country (<strong>Required</strong>) </li><li>PostalCode (<strong>Required</strong>) </li><li>Province (<strong>Required</strong>) </li><li>Type (<strong>Required</strong>) </li><li>County (Optional) </li><li>POBox (Optional) </li><li>SuiteNumber (Optional) </li></ul><li>AssociatedAccount (Optional) </li><ul><li>AccountId (Optional) </li><li>Notes (Optional) </li><li>TrackingNumber (Optional) </li></ul><li>BirthDate (Optional) </li><li>Email (Optional) </li><li>IsIndividual (Optional) </li><li>Notes (Optional) </li><li>PhoneNumbers (Optional) </li><ul><li>Value (<strong>Required</strong>) </li><li>Type (Optional) </li></ul><li>SSN (Optional) </li><li>TrackingNumber (Optional) </li></ul><li>ActivationId (<strong>Required</strong>) </li><li>ActivationDate (<strong>Required</strong>) </li><li>ActivationState (<strong>Required</strong>) </li><li>ActivationTermCode (Optional) </li><li>AdditionalFees (Optional) </li><ul><li>Name (<strong>Required</strong>) </li><li>Description (<strong>Required</strong>) </li><li>ReferenceNumber (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>Amount (Optional) </li><li>Notes (Optional) </li><li>Rebate (Optional) </li><ul><li>Name (<strong>Required</strong>) </li><li>Description (<strong>Required</strong>) </li><li>ReferenceNumber (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>Amount (Optional) </li><li>Notes (Optional) </li></ul></ul><li>ContractLengthInMonths (Optional) </li><li>ContractNumberIsAccountNumber (Optional) </li><li>DealerName (Optional) </li><li>DealerCode (Optional) </li><li>Deposit (Optional) </li><ul><li>Name (<strong>Required</strong>) </li><li>Description (<strong>Required</strong>) </li><li>ReferenceNumber (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>Amount (Optional) </li><li>Notes (Optional) </li><li>Rebate (Optional) </li><ul><li>Name (<strong>Required</strong>) </li><li>Description (<strong>Required</strong>) </li><li>ReferenceNumber (<strong>Required</strong>) </li><li>SOCCode (<strong>Required</strong>) </li><li>Amount (Optional) </li><li>Notes (Optional) </li></ul></ul><li>Notes (Optional) </li><li>OrderNumber (Optional) </li><li>RemoteActivationID (Optional) </li><li>TrackingNumber (Optional) </li></ul><li>CarrierId (<strong>Required</strong>) </li><li>CompanyId (<strong>Required</strong>) </li><li>LocationId (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -482,7 +479,7 @@ Content-Type: application/json
 #### Response
 
 
-[Activation](#activation)
+<a href='#activation'>Activation</a>
 
 <h5>Example</h5>
 
@@ -637,9 +634,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='retrieving-completed-activations' class='clickable-header top-level-header'>Retrieving Completed Activations</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -650,19 +645,19 @@ GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=C
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
-* `ConfirmationDate` (Optional)  - Limits returned records to ones that were created after the specified date 
-* `Skip` (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details 
-* `Top` (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CarrierId (**Required**)  - Identifier for the {{Carrier}} 
+* ConfirmationDate (Optional)  - Limits returned records to ones that were created after the specified date 
+* Skip (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details 
+* Top (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
 
 
 
@@ -678,7 +673,7 @@ Accept: application/json
 #### Response
 
 
-Array[[ConfirmedActivation](#confirmedactivation)]
+Array[<a href='#confirmedactivation'>ConfirmedActivation</a>]
 
 <h5>Example</h5>
 
@@ -790,26 +785,27 @@ Pagination links for 'self', 'prev' and 'next' are returned by default when the 
 These links are _relative_, they do not include the base endpoint. It is the responsibility of the client to prepend the appropriate endpoint.
 
 <h5>Example</h5>
-
-  {
-    "_links": {
-      "self": {
-        "href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=10&$top=10",
-        "templated": false
-      },
-      "next": {
-        "href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=20&$top=10",
-        "templated": false
-      },
-      "prev": {
-        "href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=0&$top=10",
-        "templated": false
-      }
+<pre>
+{
+  "_links": {
+    "self": {
+      "href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=10&$top=10",
+      "templated": false
     },
-    "_embedded": {
-      "self": []
+    "next": {
+      "href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=20&$top=10",
+      "templated": false
+    },
+    "prev": {
+      "href": "Companies(123)/Carriers(45)/ConfirmedActivations?$skip=0&$top=10",
+      "templated": false
     }
+  },
+  "_embedded": {
+    "self": []
   }
+}
+</pre>
 
 In the example above, the `_links` section is included in the data returned from an API request to get confirmed activations, where `$skip=10` and `$top=10`.
 

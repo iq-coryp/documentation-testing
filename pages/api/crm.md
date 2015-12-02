@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -17,7 +17,6 @@ summary:
 * Production: <a href="https://crm.iqmetrix.net/v1">https://crm.iqmetrix.net/v1</a>
 
 ## Resources
-
 
 ###Customer
 
@@ -112,7 +111,7 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 
 ###CustomerFull
 
-CustomerFull is an extension on the Customer resource, it consists of all Customer properties plus the following:
+CustomerFull is an extension on the Customer resource.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -120,10 +119,10 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 | PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
 | MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
 | FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
-| Addresses | Array[[Address](#address)] | A collection of Addresses |  |
+| Addresses | Array[<a href='#address'>Address</a>] | A collection of Addresses |  |
 | AlternateName | String | Alias or preferred name | `Bob` |
-| ContactMethods | Array[[ContactMethod](#contactmethod)] | A collection of ContactMethods |  |
-| CustomerExtensions | Array[[CustomerExtension](#customerextension)] | A collection of CustomerExtensions |  |
+| ContactMethods | Array[<a href='#contactmethod'>ContactMethod</a>] | A collection of ContactMethods |  |
+| CustomerExtensions | Array[<a href='#customerextension'>CustomerExtension</a>] | A collection of CustomerExtensions |  |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
 | DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
@@ -138,7 +137,7 @@ CustomerFull is an extension on the Customer resource, it consists of all Custom
 
 ###CustomerSearch
 
-CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource, it consists of all CustomerFull properties plus the following
+CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -151,7 +150,7 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 ### AddressType
  
 | Id | Name | 
-|---:|:-----|
+|:---|:-----|
 | 1 | None | 
 | 2 | Home | 
 | 3 | Shipping | 
@@ -162,10 +161,10 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
  
 | Id | Name |
 |:---|:-----|
+| 1 | Phone |
 | 2 | Email |
 | 3 | Other |
-| 1 | Phone |
- 
+
 ### ContactMethodType
  
 | Category | Contact Method | Id |
@@ -200,9 +199,7 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 
 <h2 id='creating-a-customer' class='clickable-header top-level-header'>Creating a Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -213,22 +210,22 @@ POST /Companies({CompanyId})/Customers
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
 #### Request Parameters
 
-<ul><li>CustomerTypeId (<strong>Required</strong>) </li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>AlternateName (Optional) </li><li>DateOfBirth (Optional)  - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li>Disabled (Optional)  - Defaults to false</li><li>DoNotContact (Optional)  - Defaults to true</li><li>Notes (Optional) </li><li>Title (Optional) </li></ul>
+<ul><li>CustomerTypeId (<strong>Required</strong>) </li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>AlternateName (Optional) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Title (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -237,7 +234,6 @@ POST /Companies(1)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "PrimaryName": "Robert",
     "MiddleName": "Lee",
@@ -255,7 +251,7 @@ Content-Type: application/json
 #### Response
 
 
-[Customer](#customer)
+<a href='#customer'>Customer</a>
 
 <h5>Example</h5>
 
@@ -279,9 +275,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-all-customers' class='clickable-header top-level-header'>Getting All Customers</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -292,15 +286,15 @@ GET /Companies({CompanyId})/Customers
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -316,7 +310,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Customer](#customer)]
+Array[<a href='#customer'>Customer</a>]
 
 <h5>Example</h5>
 
@@ -411,9 +405,7 @@ HTTP 200 Content-Type: application/hal+json
 
 <h2 id='getting-a-customer' class='clickable-header top-level-header'>Getting a Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -424,16 +416,16 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} 
 
 
 
@@ -449,7 +441,7 @@ Accept: application/json
 #### Response
 
 
-[Customer](#customer)
+<a href='#customer'>Customer</a>
 
 <h5>Example</h5>
 
@@ -473,9 +465,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-a-customer' class='clickable-header top-level-header'>Updating a Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -486,23 +476,23 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} 
 
 
 
 #### Request Parameters
 
-<ul><li>CustomerTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>)  - Required on PUT</li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>AlternateName (Optional) </li><li>CustomerType (<strong>Required</strong>) </li><li>DateOfBirth (Optional)  - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li>Disabled (Optional)  - Defaults to false</li><li>DoNotContact (Optional)  - Defaults to true</li><li>Notes (Optional) </li><li>Title (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li>CustomerTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>AlternateName (Optional) </li><li>CustomerType (<strong>Required</strong>) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Title (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -531,7 +521,7 @@ Content-Type: application/json
 #### Response
 
 
-[Customer](#customer)
+<a href='#customer'>Customer</a>
 
 <h5>Example</h5>
 
@@ -555,9 +545,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='deleting-a-customer' class='clickable-header top-level-header'>Deleting a Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -568,15 +556,15 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} 
 
 
 
@@ -594,15 +582,13 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 200</pre>
-
-
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
 
 <h2 id='adding-a-customer-address' class='clickable-header top-level-header'>Adding a Customer Address</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -613,23 +599,23 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
 #### Request Parameters
 
-<ul><li>AddressTypeId (<strong>Required</strong>)  - Required if Addresses is not null</li><li>CountryCode (<strong>Required</strong>)  - Required if StateCode is provided</li><li>StateCode (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li></ul>
+<ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -638,7 +624,6 @@ POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "AddressTypeId": 3,
     "AttentionTo": "iQmetrix",
@@ -660,7 +645,7 @@ Content-Type: application/json
 #### Response
 
 
-[Address](#address)
+<a href='#address'>Address</a>
 
 <h5>Example</h5>
 
@@ -691,9 +676,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-all-addresses-for-a-customer' class='clickable-header top-level-header'>Getting All Addresses for a Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -704,16 +687,16 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -729,7 +712,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Address](#address)]
+Array[<a href='#address'>Address</a>]
 
 <h5>Example</h5>
 
@@ -806,9 +789,7 @@ HTTP 200 Content-Type: application/hal+json
 
 <h2 id='getting-a-customer-address' class='clickable-header top-level-header'>Getting a Customer Address</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -819,17 +800,17 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier of the Company 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
-* `AddressId` (**Required**)  - Identifier for the {{Address}} 
+* CompanyId (**Required**)  - Identifier of the Company 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} 
+* AddressId (**Required**)  - Identifier for the {{Address}} 
 
 
 
@@ -845,7 +826,7 @@ Accept: application/json
 #### Response
 
 
-[Address](#address)
+<a href='#address'>Address</a>
 
 <h5>Example</h5>
 
@@ -876,9 +857,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-a-customer-address' class='clickable-header top-level-header'>Updating a Customer Address</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -889,24 +868,24 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier of the Company 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
-* `AddressId` (**Required**)  - Identifier for the {{Address}} 
+* CompanyId (**Required**)  - Identifier of the Company 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} 
+* AddressId (**Required**)  - Identifier for the {{Address}} 
 
 
 
 #### Request Parameters
 
-<ul><li>AddressTypeId (<strong>Required</strong>)  - Required if Addresses is not null</li><li>CountryCode (<strong>Required</strong>)  - Required if StateCode is provided</li><li>StateCode (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>)  - Required on PUT</li><li>CustomerId (<strong>Required</strong>)  - Required on PUT</li><li>AddressType (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Country (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>State (<strong>Required</strong>) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (<strong>Required</strong>) </li><li>AddressType (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Country (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>State (<strong>Required</strong>) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -942,7 +921,7 @@ Content-Type: application/json
 #### Response
 
 
-[Address](#address)
+<a href='#address'>Address</a>
 
 <h5>Example</h5>
 
@@ -973,9 +952,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='removing-an-address-from-a-customer' class='clickable-header top-level-header'>Removing an Address from a Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -986,16 +963,16 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier of the Company 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
-* `AddressId` (**Required**)  - Identifier for the {{Address}} 
+* CompanyId (**Required**)  - Identifier of the Company 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} 
+* AddressId (**Required**)  - Identifier for the {{Address}} 
 
 
 
@@ -1013,15 +990,13 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 200</pre>
-
-
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
 
 <h2 id='creating-a-full-customer' class='clickable-header top-level-header'>Creating a Full Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1032,22 +1007,22 @@ POST /Companies({CompanyId})/CustomerFull
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
 #### Request Parameters
 
-<ul><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressTypeId (<strong>Required</strong>)  - Required if Addresses is not null</li><li>CountryCode (<strong>Required</strong>)  - Required if StateCode is provided</li><li>StateCode (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li></ul><li>AlternateName (Optional) </li><li>ContactMethods (Optional) </li><ul><li>ContactMethodCategoryId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>ContactMethodTypeId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>CustomerId (Optional)  - Required on PUT</li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li></ul><li>CustomerExtensions (Optional) </li><ul><li>CustomerId (Optional) </li><li>ExtensionTypeId (Optional) </li><li>Value (Optional) </li></ul><li>CustomerTypeId (Optional) </li><li>DateOfBirth (Optional)  - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li>Disabled (Optional)  - Defaults to false</li><li>DoNotContact (Optional)  - Defaults to true</li><li>MemberOf (Optional) </li><li>Notes (Optional) </li><li>RelatedCustomers (Optional) </li><li>Title (Optional) </li></ul>
+<ul><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li></ul><li>AlternateName (Optional) </li><li>ContactMethods (Optional) </li><ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li></ul><li>CustomerExtensions (Optional) </li><ul><li>ExtensionTypeId (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>Value (Optional) </li></ul><li>CustomerTypeId (Optional) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>MemberOf (Optional) </li><li>Notes (Optional) </li><li>RelatedCustomers (Optional) </li><li>Title (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1056,7 +1031,6 @@ POST /Companies(1)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "PrimaryName": "Robert",
     "MiddleName": "Lee",
@@ -1112,7 +1086,7 @@ Content-Type: application/json
 #### Response
 
 
-[CustomerFull](#customerfull)
+<a href='#customerfull'>CustomerFull</a>
 
 <h5>Example</h5>
 
@@ -1187,9 +1161,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-all-full-customers' class='clickable-header top-level-header'>Getting All Full Customers</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1200,15 +1172,15 @@ GET /Companies({CompanyId})/CustomerFull
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -1224,7 +1196,7 @@ Accept: application/json
 #### Response
 
 
-Array[[CustomerFull](#customerfull)]
+Array[<a href='#customerfull'>CustomerFull</a>]
 
 <h5>Example</h5>
 
@@ -1403,9 +1375,7 @@ HTTP 200 Content-Type: application/hal+json
 
 <h2 id='getting-a-full-customer' class='clickable-header top-level-header'>Getting a Full Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1416,16 +1386,16 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
@@ -1441,7 +1411,7 @@ Accept: application/json
 #### Response
 
 
-[CustomerFull](#customerfull)
+<a href='#customerfull'>CustomerFull</a>
 
 <h5>Example</h5>
 
@@ -1516,9 +1486,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-a-full-customer' class='clickable-header top-level-header'>Updating a Full Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1529,23 +1497,23 @@ PUT /Companies({CompanyId})/CustomerFull({CustomerId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
 #### Request Parameters
 
-<ul><li>Id (<strong>Required</strong>)  - Required on PUT</li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressTypeId (<strong>Required</strong>)  - Required if Addresses is not null</li><li>CountryCode (<strong>Required</strong>)  - Required if StateCode is provided</li><li>StateCode (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>)  - Required on PUT</li><li>CustomerId (<strong>Required</strong>)  - Required on PUT</li><li>AddressType (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Country (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>State (<strong>Required</strong>) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>AlternateName (Optional) </li><li>ContactMethods (Optional) </li><ul><li>ContactMethodCategoryId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>ContactMethodTypeId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>Id (<strong>Required</strong>)  - Required on PUT</li><li>CustomerId (Optional)  - Required on PUT</li><li>ContactMethodCategory (<strong>Required</strong>) </li><li>ContactMethodType (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>CustomerExtensions (Optional) </li><ul><li>Id (<strong>Required</strong>)  - Required on PUT</li><li>CustomerId (Optional) </li><li>ExtensionType (<strong>Required</strong>)  - Required if CustomerExtensions is not null</li><li>ExtensionTypeId (Optional) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>CustomerType (<strong>Required</strong>) </li><li>CustomerTypeId (Optional) </li><li>DateOfBirth (Optional)  - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li>Disabled (Optional)  - Defaults to false</li><li>DoNotContact (Optional)  - Defaults to true</li><li>MemberOf (Optional) </li><li>Notes (Optional) </li><li>RelatedCustomers (Optional) </li><li>Title (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li>Id (<strong>Required</strong>) </li><li>PrimaryName (Optional) </li><li>MiddleName (Optional) </li><li>FamilyName (Optional) </li><li>Addresses (Optional) </li><ul><li>AddressTypeId (<strong>Required</strong>) </li><li>CountryCode (<strong>Required</strong>) </li><li>StateCode (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (<strong>Required</strong>) </li><li>AddressType (<strong>Required</strong>) </li><li>AttentionTo (Optional) </li><li>Country (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Email (Optional) </li><li>Locality (Optional) </li><li>Notes (Optional) </li><li>Phone (Optional) </li><li>PostalCode (Optional) </li><li>PostOfficeBoxNumber (Optional) </li><li>State (<strong>Required</strong>) </li><li>StreetAddress1 (Optional) </li><li>StreetAddress2 (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>AlternateName (Optional) </li><li>ContactMethods (Optional) </li><ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>ContactMethodCategory (<strong>Required</strong>) </li><li>ContactMethodType (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>CustomerExtensions (Optional) </li><ul><li>ExtensionTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>ExtensionType (<strong>Required</strong>) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul><li>CustomerType (<strong>Required</strong>) </li><li>CustomerTypeId (Optional) </li><li>DateOfBirth (Optional) </li><li>Disabled (Optional) </li><li>DoNotContact (Optional) </li><li>MemberOf (Optional) </li><li>Notes (Optional) </li><li>RelatedCustomers (Optional) </li><li>Title (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -1625,7 +1593,7 @@ Content-Type: application/json
 #### Response
 
 
-[CustomerFull](#customerfull)
+<a href='#customerfull'>CustomerFull</a>
 
 <h5>Example</h5>
 
@@ -1700,9 +1668,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='deleting-a-full-customer' class='clickable-header top-level-header'>Deleting a Full Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1713,15 +1679,15 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Unique identifier for the {{Customer}} 
 
 
 
@@ -1739,15 +1705,13 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 200</pre>
-
-
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
 
 <h2 id='adding-a-customer-contact-method' class='clickable-header top-level-header'>Adding a Customer Contact Method</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1758,23 +1722,23 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
 #### Request Parameters
 
-<ul><li>ContactMethodCategoryId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>ContactMethodTypeId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>CustomerId (Optional)  - Required on PUT</li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li></ul>
+<ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1783,7 +1747,6 @@ POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethod
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
     "ContactMethodCategoryId": 3,
@@ -1798,7 +1761,7 @@ Content-Type: application/json
 #### Response
 
 
-[ContactMethod](#contactmethod)
+<a href='#contactmethod'>ContactMethod</a>
 
 <h5>Example</h5>
 
@@ -1820,9 +1783,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-all-contact-methods-for-a-customer' class='clickable-header top-level-header'>Getting All Contact Methods for a Customer</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1833,16 +1794,16 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
 
 
 
@@ -1858,7 +1819,7 @@ Accept: application/json
 #### Response
 
 
-Array[[ContactMethod](#contactmethod)]
+Array[<a href='#contactmethod'>ContactMethod</a>]
 
 <h5>Example</h5>
 
@@ -1917,9 +1878,7 @@ HTTP 200 Content-Type: application/hal+json
 
 <h2 id='getting-a-customer-contact-method' class='clickable-header top-level-header'>Getting a Customer Contact Method</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1930,17 +1889,17 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
+* ContactMethodId (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
@@ -1956,7 +1915,7 @@ Accept: application/json
 #### Response
 
 
-[ContactMethod](#contactmethod)
+<a href='#contactmethod'>ContactMethod</a>
 
 <h5>Example</h5>
 
@@ -1978,9 +1937,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-a-customer-contact-method' class='clickable-header top-level-header'>Updating a Customer Contact Method</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -1991,24 +1948,24 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
+* ContactMethodId (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
 #### Request Parameters
 
-<ul><li>ContactMethodCategoryId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>ContactMethodTypeId (<strong>Required</strong>)  - Required if ContactMethods is not null</li><li>Id (<strong>Required</strong>)  - Required on PUT</li><li>CustomerId (Optional)  - Required on PUT</li><li>ContactMethodCategory (<strong>Required</strong>) </li><li>ContactMethodType (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
+<ul><li>ContactMethodCategoryId (<strong>Required</strong>) </li><li>ContactMethodTypeId (<strong>Required</strong>) </li><li>Id (<strong>Required</strong>) </li><li>CustomerId (Optional) </li><li>ContactMethodCategory (<strong>Required</strong>) </li><li>ContactMethodType (<strong>Required</strong>) </li><li>Default (Optional) </li><li>DoNotContact (Optional) </li><li>Notes (Optional) </li><li>Value (Optional) </li><li>Version (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -2035,7 +1992,7 @@ Content-Type: application/json
 #### Response
 
 
-[ContactMethod](#contactmethod)
+<a href='#contactmethod'>ContactMethod</a>
 
 <h5>Example</h5>
 
@@ -2057,9 +2014,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='removing-a-customer-contact-method' class='clickable-header top-level-header'>Removing a Customer Contact Method</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -2070,16 +2025,16 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
+* Authorization: Bearer (Access Token)
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CustomerId (**Required**)  - Identifier for the {{Customer}} being updated 
+* ContactMethodId (**Required**)  - Identifier for the {{ContactMethod}} 
 
 
 
@@ -2097,15 +2052,13 @@ Authorization: Bearer (Access Token)
 
 <h5>Example</h5>
 
-<pre>HTTP 200</pre>
-
-
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
 
 <h2 id='searching-for-customers' class='clickable-header top-level-header'>Searching for Customers</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -2116,18 +2069,18 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `FilterQuery` (Optional)  - Filter on customers 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* FilterQuery (Optional)  - Filter on customers 
+* Skip (Optional)  - Number of records to skip 
+* Top (Optional)  - Number of records to take 
 
 
 
@@ -2143,7 +2096,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Customer](#customer)]
+Array[<a href='#customer'>Customer</a>]
 
 <h5>Example</h5>
 
@@ -2169,7 +2122,6 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='customer-search' class='clickable-header top-level-header'>Customer Search</h2>
 
-<p>
 [CustomerSearch](#customersearch) resources use a special property, `criteria`.
 
 `Criteria` searches all of the searchable properties for the given value and returns the resource if it is found.
@@ -2188,7 +2140,6 @@ The Criteria filter will search the properties below for the given value.
 | [Customer](#customer)| FamilyName |
 | [Customer](#customer) | AlternateName |
 | [CustomerExtension](#customerextension) | Value |
-</p>
 
 <h4>Request</h4>
 
@@ -2199,16 +2150,16 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `FilterQuery` (Optional)  - The filter to apply 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* FilterQuery (Optional)  - The filter to apply 
 
 
 
@@ -2224,7 +2175,7 @@ Accept: application/json
 #### Response
 
 
-[CustomerFull](#customerfull)
+<a href='#customerfull'>CustomerFull</a>
 
 <h5>Example</h5>
 

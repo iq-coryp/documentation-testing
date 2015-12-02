@@ -4,7 +4,7 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -101,9 +101,7 @@ The result displayed on the page, with some styling, is shown below
 
 <h2 id='getting-all-fielddefinitions' class='clickable-header top-level-header'>Getting All FieldDefinitions</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -114,8 +112,8 @@ GET /FieldDefinitions
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
@@ -133,7 +131,7 @@ Accept: application/json
 #### Response
 
 
-Array[[FieldDefinition](#fielddefinition)]
+Array[<a href='#fielddefinition'>FieldDefinition</a>]
 
 <h5>Example</h5>
 
@@ -153,9 +151,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-a-fielddefinition' class='clickable-header top-level-header'>Getting a FieldDefinition</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -166,15 +162,15 @@ GET /FieldDefinitions({FieldDefinitionId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `FieldDefinitionId` (**Required**)  - Identifier for the {{FieldDefinition}} 
+* FieldDefinitionId (**Required**)  - Identifier for the {{FieldDefinition}} 
 
 
 
@@ -190,7 +186,7 @@ Accept: application/json
 #### Response
 
 
-[FieldDefinition](#fielddefinition)
+<a href='#fielddefinition'>FieldDefinition</a>
 
 <h5>Example</h5>
 

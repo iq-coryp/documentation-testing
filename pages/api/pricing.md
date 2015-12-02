@@ -4,7 +4,7 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -62,10 +62,8 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 <h2 id='creating-product-pricing-at-company-level' class='clickable-header top-level-header'>Creating Product Pricing at Company Level</h2>
 
-<p>
 {{note}}When Product Pricing is set at the Company level, all Locations within the Company will use this Product Pricing by default unless <b>overridden</b> by a Location level Pricing. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -76,16 +74,16 @@ POST /Companies({CompanyId})/Pricing
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -100,7 +98,6 @@ POST /Companies(1)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
     "CompanyId": 1,
@@ -114,7 +111,7 @@ Content-Type: application/json
 #### Response
 
 
-[Pricing](#pricing)
+<a href='#pricing'>Pricing</a>
 
 <h5>Example</h5>
 
@@ -132,10 +129,8 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='creating-product-pricing-at-location-level' class='clickable-header top-level-header'>Creating Product Pricing at Location Level</h2>
 
-<p>
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
 
-</p>
 
 <h4>Request</h4>
 
@@ -146,18 +141,18 @@ POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId}
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -172,7 +167,6 @@ POST /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
     "CompanyId": 1,
@@ -186,7 +180,7 @@ Content-Type: application/json
 #### Response
 
 
-[Pricing](#pricing)
+<a href='#pricing'>Pricing</a>
 
 <h5>Example</h5>
 
@@ -204,9 +198,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-product-pricing-for-a-retail-location' class='clickable-header top-level-header'>Getting Product Pricing for a Retail Location</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -217,17 +209,17 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -243,7 +235,7 @@ Accept: application/json
 #### Response
 
 
-[Pricing](#pricing)
+<a href='#pricing'>Pricing</a>
 
 <h5>Example</h5>
 
@@ -261,9 +253,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-product-pricing-for-a-retail-location' class='clickable-header top-level-header'>Updating Product Pricing for a Retail Location</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -280,9 +270,9 @@ PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* LocationId (**Required**)  - Identifier for the {{Location}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -299,9 +289,7 @@ PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 
 <h2 id='creating-product-pricing-at-company-level' class='clickable-header top-level-header'>Creating Product Pricing at Company Level</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -312,17 +300,17 @@ POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -337,7 +325,6 @@ POST /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
     "CompanyId": 1,
@@ -351,7 +338,7 @@ Content-Type: application/json
 #### Response
 
 
-[Pricing](#pricing)
+<a href='#pricing'>Pricing</a>
 
 <h5>Example</h5>
 
@@ -369,9 +356,7 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='getting-product-pricing-at-company-level' class='clickable-header top-level-header'>Getting Product Pricing at Company Level</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -382,16 +367,16 @@ GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -407,7 +392,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Pricing](#pricing)]
+Array[<a href='#pricing'>Pricing</a>]
 
 <h5>Example</h5>
 
@@ -427,9 +412,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='updating-product-pricing-at-company-level' class='clickable-header top-level-header'>Updating Product Pricing at Company Level</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -446,8 +429,8 @@ PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
 
 
 
@@ -464,9 +447,7 @@ PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 
 <h2 id='getting-all-active-pricing-terms' class='clickable-header top-level-header'>Getting all Active Pricing Terms</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -477,15 +458,15 @@ GET /Companies({CompanyId})/PricingTerms
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
 
 
 
@@ -501,7 +482,7 @@ Accept: application/json
 #### Response
 
 
-Array[[PricingTerm](#pricingterm)]
+Array[<a href='#pricingterm'>PricingTerm</a>]
 
 <h5>Example</h5>
 
@@ -521,9 +502,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-a-pricing-term' class='clickable-header top-level-header'>Getting a Pricing Term</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -534,16 +513,16 @@ GET /Companies({CompanyId})/PricingTerms({PricingTermId})
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* PricingTermId (**Required**)  - Identifier for the {{PricingTerm}} 
 
 
 
@@ -559,7 +538,7 @@ Accept: application/json
 #### Response
 
 
-[PricingTerm](#pricingterm)
+<a href='#pricingterm'>PricingTerm</a>
 
 <h5>Example</h5>
 
@@ -577,9 +556,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-product-pricing-by-pricing-term' class='clickable-header top-level-header'>Getting Product Pricing by Pricing Term</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -590,17 +567,17 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={Prici
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
 
 
 
 #### URI Parameters
 
 
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
-* `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
+* CompanyId (**Required**)  - Identifier for the {{Company}} 
+* CatalogItemId (**Required**)  - Unique identifier for the {{CatalogItem}} 
+* PricingTermId (**Required**)  - Identifier for the {{PricingTerm}} 
 
 
 
@@ -616,7 +593,7 @@ Accept: application/json
 #### Response
 
 
-Array[[Pricing](#pricing)]
+Array[<a href='#pricing'>Pricing</a>]
 
 <h5>Example</h5>
 

@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 2-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -49,9 +49,7 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 <h2 id='adding-a-product-to-cost-feed' class='clickable-header top-level-header'>Adding a Product to Cost Feed</h2>
 
-<p>
 
-</p>
 
 <h4>Request</h4>
 
@@ -62,16 +60,16 @@ POST /Suppliers({SupplierId})/Cost
 #### Headers
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+* Authorization: Bearer (Access Token)
+* Accept: application/json
+* Content-Type: application/json
 
 
 
 #### URI Parameters
 
 
-* `SupplierId` (**Required**)  - Identifier of the Supplier 
+* SupplierId (**Required**)  - Identifier of the Supplier 
 
 
 
@@ -86,7 +84,6 @@ POST /Suppliers(1324)/Cost
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
 {
     "Products": [
         {
@@ -105,7 +102,7 @@ Content-Type: application/json
 #### Response
 
 
-[Cost](#cost)
+<a href='#cost'>Cost</a>
 
 <h5>Example</h5>
 
