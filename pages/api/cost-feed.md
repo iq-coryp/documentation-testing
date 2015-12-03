@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -75,7 +75,7 @@ POST /Suppliers({SupplierId})/Cost
 
 #### Request Parameters
 
-<ul><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>Sku</code> (Optional) </li><li><code>Cost</code> (Optional) </li><li><code>CompanyIds</code> (Optional) </li></ul></ul>
+<ul><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>Sku</code> (<strong>Required</strong>) </li><li><code>Cost</code> (<strong>Required</strong>) </li><li><code>CompanyIds</code> (<strong>Required</strong>) </li></ul></ul>
 
 <h5>Example</h5>
 

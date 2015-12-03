@@ -4,7 +4,7 @@ permalink: /api/entity-store/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -36,7 +36,8 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Carrier` |
-| Roles | Array[<a href='#carrierrole'>CarrierRole</a>] | The value must be Carrier |  |
+| Roles | Array[object] | The value must be Carrier |  |
+| Roles.Name | String |  | `Carrier` |
 | SortName | String | A string used for sorting | `samplecarrier` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
@@ -57,7 +58,8 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Manufacturer` |
-| Roles | Array[<a href='#manufacturerrole'>ManufacturerRole</a>] | The value must be Manufacturer |  |
+| Roles | Array[object] | The value must be Manufacturer |  |
+| Roles.Name | String |  | `Manufacturer` |
 | SortName | String | A string used for sorting | `samplemanufacturer` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
@@ -78,8 +80,8 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Supplier` |
-| Roles | Array[<a href='#supplierrole'>SupplierRole</a>] | The value must be Supplier |  |
-| Roles.Name | String | The value must be Supplier | `Supplier` |
+| Roles | Array[object] | The value must be Supplier |  |
+| Roles.Name | String |  | `Supplier` |
 | SortName | String | A string used for sorting | `samplesupplier` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |

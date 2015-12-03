@@ -4,7 +4,7 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -68,7 +68,7 @@ To get a list of all field definitions, use the {{Get_Field_Definitions}} method
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Definition | <a href='#definition'>Definition</a> | The field definition |  |
+| Definition | object | The field definition |  |
 | Definition.Id | Integer | The field definition identifier. The definition for this parameter varies based on the [Environments](/api/environments) | `1` |
 | Value | String | The value for the field | `Android` |
 

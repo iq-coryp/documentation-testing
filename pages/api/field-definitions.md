@@ -4,7 +4,7 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -74,9 +74,10 @@ The result displayed on the page, with some styling, is shown below
 | LanguageInvariantUnit | String | Unit | `mm` |
 | DisplayName | String | Value to be displayed in the UI | `CDMA` |
 | Options | Array[object] | List of Options, only used when InputType is SingleSelect or MultiSelect |  |
-| Options.Id | Integer | Identifier for the Option | `1` |
-| Options.Value | String | Value of the Option | `Blue` |
+| Options.Id | Integer | Identifier | `1` |
+| Options.Value | String | Value | `Blue` |
 | *LanguageInvariantName* | *String* | *This is a legacy property that should not be used* | |
+
 
 
 
@@ -145,7 +146,9 @@ HTTP 200 Content-Type: application/json
         "IsRequired": false,
         "LanguageInvariantUnit": "mm",
         "DisplayName": "CDMA",
-        "Options": []
+        "Options": [
+            {}
+        ]
     }
 ]</pre>
 
@@ -199,7 +202,9 @@ HTTP 200 Content-Type: application/json
     "IsRequired": false,
     "LanguageInvariantUnit": "mm",
     "DisplayName": "CDMA",
-    "Options": []
+    "Options": [
+        {}
+    ]
 }</pre>
 
 ## Errors

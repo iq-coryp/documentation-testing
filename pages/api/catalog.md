@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -28,7 +28,7 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| CatalogItemId | GUID | Unique identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| CatalogItemId | GUID | Unique identifier | `d60a8776-2f1f-430a-88f6-6180de43887d` |
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
 | RmsId | String | Identifier for the CatalogItem in an external inventory system | `1` |
 | Slug | String | Unique identifier for a [Product](#product) | `M3-V1` |
@@ -40,41 +40,29 @@ A CatalogSearchResult resource is used to return information about Product resou
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Items | Array[<a href='#item'>Item</a>] | Products matching the search criteria |  |
+| Items | Array[object] | Products matching the search criteria |  |
 | Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |
-| Items.CanonicalClassification | Object | ClassificationTree details |  |
-| Items.CatalogItemId | GUID | Unique identifier for the CatalogItem |  |
-| Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) |  |
-| Items.CompanyId | Integer | Identifier for the Company |  |
+| Items.CanonicalClassification | <a href='#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
+| Items.CatalogItemId | GUID | Unique identifier for the CatalogItem | `d60a8776-2f1f-430a-88f6-6180de43887d` |
+| Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) | `21` |
+| Items.CompanyId | Integer | Identifier for the Company | `1` |
 | Items.DateAddedUtc | DateTime | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
 | Items.HeroShotId | GUID | An identifier for a [Hero Shot](/api/glossary/#hero-shot) | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | Items.IsDropShippable | Boolean | A flag to indicate if this Product can be shipped | `true` |
-| Items.Manufacturer | Object | Manufacturer information for the Product |  |
-| Items.Manufacturer.Id | Integer | Identifier for the Manufacturer |  |
-| Items.Manufacturer.Name | String | Name of the Manufacturer |  |
+| Items.Manufacturer | <a href='#manufacturerrep'>ManufacturerRep</a> | Manufacturer information for the Product |  |
 | Items.MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
-| Items.Msrp | Object | Manufacturer suggested retail price information for the Product |  |
-| Items.Msrp.Amount | Decimal | Manufacturers suggested retail price | `100` |
-| Items.Msrp.CurrencyCode | String | Currency | `USD` |
+| Items.Msrp | <a href='#msrp'>MSRP</a> | Manufacturer suggested retail price information for the Product |  |
 | Items.ProductVersion | Integer | Latest revision number | `1` |
 | Items.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
-| Items.Slug | String | URL friendly identifier for the Product |  |
+| Items.Slug | String | URL friendly identifier for the Product | `M3-V1` |
 | Items.VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#Variations) this Product represents | `1` |
-| Items.Vendors | Array[object] | Vendors for the Product |  |
-| Items.Vendors.Id | Integer | Identifier for the Supplier |  |
-| Items.Vendors.Name | String | Name of the Supplier |  |
-| Facets | <a href='#facets'>Facets</a> | Summary of Manufacturer and Vendor information for the Items |  |
-| Facets.ClassificationAndCategories | Array[object] | Count of Classification and Categories in results |  |
-| Facets.ClassificationAndCategories.Count | Integer | Number of items in the response with the Classification or Category specified in Item | `1` |
-| Facets.ClassificationAndCategories.Item | Integer | Identifier of a Classification or Category |  |
-| Facets.Manufacturers | Array[object] | Manufacturer information for the Items |  |
-| Facets.Manufacturers.Count | Integer | Number of Items | `1` |
-| Facets.Manufacturers.Item | Object | Information about this Manufacturer |  |
-| Facets.Vendors | Array[object] | Vendor information for the Items |  |
-| Facets.Vendors.Count | Integer | Number of Items | `1` |
-| Facets.Vendors.Item | Object | Information about this Vendor |  |
-| MetaData | <a href='#metadata'>MetaData</a> | Data representing pagination details |  |
+| Items.Vendors | Array[<a href='#vendorrep'>VendorRep</a>] | Vendors for the Product |  |
+| Facets | object | Summary of Manufacturer and Vendor information for the Items |  |
+| Facets.ClassificationAndCategories | Array[<a href='#classificationcount'>ClassificationCount</a>] | Count of Classification and Categories in results |  |
+| Facets.Manufacturers | Array[<a href='#manufacturer'>Manufacturer</a>] | Manufacturer information for the Items |  |
+| Facets.Vendors | Array[<a href='#manufacturer'>Manufacturer</a>] | Vendor information for the Items |  |
+| MetaData | object | Data representing pagination details |  |
 | MetaData.Page | Integer | Page of Items to be included in the resource | `1` |
 | MetaData.PageSize | Integer | Number of Items included in the resource | `20` |
 | MetaData.TotalResults | Integer | Number of Items matching the search criteria | `5` |
@@ -100,42 +88,35 @@ A CatalogSearchResult resource is used to return information about Product resou
 | ColorDefinition | <a href='#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
 | Assets | Array[<a href='#asset'>Asset</a>] | Asset information |  |
 | CanonicalClassification | <a href='#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
-| Entity | Object | Entity information, used for Entity revisions |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information |  |
-| Entity.Name | String | Entity name |  |
+| Entity | object | Entity information, used for Entity revisions |  |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
+| Entity.Name | String | Entity name | `SampleCompany` |
 | HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
 | LongDescription | String | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
-| Manufacturer | Object | Manufacturer information |  |
-| Manufacturer.Id | Integer | Identifier for the Manufacturer |  |
-| Manufacturer.Name | String | Name of the Manufacturer |  |
+| Manufacturer | object | Manufacturer information |  |
+| Manufacturer.Id | Integer | Identifier for the Manufacturer | `4` |
+| Manufacturer.Name | String | Name of the Manufacturer | `SampleManufacturer` |
 | ManufacturerSkus | Array[<a href='#sku'>Sku</a>] | Manufacturer SKUs |  |
 | MasterProductId | Integer | Identifier for the Master Product | `3` |
-| MSRP | Object | Manufacturers suggested retail price information |  |
+| MSRP | object | Manufacturers suggested retail price information |  |
 | MSRP.Amount | Decimal | Manufacturers suggested retail price | `100` |
 | MSRP.CurrencyCode | String | Currency | `USD` |
-| Owner | Object | Owner information used to designate if this is a public product (null) or private (not-null) |  |
-| Owner.Id | Integer | For private products, Identifier of the Company that owns this Product |  |
-| Owner.Name | String | For private products, Name of the Company that owns this Product |  |
+| Owner | object | Owner information used to designate if this is a public product (null) or private (not-null) |  |
+| Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `1` |
+| Owner.Name | String | For private products, Name of the Company that owns this Product | `SampleCompany` |
 | Region | <a href='#region'>Region</a> | Region information, for Regional Carrier Revisions |  |
 | ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
 | ShortDescription | String | Short Description | `Better than iPhone 3G` |
 | Specifications | Array[object] | Details such as color, dimension, etc |  |
-| Specifications.Name | String | Specification name | `Color` |
-| Specifications.Fields | Array[object] | Fields that make up product details. See [FieldDefinitions](/api/field-definitions) for more information |  |
-| Specifications.Fields.Id | Integer | Identifier | `84` |
-| Specifications.Fields.Name | String | Name |  |
-| Specifications.Fields.DisplayName | String | Value to be displayed in the UI | `CDMA` |
-| Specifications.Fields.InputType | String | Type of UI element this FieldDefinition uses | `SingleSelect` |
-| Specifications.Fields.StringId | String | Consistent identifier across all [Environments](/api/environments) | `CDMA` |
-| Specifications.Fields.Unit | String | Unit this Field uses | `mm` |
-| Specifications.Fields.Value | String | Value to be used for this Field | `true` |
+| Specifications.Name | String | Name | `Color` |
+| Specifications.Fields | <a href='#field'>Field</a> | Group of ProductFields |  |
 | UpcCodes | Array[object] | UPC codes |  |
-| UpcCodes.Value | String | Value | `874688002478/16W` |
+| UpcCodes.Value | String | Name | `874688002478/16W` |
 | UpcCodes.Description | String | Description | `UPC` |
-| UpcCodes.Entity | Integer | Identifier of the Entity this UPC is associated with | `2` |
+| UpcCodes.Entity | Integer | Identifier of an Entity associated with this UPC code | `2` |
 | VariationId | Integer | Identifier for the Variation | `1` |
 | VariationInfo | Array[<a href='#variationinformation'>VariationInformation</a>] | [Variation](/concepts/product-structure/#variations) information for the Product |  |
 | VendorSkus | Array[<a href='#sku'>Sku</a>] | Vendor SKUs |  |
@@ -149,8 +130,8 @@ A CatalogSearchResult resource is used to return information about Product resou
 | TreeId | Integer | Identifier for a [ClassificationTree](/api/classification-tree/#classificationtree) | `21` |
 | Name | String | Name of the Classification/Category | `Smartphones` |
 | ParentCategories | Array[object] | List of Parent Categories |  |
-| ParentCategories.Id | Integer | Identifier |  |
-| ParentCategories.Name | String | Name |  |
+| ParentCategories.Id | Integer | Identifier | `2` |
+| ParentCategories.Name | String | Name | `Device` |
 
 ###ColorDefinition
 
@@ -169,7 +150,7 @@ A ColorDefinition allows you to define the available Colors for a Product
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String | Acceptable values are Asset, ColorCodes or Empty | `ColorCode` |
-| AssetId | GUID | If Type is Asset, an identifier for an Asset. Otherwise, this property is ignored |  |
+| AssetId | GUID | If Type is Asset, an identifier for an Asset. Otherwise, this property is ignored | `732130d2-b673-461c-812b-f2b614d6076e` |
 | ColorCode | String | If Type is ColorCode, a valid hex code for a color. Otherwise, this propety is ignored | `#238718` |
 
 ###Asset
@@ -188,9 +169,9 @@ A ColorDefinition allows you to define the available Colors for a Product
 |:-----|:----------|:------------|:--------|
 | Value | String | Value | `NSMG900VUM295ISPT-M0` |
 | Description | String | Description |  |
-| Entity | Object | Identifier for an Entity this SKU is associated with |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information |  |
-| Entity.Name | String | Entity name |  |
+| Entity | object | Identifier for an Entity this SKU is associated with |  |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
+| Entity.Name | String | Entity name | `SampleCompany` |
 
 ###Region
 
@@ -209,8 +190,8 @@ A ColorDefinition allows you to define the available Colors for a Product
 | VariationId | Integer | Identifier for a Variation | `4` |
 | Slug | String | Identifier for the Variation | `M5-V1` |
 | Fields | Array[object] | Fields which describe how the Variation differs from its parent |  |
-| Fields.FieldId | Integer | Identifier for a [FieldDefinition](/api/field-definitions/#fielddefinition) |  |
-| Fields.Name | String | Name |  |
+| Fields.FieldId | Integer | Identifier for a [FieldDefinition](/api/field-definitions/#fielddefinition) | `84` |
+| Fields.Name | String | Name | `CDMA` |
 | Fields.Value | String | Value to be used for this Field | `true` |
 
 
@@ -296,7 +277,7 @@ Array[<a href='#catalogitem'>CatalogItem</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
         "IsArchived": false,
         "RmsId": "1",
         "Slug": "M3-V1"
@@ -361,7 +342,6 @@ HTTP 200 Content-Type: application/json
         ],
         "Swatch": {
             "Type": "ColorCode",
-            "AssetId": "",
             "ColorCode": "#238718"
         }
     },
@@ -524,7 +504,7 @@ HTTP 200 Content-Type: application/json
         {
             "Name": "iPhone 4/4s Screen Protector",
             "Slug": "M3-V1",
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "HeroShotId": "80aec415-306c-4d23-a16c-73d8d7b27fdc"
         }
     ]
@@ -578,12 +558,12 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Name": "iPhone 4/4s Screen Protector",
     "Slug": "M3-V1",
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "Revisions": [
         {
             "Name": "iPhone 4/4s Screen Protector",
             "Slug": "M3-V1",
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27"
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d"
         }
     ]
 }</pre>
@@ -638,7 +618,7 @@ HTTP 200 Content-Type: application/json
     "VendorId": 47,
     "Items": [
         {
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "IsArchived": false,
             "RmsId": "1",
             "Slug": "M3-V1"
@@ -707,7 +687,7 @@ HTTP 200 Content-Type: application/json
                     }
                 ]
             },
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
@@ -829,7 +809,7 @@ HTTP 200 Content-Type: application/json
                     }
                 ]
             },
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
@@ -951,7 +931,7 @@ HTTP 200 Content-Type: application/json
                     }
                 ]
             },
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
@@ -1073,7 +1053,7 @@ HTTP 200 Content-Type: application/json
                     }
                 ]
             },
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
@@ -1200,7 +1180,7 @@ HTTP 200 Content-Type: application/json
                     }
                 ]
             },
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
@@ -1328,7 +1308,7 @@ HTTP 200 Content-Type: application/json
                     }
                 ]
             },
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
