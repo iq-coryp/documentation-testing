@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -23,23 +23,23 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Name | `iPhone 5 Order` |
-| BillingAddressId | Guid | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | Guid | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| CreatedDateUtc | Datetime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| BillingAddressId | GUID | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| CreatedDateUtc | DateTime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
 | DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | A description of the discount | `Military discount` |
 | EmployeeId | String | Identifier for the Employee who created this Order | `15` |
 | EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
-| OrderExpiryDate | Datetime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryDate | DateTime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
 | OrderExpiryHours | Integer | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
 | OrderType | String | Name of the [OrderType](#ordertype) | `Sales` |
 | OrderTypeId | Integer | See [OrderType](#ordertype) for a list of acceptable values | `3` |
 | PrintableId | String | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
-| ShippingAddressId | Guid | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | Guid | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingAddressId | GUID | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `2` |
 | State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
 | *CustomerId* | *String* | *This is a legacy property that should not be used* | |
@@ -51,7 +51,7 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier for this Item | `65a13420-5673-45cd-b455-9bbe7f27f694` |
+| Id | GUID | Unique identifier for this Item | `65a13420-5673-45cd-b455-9bbe7f27f694` |
 | Cost | Decimal | Cost of this Item, defaults to 0 | `5.99` |
 | Description | String | Description of this Item | `LG G3 phone case` |
 | ItemStatus | String | Name of the [ItemStatus](#itemstatus) | `New` |
@@ -61,7 +61,7 @@ summary:
 | Index | Integer | A value used for sorting Items, such as in a shopping cart | `0` |
 | ListPrice | Decimal | List Price of this Item, defaults to 0 | `12.99` |
 | Notes | String | Notes for this Item | `Dented corner` |
-| OrderId | Guid | Unique identifier for the [Order](#order), specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
+| OrderId | GUID | Unique identifier for the [Order](#order), specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
 | ProductId | String | Identifier for the Product. Generally, this is a CatalogItemId | `f6642545-9136-4f44-a163-0e97e32e2e27` |
 | Quantity | Integer | Amount of this Item In Stock, defaults to 0 | `2` |
 | SellingPrice | Decimal | Selling Price of this Item, defaults to 0 | `9.99` |
@@ -80,23 +80,23 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
+| Id | GUID | Unique identifier | `216f7424-ae18-4c69-9597-984b430d0759` |
 | Name | String | Name | `iPhone 5 Order` |
-| BillingAddressId | Guid | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| BillingCustomerId | Guid | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| CreatedDateUtc | Datetime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
+| BillingAddressId | GUID | Unique identifier for the billing [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| BillingCustomerId | GUID | Unique identifier for the billing [Customer](/api/crm/#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| CreatedDateUtc | DateTime | The date and time the Order was created, in UTC | `2015-03-27T18:47:29.9012402+00:00` |
 | DiscountAmount | Decimal | The value of the discount to be applied at the Order level | `15.0` |
 | DiscountCode | String | The discount code for a discount applied to this Order | `MTRY-15` |
 | DiscountDescription | String | A description of the discount | `Military discount` |
 | EmployeeId | String | Identifier for the Employee who created this Order | `15` |
 | EntityId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
-| OrderExpiryDate | Datetime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
+| OrderExpiryDate | DateTime | The date and time this Order expires and can no longer be updated, in UTC | `2015-05-05T14:32:05.9140188+00:00` |
 | OrderExpiryHours | Integer | The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours. | `20` |
 | OrderType | String | Name of the [OrderType](#ordertype) | `Sales` |
 | OrderTypeId | Integer | See [OrderType](#ordertype) for a list of acceptable values | `3` |
 | PrintableId | String | An identifier for this Order that can used to print on invoices. This value is system-generated and read-only | `8765-1234-987` |
-| ShippingAddressId | Guid | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| ShippingCustomerId | Guid | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| ShippingAddressId | GUID | Unique identifier for the shipping [Address](/api/crm/#address) | `cb39f178-3577-40bb-a7e5-032f29325b09` |
+| ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `2` |
 | State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
 | *CustomerId* | *String* | *This is a legacy property that should not be used* | |

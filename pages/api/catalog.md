@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -32,6 +32,8 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
 | RmsId | String | Identifier for the CatalogItem in an external inventory system | `1` |
 | Slug | String | Unique identifier for a [Product](#product) | `M3-V1` |
+
+
 
 
 
@@ -166,6 +168,7 @@ A ColorDefinition allows you to define the available Colors for a Product
 | Fields.FieldId | Integer | Identifier for a [FieldDefinition](/api/field-definitions/#fielddefinition) |  |
 | Fields.Name | String | Name |  |
 | Fields.Value | String | Value to be used for this Field | `true` |
+
 
 
 
@@ -466,7 +469,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>Slug</code> (String) </li><li><code>CatalogItemId</code> (Guid) </li><li><code>HeroShotId</code> (Guid) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -475,37 +478,12 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
+            "Name": "iPhone 4/4s Screen Protector",
+            "Slug": "M3-V1",
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
+            "HeroShotId": "80aec415-306c-4d23-a16c-73d8d7b27fdc"
         }
-    ],
-    "Facets": {
-        "Manufacturers": [
-            {
-                "Count": 1,
-                "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
-                }
-            }
-        ],
-        "Vendors": [
-            {
-                "Count": 1,
-                "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
-                }
-            }
-        ]
-    },
-    "MetaData": {
-        "Page": 1,
-        "PageSize": 20,
-        "TotalResults": 5
-    }
+    ]
 }</pre>
 
 <h2 id='getting-variations-for-a-catalog-item' class='clickable-header top-level-header'>Getting Variations for a Catalog Item</h2>
@@ -566,6 +544,64 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
+<h2 id='getting-products-by-vendor-sku' class='clickable-header top-level-header'>Getting Products by Vendor SKU</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+* `VendorSku` (**Required**)  - Vendor SKU to search for 
+* `VendorId` (Optional)  - Identifier for a {{Vendor}} to search for 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+<ul><li><code>Sku</code> (String) </li><li><code>VendorId</code> (Integer) </li><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><ul><li><code>CatalogItemId</code> (Guid) </li><li><code>IsArchived</code> (Boolean) </li><li><code>RmsId</code> (String) </li><li><code>Slug</code> (String) </li></ul></ul>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Sku": "403405",
+    "VendorId": 47,
+    "Items": [
+        {
+            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "IsArchived": false,
+            "RmsId": "1",
+            "Slug": "M3-V1"
+        }
+    ]
+}</pre>
+
 <h2 id='getting-products-by-category-or-classification' class='clickable-header top-level-header'>Getting Products by Category or Classification</h2>
 
 
@@ -606,7 +642,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -615,10 +651,44 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
+            "Name": "iPhone 4S 16GB White",
+            "CanonicalClassification": {
+                "Id": 1,
+                "TreeId": 21,
+                "Name": "Smartphones",
+                "ParentCategories": [
+                    {
+                        "Id": 2,
+                        "Name": "Device"
+                    }
+                ]
+            },
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
+            "ClassificationTreeId": 21,
+            "CompanyId": 1,
+            "DateAddedUtc": "2011-10-14T12:00:00.000",
+            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "IsLinkedToCuratedProduct": true,
+            "IsDropShippable": true,
+            "Manufacturer": {
+                "Id": 4,
+                "Name": "SampleManufacturer"
+            },
+            "MasterProductId": 3,
+            "Msrp": {
+                "Amount": 100,
+                "CurrencyCode": "USD"
+            },
+            "ProductVersion": 1,
+            "ShortDescription": "Better then iPhone 3G",
+            "Slug": "M3-V1",
+            "VariationId": 1,
+            "Vendors": [
+                {
+                    "Id": 14,
+                    "Name": "SampleSupplier"
+                }
+            ]
         }
     ],
     "Facets": {
@@ -688,7 +758,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -697,10 +767,44 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
+            "Name": "iPhone 4S 16GB White",
+            "CanonicalClassification": {
+                "Id": 1,
+                "TreeId": 21,
+                "Name": "Smartphones",
+                "ParentCategories": [
+                    {
+                        "Id": 2,
+                        "Name": "Device"
+                    }
+                ]
+            },
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
+            "ClassificationTreeId": 21,
+            "CompanyId": 1,
+            "DateAddedUtc": "2011-10-14T12:00:00.000",
+            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "IsLinkedToCuratedProduct": true,
+            "IsDropShippable": true,
+            "Manufacturer": {
+                "Id": 4,
+                "Name": "SampleManufacturer"
+            },
+            "MasterProductId": 3,
+            "Msrp": {
+                "Amount": 100,
+                "CurrencyCode": "USD"
+            },
+            "ProductVersion": 1,
+            "ShortDescription": "Better then iPhone 3G",
+            "Slug": "M3-V1",
+            "VariationId": 1,
+            "Vendors": [
+                {
+                    "Id": 14,
+                    "Name": "SampleSupplier"
+                }
+            ]
         }
     ],
     "Facets": {
@@ -770,7 +874,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -779,10 +883,44 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
+            "Name": "iPhone 4S 16GB White",
+            "CanonicalClassification": {
+                "Id": 1,
+                "TreeId": 21,
+                "Name": "Smartphones",
+                "ParentCategories": [
+                    {
+                        "Id": 2,
+                        "Name": "Device"
+                    }
+                ]
+            },
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
+            "ClassificationTreeId": 21,
+            "CompanyId": 1,
+            "DateAddedUtc": "2011-10-14T12:00:00.000",
+            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "IsLinkedToCuratedProduct": true,
+            "IsDropShippable": true,
+            "Manufacturer": {
+                "Id": 4,
+                "Name": "SampleManufacturer"
+            },
+            "MasterProductId": 3,
+            "Msrp": {
+                "Amount": 100,
+                "CurrencyCode": "USD"
+            },
+            "ProductVersion": 1,
+            "ShortDescription": "Better then iPhone 3G",
+            "Slug": "M3-V1",
+            "VariationId": 1,
+            "Vendors": [
+                {
+                    "Id": 14,
+                    "Name": "SampleSupplier"
+                }
+            ]
         }
     ],
     "Facets": {
@@ -810,64 +948,6 @@ HTTP 200 Content-Type: application/json
         "PageSize": 20,
         "TotalResults": 5
     }
-}</pre>
-
-<h2 id='getting-products-by-vendor-sku' class='clickable-header top-level-header'>Getting Products by Vendor SKU</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}
-</pre>
-
-#### Headers
-
-
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-
-
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `VendorSku` (**Required**)  - Vendor SKU to search for 
-* `VendorId` (Optional)  - Identifier for a {{Vendor}} to search for 
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
-
-#### Response
-
-
-<ul><li><code>Sku</code> (String) </li><li><code>VendorId</code> (Integer) </li><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>{
-    "Sku": "403405",
-    "VendorId": 47,
-    "Items": [
-        {
-            "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
-        }
-    ]
 }</pre>
 
 <h2 id='getting-products-available-for-shipping' class='clickable-header top-level-header'>Getting Products Available for Shipping</h2>
@@ -910,7 +990,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -919,10 +999,44 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
+            "Name": "iPhone 4S 16GB White",
+            "CanonicalClassification": {
+                "Id": 1,
+                "TreeId": 21,
+                "Name": "Smartphones",
+                "ParentCategories": [
+                    {
+                        "Id": 2,
+                        "Name": "Device"
+                    }
+                ]
+            },
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
+            "ClassificationTreeId": 21,
+            "CompanyId": 1,
+            "DateAddedUtc": "2011-10-14T12:00:00.000",
+            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "IsLinkedToCuratedProduct": true,
+            "IsDropShippable": true,
+            "Manufacturer": {
+                "Id": 4,
+                "Name": "SampleManufacturer"
+            },
+            "MasterProductId": 3,
+            "Msrp": {
+                "Amount": 100,
+                "CurrencyCode": "USD"
+            },
+            "ProductVersion": 1,
+            "ShortDescription": "Better then iPhone 3G",
+            "Slug": "M3-V1",
+            "VariationId": 1,
+            "Vendors": [
+                {
+                    "Id": 14,
+                    "Name": "SampleSupplier"
+                }
+            ]
         }
     ],
     "Facets": {
@@ -997,7 +1111,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -1006,10 +1120,44 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
+            "Name": "iPhone 4S 16GB White",
+            "CanonicalClassification": {
+                "Id": 1,
+                "TreeId": 21,
+                "Name": "Smartphones",
+                "ParentCategories": [
+                    {
+                        "Id": 2,
+                        "Name": "Device"
+                    }
+                ]
+            },
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
+            "ClassificationTreeId": 21,
+            "CompanyId": 1,
+            "DateAddedUtc": "2011-10-14T12:00:00.000",
+            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "IsLinkedToCuratedProduct": true,
+            "IsDropShippable": true,
+            "Manufacturer": {
+                "Id": 4,
+                "Name": "SampleManufacturer"
+            },
+            "MasterProductId": 3,
+            "Msrp": {
+                "Amount": 100,
+                "CurrencyCode": "USD"
+            },
+            "ProductVersion": 1,
+            "ShortDescription": "Better then iPhone 3G",
+            "Slug": "M3-V1",
+            "VariationId": 1,
+            "Vendors": [
+                {
+                    "Id": 14,
+                    "Name": "SampleSupplier"
+                }
+            ]
         }
     ],
     "Facets": {
@@ -1085,7 +1233,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -1094,10 +1242,44 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
+            "Name": "iPhone 4S 16GB White",
+            "CanonicalClassification": {
+                "Id": 1,
+                "TreeId": 21,
+                "Name": "Smartphones",
+                "ParentCategories": [
+                    {
+                        "Id": 2,
+                        "Name": "Device"
+                    }
+                ]
+            },
             "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
-            "IsArchived": false,
-            "RmsId": "1",
-            "Slug": "M3-V1"
+            "ClassificationTreeId": 21,
+            "CompanyId": 1,
+            "DateAddedUtc": "2011-10-14T12:00:00.000",
+            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "IsLinkedToCuratedProduct": true,
+            "IsDropShippable": true,
+            "Manufacturer": {
+                "Id": 4,
+                "Name": "SampleManufacturer"
+            },
+            "MasterProductId": 3,
+            "Msrp": {
+                "Amount": 100,
+                "CurrencyCode": "USD"
+            },
+            "ProductVersion": 1,
+            "ShortDescription": "Better then iPhone 3G",
+            "Slug": "M3-V1",
+            "VariationId": 1,
+            "Vendors": [
+                {
+                    "Id": 14,
+                    "Name": "SampleSupplier"
+                }
+            ]
         }
     ],
     "Facets": {
