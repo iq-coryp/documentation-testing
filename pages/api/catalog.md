@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -34,6 +34,50 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 | Slug | String | Unique identifier for a [Product](#product) | `M3-V1` |
 
 
+###CatalogSearchResult
+
+A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Items | Array[<a href='#item'>Item</a>] | Products matching the search criteria |  |
+| Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |
+| Items.CanonicalClassification | Object | ClassificationTree details |  |
+| Items.CatalogItemId | GUID | Unique identifier for the CatalogItem |  |
+| Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) |  |
+| Items.CompanyId | Integer | Identifier for the Company |  |
+| Items.DateAddedUtc | DateTime | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
+| Items.HeroShotId | GUID | An identifier for a [Hero Shot](/api/glossary/#hero-shot) | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
+| Items.IsDropShippable | Boolean | A flag to indicate if this Product can be shipped | `true` |
+| Items.Manufacturer | Object | Manufacturer information for the Product |  |
+| Items.Manufacturer.Id | Integer | Identifier for the Manufacturer |  |
+| Items.Manufacturer.Name | String | Name of the Manufacturer |  |
+| Items.MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
+| Items.Msrp | Object | Manufacturer suggested retail price information for the Product |  |
+| Items.Msrp.Amount | Decimal | Manufacturers suggested retail price | `100` |
+| Items.Msrp.CurrencyCode | String | Currency | `USD` |
+| Items.ProductVersion | Integer | Latest revision number | `1` |
+| Items.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
+| Items.Slug | String | URL friendly identifier for the Product |  |
+| Items.VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#Variations) this Product represents | `1` |
+| Items.Vendors | Array[object] | Vendors for the Product |  |
+| Items.Vendors.Id | Integer | Identifier for the Supplier |  |
+| Items.Vendors.Name | String | Name of the Supplier |  |
+| Facets | <a href='#facets'>Facets</a> | Summary of Manufacturer and Vendor information for the Items |  |
+| Facets.ClassificationAndCategories | Array[object] | Count of Classification and Categories in results |  |
+| Facets.ClassificationAndCategories.Count | Integer | Number of items in the response with the Classification or Category specified in Item | `1` |
+| Facets.ClassificationAndCategories.Item | Integer | Identifier of a Classification or Category |  |
+| Facets.Manufacturers | Array[object] | Manufacturer information for the Items |  |
+| Facets.Manufacturers.Count | Integer | Number of Items | `1` |
+| Facets.Manufacturers.Item | Object | Information about this Manufacturer |  |
+| Facets.Vendors | Array[object] | Vendor information for the Items |  |
+| Facets.Vendors.Count | Integer | Number of Items | `1` |
+| Facets.Vendors.Item | Object | Information about this Vendor |  |
+| MetaData | <a href='#metadata'>MetaData</a> | Data representing pagination details |  |
+| MetaData.Page | Integer | Page of Items to be included in the resource | `1` |
+| MetaData.PageSize | Integer | Number of Items included in the resource | `20` |
+| MetaData.TotalResults | Integer | Number of Items matching the search criteria | `5` |
 
 
 
@@ -180,9 +224,9 @@ A ColorDefinition allows you to define the available Colors for a Product
 
 
 
-<h2>Enumerations</h2>
+<h2 id="enumerations" class="clickable-header">Enumerations</h2>
 
-<h3>ColorTag</h3>
+<h3 id="colortags" class="clickable-header">ColorTag</h3>
 
 ColorTags are used to describe the major colors in a product
 
@@ -642,7 +686,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<a href='#catalogsearchresult'>CatalogSearchResult</a>
 
 <h5>Example</h5>
 
@@ -692,6 +736,12 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Facets": {
+        "ClassificationAndCategories": [
+            {
+                "Count": 1,
+                "Item": 1
+            }
+        ],
         "Manufacturers": [
             {
                 "Count": 1,
@@ -758,7 +808,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<a href='#catalogsearchresult'>CatalogSearchResult</a>
 
 <h5>Example</h5>
 
@@ -808,6 +858,12 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Facets": {
+        "ClassificationAndCategories": [
+            {
+                "Count": 1,
+                "Item": 1
+            }
+        ],
         "Manufacturers": [
             {
                 "Count": 1,
@@ -874,7 +930,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<a href='#catalogsearchresult'>CatalogSearchResult</a>
 
 <h5>Example</h5>
 
@@ -924,6 +980,12 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Facets": {
+        "ClassificationAndCategories": [
+            {
+                "Count": 1,
+                "Item": 1
+            }
+        ],
         "Manufacturers": [
             {
                 "Count": 1,
@@ -990,7 +1052,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<a href='#catalogsearchresult'>CatalogSearchResult</a>
 
 <h5>Example</h5>
 
@@ -1040,6 +1102,12 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Facets": {
+        "ClassificationAndCategories": [
+            {
+                "Count": 1,
+                "Item": 1
+            }
+        ],
         "Manufacturers": [
             {
                 "Count": 1,
@@ -1111,7 +1179,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<a href='#catalogsearchresult'>CatalogSearchResult</a>
 
 <h5>Example</h5>
 
@@ -1161,6 +1229,12 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Facets": {
+        "ClassificationAndCategories": [
+            {
+                "Count": 1,
+                "Item": 1
+            }
+        ],
         "Manufacturers": [
             {
                 "Count": 1,
@@ -1233,7 +1307,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>CanonicalClassification</code> (<a href='#canonicalclassification'>CanonicalClassification</a>) </li><ul><li><code>Id</code> (Integer) </li><li><code>TreeId</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ParentCategories</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>CatalogItemId</code> (Guid) </li><li><code>ClassificationTreeId</code> (Integer) </li><li><code>CompanyId</code> (Integer) </li><li><code>DateAddedUtc</code> (Datetime) </li><li><code>HeroShotId</code> (Guid) </li><li><code>IsLinkedToCuratedProduct</code> (Boolean) </li><li><code>IsDropShippable</code> (Boolean) </li><li><code>Manufacturer</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul><li><code>MasterProductId</code> (Integer) </li><li><code>Msrp</code> (Object) </li><ul><li><code>Amount</code> (Decimal) </li><li><code>CurrencyCode</code> (String) </li></ul><li><code>ProductVersion</code> (Integer) </li><li><code>ShortDescription</code> (String) </li><li><code>Slug</code> (String) </li><li><code>VariationId</code> (Integer) </li><li><code>Vendors</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Facets</code> (Object) </li><ul><li><code>Manufacturers</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul><li><code>Vendors</code> (Array) </li><ul><li><code>Count</code> (Integer) </li><li><code>Item</code> (Object) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li></ul></ul></ul><li><code>MetaData</code> (Object) </li><ul><li><code>Page</code> (Integer) </li><li><code>PageSize</code> (Integer) </li><li><code>TotalResults</code> (Integer) </li></ul></ul>
+<a href='#catalogsearchresult'>CatalogSearchResult</a>
 
 <h5>Example</h5>
 
@@ -1283,6 +1357,12 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "Facets": {
+        "ClassificationAndCategories": [
+            {
+                "Count": 1,
+                "Item": 1
+            }
+        ],
         "Manufacturers": [
             {
                 "Count": 1,

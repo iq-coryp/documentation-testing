@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -37,7 +37,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | ActivationId | Integer | System-generated identifier for the [Activation](#activation) | `354` |
-| ActivationDate | Datetime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
+| ActivationDate | DateTime | Date the [Activation](#activation) occurred (in UTC), system generated and immutable | `2015-06-19T05:44:39.7163989Z` |
 | ActivatedProduct | <a href='#activatedproduct'>ActivatedProduct</a> | The Product that is being activated |  |
 | ActivationState | String | State of the [Activation](#activation). See [ActivationState](#activationstate) for a list of acceptable values | `Pending` |
 | ActivationTermCode | String(64) | Type of term for the contract. Possible values vary by carrier | `EarlyUpgrade` |
@@ -82,7 +82,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | LastName | String(64) | If IsIndividual is true, the last name of the Subscriber | `Smith` |
 | Addresses | Array[<a href='#address'>Address</a>] | List of addresses for the Subscriber |  |
 | AssociatedAccount | <a href='#account'>Account</a> | The account associated with this Subscriber |  |
-| BirthDate | Datetime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
+| BirthDate | DateTime | Date of birth in MM/DD/YYYY format | `5/16/1980` |
 | CompanyName | String(64) | If the Subscriber is a business, the name of the business |  |
 | Email | String(64) | Email address | `subscriber@example.com` |
 | IsIndividual | Boolean | A flag to indicate if the Subscriber is an individual (true) or a  business (false) | `true` |
