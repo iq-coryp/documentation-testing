@@ -4,187 +4,132 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 09-11-2015
 summary: 
 ---
 {% include linkrefs.html %}
 
-
-
 ## Endpoints
 
-* Sandbox: <a href="https://amsdemo.iqmetrix.net">https://amsdemo.iqmetrix.net</a>
-* Production: <a href="https://ams.iqmetrix.net">https://ams.iqmetrix.net</a>
+* Sandbox: https://amsdemo.iqmetrix.net/
+* Production: https://ams.iqmetrix.net/
 
 ## Resources
 
-###Asset
+### Asset
 
 An **Asset** is an image or video associated with a Product.
 
 | Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
+|:-----|:---------|:------------|:--------|
 | id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | name | String | File name | `iqmetrix.jpg` |
 | height | Integer | Height in pixels | `145` |
-| href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
+| href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/`<br/>`assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
+| md5Checksum | String | String that can be used for upload integrity checks or comparing two assets  | `2c8f3b3774df219b8246ca02a2a2a892` |
 | mimeType | String | The mime type | `image/jpeg` |
 | width | Integer | Width in pixels | `240` |
-| success | Boolean | A flag to indicate that the Asset was uploaded. This only appears when asset is first uploaded | `true` |
 
+## Creating an Asset
 
+#### Request
 
-
-
-
-<h2 id='creating-an-asset' class='clickable-header top-level-header'>Creating an Asset</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-POST /assets
-</pre>
-
+    POST /assets
+    
 #### Headers
 
-
-* `Authorization: Bearer (Access Token)`
+* `Authorization: Bearer` ({{AccessToken_Glossary}})
 * `Accept: application/json`
 * `Content-Type: multipart/form-data`
 
-
-
-
-
 #### Request Parameters
 
-<li><code>Filename</code> (<strong>Required</strong>) - File to be uploaded</li>
+* Filename (**Required**) - The file to be uploaded
 
+###### Example
 
-<h5>Example</h5>
+    POST /assets
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+    Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
-<pre>
-POST /assets
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: multipart/form-data
+    ----WebKitFormBoundary7MA4YWxkTrZu0gW
+    Content-Disposition: form-data; name="Filename"; filename="iQmetrixLogo.jpg"
+    Content-Type: image/jpeg
 
-</pre>
+    ----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 #### Response
 
+* [Asset](#asset)
 
-<a href='#asset'>Asset</a>
+###### Example
 
-<h5>Example</h5>
+    HTTP 201 Content-Type: application/json
+    {
+        "id": "732130d2-b673-461c-812b-f2b614d6076e",
+        "name": "iqmetrix.jpg",
+        "height": 145,
+        "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+        "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+        "mimeType": "image/jpeg",
+        "width": 240
+        "success": true
+    }
 
-<pre>
-HTTP 201 Content-Type: application/json
-</pre><pre>{
-    "id": "732130d2-b673-461c-812b-f2b614d6076e",
-    "name": "iqmetrix.jpg",
-    "height": 145,
-    "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-    "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-    "mimeType": "image/jpeg",
-    "width": 240,
-    "success": true
-}</pre>
+## Getting an Asset
 
-<h2 id='getting-an-asset' class='clickable-header top-level-header'>Getting an Asset</h2>
+#### Request
 
-
-
-<h4>Request</h4>
-
-<pre>
-GET /assets/{AssetId}
-</pre>
-
-#### Headers
-
-
-* `Accept: application/json`
-
-
+    GET /assets/{AssetId}
 
 #### URI Parameters
 
+* `AssetId` (**Required**) - Identifier for the {{Asset}}
 
-* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
+###### Example
 
-
-
-<h5>Example</h5>
-
-<pre>
-GET /assets/732130d2-b673-461c-812b-f2b614d6076e
-Accept: application/json
-
-</pre>
+    GET /assets/732130d2-b673-461c-812b-f2b614d6076e
 
 #### Response
 
+* [Asset](#asset) 
 
-<a href='#asset'>Asset</a>
+###### Example
 
-<h5>Example</h5>
+    HTTP 200 Content-Type: application/json
+    {
+        "id": "732130d2-b673-461c-812b-f2b614d6076e",
+        "name": "iqmetrix.jpg",
+        "height": 145,
+        "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
+        "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+        "mimeType": "image/jpeg",
+        "width": 240
+    }
 
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>{
-    "id": "732130d2-b673-461c-812b-f2b614d6076e",
-    "name": "iqmetrix.jpg",
-    "height": 145,
-    "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-    "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-    "mimeType": "image/jpeg",
-    "width": 240,
-    "success": true
-}</pre>
+## Redirecting to an Image Asset
 
-<h2 id='redirecting-to-an-image-asset' class='clickable-header top-level-header'>Redirecting to an Image Asset</h2>
+#### Request
 
-A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored
-
-<h4>Request</h4>
-
-<pre>
-GET /images/{AssetId}
-</pre>
-
-#### Headers
-
-
-
-
+    GET /images/{AssetId}
 
 #### URI Parameters
 
+* `AssetId` (**Required**) - Identifier for the [Asset](#asset)
 
-* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
+###### Example
 
-
-
-<h5>Example</h5>
-
-<pre>
-GET /images/732130d2-b673-461c-812b-f2b614d6076e
-
-</pre>
+    GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
 #### Response
 
+* A HTTP 303 redirect with a `Location` header pointing to the actual file where the digital asset is stored
 
+###### Example
 
-<h5>Example</h5>
-
-<pre>
-HTTP 303 Content-Type: application/text
-</pre><pre>Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg</pre>
+    HTTP 303 (Redirect)
+    Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg
 
 ## Errors
 

@@ -4,7 +4,7 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 3-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,98 +18,7 @@ summary:
 
 ## Resources
 
-###Product
 
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | String | Identifier | `M3-V1` |
-| Name | String | Name | `iPhone 4S 16GB White` |
-| ShortDescription | String | Short Description | `Better than iPhone 3G` |
-| LongDescription | String | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
-| Assets | Array[object] | Asset information |  |
-| CanonicalClassification | Object | ClassificationTree details |  |
-| Entity | Object | Entity information, used for Entity revisions |  |
-| HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
-| HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
-| IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
-| IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
-| Manufacturer | <a href='#manufacturer'>Manufacturer</a> | Manufacturer information |  |
-| MasterProductId | Integer | Identifier for the Master Product | `3` |
-| MSRP | <a href='#msrp'>MSRP</a> | Manufacturers suggested retail price information |  |
-| Owner | Object | Owner information, used for Private products and Carrier Revisions |  |
-| Region | Object | Region information, for Regional Carrier Revisions |  |
-| ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
-| Specifications | Array[<a href='#specification'>Specification</a>] | Details such as color, dimension, etc |  |
-| UpcCodes | Array[<a href='#upccode'>UpcCode</a>] | UPC codes |  |
-| VariationId | Integer | Identifier for the Variation | `1` |
-| VendorSkus | Array[<a href='#vendorsku'>VendorSku</a>] | Vendor SKUs |  |
-| Version | Integer | Latest revision number | `1` |
-
-###Specification
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Name | String | Specification name | `Color` |
-| Fields | Array[<a href='#field'>Field</a>] | Specification Fields |  |
-
-###MSRP
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Amount | Decimal | Manufacturers suggested retail price | `100` |
-| CurrencyCode | String | Currency | `USD` |
-
-
-
-###Manufacturer
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer |  | `4` |
-| Name | String |  | `SampleManufacturer` |
-
-###ManufacturerSku
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Value | String |  | `ABC123` |
-| Description | String |  | `Manufacturer SKU` |
-| Entity | Integer |  | `4` |
-
-###Specification
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Name | String | Specification name | `Color` |
-| Fields | Array[<a href='#field'>Field</a>] | Specification Fields |  |
-
-###Field
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | Integer |  | `1` |
-| StringId | String |  | `Color` |
-| DisplayName | String |  | `Color` |
-| Name | String |  | `Color` |
-| Value | String |  | `White` |
-| Type | String |  | `TextSingleLine` |
-| Unit | String |  | `mm` |
-
-###UpcCode
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Value | String |  | `874688002478/16W` |
-| Description | String |  | `UPC` |
-| Entity | Integer |  | `2` |
-
-###VendorSku
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Value | String |  | `403405` |
-| Description | String |  | `SKU` |
-| Entity | Integer |  | `3` |
 
 
 
