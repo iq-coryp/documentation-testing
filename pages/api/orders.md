@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 7-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -62,10 +62,10 @@ summary:
 | ListPrice | Decimal | List Price of this Item, defaults to 0 | `12.99` |
 | Notes | String | Notes for this Item | `Dented corner` |
 | OrderId | GUID | Unique identifier for the [Order](#order), specified by the OrderId in the URI | `216f7424-ae18-4c69-9597-984b430d0759` |
-| ProductId | String | Identifier for the Product. Generally, this is a CatalogItemId | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| ProductId | String | Identifier for the Product. Generally, this is a CatalogItemId | `d60a8776-2f1f-430a-88f6-6180de43887d` |
 | Quantity | Integer | Amount of this Item In Stock, defaults to 0 | `2` |
 | SellingPrice | Decimal | Selling Price of this Item, defaults to 0 | `9.99` |
-| SerialNumbers | Array[string] | Serial numbers | `abc321` |
+| SerialNumbers | Array[string] | Serial numbers intended for product serialization | `abc321` |
 | SKU | String | SKU for this Item | `00001` |
 | ShippingOptionId | String | Identifier for the ShippingOption that this Item will use | `1` |
 | SupplierEntityId | Integer | Identifier for the Supplier of this Item | `14` |
@@ -190,7 +190,7 @@ POST /Companies({CompanyId})/Orders
 
 #### Request Parameters
 
-<ul><li><code>BillingCustomerId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li></ul>
+<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -346,7 +346,7 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 
 #### Request Parameters
 
-<ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>TrackingNumber</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (Optional) </li></ul></ul>
+<ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -363,7 +363,7 @@ Content-Type: application/json
     "Index": 0,
     "ListPrice": 12.99,
     "Notes": "Dented corner",
-    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "Quantity": 2,
     "SellingPrice": 9.99,
     "SerialNumbers": [
@@ -403,7 +403,7 @@ HTTP 201 Content-Type: application/json
     "ListPrice": 12.99,
     "Notes": "Dented corner",
     "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "Quantity": 2,
     "SellingPrice": 9.99,
     "SerialNumbers": [
@@ -478,7 +478,7 @@ HTTP 200 Content-Type: application/json
         "ListPrice": 12.99,
         "Notes": "Dented corner",
         "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-        "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
         "Quantity": 2,
         "SellingPrice": 9.99,
         "SerialNumbers": [
@@ -593,7 +593,7 @@ PUT /Companies({CompanyId})/Orders({OrderId})
 
 #### Request Parameters
 
-<ul><li><code>BillingCustomerId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>CreatedDateUtc</code> (<strong>Required</strong>) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryDate</code> (<strong>Required</strong>) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>OrderType</code> (<strong>Required</strong>) </li><li><code>PrintableId</code> (<strong>Required</strong>) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>TenderId</code> (Optional) </li></ul>
+<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -762,7 +762,7 @@ POST /Companies({CompanyId})/OrderFull
 
 #### Request Parameters
 
-<ul><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>OrderTypeId</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>TrackingNumber</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (Optional) </li></ul></ul></ul>
+<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -795,7 +795,7 @@ Content-Type: application/json
             "Index": 0,
             "ListPrice": 12.99,
             "Notes": "Dented corner",
-            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -859,7 +859,7 @@ HTTP 201 Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -957,7 +957,7 @@ HTTP 200 Content-Type: application/json
                 "ListPrice": 12.99,
                 "Notes": "Dented corner",
                 "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-                "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+                "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
                 "Quantity": 2,
                 "SellingPrice": 9.99,
                 "SerialNumbers": [
@@ -1056,7 +1056,7 @@ HTTP 200 Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1106,7 +1106,7 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 
 #### Request Parameters
 
-<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>CreatedDateUtc</code> (<strong>Required</strong>) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryDate</code> (<strong>Required</strong>) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>OrderType</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (Optional) </li><li><code>PrintableId</code> (<strong>Required</strong>) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemStatusId</code> (<strong>Required</strong>) </li><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>ItemType</code> (<strong>Required</strong>) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>OrderId</code> (<strong>Required</strong>) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>TrackingNumber</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (Optional) </li></ul></ul></ul>
+<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -1149,7 +1149,7 @@ Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1213,7 +1213,7 @@ HTTP 200 Content-Type: application/json
             "ListPrice": 12.99,
             "Notes": "Dented corner",
             "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
-            "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "Quantity": 2,
             "SellingPrice": 9.99,
             "SerialNumbers": [
@@ -1375,6 +1375,7 @@ HTTP 200 Content-Type: application/json
 
 | Error Code  | Description | Reason |
 |:------------|:------------|:-------|
+| `HTTP 400` | `Bad Request` | Billing Customer (id={x}) not found for company {y} | Proccessing an Order requires a Billing Customer on the Order |
 | `HTTP 400` | `Bad Request` | The request could not be understood by the server. The message returned in the response body will give more details on why the request was invalid |
 | `HTTP 400` | `Entity is not related to company` | Ensure the `EntityId` used in the request belongs to the `Company` specified in the URI |
 | `HTTP 400` | `The request is invalid` | Ensure the `OrderId` used in the request matches the OrderId used in the URI |

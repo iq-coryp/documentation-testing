@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 7-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -51,7 +51,7 @@ An Address represents a valid address somewhere on the planet.
 | AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
 | AttentionTo | String | Attention To (Attn:) | `iQmetrix` |
 | Country | String | The Country. This value is system-generated and read-only | `Canada` |
-| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
+| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `CA` |
 | Default | Boolean | A flag to indicate if this address is the default address for the customer | `false` |
 | DoNotContact | Boolean | A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true | `true` |
 | Email | String | Email | `Test@Test.com` |
@@ -60,8 +60,8 @@ An Address represents a valid address somewhere on the planet.
 | Phone | String | Phone number | `(555) 555-5555` |
 | PostalCode | String | The postal code/zip code | `94043` |
 | PostOfficeBoxNumber | String | The post office box number for PO box addresses | `P.O. Box 1022` |
-| State | String | The State/Province | `British Columbia` |
-| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
+| State | String | The State/Province | `Alberta` |
+| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `AB` |
 | StreetAddress1 | String | The street address | `1600 Amphitheatre Pkwy` |
 | StreetAddress2 | String | The street address | `Suite 500` |
 | Version | Integer | Latest revision number | `1` |
@@ -492,7 +492,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 
 #### Request Parameters
 
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>CustomerType</code> (<strong>Required</strong>) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -636,7 +636,7 @@ Content-Type: application/json
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
-    "StateCode": "BC",
+    "StateCode": "AB",
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500"
 }
@@ -667,8 +667,8 @@ HTTP 201 Content-Type: application/json
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
-    "State": "British Columbia",
-    "StateCode": "BC",
+    "State": "Alberta",
+    "StateCode": "AB",
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500",
     "Version": 1
@@ -735,8 +735,8 @@ HTTP 200 Content-Type: application/json
         "Phone": "(555) 555-5555",
         "PostalCode": "94043",
         "PostOfficeBoxNumber": "P.O. Box 1022",
-        "State": "British Columbia",
-        "StateCode": "BC",
+        "State": "Alberta",
+        "StateCode": "AB",
         "StreetAddress1": "1600 Amphitheatre Pkwy",
         "StreetAddress2": "Suite 500",
         "Version": 1
@@ -848,8 +848,8 @@ HTTP 200 Content-Type: application/json
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
-    "State": "British Columbia",
-    "StateCode": "BC",
+    "State": "Alberta",
+    "StateCode": "AB",
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500",
     "Version": 1
@@ -885,7 +885,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 #### Request Parameters
 
-<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AddressType</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Country</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -910,8 +910,8 @@ Content-Type: application/json
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
-    "State": "British Columbia",
-    "StateCode": "BC",
+    "State": "Alberta",
+    "StateCode": "AB",
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500",
     "Version": 1
@@ -943,8 +943,8 @@ HTTP 200 Content-Type: application/json
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
-    "State": "British Columbia",
-    "StateCode": "BC",
+    "State": "Alberta",
+    "StateCode": "AB",
     "StreetAddress1": "1600 Amphitheatre Pkwy",
     "StreetAddress2": "Suite 500",
     "Version": 1
@@ -1022,7 +1022,7 @@ POST /Companies({CompanyId})/CustomerFull
 
 #### Request Parameters
 
-<ul><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerTypeId</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1048,7 +1048,7 @@ Content-Type: application/json
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
-            "StateCode": "BC",
+            "StateCode": "AB",
             "StreetAddress1": "1600 Amphitheatre Pkwy",
             "StreetAddress2": "Suite 500"
         }
@@ -1114,8 +1114,8 @@ HTTP 201 Content-Type: application/json
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "British Columbia",
-            "StateCode": "BC",
+            "State": "Alberta",
+            "StateCode": "AB",
             "StreetAddress1": "1600 Amphitheatre Pkwy",
             "StreetAddress2": "Suite 500",
             "Version": 1
@@ -1225,8 +1225,8 @@ HTTP 200 Content-Type: application/json
                 "Phone": "(555) 555-5555",
                 "PostalCode": "94043",
                 "PostOfficeBoxNumber": "P.O. Box 1022",
-                "State": "British Columbia",
-                "StateCode": "BC",
+                "State": "Alberta",
+                "StateCode": "AB",
                 "StreetAddress1": "1600 Amphitheatre Pkwy",
                 "StreetAddress2": "Suite 500",
                 "Version": 1
@@ -1439,8 +1439,8 @@ HTTP 200 Content-Type: application/json
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "British Columbia",
-            "StateCode": "BC",
+            "State": "Alberta",
+            "StateCode": "AB",
             "StreetAddress1": "1600 Amphitheatre Pkwy",
             "StreetAddress2": "Suite 500",
             "Version": 1
@@ -1513,7 +1513,7 @@ PUT /Companies({CompanyId})/CustomerFull({CustomerId})
 
 #### Request Parameters
 
-<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AddressType</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Country</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>State</code> (<strong>Required</strong>) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>ContactMethodCategory</code> (<strong>Required</strong>) </li><li><code>ContactMethodType</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>ExtensionType</code> (<strong>Required</strong>) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>CustomerType</code> (<strong>Required</strong>) </li><li><code>CustomerTypeId</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -1544,8 +1544,8 @@ Content-Type: application/json
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "British Columbia",
-            "StateCode": "BC",
+            "State": "Alberta",
+            "StateCode": "AB",
             "StreetAddress1": "1600 Amphitheatre Pkwy",
             "StreetAddress2": "Suite 500",
             "Version": 1
@@ -1621,8 +1621,8 @@ HTTP 200 Content-Type: application/json
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "British Columbia",
-            "StateCode": "BC",
+            "State": "Alberta",
+            "StateCode": "AB",
             "StreetAddress1": "1600 Amphitheatre Pkwy",
             "StreetAddress2": "Suite 500",
             "Version": 1
@@ -1965,7 +1965,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 
 #### Request Parameters
 
-<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>ContactMethodCategory</code> (<strong>Required</strong>) </li><li><code>ContactMethodType</code> (<strong>Required</strong>) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -2203,8 +2203,8 @@ HTTP 200 Content-Type: application/json
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "British Columbia",
-            "StateCode": "BC",
+            "State": "Alberta",
+            "StateCode": "AB",
             "StreetAddress1": "1600 Amphitheatre Pkwy",
             "StreetAddress2": "Suite 500",
             "Version": 1
@@ -2250,7 +2250,7 @@ HTTP 200 Content-Type: application/json
 
 ## Searching
 
-The CRM API supports searching of {{Customer}} and [CustomerSearch](#customersearch) resources through the use of filters.
+The Customers API supports searching of {{Customer}} and [CustomerSearch](#customersearch) resources through the use of filters.
 
 The `$filter` query parameter is used for specifying filtering criteria.
 
@@ -2292,7 +2292,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
 ## Pagination
 
-The CRM API supports pagination of collections for some resources.
+The Customers API supports pagination of collections for some resources.
 
 Requests to resources that support pagination include the `Accept: application/hal+json` HTTP header under the Headers section.
 
@@ -2334,7 +2334,7 @@ These links are _relative_, they do not include the base endpoint. It is the res
         }
     }
 
-In the example above, the `_links` section is included in the data returned from an API request to get CRM Customers, where `$skip=10` and `$top=10`.
+In the example above, the `_links` section is included in the data returned from an API request to get Customers, where `$skip=10` and `$top=10`.
 
 The `self`.`href` value is the encoded version of the API request that returned these results.
 
