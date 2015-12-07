@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 07-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -103,7 +103,7 @@ A CatalogSearchResult resource is used to return information about Product resou
 | MasterProductId | Integer | Identifier for the Master Product | `3` |
 | MSRP | object | Manufacturers suggested retail price information |  |
 | MSRP.Amount | Decimal | Manufacturers suggested retail price | `100` |
-| MSRP.CurrencyCode | String | Currency | `USD` |
+| MSRP.CurrencyCode | String | Currency. For a list of acceptable values, see <a href='/api/reference/#getting-all-currencies'>Getting All Currencies</a> | `USD` |
 | Owner | object | Owner information used to designate if this is a public product (null) or private (not-null) |  |
 | Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `1` |
 | Owner.Name | String | For private products, Name of the Company that owns this Product | `SampleCompany` |
@@ -177,9 +177,9 @@ A ColorDefinition allows you to define the available Colors for a Product
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
+| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `CA` |
 | CountryName | String | Country name | `Canada` |
-| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
+| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `AB` |
 | StateName | String | State name | `British Columbia` |
 
 
@@ -400,7 +400,7 @@ HTTP 200 Content-Type: application/json
     "Region": {
         "CountryCode": "CA",
         "CountryName": "Canada",
-        "StateCode": "BC",
+        "StateCode": "AB",
         "StateName": "British Columbia"
     },
     "ReleaseDate": "2011-10-14T12:00:00.000",

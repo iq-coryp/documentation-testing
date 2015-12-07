@@ -4,7 +4,7 @@ permalink: /api/changelog/
 tags: []
 keywords: 
 audience: 
-last_updated: 30-11-2015
+last_updated: 07-12-2015
 summary: 
 datatable: true
 metadata: false
@@ -40,7 +40,9 @@ The date format used in the table below is mm/dd/yyyy
 
 | Date | Changes |
 |:-----|:--------|
-| 11/30/2015 | Changed order of steps in Creating an In Store Order to make things clearer |
+| 12/07/2015 | Added Getting the Lock Status of a User to User Manager. Changed sidebar: Created a Product Library section for read-only Product Library items, changed Availability -> Inventory Availability and moved CMI to under RQ |
+| 12/04/2015 | The site is now generated from a collection of RAML files! Updates: Product resource moved to Catalog page |
+| 11/30/2015 | Changed order of steps in Creating an In Store Order to make things clearer. Updated ProductId in Order API to be a CatalogItemId |
 | 11/20/2015 | Updated links in Dropship Order Guide and Dropship Onboarding Guide. Rearranged headings in Dropship Order Guide |
 | 11/19/2015 | Updated links in Supplier Orders. Updated EPC to remove DefaultLocationVendor and add Cost, DiscontinuedDate, DoNotOrder, EndOfLife, SpecialOrder and WriteOff to Vendors |
 | 11/17/2015 | Added Supplier Orders and Dropship Order Management pages. Updated Dropship Onboarding Guide |

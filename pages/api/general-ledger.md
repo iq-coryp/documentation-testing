@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 07-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -45,7 +45,7 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | SubCategory | String(256) | A string that can be used to further group Accounts into sub-categories | `Current Assets` |
 | CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `22212` |
 | UpdatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that last updated this Account | `22212` |
-| CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case | `CAD` |
+| CurrencyCode | String | The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case. See <a href='/api/reference/#getting-all-currencies'>Getting All Currencies</a> for a list of supported Currencies. | `CAD` |
 | CustomProperties | Object(4000) | A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters |  |
 | DateCreatedUTC | DateTime | Auditing column showing when this Account was first created, in UTC | `2015-04-22T19:27:12.557` |
 | DateUpdatedUTC | DateTime | Auditing column showing when this Account was last updated, in UTC | `2015-04-22T19:27:12.557` |
@@ -231,6 +231,7 @@ HTTP 200 Content-Type: application/hal+json
 
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
 
+
 <h4>Request</h4>
 
 <pre>
@@ -290,7 +291,18 @@ HTTP 200 Content-Type: application/json
                 "Memo": "Memo",
                 "ReferenceID": "INV005",
                 "ReferenceType": "Invoice"
-            }
+            },
+            {
+                "AccountID": "c60b922e-1454-4999-aecb-775431e56831",
+                "Credit": 5000,
+                "CustomProperties": { },
+                "Debit": 0,
+                "EntityId": 25,
+                "LineNumber": 2,
+                "Memo": "Quoted invoice",
+                "ReferenceID": "INV005",
+                "ReferenceType": "Invoice"
+            }                         
         ]
     }
 ]</pre>

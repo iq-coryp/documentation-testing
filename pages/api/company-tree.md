@@ -4,7 +4,7 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 07-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -54,7 +54,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Id | Guid | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | Name | String | File name | `iqmetrix.jpg` |
 | Height | Integer | Height in pixels | `145` |
 | Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
@@ -99,8 +99,8 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | Description | String(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
 | Roles | Array[object] | The Role of this Location, the value must be Location |  |
 | Roles.Name | String | Name | `Location` |
-| CreatedUTC | DateTime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
-| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
+| CreatedUTC | Datetime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
+| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
 | Area | object | Measurement of floor space |  |
 | Area.Value | Integer | Value of the Area | `1100` |
 | Area.Unit | String | Unit used for the Value, acceptable values are SqFt and SqM | `SqFt` |
@@ -115,7 +115,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | SortName | String | A string used for sorting | `samplecompany` |
 | StoreHours | <a href='#storehours'>StoreHours</a> | Store hours for this Location |  |
 | StorePhoneNumbers | Array[<a href='#phonenumber'>PhoneNumber</a>] | Phone numbers |  |
-| TimeZone | <a href='#timezone'>TimeZone</a> | Timezone information for the Location |  |
+| TimeZone | <a href='#timezone'>TimeZone</a> | Timezone information for the Location. |  |
 | Version | Integer | Latest revision number | `13` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *LocationType* | *String* | *Reserved for future use* | |
@@ -139,8 +139,8 @@ To learn more about Divisions, see {{Division_Concept}}.
 | Roles | Array[object] | The value must be Division |  |
 | Roles.Name | String | Name | `Division` |
 | ClientEntityId | String | Identifier in an external system | `187` |
-| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
@@ -164,8 +164,8 @@ Managerial or geographical groupings.
 | Roles | Array[object] | The value must be Group |  |
 | Roles.Name | String | Name | `Group` |
 | ClientEntityId | String | Identifier in an external system | `187` |
-| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
@@ -179,6 +179,12 @@ Managerial or geographical groupings.
 
 
 
+###TimeZone
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | String | Identifier. For a list of acceptable values, see <a href='/api/reference/#getting-all-timezones'>Getting All Time Zones</a> | `Alaskan Standard Time` |
+| DaylightSavingTimeEnabled | Boolean | A flag to indicate if the Time Zone observes Daylight Savings Time | `true` |
 
 
 
@@ -349,7 +355,7 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 
 #### Request Parameters
 
-<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (Optional) </li></ul><li><code>Description</code> (Optional) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (Optional) </li><li><code>Unit</code> (Optional) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (Optional) </li><li><code>Latitude</code> (Optional) </li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li></ul><li><code>Description</code> (Optional) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Unit</code> (<strong>Required</strong>) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (<strong>Required</strong>) </li><li><code>Latitude</code> (<strong>Required</strong>) </li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -374,8 +380,8 @@ Content-Type: application/json
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
         "City": "Regina",
-        "StateCode": "SK",
-        "StateName": "Saskatchewan",
+        "StateCode": "AB",
+        "StateName": "Alberta",
         "CountryCode": "CA",
         "CountryName": "Canada",
         "Zip": "S4P2L1"
@@ -511,8 +517,8 @@ HTTP 201 Content-Type: application/json
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
         "City": "Regina",
-        "StateCode": "SK",
-        "StateName": "Saskatchewan",
+        "StateCode": "AB",
+        "StateName": "Alberta",
         "CountryCode": "CA",
         "CountryName": "Canada",
         "Zip": "S4P2L1"
@@ -624,17 +630,14 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='updating-a-location' class='clickable-header top-level-header'>Updating a Location</h2>
 
-There are <strong>two</strong> different ways to update a location.
- 
-The only difference between Option 1 and Option 2 is a `NodeId` in the URI, the request body parameters and responses are otherwise identical.
- 
-<h4>This Request (Option 1)</h4>
- 
-This option requires knowing the Id of the parent of this {{Location}} in the form of a `NodeId`, but has stronger validation.
+There are <strong>two</strong> different ways to update a location. 
 
-<h4>PUT /Companies({CompanyId})/Locations({LocationId}) (Option 2)</h4>
- 
-This option does not require a `NodeId` but has weaker validation.
+<ul>
+  <li>Option 1 - <code>PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})</code></li>
+  <li>Option 2 - <code>PUT /Companies({CompanyId})/Locations({LocationId})</code></li>
+</ul>
+
+Option 1 requires knowing the <code>NodeId</code> of the parent of the {{Location}}, but has <strong>stronger</strong> validation.
 
 
 <h4>Request</h4>
@@ -661,6 +664,10 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
 
 
 
+#### Request Parameters
+
+<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li></ul><li><code>Version</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Unit</code> (<strong>Required</strong>) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (<strong>Required</strong>) </li><li><code>Latitude</code> (<strong>Required</strong>) </li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul></ul>
+
 <h5>Example</h5>
 
 <pre>
@@ -668,7 +675,135 @@ PUT /Companies(1)/Tree/Nodes(2)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-
+{
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Regina",
+        "StateCode": "AB",
+        "StateName": "Alberta",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
+}
 </pre>
 
 #### Response
@@ -699,8 +834,8 @@ HTTP 200 Content-Type: application/json
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
         "City": "Regina",
-        "StateCode": "SK",
-        "StateName": "Saskatchewan",
+        "StateCode": "AB",
+        "StateName": "Alberta",
         "CountryCode": "CA",
         "CountryName": "Canada",
         "Zip": "S4P2L1"
@@ -873,316 +1008,8 @@ HTTP 200 Content-Type: application/json
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
         "City": "Regina",
-        "StateCode": "SK",
-        "StateName": "Saskatchewan",
-        "CountryCode": "CA",
-        "CountryName": "Canada",
-        "Zip": "S4P2L1"
-    },
-    "Attributes": {},
-    "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
-    "Geography": {
-        "Longitude": -104.612034,
-        "Latitude": 50.443559
-    },
-    "Relationships": [],
-    "SortName": "samplecompany",
-    "StoreHours": {
-        "Monday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Tuesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Wednesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Thursday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Friday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Saturday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Sunday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        }
-    },
-    "StorePhoneNumbers": [
-        {
-            "Description": "Main Line",
-            "Number": "5555555555",
-            "Extension": "1234"
-        }
-    ],
-    "TimeZone": {
-        "Id": "Alaskan Standard Time",
-        "DaylightSavingTimeEnabled": true
-    },
-    "Version": 13
-}</pre>
-
-<h2 id='updating-a-location' class='clickable-header top-level-header'>Updating a Location</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-PUT /Companies({CompanyId})/Locations({LocationId})
-</pre>
-
-#### Headers
-
-
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (Optional) </li></ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>CreatedUTC</code> (<strong>Required</strong>) </li><li><code>LastModifiedUTC</code> (<strong>Required</strong>) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (Optional) </li><li><code>Unit</code> (Optional) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (Optional) </li><li><code>Latitude</code> (Optional) </li></ul><li><code>Relationships</code> (<strong>Required</strong>) </li><li><code>SortName</code> (<strong>Required</strong>) </li><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul><li><code>Version</code> (<strong>Required</strong>) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-PUT /Companies(1)/Locations(2)
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
-    "Roles": [
-        {
-            "Name": "Location"
-        }
-    ],
-    "CreatedUTC": "2015-02-26T00:03:01.372Z",
-    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-    "Area": {
-        "Value": 1100,
-        "Unit": "SqFt"
-    },
-    "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
-        "City": "Regina",
-        "StateCode": "SK",
-        "StateName": "Saskatchewan",
-        "CountryCode": "CA",
-        "CountryName": "Canada",
-        "Zip": "S4P2L1"
-    },
-    "Attributes": {},
-    "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
-    "Geography": {
-        "Longitude": -104.612034,
-        "Latitude": 50.443559
-    },
-    "Relationships": [],
-    "SortName": "samplecompany",
-    "StoreHours": {
-        "Monday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Tuesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Wednesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Thursday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Friday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Saturday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Sunday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        }
-    },
-    "StorePhoneNumbers": [
-        {
-            "Description": "Main Line",
-            "Number": "5555555555",
-            "Extension": "1234"
-        }
-    ],
-    "TimeZone": {
-        "Id": "Alaskan Standard Time",
-        "DaylightSavingTimeEnabled": true
-    },
-    "Version": 13
-}
-</pre>
-
-#### Response
-
-
-<a href='#location'>Location</a>
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
-    "Roles": [
-        {
-            "Name": "Location"
-        }
-    ],
-    "CreatedUTC": "2015-02-26T00:03:01.372Z",
-    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-    "Area": {
-        "Value": 1100,
-        "Unit": "SqFt"
-    },
-    "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
-        "City": "Regina",
-        "StateCode": "SK",
-        "StateName": "Saskatchewan",
+        "StateCode": "AB",
+        "StateName": "Alberta",
         "CountryCode": "CA",
         "CountryName": "Canada",
         "Zip": "S4P2L1"
@@ -1355,8 +1182,8 @@ HTTP 200 Content-Type: application/json
             "AddressLine1": "123 Sample Street",
             "AddressLine2": "Unit 200",
             "City": "Regina",
-            "StateCode": "SK",
-            "StateName": "Saskatchewan",
+            "StateCode": "AB",
+            "StateName": "Alberta",
             "CountryCode": "CA",
             "CountryName": "Canada",
             "Zip": "S4P2L1"

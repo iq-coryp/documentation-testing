@@ -4,7 +4,7 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 07-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -34,7 +34,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `41614` |
-| CatalogItemId | GUID | [CatalogItem](/api/catalog/#catalogitem) identifier | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| CatalogItemId | GUID | [CatalogItem](/api/catalog/#catalogitem) identifier | `d60a8776-2f1f-430a-88f6-6180de43887d` |
 | CompanyId | Integer | Identifier for the Company associated with this Pricing | `1` |
 | EntityId | Integer | [CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set | `2` |
 | RegularPrice | Decimal | The regular price, must be greater than 0 | `10.0` |
@@ -99,7 +99,7 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "CompanyId": 1,
     "EntityId": 2,
     "RegularPrice": 10,
@@ -119,7 +119,7 @@ Content-Type: application/json
 HTTP 201 Content-Type: application/json
 </pre><pre>{
     "Id": 41614,
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "CompanyId": 1,
     "EntityId": 2,
     "RegularPrice": 10,
@@ -168,7 +168,7 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "CompanyId": 1,
     "EntityId": 2,
     "RegularPrice": 10,
@@ -188,7 +188,7 @@ Content-Type: application/json
 HTTP 201 Content-Type: application/json
 </pre><pre>{
     "Id": 41614,
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "CompanyId": 1,
     "EntityId": 2,
     "RegularPrice": 10,
@@ -243,7 +243,7 @@ Accept: application/json
 HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Id": 41614,
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "CompanyId": 1,
     "EntityId": 2,
     "RegularPrice": 10,
@@ -326,7 +326,7 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "CompanyId": 1,
     "EntityId": 2,
     "RegularPrice": 10,
@@ -346,7 +346,7 @@ Content-Type: application/json
 HTTP 201 Content-Type: application/json
 </pre><pre>{
     "Id": 41614,
-    "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "CompanyId": 1,
     "EntityId": 2,
     "RegularPrice": 10,
@@ -401,7 +401,7 @@ HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
         "Id": 41614,
-        "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
         "CompanyId": 1,
         "EntityId": 2,
         "RegularPrice": 10,
@@ -602,7 +602,7 @@ HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
         "Id": 41614,
-        "CatalogItemId": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
         "CompanyId": 1,
         "EntityId": 2,
         "RegularPrice": 10,

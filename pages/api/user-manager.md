@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 07-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -55,7 +55,7 @@ A User represents an account that can be used to perform actions on your data wi
 | AddressLine2 | String |  | `Suite 500` |
 | City | String |  | `Smith` |
 | StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
-| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard | `CA` |
+| CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of accptable Countries, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `CA` |
 | Zip | String | Zip or Postal Code | `94043` |
 
 ###PhoneNumber
@@ -65,6 +65,7 @@ A User represents an account that can be used to perform actions on your data wi
 | Number | String | Must be at least 7 characters | `5555555555` |
 | Extension | String | Extension | `1234` |
 | Type | String | Type of phone number | `Home` |
+
 
 
 
@@ -100,7 +101,7 @@ POST /Users/importExisting
 
 #### Request Parameters
 
-<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>Attributes</code> (<strong>Required</strong>) </li><li><code>ClientUserId</code> (<strong>Required</strong>) </li><li><code>Email</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
+<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -285,7 +286,7 @@ PUT /Users({UserId})
 
 #### Request Parameters
 
-<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>Attributes</code> (<strong>Required</strong>) </li><li><code>ClientUserId</code> (<strong>Required</strong>) </li><li><code>Email</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>IsActive</code> (<strong>Required</strong>) </li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
+<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -415,6 +416,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='getting-all-users-for-a-company' class='clickable-header top-level-header'>Getting All Users for a Company</h2>
 
+This request will only return Users where `IsActive` is set to `true`.
 
 
 <h4>Request</h4>
@@ -452,7 +454,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided</li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -506,6 +508,7 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='searching-for-users' class='clickable-header top-level-header'>Searching for Users</h2>
 
+This request will only return Users where `IsActive` is set to `true`.
 
 
 <h4>Request</h4>
@@ -544,7 +547,7 @@ Accept: application/json
 #### Response
 
 
-<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided</li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -823,9 +826,12 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='locking-a-user' class='clickable-header top-level-header'>Locking a User</h2>
 
-{{note}}
-Once locked, a User will not be able to log in or obtain an access token until they are unlocked 
-{{end}}
+<ul>
+  <li>Users can be locked due to events such as exceeding the maximum failed login attempts</li>
+  <li>Once locked, a User will not be able to log in or obtain an access token until they are unlocked</li>
+  <li>To determine if a User is locked, see <a href="#getting-the-lock-status-of-a-user">Getting the Lock Status of a User</a></li>
+  <li>To unlock a User, see <a href="#unlocking-a-user">Unlocking a User</a></li>
+</ul>
 
 
 <h4>Request</h4>
@@ -870,13 +876,62 @@ Content-Type: application/json
 HTTP 204 Content-Type: application/json
 </pre>
 
+<h2 id='getting-the-lock-status-of-a-user' class='clickable-header top-level-header'>Getting the Lock Status of a User</h2>
+
+This request will return `true` if the User is currently Locked, and `false` if the User is unlocked. 
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Users({UserId})/Unlock
+</pre>
+
+#### Headers
+
+
+* `Authorization: Bearer (Access Token)`
+* `Accept: application/json`
+
+
+
+#### URI Parameters
+
+
+* `UserId` (**Required**)  - Identifier for the {{User}} 
+
+
+
+<h5>Example</h5>
+
+<pre>
+GET /Users(22212)/Unlock
+Authorization: Bearer (Access Token)
+Accept: application/json
+
+</pre>
+
+#### Response
+
+
+<ul><li><code>CanUnlockUser</code> (Boolean) </li></ul>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "CanUnlockUser": true
+}</pre>
+
 <h2 id='unlocking-a-user' class='clickable-header top-level-header'>Unlocking a User</h2>
 
-Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token
-
-{{note}}
-A User can be unlocked if their account is locked and their parent Entity is not using third-party authentication
-{{end}}
+<ul>
+  <li>A User can be unlocked if their account is locked and their parent Entity is not using third-party authentication</li>
+  <li>Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token</li>
+  <li>To determine if a User is locked, see <a href="#getting-the-lock-status-of-a-user">Getting the Lock Status of a User</a></li>
+  <li>To lock a User, see <a href="#locking-a-user">Locking a User</a></li>
+</ul>
 
 
 <h4>Request</h4>

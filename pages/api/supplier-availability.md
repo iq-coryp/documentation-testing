@@ -4,7 +4,7 @@ permalink: /api/supplier-availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 07-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -29,20 +29,9 @@ Suppliers have the ability to configure availability of products.
 | Id | GUID | Unique identifier | `a84549a1-3b0d-4ca6-b27f-65136957309b` |
 | Products | Array[object] | Products for the Availability Feed |  |
 | Products.IsAvailable | Boolean | A flag to indicate if the Product is Available | `true` |
-| Products.Sku | String | Product Sku | `9101AGAP6` |
+| Products.Sku | String | Product sku | `9101AGAP6` |
 | Products.Quantity | Integer | Product quantity | `10` |
 
-
-###SupplierSku
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `45957dcf-9117-4a0f-bd12-4f737b000f2e` |
-| Products | Array[object] | Products for the availability feed |  |
-| Products.IsAvailable | Boolean | A flag to indicate if the Product is Available | `true` |
-| Products.SupplierEntityId | Integer | Identifier for the Supplier of this Item | `14` |
-| Products.SupplierSku | String | Product Sku | `9101AGAP6` |
-| Products.Quantity | Integer | Product quantity | `10` |
 
 
 
@@ -78,7 +67,7 @@ POST /Suppliers({SupplierId})/Availability
 
 #### Request Parameters
 
-<ul><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>IsAvailable</code> (Optional) </li><li><code>Sku</code> (Optional) </li><li><code>Quantity</code> (Optional) </li></ul></ul>
+<ul><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>Sku</code> (<strong>Required</strong>) </li><li><code>IsAvailable</code> (Optional) </li><li><code>Quantity</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 

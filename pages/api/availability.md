@@ -1,10 +1,10 @@
 ---
-title:  Availability
+title:  Inventory Availability
 permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 07-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -22,7 +22,7 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `f6642545-9136-4f44-a163-0e97e32e2e27` |
+| Id | GUID | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `d60a8776-2f1f-430a-88f6-6180de43887d` |
 | EntityId | Integer | Identifier for a [CompanyTreeNode](/api/company-tree/#companytreenode) | `1` |
 | Quantity | Integer | Quantity | `15` |
 | IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#catalogitem) can be shipped | `true` |
@@ -79,7 +79,7 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "f6642545-9136-4f44-a163-0e97e32e2e27",
+    "Id": "d60a8776-2f1f-430a-88f6-6180de43887d",
     "EntityId": 1,
     "Quantity": 15,
     "IsDropShippable": true
@@ -131,7 +131,7 @@ Array[<a href='#availability'>Availability</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": "f6642545-9136-4f44-a163-0e97e32e2e27",
+        "Id": "d60a8776-2f1f-430a-88f6-6180de43887d",
         "EntityId": 1,
         "Quantity": 15,
         "IsDropShippable": true
