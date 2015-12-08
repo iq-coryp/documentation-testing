@@ -4,7 +4,7 @@ permalink: /api/partner-relationships/
 tags: []
 keywords: 
 audience: 
-last_updated: 8-12-2015
+last_updated: 08-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
