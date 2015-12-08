@@ -4,7 +4,7 @@ permalink: /guides/dropship-test-order/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 08-12-2015
 summary: 
 ---
 
@@ -25,19 +25,25 @@ Prior to starting this guide, the steps outlined in the [Dropship Order Manageme
 Should you have any issues generating test order data consult with <a href="mailto:{{site.support_email}}?subject=Dropship Order Test Data">API Support</a>.
 
 
-#### Data Table
+#### Test Data
 
-| Request Parameter | Example Value |
-|:------------------|:--------------|
-| CompanyId | 14146 |
-| CustomerId | 659c2a38-d083-4421-9330-46d779702f85 |
-| LocationId | 14223 |
-| AddressId | a08b0640-606a-41f0-901a-facaf50e75dd |
-| OrderId | cdd26b8f-4ed1-409d-9984-982e081c425e |
-| CatalogItemId | b85cb879-bb5f-4847-a856-8287de0a92d5 |
-| ShippingOptionId | 101 |
-| SupplierId | 14107 |
-| SKU | B00LAOKN4S |
+| Property | Description | Example |
+|:---------|:------------|:--------|
+| CompanyId | Identifier for the company | 14146 |
+| CustomerId | Identifier for the customer | 659c2a38-d083-4421-9330-46d779702f85 |
+| OrderId | Identifier for the order | cdd26b8f-4ed1-409d-9984-982e081c425e |
+| AddressId | Identifier for the address | a08b0640-606a-41f0-901a-facaf50e75dd |
+| AddressTypeId | identifier for address type | 2 (Home), 3 (Shipping) |
+| CatalogItemId | Identifier of item from company's catalog | b85cb879-bb5f-4847-a856-8287de0a92d5 |
+| CustomerTypeId | Identifier for the customer type | 2 (Person) |
+| LocationId | Identifier for store location | 14223 |
+| ItemStatusId | Identifier for item status  | 1 (new dropship order), 15 (shipment) |
+| ItemTypeId | Identifier for item type | 1 (dropship), 4 (shipping) |
+| OrderTypeId | Identifier for the order type  | 1 (Sales order placed by customer) |
+| ShippingOptionId | Identifier comes from your shipping endpoint | 101 |
+| SKU | Product SKU | B00LAOKN4S |
+| SupplierId | Identifier for the supplier | 14107 |
+
 
 ## Step 1 - Authentication
 
@@ -63,9 +69,6 @@ The first step in creating a dropship test order is to create a customer account
 
 ### Step 2.1 - Create Customer
 
-* `CompanyId` - provided in email sent to you
-* `CustomerTypeId` - identifier for Person (2) 
-
 ##### Example Request
 
     POST /Companies({CompanyId})/Customers
@@ -85,9 +88,6 @@ The first step in creating a dropship test order is to create a customer account
     }
 
 ### Step 2.2 - Add a Billing Address
-
-* `CustomerId` - found in response data from previous step
-* `AddressTypeId` - identifier for home address (2)
 
 ##### Example Request
 
@@ -112,11 +112,9 @@ The first step in creating a dropship test order is to create a customer account
 
 Shipping address is the same as the billing address.
 
-* `AddressTypeId` - identifier for shipping address (3)
-
 ##### Example Request
 
-    POST /Companies({CompanyId})/Customers({CustomerID})/Addresses
+    POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -138,10 +136,6 @@ The next step is to fill in the order entry.
 
 ### Step 3.1 - Create Order Content
 
-* `OrderTypeId` - identifier for Sales order placed by Customer
-* `LocationId` - identifier for store location
-* `CustomerId` - same identifier for both billing and shipping customer
-* `AddressId` - same identifier for both billing and shipping address
 
 ##### Example Request
 
@@ -166,12 +160,6 @@ The next step is to fill in the order entry.
 
 ### Step 3.2 - Add Product Item
 
-* `OrderId` - found in response data from previous step
-* `ItemStatusId` - new dropship order (1)
-* `ItemTypeId` - dropship item (1)
-* `CatalogItemId` - item identifier from company's catalog
-* `ShippingOptionId` - comes from your shipping endpoint
-* `SupplierId` - identifier for your supplier
 
 ##### Example Request
 
@@ -197,12 +185,6 @@ The next step is to fill in the order entry.
 
 
 ### Step 3.3 - Add Shipping Item
-
-* `ItemStatusId` - order is being shipped (15)
-* `ItemTypeId` - item is shipping item (4)
-* `ShippingOptionId` - comes from your shipping endpoint
-* `SupplierId` - identifier for your supplier
-
 
 ##### Example Request
 
