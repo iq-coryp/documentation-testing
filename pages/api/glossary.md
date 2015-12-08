@@ -104,6 +104,10 @@ Provides client applications with secure access to resources on behalf of a reso
 
 *For more on OAuth2, see [OAuth](http://oauth.net/2/)*
 
+### Partner
+
+An organization that has a buisness relationship with iQmetrix to provide value-added services.
+
 ### Product Template
 
 A blueprint for creating a {{product}} in Product Library. It defines common Product Fields and how they should be organized into Field Groups for a Product that belongs to a Classification associated with the Product Template. 
