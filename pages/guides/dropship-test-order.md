@@ -83,8 +83,7 @@ The first step in creating a dropship test order is to create a customer account
         "DateOfBirth": "2014-05-08T16:53:12.15",
         "Notes": "Interested in iPhone 6",
         "Disabled": false,
-        "DoNotContact": false,
-        "Version": 1
+        "DoNotContact": false
     }
 
 ### Step 2.2 - Add a Billing Address
@@ -97,7 +96,7 @@ The first step in creating a dropship test order is to create a customer account
     Content-Type: application/json
     {
         "AddressTypeId": 2,
-        "Default": false,
+        "Default": true,
         "DoNotContact": false,
         "CountryCode": "CA",
         "Locality": "Yellowknife",
@@ -121,7 +120,7 @@ Shipping address is the same as the billing address.
     {
         "AddressTypeId": 3,
         "Default": false,
-        "DoNotContact": false,
+        "DoNotContact": true,
         "CountryCode": "CA",
         "Locality": "Yellowknife",
         "StateCode": "NT",
