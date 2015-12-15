@@ -4,7 +4,7 @@ permalink: /api/corporate-rewards/
 tags: []
 keywords: 
 audience: 
-last_updated: 11-12-2015
+last_updated: 15-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -30,17 +30,18 @@ summary:
 | StoreId | Integer | Identifier for a [Location](/api/company-tree/#location) where the Transaction took place | `548` |
 | StoreName | String | Name of the [Location](/api/company-tree/#location) where the Transaction took place | `Vancouver City Centre Mall` |
 | RQEmployeeId | Integer | Identifier of the sales person who tendered the Transaction. EmployeeId in RQ. Only unique in the context of a dealer | `897` |
-| SalesPersonFirstName | String | First name of the sales person who tendered the Transaction | `Mike` |
-| SalesPersonLastName | String | Last name of the sales person who tendered the Transaction | `Johnson` |
+| SalesPersonName | String | Name of the sales person who tendered the Transaction | `Mike Johnson` |
 | InvoiceId | String | Identifier of the Invoice. Only unique in the context of a dealer | `36977459` |
 | OriginalInvoiceId | String | When SalesTransactionType is Refund, this property is the InvoiceId of the original invoice. Only unique in the context of a dealer | `36977400` |
-| SalesDateTime | Datetime | Date when the Transaction occured | `11/05/2015` |
+| SalesDataDateTime | Datetime | Date when the Transaction occured (store local time) | `2015-12-03 17:35:00.000` |
 | SalesTransactionType | String | Type of Transaction (i.e. Sales, Refund) | `Sales` |
 | ProductName | String | Name of the Product on the Transaction | `Sales` |
-| SerialNumber | String | Serial Number of the Product on the Transaction | `5556678909` |
+| ProductSku | String | Product SKU saved in RQ dealer database | `WDDDSM000146` |
+| ProductLibrarySlug | String | iQmetrix internal product unique identifier. | `M3310-V1-E13076` |
+| SerialNumber | String | Serial Number of the Product on the Transaction | `359367059548016` |
 | ManufacturerName | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) of the Product on the Transaction | `Samsung` |
 | ActivationType | String | Activation type of the Transaction. See [ActivationTypes](/api/carrier-integration/#activationtype) for a list of acceptable values | `New Activation` |
-| CarrierName | String | Name of the Carrier | `AT&T` |
+| CarrierName | String | Name of the Carrier | `Sasktel Mobility` |
 
 
 
@@ -92,7 +93,7 @@ GET /partners({PartnerId})/salesTransactions?startDate={StartDate}&endDate={EndD
 <h5>Example</h5>
 
 <pre>
-GET /partners(36)/salesTransactions?startDate=2014-01-01&endDate=2014-01-01&$skip=0&$top=10
+GET /partners(36)/salesTransactions?startDate=2015-12-03T17:35:00.000Z&endDate=2015-12-30T12:00:00.000Z&$skip=0&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -101,7 +102,7 @@ Accept: application/json
 <h4>Response</h4>
 
 
-<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#transaction'>Transaction</a>]) </li><ul><li><code>CompanyId</code> (Integer) </li><li><code>CompanyName</code> (String) </li><li><code>StoreId</code> (Integer) </li><li><code>StoreName</code> (String) </li><li><code>RQEmployeeId</code> (Integer) </li><li><code>SalesPersonFirstName</code> (String) </li><li><code>SalesPersonLastName</code> (String) </li><li><code>InvoiceId</code> (String) </li><li><code>OriginalInvoiceId</code> (String) </li><li><code>SalesDateTime</code> (Datetime) </li><li><code>SalesTransactionType</code> (String) </li><li><code>ProductName</code> (String) </li><li><code>SerialNumber</code> (String) </li><li><code>ManufacturerName</code> (String) </li><li><code>ActivationType</code> (String) </li><li><code>CarrierName</code> (String) </li></ul></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#transaction'>Transaction</a>]) </li><ul><li><code>CompanyId</code> (Integer) </li><li><code>CompanyName</code> (String) </li><li><code>StoreId</code> (Integer) </li><li><code>StoreName</code> (String) </li><li><code>RQEmployeeId</code> (Integer) </li><li><code>SalesPersonName</code> (String) </li><li><code>InvoiceId</code> (String) </li><li><code>OriginalInvoiceId</code> (String) </li><li><code>SalesDataDateTime</code> (Datetime) </li><li><code>SalesTransactionType</code> (String) </li><li><code>ProductName</code> (String) </li><li><code>ProductSku</code> (String) </li><li><code>ProductLibrarySlug</code> (String) </li><li><code>SerialNumber</code> (String) </li><li><code>ManufacturerName</code> (String) </li><li><code>ActivationType</code> (String) </li><li><code>CarrierName</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -110,7 +111,7 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "_links": {
         "prev": "null",
-        "self": "/v1/partners(36)/salesTransactions?startDate=2014-01-01&endDate=2014-01-01$skip=0&$top=5",
+        "self": "/v1/partners(36)/salesTransactions?startDate=2015-12-03 17:35:00.000&endDate=2015-12-30 12:00:00.000$skip=0&$top=5",
         "next": "null"
     },
     "_metadata": {
@@ -125,17 +126,18 @@ HTTP 200 Content-Type: application/json
             "StoreId": 548,
             "StoreName": "Vancouver City Centre Mall",
             "RQEmployeeId": 897,
-            "SalesPersonFirstName": "Mike",
-            "SalesPersonLastName": "Johnson",
+            "SalesPersonName": "Mike Johnson",
             "InvoiceId": "36977459",
             "OriginalInvoiceId": "36977400",
-            "SalesDateTime": "11/05/2015",
+            "SalesDataDateTime": "2015-12-03 17:35:00.000",
             "SalesTransactionType": "Sales",
             "ProductName": "Sales",
-            "SerialNumber": "5556678909",
+            "ProductSku": "WDDDSM000146",
+            "ProductLibrarySlug": "M3310-V1-E13076",
+            "SerialNumber": "359367059548016",
             "ManufacturerName": "Samsung",
             "ActivationType": "New Activation",
-            "CarrierName": "AT&T"
+            "CarrierName": "Sasktel Mobility"
         }
     ]
 }</pre>
@@ -163,8 +165,8 @@ These links are _relative_, they do not include the base endpoint. It is the res
     {
         "_links": {
             "prev": null,
-            "self": "/v1/partners(36)/salesTransactions?startDate=2014-01-01&endDate=2014-01-01$skip=0&$top=5",
-            "next": "/v1/pntities(36)/salesTransactions?startDate=2014-01-01&endDate=2014-01-01$skip=5&$top=5"
+            "self": "/v1/partners(36)/salesTransactions?startDate=2015-12-03 17:35:00.000&endDate=2015-12-30 12:00:00.000&$top=5",
+            "next": "/v1/partners(36)/salesTransactions?startDate=2015-12-03 17:35:00.000&endDate=2015-12-30 12:00:00.000&$skip=5&$top=5"
         },
         "_metadata": {
             "count": 15,
