@@ -4,7 +4,7 @@ permalink: /guides/commerce-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 
+last_updated: 18-12-2015
 summary: 
 ---
 
