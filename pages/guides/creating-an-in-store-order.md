@@ -4,7 +4,7 @@ permalink: /guides/creating-an-in-store-order/
 tags: []
 keywords: 
 audience: 
-last_updated: 09-11-2015
+last_updated: 30-11-2015
 summary: 
 ---
 
@@ -111,23 +111,7 @@ We will reference this Address in our request by using its `AddressId`.
 
     "BillingAddressId": "A39DC672-17D1-4200-B5BF-98FE2D8E25E3"
 
-## Step 5 - Getting a Catalog Item
-
-For each Product we want to add to our Order, we first need to find it in our Catalog, which contains store(s) inventory.
-
-We will reference the Product(s) in our request by using a `CatalogItemId` as the value for the `ProductId` request parameter. 
-
-| If... | Then... |
-|:------|:--------|
-| You have a CatalogItemId but are unsure if it belongs to your Product | Confirm by [Getting Product Details](/api/catalog/#getting-product-details) |
-| You know the Product's Name, Manufacturer Name, UPC, or SKU | See [Search for Products](/api/catalog/#search-for-products) |
-| The Product does not exist in your Catalog | Contact <a href="mailto:{{site.support_email}}?subject=Support">API Support</a> to have the Product added to your Catalog |
-
-##### Example
-
-    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27"
-
-## Step 6 - Setting the Order Type
+## Step 5 - Setting the Order Type
 
 Each {{Order}} must have an associated {{OrderType}}.
 
@@ -137,7 +121,7 @@ There are many different OrderTypes. We will use the `Sales` type for an in-stor
 
     "OrderType": 1
 
-## (Optional) Step 7 - Adding Optional Order Properties
+## (Optional) Step 6 - Adding Optional Order Properties
 
 The following {{Order}} properties can be added to the request:
 
@@ -155,6 +139,21 @@ The following {{Order}} properties can be added to the request:
     "DiscountDescription": "Military discount",
     "OrderExpiryHours": 72
 
+## Step 7 - Getting a Catalog Item
+
+For each Product we want to add to our Order, we first need to find it in our Catalog, which contains store(s) inventory.
+
+We will reference the Product(s) in our request by using a `CatalogItemId` as the value for the `ProductId` request parameter. 
+
+| If... | Then... |
+|:------|:--------|
+| You have a CatalogItemId but are unsure if it belongs to your Product | Confirm by [Getting Product Details](/api/catalog/#getting-product-details) |
+| You know the Product's Name, Manufacturer Name, UPC, or SKU | See [Search for Products](/api/catalog/#search-for-products) |
+| The Product does not exist in your Catalog | Contact <a href="mailto:{{site.support_email}}?subject=Support">API Support</a> to have the Product added to your Catalog |
+
+##### Example
+
+    "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27"
 
 ## Step 8 - Setting the Item Type
 

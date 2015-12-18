@@ -689,7 +689,7 @@ div.special_table td {
   border-right-style: solid;
   border-right-width: 1px;
   border-right-color: #dedede;
-  
+
   border-top-style: none;
 
   border-spacing: 0;
@@ -706,4 +706,18 @@ div.special_table table > thead > tr > th {
 
 div.special_table table > tbody > tr > td {
   font-size: 12px;
+}
+
+#page-selector .text-center {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#page-selector .text-center * {
+  color: black;
+  text-decoration: none
+}
+
+#page-selector .text-center h4 {
+  margin-top:15px;
 }

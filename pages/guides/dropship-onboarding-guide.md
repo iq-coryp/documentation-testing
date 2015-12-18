@@ -4,7 +4,7 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 09-11-2015
+last_updated: 20-11-2015
 summary: 
 ---
 
@@ -18,14 +18,14 @@ Each segment in this guide will provide high-level concepts before describing ex
 
 <img src="{{ "/images/dropship-flow.jpg" | prepend: site.url }}" alt="dropship flow diagram" />
 
-The following topics will be covered in this guide:
+The following APIs will be covered in this guide:
 
-* [Authentication](/api/authentication)
-* [Product Feed](/api/product-feed)
-* [Product Subscription](/api/product-subscription)
-* [Supplier Availability](/api/supplier-availability)
-* [Cost Feed](/api/cost-feed)
-* [Shipping Options](/api/shipping-options)
+* Authentication
+* Product Feed
+* Product Subscription
+* Supplier Availability
+* Cost Feed
+* Shipping Options
 
 
 #### Who Is This Guide For?
@@ -45,7 +45,7 @@ If the above steps are not complete or you are not sure, contact {{contact_suppo
 iQmetrix provides you with two environments: Sandbox and Production. 
 Use the Sandbox environment to test your API and to perform end-to-end testing. After completing this stage proceed to the Production environment.
 
-For more information on environments, see {{Environments}}.
+For more information on environments, see {{Environment}}.
 
 The iQmetrix API supports JSON and JSON + HAL. See [Supported Response Formats](/api/getting-started) for more information.
 
@@ -203,7 +203,7 @@ We can now combine the information gathered from the previous steps to [Adding a
 <strong>Recommendations:</strong>
 
 * Ensure your product images (assets) have a transparent background. We crop out any backgrounds so that we can create a clean reflection in XQ.
-* Ensure your product images are of high quality, as these images will be projected on high resolution displays.
+* Ensure your product images are of high quality, as these images will be projected on high-resolution displays.
 * Ensure dimensions are in separate fields, and <strong>not</strong> as a string, such as "5x5x5".
 * Ensure `MSRP` includes currency code, such as "14.99 USD".
 * Ensure `Classification` is not null.
@@ -547,5 +547,4 @@ Once an order has been created, shipping options will be requested via the SACCS
 
 ## Step 7 - Next Steps
 
-Now that you have completed the basic steps for working with feeds in the iQmetrix API, you can start the integration process from the Dropship Order Management Guide. 
-
+Now that you have completed the basic steps for working with feeds in the iQmetrix API, you can start the integration process from the [Dropship Order Management Guide](/guides/dropship-order-guide). 

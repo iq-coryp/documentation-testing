@@ -41,6 +41,10 @@
 <a href="{{"/catalog/#catalogitem" | prepend: site.api_baseurl}}">CatalogItem</a>
 {% endcapture %}
 
+{% capture Catalog_Concept %}
+<a href="{{"/product-library/#retailer-catalog" | prepend: site.concepts_baseurl}}">Catalog</a>
+{% endcapture %}
+
 {% capture ClassificationTree_Concept %}
 <a href="{{"/classification-tree" | prepend: site.concepts_baseurl}}">Classification Tree</a>
 {% endcapture %}
@@ -71,6 +75,10 @@
 
 {% capture Company_Glossary %}
 <a href="{{"/glossary/#company" | prepend: site.api_baseurl}}">Company</a>
+{% endcapture %}
+
+{% capture CompanyTree %}
+<a href="{{"/company-tree/#companytree" | prepend: site.api_baseurl}}">CompanyTree</a>
 {% endcapture %}
 
 {% capture CompanyTree_Glossary %}
@@ -201,6 +209,10 @@
 <a href="{{"/orders/#ordertype" | prepend: site.api_baseurl}}">OrderType</a>
 {% endcapture %}
 
+{% capture Partner %}
+<a href="{{"/glossary/#partner" | prepend: site.api_baseurl}}">Partner</a>
+{% endcapture %}
+
 {% capture Permission %}
 <a href="{{"/security-roles/#permission" | prepend: site.api_baseurl}}">Permission</a>
 {% endcapture %}
@@ -214,11 +226,11 @@
 {% endcapture %}
 
 {% capture Product %}
-<a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Product</a>
+<a href="{{"/catalog/#product" | prepend: site.api_baseurl}}">Product</a>
 {% endcapture %}
 
 {% capture Products %}
-<a href="{{"/product-library/#product" | prepend: site.api_baseurl}}">Products</a>
+<a href="{{"/catalog/#product" | prepend: site.api_baseurl}}">Products</a>
 {% endcapture %}
 
 {% capture ProductLibrary_Concept %}
@@ -241,16 +253,20 @@
 <a href="http://www.iqmetrix.com/products/rq">RQ</a>
 {% endcapture %}
 
-{% capture SubscribableList %}
-<a href="{{"/product-subscription/#subscribablelist" | prepend: site.api_baseurl}}">Subscribable List</a>
-{% endcapture %}
-
 {% capture SecurityRole %}
 <a href="{{"/security-roles/#securityrole" | prepend: site.api_baseurl}}">SecurityRole</a>
 {% endcapture %}
 
+{% capture SecurityRole_Concept %}
+<a href="{{"/user-manager/#security-roles" | prepend: site.concepts_baseurl}}">Security Roles</a>
+{% endcapture %}
+
 {% capture securityrolesetup %}
 <a href="http://iqmetrix.helpdocsonline.com/security-role-setup">Security Role Setup</a>
+{% endcapture %}
+
+{% capture SubscribableList %}
+<a href="{{"/product-subscription/#subscribablelist" | prepend: site.api_baseurl}}">Subscribable List</a>
 {% endcapture %}
 
 {% capture Supplier %}
@@ -268,6 +284,10 @@
 {% capture Users %}
 <a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">Users</a>
 {% endcapture %} 
+
+{% capture UserManager_Concept %}
+<a href="{{"/user-manager/" | prepend: site.concepts_baseurl}}">User Manager</a>
+{% endcapture %}
 
 {% capture Supplier %}
 <a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>
