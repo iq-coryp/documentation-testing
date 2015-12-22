@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -88,20 +88,95 @@ A User represents an account that can be used to perform actions on your data wi
 POST /Users/importExisting
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting" - d '{
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
 
 
 
-#### Request Parameters
+<h4>Request Parameters</h4>
 
-<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
+<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) - The name used to identify this User. Must be unique</li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) - Must be at least 7 characters</li><li><code>Extension</code> (Optional) - If provided, Number must also be provided</li><li><code>Type</code> (Optional) - Required if Number is provided</li></ul><li><code>Picture</code> (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li></ul>
 
 <h5>Example</h5>
 
@@ -141,7 +216,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#user'>User</a>
@@ -192,18 +267,39 @@ HTTP 201 Content-Type: application/json
 GET /Users({UserId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
@@ -216,7 +312,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#user'>User</a>
@@ -268,25 +364,106 @@ HTTP 200 Content-Type: application/json
 PUT /Users({UserId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)" - d '{
+    "Id": 22212,
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": 22212,
+    "FirstName": "Sam",
+    "LastName": "Smith",
+    "UserName": "sample@iqmetrix.com",
+    "Address": {
+        "AddressLine1": "1600 Amphitheatre Pkwy",
+        "AddressLine2": "Suite 500",
+        "City": "Smith",
+        "StateCode": "BC",
+        "CountryCode": "CA",
+        "Zip": "94043"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "sample@iqmetrix.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "5555555555",
+            "Extension": "1234",
+            "Type": "Home"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) </li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li><li><code>Type</code> (Optional) </li></ul><li><code>Picture</code> (Optional) </li><li><code>Version</code> (Optional) </li></ul>
+<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) - The name used to identify this User. Must be unique</li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) - Must be at least 7 characters</li><li><code>Extension</code> (Optional) - If provided, Number must also be provided</li><li><code>Type</code> (Optional) - Required if Number is provided</li></ul><li><code>Picture</code> (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li></ul>
 
 <h5>Example</h5>
 
@@ -328,7 +505,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#user'>User</a>
@@ -382,17 +559,38 @@ Disabling a User does <b>NOT</b> free up their email address or username to be u
 DELETE /Users({UserId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
@@ -404,7 +602,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -425,20 +623,47 @@ This request will only return Users where `IsActive` is set to `true`.
 GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$skip=1&$top=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$skip=1&$top=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    </ul>
 
 
 
@@ -451,7 +676,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
@@ -517,21 +742,51 @@ This request will only return Users where `IsActive` is set to `true`.
 GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Terms` (**Required**)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive. 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>Terms</code> (<strong>Required</strong>)  - List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive.
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    </ul>
 
 
 
@@ -544,7 +799,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
@@ -612,20 +867,44 @@ Users can be assigned to multiple locations
 PUT /Users({UserId})/Locations({LocationId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    </ul>
 
 
 
@@ -639,7 +918,7 @@ Content-Type: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -659,19 +938,43 @@ HTTP 204 Content-Type: application/json
 DELETE /Users({UserId})/Locations({LocationId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    </ul>
 
 
 
@@ -684,7 +987,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -704,18 +1007,39 @@ HTTP 204 Content-Type: application/json
 GET /Users({UserId})/Locations
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
@@ -728,7 +1052,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>UserId</code> (Integer) </li><li><code>LocationIDs</code> (Array) - Location Ids for {{Locations}} assigned to the {{User}}</li></ul>
@@ -754,21 +1078,51 @@ HTTP 200 Content-Type: application/json
 GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `ClientUserId` (**Required**)  - Identifier for the {{User}} in an external system 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>ClientUserId</code> (<strong>Required</strong>)  - Identifier for the {{User}} in an external system
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    </ul>
 
 
 
@@ -781,7 +1135,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#user'>User</a>]
@@ -840,19 +1194,40 @@ HTTP 200 Content-Type: application/json
 POST /Users({UserId})/Lock
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Lock" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Lock");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
@@ -866,7 +1241,7 @@ Content-Type: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -887,18 +1262,39 @@ This request will return `true` if the User is currently Locked, and `false` if 
 GET /Users({UserId})/Unlock
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
@@ -911,7 +1307,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>CanUnlockUser</code> (Boolean) </li></ul>
@@ -940,19 +1336,40 @@ HTTP 200 Content-Type: application/json
 POST /Users({UserId})/Unlock
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
@@ -966,7 +1383,7 @@ Content-Type: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -986,19 +1403,40 @@ HTTP 204 Content-Type: application/json
 POST /Users({UserId})/Enable
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Enable" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Enable");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier for the {{User}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
 
 
 
@@ -1012,7 +1450,7 @@ Content-Type: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#user'>User</a>
@@ -1053,7 +1491,9 @@ HTTP 200 Content-Type: application/json
     "Version": 1
 }</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
@@ -1067,7 +1507,7 @@ HTTP 200 Content-Type: application/json
 | `HTTP 409` | `User version mismatch` | Ensure the Version value provided in the request data matches the Version for the User in the database |
 
 
-## Pagination
+<h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
 
 The User Manager API supports pagination of collections of resources for some requests.
 

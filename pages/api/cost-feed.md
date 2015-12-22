@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -57,23 +57,68 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 POST /Suppliers({SupplierId})/Cost
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://dropshipdemo.iqmetrix.net/v1/Suppliers(1324)/Cost" - d '{
+    "Products": [
+        {
+            "Sku": "1115884",
+            "Cost": 12.99,
+            "CompanyIds": [
+                60454,
+                123456,
+                99999
+            ]
+        }
+    ]
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://dropshipdemo.iqmetrix.net/v1/Suppliers(1324)/Cost");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Products": [
+        {
+            "Sku": "1115884",
+            "Cost": 12.99,
+            "CompanyIds": [
+                60454,
+                123456,
+                99999
+            ]
+        }
+    ]
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>SupplierId</code> (<strong>Required</strong>)  - Identifier of the Supplier
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `SupplierId` (**Required**)  - Identifier of the Supplier 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>Sku</code> (<strong>Required</strong>) </li><li><code>Cost</code> (<strong>Required</strong>) </li><li><code>CompanyIds</code> (<strong>Required</strong>) </li></ul></ul>
 
@@ -99,7 +144,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#cost'>Cost</a>
@@ -123,7 +168,9 @@ HTTP 202 Content-Type: application/json
     ]
 }</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

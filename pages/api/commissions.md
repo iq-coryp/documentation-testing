@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -119,22 +119,55 @@ By default, the sorting order of the response to this request will be **descendi
 GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"{StartDate}" and LastUpdateDateUtc le datetime"{EndDate}"&$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://commissiondemo.iqmetrix.net/v1/Companies(1)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T00:00:00.000Z" and LastUpdateDateUtc le datetime"2015-12-31T23:59:59.000Z"&$skip=1&$top=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://commissiondemo.iqmetrix.net/v1/Companies(1)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T00:00:00.000Z" and LastUpdateDateUtc le datetime"2015-12-31T23:59:59.000Z"&$skip=1&$top=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `StartDate` (Optional)  - Date at which to begin search request, in UTC 
-* `EndDate` (Optional)  - Date at which to end search request, in UTC 
-* `Skip` (Optional)  - The number of items to skip from the entire set of results. Defaults to 0 if no $skip value is specified. If a value less than 0 is specified, the URI is considered malformed 
-* `Top` (Optional)  - Maximum number of items to include in the response. Defaults to 50 if no $top value is specified. Acceptable values are in the range [0 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>StartDate</code> (Optional)  - Date at which to begin search request, in UTC
+    </li>
+    
+    <li>
+        <code>EndDate</code> (Optional)  - Date at which to end search request, in UTC
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - The number of items to skip from the entire set of results. Defaults to 0 if no $skip value is specified. If a value less than 0 is specified, the URI is considered malformed
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Maximum number of items to include in the response. Defaults to 50 if no $top value is specified. Acceptable values are in the range [0
+    </li>
+    </ul>
 
 
 
@@ -147,7 +180,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#commissionentry'>CommissionEntry</a>]
@@ -267,7 +300,9 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-## Pagination
+
+
+<h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
 
 The Commissions API supports pagination of collections of resources.
 

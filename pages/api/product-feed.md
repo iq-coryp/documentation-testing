@@ -4,7 +4,7 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -115,23 +115,144 @@ Refer to {{Asset_Glossary}} for more information.
 POST /ProductFeeds({FeedId})/Products
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products" - d '{
+  "Classification": {
+    "TreeId": 1,
+    "Id": 4
+  },
+  "Fields": [
+    {
+      "Definition": {
+        "Id": 1,
+        "StringId": "Product Name"
+      },
+      "Value": "Agent18 SlimShield Case for iPhone 6 - Black"
+    },
+    {
+      "Definition": {
+        "Id": 129
+      },
+      "Value": "Black"
+    },
+      "Definition": {
+        "Id": 76,
+        "StringId": "MSRP",
+        "InputType": "Currency"
+      },
+      "Value": "24.99 CAD"                          
+  ],
+  "Assets": [
+    {
+      "AssetUrl": "http://image.sample.com/a.jpg"
+    },
+    {
+      "AssetUrl": "http://image.sample.com/b.png"
+    },
+    {
+      "AssetUrl": "http://image.sample.com/c.mov"
+    }
+  ],
+  "ModelName": "Agent18 SlimShield Case for iPhone 6",
+  "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
+  "Manufacturer": "Agent18",
+  "ManufacturerSku": "980113579",
+  "UPC": "723755004337",
+  "VendorSkus": [
+    {
+      "Description": "Online retailer",
+      "Sku": "1115884",
+      "VendorName": "Amazon"
+    }
+  ]
+}
+'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+  "Classification": {
+    "TreeId": 1,
+    "Id": 4
+  },
+  "Fields": [
+    {
+      "Definition": {
+        "Id": 1,
+        "StringId": "Product Name"
+      },
+      "Value": "Agent18 SlimShield Case for iPhone 6 - Black"
+    },
+    {
+      "Definition": {
+        "Id": 129
+      },
+      "Value": "Black"
+    },
+      "Definition": {
+        "Id": 76,
+        "StringId": "MSRP",
+        "InputType": "Currency"
+      },
+      "Value": "24.99 CAD"                          
+  ],
+  "Assets": [
+    {
+      "AssetUrl": "http://image.sample.com/a.jpg"
+    },
+    {
+      "AssetUrl": "http://image.sample.com/b.png"
+    },
+    {
+      "AssetUrl": "http://image.sample.com/c.mov"
+    }
+  ],
+  "ModelName": "Agent18 SlimShield Case for iPhone 6",
+  "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
+  "Manufacturer": "Agent18",
+  "ManufacturerSku": "980113579",
+  "UPC": "723755004337",
+  "VendorSkus": [
+    {
+      "Description": "Online retailer",
+      "Sku": "1115884",
+      "VendorName": "Amazon"
+    }
+  ]
+}
+", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>FeedId</code> (<strong>Required</strong>)  - Product Feed identifier
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `FeedId` (**Required**)  - Product Feed identifier 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>TreeId</code> (<strong>Required</strong>) </li></ul><li><code>Fields</code> (<strong>Required</strong>) </li><ul><li><code>Definition</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Value</code> (<strong>Required</strong>) </li></ul><li><code>ModelName</code> (<strong>Required</strong>) </li><li><code>Assets</code> (Optional) </li><ul><li><code>AssetUrl</code> (<strong>Required</strong>) </li></ul><li><code>ClassificationTreeName</code> (Optional) </li><li><code>LastModifiedByVendorUtc</code> (Optional) </li><li><code>Manufacturer</code> (Optional) </li><li><code>ManufacturerSku</code> (Optional) </li><li><code>UPC</code> (Optional) </li><li><code>VendorSkus</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Sku</code> (Optional) </li><li><code>VendorName</code> (Optional) </li></ul></ul>
 
@@ -195,7 +316,7 @@ Content-Type: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#product'>Product</a>]
@@ -314,18 +435,39 @@ Useful when testing to ensure that products have been successfully added or remo
 GET /ProductFeeds({FeedId})/Products
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `FeedId` (**Required**)  - Product Feed identifier 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>FeedId</code> (<strong>Required</strong>)  - Product Feed identifier
+    </li>
+    </ul>
 
 
 
@@ -338,7 +480,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#product'>Product</a>]
@@ -400,18 +542,39 @@ Returns an array of <a href="#product">Products</a>, as well as additional param
 GET /ProductFeeds({FeedId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `FeedId` (**Required**) 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>FeedId</code> (<strong>Required</strong>) 
+    </li>
+    </ul>
 
 
 
@@ -424,7 +587,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#productfeed'>ProductFeed</a>
@@ -491,18 +654,42 @@ Updates a Product Feed (FeedId) by removing a Product (ProductId).
 DELETE /ProductFeeds({FeedId})/Products({ProductId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `FeedId` (**Required**) 
-* `ProductId` (**Required**) 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>FeedId</code> (<strong>Required</strong>) 
+    </li>
+    
+    <li>
+        <code>ProductId</code> (<strong>Required</strong>) 
+    </li>
+    </ul>
 
 
 
@@ -514,7 +701,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -524,7 +711,9 @@ Authorization: Bearer (Access Token)
 HTTP 204 Content-Type: application/json
 </pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|

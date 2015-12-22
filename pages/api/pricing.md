@@ -4,7 +4,7 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -71,23 +71,58 @@ Pricing information for products can be retrieved and managed using the Pricing 
 POST /Companies({CompanyId})/Pricing
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/Pricing" - d '{
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/Pricing");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>CatalogItemId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>RegularPrice</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (Optional) </li><li><code>OverridePrice</code> (Optional) </li><li><code>PricingTermId</code> (Optional) </li></ul>
 
@@ -108,7 +143,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#pricing'>Pricing</a>
@@ -138,25 +173,66 @@ HTTP 201 Content-Type: application/json
 POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing" - d '{
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>CatalogItemId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>RegularPrice</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (Optional) </li><li><code>OverridePrice</code> (Optional) </li><li><code>PricingTermId</code> (Optional) </li></ul>
 
@@ -177,7 +253,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#pricing'>Pricing</a>
@@ -206,20 +282,47 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -232,7 +335,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#pricing'>Pricing</a>
@@ -261,18 +364,42 @@ HTTP 200 Content-Type: application/json
 PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
 </pre>
 
-#### Headers
 
 
+### Code Sample (cURL)
+
+<pre>
+curl -x put - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing");
+var request = new RestRequest(Method.put);
+ 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -283,7 +410,7 @@ PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -297,24 +424,62 @@ PUT /Companies(1)/Entities(2)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing" - d '{
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "CompanyId": 1,
+    "EntityId": 2,
+    "RegularPrice": 10,
+    "OverridePrice": 5,
+    "PricingTermId": 20
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>CatalogItemId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>RegularPrice</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (Optional) </li><li><code>OverridePrice</code> (Optional) </li><li><code>PricingTermId</code> (Optional) </li></ul>
 
@@ -335,7 +500,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#pricing'>Pricing</a>
@@ -364,19 +529,43 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -389,7 +578,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#pricing'>Pricing</a>]
@@ -420,17 +609,38 @@ HTTP 200 Content-Type: application/json
 PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
 </pre>
 
-#### Headers
 
 
+### Code Sample (cURL)
+
+<pre>
+curl -x put - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing");
+var request = new RestRequest(Method.put);
+ 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -441,7 +651,7 @@ PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -455,18 +665,39 @@ PUT /Companies(1)/Entities(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)
 GET /Companies({CompanyId})/PricingTerms
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/PricingTerms" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/PricingTerms");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -479,7 +710,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#pricingterm'>PricingTerm</a>]
@@ -510,19 +741,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/PricingTerms({PricingTermId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/PricingTerms(20)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/PricingTerms(20)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>PricingTermId</code> (<strong>Required</strong>)  - Identifier for the {{PricingTerm}}
+    </li>
+    </ul>
 
 
 
@@ -535,7 +790,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#pricingterm'>PricingTerm</a>
@@ -564,20 +819,47 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={PricingTermId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://pricingdemo.iqmetrix.net/v1/Companies(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing?$filter=20" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(1)/CatalogItems(f6642545-9136-4f44-a163-0e97e32e2e27)/Pricing?$filter=20");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
-* `PricingTermId` (**Required**)  - Identifier for the {{PricingTerm}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    
+    <li>
+        <code>PricingTermId</code> (<strong>Required</strong>)  - Identifier for the {{PricingTerm}}
+    </li>
+    </ul>
 
 
 
@@ -590,7 +872,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#pricing'>Pricing</a>]
@@ -611,7 +893,9 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

@@ -4,7 +4,7 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -43,20 +43,47 @@ summary:
 GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://availabilitydemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -69,7 +96,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#availability'>Availability</a>
@@ -95,19 +122,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://availabilitydemo.iqmetrix.net/v1/Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -120,7 +171,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#availability'>Availability</a>]
@@ -138,7 +189,9 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

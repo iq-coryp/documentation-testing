@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -77,7 +77,7 @@ A Contact Method is a method of contacting a Customer.
 | CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
 | ContactMethodCategory | String | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
 | ContactMethodCategoryId | Integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values | `3` |
-| ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype | `Work phone` |
+| ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype) | `Work phone` |
 | ContactMethodTypeId | Integer | See [ContactMethodType](#contactmethodtype) for a list of acceptable values | `5` |
 | Default | Boolean | A flag to indicate if this is the default ContactMethod for the Customer | `true` |
 | DoNotContact | Boolean | A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true | `true` |
@@ -141,7 +141,25 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Criteria | String | The criteria used to seach for the Customer |  |
+| Criteria | String | The criteria used to seach for the Customer | `bob` |
+| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
+| MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
+| FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
+| Addresses | Array[<a href='#address'>Address</a>] | A collection of Addresses |  |
+| AlternateName | String | Alias or preferred name | `Bob` |
+| ContactMethods | Array[<a href='#contactmethod'>ContactMethod</a>] | A collection of ContactMethods |  |
+| CustomerExtensions | Array[<a href='#customerextension'>CustomerExtension</a>] | A collection of CustomerExtensions |  |
+| CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
+| CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
+| DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
+| Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
+| DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
+| MemberOf | Array[object] | A collection of Customers that the Customer is a MemberOf (parent relation) |  |
+| Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
+| RelatedCustomers | Array[object] | A collection of Customers related to the Customer (child relation) |  |
+| Title | String | Title | `Mr` |
+| Version | Integer | Latest revision number | `1` |
 
 
 
@@ -207,25 +225,68 @@ CustomerSearch is used to search for CustomerFull resources based on a Criteria.
 POST /Companies({CompanyId})/Customers
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers" - d '{
+    "PrimaryName": "Robert",
+    "MiddleName": "Lee",
+    "FamilyName": "Smith",
+    "AlternateName": "Bob",
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "Notes": "Interested in iPhone 6",
+    "Title": "Mr"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "PrimaryName": "Robert",
+    "MiddleName": "Lee",
+    "FamilyName": "Smith",
+    "AlternateName": "Bob",
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "Notes": "Interested in iPhone 6",
+    "Title": "Mr"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -248,7 +309,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#customer'>Customer</a>
@@ -283,18 +344,39 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Customers
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -307,7 +389,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#customer'>Customer</a>]
@@ -413,19 +495,43 @@ HTTP 200 Content-Type: application/hal+json
 GET /Companies({CompanyId})/Customers({CustomerId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    </ul>
 
 
 
@@ -438,7 +544,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#customer'>Customer</a>
@@ -473,26 +579,78 @@ HTTP 200 Content-Type: application/json
 PUT /Companies({CompanyId})/Customers({CustomerId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)" - d '{
+    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "PrimaryName": "Robert",
+    "MiddleName": "Lee",
+    "FamilyName": "Smith",
+    "AlternateName": "Bob",
+    "CustomerType": "Company",
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "Notes": "Interested in iPhone 6",
+    "Title": "Mr",
+    "Version": 1
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "PrimaryName": "Robert",
+    "MiddleName": "Lee",
+    "FamilyName": "Smith",
+    "AlternateName": "Bob",
+    "CustomerType": "Company",
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "Notes": "Interested in iPhone 6",
+    "Title": "Mr",
+    "Version": 1
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) - Required on PUT</li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -518,7 +676,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#customer'>Customer</a>
@@ -553,18 +711,42 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies({CompanyId})/Customers({CustomerId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    </ul>
 
 
 
@@ -576,7 +758,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -596,26 +778,80 @@ HTTP 200 Content-Type: application/json
 POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses" - d '{
+    "AddressTypeId": 3,
+    "AttentionTo": "iQmetrix",
+    "CountryCode": "CA",
+    "Default": false,
+    "DoNotContact": true,
+    "Email": "Test@Test.com",
+    "Locality": "Mountain View",
+    "Notes": "New residence",
+    "Phone": "(555) 555-5555",
+    "PostalCode": "94043",
+    "PostOfficeBoxNumber": "P.O. Box 1022",
+    "StateCode": "AB",
+    "StreetAddress1": "1600 Amphitheatre Pkwy",
+    "StreetAddress2": "Suite 500"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "AddressTypeId": 3,
+    "AttentionTo": "iQmetrix",
+    "CountryCode": "CA",
+    "Default": false,
+    "DoNotContact": true,
+    "Email": "Test@Test.com",
+    "Locality": "Mountain View",
+    "Notes": "New residence",
+    "Phone": "(555) 555-5555",
+    "PostalCode": "94043",
+    "PostOfficeBoxNumber": "P.O. Box 1022",
+    "StateCode": "AB",
+    "StreetAddress1": "1600 Amphitheatre Pkwy",
+    "StreetAddress2": "Suite 500"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-
-
-
-#### Request Parameters
-
-<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul>
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -642,7 +878,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#address'>Address</a>
@@ -684,19 +920,43 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
 
 
 
@@ -709,7 +969,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#address'>Address</a>]
@@ -797,20 +1057,47 @@ HTTP 200 Content-Type: application/hal+json
 GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier of the Company 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
-* `AddressId` (**Required**)  - Identifier for the {{Address}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    
+    <li>
+        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
+    </li>
+    </ul>
 
 
 
@@ -823,7 +1110,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#address'>Address</a>
@@ -865,27 +1152,96 @@ HTTP 200 Content-Type: application/json
 PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)" - d '{
+    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "AddressType": "Business",
+    "AddressTypeId": 3,
+    "AttentionTo": "iQmetrix",
+    "Country": "Canada",
+    "CountryCode": "CA",
+    "Default": false,
+    "DoNotContact": true,
+    "Email": "Test@Test.com",
+    "Locality": "Mountain View",
+    "Notes": "New residence",
+    "Phone": "(555) 555-5555",
+    "PostalCode": "94043",
+    "PostOfficeBoxNumber": "P.O. Box 1022",
+    "State": "Alberta",
+    "StateCode": "AB",
+    "StreetAddress1": "1600 Amphitheatre Pkwy",
+    "StreetAddress2": "Suite 500",
+    "Version": 1
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "AddressType": "Business",
+    "AddressTypeId": 3,
+    "AttentionTo": "iQmetrix",
+    "Country": "Canada",
+    "CountryCode": "CA",
+    "Default": false,
+    "DoNotContact": true,
+    "Email": "Test@Test.com",
+    "Locality": "Mountain View",
+    "Notes": "New residence",
+    "Phone": "(555) 555-5555",
+    "PostalCode": "94043",
+    "PostOfficeBoxNumber": "P.O. Box 1022",
+    "State": "Alberta",
+    "StateCode": "AB",
+    "StreetAddress1": "1600 Amphitheatre Pkwy",
+    "StreetAddress2": "Suite 500",
+    "Version": 1
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    
+    <li>
+        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier of the Company 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
-* `AddressId` (**Required**)  - Identifier for the {{Address}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) - Required on PUT</li><li><code>CustomerId</code> (<strong>Required</strong>) - Required on PUT</li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -918,7 +1274,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#address'>Address</a>
@@ -960,19 +1316,46 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier of the Company 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} 
-* `AddressId` (**Required**)  - Identifier for the {{Address}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    
+    <li>
+        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
+    </li>
+    </ul>
 
 
 
@@ -984,7 +1367,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -1004,25 +1387,144 @@ HTTP 200 Content-Type: application/json
 POST /Companies({CompanyId})/CustomerFull
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull" - d '{
+    "PrimaryName": "Robert",
+    "MiddleName": "Lee",
+    "FamilyName": "Smith",
+    "Addresses": [
+        {
+            "AddressTypeId": 3,
+            "AttentionTo": "iQmetrix",
+            "CountryCode": "CA",
+            "Default": false,
+            "DoNotContact": true,
+            "Email": "Test@Test.com",
+            "Locality": "Mountain View",
+            "Notes": "New residence",
+            "Phone": "(555) 555-5555",
+            "PostalCode": "94043",
+            "PostOfficeBoxNumber": "P.O. Box 1022",
+            "StateCode": "AB",
+            "StreetAddress1": "1600 Amphitheatre Pkwy",
+            "StreetAddress2": "Suite 500"
+        }
+    ],
+    "AlternateName": "Bob",
+    "ContactMethods": [
+        {
+            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ContactMethodCategoryId": 3,
+            "ContactMethodTypeId": 5,
+            "Default": true,
+            "DoNotContact": true,
+            "Notes": "After 6pm",
+            "Value": "(306) 222-3333"
+        }
+    ],
+    "CustomerExtensions": [
+        {
+            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ExtensionTypeId": 1,
+            "Value": "66432"
+        }
+    ],
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "MemberOf": [],
+    "Notes": "Interested in iPhone 6",
+    "RelatedCustomers": [],
+    "Title": "Mr"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "PrimaryName": "Robert",
+    "MiddleName": "Lee",
+    "FamilyName": "Smith",
+    "Addresses": [
+        {
+            "AddressTypeId": 3,
+            "AttentionTo": "iQmetrix",
+            "CountryCode": "CA",
+            "Default": false,
+            "DoNotContact": true,
+            "Email": "Test@Test.com",
+            "Locality": "Mountain View",
+            "Notes": "New residence",
+            "Phone": "(555) 555-5555",
+            "PostalCode": "94043",
+            "PostOfficeBoxNumber": "P.O. Box 1022",
+            "StateCode": "AB",
+            "StreetAddress1": "1600 Amphitheatre Pkwy",
+            "StreetAddress2": "Suite 500"
+        }
+    ],
+    "AlternateName": "Bob",
+    "ContactMethods": [
+        {
+            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ContactMethodCategoryId": 3,
+            "ContactMethodTypeId": 5,
+            "Default": true,
+            "DoNotContact": true,
+            "Notes": "After 6pm",
+            "Value": "(306) 222-3333"
+        }
+    ],
+    "CustomerExtensions": [
+        {
+            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "ExtensionTypeId": 1,
+            "Value": "66432"
+        }
+    ],
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "MemberOf": [],
+    "Notes": "Interested in iPhone 6",
+    "RelatedCustomers": [],
+    "Title": "Mr"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1083,7 +1585,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#customerfull'>CustomerFull</a>
@@ -1169,18 +1671,39 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/CustomerFull
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -1193,7 +1716,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#customerfull'>CustomerFull</a>]
@@ -1383,19 +1906,43 @@ HTTP 200 Content-Type: application/hal+json
 GET /Companies({CompanyId})/CustomerFull({CustomerId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Unique identifier for the {{Customer}}
+    </li>
+    </ul>
 
 
 
@@ -1408,189 +1955,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
-
-
-<a href='#customerfull'>CustomerFull</a>
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "Addresses": [
-        {
-            "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "AddressType": "Business",
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
-            "Country": "Canada",
-            "CountryCode": "CA",
-            "Default": false,
-            "DoNotContact": true,
-            "Email": "Test@Test.com",
-            "Locality": "Mountain View",
-            "Notes": "New residence",
-            "Phone": "(555) 555-5555",
-            "PostalCode": "94043",
-            "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "Alberta",
-            "StateCode": "AB",
-            "StreetAddress1": "1600 Amphitheatre Pkwy",
-            "StreetAddress2": "Suite 500",
-            "Version": 1
-        }
-    ],
-    "AlternateName": "Bob",
-    "ContactMethods": [
-        {
-            "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ContactMethodCategory": "Email",
-            "ContactMethodCategoryId": 3,
-            "ContactMethodType": "Work phone",
-            "ContactMethodTypeId": 5,
-            "Default": true,
-            "DoNotContact": true,
-            "Notes": "After 6pm",
-            "Value": "(306) 222-3333",
-            "Version": 1
-        }
-    ],
-    "CustomerExtensions": [
-        {
-            "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ExtensionType": "ExternalCustomerId",
-            "ExtensionTypeId": 1,
-            "Value": "66432",
-            "Version": 1
-        }
-    ],
-    "CustomerType": "Company",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "MemberOf": [],
-    "Notes": "Interested in iPhone 6",
-    "RelatedCustomers": [],
-    "Title": "Mr",
-    "Version": 1
-}</pre>
-
-<h2 id='updating-a-full-customer' class='clickable-header top-level-header'>Updating a Full Customer</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-PUT /Companies({CompanyId})/CustomerFull({CustomerId})
-</pre>
-
-#### Headers
-
-
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
-
-
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) </li><li><code>CountryCode</code> (<strong>Required</strong>) </li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>DateOfBirth</code> (Optional) </li><li><code>Disabled</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-PUT /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "Addresses": [
-        {
-            "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "AddressType": "Business",
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
-            "Country": "Canada",
-            "CountryCode": "CA",
-            "Default": false,
-            "DoNotContact": true,
-            "Email": "Test@Test.com",
-            "Locality": "Mountain View",
-            "Notes": "New residence",
-            "Phone": "(555) 555-5555",
-            "PostalCode": "94043",
-            "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "Alberta",
-            "StateCode": "AB",
-            "StreetAddress1": "1600 Amphitheatre Pkwy",
-            "StreetAddress2": "Suite 500",
-            "Version": 1
-        }
-    ],
-    "AlternateName": "Bob",
-    "ContactMethods": [
-        {
-            "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ContactMethodCategory": "Email",
-            "ContactMethodCategoryId": 3,
-            "ContactMethodType": "Work phone",
-            "ContactMethodTypeId": 5,
-            "Default": true,
-            "DoNotContact": true,
-            "Notes": "After 6pm",
-            "Value": "(306) 222-3333",
-            "Version": 1
-        }
-    ],
-    "CustomerExtensions": [
-        {
-            "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ExtensionType": "ExternalCustomerId",
-            "ExtensionTypeId": 1,
-            "Value": "66432",
-            "Version": 1
-        }
-    ],
-    "CustomerType": "Company",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "MemberOf": [],
-    "Notes": "Interested in iPhone 6",
-    "RelatedCustomers": [],
-    "Title": "Mr",
-    "Version": 1
-}
-</pre>
-
-#### Response
+<h4>Response</h4>
 
 
 <a href='#customerfull'>CustomerFull</a>
@@ -1676,18 +2041,42 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Unique identifier for the {{Customer}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Unique identifier for the {{Customer}}
+    </li>
+    </ul>
 
 
 
@@ -1699,7 +2088,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -1719,26 +2108,66 @@ HTTP 200 Content-Type: application/json
 POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods" - d '{
+    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ContactMethodCategoryId": 3,
+    "ContactMethodTypeId": 5,
+    "Default": true,
+    "DoNotContact": true,
+    "Notes": "After 6pm",
+    "Value": "(306) 222-3333"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ContactMethodCategoryId": 3,
+    "ContactMethodTypeId": 5,
+    "Default": true,
+    "DoNotContact": true,
+    "Notes": "After 6pm",
+    "Value": "(306) 222-3333"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-
-
-
-#### Request Parameters
-
-<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul>
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -1758,7 +2187,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#contactmethod'>ContactMethod</a>
@@ -1791,19 +2220,43 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
 
 
 
@@ -1816,7 +2269,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#contactmethod'>ContactMethod</a>]
@@ -1886,20 +2339,47 @@ HTTP 200 Content-Type: application/hal+json
 GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    
+    <li>
+        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
+    </li>
+    </ul>
 
 
 
@@ -1912,7 +2392,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#contactmethod'>ContactMethod</a>
@@ -1945,27 +2425,78 @@ HTTP 200 Content-Type: application/json
 PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" - d '{
+    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ContactMethodCategory": "Email",
+    "ContactMethodCategoryId": 3,
+    "ContactMethodType": "Work phone",
+    "ContactMethodTypeId": 5,
+    "Default": true,
+    "DoNotContact": true,
+    "Notes": "After 6pm",
+    "Value": "(306) 222-3333",
+    "Version": 1
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ContactMethodCategory": "Email",
+    "ContactMethodCategoryId": 3,
+    "ContactMethodType": "Work phone",
+    "ContactMethodTypeId": 5,
+    "Default": true,
+    "DoNotContact": true,
+    "Notes": "After 6pm",
+    "Value": "(306) 222-3333",
+    "Version": 1
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    
+    <li>
+        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) </li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>Id</code> (<strong>Required</strong>) - Required on PUT</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -1989,7 +2520,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#contactmethod'>ContactMethod</a>
@@ -2022,19 +2553,46 @@ HTTP 200 Content-Type: application/json
 DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CustomerId` (**Required**)  - Identifier for the {{Customer}} being updated 
-* `ContactMethodId` (**Required**)  - Identifier for the {{ContactMethod}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    
+    <li>
+        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
+    </li>
+    </ul>
 
 
 
@@ -2046,7 +2604,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -2058,6 +2616,9 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='searching-for-customers' class='clickable-header top-level-header'>Searching for Customers</h2>
 
+{{note}}
+This request returns Customer resources and is case <strong>sensitive</strong>. For a similar case <strong>insensitive</strong> search that returns CustomerFull resources, see <a href='#customer-search'>Customer Search</a> 
+{{end}}
 
 
 <h4>Request</h4>
@@ -2066,21 +2627,51 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `FilterQuery` (Optional)  - Filter on customers 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>FilterQuery</code> (Optional)  - Filter on customers
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    </ul>
 
 
 
@@ -2093,7 +2684,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#customer'>Customer</a>]
@@ -2122,24 +2713,63 @@ HTTP 200 Content-Type: application/json
 
 <h2 id='customer-search' class='clickable-header top-level-header'>Customer Search</h2>
 
-[CustomerSearch](#customersearch) resources use a special property, `criteria`.
 
-`Criteria` searches all of the searchable properties for the given value and returns the resource if it is found.
+{{note}}
+This request returns CustomerFull resources and is case <strong>insensitive</strong>. For a similar case <strong>sensitive</strong> search that returns Customer resources, see <a href='#searching-for-customers'>Searching for Customers</a> 
+{{end}}
+
+<a href="#customersearch">CustomerSearch</a> resources use a special property, <code>criteria</code>.
+
+Criteria searches all of the searchable properties for the given value and returns the resource if it is found.
+
+This search is <strong>NOT</strong> case sensitive.
 
 <h3> Filterable Properties</h3>
 
 The Criteria filter will search the properties below for the given value.
 
-| Resource | Property |
-|:---------|:---------|
-| [Address](#address) | StreetAddress1 |
-| [Address](#address) | StreetAddress2 |
-| [ContactMethod](#contactmethod) | Value |
-| [Customer](#customer) | PrimaryName |
-| [Customer](#customer)| MiddleName  |
-| [Customer](#customer)| FamilyName |
-| [Customer](#customer) | AlternateName |
-| [CustomerExtension](#customerextension) | Value |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Resource</th>
+      <th style="text-align:left">Property</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <td style="text-align:left"><a href="#address">Address</a></td>
+      <td style="text-align:left">StreetAddress1</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="#address">Address</a></td>
+      <td style="text-align:left">StreetAddress2</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="#contactmethod">ContactMethod</a></td>
+      <td style="text-align:left">Value</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="#customer">Customer</a></td>
+      <td style="text-align:left">PrimaryName</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="#customer">Customer</a></td>
+      <td style="text-align:left">MiddleName</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="#customer">Customer</a></td>
+      <td style="text-align:left">FamilyName</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="#customer">Customer</a></td>
+      <td style="text-align:left">AlternateName</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="#customerextension">CustomerExtension</a></td>
+      <td style="text-align:left">Value</td>
+    </tr>
+  </tbody>
+</table>
 
 <h4>Request</h4>
 
@@ -2147,19 +2777,43 @@ The Criteria filter will search the properties below for the given value.
 GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `FilterQuery` (Optional)  - The filter to apply 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>FilterQuery</code> (Optional)  - The filter to apply, "Criteria" is required
+    </li>
+    </ul>
 
 
 
@@ -2172,83 +2826,88 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
-<a href='#customerfull'>CustomerFull</a>
+Array[<a href='#customersearch'>CustomerSearch</a>]
 
 <h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
-</pre><pre>{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "Addresses": [
-        {
-            "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "AddressType": "Business",
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
-            "Country": "Canada",
-            "CountryCode": "CA",
-            "Default": false,
-            "DoNotContact": true,
-            "Email": "Test@Test.com",
-            "Locality": "Mountain View",
-            "Notes": "New residence",
-            "Phone": "(555) 555-5555",
-            "PostalCode": "94043",
-            "PostOfficeBoxNumber": "P.O. Box 1022",
-            "State": "Alberta",
-            "StateCode": "AB",
-            "StreetAddress1": "1600 Amphitheatre Pkwy",
-            "StreetAddress2": "Suite 500",
-            "Version": 1
-        }
-    ],
-    "AlternateName": "Bob",
-    "ContactMethods": [
-        {
-            "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ContactMethodCategory": "Email",
-            "ContactMethodCategoryId": 3,
-            "ContactMethodType": "Work phone",
-            "ContactMethodTypeId": 5,
-            "Default": true,
-            "DoNotContact": true,
-            "Notes": "After 6pm",
-            "Value": "(306) 222-3333",
-            "Version": 1
-        }
-    ],
-    "CustomerExtensions": [
-        {
-            "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ExtensionType": "ExternalCustomerId",
-            "ExtensionTypeId": 1,
-            "Value": "66432",
-            "Version": 1
-        }
-    ],
-    "CustomerType": "Company",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "MemberOf": [],
-    "Notes": "Interested in iPhone 6",
-    "RelatedCustomers": [],
-    "Title": "Mr",
-    "Version": 1
-}</pre>
+</pre><pre>[
+    {
+        "Criteria": "bob",
+        "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "PrimaryName": "Robert",
+        "MiddleName": "Lee",
+        "FamilyName": "Smith",
+        "Addresses": [
+            {
+                "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
+                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                "AddressType": "Business",
+                "AddressTypeId": 3,
+                "AttentionTo": "iQmetrix",
+                "Country": "Canada",
+                "CountryCode": "CA",
+                "Default": false,
+                "DoNotContact": true,
+                "Email": "Test@Test.com",
+                "Locality": "Mountain View",
+                "Notes": "New residence",
+                "Phone": "(555) 555-5555",
+                "PostalCode": "94043",
+                "PostOfficeBoxNumber": "P.O. Box 1022",
+                "State": "Alberta",
+                "StateCode": "AB",
+                "StreetAddress1": "1600 Amphitheatre Pkwy",
+                "StreetAddress2": "Suite 500",
+                "Version": 1
+            }
+        ],
+        "AlternateName": "Bob",
+        "ContactMethods": [
+            {
+                "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                "ContactMethodCategory": "Email",
+                "ContactMethodCategoryId": 3,
+                "ContactMethodType": "Work phone",
+                "ContactMethodTypeId": 5,
+                "Default": true,
+                "DoNotContact": true,
+                "Notes": "After 6pm",
+                "Value": "(306) 222-3333",
+                "Version": 1
+            }
+        ],
+        "CustomerExtensions": [
+            {
+                "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                "ExtensionType": "ExternalCustomerId",
+                "ExtensionTypeId": 1,
+                "Value": "66432",
+                "Version": 1
+            }
+        ],
+        "CustomerType": "Company",
+        "CustomerTypeId": 3,
+        "DateOfBirth": "1952-07-23T12:00:00.000",
+        "Disabled": true,
+        "DoNotContact": true,
+        "MemberOf": [],
+        "Notes": "Interested in iPhone 6",
+        "RelatedCustomers": [],
+        "Title": "Mr",
+        "Version": 1
+    }
+]</pre>
 
-## Searching
+
+
+<h2 id="searching" class="clickable-header top-level-header">Searching</h2>
 
 The Customers API supports searching of {{Customer}} and [CustomerSearch](#customersearch) resources through the use of filters.
 
@@ -2290,7 +2949,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
     GET /Companies(1)/Customers?$filter=substringof('bob', tolower(PrimaryName))
 
 
-## Pagination
+<h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
 
 The Customers API supports pagination of collections for some resources.
 
@@ -2343,7 +3002,7 @@ The `next`.`href` refers to a resource containing a page with the **next** 10 it
 The `prev`.`href` refers to a resource containing a page with the **previous** 10 items.
 
 
-## Errors
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

@@ -4,7 +4,7 @@ permalink: /api/supplier-orders/
 tags: []
 keywords: supplier orders dropship
 audience: 
-last_updated: 01-12-2015
+last_updated: 19-11-2015
 summary: 
 ---
 
@@ -221,14 +221,14 @@ For best practices, it is recommended to store the timestamp for the last order 
 
 | Id | Name | Description |
 |:---|:-----|:------------|
-| 0 | PendingSupplier | A new order has been created, but is pending the supplier |
+| 0 | PendingSupplier | A new order has been created but is pending the supplier |
 | 1 | Ordered | Order has been picked up by the supplier and is in processing stage (picked, packed and shipped) |
 | 2 | Shipped | Order has been shipped from a warehouse |
 | 3 | BackOrdered | Order cannot currently be fulfilled due to items being temporarily out of stock |
 | 4 | Error | There has been an exception with either a product or an entire order |
 | 5 | NotAvailable | Some or all items from order are no longer available |
 | 6 | PartiallyShipped | Some items have been shipped due to availability, and other items are pending availability |
-| 7 | Cancelled | Order has been cancelled |
+| 7 | Cancelled | Order has been canceled |
 | 8 | Other | Order is in a state not represented by the other states |
 
 
@@ -236,14 +236,14 @@ For best practices, it is recommended to store the timestamp for the last order 
 
 | Id | Name | Description |
 |:---|:-----|:------------|
-| 0 | PendingSupplier | A new order has been created, but is pending the supplier |
+| 0 | PendingSupplier | A new order has been created but is pending the supplier |
 | 1 | Ordered | Order has been picked up by the supplier and is in processing stage (picked, packed and shipped) |
 | 2 | Shipped | Order has been shipped from a warehouse |
 | 3 | BackOrdered | Order cannot currently be fulfilled due to items being temporarily out of stock |
 | 4 | Error | There has been an exception with either a product or an entire order |
 | 5 | NotAvailable | This item from order is no longer available |
-| 6 | PartiallyShipped | This item has been shipped due to some quantity availabile |
-| 7 | Cancelled | Item from order has been cancelled |
+| 6 | PartiallyShipped | This item has been shipped due to some quantity available |
+| 7 | Cancelled | Item from order has been canceled |
 | 8 | Other | Item from order is in a state not represented by the other states |
 
 ## Updating Order Status
@@ -414,7 +414,7 @@ Returns [ItemStatusUpdate](#itemstatusupdate) that was created, if successful
 
 ## Getting the Order Feed
 
-The `current` feed endpoint gives access to the most recent (up to 50) entries in the notification feed, while the `prev-archive` link will give access to the previous (up to 50) entries in the feed.
+The `current` feed endpoint gives access to the most recent (up to 50) entries in the notification feed while the `prev-archive` link will give access to the previous (up to 50) entries in the feed.
 
 #### Request
 
@@ -549,7 +549,7 @@ Returns the [Order Feed](#feed) for a specific supplier
 
 ## Getting Order Feed Archives
 
-The `next-archive` link gives access to a newer (up to 50) list of archive entries in the notification feed, while the `prev-archive` link will give access to the previous (up to 50) list of archive entries.
+The `next-archive` link gives access to a newer (up to 50) list of archive entries in the notification feed while the `prev-archive` link will give access to the previous (up to 50) list of archive entries.
 
 #### Request
 

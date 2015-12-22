@@ -1,10 +1,10 @@
 ---
-title:  Product Library
+title:  Products
 permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -60,18 +60,39 @@ See the table below for available options and the syntax of using each one.
 GET /Products/FindByIdentifier?{Options}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/Products/FindByIdentifier?value=ABC123&type=VendorSKU&entityId=4" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/Products/FindByIdentifier?value=ABC123&type=VendorSKU&entityId=4");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `Options` (**Required**)  - The options for the search 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>Options</code> (<strong>Required</strong>)  - The options for the search
+    </li>
+    </ul>
 
 
 
@@ -84,7 +105,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>Products</code> (Array) </li><ul><li><code>Slug</code> (String) </li></ul></ul>
@@ -101,7 +122,9 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

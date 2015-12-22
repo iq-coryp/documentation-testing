@@ -4,7 +4,7 @@ permalink: /api/glossary/
 tags: []
 keywords: 
 audience: 
-last_updated: 08-12-2015
+last_updated: 09-11-2015
 summary:
 ---
 
@@ -54,7 +54,7 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 
 ### Classification Tree
 
-A hierarchical structure describing a taxonomy of {{products}} (i.e. an industry). Classification Trees are relatively static, and rarely change.
+A hierarchical structure describing a taxonomy of {{products}} (i.e. an industry). Classification Trees are relatively static and rarely change.
 
 ### Company
 
@@ -62,7 +62,7 @@ An organization that sells Products to Customers.
 
 ### Company Tree
 
-A hierarchial representation how a Company is structured, including the root Company, Groups, Divisions and Locations.
+A hierarchical representation how a Company is structured, including the root Company, Groups, Divisions and Locations.
 
 ### Credit Account
 
@@ -86,7 +86,7 @@ An Asset for a Product, typically an image or video.
 
 ### Inheritance
 
-A process by which iQmetrix APIs use the hierarhical structure of a Company Tree to pass information "down" the Tree.
+A process by which iQmetrix APIs use the hierarchical structure of a Company Tree to pass information "down" the Tree.
 
 For more information, see [Company Tree Inheritance](/concepts/company-tree/#inheritance).
 
@@ -106,7 +106,7 @@ Provides client applications with secure access to resources on behalf of a reso
 
 ### Partner
 
-An organization that has a buisness relationship with iQmetrix to provide value-added services.
+An organization that has a business relationship with iQmetrix to provide value-added services.
 
 ### Product Template
 

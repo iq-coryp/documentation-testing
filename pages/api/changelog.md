@@ -4,7 +4,6 @@ permalink: /api/changelog/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
 summary: 
 datatable: true
 metadata: false
@@ -40,6 +39,10 @@ The date format used in the table below is mm/dd/yyyy
 
 | Date | Changes |
 |:-----|:--------|
+| 12/11/2015 | Fixed various spelling/grammar errors |
+| 12/10/2015 | Fixed problem with Errors and Pagination not appearing in TOC. Added clarifyication to Customer Search in CRM. New pages: Reference and Partner Relationships |
+| 12/09/2015 | Fixed problem with TOC being larger then page height |
+| 12/08/2015 | Added an intro page |
 | 12/07/2015 | Added Getting the Lock Status of a User to User Manager. Changed sidebar: Created a Product Library section for read-only Product Library items, changed Availability -> Inventory Availability and moved CMI to under RQ |
 | 12/04/2015 | The site is now generated from a collection of RAML files! Updates: Product resource moved to Catalog page |
 | 11/30/2015 | Changed order of steps in Creating an In Store Order to make things clearer. Updated ProductId in Order API to be a CatalogItemId |

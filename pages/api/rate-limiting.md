@@ -4,7 +4,7 @@ permalink: /api/rate-limiting/
 tags: []
 keywords: 
 audience: 
-last_updated: 01-12-2015
+last_updated: 03-11-2015
 summary: 
 ---
 
@@ -40,7 +40,7 @@ To determine the limit, make an Anonymous Request to an iQmetrix API, then check
 
 The Rate Limit Window policy determines when the current rate limit will be reset.
 
-To determine the limit, make request to an iQmetrix API, then check the `X-RateLimit-Reset` HTTP Header of the response. 
+To determine the limit, make a request to an iQmetrix API, then check the `X-RateLimit-Reset` HTTP Header of the response. 
 
 ## HTTP Headers
 

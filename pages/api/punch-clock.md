@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -61,22 +61,55 @@ Don't forget <code>$filter=</code> in the request!
 GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://punchclockdemo.iqmetrix.net/v1/Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://punchclockdemo.iqmetrix.net/v1/Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `StartDate` (Optional)  - Date at which to begin search request, in UTC 
-* `EndDate` (Optional)  - Date at which to end search request, in UTC 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>StartDate</code> (Optional)  - Date at which to begin search request, in UTC
+    </li>
+    
+    <li>
+        <code>EndDate</code> (Optional)  - Date at which to end search request, in UTC
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    </ul>
 
 
 
@@ -89,7 +122,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#punchentry'>PunchEntry</a>]
@@ -164,7 +197,9 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-## Pagination
+
+
+<h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
 
 The Punch Clock API supports pagination of collections of resources for some requests.
 

@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -126,20 +126,47 @@ The following table lists the ReferencType values used in RQ.
 GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://generalledgerdemo.iqmetrix.net/v1/Companies(1)/Accounts?$skip=0&$top=5" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://generalledgerdemo.iqmetrix.net/v1/Companies(1)/Accounts?$skip=0&$top=5");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    </ul>
 
 
 
@@ -152,7 +179,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#account'>Account</a>]
@@ -238,22 +265,55 @@ HTTP 200 Content-Type: application/hal+json
 GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://generalledgerdemo.iqmetrix.net/v1/Companies(1)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T00:00:00.000Z' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000Z'&$skip=0&$top=5" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://generalledgerdemo.iqmetrix.net/v1/Companies(1)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T00:00:00.000Z' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000Z'&$skip=0&$top=5");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `Skip` (Optional)  - Number of records to skip 
-* `Top` (Optional)  - Number of records to take 
-* `StartDate` (**Required**)  - Date at which to begin search request, in UTC 
-* `EndDate` (**Required**)  - Date at which to end search request, in UTC 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    
+    <li>
+        <code>StartDate</code> (<strong>Required</strong>)  - Date at which to begin search request, in UTC
+    </li>
+    
+    <li>
+        <code>EndDate</code> (<strong>Required</strong>)  - Date at which to end search request, in UTC
+    </li>
+    </ul>
 
 
 
@@ -266,7 +326,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#transaction'>Transaction</a>]
@@ -369,7 +429,9 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
@@ -381,7 +443,7 @@ HTTP 200 Content-Type: application/hal+json
 | `HTTP 409` | `The account has a non-unique name  or account number` | Account names and numbers must be unique for the Company |
 
 
-## Pagination
+<h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
 
 The General Ledger API supports pagination of collections of resources by default.
  

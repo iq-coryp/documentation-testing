@@ -4,7 +4,7 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -93,18 +93,39 @@ There is a limit to 20 levels of depth for Categories.
 GET /ClassificationTrees({ClassificationTreeId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/ClassificationTrees(21)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ClassificationTrees(21)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `ClassificationTreeId` (**Required**)  - Identifier for the {{ClassificationTree}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>ClassificationTreeId</code> (<strong>Required</strong>)  - Identifier for the {{ClassificationTree}}
+    </li>
+    </ul>
 
 
 
@@ -117,7 +138,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#classificationtree'>ClassificationTree</a>
@@ -157,7 +178,9 @@ HTTP 200 Content-Type: application/json
     "Version": 41
 }</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

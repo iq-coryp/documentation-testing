@@ -4,7 +4,7 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -54,7 +54,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Guid | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
+| Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
 | Name | String | File name | `iqmetrix.jpg` |
 | Height | Integer | Height in pixels | `145` |
 | Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
@@ -99,8 +99,8 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | Description | String(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
 | Roles | Array[object] | The Role of this Location, the value must be Location |  |
 | Roles.Name | String | Name | `Location` |
-| CreatedUTC | Datetime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
-| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-02-27T00:03:06.392Z` |
 | Area | object | Measurement of floor space |  |
 | Area.Value | Integer | Value of the Area | `1100` |
 | Area.Unit | String | Unit used for the Value, acceptable values are SqFt and SqM | `SqFt` |
@@ -115,7 +115,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | SortName | String | A string used for sorting | `samplecompany` |
 | StoreHours | <a href='#storehours'>StoreHours</a> | Store hours for this Location |  |
 | StorePhoneNumbers | Array[<a href='#phonenumber'>PhoneNumber</a>] | Phone numbers |  |
-| TimeZone | <a href='#timezone'>TimeZone</a> | Timezone information for the Location. |  |
+| TimeZone | <a href='#timezone'>TimeZone</a> | Timezone information for the Location |  |
 | Version | Integer | Latest revision number | `13` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *LocationType* | *String* | *Reserved for future use* | |
@@ -139,8 +139,8 @@ To learn more about Divisions, see {{Division_Concept}}.
 | Roles | Array[object] | The value must be Division |  |
 | Roles.Name | String | Name | `Division` |
 | ClientEntityId | String | Identifier in an external system | `187` |
-| CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
@@ -164,8 +164,8 @@ Managerial or geographical groupings.
 | Roles | Array[object] | The value must be Group |  |
 | Roles.Name | String | Name | `Group` |
 | ClientEntityId | String | Identifier in an external system | `187` |
-| CreatedUTC | Datetime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| LastModifiedUTC | Datetime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| CreatedUTC | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
+| LastModifiedUTC | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
@@ -183,7 +183,7 @@ Managerial or geographical groupings.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | String | Identifier. For a list of acceptable values, see <a href='/api/reference/#getting-all-timezones'>Getting All Time Zones</a> | `Alaskan Standard Time` |
+| Id | String | Identifier. For a list of acceptable values, see <a href='/api/reference/#getting-all-time-zones'>Getting All Time Zones</a> | `Alaskan Standard Time` |
 | DaylightSavingTimeEnabled | Boolean | A flag to indicate if the Time Zone observes Daylight Savings Time | `true` |
 
 
@@ -207,18 +207,39 @@ Managerial or geographical groupings.
 GET /Companies({CompanyId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -231,7 +252,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#company'>Company</a>
@@ -277,18 +298,39 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Tree
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -301,7 +343,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#companytree'>CompanyTree</a>
@@ -336,26 +378,294 @@ HTTP 200 Content-Type: application/json
 POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations" - d '{
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Edmonton",
+        "StateCode": "AB",
+        "StateName": "Alberta",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    }
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Edmonton",
+        "StateCode": "AB",
+        "StateName": "Alberta",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    }
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>NodeId</code> (<strong>Required</strong>)  - Identifier of the parent for the {{Location}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li></ul><li><code>Description</code> (Optional) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Unit</code> (<strong>Required</strong>) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (<strong>Required</strong>) </li><li><code>Latitude</code> (<strong>Required</strong>) </li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) - Must be `Location`</li><ul><li><code>Name</code> (<strong>Required</strong>) </li></ul><li><code>Description</code> (Optional) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) - Only required if Area is not null. If provided, Unit must also be provided</li><li><code>Unit</code> (<strong>Required</strong>) - Only required if Area is not null. If provided, Value must also be provided</li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) - Required if�StateCode�is provided</li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (<strong>Required</strong>) - Only required if Geography is not null. If provided, Longitude must also be provided</li><li><code>Latitude</code> (<strong>Required</strong>) - Only required if Geography is not null. If provided, Latitude must also be provided</li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -379,7 +689,7 @@ Content-Type: application/json
     "Address": {
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
-        "City": "Regina",
+        "City": "Edmonton",
         "StateCode": "AB",
         "StateName": "Alberta",
         "CountryCode": "CA",
@@ -489,7 +799,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#location'>Location</a>
@@ -516,7 +826,7 @@ HTTP 201 Content-Type: application/json
     "Address": {
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
-        "City": "Regina",
+        "City": "Edmonton",
         "StateCode": "AB",
         "StateName": "Alberta",
         "CountryCode": "CA",
@@ -646,27 +956,310 @@ Option 1 requires knowing the <code>NodeId</code> of the parent of the {{Locatio
 PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations(2)" - d '{
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Edmonton",
+        "StateCode": "AB",
+        "StateName": "Alberta",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations(2)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": 2,
+    "Name": "SampleLocation",
+    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "123 Sample Street",
+        "AddressLine2": "Unit 200",
+        "City": "Edmonton",
+        "StateCode": "AB",
+        "StateName": "Alberta",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "S4P2L1"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": {
+        "Name": "John Smith",
+        "Description": "Store Manager",
+        "PhoneNumbers": [
+            {
+                "Description": "Main Line",
+                "Number": "5555555555",
+                "Extension": "1234"
+            }
+        ]
+    },
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "samplecompany",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>NodeId</code> (<strong>Required</strong>)  - Identifier of the parent for the {{Location}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of the parent for the {{Location}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li></ul><li><code>Version</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Unit</code> (<strong>Required</strong>) </li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) </li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (<strong>Required</strong>) </li><li><code>Latitude</code> (<strong>Required</strong>) </li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Roles</code> (<strong>Required</strong>) - Must be `Location`</li><ul><li><code>Name</code> (<strong>Required</strong>) </li></ul><li><code>Id</code> (<strong>Required</strong>) - Required for PUT requests</li><li><code>Description</code> (Optional) </li><li><code>Area</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) - Only required if Area is not null. If provided, Unit must also be provided</li><li><code>Unit</code> (<strong>Required</strong>) - Only required if Area is not null. If provided, Value must also be provided</li></ul><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) </li><li><code>StateName</code> (Optional) </li><li><code>CountryCode</code> (Optional) - Required if�StateCode�is provided</li><li><code>CountryName</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Contacts</code> (Optional) </li><ul><li><code>Name</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul></ul><li><code>Geography</code> (Optional) </li><ul><li><code>Longitude</code> (<strong>Required</strong>) - Only required if Geography is not null. If provided, Longitude must also be provided</li><li><code>Latitude</code> (<strong>Required</strong>) - Only required if Geography is not null. If provided, Latitude must also be provided</li></ul><li><code>StoreHours</code> (Optional) </li><ul><li><code>Monday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Tuesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Wednesday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Thursday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Friday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Saturday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul><li><code>Sunday</code> (Optional) </li><ul><li><code>Open</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul><li><code>Close</code> (Optional) </li><ul><li><code>Hour</code> (Optional) </li><li><code>Minute</code> (Optional) </li></ul></ul></ul><li><code>StorePhoneNumbers</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Number</code> (Optional) </li><li><code>Extension</code> (Optional) </li></ul><li><code>TimeZone</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li><li><code>DaylightSavingTimeEnabled</code> (Optional) </li></ul><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
@@ -693,7 +1286,7 @@ Content-Type: application/json
     "Address": {
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
-        "City": "Regina",
+        "City": "Edmonton",
         "StateCode": "AB",
         "StateName": "Alberta",
         "CountryCode": "CA",
@@ -806,7 +1399,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#location'>Location</a>
@@ -833,7 +1426,7 @@ HTTP 200 Content-Type: application/json
     "Address": {
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
-        "City": "Regina",
+        "City": "Edmonton",
         "StateCode": "AB",
         "StateName": "Alberta",
         "CountryCode": "CA",
@@ -955,19 +1548,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Locations({LocationId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations(2)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations(2)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    </ul>
 
 
 
@@ -980,7 +1597,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#location'>Location</a>
@@ -1007,7 +1624,7 @@ HTTP 200 Content-Type: application/json
     "Address": {
         "AddressLine1": "123 Sample Street",
         "AddressLine2": "Unit 200",
-        "City": "Regina",
+        "City": "Edmonton",
         "StateCode": "AB",
         "StateName": "Alberta",
         "CountryCode": "CA",
@@ -1129,18 +1746,39 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Locations
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -1153,7 +1791,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#location'>Location</a>]
@@ -1181,7 +1819,7 @@ HTTP 200 Content-Type: application/json
         "Address": {
             "AddressLine1": "123 Sample Street",
             "AddressLine2": "Unit 200",
-            "City": "Regina",
+            "City": "Edmonton",
             "StateCode": "AB",
             "StateName": "Alberta",
             "CountryCode": "CA",
@@ -1298,7 +1936,7 @@ HTTP 200 Content-Type: application/json
 
 Divisions may be added to the root Company node, or to a Division or Group node. 
 
-A Division cannot created if one already exists at the same level with the same name. 
+A Division cannot be created if one already exists at the same level with the same name. 
 
 That is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.
 
@@ -1309,24 +1947,58 @@ That is, you can have a Division and Group with the same name under the same par
 POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Divisions" - d '{
+    "Name": "SampleDivision",
+    "Description": "Division creating great experiences.",
+    "ClientEntityId": "187",
+    "Attributes": {}
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Divisions");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Name": "SampleDivision",
+    "Description": "Division creating great experiences.",
+    "ClientEntityId": "187",
+    "Attributes": {}
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>NodeId</code> (<strong>Required</strong>)  - Identifier of a Node
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of a Node 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Attributes</code> (Optional) </li></ul>
 
@@ -1345,7 +2017,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#division'>Division</a>
@@ -1378,7 +2050,7 @@ HTTP 201 Content-Type: application/json
 
 Groups may be added to the root Company node, or to a Division or Group node. 
 
-A Group cannot created if one already exists at the same level with the same name. 
+A Group cannot be created if one already exists at the same level with the same name. 
 
 That is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.
 
@@ -1389,24 +2061,58 @@ That is, you can have a Division and Group with the same name under the same par
 POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Groups" - d '{
+    "Name": "SampleGroup",
+    "Description": "Group creating great experiences.",
+    "ClientEntityId": "187",
+    "Attributes": {}
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Groups");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Name": "SampleGroup",
+    "Description": "Group creating great experiences.",
+    "ClientEntityId": "187",
+    "Attributes": {}
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>NodeId</code> (<strong>Required</strong>)  - Identifier of a Node
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of a Node 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>ClientEntityId</code> (Optional) </li><li><code>Attributes</code> (Optional) </li></ul>
 
@@ -1425,7 +2131,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#group'>Group</a>
@@ -1460,11 +2166,11 @@ HTTP 201 Content-Type: application/json
 This operation <strong>cannot be undone</strong>.
 {{end}}
 
-This request removes the Node refered to by NodeId from the Company Tree along with all of its children. 
+This request removes the Node referred to by NodeId from the Company Tree along with all of its children. 
 
 Only Divisions and Groups can be deleted this way. 
 
-If the Node or any of its children include Entities other then Groups or Divisions, the request will be rejected.
+If the Node or any of its children include Entities other than Groups or Divisions, the request will be rejected.
 
 
 <h4>Request</h4>
@@ -1473,18 +2179,42 @@ If the Node or any of its children include Entities other then Groups or Divisio
 DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `NodeId` (**Required**)  - Identifier of a Node to be deleted 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>NodeId</code> (<strong>Required</strong>)  - Identifier of a Node to be deleted
+    </li>
+    </ul>
 
 
 
@@ -1496,7 +2226,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -1520,19 +2250,43 @@ The following resource types are considered 'Entities': {{Company}}, {{Division}
 GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Entities(1)/Nodes?$filter=123" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Entities(1)/Nodes?$filter=123");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `ClientEntityId` (**Required**)  - The value to search for 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>ClientEntityId</code> (<strong>Required</strong>)  - The value to search for
+    </li>
+    </ul>
 
 
 
@@ -1545,7 +2299,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li><li><code>Path</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li></ul></ul>
@@ -1571,7 +2325,9 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

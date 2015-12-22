@@ -4,7 +4,7 @@ permalink: /api/cmi/
 tags: []
 keywords: 
 audience:
-last_updated: 02-12-2015
+last_updated: 22-12-2015
 summary:
 ---
 
@@ -208,7 +208,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 
 #### Request Parameters
 
-<ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>RQPurchaseOrderID</code> (<strong>Required</strong>) </li><li><code>SerialNumbers</code> (<strong>Required</strong>) </li><li><code>VendorInvoiceNumber</code> (<strong>Required</strong>) </li><li><code>PurchaseOrderID</code> (Optional) </li><li><code>ProductItemID</code> (Optional) </li><li><code>ShipmentNumber</code> (Optional) </li><li><code>VendorSKU</code> (Optional) </li></ul>
+<ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>RQPurchaseOrderID</code> (<strong>Required</strong>) </li><li><code>SerialNumbers</code> (<strong>Required</strong>) </li><li><code>VendorInvoiceNumber</code> (<strong>Required</strong>) - Either this value **OR** PurchaseOrderID must be provided</li><li><code>PurchaseOrderID</code> (Optional) - Either this value or VendorInvoiceNumber must be provided</li><li><code>ProductItemID</code> (Optional) - Either this value or VendorSKU must be provided</li><li><code>ShipmentNumber</code> (Optional) - If this value is not provided, the service will automatically assign one</li><li><code>VendorSKU</code> (Optional) - Either this value or ProductItemId must be provided</li></ul>
 
 ###### Example
 
@@ -327,7 +327,7 @@ Therefore, if a dealer creates a Purchase Order within RQ, it will be available 
 
 #### Request Parameters
 
-<ul><li><code>isCommitted</code> (<strong>Required</strong>) </li><li><code>isCompleted</code> (<strong>Required</strong>) </li><li><code>startDate</code> (<strong>Required</strong>) </li><li><code>endDate</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>isCommitted</code> (<strong>Required</strong>) - Flag to indicate if committed or uncommitted purchase orders should be searched for</li><li><code>isCompleted</code> (<strong>Required</strong>) - Flag to indicate if complete or incomplete purchase orders should be searched for</li><li><code>startDate</code> (<strong>Required</strong>) - Purchase orders committed and/or completed on or after this day at midnight will be searched for</li><li><code>endDate</code> (<strong>Required</strong>) - Purchase orders committed and/or completed up to the end of this day will be searched for</li></ul>
 
 ###### Example
 
@@ -479,7 +479,7 @@ HTTP 200 Content-Type: application/xml
 
 #### Request Parameters
 
-<ul><li><code>PurchaseOrderReferenceNumber</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>PurchaseOrderReferenceNumber</code> (<strong>Required</strong>) - Reference Number on the Purchase Order in RQ</li></ul>
 
 ###### Example
 
@@ -608,7 +608,7 @@ HTTP 200 Content-Type: application/xml
 
 This method allows you find a purchase order based on the RQ business key, the visual ID by store seen on RQ printouts.
 
-This call is useful in the situation where a user has created a PO in RQ for a vendor. The vendor can get the PO data and product info to help with creation of shipping notifications.      
+This call is useful in the situation where a user has created a PO in RQ for a vendor. The vendor can get the PO data and product info to help with the creation of shipping notifications.      
 
 
 #### Request
@@ -626,7 +626,7 @@ This call is useful in the situation where a user has created a PO in RQ for a v
 
 #### Request Parameters
 
-<ul><li><code>purchaseOrderIdByStore</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>purchaseOrderIdByStore</code> (<strong>Required</strong>) - The business key of the purchase order in RQ</li></ul>
 
 ###### Example
 

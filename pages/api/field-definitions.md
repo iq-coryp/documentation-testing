@@ -4,7 +4,7 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -110,11 +110,30 @@ The result displayed on the page, with some styling, is shown below
 GET /FieldDefinitions
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
 
@@ -129,7 +148,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#fielddefinition'>FieldDefinition</a>]
@@ -162,18 +181,39 @@ HTTP 200 Content-Type: application/json
 GET /FieldDefinitions({FieldDefinitionId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(84)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(84)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `FieldDefinitionId` (**Required**)  - Identifier for the {{FieldDefinition}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>FieldDefinitionId</code> (<strong>Required</strong>)  - Identifier for the {{FieldDefinition}}
+    </li>
+    </ul>
 
 
 
@@ -186,7 +226,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#fielddefinition'>FieldDefinition</a>
@@ -207,7 +247,9 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -298,28 +298,348 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activations({ActivationId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)" - d '{
+    "Id": "1=35854205829867",
+    "CarrierActivationDetails": {
+        "ActivationId": 354,
+        "ActivationDate": "2015-06-19T05:44:39.7163989Z",
+        "ActivatedProduct": {
+            "Description": "Samsung Galaxy S5",
+            "ESN": "35854205829867",
+            "IMEI": "351756051523999",
+            "Make": "Samsung",
+            "MobileDeviceNumber": "5555550123",
+            "Model": "Galaxy S5",
+            "Price": 499,
+            "ProductId": "",
+            "SerialNumber": "98769456321",
+            "SIM": "89000000000000001234",
+            "SKU": "DEF987",
+            "SOCCode": "DEF987",
+            "Tab": {
+                "Amount": 50,
+                "Commission": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123"
+            }
+        },
+        "ActivationState": "Pending",
+        "ActivationTermCode": "EarlyUpgrade",
+        "ActivationType": "NewActivation",
+        "AdditionalFees": [
+            {
+                "Name": "Roaming",
+                "Description": "Roam like home",
+                "Amount": 55,
+                "Notes": "US",
+                "Rebate": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123",
+                "SOCCode": "BB3221"
+            }
+        ],
+        "ContractLengthInMonths": 24,
+        "ContractNumberIsAccountNumber": false,
+        "DealerName": "IAPR",
+        "DealerCode": "IAPR",
+        "Deposit": {
+            "Name": "Roaming",
+            "Description": "Roam like home",
+            "Amount": 55,
+            "Notes": "US",
+            "Rebate": {
+                "Name": "Promo",
+                "Description": "FREE Roam Like Home",
+                "Amount": 55,
+                "Notes": "US",
+                "ReferenceNumber": "abc123",
+                "SOCCode": "AGG242"
+            },
+            "ReferenceNumber": "abc123",
+            "SOCCode": "BB3221"
+        },
+        "Notes": "Notes go here!",
+        "OrderNumber": "ORD1234",
+        "RatePlans": [
+            {
+                "RatePlanId": "ABC1234",
+                "Name": "Country-wide Unlimited",
+                "ContractTerms": "Some terms",
+                "Description": "The perfect plan for lots of calling!",
+                "IncludedRatePlanFeatures": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "MonthlyRecurringCharges": 55,
+                "RatePlanFeatureAddons": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "SOCCode": "ABC1234"
+            }
+        ],
+        "RemoteActivationID": "3023997373",
+        "Subscriber": {
+            "SubscriberId": "12121212121",
+            "FirstName": "Joe",
+            "LastName": "Smith",
+            "Addresses": [
+                {
+                    "AddressLine1": "123 Main Street",
+                    "AddressLine2": "Apt 200",
+                    "City": "Dover",
+                    "Country": "USA",
+                    "County": "Fairfield",
+                    "POBox": "PO Box 123",
+                    "PostalCode": "19901",
+                    "Province": "DE",
+                    "SuiteNumber": "100",
+                    "Type": "Residential"
+                }
+            ],
+            "AssociatedAccount": {
+                "AccountId": "343434343",
+                "Notes": "",
+                "TrackingNumber": "5656565656"
+            },
+            "BirthDate": "5/16/1980",
+            "CompanyName": "",
+            "Email": "subscriber@example.com",
+            "IsIndividual": true,
+            "Notes": "24 Month Term",
+            "PhoneNumbers": [
+                {
+                    "Type": "Home",
+                    "Value": "1234561234"
+                }
+            ],
+            "SSN": "6789",
+            "TrackingNumber": "2121212121"
+        },
+        "TrackingNumber": "3023997373"
+    },
+    "CarrierId": 41,
+    "CompanyId": 1234,
+    "LocationId": 5678
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": "1=35854205829867",
+    "CarrierActivationDetails": {
+        "ActivationId": 354,
+        "ActivationDate": "2015-06-19T05:44:39.7163989Z",
+        "ActivatedProduct": {
+            "Description": "Samsung Galaxy S5",
+            "ESN": "35854205829867",
+            "IMEI": "351756051523999",
+            "Make": "Samsung",
+            "MobileDeviceNumber": "5555550123",
+            "Model": "Galaxy S5",
+            "Price": 499,
+            "ProductId": "",
+            "SerialNumber": "98769456321",
+            "SIM": "89000000000000001234",
+            "SKU": "DEF987",
+            "SOCCode": "DEF987",
+            "Tab": {
+                "Amount": 50,
+                "Commission": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123"
+            }
+        },
+        "ActivationState": "Pending",
+        "ActivationTermCode": "EarlyUpgrade",
+        "ActivationType": "NewActivation",
+        "AdditionalFees": [
+            {
+                "Name": "Roaming",
+                "Description": "Roam like home",
+                "Amount": 55,
+                "Notes": "US",
+                "Rebate": {
+                    "Name": "Promo",
+                    "Description": "FREE Roam Like Home",
+                    "Amount": 55,
+                    "Notes": "US",
+                    "ReferenceNumber": "abc123",
+                    "SOCCode": "AGG242"
+                },
+                "ReferenceNumber": "abc123",
+                "SOCCode": "BB3221"
+            }
+        ],
+        "ContractLengthInMonths": 24,
+        "ContractNumberIsAccountNumber": false,
+        "DealerName": "IAPR",
+        "DealerCode": "IAPR",
+        "Deposit": {
+            "Name": "Roaming",
+            "Description": "Roam like home",
+            "Amount": 55,
+            "Notes": "US",
+            "Rebate": {
+                "Name": "Promo",
+                "Description": "FREE Roam Like Home",
+                "Amount": 55,
+                "Notes": "US",
+                "ReferenceNumber": "abc123",
+                "SOCCode": "AGG242"
+            },
+            "ReferenceNumber": "abc123",
+            "SOCCode": "BB3221"
+        },
+        "Notes": "Notes go here!",
+        "OrderNumber": "ORD1234",
+        "RatePlans": [
+            {
+                "RatePlanId": "ABC1234",
+                "Name": "Country-wide Unlimited",
+                "ContractTerms": "Some terms",
+                "Description": "The perfect plan for lots of calling!",
+                "IncludedRatePlanFeatures": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "MonthlyRecurringCharges": 55,
+                "RatePlanFeatureAddons": [
+                    {
+                        "RatePlanAddonId": "XYZ5678",
+                        "Name": "TEXT100",
+                        "Description": "One hundred additional text messages.",
+                        "MonthlyRecurringCharges": 5,
+                        "SOCCode": "XYZ5678"
+                    }
+                ],
+                "SOCCode": "ABC1234"
+            }
+        ],
+        "RemoteActivationID": "3023997373",
+        "Subscriber": {
+            "SubscriberId": "12121212121",
+            "FirstName": "Joe",
+            "LastName": "Smith",
+            "Addresses": [
+                {
+                    "AddressLine1": "123 Main Street",
+                    "AddressLine2": "Apt 200",
+                    "City": "Dover",
+                    "Country": "USA",
+                    "County": "Fairfield",
+                    "POBox": "PO Box 123",
+                    "PostalCode": "19901",
+                    "Province": "DE",
+                    "SuiteNumber": "100",
+                    "Type": "Residential"
+                }
+            ],
+            "AssociatedAccount": {
+                "AccountId": "343434343",
+                "Notes": "",
+                "TrackingNumber": "5656565656"
+            },
+            "BirthDate": "5/16/1980",
+            "CompanyName": "",
+            "Email": "subscriber@example.com",
+            "IsIndividual": true,
+            "Notes": "24 Month Term",
+            "PhoneNumbers": [
+                {
+                    "Type": "Home",
+                    "Value": "1234561234"
+                }
+            ],
+            "SSN": "6789",
+            "TrackingNumber": "2121212121"
+        },
+        "TrackingNumber": "3023997373"
+    },
+    "CarrierId": 41,
+    "CompanyId": 1234,
+    "LocationId": 5678
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>CarrierId</code> (<strong>Required</strong>)  - Identifier for the {{Carrier}}
+    </li>
+    
+    <li>
+        <code>ActivationId</code> (<strong>Required</strong>)  - Identifier for the {{Activation}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
-* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
-* `ActivationId` (**Required**)  - Identifier for the {{Activation}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CarrierActivationDetails</code> (<strong>Required</strong>) </li><ul><li><code>ActivatedProduct</code> (<strong>Required</strong>) </li><ul><li><code>ProductId</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>ESN</code> (Optional) </li><li><code>IMEI</code> (Optional) </li><li><code>Make</code> (Optional) </li><li><code>MobileDeviceNumber</code> (Optional) </li><li><code>Model</code> (Optional) </li><li><code>Price</code> (Optional) </li><li><code>SerialNumber</code> (Optional) </li><li><code>SIM</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>SOCCode</code> (Optional) </li><li><code>Tab</code> (Optional) </li><ul><li><code>Commission</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li></ul><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li></ul></ul><li><code>ActivationType</code> (<strong>Required</strong>) </li><li><code>RatePlans</code> (<strong>Required</strong>) </li><ul><li><code>Description</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>RatePlanId</code> (Optional) </li><li><code>Name</code> (Optional) </li><li><code>ContractTerms</code> (Optional) </li><li><code>IncludedRatePlanFeatures</code> (Optional) </li><ul><li><code>Description</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>RatePlanAddonId</code> (Optional) </li><li><code>Name</code> (Optional) </li><li><code>MonthlyRecurringCharges</code> (Optional) </li></ul><li><code>MonthlyRecurringCharges</code> (Optional) </li><li><code>RatePlanFeatureAddons</code> (Optional) </li><ul><li><code>Description</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>RatePlanAddonId</code> (Optional) </li><li><code>Name</code> (Optional) </li><li><code>MonthlyRecurringCharges</code> (Optional) </li></ul></ul><li><code>Subscriber</code> (<strong>Required</strong>) </li><ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>CompanyName</code> (<strong>Required</strong>) </li><li><code>SubscriberId</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressLine1</code> (<strong>Required</strong>) </li><li><code>AddressLine2</code> (<strong>Required</strong>) </li><li><code>City</code> (<strong>Required</strong>) </li><li><code>Country</code> (<strong>Required</strong>) </li><li><code>PostalCode</code> (<strong>Required</strong>) </li><li><code>Province</code> (<strong>Required</strong>) </li><li><code>Type</code> (<strong>Required</strong>) </li><li><code>County</code> (Optional) </li><li><code>POBox</code> (Optional) </li><li><code>SuiteNumber</code> (Optional) </li></ul><li><code>AssociatedAccount</code> (Optional) </li><ul><li><code>AccountId</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>TrackingNumber</code> (Optional) </li></ul><li><code>BirthDate</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>IsIndividual</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Type</code> (Optional) </li></ul><li><code>SSN</code> (Optional) </li><li><code>TrackingNumber</code> (Optional) </li></ul><li><code>ActivationId</code> (<strong>Required</strong>) </li><li><code>ActivationState</code> (<strong>Required</strong>) </li><li><code>ActivationTermCode</code> (Optional) </li><li><code>AdditionalFees</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Rebate</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li></ul></ul><li><code>ContractLengthInMonths</code> (Optional) </li><li><code>ContractNumberIsAccountNumber</code> (Optional) </li><li><code>DealerName</code> (Optional) </li><li><code>DealerCode</code> (Optional) </li><li><code>Deposit</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Rebate</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li></ul></ul><li><code>Notes</code> (Optional) </li><li><code>OrderNumber</code> (Optional) </li><li><code>RemoteActivationID</code> (Optional) </li><li><code>TrackingNumber</code> (Optional) </li></ul><li><code>CarrierId</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (<strong>Required</strong>) </li><li><code>LocationId</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>CarrierActivationDetails</code> (<strong>Required</strong>) </li><ul><li><code>ActivatedProduct</code> (<strong>Required</strong>) </li><ul><li><code>ProductId</code> (<strong>Required</strong>) - May be set to an empty string</li><li><code>Description</code> (Optional) </li><li><code>ESN</code> (Optional) </li><li><code>IMEI</code> (Optional) </li><li><code>Make</code> (Optional) </li><li><code>MobileDeviceNumber</code> (Optional) </li><li><code>Model</code> (Optional) </li><li><code>Price</code> (Optional) </li><li><code>SerialNumber</code> (Optional) </li><li><code>SIM</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>SOCCode</code> (Optional) </li><li><code>Tab</code> (Optional) </li><ul><li><code>Commission</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li></ul><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li></ul></ul><li><code>ActivationType</code> (<strong>Required</strong>) </li><li><code>RatePlans</code> (<strong>Required</strong>) </li><ul><li><code>Description</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>RatePlanId</code> (Optional) </li><li><code>Name</code> (Optional) </li><li><code>ContractTerms</code> (Optional) </li><li><code>IncludedRatePlanFeatures</code> (Optional) </li><ul><li><code>Description</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>RatePlanAddonId</code> (Optional) </li><li><code>Name</code> (Optional) </li><li><code>MonthlyRecurringCharges</code> (Optional) </li></ul><li><code>MonthlyRecurringCharges</code> (Optional) </li><li><code>RatePlanFeatureAddons</code> (Optional) </li><ul><li><code>Description</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>RatePlanAddonId</code> (Optional) </li><li><code>Name</code> (Optional) </li><li><code>MonthlyRecurringCharges</code> (Optional) </li></ul></ul><li><code>Subscriber</code> (<strong>Required</strong>) </li><ul><li><code>FirstName</code> (<strong>Required</strong>) - Required if IsIndividual is set to true, otherwise must be omitted</li><li><code>LastName</code> (<strong>Required</strong>) - Required if IsIndividual is set to true, otherwise must be omitted</li><li><code>CompanyName</code> (<strong>Required</strong>) - Required if IsIndividual is set to false, otherwise must be omitted</li><li><code>SubscriberId</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressLine1</code> (<strong>Required</strong>) </li><li><code>AddressLine2</code> (<strong>Required</strong>) </li><li><code>City</code> (<strong>Required</strong>) </li><li><code>Country</code> (<strong>Required</strong>) </li><li><code>PostalCode</code> (<strong>Required</strong>) </li><li><code>Province</code> (<strong>Required</strong>) </li><li><code>Type</code> (<strong>Required</strong>) </li><li><code>County</code> (Optional) </li><li><code>POBox</code> (Optional) </li><li><code>SuiteNumber</code> (Optional) </li></ul><li><code>AssociatedAccount</code> (Optional) </li><ul><li><code>AccountId</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>TrackingNumber</code> (Optional) </li></ul><li><code>BirthDate</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>IsIndividual</code> (Optional) - Defaults to false</li><li><code>Notes</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Type</code> (Optional) - Defaults to Home</li></ul><li><code>SSN</code> (Optional) </li><li><code>TrackingNumber</code> (Optional) </li></ul><li><code>ActivationId</code> (<strong>Required</strong>) </li><li><code>ActivationState</code> (<strong>Required</strong>) - Acceptable values are Pending or Completed. Defaults to Pending</li><li><code>ActivationTermCode</code> (Optional) </li><li><code>AdditionalFees</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Rebate</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li></ul></ul><li><code>ContractLengthInMonths</code> (Optional) </li><li><code>ContractNumberIsAccountNumber</code> (Optional) </li><li><code>DealerName</code> (Optional) </li><li><code>DealerCode</code> (Optional) </li><li><code>Deposit</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Rebate</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Description</code> (<strong>Required</strong>) </li><li><code>ReferenceNumber</code> (<strong>Required</strong>) </li><li><code>SOCCode</code> (<strong>Required</strong>) </li><li><code>Amount</code> (Optional) </li><li><code>Notes</code> (Optional) </li></ul></ul><li><code>Notes</code> (Optional) </li><li><code>OrderNumber</code> (Optional) </li><li><code>RemoteActivationID</code> (Optional) </li><li><code>TrackingNumber</code> (Optional) </li></ul><li><code>CarrierId</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (<strong>Required</strong>) </li><li><code>LocationId</code> (<strong>Required</strong>) - Must match the LocationId provided in the URI</li></ul>
 
 <h5>Example</h5>
 
@@ -476,7 +796,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#activation'>Activation</a>
@@ -642,22 +962,55 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'{ConfirmationDate}'&$skip={Skip}&$top={Top}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=0&$top=5" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T15:29:31.091Z'&$skip=0&$top=5");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
-* `ConfirmationDate` (Optional)  - Limits returned records to ones that were created after the specified date 
-* `Skip` (Optional)  - Number of records to skip before returning.  See [Pagination](#pagination) for more details 
-* `Top` (Optional)  - Maximum number of records return.  See [Pagination](#pagination) for more details 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CarrierId</code> (<strong>Required</strong>)  - Identifier for the {{Carrier}}
+    </li>
+    
+    <li>
+        <code>ConfirmationDate</code> (Optional)  - Limits returned records to ones that were created after the specified date
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip before returning. See <a href="#pagiation">Pagination</a> for more details
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Maximum number of records return. See <a href="#pagiation">Pagination</a> for more details
+    </li>
+    </ul>
 
 
 
@@ -670,7 +1023,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#confirmedactivation'>ConfirmedActivation</a>]
@@ -752,7 +1105,9 @@ HTTP 200 Content-Type: application/hal+json
 
 </pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
@@ -762,7 +1117,7 @@ HTTP 200 Content-Type: application/hal+json
 | `HTTP 400` | `Invalid Request: Type field must  be one of the following values: {x}` | Ensure AddressType is one of the values in [AddressType](#addresstype) |
 
 
-## Pagination
+<h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
 
 <h2>Pagination</h2>
 

@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -172,25 +172,76 @@ summary:
 POST /Companies({CompanyId})/Orders
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders" - d '{
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "TenderId": "INV112"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "TenderId": "INV112"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li></ul>
+<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) - Must belong to the Company specified in the URI. Required to Process an Order</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -217,7 +268,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#order'>Order</a>
@@ -259,18 +310,39 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Orders
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -283,7 +355,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#order'>Order</a>]
@@ -327,24 +399,96 @@ HTTP 200 Content-Type: application/json
 POST /Companies({CompanyId})/Orders({OrderId})/Items
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items" - d '{
+    "Cost": 5.99,
+    "Description": "LG G3 phone case",
+    "ItemStatus": "New",
+    "ItemTypeId": "1",
+    "Index": 0,
+    "ListPrice": 12.99,
+    "Notes": "Dented corner",
+    "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "Quantity": 2,
+    "SellingPrice": 9.99,
+    "SerialNumbers": [
+        "abc321"
+    ],
+    "SKU": "00001",
+    "ShippingOptionId": "1",
+    "SupplierEntityId": 14,
+    "SupplierReference": "10",
+    "TrackingInformation": [
+        {
+            "Quantity": 1,
+            "TrackingNumber": "`1TTTTN4421"
+        }
+    ]
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Cost": 5.99,
+    "Description": "LG G3 phone case",
+    "ItemStatus": "New",
+    "ItemTypeId": "1",
+    "Index": 0,
+    "ListPrice": 12.99,
+    "Notes": "Dented corner",
+    "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "Quantity": 2,
+    "SellingPrice": 9.99,
+    "SerialNumbers": [
+        "abc321"
+    ],
+    "SKU": "00001",
+    "ShippingOptionId": "1",
+    "SupplierEntityId": 14,
+    "SupplierReference": "10",
+    "TrackingInformation": [
+        {
+            "Quantity": 1,
+            "TrackingNumber": "`1TTTTN4421"
+        }
+    ]
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}} being updated
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul>
 
@@ -382,7 +526,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#item'>Item</a>
@@ -431,19 +575,43 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/Orders({OrderId})/Items
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}} being updated
+    </li>
+    </ul>
 
 
 
@@ -456,7 +624,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#item'>Item</a>]
@@ -507,19 +675,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Orders({OrderId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}}
+    </li>
+    </ul>
 
 
 
@@ -532,7 +724,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#order'>Order</a>
@@ -574,26 +766,92 @@ HTTP 200 Content-Type: application/json
 PUT /Companies({CompanyId})/Orders({OrderId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)" - d '{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li></ul>
+<ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) - Must belong to the Company specified in the URI. Required to Process an Order</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -626,7 +884,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#order'>Order</a>
@@ -668,24 +926,52 @@ HTTP 200 Content-Type: application/json
 POST /Companies({CompanyId})/Orders({OrderId})/Process
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process" - d '{
+    "OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "OrderId": "216f7424-ae18-4c69-9597-984b430d0759"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>OrderId</code> (<strong>Required</strong>) </li></ul>
 
@@ -701,7 +987,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#order'>Order</a>
@@ -744,25 +1030,130 @@ HTTP 201 Content-Type: application/json
 POST /Companies({CompanyId})/OrderFull
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull" - d '{
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "TenderId": "INV112",
+    "Items": [
+        {
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryHours": 20,
+    "OrderTypeId": 3,
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "TenderId": "INV112",
+    "Items": [
+        {
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
+<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) -  Must belong to the Company specified in the URI</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -816,7 +1207,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#orderfull'>OrderFull</a>
@@ -889,18 +1280,39 @@ HTTP 201 Content-Type: application/json
 GET /Companies({CompanyId})/OrderFull
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -913,7 +1325,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#orderfull'>OrderFull</a>]
@@ -988,19 +1400,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/OrderFull({OrderId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}} being updated
+    </li>
+    </ul>
 
 
 
@@ -1013,7 +1449,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#orderfull'>OrderFull</a>
@@ -1087,26 +1523,154 @@ HTTP 200 Content-Type: application/json
 PUT /Companies({CompanyId})/OrderFull({OrderId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)" - d '{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Id": "216f7424-ae18-4c69-9597-984b430d0759",
+    "Name": "iPhone 5 Order",
+    "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CreatedDateUtc": "2015-03-27T18:47:29.9012402+00:00",
+    "DiscountAmount": 15,
+    "DiscountCode": "MTRY-15",
+    "DiscountDescription": "Military discount",
+    "EmployeeId": "15",
+    "EntityId": 2,
+    "OrderExpiryDate": "2015-05-05T14:32:05.9140188+00:00",
+    "OrderExpiryHours": 20,
+    "OrderType": "Sales",
+    "OrderTypeId": 3,
+    "PrintableId": "8765-1234-987",
+    "ShippingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+    "ShippingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "ShippingEntityId": 2,
+    "State": "Created",
+    "TenderId": "INV112",
+    "Items": [
+        {
+            "Id": "65a13420-5673-45cd-b455-9bbe7f27f694",
+            "Cost": 5.99,
+            "Description": "LG G3 phone case",
+            "ItemStatus": "New",
+            "ItemStatusId": 1,
+            "ItemType": "DropShip",
+            "ItemTypeId": "1",
+            "Index": 0,
+            "ListPrice": 12.99,
+            "Notes": "Dented corner",
+            "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+            "ProductId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+            "Quantity": 2,
+            "SellingPrice": 9.99,
+            "SerialNumbers": [
+                "abc321"
+            ],
+            "SKU": "00001",
+            "ShippingOptionId": "1",
+            "SupplierEntityId": 14,
+            "SupplierReference": "10",
+            "TrackingInformation": [
+                {
+                    "Quantity": 1,
+                    "TrackingNumber": "`1TTTTN4421"
+                }
+            ]
+        }
+    ]
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}} being updated
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `OrderId` (**Required**)  - Identifier for the {{Order}} being updated 
-
-
-
-#### Request Parameters
-
-<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) </li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) </li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) </li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
+<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) -  Must belong to the Company specified in the URI</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -1170,7 +1734,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#orderfull'>OrderFull</a>
@@ -1243,19 +1807,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {LocationId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 2" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders?$filter=State eq 'Pending' and EntityId eq 2");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `LocationId` (**Required**)  - Identifier for the {{Location}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    </ul>
 
 
 
@@ -1268,7 +1856,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#order'>Order</a>]
@@ -1312,19 +1900,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders?$filter=PrintableId eq '8675-1234-987'" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(1)/Orders?$filter=PrintableId eq '8675-1234-987'");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `PrintableId` (**Required**)  - An {{Order}} identifier printed on invoices 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>PrintableId</code> (<strong>Required</strong>)  - An {{Order}} identifier printed on invoices
+    </li>
+    </ul>
 
 
 
@@ -1337,7 +1949,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#order'>Order</a>]
@@ -1371,7 +1983,9 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | Error Code  | Description | Reason |
 |:------------|:------------|:-------|

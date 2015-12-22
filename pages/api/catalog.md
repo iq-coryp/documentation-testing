@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -242,18 +242,39 @@ ColorTags are used to describe the major colors in a product
 GET /Companies({CompanyId})/Catalog/Items
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
 
 
 
@@ -266,7 +287,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#catalogitem'>CatalogItem</a>]
@@ -294,19 +315,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -319,7 +364,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#product'>Product</a>
@@ -465,19 +510,43 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Compatible" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Compatible");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -490,7 +559,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>Items</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>Slug</code> (String) </li><li><code>CatalogItemId</code> (Guid) </li><li><code>HeroShotId</code> (Guid) </li></ul></ul>
@@ -521,19 +590,43 @@ For more information about Variations, see <a href='/concepts/product-structure/
 GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Variations" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Variations");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CatalogItemId` (**Required**)  - Unique identifier for the {{CatalogItem}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
+    </li>
+    </ul>
 
 
 
@@ -546,7 +639,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>Name</code> (String) </li><li><code>Slug</code> (String) </li><li><code>CatalogItemId</code> (Guid) </li><li><code>Revisions</code> (Array) </li><ul><li><code>Name</code> (String) </li><li><code>Slug</code> (String) </li><li><code>CatalogItemId</code> (Guid) </li></ul></ul>
@@ -578,20 +671,47 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `VendorSku` (**Required**)  - Vendor SKU to search for 
-* `VendorId` (Optional)  - Identifier for a {{Vendor}} to search for 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>VendorSku</code> (<strong>Required</strong>)  - Vendor SKU to search for
+    </li>
+    
+    <li>
+        <code>VendorId</code> (Optional)  - Identifier for a {{Vendor}} to search for
+    </li>
+    </ul>
 
 
 
@@ -604,7 +724,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <ul><li><code>Sku</code> (String) </li><li><code>VendorId</code> (Integer) </li><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><ul><li><code>CatalogItemId</code> (Guid) </li><li><code>IsArchived</code> (Boolean) </li><li><code>RmsId</code> (String) </li><li><code>Slug</code> (String) </li></ul></ul>
@@ -636,21 +756,51 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryOrClassificationId}&Page={Page}&PageSize={PageSize}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?CategoryOrClassificationId=1&Page=1&PageSize=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?CategoryOrClassificationId=1&Page=1&PageSize=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `CategoryOrClassificationId` (Optional)  - Identifier for the {{Category}} or {{Classification}} 
-* `Page` (Optional)  - Page to display, if not specified defaults to 1 
-* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CategoryOrClassificationId</code> (Optional)  - Identifier for the {{Category}} or {{Classification}}
+    </li>
+    
+    <li>
+        <code>Page</code> (Optional)  - Page to display, if not specified defaults to 1
+    </li>
+    
+    <li>
+        <code>PageSize</code> (Optional)  - Number of results that will be returned, if not specified defaults to 20
+    </li>
+    </ul>
 
 
 
@@ -663,7 +813,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#catalogsearchresult'>CatalogSearchResult</a>
@@ -758,21 +908,51 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Page={Page}&PageSize={PageSize}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?ManufacturerIds=4,5&Page=1&PageSize=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?ManufacturerIds=4,5&Page=1&PageSize=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `ManufacturerIds` (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
-* `Page` (Optional)  - Page to display, if not specified defaults to 1 
-* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>ManufacturerIds</code> (Optional)  - Array of integers representing identifiers for {{Manufacturers}}
+    </li>
+    
+    <li>
+        <code>Page</code> (Optional)  - Page to display, if not specified defaults to 1
+    </li>
+    
+    <li>
+        <code>PageSize</code> (Optional)  - Number of results that will be returned, if not specified defaults to 20
+    </li>
+    </ul>
 
 
 
@@ -785,7 +965,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#catalogsearchresult'>CatalogSearchResult</a>
@@ -870,7 +1050,7 @@ HTTP 200 Content-Type: application/json
     }
 }</pre>
 
-<h2 id='searching-for-vendor' class='clickable-header top-level-header'>Searching For Vendor</h2>
+<h2 id='getting-products-by-supplier' class='clickable-header top-level-header'>Getting Products by Supplier</h2>
 
 
 
@@ -880,21 +1060,51 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&PageSize={PageSize}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&Page=1&PageSize=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&Page=1&PageSize=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `VendorIds` (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
-* `Page` (Optional)  - Page to display, if not specified defaults to 1 
-* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>VendorIds</code> (Optional)  - List of comma seperated integers representing Supplier identifiers
+    </li>
+    
+    <li>
+        <code>Page</code> (Optional)  - Page to display, if not specified defaults to 1
+    </li>
+    
+    <li>
+        <code>PageSize</code> (Optional)  - Number of results that will be returned, if not specified defaults to 20
+    </li>
+    </ul>
 
 
 
@@ -907,7 +1117,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#catalogsearchresult'>CatalogSearchResult</a>
@@ -1002,21 +1212,51 @@ HTTP 200 Content-Type: application/json
 GET /Companies({CompanyId})/Catalog/Search?IsDropshippable={IsDropShippable}&Page={Page}&PageSize={PageSize}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?IsDropshippable=true&Page=1&PageSize=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?IsDropshippable=true&Page=1&PageSize=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `IsDropShippable` (Optional)  - True to display products available for shipping, false to display products not available for shipping 
-* `Page` (Optional)  - Page to display, if not specified defaults to 1 
-* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>IsDropShippable</code> (Optional)  - True to display products available for shipping, false to display products not available for shipping
+    </li>
+    
+    <li>
+        <code>Page</code> (Optional)  - Page to display, if not specified defaults to 1
+    </li>
+    
+    <li>
+        <code>PageSize</code> (Optional)  - Number of results that will be returned, if not specified defaults to 20
+    </li>
+    </ul>
 
 
 
@@ -1029,7 +1269,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#catalogsearchresult'>CatalogSearchResult</a>
@@ -1127,23 +1367,59 @@ SearchTerms specified in the URI are compared against the following Product fiel
 GET /Companies({CompanyId})/Catalog/Search?&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `SearchTerms` (Optional)  - Search terms 
-* `OrderBy` (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
-* `OrderDir` (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
-* `Page` (Optional)  - Page to display, if not specified defaults to 1 
-* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>SearchTerms</code> (Optional)  - Search terms
+    </li>
+    
+    <li>
+        <code>OrderBy</code> (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified
+    </li>
+    
+    <li>
+        <code>OrderDir</code> (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified
+    </li>
+    
+    <li>
+        <code>Page</code> (Optional)  - Page to display, if not specified defaults to 1
+    </li>
+    
+    <li>
+        <code>PageSize</code> (Optional)  - Number of results that will be returned, if not specified defaults to 20
+    </li>
+    </ul>
 
 
 
@@ -1156,7 +1432,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#catalogsearchresult'>CatalogSearchResult</a>
@@ -1251,27 +1527,75 @@ Search filters can be combined to narrow down results. The example below illustr
 GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CompanyId` (**Required**)  - Identifier for the {{Company}} 
-* `VendorIds` (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}} 
-* `ManufacturerIds` (Optional)  - Array of integers representing identifiers for {{Manufacturers}} 
-* `IsDropShippable` (Optional)  - True to display products available for shipping, false to display products not available for shipping 
-* `CategoryOrClassificationId` (Optional)  - Identifier for the {{Category}} or {{Classification}} 
-* `SearchTerms` (Optional)  - Search terms 
-* `OrderBy` (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified 
-* `OrderDir` (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified 
-* `Page` (Optional)  - Page to display, if not specified defaults to 1 
-* `PageSize` (Optional)  - Number of results that will be returned, if not specified defaults to 20 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>VendorIds</code> (Optional)  - List of comma seperated integers representing identifiers for {{Vendors}}
+    </li>
+    
+    <li>
+        <code>ManufacturerIds</code> (Optional)  - Array of integers representing identifiers for {{Manufacturers}}
+    </li>
+    
+    <li>
+        <code>IsDropShippable</code> (Optional)  - True to display products available for shipping, false to display products not available for shipping
+    </li>
+    
+    <li>
+        <code>CategoryOrClassificationId</code> (Optional)  - Identifier for the {{Category}} or {{Classification}}
+    </li>
+    
+    <li>
+        <code>SearchTerms</code> (Optional)  - Search terms
+    </li>
+    
+    <li>
+        <code>OrderBy</code> (Optional)  - A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified
+    </li>
+    
+    <li>
+        <code>OrderDir</code> (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified
+    </li>
+    
+    <li>
+        <code>Page</code> (Optional)  - Page to display, if not specified defaults to 1
+    </li>
+    
+    <li>
+        <code>PageSize</code> (Optional)  - Number of results that will be returned, if not specified defaults to 20
+    </li>
+    </ul>
 
 
 
@@ -1284,7 +1608,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#catalogsearchresult'>CatalogSearchResult</a>
@@ -1369,7 +1693,9 @@ HTTP 200 Content-Type: application/json
     }
 }</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

@@ -4,7 +4,7 @@ permalink: /api/entity-store/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -103,11 +103,30 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 GET /Carriers
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Carriers" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
 
@@ -122,7 +141,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#carrier'>Carrier</a>]
@@ -163,18 +182,39 @@ HTTP 200 Content-Type: application/json
 GET /Carriers({CarrierId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `CarrierId` (**Required**)  - Identifier for the {{Carrier}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CarrierId</code> (<strong>Required</strong>)  - Identifier for the {{Carrier}}
+    </li>
+    </ul>
 
 
 
@@ -187,7 +227,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#carrier'>Carrier</a>
@@ -226,11 +266,30 @@ HTTP 200 Content-Type: application/json
 GET /Manufacturers
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
 
@@ -245,7 +304,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#manufacturer'>Manufacturer</a>]
@@ -286,18 +345,39 @@ HTTP 200 Content-Type: application/json
 GET /Manufacturers({ManufacturerId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(4)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(4)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `ManufacturerId` (**Required**)  - Identifier for the {{Manufacturer}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>ManufacturerId</code> (<strong>Required</strong>)  - Identifier for the {{Manufacturer}}
+    </li>
+    </ul>
 
 
 
@@ -310,7 +390,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#manufacturer'>Manufacturer</a>
@@ -349,11 +429,30 @@ HTTP 200 Content-Type: application/json
 GET /Suppliers
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
 
@@ -368,7 +467,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#supplier'>Supplier</a>]
@@ -409,18 +508,39 @@ HTTP 200 Content-Type: application/json
 GET /Suppliers({SupplierId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `SupplierId` (**Required**)  - Identifier for the {{Supplier}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>SupplierId</code> (<strong>Required</strong>)  - Identifier for the {{Supplier}}
+    </li>
+    </ul>
 
 
 
@@ -433,7 +553,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#supplier'>Supplier</a>
@@ -461,3 +581,4 @@ HTTP 200 Content-Type: application/json
     "SortName": "samplesupplier",
     "Version": 1
 }</pre>
+

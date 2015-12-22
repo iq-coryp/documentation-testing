@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -48,18 +48,37 @@ An **Asset** is an image or video associated with a Product.
 POST /assets
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: multipart/form-data</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: multipart/form-data`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: multipart/form-data" - "https://amsdemo.iqmetrix.net/assets" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://amsdemo.iqmetrix.net/assets");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "multipart/form-data"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
 
 
 
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <li><code>Filename</code> (<strong>Required</strong>) - File to be uploaded</li>
 
@@ -74,7 +93,7 @@ Content-Type: multipart/form-data
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#asset'>Asset</a>
@@ -104,17 +123,38 @@ HTTP 201 Content-Type: application/json
 GET /assets/{AssetId}
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Accept: application/json</code></li></ul>
 
 
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Accept: application/json" - "https://amsdemo.iqmetrix.net/assets/732130d2-b673-461c-812b-f2b614d6076e" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://amsdemo.iqmetrix.net/assets/732130d2-b673-461c-812b-f2b614d6076e");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>AssetId</code> (<strong>Required</strong>)  - Identifier for the {{Asset}}
+    </li>
+    </ul>
 
 
 
@@ -126,7 +166,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#asset'>Asset</a>
@@ -156,16 +196,34 @@ A successful response to this request is a `HTTP 303` redirect with a `Location`
 GET /images/{AssetId}
 </pre>
 
-#### Headers
 
 
+### Code Sample (cURL)
+
+<pre>
+curl -x get - "https://amsdemo.iqmetrix.net/images/732130d2-b673-461c-812b-f2b614d6076e" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://amsdemo.iqmetrix.net/images/732130d2-b673-461c-812b-f2b614d6076e");
+var request = new RestRequest(Method.get);
+ 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `AssetId` (**Required**)  - Identifier for the {{Asset}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>AssetId</code> (<strong>Required</strong>)  - Identifier for the {{Asset}}
+    </li>
+    </ul>
 
 
 
@@ -176,7 +234,7 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -186,7 +244,9 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 HTTP 303 Content-Type: application/text
 </pre><pre>Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

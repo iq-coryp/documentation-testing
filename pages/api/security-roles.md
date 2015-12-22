@@ -4,7 +4,7 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -89,18 +89,39 @@ This request will return all [Permissions](#permission) within the [SecurityRole
 GET /Entities({EntityId})/Permissions
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Permissions" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Permissions");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>EntityId</code> (<strong>Required</strong>)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+    </li>
+    </ul>
 
 
 
@@ -113,7 +134,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#permission'>Permission</a>]
@@ -144,25 +165,50 @@ HTTP 200 Content-Type: application/json
 POST /Entities({EntityId})/SecurityRoles
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles" - d '{
+    "Name": "Store Manager"
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Name": "Store Manager"
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>EntityId</code> (<strong>Required</strong>)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
+<h4>Request Parameters</h4>
 
-
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-
-
-
-#### Request Parameters
-
-<ul><li><code>Name</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>Name</code> (<strong>Required</strong>) - A descriptive name, must be unique within the Company</li></ul>
 
 <h5>Example</h5>
 
@@ -176,7 +222,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#securityrole'>SecurityRole</a>
@@ -200,18 +246,39 @@ HTTP 201 Content-Type: application/json
 GET /Entities({EntityId})/SecurityRoles
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>EntityId</code> (<strong>Required</strong>)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+    </li>
+    </ul>
 
 
 
@@ -224,7 +291,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#securityrole'>SecurityRole</a>]
@@ -250,21 +317,48 @@ HTTP 200 Content-Type: application/json
 PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles(4457)/Permissions(55)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles(4457)/Permissions(55)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
-* `PermissionId` (**Required**)  - Identifier of a Permission 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>EntityId</code> (<strong>Required</strong>)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+    </li>
+    
+    <li>
+        <code>SecurityRoleId</code> (<strong>Required</strong>)  - Identifier of a SecurityRole
+    </li>
+    
+    <li>
+        <code>PermissionId</code> (<strong>Required</strong>)  - Identifier of a Permission
+    </li>
+    </ul>
 
 
 
@@ -278,7 +372,7 @@ Content-Type: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -298,19 +392,46 @@ HTTP 204 Content-Type: application/json
 DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles(4457)/Permissions(55)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles(4457)/Permissions(55)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
-* `PermissionId` (**Required**)  - Identifier of a Permission 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>EntityId</code> (<strong>Required</strong>)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+    </li>
+    
+    <li>
+        <code>SecurityRoleId</code> (<strong>Required</strong>)  - Identifier of a SecurityRole
+    </li>
+    
+    <li>
+        <code>PermissionId</code> (<strong>Required</strong>)  - Identifier of a Permission
+    </li>
+    </ul>
 
 
 
@@ -322,7 +443,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -342,19 +463,43 @@ HTTP 204 Content-Type: application/json
 GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles(4457)/Permissions" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/SecurityRoles(4457)/Permissions");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `EntityId` (**Required**)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}} 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>EntityId</code> (<strong>Required</strong>)  - Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}
+    </li>
+    
+    <li>
+        <code>SecurityRoleId</code> (<strong>Required</strong>)  - Identifier of a SecurityRole
+    </li>
+    </ul>
 
 
 
@@ -367,7 +512,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#permission'>Permission</a>]
@@ -398,23 +543,50 @@ If the User is assigned a SecurityRole they already have, the result will be a `
 POST /Users({UserId})/AssignedRoles
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/AssignedRoles" - d '{
+    "EntityId": 2,
+    "SecurityRoleId": 4457
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/AssignedRoles");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "EntityId": 2,
+    "SecurityRoleId": 4457
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier of a User
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier of a User 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>SecurityRoleId</code> (<strong>Required</strong>) </li></ul>
 
@@ -431,7 +603,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#assignedrole'>AssignedRole</a>
@@ -457,18 +629,39 @@ HTTP 201 Content-Type: application/json
 GET /Users({UserId})/AssignedRoles
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/AssignedRoles" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/AssignedRoles");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier of a User 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier of a User
+    </li>
+    </ul>
 
 
 
@@ -481,7 +674,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#assignedrole'>AssignedRole</a>]
@@ -509,18 +702,42 @@ HTTP 200 Content-Type: application/json
 DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
+### Code Sample (cURL)
+
+<pre>
+curl -x delete -H "Authorization: Bearer (Access Token)" - "https://usermanagerdemo.iqmetrix.net/v1/Users(2212)/AssignedRoles(4457)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2212)/AssignedRoles(4457)");
+var request = new RestRequest(Method.delete);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `UserId` (**Required**)  - Identifier of a User 
-* `SecurityRoleId` (**Required**)  - Identifier of a SecurityRole 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier of a User
+    </li>
+    
+    <li>
+        <code>SecurityRoleId</code> (<strong>Required</strong>)  - Identifier of a SecurityRole
+    </li>
+    </ul>
 
 
 
@@ -532,7 +749,7 @@ Authorization: Bearer (Access Token)
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 
@@ -542,7 +759,9 @@ Authorization: Bearer (Access Token)
 HTTP 204 Content-Type: application/json
 </pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|

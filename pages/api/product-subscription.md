@@ -4,7 +4,7 @@ permalink: /api/product-subscription/
 tags: []
 keywords: 
 audience: 
-last_updated: 02-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -55,7 +55,7 @@ Suppliers have the ability to add products to their subscribable lists and retri
 | Price | Decimal | Product price | `28.99` |
 | ProductName | String | Name of product | `iPhone 6 Flexshield Case` |
 | ProductSlugs | Array[string] | List of slugs that match the vendor sku | `M5218` |
-| VendorSku | String | Produt Sku | `9101AGAP6` |
+| VendorSku | String | Product Sku | `9101AGAP6` |
 | Version | Integer | Product revision | `2` |
 
 
@@ -73,18 +73,39 @@ Suppliers have the ability to add products to their subscribable lists and retri
 GET /subscription({ListId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productsubscriptionsdemo.iqmetrix.net/v1/subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productsubscriptionsdemo.iqmetrix.net/v1/subscription(2c7dccd9-49ba-42ac-bffb-edcc08f40773)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `ListId` (**Required**) 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>ListId</code> (<strong>Required</strong>) 
+    </li>
+    </ul>
 
 
 
@@ -97,7 +118,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 Array[<a href='#subscription'>Subscription</a>]
@@ -134,18 +155,39 @@ HTTP 200 Content-Type: application/json
 GET /subscribablelists({SubscribableListId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productsubscriptionsdemo.iqmetrix.net/v1/subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)" - d ''
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productsubscriptionsdemo.iqmetrix.net/v1/subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)");
+var request = new RestRequest(Method.get);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+
+request.AddParameter("application/json", "", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
 
 
-
-#### URI Parameters
-
-
-* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}} 
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>SubscribableListId</code> (<strong>Required</strong>)  - Identifier for a {{SubscribableList}}
+    </li>
+    </ul>
 
 
 
@@ -158,7 +200,7 @@ Accept: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#subscribablelist'>SubscribableList</a>
@@ -197,23 +239,68 @@ HTTP 200 Content-Type: application/json
 PUT /subscribablelists({SubscribableListId})
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://productsubscriptionsdemo.iqmetrix.net/v1/subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)" - d '{
+   "EntityId": 60455,
+   "Name": "Joe's Product List",
+   "Products": [
+       {
+           "ProductName": "Product Name",
+           "VendorSku": "123456789",
+           "Price": 11.11,
+           "Dropshippable": true
+       }
+   ]          
+}
+'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://productsubscriptionsdemo.iqmetrix.net/v1/subscribablelists(2c7dccd9-49ba-42ac-bffb-edcc08f40773)");
+var request = new RestRequest(Method.put);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+   "EntityId": 60455,
+   "Name": "Joe's Product List",
+   "Products": [
+       {
+           "ProductName": "Product Name",
+           "VendorSku": "123456789",
+           "Price": 11.11,
+           "Dropshippable": true
+       }
+   ]          
+}
+", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>SubscribableListId</code> (<strong>Required</strong>)  - Identifier for a {{SubscribableList}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `SubscribableListId` (**Required**)  - Identifier for a {{SubscribableList}} 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>Name</code> (<strong>Required</strong>) </li><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>ProductName</code> (<strong>Required</strong>) </li><li><code>VendorSku</code> (<strong>Required</strong>) </li><li><code>Dropshippable</code> (Optional) </li><li><code>Price</code> (Optional) </li><li><code>ProductSlugs</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul><li><code>Id</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
@@ -239,7 +326,7 @@ Content-Type: application/json
 
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#subscribablelist'>SubscribableList</a>
@@ -266,7 +353,9 @@ HTTP 200 Content-Type: application/json
 }
 </pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | Error Code | Message | How to Resolve |
 |:-----------|:--------|:---------------|

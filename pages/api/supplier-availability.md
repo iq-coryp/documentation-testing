@@ -4,7 +4,7 @@ permalink: /api/supplier-availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 22-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -49,23 +49,60 @@ Suppliers have the ability to configure availability of products.
 POST /Suppliers({SupplierId})/Availability
 </pre>
 
-#### Headers
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-* `Authorization: Bearer (Access Token)`
-* `Accept: application/json`
-* `Content-Type: application/json`
+### Code Sample (cURL)
+
+<pre>
+curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://dropshipdemo.iqmetrix.net/v1/Suppliers(60455)/Availability" - d '{
+    "Products": [
+        {
+            "IsAvailable": true,
+            "Sku": "9101AGAP6",
+            "Quantity": 10
+        }
+    ]
+}'
+</pre>
+
+### Code Sample (C# RestSharp)
+
+<pre>
+var client = new RestClient("https://dropshipdemo.iqmetrix.net/v1/Suppliers(60455)/Availability");
+var request = new RestRequest(Method.post);
+ 
+request.AddHeader("Authorization", "Bearer (Access Token)"); 
+request.AddHeader("Accept", "application/json"); 
+request.AddHeader("Content-Type", "application/json"); 
+
+request.AddParameter("application/json", "{
+    "Products": [
+        {
+            "IsAvailable": true,
+            "Sku": "9101AGAP6",
+            "Quantity": 10
+        }
+    ]
+}", ParameterType.RequestBody);
+
+IRestResponse response = client.Execute(request);
+</pre>
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>SupplierId</code> (<strong>Required</strong>)  - Identifier for the {{Supplier}}
+    </li>
+    </ul>
 
 
 
-#### URI Parameters
-
-
-* `SupplierId` (**Required**)  - Identifier for the {{Supplier}} 
-
-
-
-#### Request Parameters
+<h4>Request Parameters</h4>
 
 <ul><li><code>Products</code> (<strong>Required</strong>) </li><ul><li><code>Sku</code> (<strong>Required</strong>) </li><li><code>IsAvailable</code> (Optional) </li><li><code>Quantity</code> (Optional) </li></ul></ul>
 
@@ -87,7 +124,7 @@ Content-Type: application/json
 }
 </pre>
 
-#### Response
+<h4>Response</h4>
 
 
 <a href='#availability'>Availability</a>
@@ -107,7 +144,9 @@ HTTP 200 Content-Type: application/json
     ]
 }</pre>
 
-## Errors
+
+
+<h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 
 | Error Code | Message | How to Resolve |
