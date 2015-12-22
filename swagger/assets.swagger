@@ -1,0 +1,188 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "assets"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/assets": {
+      "post": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Asset",
+              "type": "object",
+              "description": "An **Asset** is an image or video associated with a Product.",
+              "properties": {
+                "id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "732130d2-b673-461c-812b-f2b614d6076e"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "File name",
+                  "example": "iqmetrix.jpg"
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "Height in pixels",
+                  "example": "145"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "URL that points to an actual file where the digital asset is stored",
+                  "example": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg"
+                },
+                "md5Checksum": {
+                  "type": "string",
+                  "description": "String that can be used for upload integrity checks or comparing two assets",
+                  "example": "2c8f3b3774df219b8246ca02a2a2a892"
+                },
+                "mimeType": {
+                  "type": "string",
+                  "description": "The mime type",
+                  "example": "image/jpeg"
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "Width in pixels",
+                  "example": "240"
+                },
+                "success": {
+                  "type": "boolean",
+                  "description": "A flag to indicate that the Asset was uploaded. This only appears when asset is first uploaded",
+                  "example": "true",
+                  "generated": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets/{AssetId}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "AssetId",
+            "in": "path",
+            "description": "Identifier for the {{Asset}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Asset",
+              "type": "object",
+              "description": "An **Asset** is an image or video associated with a Product.",
+              "properties": {
+                "id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "732130d2-b673-461c-812b-f2b614d6076e"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "File name",
+                  "example": "iqmetrix.jpg"
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "Height in pixels",
+                  "example": "145"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "URL that points to an actual file where the digital asset is stored",
+                  "example": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg"
+                },
+                "md5Checksum": {
+                  "type": "string",
+                  "description": "String that can be used for upload integrity checks or comparing two assets",
+                  "example": "2c8f3b3774df219b8246ca02a2a2a892"
+                },
+                "mimeType": {
+                  "type": "string",
+                  "description": "The mime type",
+                  "example": "image/jpeg"
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "Width in pixels",
+                  "example": "240"
+                },
+                "success": {
+                  "type": "boolean",
+                  "description": "A flag to indicate that the Asset was uploaded. This only appears when asset is first uploaded",
+                  "example": "true",
+                  "generated": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images/{AssetId}": {
+      "get": {
+        "description": "A successful response to this request is a `HTTP 303` redirect with a `Location` header pointing to the actual file where the digital asset is stored",
+        "responses": {
+          "303": {
+            "description": "See Other"
+          }
+        },
+        "produces": [
+          "application/text"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "AssetId",
+            "in": "path",
+            "description": "Identifier for the {{Asset}}",
+            "required": true
+          },
+          null
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "classification-tree",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/ClassificationTrees({ClassificationTreeId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "ClassificationTreeId",
+            "in": "path",
+            "description": "Identifier for the {{ClassificationTree}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "ClassificationTree",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "21"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "Cellular & Accessories"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Description",
+                  "example": "Classification of products for wireless retail"
+                },
+                "Categories": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Categories in the Tree",
+                  "ref": "classification-tree.Category"
+                },
+                "Classifications": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Classifications for the Tree",
+                  "ref": "classification-tree.Classification"
+                },
+                "Owner": {
+                  "type": "object",
+                  "ref": "classification-tree.Owner",
+                  "description": "Information about the [Company](/api/company-tree/#company) that owns this Tree"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "41"
+                },
+                "IsCanonical": {
+                  "type": "boolean",
+                  "description": "Reserved for internal use"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

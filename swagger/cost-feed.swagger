@@ -1,0 +1,100 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cost-feed",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Suppliers({SupplierId})/Cost": {
+      "post": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SupplierId",
+            "in": "path",
+            "description": "Identifier of the Supplier",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Cost",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Identifer for the cost feed",
+                  "example": "91a57ddb-2d42-402b-85b4-fe327a347313",
+                  "generated": "true"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "cost-feed.Product",
+                  "isNested": "true",
+                  "description": "List of products for which the cost is being updated"
+                }
+              },
+              "required": [
+                "Products"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "name": "Cost",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Identifer for the cost feed",
+                  "example": "91a57ddb-2d42-402b-85b4-fe327a347313",
+                  "generated": "true"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "cost-feed.Product",
+                  "isNested": "true",
+                  "description": "List of products for which the cost is being updated"
+                }
+              },
+              "required": [
+                "Products"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

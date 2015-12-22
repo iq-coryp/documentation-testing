@@ -1,0 +1,234 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "general-ledger",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}": {
+      "get": {
+        "description": "{{callout_info}}<b>Sorting Order</b><br/>Accounts are ordered alphabetically by <code>AccountName</code>{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Account",
+              "type": "array",
+              "description": "A General Ledger **Account** is a record used to sort and store Transactions.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "97e2519d-c48c-420b-97e9-0dc9bfce6a1c"
+                },
+                "AccountName": {
+                  "type": "string",
+                  "size": "128",
+                  "description": "Account name. Must be unique across the entire list of Accounts and cannot be empty",
+                  "example": "CAD Bank Account: 790"
+                },
+                "AccountNumber": {
+                  "type": "string",
+                  "size": "128",
+                  "description": "Account number. Must be unique across the entire list of Accounts and cannot be empty",
+                  "example": "1790"
+                },
+                "AccountCategory": {
+                  "type": "string",
+                  "description": "Account Category, acceptable values include: **Asset, Liability, Equity, Revenue and Expense**",
+                  "example": "Asset"
+                },
+                "SubCategory": {
+                  "type": "string",
+                  "size": "256",
+                  "description": "A string that can be used to further group Accounts into sub-categories",
+                  "example": "Current Assets"
+                },
+                "CreatedByUserId": {
+                  "type": "integer",
+                  "description": "Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account",
+                  "ref": "user-manager.User.Id"
+                },
+                "UpdatedByUserId": {
+                  "type": "integer",
+                  "description": "Auditing column, the identifier of the [User](/api/user-manager/#user) that last updated this Account",
+                  "ref": "user-manager.User.Id"
+                },
+                "CurrencyCode": {
+                  "type": "string",
+                  "description": "The 3 letter ISO currency code for the currency that this Account records its Transactions in. Can't be changed if an Account has had Transactions posted to it. Not case sensitive and will be stored and returned in upper case. See <a href='/api/reference/#getting-all-currencies'>Getting All Currencies</a> for a list of supported Currencies.",
+                  "example": "CAD"
+                },
+                "CustomProperties": {
+                  "type": "object",
+                  "size": "4000",
+                  "description": "A set of key-value pairs that contain extra data related to this Account. The maximum length of CustomProperties, when serialized to JSON, is 4000 characters",
+                  "example": ""
+                },
+                "DateCreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Auditing column showing when this Account was first created, in UTC",
+                  "example": "2015-04-22T19:27:12.557"
+                },
+                "DateUpdatedUTC": {
+                  "type": "DateTime",
+                  "description": "Auditing column showing when this Account was last updated, in UTC",
+                  "example": "2015-04-22T19:27:12.557"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "1024",
+                  "description": "Description",
+                  "example": "This is a Canadian $ account"
+                },
+                "IsEnabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Account is Enabled",
+                  "example": "true"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    },
+    "/Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'{StartDate}' and TransactionDateUTC le datetime'{EndDate}'&$skip={Skip}&$top={Top}": {
+      "get": {
+        "description": "{{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "StartDate",
+            "in": "path",
+            "description": "Date at which to begin search request, in UTC",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "EndDate",
+            "in": "path",
+            "description": "Date at which to end search request, in UTC",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Transaction",
+              "type": "array",
+              "description": "{{note}}A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries is the same value, this is called a Balanced Transaction{{end}}\n\nA **Transaction** is a financial record that affects two or more **Accounts**.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "6f29405f-6124-4919-b839-b84fbd53f6e0"
+                },
+                "TransactionDateUTC": {
+                  "type": "DateTime",
+                  "description": "The date and time that this Transaction occurred, in UTC",
+                  "example": "2015-04-22T19:31:03.5159086+00:00"
+                },
+                "CreatedByUserId": {
+                  "type": "integer",
+                  "description": "Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account",
+                  "ref": "user-manager.User.Id"
+                },
+                "Entries": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The collection of Entries for this Transaction",
+                  "ref": "general-ledger.Entry"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    }
+  }
+}

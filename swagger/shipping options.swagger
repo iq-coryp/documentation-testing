@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "shipping options",
+    "version": "v1"
+  },
+  "securityDefinitions": {},
+  "paths": {
+    "/ShippingOptions": {
+      "post": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Host",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "ShippingQuery",
+              "type": "object",
+              "properties": {
+                "CompanyId": {
+                  "type": "Integer",
+                  "description": "Company identifier",
+                  "example": "123"
+                },
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "List of Products to be added to shipping query",
+                  "ref": "shipping options.Item"
+                },
+                "PostalCode": {
+                  "type": "string",
+                  "description": "Postal or zip code of shipping address",
+                  "example": "A1A1A1"
+                }
+              },
+              "required": [
+                "CompanyId",
+                "PostalCode"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "ShippingOptions",
+              "type": "array",
+              "properties": {
+                "Id": {
+                  "type": "string",
+                  "description": "Identifier for the shipping option",
+                  "example": "350"
+                },
+                "Cost": {
+                  "type": "decimal",
+                  "description": "Cost for shipping option",
+                  "example": "7.94"
+                },
+                "Currency": {
+                  "type": "string",
+                  "size": "3",
+                  "description": "Cost currency (USD or CAD)",
+                  "example": "CAD"
+                },
+                "EstimatedTransitTime": {
+                  "type": "string",
+                  "description": "Total time to be in transit, where units are provided by supplier",
+                  "example": "1 week"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Shipping option name",
+                  "example": "PurolatorExpress"
+                }
+              },
+              "required": [
+                "Id",
+                "Cost",
+                "Currency"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

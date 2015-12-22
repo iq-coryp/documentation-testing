@@ -1,0 +1,100 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "supplier availability",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Suppliers({SupplierId})/Availability": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "SupplierId",
+            "in": "path",
+            "description": "Identifier for the {{Supplier}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Availability",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "a84549a1-3b0d-4ca6-b27f-65136957309b",
+                  "generated": "true"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products for the Availability Feed",
+                  "isNested": "true",
+                  "ref": "supplier availability.ProductAvail"
+                }
+              },
+              "required": [
+                "Products"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Availability",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "a84549a1-3b0d-4ca6-b27f-65136957309b",
+                  "generated": "true"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products for the Availability Feed",
+                  "isNested": "true",
+                  "ref": "supplier availability.ProductAvail"
+                }
+              },
+              "required": [
+                "Products"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "partner relationships",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Partners({PartnerId})/Relationships/Companies?$skip={Skip}&$top={Top}": {
+      "get": {
+        "description": "This request can be used by Partners to get a list of Companies they have established a Relationship with in the iQmetrix ecosystem.",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "PartnerId",
+            "in": "path",
+            "description": "Identifier for the Partner",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip, defaults to 0",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take, defaults to 20",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "RelationshipResponse",
+              "exclude": "true",
+              "type": "object",
+              "properties": {
+                "_metadata": {
+                  "type": "object",
+                  "ref": "partner relationships._metadata"
+                },
+                "_links": {
+                  "type": "object",
+                  "ref": "partner relationships._links"
+                },
+                "items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "partner relationships.Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

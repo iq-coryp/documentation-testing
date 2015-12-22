@@ -1,0 +1,245 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "product-subscription",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/subscription({ListId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "ListId",
+            "in": "path",
+            "description": null,
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Subscription",
+              "type": "array",
+              "properties": {
+                "Companies": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Companies for the subscription",
+                  "ref": "product-subscription.Company"
+                },
+                "ListId": {
+                  "type": "GUID",
+                  "description": "Subscription identifier",
+                  "example": "2c7dccd9-49ba-42ac-bffb-edcc08f40773"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subscribablelists({SubscribableListId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SubscribableListId",
+            "in": "path",
+            "description": "Identifier for a {{SubscribableList}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "SubscribableList",
+              "type": "object",
+              "properties": {
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[Supplier](/api/entity-store/#supplier) identifier",
+                  "ref": "entity-store.Supplier.Id"
+                },
+                "Id": {
+                  "type": "GUID",
+                  "description": "Subscribable List identifer",
+                  "example": "2c7dccd9-49ba-42ac-bffb-edcc08f40773"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Title of product subscription",
+                  "example": "Joe's Subscription List"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products for the subscribable list",
+                  "ref": "product-subscription.Product"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Subscription revision",
+                  "example": "12",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "EntityId",
+                "Name",
+                "Products"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "{{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}\n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SubscribableListId",
+            "in": "path",
+            "description": "Identifier for a {{SubscribableList}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "SubscribableList",
+              "type": "object",
+              "properties": {
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[Supplier](/api/entity-store/#supplier) identifier",
+                  "ref": "entity-store.Supplier.Id"
+                },
+                "Id": {
+                  "type": "GUID",
+                  "description": "Subscribable List identifer",
+                  "example": "2c7dccd9-49ba-42ac-bffb-edcc08f40773"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Title of product subscription",
+                  "example": "Joe's Subscription List"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products for the subscribable list",
+                  "ref": "product-subscription.Product"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Subscription revision",
+                  "example": "12",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "EntityId",
+                "Name",
+                "Products"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "SubscribableList",
+              "type": "object",
+              "properties": {
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[Supplier](/api/entity-store/#supplier) identifier",
+                  "ref": "entity-store.Supplier.Id"
+                },
+                "Id": {
+                  "type": "GUID",
+                  "description": "Subscribable List identifer",
+                  "example": "2c7dccd9-49ba-42ac-bffb-edcc08f40773"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Title of product subscription",
+                  "example": "Joe's Subscription List"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products for the subscribable list",
+                  "ref": "product-subscription.Product"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Subscription revision",
+                  "example": "12",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "EntityId",
+                "Name",
+                "Products"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

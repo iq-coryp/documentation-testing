@@ -1,0 +1,88 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cmi",
+    "version": "v1"
+  },
+  "securityDefinitions": {},
+  "paths": {
+    "/?op=CreatePurchaseOrderShipmentNotice": {
+      "post": {
+        "description": "This method allows the vendor to create a shipment notice for an existing purchase order. \n\n### Notes\n\n* The shipment notice will be used when receiving purchase order products with serial numbers\n* Multiple shipment notices can be created for a single purchase order\n* Each shipment notice is for a single product\n* If more than one product appears in a shipment, create one shipment notice for each product, but use the same shipment number for all products in the same shipment\n\n{{tip}}\nThis request accepts an array of PurchaseOrderShipmentNotices, so you do not need to call the CMI service multiple times for products in an order\n{{end}}\n",
+        "consumes": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/xml"
+        ]
+      }
+    },
+    "/?op=GetPurchaseOrdersByStatus": {
+      "post": {
+        "description": "This method will return all purchase orders in the client database that match the provided status criteria, including those that were not created through the CMI API.  \n\nTherefore, if a dealer creates a Purchase Order within RQ, it will be available in this list.\n",
+        "consumes": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/xml"
+        ]
+      }
+    },
+    "/?op=GetPurchaseOrdersByReferenceNumber": {
+      "post": {
+        "consumes": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/xml"
+        ]
+      }
+    },
+    "/?op=GetPurchaseOrdersByBusinessId": {
+      "post": {
+        "description": "This method allows you find a purchase order based on the RQ business key, the visual ID by store seen on RQ printouts.\n\nThis call is useful in the situation where a user has created a PO in RQ for a vendor. The vendor can get the PO data and product info to help with the creation of shipping notifications.      \n",
+        "consumes": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/xml"
+        ]
+      }
+    },
+    "/?op=GetStoreList": {
+      "post": {
+        "consumes": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/xml"
+        ]
+      }
+    }
+  }
+}

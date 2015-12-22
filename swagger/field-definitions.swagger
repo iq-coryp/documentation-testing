@@ -1,0 +1,121 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "field-definitions",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/FieldDefinitions": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "FieldDefinition",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/FieldDefinitions({FieldDefinitionId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "FieldDefinitionId",
+            "in": "path",
+            "description": "Identifier for the {{FieldDefinition}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "FieldDefinition",
+              "type": "object",
+              "description": "{{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "84"
+                },
+                "StringId": {
+                  "type": "string",
+                  "description": "Consistent identifier across all [Environments](/api/environments)",
+                  "example": "CDMA"
+                },
+                "InputType": {
+                  "type": "string",
+                  "description": "Type of UI element this FieldDefinition uses, see [InputTypes](#inputypes) for a list of acceptable values",
+                  "example": "YesNo"
+                },
+                "IsRequired": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true)",
+                  "example": "false"
+                },
+                "LanguageInvariantUnit": {
+                  "type": "string",
+                  "description": "Unit",
+                  "example": "mm"
+                },
+                "DisplayName": {
+                  "type": "string",
+                  "description": "Value to be displayed in the UI",
+                  "example": "CDMA"
+                },
+                "Options": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "List of Options, only used when InputType is SingleSelect or MultiSelect",
+                  "example": "",
+                  "ref": "field-definitions.Option",
+                  "isNested": "true"
+                },
+                "LanguageInvariantName": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

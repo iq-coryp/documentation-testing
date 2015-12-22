@@ -1,0 +1,179 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "epc",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/companies({CompanyId})/products": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the Company",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "exclude": "true",
+              "name": "ImportProduct",
+              "type": "object",
+              "properties": {
+                "RegularProducts": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "epc.RegularProduct"
+                },
+                "NonStockedProducts": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "epc.NonStockedProduct"
+                },
+                "NonRevenueProducts": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "epc.NonRevenueProduct"
+                },
+                "VendorRebateProducts": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "epc.VendorRebateProduct"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Status",
+              "exclude": "true",
+              "type": "object",
+              "properties": {
+                "Status": {
+                  "type": "string",
+                  "description": "A relative URI representing the API request made to determine the status of the request",
+                  "example": "/v1/companies(1)/batches(3)/status"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companies({CompanyId})/batches({BatchId})/status": {
+      "get": {
+        "description": "This request can be used to get the status of a request previously sent to EPC.",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the Company",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "BatchId",
+            "in": "path",
+            "description": "Identifier of the batch, which is supplied in responses to other requests to the EPC API",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "BatchStatus",
+              "type": "object",
+              "properties": {
+                "BatchId": {
+                  "type": "integer",
+                  "description": "Identifier of the Batch",
+                  "example": "3"
+                },
+                "DateCreated": {
+                  "type": "datetime",
+                  "description": "Date this Batch was created",
+                  "example": "2015-09-14T22:11:16.5670000Z"
+                },
+                "ProcessedProducts": {
+                  "type": "object",
+                  "description": "Number of Products processed",
+                  "example": "2"
+                },
+                "ProductErrors": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Details about failed import Products",
+                  "ref": "epc.ProductStatus"
+                },
+                "ProductsSucceeded": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Details about successfully imported Products",
+                  "ref": "epc.ProductStatus"
+                },
+                "StatusCode": {
+                  "type": "integer",
+                  "description": "Status of the Batch, see [BatchStatusCode](#batchstatuscode) for a list of possible values",
+                  "example": "3"
+                },
+                "StatusName": {
+                  "type": "string",
+                  "description": "Name of the associated BatchStatus",
+                  "example": "Completed"
+                },
+                "TotalProducts": {
+                  "type": "integer",
+                  "description": "Total number of Products in the Batch",
+                  "example": "2"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

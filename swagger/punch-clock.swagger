@@ -1,0 +1,163 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "punch-clock",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}": {
+      "get": {
+        "description": "By default, the sorting order of the response to this request will be **descending** order by `LastUpdateDateUtc`.\n\n{{note}}\nDon't forget <code>$filter=</code> in the request!\n{{end}}  ",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "StartDate",
+            "in": "path",
+            "description": "Date at which to begin search request, in UTC",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "EndDate",
+            "in": "path",
+            "description": "Date at which to end search request, in UTC",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "PunchEntry",
+              "type": "array",
+              "description": "An instance of a clock punch for an employee at a location, with a punch-in time and (optionally) a punch-out time.\n\n{{callout_info}}<b>RQ Connection</b>For more information on the Punch Clock in RQ, see <a href='http://iqmetrix.helpdocsonline.com/scheduling$Punch%20Clock'>HR Scheduling</a>{{end}}",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique Identifier",
+                  "example": "1953"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "Created date and time, in UTC",
+                  "example": "2015-09-23T15:41:59.403"
+                },
+                "EmployeeVerified": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if the employee has verified the PunchEntry",
+                  "example": "false"
+                },
+                "EmployeeSpecialId": {
+                  "type": "boolean",
+                  "description": "Special identifier for Employee in RQ",
+                  "example": "1002"
+                },
+                "LastUpdateDateUtc": {
+                  "type": "DateTime",
+                  "description": "Time of the last update, in UTC",
+                  "example": "2015-09-23T15:55:09.927"
+                },
+                "LocationCode": {
+                  "type": "string",
+                  "size": "100",
+                  "description": "An identifier for the Location in an external system",
+                  "example": "CWW"
+                },
+                "LocationId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "ManagerVerified": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if the manager has verified the PunchEntry",
+                  "example": "false"
+                },
+                "PunchInComments": {
+                  "type": "string",
+                  "size": "100",
+                  "description": "Punch in comments",
+                  "example": "IN - FingerPrint/HomeConsole"
+                },
+                "PunchOutComments": {
+                  "type": "string",
+                  "size": "100",
+                  "description": "Punch out comments",
+                  "example": "OUT - HomeConsole"
+                },
+                "TimeInAtStore": {
+                  "type": "DateTime",
+                  "description": "Punch in time (local time at store), in UTC",
+                  "example": "2015-09-23T09:41:52.653"
+                },
+                "TimeOutAtStore": {
+                  "type": "DateTime",
+                  "description": "Punch out time (local time at store), in UTC",
+                  "example": "2015-09-23T09:55:03.973"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "description": "Identifier for a [User](/api/user-manager/#user)",
+                  "ref": "user-manager.User.Id"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1"
+                },
+                "RQPunchId": {
+                  "type": "integer",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    }
+  }
+}

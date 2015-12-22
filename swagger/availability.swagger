@@ -1,0 +1,127 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "availability",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Availability",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier for a [CatalogItem](/api/catalog/#catalogitem)",
+                  "generated": "true",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for a [CompanyTreeNode](/api/company-tree/#companytreenode)",
+                  "ref": "company tree.Company.Id"
+                },
+                "Quantity": {
+                  "type": "integer",
+                  "description": "Quantity",
+                  "example": "15"
+                },
+                "IsDropShippable": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if the [CatalogItem](/api/catalog/#catalogitem) can be shipped",
+                  "example": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Availability",
+              "type": "array"
+            }
+          }
+        }
+      }
+    }
+  }
+}

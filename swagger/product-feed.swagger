@@ -1,0 +1,269 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "product-feed",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/ProductFeeds({FeedId})/Products": {
+      "post": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FeedId",
+            "in": "path",
+            "description": "Product Feed identifier",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Product",
+              "type": "object",
+              "description": "Product information for the feed. It is **highly recommended** to include `ModelName` for every product created. See {{ProductStructure_Concept}} for more information.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Product Identifier",
+                  "example": "34",
+                  "generated": "true"
+                },
+                "Assets": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Assets",
+                  "ref": "product-feed.Asset"
+                },
+                "Classification": {
+                  "type": "object",
+                  "description": "Refer to [Classification](/concepts/classification-tree) for more information",
+                  "ref": "product-feed.Classification"
+                },
+                "ClassificationTreeName": {
+                  "type": "string",
+                  "description": "Name of the classification tree",
+                  "ref": "classification-tree.ClassificationTree.Name"
+                },
+                "Fields": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A list of fields for the product. For the product being added, only include the definitions that apply",
+                  "ref": "product-feed.Field"
+                },
+                "LastModifiedByVendorUtc": {
+                  "type": "DateTime",
+                  "description": "Provides the last date that the product feed was modified by the vendor, in UTC",
+                  "example": "2015-09-16T10:40:31.101Z"
+                },
+                "Manufacturer": {
+                  "type": "string",
+                  "description": "The company that produces the product",
+                  "example": "Motorola"
+                },
+                "ManufacturerSku": {
+                  "type": "string",
+                  "description": "The Product SKU from the manufacturer",
+                  "example": "1234"
+                },
+                "ModelName": {
+                  "type": "string",
+                  "description": "[Master Product](/concepts/product-structure/#Master-Products) name",
+                  "example": "Agent18 SlimShield Case for iPhone 6"
+                },
+                "UPC": {
+                  "type": "string",
+                  "description": "Universal Product Code",
+                  "example": "723755004337"
+                },
+                "VendorSkus": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Vendor SKU information for the product",
+                  "ref": "product-feed.VendorSku"
+                },
+                "ProviderClassification": {
+                  "type": "string",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                },
+                "UnsupportedAssets": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                }
+              },
+              "required": [
+                "Classification",
+                "Fields",
+                "ModelName"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Product",
+              "type": "array"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Returns all the <strong>Products</strong> in a particular <strong>Product Feed</strong> indicated by the feed's <strong>Feed ID</strong> parameter. \n\nUseful when testing to ensure that products have been successfully added or removed.\n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FeedId",
+            "in": "path",
+            "description": "Product Feed identifier",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Product",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/ProductFeeds({FeedId})": {
+      "get": {
+        "description": "Returns an array of <a href=\"#product\">Products</a>, as well as additional parameters.\n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FeedId",
+            "in": "path",
+            "description": null,
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "ProductFeed",
+              "type": "object",
+              "description": "**Product Feeds** are used to group all Products together for a particular vendor.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Product Feed identifier",
+                  "example": "34",
+                  "generated": "true"
+                },
+                "LastReceivedUpdatesFromProviderUtc": {
+                  "type": "DateTime",
+                  "description": "Date and time of last received update, in UTC",
+                  "example": "2014-11-13T19:40:57.102Z"
+                },
+                "Products": {
+                  "type": "array",
+                  "arrayType": "Product",
+                  "description": "List of [Products](#product)",
+                  "ref": "product-feed.Product"
+                },
+                "ProviderName": {
+                  "type": "string",
+                  "description": "Name of the Product Feed",
+                  "example": "Joe's Product Feed"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "8"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProductFeeds({FeedId})/Products({ProductId})": {
+      "delete": {
+        "description": "Updates a Product Feed (FeedId) by removing a Product (ProductId). ",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FeedId",
+            "in": "path",
+            "description": null,
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ProductId",
+            "in": "path",
+            "description": null,
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  }
+}

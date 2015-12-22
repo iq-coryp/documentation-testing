@@ -1,0 +1,2736 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "crm",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/Customers": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Customer",
+              "type": "object",
+              "description": "A Customer is a person or organization that buys goods or services from a store or business.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Customer",
+              "type": "object",
+              "description": "A Customer is a person or organization that buys goods or services from a store or business.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Customer",
+              "type": "array",
+              "exclude": "true"
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    },
+    "/Companies({CompanyId})/Customers({CustomerId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Customer",
+              "type": "object",
+              "description": "A Customer is a person or organization that buys goods or services from a store or business.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Customer",
+              "type": "object",
+              "description": "A Customer is a person or organization that buys goods or services from a store or business.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Customer",
+              "type": "object",
+              "description": "A Customer is a person or organization that buys goods or services from a store or business.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Customers({CustomerId})/Addresses": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Address",
+              "type": "object",
+              "description": "An Address represents a valid address somewhere on the planet.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "cb39f178-3577-40bb-a7e5-032f29325b09",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "ref": "crm.Customer.Id",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "AddressType": {
+                  "type": "string",
+                  "description": "Name of the [AddressType](#addresstype)",
+                  "example": "Business",
+                  "generated": "true"
+                },
+                "AddressTypeId": {
+                  "type": "integer",
+                  "description": "See [AddressType](#addresstype) for a list of acceptable values",
+                  "putDescription": "Required if Addresses is not null",
+                  "example": "3"
+                },
+                "AttentionTo": {
+                  "type": "string",
+                  "description": "Attention To (Attn:)",
+                  "example": "iQmetrix"
+                },
+                "Country": {
+                  "type": "string",
+                  "description": "The Country. This value is system-generated and read-only",
+                  "example": "Canada",
+                  "generated": "true"
+                },
+                "CountryCode": {
+                  "type": "string",
+                  "description": "Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "putDescription": "Required if StateCode is provided",
+                  "ref": "reference.Country.Code"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is the default address for the customer",
+                  "example": "false"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email",
+                  "example": "Test@Test.com"
+                },
+                "Locality": {
+                  "type": "string",
+                  "description": "City, Town, Hamlet",
+                  "example": "Mountain View"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this Address",
+                  "example": "New residence"
+                },
+                "Phone": {
+                  "type": "string",
+                  "description": "Phone number",
+                  "example": "(555) 555-5555"
+                },
+                "PostalCode": {
+                  "type": "string",
+                  "description": "The postal code/zip code",
+                  "example": "94043"
+                },
+                "PostOfficeBoxNumber": {
+                  "type": "string",
+                  "description": "The post office box number for PO box addresses",
+                  "example": "P.O. Box 1022"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "The State/Province",
+                  "example": "Alberta",
+                  "generated": "true"
+                },
+                "StateCode": {
+                  "type": "string",
+                  "description": "Code for the State in which this address resides. Based off the ISO 3166-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "ref": "reference.State.Code"
+                },
+                "StreetAddress1": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "1600 Amphitheatre Pkwy"
+                },
+                "StreetAddress2": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "Suite 500"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "AddressTypeId",
+                "CountryCode",
+                "StateCode"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Address",
+              "type": "object",
+              "description": "An Address represents a valid address somewhere on the planet.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "cb39f178-3577-40bb-a7e5-032f29325b09",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "ref": "crm.Customer.Id",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "AddressType": {
+                  "type": "string",
+                  "description": "Name of the [AddressType](#addresstype)",
+                  "example": "Business",
+                  "generated": "true"
+                },
+                "AddressTypeId": {
+                  "type": "integer",
+                  "description": "See [AddressType](#addresstype) for a list of acceptable values",
+                  "putDescription": "Required if Addresses is not null",
+                  "example": "3"
+                },
+                "AttentionTo": {
+                  "type": "string",
+                  "description": "Attention To (Attn:)",
+                  "example": "iQmetrix"
+                },
+                "Country": {
+                  "type": "string",
+                  "description": "The Country. This value is system-generated and read-only",
+                  "example": "Canada",
+                  "generated": "true"
+                },
+                "CountryCode": {
+                  "type": "string",
+                  "description": "Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "putDescription": "Required if StateCode is provided",
+                  "ref": "reference.Country.Code"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is the default address for the customer",
+                  "example": "false"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email",
+                  "example": "Test@Test.com"
+                },
+                "Locality": {
+                  "type": "string",
+                  "description": "City, Town, Hamlet",
+                  "example": "Mountain View"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this Address",
+                  "example": "New residence"
+                },
+                "Phone": {
+                  "type": "string",
+                  "description": "Phone number",
+                  "example": "(555) 555-5555"
+                },
+                "PostalCode": {
+                  "type": "string",
+                  "description": "The postal code/zip code",
+                  "example": "94043"
+                },
+                "PostOfficeBoxNumber": {
+                  "type": "string",
+                  "description": "The post office box number for PO box addresses",
+                  "example": "P.O. Box 1022"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "The State/Province",
+                  "example": "Alberta",
+                  "generated": "true"
+                },
+                "StateCode": {
+                  "type": "string",
+                  "description": "Code for the State in which this address resides. Based off the ISO 3166-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "ref": "reference.State.Code"
+                },
+                "StreetAddress1": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "1600 Amphitheatre Pkwy"
+                },
+                "StreetAddress2": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "Suite 500"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "AddressTypeId",
+                "CountryCode",
+                "StateCode"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Address",
+              "type": "array"
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    },
+    "/Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier of the Company",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "AddressId",
+            "in": "path",
+            "description": "Identifier for the {{Address}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Address",
+              "type": "object",
+              "description": "An Address represents a valid address somewhere on the planet.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "cb39f178-3577-40bb-a7e5-032f29325b09",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "ref": "crm.Customer.Id",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "AddressType": {
+                  "type": "string",
+                  "description": "Name of the [AddressType](#addresstype)",
+                  "example": "Business",
+                  "generated": "true"
+                },
+                "AddressTypeId": {
+                  "type": "integer",
+                  "description": "See [AddressType](#addresstype) for a list of acceptable values",
+                  "putDescription": "Required if Addresses is not null",
+                  "example": "3"
+                },
+                "AttentionTo": {
+                  "type": "string",
+                  "description": "Attention To (Attn:)",
+                  "example": "iQmetrix"
+                },
+                "Country": {
+                  "type": "string",
+                  "description": "The Country. This value is system-generated and read-only",
+                  "example": "Canada",
+                  "generated": "true"
+                },
+                "CountryCode": {
+                  "type": "string",
+                  "description": "Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "putDescription": "Required if StateCode is provided",
+                  "ref": "reference.Country.Code"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is the default address for the customer",
+                  "example": "false"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email",
+                  "example": "Test@Test.com"
+                },
+                "Locality": {
+                  "type": "string",
+                  "description": "City, Town, Hamlet",
+                  "example": "Mountain View"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this Address",
+                  "example": "New residence"
+                },
+                "Phone": {
+                  "type": "string",
+                  "description": "Phone number",
+                  "example": "(555) 555-5555"
+                },
+                "PostalCode": {
+                  "type": "string",
+                  "description": "The postal code/zip code",
+                  "example": "94043"
+                },
+                "PostOfficeBoxNumber": {
+                  "type": "string",
+                  "description": "The post office box number for PO box addresses",
+                  "example": "P.O. Box 1022"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "The State/Province",
+                  "example": "Alberta",
+                  "generated": "true"
+                },
+                "StateCode": {
+                  "type": "string",
+                  "description": "Code for the State in which this address resides. Based off the ISO 3166-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "ref": "reference.State.Code"
+                },
+                "StreetAddress1": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "1600 Amphitheatre Pkwy"
+                },
+                "StreetAddress2": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "Suite 500"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "AddressTypeId",
+                "CountryCode",
+                "StateCode"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier of the Company",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "AddressId",
+            "in": "path",
+            "description": "Identifier for the {{Address}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Address",
+              "type": "object",
+              "description": "An Address represents a valid address somewhere on the planet.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "cb39f178-3577-40bb-a7e5-032f29325b09",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "ref": "crm.Customer.Id",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "AddressType": {
+                  "type": "string",
+                  "description": "Name of the [AddressType](#addresstype)",
+                  "example": "Business",
+                  "generated": "true"
+                },
+                "AddressTypeId": {
+                  "type": "integer",
+                  "description": "See [AddressType](#addresstype) for a list of acceptable values",
+                  "putDescription": "Required if Addresses is not null",
+                  "example": "3"
+                },
+                "AttentionTo": {
+                  "type": "string",
+                  "description": "Attention To (Attn:)",
+                  "example": "iQmetrix"
+                },
+                "Country": {
+                  "type": "string",
+                  "description": "The Country. This value is system-generated and read-only",
+                  "example": "Canada",
+                  "generated": "true"
+                },
+                "CountryCode": {
+                  "type": "string",
+                  "description": "Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "putDescription": "Required if StateCode is provided",
+                  "ref": "reference.Country.Code"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is the default address for the customer",
+                  "example": "false"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email",
+                  "example": "Test@Test.com"
+                },
+                "Locality": {
+                  "type": "string",
+                  "description": "City, Town, Hamlet",
+                  "example": "Mountain View"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this Address",
+                  "example": "New residence"
+                },
+                "Phone": {
+                  "type": "string",
+                  "description": "Phone number",
+                  "example": "(555) 555-5555"
+                },
+                "PostalCode": {
+                  "type": "string",
+                  "description": "The postal code/zip code",
+                  "example": "94043"
+                },
+                "PostOfficeBoxNumber": {
+                  "type": "string",
+                  "description": "The post office box number for PO box addresses",
+                  "example": "P.O. Box 1022"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "The State/Province",
+                  "example": "Alberta",
+                  "generated": "true"
+                },
+                "StateCode": {
+                  "type": "string",
+                  "description": "Code for the State in which this address resides. Based off the ISO 3166-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "ref": "reference.State.Code"
+                },
+                "StreetAddress1": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "1600 Amphitheatre Pkwy"
+                },
+                "StreetAddress2": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "Suite 500"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "AddressTypeId",
+                "CountryCode",
+                "StateCode"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Address",
+              "type": "object",
+              "description": "An Address represents a valid address somewhere on the planet.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "cb39f178-3577-40bb-a7e5-032f29325b09",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "ref": "crm.Customer.Id",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "AddressType": {
+                  "type": "string",
+                  "description": "Name of the [AddressType](#addresstype)",
+                  "example": "Business",
+                  "generated": "true"
+                },
+                "AddressTypeId": {
+                  "type": "integer",
+                  "description": "See [AddressType](#addresstype) for a list of acceptable values",
+                  "putDescription": "Required if Addresses is not null",
+                  "example": "3"
+                },
+                "AttentionTo": {
+                  "type": "string",
+                  "description": "Attention To (Attn:)",
+                  "example": "iQmetrix"
+                },
+                "Country": {
+                  "type": "string",
+                  "description": "The Country. This value is system-generated and read-only",
+                  "example": "Canada",
+                  "generated": "true"
+                },
+                "CountryCode": {
+                  "type": "string",
+                  "description": "Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "putDescription": "Required if StateCode is provided",
+                  "ref": "reference.Country.Code"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is the default address for the customer",
+                  "example": "false"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email",
+                  "example": "Test@Test.com"
+                },
+                "Locality": {
+                  "type": "string",
+                  "description": "City, Town, Hamlet",
+                  "example": "Mountain View"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this Address",
+                  "example": "New residence"
+                },
+                "Phone": {
+                  "type": "string",
+                  "description": "Phone number",
+                  "example": "(555) 555-5555"
+                },
+                "PostalCode": {
+                  "type": "string",
+                  "description": "The postal code/zip code",
+                  "example": "94043"
+                },
+                "PostOfficeBoxNumber": {
+                  "type": "string",
+                  "description": "The post office box number for PO box addresses",
+                  "example": "P.O. Box 1022"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "The State/Province",
+                  "example": "Alberta",
+                  "generated": "true"
+                },
+                "StateCode": {
+                  "type": "string",
+                  "description": "Code for the State in which this address resides. Based off the ISO 3166-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a>",
+                  "ref": "reference.State.Code"
+                },
+                "StreetAddress1": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "1600 Amphitheatre Pkwy"
+                },
+                "StreetAddress2": {
+                  "type": "string",
+                  "description": "The street address",
+                  "example": "Suite 500"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "AddressTypeId",
+                "CountryCode",
+                "StateCode"
+              ]
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier of the Company",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "AddressId",
+            "in": "path",
+            "description": "Identifier for the {{Address}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/CustomerFull": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "CustomerFull",
+              "type": "object",
+              "description": "CustomerFull is an extension on the Customer resource.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "Addresses": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "crm.Address",
+                  "description": "A collection of Addresses"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "ContactMethods": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of ContactMethods",
+                  "ref": "crm.ContactMethod"
+                },
+                "CustomerExtensions": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of CustomerExtensions",
+                  "ref": "crm.CustomerExtension"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "MemberOf": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers that the Customer is a MemberOf (parent relation)",
+                  "example": ""
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "RelatedCustomers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers related to the Customer (child relation)",
+                  "example": ""
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "CustomerFull",
+              "type": "object",
+              "description": "CustomerFull is an extension on the Customer resource.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "Addresses": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "crm.Address",
+                  "description": "A collection of Addresses"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "ContactMethods": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of ContactMethods",
+                  "ref": "crm.ContactMethod"
+                },
+                "CustomerExtensions": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of CustomerExtensions",
+                  "ref": "crm.CustomerExtension"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "MemberOf": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers that the Customer is a MemberOf (parent relation)",
+                  "example": ""
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "RelatedCustomers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers related to the Customer (child relation)",
+                  "example": ""
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "CustomerFull",
+              "type": "array"
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    },
+    "/Companies({CompanyId})/CustomerFull({CustomerId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Unique identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CustomerFull",
+              "type": "object",
+              "description": "CustomerFull is an extension on the Customer resource.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "Addresses": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "crm.Address",
+                  "description": "A collection of Addresses"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "ContactMethods": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of ContactMethods",
+                  "ref": "crm.ContactMethod"
+                },
+                "CustomerExtensions": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of CustomerExtensions",
+                  "ref": "crm.CustomerExtension"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "MemberOf": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers that the Customer is a MemberOf (parent relation)",
+                  "example": ""
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "RelatedCustomers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers related to the Customer (child relation)",
+                  "example": ""
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "CustomerTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Unique identifier for the {{Customer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Customers({CustomerId})/ContactMethods": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "ContactMethod",
+              "type": "object",
+              "description": "A Contact Method is a method of contacting a Customer.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "putDescription": "Required on PUT",
+                  "ref": "crm.Customer.Id",
+                  "putGenerate": "true"
+                },
+                "ContactMethodCategory": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodCategory](#contactmethodcategory)",
+                  "example": "Email",
+                  "generated": "true"
+                },
+                "ContactMethodCategoryId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "3"
+                },
+                "ContactMethodType": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodType](#contactmethodtype)",
+                  "example": "Work phone",
+                  "generated": "true"
+                },
+                "ContactMethodTypeId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodType](#contactmethodtype) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "5"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this is the default ContactMethod for the Customer",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this ContactMethod",
+                  "example": "After 6pm"
+                },
+                "Value": {
+                  "type": "string",
+                  "description": "The value representing this ContactMethod",
+                  "example": "(306) 222-3333"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "ContactMethodCategoryId",
+                "ContactMethodTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "ContactMethod",
+              "type": "object",
+              "description": "A Contact Method is a method of contacting a Customer.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "putDescription": "Required on PUT",
+                  "ref": "crm.Customer.Id",
+                  "putGenerate": "true"
+                },
+                "ContactMethodCategory": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodCategory](#contactmethodcategory)",
+                  "example": "Email",
+                  "generated": "true"
+                },
+                "ContactMethodCategoryId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "3"
+                },
+                "ContactMethodType": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodType](#contactmethodtype)",
+                  "example": "Work phone",
+                  "generated": "true"
+                },
+                "ContactMethodTypeId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodType](#contactmethodtype) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "5"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this is the default ContactMethod for the Customer",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this ContactMethod",
+                  "example": "After 6pm"
+                },
+                "Value": {
+                  "type": "string",
+                  "description": "The value representing this ContactMethod",
+                  "example": "(306) 222-3333"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "ContactMethodCategoryId",
+                "ContactMethodTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "ContactMethod",
+              "type": "array"
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    },
+    "/Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ContactMethodId",
+            "in": "path",
+            "description": "Identifier for the {{ContactMethod}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "ContactMethod",
+              "type": "object",
+              "description": "A Contact Method is a method of contacting a Customer.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "putDescription": "Required on PUT",
+                  "ref": "crm.Customer.Id",
+                  "putGenerate": "true"
+                },
+                "ContactMethodCategory": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodCategory](#contactmethodcategory)",
+                  "example": "Email",
+                  "generated": "true"
+                },
+                "ContactMethodCategoryId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "3"
+                },
+                "ContactMethodType": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodType](#contactmethodtype)",
+                  "example": "Work phone",
+                  "generated": "true"
+                },
+                "ContactMethodTypeId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodType](#contactmethodtype) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "5"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this is the default ContactMethod for the Customer",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this ContactMethod",
+                  "example": "After 6pm"
+                },
+                "Value": {
+                  "type": "string",
+                  "description": "The value representing this ContactMethod",
+                  "example": "(306) 222-3333"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "ContactMethodCategoryId",
+                "ContactMethodTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ContactMethodId",
+            "in": "path",
+            "description": "Identifier for the {{ContactMethod}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "ContactMethod",
+              "type": "object",
+              "description": "A Contact Method is a method of contacting a Customer.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "putDescription": "Required on PUT",
+                  "ref": "crm.Customer.Id",
+                  "putGenerate": "true"
+                },
+                "ContactMethodCategory": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodCategory](#contactmethodcategory)",
+                  "example": "Email",
+                  "generated": "true"
+                },
+                "ContactMethodCategoryId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "3"
+                },
+                "ContactMethodType": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodType](#contactmethodtype)",
+                  "example": "Work phone",
+                  "generated": "true"
+                },
+                "ContactMethodTypeId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodType](#contactmethodtype) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "5"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this is the default ContactMethod for the Customer",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this ContactMethod",
+                  "example": "After 6pm"
+                },
+                "Value": {
+                  "type": "string",
+                  "description": "The value representing this ContactMethod",
+                  "example": "(306) 222-3333"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "ContactMethodCategoryId",
+                "ContactMethodTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "ContactMethod",
+              "type": "object",
+              "description": "A Contact Method is a method of contacting a Customer.",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Customer](#customer)",
+                  "putDescription": "Required on PUT",
+                  "ref": "crm.Customer.Id",
+                  "putGenerate": "true"
+                },
+                "ContactMethodCategory": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodCategory](#contactmethodcategory)",
+                  "example": "Email",
+                  "generated": "true"
+                },
+                "ContactMethodCategoryId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "3"
+                },
+                "ContactMethodType": {
+                  "type": "string",
+                  "description": "Name of the [ContactMethodType](#contactmethodtype)",
+                  "example": "Work phone",
+                  "generated": "true"
+                },
+                "ContactMethodTypeId": {
+                  "type": "integer",
+                  "description": "See [ContactMethodType](#contactmethodtype) for a list of acceptable values",
+                  "putDescription": "Required if ContactMethods is not null",
+                  "example": "5"
+                },
+                "Default": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this is the default ContactMethod for the Customer",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this ContactMethod is private and not to be used by any external systems (such as a marketing system), defaults to true",
+                  "example": "true"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes related to this ContactMethod",
+                  "example": "After 6pm"
+                },
+                "Value": {
+                  "type": "string",
+                  "description": "The value representing this ContactMethod",
+                  "example": "(306) 222-3333"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "ContactMethodCategoryId",
+                "ContactMethodTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CustomerId",
+            "in": "path",
+            "description": "Identifier for the {{Customer}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ContactMethodId",
+            "in": "path",
+            "description": "Identifier for the {{ContactMethod}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={Top}": {
+      "get": {
+        "description": "{{note}}\nThis request returns Customer resources and is case <strong>sensitive</strong>. For a similar case <strong>insensitive</strong> search that returns CustomerFull resources, see <a href='#customer-search'>Customer Search</a> \n{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "FilterQuery",
+            "in": "path",
+            "description": "Filter on customers",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Customer",
+              "type": "array",
+              "exclude": "true"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}": {
+      "get": {
+        "description": "\n{{note}}\nThis request returns CustomerFull resources and is case <strong>insensitive</strong>. For a similar case <strong>sensitive</strong> search that returns Customer resources, see <a href='#searching-for-customers'>Searching for Customers</a> \n{{end}}\n\n<a href=\"#customersearch\">CustomerSearch</a> resources use a special property, <code>criteria</code>.\n\nCriteria searches all of the searchable properties for the given value and returns the resource if it is found.\n\nThis search is <strong>NOT</strong> case sensitive.\n\n<h3> Filterable Properties</h3>\n\nThe Criteria filter will search the properties below for the given value.\n\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align:left\">Resource</th>\n      <th style=\"text-align:left\">Property</th>\n    </tr>\n  </thead>\n<tbody>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#address\">Address</a></td>\n      <td style=\"text-align:left\">StreetAddress1</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#address\">Address</a></td>\n      <td style=\"text-align:left\">StreetAddress2</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#contactmethod\">ContactMethod</a></td>\n      <td style=\"text-align:left\">Value</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#customer\">Customer</a></td>\n      <td style=\"text-align:left\">PrimaryName</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#customer\">Customer</a></td>\n      <td style=\"text-align:left\">MiddleName</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#customer\">Customer</a></td>\n      <td style=\"text-align:left\">FamilyName</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#customer\">Customer</a></td>\n      <td style=\"text-align:left\">AlternateName</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left\"><a href=\"#customerextension\">CustomerExtension</a></td>\n      <td style=\"text-align:left\">Value</td>\n    </tr>\n  </tbody>\n</table>",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "FilterQuery",
+            "in": "path",
+            "description": "The filter to apply, \"Criteria\" is required",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CustomerSearch",
+              "type": "array",
+              "description": "CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource.",
+              "properties": {
+                "Criteria": {
+                  "type": "string",
+                  "description": "The criteria used to seach for the Customer",
+                  "example": "bob"
+                },
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                  "putDescription": "Required on PUT",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "PrimaryName": {
+                  "type": "string",
+                  "description": "First name of a given person or the full name of the business, division, organization, etc",
+                  "example": "Robert"
+                },
+                "MiddleName": {
+                  "type": "string",
+                  "description": "Middle name. Could also be referred to as Additional name",
+                  "example": "Lee"
+                },
+                "FamilyName": {
+                  "type": "string",
+                  "description": "Family name. In the U.S., the last name of a Person",
+                  "example": "Smith"
+                },
+                "Addresses": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "crm.Address",
+                  "description": "A collection of Addresses"
+                },
+                "AlternateName": {
+                  "type": "string",
+                  "description": "Alias or preferred name",
+                  "example": "Bob"
+                },
+                "ContactMethods": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of ContactMethods",
+                  "ref": "crm.ContactMethod"
+                },
+                "CustomerExtensions": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of CustomerExtensions",
+                  "ref": "crm.CustomerExtension"
+                },
+                "CustomerType": {
+                  "type": "string",
+                  "description": "Name of the [CustomerType](#customertype)",
+                  "example": "Company",
+                  "generated": "true"
+                },
+                "CustomerTypeId": {
+                  "type": "integer",
+                  "description": "See [CustomerType](#customertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "DateOfBirth": {
+                  "type": "DateTime",
+                  "description": "Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "putDescription": "UTC but can be provided in shortened form (yyyy-mm-dd)",
+                  "example": "1952-07-23T12:00:00.000"
+                },
+                "Disabled": {
+                  "type": "boolean",
+                  "description": "A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false",
+                  "putDescription": "Defaults to false",
+                  "example": "true"
+                },
+                "DoNotContact": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true",
+                  "putDescription": "Defaults to true",
+                  "example": "true"
+                },
+                "MemberOf": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers that the Customer is a MemberOf (parent relation)",
+                  "example": ""
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Any notes related to this Customer",
+                  "example": "Interested in iPhone 6"
+                },
+                "RelatedCustomers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "A collection of Customers related to the Customer (child relation)",
+                  "example": ""
+                },
+                "Title": {
+                  "type": "string",
+                  "description": "Title",
+                  "example": "Mr"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

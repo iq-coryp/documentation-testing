@@ -1,0 +1,908 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "catalog",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/Catalog/Items": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "CatalogItem",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Product",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "string",
+                  "description": "Identifier",
+                  "example": "M3-V1"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 4S 16GB White"
+                },
+                "ColorDefinition": {
+                  "type": "object",
+                  "description": "Information about the color of the Product",
+                  "ref": "catalog.ColorDefinition"
+                },
+                "Assets": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Asset information",
+                  "ref": "catalog.Asset"
+                },
+                "CanonicalClassification": {
+                  "type": "object",
+                  "description": "ClassificationTree details",
+                  "ref": "catalog.CanonicalClassification"
+                },
+                "Entity": {
+                  "type": "object",
+                  "description": "Entity information, used for Entity revisions",
+                  "ref": "catalog.Entity",
+                  "isNested": "true"
+                },
+                "HeroShotId": {
+                  "type": "GUID",
+                  "description": "[Hero Shot](/api/glossary/#hero-shot) identifier",
+                  "example": "95905d3e-5e01-4735-96dd-61d78eeb6ea9"
+                },
+                "HeroShotUri": {
+                  "type": "string",
+                  "description": "URI to a Hero Shot Asset",
+                  "example": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9"
+                },
+                "IsLinkedToCuratedProduct": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this version of this Product is publicly accessible (true), or private (false)",
+                  "example": "true"
+                },
+                "IsSaleable": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this product can be sold",
+                  "example": "true"
+                },
+                "LongDescription": {
+                  "type": "string",
+                  "description": "Long Description",
+                  "example": "The iPhone 4S is a gradual step over the iPhone 4."
+                },
+                "Manufacturer": {
+                  "type": "object",
+                  "description": "Manufacturer information",
+                  "ref": "catalog.ManufacturerRep",
+                  "isNested": "true"
+                },
+                "ManufacturerSkus": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Manufacturer SKUs",
+                  "ref": "catalog.Sku"
+                },
+                "MasterProductId": {
+                  "type": "integer",
+                  "description": "Identifier for the Master Product",
+                  "example": "3"
+                },
+                "MSRP": {
+                  "type": "object",
+                  "description": "Manufacturers suggested retail price information",
+                  "ref": "catalog.MSRP",
+                  "isNested": "true"
+                },
+                "Owner": {
+                  "type": "object",
+                  "description": "Owner information used to designate if this is a public product (null) or private (not-null)",
+                  "ref": "catalog.Owner",
+                  "isNested": "true"
+                },
+                "Region": {
+                  "type": "object",
+                  "description": "Region information, for Regional Carrier Revisions",
+                  "ref": "catalog.Region"
+                },
+                "ReleaseDate": {
+                  "type": "DateTime",
+                  "description": "Release Date, in UTC",
+                  "example": "2011-10-14T12:00:00.000"
+                },
+                "ShortDescription": {
+                  "type": "string",
+                  "description": "Short Description",
+                  "example": "Better than iPhone 3G"
+                },
+                "Specifications": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Details such as color, dimension, etc",
+                  "ref": "catalog.Specification",
+                  "isNested": "true"
+                },
+                "UpcCodes": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "UPC codes",
+                  "ref": "catalog.UpcCode",
+                  "isNested": "true"
+                },
+                "VariationId": {
+                  "type": "integer",
+                  "description": "Identifier for the Variation",
+                  "example": "1"
+                },
+                "VariationInfo": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "[Variation](/concepts/product-structure/#variations) information for the Product",
+                  "ref": "catalog.VariationInformation"
+                },
+                "VendorSkus": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Vendor SKUs",
+                  "ref": "catalog.Sku"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "CompatbileSearchResult",
+              "type": "object",
+              "properties": {
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "catalog.ArrayItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations": {
+      "get": {
+        "description": "For more information about Variations, see <a href='/concepts/product-structure/#variations'>Variations</a>\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "VariationResults",
+              "exclude": "true",
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "example": "iPhone 4/4s Screen Protector"
+                },
+                "Slug": {
+                  "type": "string",
+                  "ref": "catalog.Product.Id"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "Revisions": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "catalog.Revision"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "VendorSku",
+            "in": "path",
+            "description": "Vendor SKU to search for",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "VendorId",
+            "in": "path",
+            "description": "Identifier for a {{Vendor}} to search for",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "VendorSkuResult",
+              "type": "object",
+              "properties": {
+                "Sku": {
+                  "type": "string",
+                  "description": "Vendor Sku specified in the URI",
+                  "example": "403405"
+                },
+                "VendorId": {
+                  "type": "integer",
+                  "description": "Vendor Id specified in the URI",
+                  "example": "47"
+                },
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "catalog.CatalogItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryOrClassificationId}&Page={Page}&PageSize={PageSize}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CategoryOrClassificationId",
+            "in": "path",
+            "description": "Identifier for the {{Category}} or {{Classification}}",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Page",
+            "in": "path",
+            "description": "Page to display, if not specified defaults to 1",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "PageSize",
+            "in": "path",
+            "description": "Number of results that will be returned, if not specified defaults to 20",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CatalogSearchResult",
+              "type": "object",
+              "description": "A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.",
+              "properties": {
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products matching the search criteria",
+                  "ref": "catalog.Item",
+                  "isNested": "true"
+                },
+                "Facets": {
+                  "type": "object",
+                  "description": "Summary of Manufacturer and Vendor information for the Items",
+                  "ref": "catalog.Facets",
+                  "isNested": "true"
+                },
+                "MetaData": {
+                  "type": "object",
+                  "description": "Data representing pagination details",
+                  "ref": "catalog.MetaData",
+                  "isNested": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Page={Page}&PageSize={PageSize}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ManufacturerIds",
+            "in": "path",
+            "description": "Array of integers representing identifiers for {{Manufacturers}}",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Page",
+            "in": "path",
+            "description": "Page to display, if not specified defaults to 1",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "PageSize",
+            "in": "path",
+            "description": "Number of results that will be returned, if not specified defaults to 20",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CatalogSearchResult",
+              "type": "object",
+              "description": "A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.",
+              "properties": {
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products matching the search criteria",
+                  "ref": "catalog.Item",
+                  "isNested": "true"
+                },
+                "Facets": {
+                  "type": "object",
+                  "description": "Summary of Manufacturer and Vendor information for the Items",
+                  "ref": "catalog.Facets",
+                  "isNested": "true"
+                },
+                "MetaData": {
+                  "type": "object",
+                  "description": "Data representing pagination details",
+                  "ref": "catalog.MetaData",
+                  "isNested": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&PageSize={PageSize}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "VendorIds",
+            "in": "path",
+            "description": "List of comma seperated integers representing Supplier identifiers",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Page",
+            "in": "path",
+            "description": "Page to display, if not specified defaults to 1",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "PageSize",
+            "in": "path",
+            "description": "Number of results that will be returned, if not specified defaults to 20",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CatalogSearchResult",
+              "type": "object",
+              "description": "A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.",
+              "properties": {
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products matching the search criteria",
+                  "ref": "catalog.Item",
+                  "isNested": "true"
+                },
+                "Facets": {
+                  "type": "object",
+                  "description": "Summary of Manufacturer and Vendor information for the Items",
+                  "ref": "catalog.Facets",
+                  "isNested": "true"
+                },
+                "MetaData": {
+                  "type": "object",
+                  "description": "Data representing pagination details",
+                  "ref": "catalog.MetaData",
+                  "isNested": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Search?IsDropshippable={IsDropShippable}&Page={Page}&PageSize={PageSize}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "IsDropShippable",
+            "in": "path",
+            "description": "True to display products available for shipping, false to display products not available for shipping",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Page",
+            "in": "path",
+            "description": "Page to display, if not specified defaults to 1",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "PageSize",
+            "in": "path",
+            "description": "Number of results that will be returned, if not specified defaults to 20",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CatalogSearchResult",
+              "type": "object",
+              "description": "A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.",
+              "properties": {
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products matching the search criteria",
+                  "ref": "catalog.Item",
+                  "isNested": "true"
+                },
+                "Facets": {
+                  "type": "object",
+                  "description": "Summary of Manufacturer and Vendor information for the Items",
+                  "ref": "catalog.Facets",
+                  "isNested": "true"
+                },
+                "MetaData": {
+                  "type": "object",
+                  "description": "Data representing pagination details",
+                  "ref": "catalog.MetaData",
+                  "isNested": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Search?&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}": {
+      "get": {
+        "description": "{{note}}\nSearchTerms specified in the URI are compared against the following Product fields: <code>Name</code>, <code>Manufacturer.Name</code>, <code>ManufacturerSkus</code>, <code>UpcCodes</code> and <code>VendorSkus</code>.\n{{end}}    \n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "SearchTerms",
+            "in": "path",
+            "description": "Search terms",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "OrderBy",
+            "in": "path",
+            "description": "A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "OrderDir",
+            "in": "path",
+            "description": "A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Page",
+            "in": "path",
+            "description": "Page to display, if not specified defaults to 1",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "PageSize",
+            "in": "path",
+            "description": "Number of results that will be returned, if not specified defaults to 20",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CatalogSearchResult",
+              "type": "object",
+              "description": "A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.",
+              "properties": {
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products matching the search criteria",
+                  "ref": "catalog.Item",
+                  "isNested": "true"
+                },
+                "Facets": {
+                  "type": "object",
+                  "description": "Summary of Manufacturer and Vendor information for the Items",
+                  "ref": "catalog.Facets",
+                  "isNested": "true"
+                },
+                "MetaData": {
+                  "type": "object",
+                  "description": "Data representing pagination details",
+                  "ref": "catalog.MetaData",
+                  "isNested": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}": {
+      "get": {
+        "description": "Search filters can be combined to narrow down results. The example below illustrates a search request using every possible filter.",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "VendorIds",
+            "in": "path",
+            "description": "List of comma seperated integers representing identifiers for {{Vendors}}",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "ManufacturerIds",
+            "in": "path",
+            "description": "Array of integers representing identifiers for {{Manufacturers}}",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "IsDropShippable",
+            "in": "path",
+            "description": "True to display products available for shipping, false to display products not available for shipping",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "CategoryOrClassificationId",
+            "in": "path",
+            "description": "Identifier for the {{Category}} or {{Classification}}",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "SearchTerms",
+            "in": "path",
+            "description": "Search terms",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "OrderBy",
+            "in": "path",
+            "description": "A string value representing which field to order the results by. Acceptable values are name or dateAdded. Defaults to name if not specified",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "OrderDir",
+            "in": "path",
+            "description": "A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Page",
+            "in": "path",
+            "description": "Page to display, if not specified defaults to 1",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "PageSize",
+            "in": "path",
+            "description": "Number of results that will be returned, if not specified defaults to 20",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CatalogSearchResult",
+              "type": "object",
+              "description": "A CatalogSearchResult resource is used to return information about Product resources that match a given criteria, defined in the request.",
+              "properties": {
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Products matching the search criteria",
+                  "ref": "catalog.Item",
+                  "isNested": "true"
+                },
+                "Facets": {
+                  "type": "object",
+                  "description": "Summary of Manufacturer and Vendor information for the Items",
+                  "ref": "catalog.Facets",
+                  "isNested": "true"
+                },
+                "MetaData": {
+                  "type": "object",
+                  "description": "Data representing pagination details",
+                  "ref": "catalog.MetaData",
+                  "isNested": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

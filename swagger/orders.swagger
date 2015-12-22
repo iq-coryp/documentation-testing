@@ -1,0 +1,2237 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "orders",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/Orders": {
+      "post": {
+        "description": "{{note}}The <code>EntityId</code> used in the request parameters must belong to the <code>CompanyId</code> used in the URI.{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Order",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": "Must belong to the Company specified in the URI. Required to Process an Order",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId",
+                "EntityId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Order",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": "Must belong to the Company specified in the URI. Required to Process an Order",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId",
+                "EntityId"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Order",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Orders({OrderId})/Items": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "OrderId",
+            "in": "path",
+            "description": "Identifier for the {{Order}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Item",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier for this Item",
+                  "example": "65a13420-5673-45cd-b455-9bbe7f27f694",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Cost": {
+                  "type": "decimal",
+                  "description": "Cost of this Item, defaults to 0",
+                  "example": "5.99"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Description of this Item",
+                  "example": "LG G3 phone case"
+                },
+                "ItemStatus": {
+                  "type": "string",
+                  "description": "Name of the [ItemStatus](#itemstatus)",
+                  "example": "New"
+                },
+                "ItemStatusId": {
+                  "type": "integer",
+                  "description": "See [ItemStatus](#itemstatus) for a list of acceptable values",
+                  "example": "1",
+                  "generated": "true"
+                },
+                "ItemType": {
+                  "type": "string",
+                  "description": "Name of the [ItemType](#itemtype)",
+                  "example": "DropShip",
+                  "generated": "true"
+                },
+                "ItemTypeId": {
+                  "type": "string",
+                  "description": "See [ItemType](#itemtype) for a list of acceptable values",
+                  "example": "1"
+                },
+                "Index": {
+                  "type": "integer",
+                  "description": "A value used for sorting Items, such as in a shopping cart",
+                  "example": "0"
+                },
+                "ListPrice": {
+                  "type": "decimal",
+                  "description": "List Price of this Item, defaults to 0",
+                  "example": "12.99"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes for this Item",
+                  "example": "Dented corner"
+                },
+                "OrderId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Order](#order), specified by the OrderId in the URI",
+                  "ref": "orders.Order.Id",
+                  "generated": "true"
+                },
+                "ProductId": {
+                  "type": "string",
+                  "description": "Identifier for the Product. Generally, this is a CatalogItemId",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "Quantity": {
+                  "type": "integer",
+                  "description": "Amount of this Item In Stock, defaults to 0",
+                  "example": "2"
+                },
+                "SellingPrice": {
+                  "type": "decimal",
+                  "description": "Selling Price of this Item, defaults to 0",
+                  "example": "9.99"
+                },
+                "SerialNumbers": {
+                  "type": "array",
+                  "arrayType": "string",
+                  "description": "Serial numbers intended for product serialization",
+                  "example": "abc321"
+                },
+                "SKU": {
+                  "type": "string",
+                  "description": "SKU for this Item",
+                  "example": "00001"
+                },
+                "ShippingOptionId": {
+                  "type": "string",
+                  "description": "Identifier for the ShippingOption that this Item will use",
+                  "example": "1"
+                },
+                "SupplierEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Supplier of this Item",
+                  "ref": "entity-store.Supplier.Id"
+                },
+                "SupplierReference": {
+                  "type": "string",
+                  "description": "May be used for additional Supplier reference information",
+                  "example": "10"
+                },
+                "TrackingInformation": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Tracking information in the form of key-value pairs",
+                  "ref": "orders.TrackingInformation"
+                }
+              },
+              "required": [
+                "ItemStatusId",
+                "ItemTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Item",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier for this Item",
+                  "example": "65a13420-5673-45cd-b455-9bbe7f27f694",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Cost": {
+                  "type": "decimal",
+                  "description": "Cost of this Item, defaults to 0",
+                  "example": "5.99"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Description of this Item",
+                  "example": "LG G3 phone case"
+                },
+                "ItemStatus": {
+                  "type": "string",
+                  "description": "Name of the [ItemStatus](#itemstatus)",
+                  "example": "New"
+                },
+                "ItemStatusId": {
+                  "type": "integer",
+                  "description": "See [ItemStatus](#itemstatus) for a list of acceptable values",
+                  "example": "1",
+                  "generated": "true"
+                },
+                "ItemType": {
+                  "type": "string",
+                  "description": "Name of the [ItemType](#itemtype)",
+                  "example": "DropShip",
+                  "generated": "true"
+                },
+                "ItemTypeId": {
+                  "type": "string",
+                  "description": "See [ItemType](#itemtype) for a list of acceptable values",
+                  "example": "1"
+                },
+                "Index": {
+                  "type": "integer",
+                  "description": "A value used for sorting Items, such as in a shopping cart",
+                  "example": "0"
+                },
+                "ListPrice": {
+                  "type": "decimal",
+                  "description": "List Price of this Item, defaults to 0",
+                  "example": "12.99"
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes for this Item",
+                  "example": "Dented corner"
+                },
+                "OrderId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the [Order](#order), specified by the OrderId in the URI",
+                  "ref": "orders.Order.Id",
+                  "generated": "true"
+                },
+                "ProductId": {
+                  "type": "string",
+                  "description": "Identifier for the Product. Generally, this is a CatalogItemId",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "Quantity": {
+                  "type": "integer",
+                  "description": "Amount of this Item In Stock, defaults to 0",
+                  "example": "2"
+                },
+                "SellingPrice": {
+                  "type": "decimal",
+                  "description": "Selling Price of this Item, defaults to 0",
+                  "example": "9.99"
+                },
+                "SerialNumbers": {
+                  "type": "array",
+                  "arrayType": "string",
+                  "description": "Serial numbers intended for product serialization",
+                  "example": "abc321"
+                },
+                "SKU": {
+                  "type": "string",
+                  "description": "SKU for this Item",
+                  "example": "00001"
+                },
+                "ShippingOptionId": {
+                  "type": "string",
+                  "description": "Identifier for the ShippingOption that this Item will use",
+                  "example": "1"
+                },
+                "SupplierEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Supplier of this Item",
+                  "ref": "entity-store.Supplier.Id"
+                },
+                "SupplierReference": {
+                  "type": "string",
+                  "description": "May be used for additional Supplier reference information",
+                  "example": "10"
+                },
+                "TrackingInformation": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Tracking information in the form of key-value pairs",
+                  "ref": "orders.TrackingInformation"
+                }
+              },
+              "required": [
+                "ItemStatusId",
+                "ItemTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "OrderId",
+            "in": "path",
+            "description": "Identifier for the {{Order}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Item",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Orders({OrderId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "OrderId",
+            "in": "path",
+            "description": "Identifier for the {{Order}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Order",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": "Must belong to the Company specified in the URI. Required to Process an Order",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId",
+                "EntityId"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "OrderId",
+            "in": "path",
+            "description": "Identifier for the {{Order}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Order",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": "Must belong to the Company specified in the URI. Required to Process an Order",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId",
+                "EntityId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Order",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": "Must belong to the Company specified in the URI. Required to Process an Order",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId",
+                "EntityId"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Orders({OrderId})/Process": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "OrderId",
+            "in": "path",
+            "description": "Identifier for the {{Order}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "ProcessOrder",
+              "type": "object",
+              "exclude": "true",
+              "properties": {
+                "OrderId": {
+                  "type": "GUID",
+                  "ref": "orders.Order.Id"
+                }
+              },
+              "required": [
+                "OrderId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Order",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": "Must belong to the Company specified in the URI. Required to Process an Order",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId",
+                "EntityId"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/OrderFull": {
+      "post": {
+        "description": "{{note}}Instead of creating an Order and then adding Items to the Order one at a time, this request can be used to create an Order with Items all at once.{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "OrderFull",
+              "type": "object",
+              "description": "**OrderFull** is an extension on the Order resource",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": " Must belong to the Company specified in the URI",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                },
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "orders.Item",
+                  "description": "The Items in the [Order](#order)",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "OrderFull",
+              "type": "object",
+              "description": "**OrderFull** is an extension on the Order resource",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": " Must belong to the Company specified in the URI",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                },
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "orders.Item",
+                  "description": "The Items in the [Order](#order)",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "OrderFull",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/OrderFull({OrderId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "OrderId",
+            "in": "path",
+            "description": "Identifier for the {{Order}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "OrderFull",
+              "type": "object",
+              "description": "**OrderFull** is an extension on the Order resource",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": " Must belong to the Company specified in the URI",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                },
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "orders.Item",
+                  "description": "The Items in the [Order](#order)",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "{{note}}The <code>OrderId</code> in the URI must match the <code>OrderId</code> used in the request parameters{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "OrderId",
+            "in": "path",
+            "description": "Identifier for the {{Order}} being updated",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "OrderFull",
+              "type": "object",
+              "description": "**OrderFull** is an extension on the Order resource",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": " Must belong to the Company specified in the URI",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                },
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "orders.Item",
+                  "description": "The Items in the [Order](#order)",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "OrderFull",
+              "type": "object",
+              "description": "**OrderFull** is an extension on the Order resource",
+              "properties": {
+                "Id": {
+                  "type": "GUID",
+                  "description": "Unique identifier",
+                  "example": "216f7424-ae18-4c69-9597-984b430d0759",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "iPhone 5 Order"
+                },
+                "BillingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "BillingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the billing [Customer](/api/crm/#customer)",
+                  "putDescription": " Must belong to the Company specified in the URI",
+                  "ref": "crm.Customer.Id"
+                },
+                "CreatedDateUtc": {
+                  "type": "DateTime",
+                  "description": "The date and time the Order was created, in UTC",
+                  "example": "2015-03-27T18:47:29.9012402+00:00",
+                  "generated": "true"
+                },
+                "DiscountAmount": {
+                  "type": "decimal",
+                  "description": "The value of the discount to be applied at the Order level",
+                  "example": "15.0"
+                },
+                "DiscountCode": {
+                  "type": "string",
+                  "description": "The discount code for a discount applied to this Order",
+                  "example": "MTRY-15"
+                },
+                "DiscountDescription": {
+                  "type": "string",
+                  "description": "A description of the discount",
+                  "example": "Military discount"
+                },
+                "EmployeeId": {
+                  "type": "string",
+                  "description": "Identifier for the Employee who created this Order",
+                  "putDescription": "Must belong to the Company specified in the URI",
+                  "example": "15"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Location](/api/company-tree/#location)",
+                  "ref": "company tree.Location.Id"
+                },
+                "OrderExpiryDate": {
+                  "type": "DateTime",
+                  "description": "The date and time this Order expires and can no longer be updated, in UTC",
+                  "example": "2015-05-05T14:32:05.9140188+00:00",
+                  "generated": "true"
+                },
+                "OrderExpiryHours": {
+                  "type": "integer",
+                  "description": "The amount of hours before this Order expires and can no longer be updated. Defaults to 72 hours.",
+                  "example": "20"
+                },
+                "OrderType": {
+                  "type": "string",
+                  "description": "Name of the [OrderType](#ordertype)",
+                  "example": "Sales",
+                  "generated": "true"
+                },
+                "OrderTypeId": {
+                  "type": "integer",
+                  "description": "See [OrderType](#ordertype) for a list of acceptable values",
+                  "example": "3"
+                },
+                "PrintableId": {
+                  "type": "string",
+                  "description": "An identifier for this Order that can used to print on invoices. This value is system-generated and read-only",
+                  "example": "8765-1234-987",
+                  "generated": "true"
+                },
+                "ShippingAddressId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Address](/api/crm/#address)",
+                  "ref": "crm.Address.Id"
+                },
+                "ShippingCustomerId": {
+                  "type": "GUID",
+                  "description": "Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded",
+                  "ref": "crm.Customer.Id"
+                },
+                "ShippingEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Location this Order will be shipped to.",
+                  "putDescription": "If this value is provided, ShippingCustomerId must be excluded",
+                  "ref": "company tree.Location.Id"
+                },
+                "State": {
+                  "type": "string",
+                  "description": "See [OrderState](#orderstate) for a list of acceptable values",
+                  "example": "Created",
+                  "generated": "true"
+                },
+                "CustomerId": {
+                  "type": "string",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                },
+                "TenderId": {
+                  "type": "string",
+                  "description": "An invoice number from the system that created the Order, Invoice Number in RQ",
+                  "example": "INV112"
+                },
+                "TenderOrigin": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                },
+                "Items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "orders.Item",
+                  "description": "The Items in the [Order](#order)",
+                  "example": ""
+                }
+              },
+              "required": [
+                "OrderTypeId"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {LocationId}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Order",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'": {
+      "get": {
+        "description": "{{tip}}<code>PrintableId</code> is an identifier for an Order that can used to print on invoices. This request is useful for searching for an Order using a previously printed or saved invoice.{{end}}",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "PrintableId",
+            "in": "path",
+            "description": "An {{Order}} identifier printed on invoices",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Order",
+              "type": "array"
+            }
+          }
+        }
+      }
+    }
+  }
+}

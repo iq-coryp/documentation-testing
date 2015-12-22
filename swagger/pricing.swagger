@@ -1,0 +1,771 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "pricing",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/Pricing": {
+      "post": {
+        "description": "{{note}}When Product Pricing is set at the Company level, all Locations within the Company will use this Product Pricing by default unless <b>overridden</b> by a Location level Pricing. For more information, see <a href=\"http://developers.iqmetrix.com/concepts/company-tree/#inheritance\">Company Tree Inheritance</a>.{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Pricing",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "41614",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "description": "[CatalogItem](/api/catalog/#catalogitem) identifier",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company associated with this Pricing",
+                  "ref": "company tree.Company.Id"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set",
+                  "ref": "company tree.Location.Id"
+                },
+                "RegularPrice": {
+                  "type": "decimal",
+                  "description": "The regular price, must be greater than 0",
+                  "example": "10.0"
+                },
+                "OverridePrice": {
+                  "type": "decimal",
+                  "description": "The sale price, if specified this value must be greater than 0",
+                  "example": "5.0"
+                },
+                "PricingTermId": {
+                  "type": "integer",
+                  "description": "[PricingTerm](#pricingterm) identifier",
+                  "ref": "pricing.PricingTerm.Id"
+                }
+              },
+              "required": [
+                "CatalogItemId",
+                "EntityId",
+                "RegularPrice"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Pricing",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "41614",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "description": "[CatalogItem](/api/catalog/#catalogitem) identifier",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company associated with this Pricing",
+                  "ref": "company tree.Company.Id"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set",
+                  "ref": "company tree.Location.Id"
+                },
+                "RegularPrice": {
+                  "type": "decimal",
+                  "description": "The regular price, must be greater than 0",
+                  "example": "10.0"
+                },
+                "OverridePrice": {
+                  "type": "decimal",
+                  "description": "The sale price, if specified this value must be greater than 0",
+                  "example": "5.0"
+                },
+                "PricingTermId": {
+                  "type": "integer",
+                  "description": "[PricingTerm](#pricingterm) identifier",
+                  "ref": "pricing.PricingTerm.Id"
+                }
+              },
+              "required": [
+                "CatalogItemId",
+                "EntityId",
+                "RegularPrice"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing": {
+      "post": {
+        "description": "{{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href=\"http://developers.iqmetrix.com/concepts/company-tree/#inheritance\">Company Tree Inheritance</a>.{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Pricing",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "41614",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "description": "[CatalogItem](/api/catalog/#catalogitem) identifier",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company associated with this Pricing",
+                  "ref": "company tree.Company.Id"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set",
+                  "ref": "company tree.Location.Id"
+                },
+                "RegularPrice": {
+                  "type": "decimal",
+                  "description": "The regular price, must be greater than 0",
+                  "example": "10.0"
+                },
+                "OverridePrice": {
+                  "type": "decimal",
+                  "description": "The sale price, if specified this value must be greater than 0",
+                  "example": "5.0"
+                },
+                "PricingTermId": {
+                  "type": "integer",
+                  "description": "[PricingTerm](#pricingterm) identifier",
+                  "ref": "pricing.PricingTerm.Id"
+                }
+              },
+              "required": [
+                "CatalogItemId",
+                "EntityId",
+                "RegularPrice"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Pricing",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "41614",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "description": "[CatalogItem](/api/catalog/#catalogitem) identifier",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company associated with this Pricing",
+                  "ref": "company tree.Company.Id"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set",
+                  "ref": "company tree.Location.Id"
+                },
+                "RegularPrice": {
+                  "type": "decimal",
+                  "description": "The regular price, must be greater than 0",
+                  "example": "10.0"
+                },
+                "OverridePrice": {
+                  "type": "decimal",
+                  "description": "The sale price, if specified this value must be greater than 0",
+                  "example": "5.0"
+                },
+                "PricingTermId": {
+                  "type": "integer",
+                  "description": "[PricingTerm](#pricingterm) identifier",
+                  "ref": "pricing.PricingTerm.Id"
+                }
+              },
+              "required": [
+                "CatalogItemId",
+                "EntityId",
+                "RegularPrice"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Pricing",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "41614",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "description": "[CatalogItem](/api/catalog/#catalogitem) identifier",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company associated with this Pricing",
+                  "ref": "company tree.Company.Id"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set",
+                  "ref": "company tree.Location.Id"
+                },
+                "RegularPrice": {
+                  "type": "decimal",
+                  "description": "The regular price, must be greater than 0",
+                  "example": "10.0"
+                },
+                "OverridePrice": {
+                  "type": "decimal",
+                  "description": "The sale price, if specified this value must be greater than 0",
+                  "example": "5.0"
+                },
+                "PricingTermId": {
+                  "type": "integer",
+                  "description": "[PricingTerm](#pricingterm) identifier",
+                  "ref": "pricing.PricingTerm.Id"
+                }
+              },
+              "required": [
+                "CatalogItemId",
+                "EntityId",
+                "RegularPrice"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          null
+        ]
+      }
+    },
+    "/Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Pricing",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "41614",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "description": "[CatalogItem](/api/catalog/#catalogitem) identifier",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company associated with this Pricing",
+                  "ref": "company tree.Company.Id"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set",
+                  "ref": "company tree.Location.Id"
+                },
+                "RegularPrice": {
+                  "type": "decimal",
+                  "description": "The regular price, must be greater than 0",
+                  "example": "10.0"
+                },
+                "OverridePrice": {
+                  "type": "decimal",
+                  "description": "The sale price, if specified this value must be greater than 0",
+                  "example": "5.0"
+                },
+                "PricingTermId": {
+                  "type": "integer",
+                  "description": "[PricingTerm](#pricingterm) identifier",
+                  "ref": "pricing.PricingTerm.Id"
+                }
+              },
+              "required": [
+                "CatalogItemId",
+                "EntityId",
+                "RegularPrice"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Pricing",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "41614",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CatalogItemId": {
+                  "type": "GUID",
+                  "description": "[CatalogItem](/api/catalog/#catalogitem) identifier",
+                  "ref": "catalog.CatalogItem.CatalogItemId"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company associated with this Pricing",
+                  "ref": "company tree.Company.Id"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "[CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set",
+                  "ref": "company tree.Location.Id"
+                },
+                "RegularPrice": {
+                  "type": "decimal",
+                  "description": "The regular price, must be greater than 0",
+                  "example": "10.0"
+                },
+                "OverridePrice": {
+                  "type": "decimal",
+                  "description": "The sale price, if specified this value must be greater than 0",
+                  "example": "5.0"
+                },
+                "PricingTermId": {
+                  "type": "integer",
+                  "description": "[PricingTerm](#pricingterm) identifier",
+                  "ref": "pricing.PricingTerm.Id"
+                }
+              },
+              "required": [
+                "CatalogItemId",
+                "EntityId",
+                "RegularPrice"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Pricing",
+              "type": "array"
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          null
+        ]
+      }
+    },
+    "/Companies({CompanyId})/PricingTerms": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "PricingTerm",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/PricingTerms({PricingTermId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "PricingTermId",
+            "in": "path",
+            "description": "Identifier for the {{PricingTerm}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "PricingTerm",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "20"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the [Company](/api/company-tree/#company)",
+                  "ref": "company tree.Location.Id"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Name",
+                  "example": "$60 4G LTE Unlimited"
+                },
+                "Active": {
+                  "type": "boolean",
+                  "description": "A flag to indicate of this PricingTerm is active. When set to false, this PricingTerm can still be used, but does not appear in the responses to the Getting All Active Pricing Terms request",
+                  "example": "true"
+                },
+                "CanFinance": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this PricingTerm can be financed",
+                  "example": "true"
+                },
+                "NumberOfPayments": {
+                  "type": "integer",
+                  "description": "If `CanFinance` is true, the number of payments for financing, otherwise this value is `null`",
+                  "example": "1"
+                },
+                "TermLengthInYears": {
+                  "type": "integer",
+                  "description": "Length of the PricingTerm in years",
+                  "example": "3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={PricingTermId}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CatalogItemId",
+            "in": "path",
+            "description": "Unique identifier for the {{CatalogItem}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "PricingTermId",
+            "in": "path",
+            "description": "Identifier for the {{PricingTerm}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Pricing",
+              "type": "array"
+            }
+          }
+        }
+      }
+    }
+  }
+}

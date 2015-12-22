@@ -1,0 +1,155 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "reference",
+    "version": "v1"
+  },
+  "securityDefinitions": {},
+  "paths": {
+    "/Countries": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Country",
+              "type": "array",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "1"
+                },
+                "Code": {
+                  "type": "string",
+                  "description": "Country Code. Uses the ISO 3166-1 alpha-2 standard",
+                  "example": "CA"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Country name",
+                  "example": "Canada"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest version number",
+                  "example": "1"
+                },
+                "States": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "States/Provinces",
+                  "ref": "reference.State"
+                },
+                "Alpha3Code": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TimeZones": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "TimeZone",
+              "type": "array",
+              "properties": {
+                "Id": {
+                  "type": "string",
+                  "description": "Identifier",
+                  "example": "Alaskan Standard Time"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "(UTC-09:00) Alaska"
+                },
+                "SupportsDaylightSavingTime": {
+                  "type": "boolean",
+                  "description": "A flag to indicate if this TimeZone observes Daylight Savings Time",
+                  "example": "true"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Currencies": {
+      "get": {
+        "description": "Currency resources are returned in ascending alphabetical order by Code.",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Currency",
+              "type": "array",
+              "description": "To represent a Currency symbol in unicode, use the format <code>&#(Code);</code>, for USD this would be <code>&#36;</code> which is displayed as &#36; ",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "106"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Currency Name",
+                  "example": "United States Dollar"
+                },
+                "Code": {
+                  "type": "string",
+                  "description": "Identifier for the Currency",
+                  "example": "USD"
+                },
+                "Symbol": {
+                  "type": "array",
+                  "arrayType": "integer",
+                  "description": "Unicode decimal value for symbols associated with this currency",
+                  "example": "36"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest version number",
+                  "example": "1"
+                },
+                "LanguageNameMap": {
+                  "type": "string",
+                  "description": "Reserved for future use",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "product-library",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Products/FindByIdentifier?{Options}": {
+      "get": {
+        "description": "`FindByIdentifier` can be used to search for {{Product}} resources by the following identifiers:\n \n| Searchable Identifiers |\n|:-----------------------|\n| ManufacturerSKU |\n| VendorSKU |\n| UPC |\n \n<h3>Search Format</h3>\n \nQuery parameters are used to specify search criteria using the following format:\n \n    {OptionName}={OptionValue}\n \nMultiple options are separated with a `&` symbol.\n \n<h3>Available Options</h3>\n \nSee the table below for available options and the syntax of using each one. \n \n| Keyword | Description | Data Type | Examples |\n|:--------|:------------|:----------|:---------|\n| `value` | Search for the given SKU, this option is **required** | String | `value=ABC123`|\n| `type` | Search for the given SKU where the given identifier type matches. If no value is provided, all identifiers will be searched | String, see [Searchable Identifiers](#searchable-identifiers) |  `value=ABC123&type=VendorSKU` <br/> `value=ABC123&type=ManufacturerSKU` <br/> `value=ABC123&type=UPC`|\n| `entityId` | Search for the given SKU where the given entityId matches and the identifier type is VendorSKU or ManufacturerSKU | Integer | `value=ABC123&type=VendorSKU&entityId=4` | \n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Options",
+            "in": "path",
+            "description": "The options for the search",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "ProductSearch",
+              "type": "object",
+              "properties": {
+                "Products": {
+                  "type": "array",
+                  "arrayType": "string",
+                  "ref": "product-library.Slug"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

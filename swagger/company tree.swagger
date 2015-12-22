@@ -1,0 +1,1620 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "company tree",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Company",
+              "type": "object",
+              "description": "",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleCompany"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "Company creating great experiences."
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Company",
+                  "ref": "company tree.CompanyRole",
+                  "isNested": "true"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "CreatedUtc": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "LastModifiedUtc": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data",
+                  "example": ""
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "A reference to an [Asset](/api/assets/#asset)",
+                  "ref": "company tree.Asset",
+                  "example": ""
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such child Locations, Suppliers and Carriers",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplecompany"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Tree": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "CompanyTree",
+              "type": "object",
+              "description": "Your Company Tree is a hierarchial representation of how your Company is structured, including the root Company, Groups, Divisions and Locations.\n\nTo learn more about Company Trees, see {{CompanyTree_Concept}}.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Company identifier",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Company name",
+                  "example": "SampleCompany"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "Company creating great experiences."
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Role",
+                  "example": "Company"
+                },
+                "Nodes": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "company tree.CompanyTreeNode",
+                  "description": "The Company Tree hierarchy made up of Nodes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Tree/Nodes({NodeId})/Locations": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "NodeId",
+            "in": "path",
+            "description": "Identifier of the parent for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Location",
+              "type": "object",
+              "description": "A **Location** is a physical or virtual presence that may hold inventory or process transactions.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "putDescription": "Required for PUT requests",
+                  "example": "2",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleLocation"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "The SampleLocation is used to clear out discounted inventory"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The Role of this Location, the value must be Location",
+                  "putDescription": "Must be `Location`",
+                  "ref": "company tree.LocationRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-02-26T00:03:01.372Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-02-27T00:03:06.392Z",
+                  "generated": "true"
+                },
+                "Area": {
+                  "type": "object",
+                  "description": "Measurement of floor space",
+                  "ref": "company tree.Area",
+                  "isNested": "true"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "company tree.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "Contacts": {
+                  "type": "object",
+                  "description": "Contact information",
+                  "ref": "company tree.Contact"
+                },
+                "Geography": {
+                  "type": "object",
+                  "description": "Geographic coordinates of this Location",
+                  "ref": "company tree.Geography",
+                  "isNested": "true"
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such as the parent node in the Company Tree",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplecompany",
+                  "generated": "true"
+                },
+                "StoreHours": {
+                  "type": "object",
+                  "ref": "company tree.StoreHours",
+                  "description": "Store hours for this Location"
+                },
+                "StorePhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "company tree.PhoneNumber",
+                  "description": "Phone numbers"
+                },
+                "TimeZone": {
+                  "type": "object",
+                  "ref": "company tree.TimeZone",
+                  "description": "Timezone information for the Location"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "13",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "LocationType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "LocationSubType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name",
+                "Roles"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Location",
+              "type": "object",
+              "description": "A **Location** is a physical or virtual presence that may hold inventory or process transactions.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "putDescription": "Required for PUT requests",
+                  "example": "2",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleLocation"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "The SampleLocation is used to clear out discounted inventory"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The Role of this Location, the value must be Location",
+                  "putDescription": "Must be `Location`",
+                  "ref": "company tree.LocationRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-02-26T00:03:01.372Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-02-27T00:03:06.392Z",
+                  "generated": "true"
+                },
+                "Area": {
+                  "type": "object",
+                  "description": "Measurement of floor space",
+                  "ref": "company tree.Area",
+                  "isNested": "true"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "company tree.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "Contacts": {
+                  "type": "object",
+                  "description": "Contact information",
+                  "ref": "company tree.Contact"
+                },
+                "Geography": {
+                  "type": "object",
+                  "description": "Geographic coordinates of this Location",
+                  "ref": "company tree.Geography",
+                  "isNested": "true"
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such as the parent node in the Company Tree",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplecompany",
+                  "generated": "true"
+                },
+                "StoreHours": {
+                  "type": "object",
+                  "ref": "company tree.StoreHours",
+                  "description": "Store hours for this Location"
+                },
+                "StorePhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "company tree.PhoneNumber",
+                  "description": "Phone numbers"
+                },
+                "TimeZone": {
+                  "type": "object",
+                  "ref": "company tree.TimeZone",
+                  "description": "Timezone information for the Location"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "13",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "LocationType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "LocationSubType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name",
+                "Roles"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})": {
+      "put": {
+        "description": "There are <strong>two</strong> different ways to update a location. \n\n<ul>\n  <li>Option 1 - <code>PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})</code></li>\n  <li>Option 2 - <code>PUT /Companies({CompanyId})/Locations({LocationId})</code></li>\n</ul>\n\nOption 1 requires knowing the <code>NodeId</code> of the parent of the {{Location}}, but has <strong>stronger</strong> validation.\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "NodeId",
+            "in": "path",
+            "description": "Identifier of the parent for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Location",
+              "type": "object",
+              "description": "A **Location** is a physical or virtual presence that may hold inventory or process transactions.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "putDescription": "Required for PUT requests",
+                  "example": "2",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleLocation"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "The SampleLocation is used to clear out discounted inventory"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The Role of this Location, the value must be Location",
+                  "putDescription": "Must be `Location`",
+                  "ref": "company tree.LocationRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-02-26T00:03:01.372Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-02-27T00:03:06.392Z",
+                  "generated": "true"
+                },
+                "Area": {
+                  "type": "object",
+                  "description": "Measurement of floor space",
+                  "ref": "company tree.Area",
+                  "isNested": "true"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "company tree.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "Contacts": {
+                  "type": "object",
+                  "description": "Contact information",
+                  "ref": "company tree.Contact"
+                },
+                "Geography": {
+                  "type": "object",
+                  "description": "Geographic coordinates of this Location",
+                  "ref": "company tree.Geography",
+                  "isNested": "true"
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such as the parent node in the Company Tree",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplecompany",
+                  "generated": "true"
+                },
+                "StoreHours": {
+                  "type": "object",
+                  "ref": "company tree.StoreHours",
+                  "description": "Store hours for this Location"
+                },
+                "StorePhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "company tree.PhoneNumber",
+                  "description": "Phone numbers"
+                },
+                "TimeZone": {
+                  "type": "object",
+                  "ref": "company tree.TimeZone",
+                  "description": "Timezone information for the Location"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "13",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "LocationType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "LocationSubType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name",
+                "Roles"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Location",
+              "type": "object",
+              "description": "A **Location** is a physical or virtual presence that may hold inventory or process transactions.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "putDescription": "Required for PUT requests",
+                  "example": "2",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleLocation"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "The SampleLocation is used to clear out discounted inventory"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The Role of this Location, the value must be Location",
+                  "putDescription": "Must be `Location`",
+                  "ref": "company tree.LocationRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-02-26T00:03:01.372Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-02-27T00:03:06.392Z",
+                  "generated": "true"
+                },
+                "Area": {
+                  "type": "object",
+                  "description": "Measurement of floor space",
+                  "ref": "company tree.Area",
+                  "isNested": "true"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "company tree.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "Contacts": {
+                  "type": "object",
+                  "description": "Contact information",
+                  "ref": "company tree.Contact"
+                },
+                "Geography": {
+                  "type": "object",
+                  "description": "Geographic coordinates of this Location",
+                  "ref": "company tree.Geography",
+                  "isNested": "true"
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such as the parent node in the Company Tree",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplecompany",
+                  "generated": "true"
+                },
+                "StoreHours": {
+                  "type": "object",
+                  "ref": "company tree.StoreHours",
+                  "description": "Store hours for this Location"
+                },
+                "StorePhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "company tree.PhoneNumber",
+                  "description": "Phone numbers"
+                },
+                "TimeZone": {
+                  "type": "object",
+                  "ref": "company tree.TimeZone",
+                  "description": "Timezone information for the Location"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "13",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "LocationType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "LocationSubType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name",
+                "Roles"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Locations({LocationId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Location",
+              "type": "object",
+              "description": "A **Location** is a physical or virtual presence that may hold inventory or process transactions.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "putDescription": "Required for PUT requests",
+                  "example": "2",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleLocation"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "The SampleLocation is used to clear out discounted inventory"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The Role of this Location, the value must be Location",
+                  "putDescription": "Must be `Location`",
+                  "ref": "company tree.LocationRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-02-26T00:03:01.372Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-02-27T00:03:06.392Z",
+                  "generated": "true"
+                },
+                "Area": {
+                  "type": "object",
+                  "description": "Measurement of floor space",
+                  "ref": "company tree.Area",
+                  "isNested": "true"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "company tree.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "Contacts": {
+                  "type": "object",
+                  "description": "Contact information",
+                  "ref": "company tree.Contact"
+                },
+                "Geography": {
+                  "type": "object",
+                  "description": "Geographic coordinates of this Location",
+                  "ref": "company tree.Geography",
+                  "isNested": "true"
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such as the parent node in the Company Tree",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplecompany",
+                  "generated": "true"
+                },
+                "StoreHours": {
+                  "type": "object",
+                  "ref": "company tree.StoreHours",
+                  "description": "Store hours for this Location"
+                },
+                "StorePhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "company tree.PhoneNumber",
+                  "description": "Phone numbers"
+                },
+                "TimeZone": {
+                  "type": "object",
+                  "ref": "company tree.TimeZone",
+                  "description": "Timezone information for the Location"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "13",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "LocationType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "LocationSubType": {
+                  "type": "string",
+                  "description": "Reserved for future use"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name",
+                "Roles"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Locations": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Location",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions": {
+      "post": {
+        "description": "Divisions may be added to the root Company node, or to a Division or Group node. \n\nA Division cannot be created if one already exists at the same level with the same name. \n\nThat is, you can have a Division and Group with the same name under the same parent or two Division with the same name in different parts of the tree, but you cannot have two Divisions with the same name and the same parent.\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "NodeId",
+            "in": "path",
+            "description": "Identifier of a Node",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Division",
+              "type": "object",
+              "description": "Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company.\n\nTo learn more about Divisions, see {{Division_Concept}}.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "5",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleDivision"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "Division creating great experiences."
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Division",
+                  "generated": "true",
+                  "ref": "company tree.DivisionRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "187"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "Logo": {
+                  "type": "object",
+                  "ref": "company tree.Asset",
+                  "description": "A reference to an Asset",
+                  "generated": "true"
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such child Locations, Suppliers and Carriers",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "sampledivision",
+                  "generated": "true"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Division",
+              "type": "object",
+              "description": "Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company.\n\nTo learn more about Divisions, see {{Division_Concept}}.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "5",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleDivision"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "Division creating great experiences."
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Division",
+                  "generated": "true",
+                  "ref": "company tree.DivisionRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "187"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "Logo": {
+                  "type": "object",
+                  "ref": "company tree.Asset",
+                  "description": "A reference to an Asset",
+                  "generated": "true"
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such child Locations, Suppliers and Carriers",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "sampledivision",
+                  "generated": "true"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Tree/Nodes({NodeId})/Groups": {
+      "post": {
+        "description": "Groups may be added to the root Company node, or to a Division or Group node. \n\nA Group cannot be created if one already exists at the same level with the same name. \n\nThat is, you can have a Division and Group with the same name under the same parent or two Groups with the same name in different parts of the tree, but you cannot have two Groups with the same name and the same parent.\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "NodeId",
+            "in": "path",
+            "description": "Identifier of a Node",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Group",
+              "type": "object",
+              "description": "Managerial or geographical groupings.\n\n To learn more about Groups, see {{Group_Concept}}.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "16",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleGroup"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "Group creating great experiences."
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Group",
+                  "generated": "true",
+                  "ref": "company tree.GroupRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "187"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "Logo": {
+                  "type": "object",
+                  "ref": "assets.Asset",
+                  "description": "A reference to an Asset",
+                  "generated": "true",
+                  "example": ""
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such child Locations, Suppliers and Carriers",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplegroup",
+                  "generated": "true"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Group",
+              "type": "object",
+              "description": "Managerial or geographical groupings.\n\n To learn more about Groups, see {{Group_Concept}}.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "16",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "size": "250",
+                  "description": "Name",
+                  "example": "SampleGroup"
+                },
+                "Description": {
+                  "type": "string",
+                  "size": "255",
+                  "description": "Description",
+                  "example": "Group creating great experiences."
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Group",
+                  "generated": "true",
+                  "ref": "company tree.GroupRole",
+                  "isNested": "true",
+                  "putGenerate": "true"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "187"
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "LastModifiedUTC": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z",
+                  "generated": "true"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data"
+                },
+                "Logo": {
+                  "type": "object",
+                  "ref": "assets.Asset",
+                  "description": "A reference to an Asset",
+                  "generated": "true",
+                  "example": ""
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationship information, such child Locations, Suppliers and Carriers",
+                  "example": "",
+                  "generated": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplegroup",
+                  "generated": "true"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Tree/Nodes({NodeId})": {
+      "delete": {
+        "description": "{{warning}}\nThis operation <strong>cannot be undone</strong>.\n{{end}}\n\nThis request removes the Node referred to by NodeId from the Company Tree along with all of its children. \n\nOnly Divisions and Groups can be deleted this way. \n\nIf the Node or any of its children include Entities other than Groups or Divisions, the request will be rejected.\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "NodeId",
+            "in": "path",
+            "description": "Identifier of a Node to be deleted",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Entities({CompanyId})/Nodes?$filter={ClientEntityId}": {
+      "get": {
+        "description": "This request allows you to search your Company Tree using the `ClientEntityId` field. \n\nThis request returns an array of objects that summarize Entities matching the search criteria. \n\nThe following resource types are considered 'Entities': {{Company}}, {{Division}}, {{Group}}, {{Location}}, device",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ClientEntityId",
+            "in": "path",
+            "description": "The value to search for",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "ClientIdSearch",
+              "type": "array",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "ref": "company tree.Location.Id"
+                },
+                "Name": {
+                  "type": "string",
+                  "ref": "company tree.Location.Name"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "",
+                  "ref": "company tree.Location.Description"
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Role of the Entity",
+                  "ref": "company tree.LocationRole.Name"
+                },
+                "Path": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "company tree.Path",
+                  "description": "Parents of the Entity. The order of elements is important, reflecting the hierarchy of parents (self, parent, parent-of-parent, etc) "
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

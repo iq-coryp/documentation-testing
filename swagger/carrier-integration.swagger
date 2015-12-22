@@ -1,0 +1,264 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "carrier-integration",
+    "version": "v2"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activations({ActivationId})": {
+      "put": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CarrierId",
+            "in": "path",
+            "description": "Identifier for the {{Carrier}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ActivationId",
+            "in": "path",
+            "description": "Identifier for the {{Activation}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "Activation",
+              "type": "object",
+              "description": "An <strong>Activation</strong> contains IDs necessary to identify an activation, and all the activation details.",
+              "properties": {
+                "Id": {
+                  "type": "string",
+                  "description": "The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma",
+                  "example": "1=35854205829867"
+                },
+                "CarrierActivationDetails": {
+                  "type": "object",
+                  "ref": "carrier-integration.CarrierActivationDetails",
+                  "description": "The details of this Activation"
+                },
+                "CarrierId": {
+                  "type": "integer",
+                  "description": "Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service",
+                  "example": "41"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier of the [Company](/api/company-tree/#company) making this request",
+                  "example": "1234"
+                },
+                "LocationId": {
+                  "type": "integer",
+                  "putDescription": "Must match the LocationId provided in the URI",
+                  "description": "Identifier of the [Location](/api/company-tree/#location) making this request",
+                  "example": "5678"
+                }
+              },
+              "required": [
+                "Id",
+                "CarrierActivationDetails",
+                "CarrierId",
+                "CompanyId",
+                "LocationId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "Activation",
+              "type": "object",
+              "description": "An <strong>Activation</strong> contains IDs necessary to identify an activation, and all the activation details.",
+              "properties": {
+                "Id": {
+                  "type": "string",
+                  "description": "The identification string can be built based on information retrieved from the Activation Input Prompts endpoint. The format of the string is{fieldID}={value}[,{additionalFieldIds}={additionalValues}]There must be at least one field id, value pair. Multiple field id, value pairs are separated by a comma",
+                  "example": "1=35854205829867"
+                },
+                "CarrierActivationDetails": {
+                  "type": "object",
+                  "ref": "carrier-integration.CarrierActivationDetails",
+                  "description": "The details of this Activation"
+                },
+                "CarrierId": {
+                  "type": "integer",
+                  "description": "Identifier of the carrier for this request. This is not an entity ID; it is specific to the Carrier Integration Service",
+                  "example": "41"
+                },
+                "CompanyId": {
+                  "type": "integer",
+                  "description": "Identifier of the [Company](/api/company-tree/#company) making this request",
+                  "example": "1234"
+                },
+                "LocationId": {
+                  "type": "integer",
+                  "putDescription": "Must match the LocationId provided in the URI",
+                  "description": "Identifier of the [Location](/api/company-tree/#location) making this request",
+                  "example": "5678"
+                }
+              },
+              "required": [
+                "Id",
+                "CarrierActivationDetails",
+                "CarrierId",
+                "CompanyId",
+                "LocationId"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'{ConfirmationDate}'&$skip={Skip}&$top={Top}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "CarrierId",
+            "in": "path",
+            "description": "Identifier for the {{Carrier}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ConfirmationDate",
+            "in": "path",
+            "description": "Limits returned records to ones that were created after the specified date",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip before returning. See <a href=\"#pagiation\">Pagination</a> for more details",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Top",
+            "in": "path",
+            "description": "Maximum number of records return. See <a href=\"#pagiation\">Pagination</a> for more details",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "ConfirmedActivation",
+              "type": "array",
+              "description": "A ConfirmedActivation resource represents a payment transaction that completed the activation of one or more phones.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Service-generated identifier for the activation confirmation",
+                  "example": "58"
+                },
+                "ActivationConfirmationDetails": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "carrier-integration.ActivationDetails",
+                  "description": "Contains details of each line that was confirmed as part of this transaction. Each line represents a single device that was activated as part of a ConfirmedActivation"
+                },
+                "ConfirmationDateUTC": {
+                  "type": "DateTime",
+                  "description": "When this activation confirmation occurred",
+                  "example": "2015-07-21T15:25:45.323"
+                },
+                "InvoiceId": {
+                  "type": "string",
+                  "description": "Identifier of the invoice that caused these activations to be confirmed",
+                  "example": "INV0001"
+                },
+                "InvoiceSubtotal": {
+                  "type": "decimal",
+                  "description": "The subtotal amount from the invoice",
+                  "example": "53.38"
+                },
+                "InvoiceTotal": {
+                  "type": "decimal",
+                  "description": "The total amount from the invoice",
+                  "example": "61.54"
+                },
+                "LocationId": {
+                  "type": "integer",
+                  "description": "Identifier of the [Location](/api/company-tree/#location) where the transaction occurred",
+                  "example": "1"
+                },
+                "Taxes": {
+                  "type": "decimal",
+                  "description": "The taxes from the invoice",
+                  "example": "8.16"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/hal+json"
+        ]
+      }
+    }
+  }
+}

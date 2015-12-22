@@ -1,0 +1,414 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "entity-store",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Carriers": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Carrier",
+              "exclude": "true",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Carriers({CarrierId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "CarrierId",
+            "in": "path",
+            "description": "Identifier for the {{Carrier}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Carrier",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "9"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "The value must be Carrier",
+                  "example": "Carrier"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Description",
+                  "example": "Carrier creating great experiences."
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data",
+                  "example": ""
+                },
+                "CreatedUTC": {
+                  "type": "DateTime",
+                  "description": "Created date, in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "LastModifiedUtc": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "A reference to an [Asset](/api/assets/#asset)",
+                  "example": ""
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationships",
+                  "example": ""
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Role",
+                  "example": "Carrier"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Carrier",
+                  "ref": "entity-store.CarrierRole",
+                  "isNested": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplecarrier"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Manufacturers": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Manufacturer",
+              "type": "array",
+              "exclude": "true"
+            }
+          }
+        }
+      }
+    },
+    "/Manufacturers({ManufacturerId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "ManufacturerId",
+            "in": "path",
+            "description": "Identifier for the {{Manufacturer}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Manufacturer",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "4"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "SampleManufacturer"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Description",
+                  "example": "Manufacturer creating great experiences."
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data",
+                  "example": ""
+                },
+                "CreatedUtc": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "LastModifiedUtc": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "A reference to an [Asset](/api/assets/#asset)",
+                  "example": ""
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationships",
+                  "example": ""
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Role",
+                  "example": "Manufacturer"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Manufacturer",
+                  "ref": "entity-store.ManufacturerRole",
+                  "isNested": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplemanufacturer"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Suppliers": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Supplier",
+              "type": "array",
+              "exclude": "true"
+            }
+          }
+        }
+      }
+    },
+    "/Suppliers({SupplierId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SupplierId",
+            "in": "path",
+            "description": "Identifier for the {{Supplier}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Supplier",
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Unique identifier",
+                  "example": "14"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "example": "SampleSupplier"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Description",
+                  "example": "Supplier creating great experiences."
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data",
+                  "example": ""
+                },
+                "CreatedUtc": {
+                  "type": "DateTime",
+                  "description": "Created date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "ClientEntityId": {
+                  "type": "string",
+                  "description": "Identifier in an external system",
+                  "example": "123"
+                },
+                "LastModifiedUtc": {
+                  "type": "DateTime",
+                  "description": "Last modified date in UTC",
+                  "example": "2015-05-20T23:06:29.7700813Z"
+                },
+                "Logo": {
+                  "type": "object",
+                  "description": "A reference to an [Asset](/api/assets/#asset)",
+                  "example": ""
+                },
+                "Relationships": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Relationships",
+                  "example": ""
+                },
+                "Role": {
+                  "type": "string",
+                  "description": "Role",
+                  "example": "Supplier"
+                },
+                "Roles": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "The value must be Supplier",
+                  "ref": "entity-store.SupplierRole",
+                  "isNested": "true"
+                },
+                "SortName": {
+                  "type": "string",
+                  "description": "A string used for sorting",
+                  "example": "samplesupplier"
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

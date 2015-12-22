@@ -1,0 +1,459 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "security-roles",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Entities({EntityId})/Permissions": {
+      "get": {
+        "description": "This request will return all [Permissions](#permission) within the [SecurityRoles](#security-role) belonging to the specified Entity.\n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "EntityId",
+            "in": "path",
+            "description": "Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Permission",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Entities({EntityId})/SecurityRoles": {
+      "post": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "EntityId",
+            "in": "path",
+            "description": "Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "SecurityRole",
+              "type": "object",
+              "description": "A SecurityRole represents the relationship between a {{User}} and a set of Permissions. SecurityRoles allow you create custom groups that can hold Permissions",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "4457",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "putDescription": "A descriptive name, must be unique within the Company",
+                  "example": "Store Manager"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "SecurityRole",
+              "type": "object",
+              "description": "A SecurityRole represents the relationship between a {{User}} and a set of Permissions. SecurityRoles allow you create custom groups that can hold Permissions",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "4457",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Name",
+                  "putDescription": "A descriptive name, must be unique within the Company",
+                  "example": "Store Manager"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "EntityId",
+            "in": "path",
+            "description": "Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "SecurityRole",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({PermissionId})": {
+      "put": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "EntityId",
+            "in": "path",
+            "description": "Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "SecurityRoleId",
+            "in": "path",
+            "description": "Identifier of a SecurityRole",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "PermissionId",
+            "in": "path",
+            "description": "Identifier of a Permission",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "EntityId",
+            "in": "path",
+            "description": "Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "SecurityRoleId",
+            "in": "path",
+            "description": "Identifier of a SecurityRole",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "PermissionId",
+            "in": "path",
+            "description": "Identifier of a Permission",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "EntityId",
+            "in": "path",
+            "description": "Identifier of a {{Company}}, {{Location}}, {{Division}} or {{Group}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "SecurityRoleId",
+            "in": "path",
+            "description": "Identifier of a SecurityRole",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "Permission",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Users({UserId})/AssignedRoles": {
+      "post": {
+        "description": "If the User is assigned a SecurityRole they already have, the result will be a `HTTP 200` with the {{AssignedRole}}, the same response as assigning a new SecurityRole to a User.",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier of a User",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "AssignedRole",
+              "type": "object",
+              "description": "An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "6548",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier of an Entity",
+                  "ref": "company tree.Location.Id"
+                },
+                "SecurityRoleId": {
+                  "type": "integer",
+                  "description": "Identifier of a [SecurityRole](#securityrole)",
+                  "ref": "security-roles.SecurityRole.Id"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "description": "Identifier of a [User](/api/usermanager/#user)",
+                  "ref": "user-manager.User.Id",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "EntityId",
+                "SecurityRoleId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "AssignedRole",
+              "type": "object",
+              "description": "An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "6548",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "EntityId": {
+                  "type": "integer",
+                  "description": "Identifier of an Entity",
+                  "ref": "company tree.Location.Id"
+                },
+                "SecurityRoleId": {
+                  "type": "integer",
+                  "description": "Identifier of a [SecurityRole](#securityrole)",
+                  "ref": "security-roles.SecurityRole.Id"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "description": "Identifier of a [User](/api/usermanager/#user)",
+                  "ref": "user-manager.User.Id",
+                  "generated": "true",
+                  "putGenerate": "true"
+                }
+              },
+              "required": [
+                "EntityId",
+                "SecurityRoleId"
+              ]
+            }
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier of a User",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "AssignedRole",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Users({UserId})/AssignedRoles({SecurityRoleId})": {
+      "delete": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier of a User",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "SecurityRoleId",
+            "in": "path",
+            "description": "Identifier of a SecurityRole",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  }
+}

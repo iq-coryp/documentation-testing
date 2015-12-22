@@ -1,0 +1,1202 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "user-manager",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "oauth_2_0": {
+      "type": "oauth2",
+      "description": "iQmetrix APIs support OAuth 2.0 for authenticating API requests.\n",
+      "tokenUrl": "https://accountsint.iqmetrix.net/v1/oauth2/tokenn",
+      "scopes": {},
+      "flow": "password"
+    }
+  },
+  "paths": {
+    "/Users/importExisting": {
+      "post": {
+        "description": "{{tip}}This request allows existing Users to be imported from another system. Users created this way will <b>not</b> get a temporary password and the User will <b>not</b> be forced to change their password when logging in for the first time. If no password is supplied, the User will not be able to log in, obtain a token or reset their password.{{end}}\n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "User",
+              "type": "object",
+              "description": "A User represents an account that can be used to perform actions on your data within iQmetrix APIs.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "22212",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "FirstName": {
+                  "type": "string",
+                  "description": "First name",
+                  "example": "Sam"
+                },
+                "LastName": {
+                  "type": "string",
+                  "description": "Last name",
+                  "example": "Smith"
+                },
+                "UserName": {
+                  "type": "string",
+                  "description": "Name to be used to identify this User, must be unique",
+                  "putDescription": "The name used to identify this User. Must be unique",
+                  "example": "sample@iqmetrix.com"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "user-manager.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data to store with the User",
+                  "example": "{\"Department\": \"Sales\"}"
+                },
+                "ClientUserId": {
+                  "type": "string",
+                  "description": "Identifier for the User in an external system",
+                  "example": "132"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email for the User. Must be unique. A notification will be sent to this address when a User is created.",
+                  "putDescription": "The User's email address. Must be unique. No notification will be sent when this User is updated",
+                  "example": "sample@iqmetrix.com"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Flag to indicate if the Users login is enabled, false if it is disabled",
+                  "example": "true",
+                  "generated": "true"
+                },
+                "JobTitle": {
+                  "type": "string",
+                  "description": "Job title",
+                  "example": "Sales Clerk"
+                },
+                "ParentEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company to which this User belongs",
+                  "example": "1"
+                },
+                "PhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Phone numbers",
+                  "ref": "user-manager.PhoneNumber"
+                },
+                "Picture": {
+                  "type": "object",
+                  "description": "A reference to an Asset that is a photo of the User",
+                  "putDescription": "A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest",
+                  "example": ""
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "putDescription": "The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                },
+                "Profiles": {
+                  "type": "object",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                }
+              },
+              "required": [
+                "FirstName",
+                "LastName",
+                "UserName",
+                "ParentEntityId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "name": "User",
+              "type": "object",
+              "description": "A User represents an account that can be used to perform actions on your data within iQmetrix APIs.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "22212",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "FirstName": {
+                  "type": "string",
+                  "description": "First name",
+                  "example": "Sam"
+                },
+                "LastName": {
+                  "type": "string",
+                  "description": "Last name",
+                  "example": "Smith"
+                },
+                "UserName": {
+                  "type": "string",
+                  "description": "Name to be used to identify this User, must be unique",
+                  "putDescription": "The name used to identify this User. Must be unique",
+                  "example": "sample@iqmetrix.com"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "user-manager.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data to store with the User",
+                  "example": "{\"Department\": \"Sales\"}"
+                },
+                "ClientUserId": {
+                  "type": "string",
+                  "description": "Identifier for the User in an external system",
+                  "example": "132"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email for the User. Must be unique. A notification will be sent to this address when a User is created.",
+                  "putDescription": "The User's email address. Must be unique. No notification will be sent when this User is updated",
+                  "example": "sample@iqmetrix.com"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Flag to indicate if the Users login is enabled, false if it is disabled",
+                  "example": "true",
+                  "generated": "true"
+                },
+                "JobTitle": {
+                  "type": "string",
+                  "description": "Job title",
+                  "example": "Sales Clerk"
+                },
+                "ParentEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company to which this User belongs",
+                  "example": "1"
+                },
+                "PhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Phone numbers",
+                  "ref": "user-manager.PhoneNumber"
+                },
+                "Picture": {
+                  "type": "object",
+                  "description": "A reference to an Asset that is a photo of the User",
+                  "putDescription": "A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest",
+                  "example": ""
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "putDescription": "The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                },
+                "Profiles": {
+                  "type": "object",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                }
+              },
+              "required": [
+                "FirstName",
+                "LastName",
+                "UserName",
+                "ParentEntityId"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/Users({UserId})": {
+      "get": {
+        "parameters": [
+          {
+            "type": "string",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "User",
+              "type": "object",
+              "description": "A User represents an account that can be used to perform actions on your data within iQmetrix APIs.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "22212",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "FirstName": {
+                  "type": "string",
+                  "description": "First name",
+                  "example": "Sam"
+                },
+                "LastName": {
+                  "type": "string",
+                  "description": "Last name",
+                  "example": "Smith"
+                },
+                "UserName": {
+                  "type": "string",
+                  "description": "Name to be used to identify this User, must be unique",
+                  "putDescription": "The name used to identify this User. Must be unique",
+                  "example": "sample@iqmetrix.com"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "user-manager.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data to store with the User",
+                  "example": "{\"Department\": \"Sales\"}"
+                },
+                "ClientUserId": {
+                  "type": "string",
+                  "description": "Identifier for the User in an external system",
+                  "example": "132"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email for the User. Must be unique. A notification will be sent to this address when a User is created.",
+                  "putDescription": "The User's email address. Must be unique. No notification will be sent when this User is updated",
+                  "example": "sample@iqmetrix.com"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Flag to indicate if the Users login is enabled, false if it is disabled",
+                  "example": "true",
+                  "generated": "true"
+                },
+                "JobTitle": {
+                  "type": "string",
+                  "description": "Job title",
+                  "example": "Sales Clerk"
+                },
+                "ParentEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company to which this User belongs",
+                  "example": "1"
+                },
+                "PhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Phone numbers",
+                  "ref": "user-manager.PhoneNumber"
+                },
+                "Picture": {
+                  "type": "object",
+                  "description": "A reference to an Asset that is a photo of the User",
+                  "putDescription": "A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest",
+                  "example": ""
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "putDescription": "The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                },
+                "Profiles": {
+                  "type": "object",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                }
+              },
+              "required": [
+                "FirstName",
+                "LastName",
+                "UserName",
+                "ParentEntityId"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "{{important}}All fields that were populated in a User prior to this request must be provided in the body of the <code>PUT</code> request.{{end}}{{tip}}To add an Asset to a User, first <a href=\"{{\"/assets/#creating-an-asset\" | prepend: site.api_baseurl}}\">Create an Asset</a>, then use this request to associate the Asset with a User.{{end}}\n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "name": "User",
+              "type": "object",
+              "description": "A User represents an account that can be used to perform actions on your data within iQmetrix APIs.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "22212",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "FirstName": {
+                  "type": "string",
+                  "description": "First name",
+                  "example": "Sam"
+                },
+                "LastName": {
+                  "type": "string",
+                  "description": "Last name",
+                  "example": "Smith"
+                },
+                "UserName": {
+                  "type": "string",
+                  "description": "Name to be used to identify this User, must be unique",
+                  "putDescription": "The name used to identify this User. Must be unique",
+                  "example": "sample@iqmetrix.com"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "user-manager.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data to store with the User",
+                  "example": "{\"Department\": \"Sales\"}"
+                },
+                "ClientUserId": {
+                  "type": "string",
+                  "description": "Identifier for the User in an external system",
+                  "example": "132"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email for the User. Must be unique. A notification will be sent to this address when a User is created.",
+                  "putDescription": "The User's email address. Must be unique. No notification will be sent when this User is updated",
+                  "example": "sample@iqmetrix.com"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Flag to indicate if the Users login is enabled, false if it is disabled",
+                  "example": "true",
+                  "generated": "true"
+                },
+                "JobTitle": {
+                  "type": "string",
+                  "description": "Job title",
+                  "example": "Sales Clerk"
+                },
+                "ParentEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company to which this User belongs",
+                  "example": "1"
+                },
+                "PhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Phone numbers",
+                  "ref": "user-manager.PhoneNumber"
+                },
+                "Picture": {
+                  "type": "object",
+                  "description": "A reference to an Asset that is a photo of the User",
+                  "putDescription": "A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest",
+                  "example": ""
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "putDescription": "The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                },
+                "Profiles": {
+                  "type": "object",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                }
+              },
+              "required": [
+                "FirstName",
+                "LastName",
+                "UserName",
+                "ParentEntityId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "User",
+              "type": "object",
+              "description": "A User represents an account that can be used to perform actions on your data within iQmetrix APIs.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "22212",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "FirstName": {
+                  "type": "string",
+                  "description": "First name",
+                  "example": "Sam"
+                },
+                "LastName": {
+                  "type": "string",
+                  "description": "Last name",
+                  "example": "Smith"
+                },
+                "UserName": {
+                  "type": "string",
+                  "description": "Name to be used to identify this User, must be unique",
+                  "putDescription": "The name used to identify this User. Must be unique",
+                  "example": "sample@iqmetrix.com"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "user-manager.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data to store with the User",
+                  "example": "{\"Department\": \"Sales\"}"
+                },
+                "ClientUserId": {
+                  "type": "string",
+                  "description": "Identifier for the User in an external system",
+                  "example": "132"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email for the User. Must be unique. A notification will be sent to this address when a User is created.",
+                  "putDescription": "The User's email address. Must be unique. No notification will be sent when this User is updated",
+                  "example": "sample@iqmetrix.com"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Flag to indicate if the Users login is enabled, false if it is disabled",
+                  "example": "true",
+                  "generated": "true"
+                },
+                "JobTitle": {
+                  "type": "string",
+                  "description": "Job title",
+                  "example": "Sales Clerk"
+                },
+                "ParentEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company to which this User belongs",
+                  "example": "1"
+                },
+                "PhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Phone numbers",
+                  "ref": "user-manager.PhoneNumber"
+                },
+                "Picture": {
+                  "type": "object",
+                  "description": "A reference to an Asset that is a photo of the User",
+                  "putDescription": "A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest",
+                  "example": ""
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "putDescription": "The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                },
+                "Profiles": {
+                  "type": "object",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                }
+              },
+              "required": [
+                "FirstName",
+                "LastName",
+                "UserName",
+                "ParentEntityId"
+              ]
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "{{note}}\nDisabling a User does <b>NOT</b> free up their email address or username to be used to create another User. To free up an email address or username, you must instead <a href=\"#updating-a-user\">update</a> the email or username of the original User to something else.\n{{end}}\n",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Entities({CompanyId})/Users?$skip={Skip}&$top={Top}": {
+      "get": {
+        "description": "This request will only return Users where `IsActive` is set to `true`.\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "SearchSchema",
+              "exclude": "true",
+              "type": "object",
+              "properties": {
+                "_links": {
+                  "type": "object",
+                  "putDescription": "Relative URL's used for Pagination",
+                  "ref": "user-manager._links"
+                },
+                "_metadata": {
+                  "type": "object",
+                  "putDescription": "Data representing Pagination details",
+                  "ref": "user-manager._metadata"
+                },
+                "items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "user-manager.User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}": {
+      "get": {
+        "description": "This request will only return Users where `IsActive` is set to `true`.\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Terms",
+            "in": "path",
+            "description": "List of terms, multiple terms are separated by an encoded whitespace (+). User properties must contain/start with the term to be returned. Search terms are not case sensitive.",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "SearchSchema",
+              "exclude": "true",
+              "type": "object",
+              "properties": {
+                "_links": {
+                  "type": "object",
+                  "putDescription": "Relative URL's used for Pagination",
+                  "ref": "user-manager._links"
+                },
+                "_metadata": {
+                  "type": "object",
+                  "putDescription": "Data representing Pagination details",
+                  "ref": "user-manager._metadata"
+                },
+                "items": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "ref": "user-manager.User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Users({UserId})/Locations({LocationId})": {
+      "put": {
+        "description": "{{note}}\nUsers can be assigned to multiple locations\n{{end}}\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "LocationId",
+            "in": "path",
+            "description": "Identifier for the {{Location}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/Users({UserId})/Locations": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "AssignedLocations",
+              "exclude": "true",
+              "type": "object",
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "ref": "user-manager.User.Id"
+                },
+                "LocationIDs": {
+                  "type": "array",
+                  "arrayType": "integer",
+                  "putDescription": "Location Ids for {{Locations}} assigned to the {{User}}",
+                  "example": "4"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip={Skip}&$top={Top}": {
+      "get": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "CompanyId",
+            "in": "path",
+            "description": "Identifier for the {{Company}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ClientUserId",
+            "in": "path",
+            "description": "Identifier for the {{User}} in an external system",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "Skip",
+            "in": "path",
+            "description": "Number of records to skip",
+            "required": false
+          },
+          {
+            "type": "integer",
+            "name": "Top",
+            "in": "path",
+            "description": "Number of records to take",
+            "required": false
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "exclude": "true",
+              "name": "User",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/Users({UserId})/Lock": {
+      "post": {
+        "description": "<ul>\n  <li>Users can be locked due to events such as exceeding the maximum failed login attempts</li>\n  <li>Once locked, a User will not be able to log in or obtain an access token until they are unlocked</li>\n  <li>To determine if a User is locked, see <a href=\"#getting-the-lock-status-of-a-user\">Getting the Lock Status of a User</a></li>\n  <li>To unlock a User, see <a href=\"#unlocking-a-user\">Unlocking a User</a></li>\n</ul>\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/Users({UserId})/Unlock": {
+      "get": {
+        "description": "This request will return `true` if the User is currently Locked, and `false` if the User is unlocked. \n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "Unlock",
+              "exclude": "true",
+              "type": "object",
+              "properties": {
+                "CanUnlockUser": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "<ul>\n  <li>A User can be unlocked if their account is locked and their parent Entity is not using third-party authentication</li>\n  <li>Once a User is unlocked, they will be allowed to log into the system with their old credentials, as well as obtain an access token</li>\n  <li>To determine if a User is locked, see <a href=\"#getting-the-lock-status-of-a-user\">Getting the Lock Status of a User</a></li>\n  <li>To lock a User, see <a href=\"#locking-a-user\">Locking a User</a></li>\n</ul>\n",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/Users({UserId})/Enable": {
+      "post": {
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "UserId",
+            "in": "path",
+            "description": "Identifier for the {{User}}",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Accept",
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "name": "Content-Type",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "name": "User",
+              "type": "object",
+              "description": "A User represents an account that can be used to perform actions on your data within iQmetrix APIs.",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "description": "Identifier",
+                  "example": "22212",
+                  "generated": "true",
+                  "putGenerate": "true"
+                },
+                "FirstName": {
+                  "type": "string",
+                  "description": "First name",
+                  "example": "Sam"
+                },
+                "LastName": {
+                  "type": "string",
+                  "description": "Last name",
+                  "example": "Smith"
+                },
+                "UserName": {
+                  "type": "string",
+                  "description": "Name to be used to identify this User, must be unique",
+                  "putDescription": "The name used to identify this User. Must be unique",
+                  "example": "sample@iqmetrix.com"
+                },
+                "Address": {
+                  "type": "object",
+                  "description": "Address",
+                  "ref": "user-manager.Address"
+                },
+                "Attributes": {
+                  "type": "object",
+                  "description": "Set of key-value pairs that contain extra data to store with the User",
+                  "example": "{\"Department\": \"Sales\"}"
+                },
+                "ClientUserId": {
+                  "type": "string",
+                  "description": "Identifier for the User in an external system",
+                  "example": "132"
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "Email for the User. Must be unique. A notification will be sent to this address when a User is created.",
+                  "putDescription": "The User's email address. Must be unique. No notification will be sent when this User is updated",
+                  "example": "sample@iqmetrix.com"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Flag to indicate if the Users login is enabled, false if it is disabled",
+                  "example": "true",
+                  "generated": "true"
+                },
+                "JobTitle": {
+                  "type": "string",
+                  "description": "Job title",
+                  "example": "Sales Clerk"
+                },
+                "ParentEntityId": {
+                  "type": "integer",
+                  "description": "Identifier for the Company to which this User belongs",
+                  "example": "1"
+                },
+                "PhoneNumbers": {
+                  "type": "array",
+                  "arrayType": "object",
+                  "description": "Phone numbers",
+                  "ref": "user-manager.PhoneNumber"
+                },
+                "Picture": {
+                  "type": "object",
+                  "description": "A reference to an Asset that is a photo of the User",
+                  "putDescription": "A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest",
+                  "example": ""
+                },
+                "Version": {
+                  "type": "integer",
+                  "description": "Latest revision number",
+                  "putDescription": "The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date",
+                  "example": "1"
+                },
+                "CorrelationId": {
+                  "type": "string",
+                  "description": "Reserved for internal use",
+                  "example": ""
+                },
+                "Profiles": {
+                  "type": "object",
+                  "description": "This is a legacy property that should not be used",
+                  "example": ""
+                }
+              },
+              "required": [
+                "FirstName",
+                "LastName",
+                "UserName",
+                "ParentEntityId"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
