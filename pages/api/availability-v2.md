@@ -4,17 +4,19 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 29-12-2015
 summary: 
 ---
 {% include linkrefs.html %}
+
+{{tip}}This API reference has the following versions:<br/><ul><li><a href='/api/availability-v1'>Availability V1</a></li><li><a href='/api/availability'>Availability V2</a></li></ul>{{end}}
 
 
 
 ## Endpoints
 
-* Sandbox: <a href="https://availabilitydemo.iqmetrix.net/v1">https://availabilitydemo.iqmetrix.net/v1</a>
-* Production: <a href="https://availability.iqmetrix.net/v1">https://availability.iqmetrix.net/v1</a>
+* Sandbox: <a href="https://availabilitydemo.iqmetrix.net/v2">https://availabilitydemo.iqmetrix.net/v2</a>
+* Production: <a href="https://availability.iqmetrix.net/v2">https://availability.iqmetrix.net/v2</a>
 
 ## Resources
 
@@ -22,7 +24,7 @@ summary:
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `d60a8776-2f1f-430a-88f6-6180de43887d` |
+| Id | Guid | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `d60a8776-2f1f-430a-88f6-6180de43887d` |
 | EntityId | Integer | Identifier for a [CompanyTreeNode](/api/company-tree/#companytreenode) | `1` |
 | Quantity | Integer | Quantity | `15` |
 | IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#catalogitem) can be shipped | `true` |
@@ -47,26 +49,6 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://availabilitydemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(1)/Entities(2)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -127,26 +109,6 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://availabilitydemo.iqmetrix.net/v1/Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(1)/CatalogItems(4c2d0ab3-f1bc-4323-abad-33aadd68049b)/Availability");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -188,8 +150,6 @@ HTTP 200 Content-Type: application/json
         "IsDropShippable": true
     }
 ]</pre>
-
-
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
