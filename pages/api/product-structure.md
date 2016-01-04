@@ -4,7 +4,7 @@ permalink: /api/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 4-1-2016
+last_updated: 04-01-2016
 summary: 
 ---
 {% include linkrefs.html %}
