@@ -12,8 +12,11 @@ summary:
 
 ## Overview
 
-A **Product Feed** contains the Products information for a specific vendor. 
-Each feed will have its own unique **Feed ID**.
+A **Product Feed** contains the Products information for a specific vendor. Each feed will have its own unique **Feed ID**.
+
+
+{{important}} A Product must contain, at minimum, the following fields: <strong>Product Name</strong>, <strong>Long Description</strong>, 
+<strong>MSRP</strong>. {{end}}
 
 
 ## Endpoints

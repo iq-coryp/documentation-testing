@@ -200,6 +200,15 @@ Now that you have a list of Field Definitions and Classifications, there are als
 We can now combine the information gathered from the previous steps to [Adding a Product to your Product Feed](/api/product-feed/#addding-a-product-to-product-feed)
 
 <hr>
+
+<strong>Required Fields:</strong>
+
+* `Product Name` - Since there is a Manufacturer field, the manufacturer doesn't need to ba part of the product name
+* `Long Description` - Formatting should be handled with HTML tags
+* `MSRP` - Requires value and currency code (e.g. 35.99 CAD, 24.00 USD)
+
+<hr>
+
 <strong>Recommendations:</strong>
 
 * Ensure your product images (assets) have a transparent background. We crop out any backgrounds so that we can create a clean reflection in XQ.
