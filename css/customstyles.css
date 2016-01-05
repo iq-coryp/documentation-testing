@@ -1,5 +1,5 @@
 #navbar-custom {
-  background-color: #042239;
+  background-color: #364956;
 }
 
 .bs-callout {
@@ -829,4 +829,5 @@ code {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'MuseoSans-500',Helvetica,sans-serif;
+  color: #333;
 }
