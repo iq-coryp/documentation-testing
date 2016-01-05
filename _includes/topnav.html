@@ -23,10 +23,13 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       </button>
-      <a class="fa fa-lg navbar-brand" href="{{ site.url }}">&nbsp;<span class="projectTitle"> {{site.topnav_title}} {{site.topnav_version}}</span></a>
+      <a href="{{ site.url }}">
+        <span id="top-iq-logo"><img src="{{ "images/iq-logo.png" | prepend:site.pagefileurl }}" ></span>
+        <span id="projectTitle">iQmetrix Developer Portal</span>
+      </a>
    </div>
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
+      <ul id="top-bar-categories" class="nav navbar-nav navbar-right">
       
       <!-- entries without drop-downs appear here -->
       <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->

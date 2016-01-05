@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="{{ "css/font-awesome.min.css" | prepend:site.pagefileurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "css/bootstrap.min.css" | prepend:site.pagefileurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "css/modern-business.css" | prepend:site.pagefileurl }}">
-<link rel="stylesheet" type="text/css" href="{{ "css/lavish-bootstrap.css" | prepend:site.pagefileurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "css/customstyles.css" | prepend:site.pagefileurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "css/{{site.theme_file}}" | prepend:site.pagefileurl }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -29,13 +28,7 @@
     //Hacky code to make sure they don't go to a bad page
     $( window ).load(function() {
 
-        if(document.baseURI.indexOf("/api/index.html") > 0) {
-           window.location.href = 'http://developers.iqmetrix.com/';
-        }
-        else if (document.baseURI == "http://developers.iqmetrix.com/api/") {
-            window.location.href = 'http://developers.iqmetrix.com/api/environments/';
-        }
-        else if (document.baseURI.indexOf("api/generalledger.html") > 0) {
+        if (document.baseURI.indexOf("api/generalledger.html") > 0) {
             window.location.href = 'http://developers.iqmetrix.com/api/general-ledger/';
         }
         else if (document.baseURI.indexOf("api/productlibrary.html") > 0) {

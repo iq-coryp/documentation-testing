@@ -1,6 +1,5 @@
 #navbar-custom {
-  background-color: #222222;
-  border-color: #222222;
+  background-color: #042239;
 }
 
 .bs-callout {
@@ -298,7 +297,7 @@ margin-top:10px;
 }
 
 .post-content .rssfeedLink {
-color: #248EC2;
+color: #042239;
 }
 
 footer {
@@ -366,11 +365,11 @@ text-decoration: none;
 
 .nav a:hover, .nav li.active > a {
     background-color: #8D8D8D;
-    color: #f5f5f5;
 }
 
 .nav > li.active > a  {
-    background-color: #248ec2;
+    background-color: #042239;
+    color: white;
 }
 
 .nav li a {
@@ -387,8 +386,8 @@ text-decoration: none;
 
 ul#mysidebar {
   margin-top:40px;
+  
   border-radius:0px;
-  /*width: 300px;*/
 }
 
 .nav ul li ul li a {
@@ -398,7 +397,7 @@ ul#mysidebar {
 
 .nav li.thirdlevel > a {
 background-color: #FAFAFA !important;
-color: #248EC2;
+color: #042239;
 font-weight:bold;
 }
 
@@ -427,8 +426,8 @@ padding-left:10px;
 border-radius: 5px;
 }
 
-span.projectTitle {
-    font-family: Helvetica;
+a:focus, a:hover {
+  text-decoration: none !important;
 }
 
 .footer {
@@ -483,9 +482,8 @@ figcaption {
 }
 
 .siteTagline {
-  margin: 20px 0px;
-  font-size:17px;
-  min-height: 55px;
+margin: 20px 0px;
+font-size:17px;
 }
 
 .testing {
@@ -525,7 +523,7 @@ section table tr.danger, table tr.preference, table tr.preference > td.sorting_1
 }
 
 table.profile thead tr th {
-background-color: #248ec2;
+background-color: #042239;
 }
 
 table.request thead tr th {
@@ -584,7 +582,7 @@ i.border {
 }
 
 a[data-toggle] {
-  color: #248EC2;
+  color: #042239;
 }
 
 .summary {
@@ -650,7 +648,7 @@ h3 {color: black; font-weight:normal; font-size:155%;}
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    background-color: #248ec2;
+    background-color: #042239;
     color: white;
 }
 
@@ -720,4 +718,115 @@ div.special_table table > tbody > tr > td {
 
 #page-selector .text-center h4 {
   margin-top:15px;
+}
+
+#navbar-custom {
+  min-height: 100px
+}
+
+body {
+  padding-top: 100px;
+}
+
+.navbar-brand {
+  padding: 30px 15px;
+}
+
+
+@font-face {
+  font-family:"MuseoSans-100";
+  src:url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159302.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159302.ttf?t=1450884998021") format("woff"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159302.woff?t=1450884998021") format("truetype")
+}
+@font-face {
+  font-family:"MuseoSans-300";
+  src:url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159305.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159305.woff?t=1450884998021") format("woff"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159305.ttf?t=1450884998021") format("truetype")
+ }
+
+@font-face {
+  font-family:"MuseoSans-700";
+  src:url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159306.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159306.woff?t=1450884998021") format("woff"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159306.ttf?t=1450884998021") format("truetype")
+}
+
+@font-face {
+  font-family:"MuseoSans-300";
+  src:url("//cdn2.hubspot.net/hubfs/519470/Iqmetrix-Apr2015-Theme/Fonts/style_159305.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/Iqmetrix-Apr2015-Theme/Fonts/style_159305.woff?t=1450884998021") format("woff"),
+  url("//cdn2.hubspot.net/hubfs/519470/Iqmetrix-Apr2015-Theme/Fonts/style_159305.ttf?t=1450884998021") format("truetype")
+}
+
+@font-face {
+  font-family:"MuseoSans-500";
+  src:url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159303.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159303.woff?t=1450884998021") format("woff"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_159303.ttf?t=1450884998021") format("truetype")
+}
+
+@font-face {
+  font-family:"MuseoSlab-500";
+  src:url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_183117.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_183117.woff?t=1450884998021") format("woff"),
+  url("//cdn2.hubspot.net/hubfs/519470/Fonts/style_183117.ttf?t=1450884998021") format("truetype")
+}
+
+@font-face {
+  font-family:"Museo-300";
+  src:url("//cdn2.hubspot.net/hubfs/519470/style_154926.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/style_154926.woff?t=1450884998021") format("woff")
+}
+
+@font-face {
+font-family:"Museo-700";
+  src:url("//cdn2.hubspot.net/hubfs/519470/style_154925.eot?t=1450884998021") format("embedded-opentype"),
+  url("//cdn2.hubspot.net/hubfs/519470/style_154925.woff?t=1450884998021") format("woff")
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #444;
+  background-color: #f0f0f0;
+  white-space: nowrap;
+  border-radius: 4px;
+}
+
+#projectTitle {
+    font-family: 'MuseoSans-100',Helvetica,sans-serif;
+    margin:10px;
+    font-size: 25px;
+    color: white;
+}
+
+#top-iq-logo {
+  float: left;
+}
+
+.navbar-header {
+  margin-top: 30px; 
+}
+
+#top-bar-categories {
+  margin-top: 22px;
+}
+
+#top-bar-categories a {
+  color: #fff;
+  font-family: 'MuseoSans-100',Arial,sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-size-adjust: none;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0;
+  text-align: center;  
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'MuseoSans-500',Helvetica,sans-serif;
 }
