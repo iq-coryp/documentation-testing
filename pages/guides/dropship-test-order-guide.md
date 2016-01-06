@@ -1,6 +1,6 @@
 ---
-title: Create a Dropship Test Order
-permalink: /guides/dropship-test-order/
+title: Dropship Test Order Guide
+permalink: /guides/dropship-test-order-guide/
 tags: []
 keywords: 
 audience: 
@@ -12,15 +12,15 @@ summary:
 
 ## Overview
 
-The following document outlines the calls required for a dropship test order. The steps outlined in this guide are meant to be performed sequentially. 
-
-You will have been given a user credentials under a test company that is subscribed to your dropship feed.
-
-A <a href="{{ "/files/create-test-order.zip" | prepend: site.url }}">Postman Collection</a> will contain the sample data below. Please fill in the environment data from your supplier account in order to complete the steps.
+This guide provides sequential instructions to create a test order and verifies the api requests performed in the [Dropship Order Management Guide](/guides/dropship-order-guide).
 
 #### Prior Steps
 
-Prior to starting this guide, the steps outlined in the [Dropship Order Management Guide](/documentation-testing//guides/dropship-order-guide) must be completed. 
+Prior to starting this guide, you must have completed the requests in the [Dropship Order Management Guide](/guides/dropship-order-guide). You will have been given user credentials for a test company, subscribed to your dropship feed.
+
+A <a href="{{ "/files/create-test-order.zip" | prepend: site.url }}">Postman Collection</a> will contain the sample data below. Please fill in the environment data from your supplier account in order to complete the steps. See the screenshot below.
+
+<img src="{{ "/images/postman-credentials.png" | prepend: site.url }}" alt="postman screenshot"/>
 
 Should you have any issues generating test order data consult with <a href="mailto:{{site.support_email}}?subject=Dropship Order Test Data">API Support</a>.
 
@@ -29,20 +29,20 @@ Should you have any issues generating test order data consult with <a href="mail
 
 | Property | Description | Example |
 |:---------|:------------|:--------|
-| CompanyId | Identifier for the company | 14146 |
-| CustomerId | Identifier for the customer | 659c2a38-d083-4421-9330-46d779702f85 |
-| OrderId | Identifier for the order | cdd26b8f-4ed1-409d-9984-982e081c425e |
-| AddressId | Identifier for the address | a08b0640-606a-41f0-901a-facaf50e75dd |
-| AddressTypeId | Identifier for address type | 2 (Home), 3 (Shipping) |
-| CatalogItemId | Identifier of item from company's catalog | b85cb879-bb5f-4847-a856-8287de0a92d5 |
-| CustomerTypeId | Identifier for the customer type | 2 (Person) |
-| LocationId | Identifier for store location | 14223 |
-| ItemStatusId | Identifier for item status  | 1 (new dropship order), 15 (shipment) |
-| ItemTypeId | Identifier for item type | 1 (dropship), 4 (shipping) |
-| OrderTypeId | Identifier for the order type  | 1 (Sales order placed by customer) |
-| ShippingOptionId | Identifier comes from your shipping endpoint | 101 |
-| SKU | Product SKU | B00LAOKN4S |
-| SupplierId | Identifier for the supplier | 14107 |
+| CompanyId | [Company](/api/company-tree/#company) | 14146 |
+| CustomerId | [Customer](/api/crm/#customer) | 659c2a38-d083-4421-9330-46d779702f85 |
+| OrderId | [Order](/api/orders/#order) | cdd26b8f-4ed1-409d-9984-982e081c425e |
+| AddressId | [Address](/api/crm/#address) | a08b0640-606a-41f0-901a-facaf50e75dd |
+| AddressTypeId | [AddressType](/api/crm/#addresstype) | 2 (Home), 3 (Shipping) |
+| CatalogItemId | [CatalogItem](/api/catalog/#catalogitem) | b85cb879-bb5f-4847-a856-8287de0a92d5 |
+| CustomerTypeId | [CustomerType](/api/crm/#customertype) | 2 (Person) |
+| LocationId | [Location](/api/company-tree/#location) | 14223 |
+| ItemStatusId | [ItemStatus](/api/orders/#itemstatus)  | 1 (new dropship order), 15 (shipment) |
+| ItemTypeId | [ItemType](/api/orders/#itemtype) | 1 (dropship), 4 (shipping) |
+| OrderTypeId | [OrderType](/api/orders/#ordertype)  | 1 (Sales order placed by customer) |
+| ShippingOptionId | Identifier for your shipping endpoint | 101 |
+| SKU | [Sku Identifier](/api/catalog/#identifier) | B00LAOKN4S |
+| SupplierId | Supplier identifier | 14107 |
 
 
 ## Step 1 - Authentication
@@ -170,7 +170,7 @@ The next step is to fill in the order entry.
         "ItemStatusId": 1,
         "ItemTypeId": 1,
         "Cost": 20.49,
-        "Description": "Samsung Galaxy S4 Standard Battery",
+        "Description": "{}",
         "Index": 1,
         "ListPrice": 39.99,
         "ProductId": "{CatalogItemId}",
@@ -195,7 +195,7 @@ The next step is to fill in the order entry.
         "ItemStatusId": 15,
         "ItemTypeId": 4,
         "Cost": 0,
-        "Description": "Expedited Parcel ",
+        "Description": "{}",
         "Index": 2,
         "ListPrice": 12.16,
         "SellingPrice": 12.16,
@@ -223,4 +223,4 @@ The final step is to process the order.
 
 ## Step 5 - Next Steps
 
-Refer to the [Dropship Order Management Guide](/documentation-testing//guides/dropship-order-guide) to get the order notification feed.
+Refer to the [Dropship Order Management Guide](/guides/dropship-order-guide) to get the order notification feed.

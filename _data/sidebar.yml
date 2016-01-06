@@ -116,7 +116,7 @@ entries:
           print: true
 
         - title: Dropship Test Order Guide
-          url: /guides/dropship-test-order/
+          url: /guides/dropship-test-order-guide/
           audience: writers, designers
           platform: all
           product: all
