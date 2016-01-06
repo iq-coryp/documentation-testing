@@ -4,7 +4,7 @@ permalink: /guides/dropship-test-order/
 tags: []
 keywords: 
 audience: 
-last_updated: 08-12-2015
+last_updated: 06-01-2016
 summary: 
 ---
 
@@ -16,7 +16,7 @@ The following document outlines the calls required for a dropship test order. Th
 
 You will have been given a user credentials under a test company that is subscribed to your dropship feed.
 
-A [Postman collection]() will contain the sample data below. Please fill in the environment data from your supplier account in order to complete the steps.
+A <a href="{{ "/files/create-test-order.zip" | prepend: site.url }}">Postman Collection</a> will contain the sample data below. Please fill in the environment data from your supplier account in order to complete the steps.
 
 #### Prior Steps
 
@@ -33,7 +33,7 @@ Should you have any issues generating test order data consult with <a href="mail
 | CustomerId | Identifier for the customer | 659c2a38-d083-4421-9330-46d779702f85 |
 | OrderId | Identifier for the order | cdd26b8f-4ed1-409d-9984-982e081c425e |
 | AddressId | Identifier for the address | a08b0640-606a-41f0-901a-facaf50e75dd |
-| AddressTypeId | identifier for address type | 2 (Home), 3 (Shipping) |
+| AddressTypeId | Identifier for address type | 2 (Home), 3 (Shipping) |
 | CatalogItemId | Identifier of item from company's catalog | b85cb879-bb5f-4847-a856-8287de0a92d5 |
 | CustomerTypeId | Identifier for the customer type | 2 (Person) |
 | LocationId | Identifier for store location | 14223 |
@@ -65,7 +65,7 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 
 ## Step 2 - Create a Dropship Customer
 
-The first step in creating a dropship test order is to create a customer account. The address for this customer will be the shipping endpoint for the order. In this scenario we will be shipping a product to the customer's address.
+The first step in creating a dropship test order is to create a customer account. The address for this customer will be the shipping endpoint for the order. In this scenario, we will be shipping a product to the customer's address.
 
 ### Step 2.1 - Create Customer
 
