@@ -108,7 +108,7 @@ This example demonstrates the flexibility of a Company Tree as a company changes
 
 The fictional company used for these examples is KENTEL, a cellular mobility store specializing in wireless accessories.
 
-KENTEL has two retail locations, one in Edmonton and Calgary. 
+KENTEL has two retail locations in Edmonton and Calgary. 
 
 <!-- <img src="{{ "/images/westeros.png" | prepend: site.url }}" /> -->
 
@@ -126,7 +126,7 @@ A new province means a new set of taxes and regulations, so KENTEL hires a regio
 
 A few months later, KENTEL acquires retail stores in Manitoba and California through a merger with a competitor, Wireless Realm. The company name changes to KENTEL Corporation as a result and the Canadian store are rebranded as Mobile etc.
 
-Wanting to improve the customer experience, KENTEL decides to add an XQ Shelf screen to the Edmonton and Churchill retail stores.
+Wanting to improve the customer experience, KENTEL decides to add devices to the Edmonton and San Francisco retail stores.
 
 To simplify management, the Company Tree is divided into Divisions.
 
