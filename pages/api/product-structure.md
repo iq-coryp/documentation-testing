@@ -4,11 +4,138 @@ permalink: /api/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-01-2016
+last_updated: 7-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
 
+
+## Overview
+
+In {{ProductLibrary_Concept}} and in your Catalog, products are structured in a way to make managing them easier.
+
+To about Master Products, Variations and Revisions, see {{ProductStructure_Concept}}. 
+
+### Extended Examples
+
+These examples are intended to explain how some of the more complex components of a ProductDocument work.
+
+#### Revision Group
+
+```
+{
+    "Order": 1,
+    "VariationId": 3,
+    "GroupType": "Entity",
+    "Revisions": [
+        {
+            "Id": 4,
+            "Entity": {
+                "Id": 12372,
+                "Name": "Jump.ca"
+            },
+            "Regions": [],
+            "FieldValues": [
+                {
+                    "FieldDefinitionId": 76,
+                    "LanguageInvariantValue": "659.50 CAD"
+                }
+            ]
+        },
+        {
+            "Id": 3,
+            "Entity": {
+                "Id": 3335,
+                "Name": "KENTEL"
+            },
+            "Regions": [],
+            "FieldValues": [
+                {
+                    "FieldDefinitionId": 76,
+                    "LanguageInvariantValue": "449.50 USD"
+                }
+            ]
+        },              
+    ]
+}
+```
+
+In the example above, `"GroupType": "Entity"` signifys that the `Revisions` were created from the same {{Variation}} of a {{MasterProduct}}.
+
+In this case, the two Entities that own these Revisions are {{Company}} Entities, Jump.ca and KENTEL.
+
+The Revision also contains a FieldValue change, using [Getting a Field Definition](/api/field-definitions/#getting-a-fielddefinition) we can determine that this is setting MSRP to `449.50 USD`.
+
+Therefore, Jump.ca owns Revision `4`, which has an MSRP value of `659.50 CAD`, and KENTEL owns Revision `3`, which has a MSRP value of `449.50 USD`.
+
+### Force Overide Example 
+
+```
+{
+  "RootRevision": {
+    "Variations": [
+      {
+        "IdentifierGroups": [
+          {
+            "Type": "VendorSKU",
+            "Identifiers": [
+              {
+                "Type": "ManufacturerSKU",
+                "Value": "ME341LL/A",
+                "Description": "",
+                "Entity": {
+                  "Id": 632,
+                  "Name": "Apple"
+                }
+              }
+            ],
+            "ForceOverride": true
+          }
+        ],
+      },
+    ],
+    "IdentifierGroups": [
+      {
+        "Type": "VendorSKU",
+        "Identifiers": [
+          {
+            "Type": "VendorSKU",
+            "Value": "V8341221L",
+            "Description": "",
+            "Entity": {
+              "Id": 632,
+              "Name": "Apple"
+            }
+          }
+        ],
+        "ForceOverride": true
+      },
+      {
+        "Type": "ManufacturerSKU",
+        "Identifiers": [],
+        "ForceOverride": false
+      },
+      {
+        "Type": "UPC",
+        "Identifiers": [],
+        "ForceOverride": true
+      }            
+      ...
+    ],
+  },
+  ...
+}
+```
+
+In the summarized example of a ProductDocument above, the MasterProduct (`RootRevision`) has a `VendorSKU` IdentifierGroup with an Identifier of `V8341221L`.
+
+With `ForceOverride` set to `true`, we know that all Variations inherit this IdentifierGroup, all Variations have one and only one Vendor SKU - `V8341221L`. 
+
+However, the MasterProduct `ManufacturerSKU` IdentifierGroup has `ForceOverride` set to `false`.
+
+Looking at the Variation, we can see the reason - there is a `ManufacturerSKU` IdentifierGroup with an Identifier of `ME341LL/A`, breaking inheritance from the parent MasterProduct.
+
+The MasterProduct has a Vendor SKU of `V8341221L`, but the Variation has a Vendor SKU of `V8341221L` **and** a Manufacturer SKU of `ME341LL/A`.
 
 
 ## Endpoints
@@ -20,7 +147,7 @@ summary:
 
 ###ProductDocument
 
-A ProductDocument is a template upon which a Product hierarchy is built.
+A ProductDocument represents the [hierarchical structure](/concepts/product-structure/) of Products in Product Library.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -45,8 +172,6 @@ A ProductDocument is a template upon which a Product hierarchy is built.
 
 ###MasterProduct
 
-To learn more about Master Products, Variations and Revisions, see {{product-structure}}.
-
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | ColorDefinitionId | String | Unique identifier for a ColorDefinition | `e572461b-17b0-44c8-9b27-ca76904b9ee2` |
@@ -62,7 +187,7 @@ An Identifier is a value that uniquely represents a product within a certain con
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String | See Searchable Identifiers for list of acceptable values | `ManufacturerSKU` |
-| ForceOveride | Boolean | A flag to indicate if this Identifier Group is inherited (synced) from a parent | `false` |
+| ForceOverride | Boolean | A flag to indicate if this Identifier Group is inherited (synced) from a parent. See [Extended Examples](#extended-examples) | `false` |
 | Identifiers | Array[object] | List of Identifiers of the given type |  |
 | Description | String | Description | `Manufacturer sku` |
 | Entity | object | Manufacturer or Vendor information for ManufacturerSKU or VendorSKU |  |
@@ -84,13 +209,13 @@ An Identifier is a value that uniquely represents a product within a certain con
 
 ###RevisionGroup
 
-To learn more about Master Products, Variations and Revisions, see {{product-structure}}. RevisionGroups are used to group Revisions by type and parent Variation, if applicable.
+RevisionGroups are used to group Revisions by type and parent Variation. See [Extended Examples](#extended-examples)
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | GroupType | String | Revision type. See [GroupTypes](#grouptypes) for a list of acceptable values | `Entity` |
 | Order | Integer | A value used for sorting Revisions | `1` |
-| Revisions | Array[<a href='#revision'>Revision</a>] | List of Revisions belonging to this RevisionGroup |  |
+| Revisions | Array[<a href='#revision'>Revision</a>] | List of Revisions in this category |  |
 | VariationId | Integer | Identifier for the Variation, if this Revision was created off of a Variation | `5` |
 
 ###Revision
@@ -130,7 +255,6 @@ A FieldValue represents a product property and defines how Variations and Revisi
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | FieldDefinitionId | Integer | Identifier for a FieldDefinition | `84` |
-| ForceOverride | Boolean | A flag to indicate if FieldDefinition should be inherited (synced) from a parent | `false` |
 | LanguageInvariantValue | String | Value for the FieldDefinition | `iPhone 4S 16 GB Black` |
 
 
@@ -140,13 +264,11 @@ A FieldValue represents a product property and defines how Variations and Revisi
 
 ### GroupType
 
-The different types of Revisions are described below,
-
 | Name   | Description |
 |:-------|:------------|
-| Region | The Product differs by Region |
-| Entity | The Product differs by Manufacturer or Vendor  |
-| RegionAndEntity | The Product differs by Region and Manufacturer or Vendor |
+| Region | Geographical region revision |
+| Entity | Company revision |
+| RegionAndEntity | Region and Entity revision | 
 
 ### SwatchType
 
@@ -155,29 +277,6 @@ The different types of Revisions are described below,
 | Asset | Color is represented by an [Asset](/api/assets/#asset) |
 | ColorCodes | Color is represented by a Hex code |
 | Empty | No swatch |
-
-### ColorTag
-
-ColorTags are used to describe the major colors in a product
-
-| Id | Name | ColorCode |
-|:---|:-----|:----------|
-| 1 | <span style="color:#000000">Black</span> | `#000000` |
-| 2 | <span style="color:#1B1BB3">Blue</span>  | `#1B1BB3` |
-| 3 | <span style="color:#673D00">Brown</span> | `#673D00` |
-| 4 | <span style="color:#7D7D7D">Gray</span> | `#7D7D7D` |
-| 5 | <span style="color:#00AD2D">Green</span> | `#00AD2D` |
-| 6 | <span style="color:#FF7F00">Orange</span> | `#FF7F00` |
-| 7 | <span style="color:#D62F82">Pink</span> | `#D62F82` |
-| 8 | <span style="color:#5C0DAC">Purple</span> | `#5C0DAC` |
-| 9 | <span style="color:#FF0000">Red</span> | `#FF0000` |
-| 10 | <span style="color:#FFFFFF; background-color:#000000">Translucent</span> | `#FFFFFF` |
-| 11 | <span style="color:#4EBABA;">Turquoise</span> | `#4EBABA` |
-| 12 | <span style="color:#FFFFFF; background-color:#000000">White</span> | `#FFFFFF` |
-| 13 | <span style="color:#FFFF00;">Yellow</span> | `#FFFF00` |
-| 14 | <span style="color:#FFD700">Gold</span> | `#FFD700` |
-| 15 | <span style="color:#C0C0C0">Silver</span> | `#C0C0C0` |
-| 16 | <span style="color:#CD7F32">Bronze</span> | `#CD7F32` |
 
 
 
@@ -202,7 +301,7 @@ POST /ProductDocs
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>TreeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitions</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (Optional) </li><li><code>ColorTags</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Swatch</code> (Optional) </li><ul><li><code>Type</code> (Optional) </li><li><code>AssetId</code> (Optional) </li><li><code>ColorCode</code> (Optional) </li></ul></ul><li><code>Manufacturer</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li><li><code>Name</code> (Optional) </li></ul><li><code>RootRevision</code> (<strong>Required</strong>) </li><ul><li><code>ColorDefinitionId</code> (<strong>Required</strong>) </li><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOveride</code> (<strong>Required</strong>) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul><li><code>Variations</code> (Optional) </li><ul><li><code>FieldValues</code> (<strong>Required</strong>) - Must be unique across all Variations for the MasterProduct</li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOveride</code> (<strong>Required</strong>) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul></ul><li><code>Owner</code> (Optional) </li><ul></ul></ul>
+<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>TreeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitions</code> (<strong>Required</strong>) </li><ul><li><code>Name</code> (Optional) </li><li><code>ColorTags</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Swatch</code> (Optional) </li><ul><li><code>Type</code> (Optional) </li><li><code>AssetId</code> (Optional) </li><li><code>ColorCode</code> (Optional) </li></ul></ul><li><code>Manufacturer</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li><li><code>Name</code> (Optional) </li></ul><li><code>RootRevision</code> (<strong>Required</strong>) </li><ul><li><code>ColorDefinitionId</code> (<strong>Required</strong>) </li><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul><li><code>Variations</code> (Optional) </li><ul><li><code>FieldValues</code> (<strong>Required</strong>) - Must be unique across all Variations for the MasterProduct</li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul></ul><li><code>Owner</code> (Optional) </li><ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -240,14 +339,13 @@ Content-Type: application/json
         "FieldValues": [
             {
                 "FieldDefinitionId": 84,
-                "ForceOverride": false,
                 "LanguageInvariantValue": "iPhone 4S 16 GB Black"
             }
         ],
         "IdentifierGroups": [
             {
                 "Type": "ManufacturerSKU",
-                "ForceOveride": false,
+                "ForceOverride": false,
                 "Identifiers": [
                     {
                         "Description": "Manufacturer sku",
@@ -266,14 +364,13 @@ Content-Type: application/json
                 "FieldValues": [
                     {
                         "FieldDefinitionId": 84,
-                        "ForceOverride": false,
                         "LanguageInvariantValue": "iPhone 4S 16 GB Black"
                     }
                 ],
                 "IdentifierGroups": [
                     {
                         "Type": "ManufacturerSKU",
-                        "ForceOveride": false,
+                        "ForceOverride": false,
                         "Identifiers": [
                             {
                                 "Description": "Manufacturer sku",
@@ -350,14 +447,13 @@ HTTP 201 Content-Type: application/json
                     "FieldValues": [
                         {
                             "FieldDefinitionId": 84,
-                            "ForceOverride": false,
                             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
                         }
                     ],
                     "IdentifierGroups": [
                         {
                             "Type": "ManufacturerSKU",
-                            "ForceOveride": false,
+                            "ForceOverride": false,
                             "Identifiers": [
                                 {
                                     "Description": "Manufacturer sku",
@@ -388,14 +484,13 @@ HTTP 201 Content-Type: application/json
         "FieldValues": [
             {
                 "FieldDefinitionId": 84,
-                "ForceOverride": false,
                 "LanguageInvariantValue": "iPhone 4S 16 GB Black"
             }
         ],
         "IdentifierGroups": [
             {
                 "Type": "ManufacturerSKU",
-                "ForceOveride": false,
+                "ForceOverride": false,
                 "Identifiers": [
                     {
                         "Description": "Manufacturer sku",
@@ -416,14 +511,13 @@ HTTP 201 Content-Type: application/json
                 "FieldValues": [
                     {
                         "FieldDefinitionId": 84,
-                        "ForceOverride": false,
                         "LanguageInvariantValue": "iPhone 4S 16 GB Black"
                     }
                 ],
                 "IdentifierGroups": [
                     {
                         "Type": "ManufacturerSKU",
-                        "ForceOveride": false,
+                        "ForceOverride": false,
                         "Identifiers": [
                             {
                                 "Description": "Manufacturer sku",
@@ -472,7 +566,7 @@ POST /ProductDocs/{ProductDocumentId}/Variations
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>FieldValues</code> (<strong>Required</strong>) - Must be unique across all Variations for the MasterProduct</li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOveride</code> (<strong>Required</strong>) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul>
+<ul><li><code>FieldValues</code> (<strong>Required</strong>) - Must be unique across all Variations for the MasterProduct</li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -486,14 +580,13 @@ Content-Type: application/json
     "FieldValues": [
         {
             "FieldDefinitionId": 84,
-            "ForceOverride": false,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
     "IdentifierGroups": [
         {
             "Type": "ManufacturerSKU",
-            "ForceOveride": false,
+            "ForceOverride": false,
             "Identifiers": [
                 {
                     "Description": "Manufacturer sku",
@@ -523,14 +616,13 @@ HTTP 201 Content-Type: application/json
     "FieldValues": [
         {
             "FieldDefinitionId": 84,
-            "ForceOverride": false,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
     "IdentifierGroups": [
         {
             "Type": "ManufacturerSKU",
-            "ForceOveride": false,
+            "ForceOverride": false,
             "Identifiers": [
                 {
                     "Description": "Manufacturer sku",
@@ -595,7 +687,7 @@ POST /ProductDocs/{ProductDocumentId}/Revisions?variationId={variationId}&countr
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOveride</code> (<strong>Required</strong>) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul>
+<ul><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -609,14 +701,13 @@ Content-Type: application/json
     "FieldValues": [
         {
             "FieldDefinitionId": 84,
-            "ForceOverride": false,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
     "IdentifierGroups": [
         {
             "Type": "ManufacturerSKU",
-            "ForceOveride": false,
+            "ForceOverride": false,
             "Identifiers": [
                 {
                     "Description": "Manufacturer sku",
@@ -651,14 +742,13 @@ HTTP 201 Content-Type: application/json
     "FieldValues": [
         {
             "FieldDefinitionId": 84,
-            "ForceOverride": false,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
     "IdentifierGroups": [
         {
             "Type": "ManufacturerSKU",
-            "ForceOveride": false,
+            "ForceOverride": false,
             "Identifiers": [
                 {
                     "Description": "Manufacturer sku",
