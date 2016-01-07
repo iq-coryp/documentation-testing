@@ -4,7 +4,7 @@ permalink: /guides/dropship-order-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 18-12-2015
+last_updated: 07-01-2016
 summary: 
 ---
 
@@ -249,7 +249,21 @@ You must update order status in the dropship order feed via [Updating Order Stat
 
 Partial shipments are supported but are currently limited. It is **highly recommended** to ship a complete order, rather than a partially shipped order.
 
-If an order has items that are currently unavailable but must be shipped, then you must contact <a href="mailto:support@iqmetrix.com?subject=Dropship Partial Shipment">iQmetrix Support</a> to coordinate with the partial shipments. It is not necessary to update the order status for partial shipments, even in the case where all products are shipped in the final partial shipment.
+If an order has items that are currently unavailable but must be shipped, then you must contact <a href="mailto:support@iqmetrix.com?subject=Dropship Partial Shipment">iQmetrix Support</a> to coordinate with the partial shipments. 
+
+There are two main cases when handling partial shipments, choose the most appropriate case that applies to you.
+
+#### 1. Incremental Shipments
+
+In this scenario, the supplier would continue to update the status of individual items up to and including the final partial shipment. 
+
+For example, an order has 3 different items that have different levels of availability. One of the items is currently available, and so a partial shipment is made with that item stated as `Shipped`. This setup occurs two more times, when each product becomes available, including the final partial shipment. The `Shipped` status needs to be repeated for each subsequent partial shipment. 
+
+#### 2. Partial Shipments followed by a Complete Order
+
+In this scenario, the supplier would continue to update the status of individual items, and send a complete order for the final shipment. 
+
+For example, an order has 3 different items that have different levels of availability. One of the items is currently available, and so a partial shipment is made with that item stated as `Shipped`. This setup occurs one more time when one of the products becomes available. The final shipment is a complete order shipment, requiring only one status update. The `Shipped` status needs to be repeated for each partial shipment.
 
 
 #### Partial Order Flow Diagram
@@ -310,9 +324,29 @@ You must update item status in the dropship order feed via [Updating Item Status
     }
 
 
-### Canceling an Order
+### Cancelling an Order
 
-Canceling an order is not currently supported in the API and is a manual process between the store and supplier. The store must contact the supplier to cancel the order and have a refund issued to the end customer.
+Order cancellations require human interaction and are a manual process between a retailer and supplier to provider a refund to an end customer. 
+
+There are three possible scenarios when cancelling an order:
+
+#### 1. Supplier Cancels Order 
+
+Two concurrent processes occur when a supplier cancels an order. 
+
+First, they must communicate with their retailer's support contact who handles orders and cancellations. It is assumed that suppliers will have the company's support contact information and that all support-related inquiries are handled at the corporate level, rather than individual store locations. 
+
+Second, the supplier must update the dropship item or order status to `Cancelled`. This will notify iQmetrix to update records for the order.
+
+#### 2. Retailer Cancels Order
+
+A supplier has the exclusive ability to cancel a dropship order, as the retailer is unaware of the current state of the dropship order at the supplier level (picked, packed or shipped).  
+This scenario follows the same process as a supplier cancelling an order.
+
+#### 3. Customer Cancels Order 
+
+Customers cannot cancel orders with a supplier, they must cancel with the retailer, who will contact the supplier to cancel the order.
+
 
 ## Step 4: Next Steps
 
