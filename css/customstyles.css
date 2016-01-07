@@ -725,7 +725,7 @@ div.special_table table > tbody > tr > td {
 }
 
 body {
-  padding-top: 100px;
+  padding-top: 0px;
 }
 
 .navbar-brand {
@@ -800,7 +800,7 @@ code {
     margin:10px;
     font-size: 25px;
     color: white;
-    line-height: 1.7;
+    line-height: : 1.7px;
 }
 
 #top-iq-logo {
