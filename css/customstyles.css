@@ -384,9 +384,7 @@ text-decoration: none;
     padding: 4px 10px;
 }
 
-ul#mysidebar {
-  margin-top:40px;
-  
+ul#mysidebar {  
   border-radius:0px;
 }
 
@@ -601,7 +599,7 @@ a[data-toggle] {
 
 .pageMetadata {
     padding:13px;
-    margin:15px 0px 15px 50px;
+    margin:0px 0px 15px 50px;
     border:1px solid #dedede;
     background-color: whitesmoke;
     width:260px;
