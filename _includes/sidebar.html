@@ -1,41 +1,43 @@
-<!-- Sidebar Column -->
-<div class="col-lg-2 col-md-3">
-    <script>
-        $(document).ready(function() {
+<!-- Content Row -->
+<div class="row">
+    <!-- Sidebar Column -->
+    <div class="col-md-3">
 
-            // Initialize navgoco with default options
-            $("#mysidebar").navgoco({
-                caretHtml: '',
-                accordion: {{site.sidebar_accordion}},
-                openClass: 'active', // open
-                save: false, // leave false or nav higlighting doesn't work right
-                cookie: {
-                    name: 'navgoco',
-                    expires: false,
-                    path: '/'
-                },
-                slide: {
-                    duration: 400,
-                    easing: 'swing'
-                }
+        <script>
+            $(document).ready(function() {
+
+                // Initialize navgoco with default options
+                $("#mysidebar").navgoco({
+                    caretHtml: '',
+                    accordion: {{site.sidebar_accordion}},
+                    openClass: 'active', // open
+                    save: false, // leave false or nav higlighting doesn't work right
+                    cookie: {
+                        name: 'navgoco',
+                        expires: false,
+                        path: '/'
+                    },
+                    slide: {
+                        duration: 400,
+                        easing: 'swing'
+                    }
+                });
+
+                $("#collapseAll").click(function(e) {
+                    e.preventDefault();
+                    $("#mysidebar").navgoco('toggle', false);
+                });
+
+                $("#expandAll").click(function(e) {
+                    e.preventDefault();
+                    $("#mysidebar").navgoco('toggle', true);
+                });
+
             });
+        </script>
 
-            $("#collapseAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', false);
-            });
+        {% include custom/conditions.html %}
 
-            $("#expandAll").click(function(e) {
-                e.preventDefault();
-                $("#mysidebar").navgoco('toggle', true);
-            });
-
-        });
-    </script>
-
-    {% include custom/conditions.html %}
-
-    <div id="sidebar-affix" class="col-lg-2 col-md-3">
         <ul id="mysidebar" class="nav">
             {% for entry in sidebar %}
                 {% for subcategory in entry.subcategories %}
@@ -75,13 +77,14 @@
                 {% endfor %}
             {% endfor %}
         </ul>
+
+        {% if site.sidebar_accordion == false %}
+            <p class="external">
+                <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+            </p>
+        {% endif %}
     </div>
-    {% if site.sidebar_accordion == false %}
-        <p class="external">
-            <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
-        </p>
-    {% endif %}
-</div>
+<!-- div missing here is intentional -->
 
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
