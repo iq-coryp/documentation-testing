@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 11-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -230,26 +230,17 @@ POST /Companies({CompanyId})/Customers
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-creating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-creating-a-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-creating-a-customer">
 <pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers" - d '{
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Notes": "Interested in iPhone 6",
-    "Title": "Mr"
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
 var request = new RestRequest(Method.post);
  
@@ -271,7 +262,14 @@ request.AddParameter("application/json", "{
 }", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -349,15 +347,17 @@ GET /Companies({CompanyId})/Customers
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-all-customers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-customers" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-all-customers" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-customers">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
 var request = new RestRequest(Method.get);
  
@@ -367,7 +367,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-customers">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-customers">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -500,15 +507,17 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-a-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
 var request = new RestRequest(Method.get);
  
@@ -518,7 +527,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -584,29 +600,17 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-updating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-updating-a-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer">
 <pre>
-curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)" - d '{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
-    "CustomerType": "Company",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Notes": "Interested in iPhone 6",
-    "Title": "Mr",
-    "Version": 1
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
 var request = new RestRequest(Method.put);
  
@@ -631,7 +635,14 @@ request.AddParameter("application/json", "{
 }", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -716,15 +727,17 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-deleting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-deleting-a-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-deleting-a-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-deleting-a-customer">
 <pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
 var request = new RestRequest(Method.delete);
  
@@ -733,7 +746,14 @@ request.AddHeader("Authorization", "Bearer (Access Token)");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-deleting-a-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -783,30 +803,17 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-adding-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-adding-a-customer-address" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-adding-a-customer-address" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-adding-a-customer-address">
 <pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses" - d '{
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
-    "CountryCode": "CA",
-    "Default": false,
-    "DoNotContact": true,
-    "Email": "Test@Test.com",
-    "Locality": "Mountain View",
-    "Notes": "New residence",
-    "Phone": "(555) 555-5555",
-    "PostalCode": "94043",
-    "PostOfficeBoxNumber": "P.O. Box 1022",
-    "StateCode": "AB",
-    "StreetAddress1": "1600 Amphitheatre Pkwy",
-    "StreetAddress2": "Suite 500"
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
 var request = new RestRequest(Method.post);
  
@@ -832,7 +839,14 @@ request.AddParameter("application/json", "{
 }", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-address">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-adding-a-customer-address">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -925,15 +939,17 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-all-addresses-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-addresses-for-a-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-all-addresses-for-a-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-addresses-for-a-customer">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
 var request = new RestRequest(Method.get);
  
@@ -943,7 +959,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-addresses-for-a-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-addresses-for-a-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -1062,15 +1085,17 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-customer-address" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-a-customer-address" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer-address">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
 var request = new RestRequest(Method.get);
  
@@ -1080,7 +1105,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-address">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer-address">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -1157,36 +1189,17 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-updating-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-customer-address" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-updating-a-customer-address" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer-address">
 <pre>
-curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)" - d '{
-    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "AddressType": "Business",
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
-    "Country": "Canada",
-    "CountryCode": "CA",
-    "Default": false,
-    "DoNotContact": true,
-    "Email": "Test@Test.com",
-    "Locality": "Mountain View",
-    "Notes": "New residence",
-    "Phone": "(555) 555-5555",
-    "PostalCode": "94043",
-    "PostOfficeBoxNumber": "P.O. Box 1022",
-    "State": "Alberta",
-    "StateCode": "AB",
-    "StreetAddress1": "1600 Amphitheatre Pkwy",
-    "StreetAddress2": "Suite 500",
-    "Version": 1
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
 var request = new RestRequest(Method.put);
  
@@ -1218,7 +1231,14 @@ request.AddParameter("application/json", "{
 }", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-address">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer-address">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -1321,15 +1341,17 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-removing-an-address-from-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-removing-an-address-from-a-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-removing-an-address-from-a-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-removing-an-address-from-a-customer">
 <pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
 var request = new RestRequest(Method.delete);
  
@@ -1338,7 +1360,14 @@ request.AddHeader("Authorization", "Bearer (Access Token)");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-removing-an-address-from-a-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-removing-an-address-from-a-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -1392,64 +1421,17 @@ POST /Companies({CompanyId})/CustomerFull
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-creating-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-full-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-creating-a-full-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-creating-a-full-customer">
 <pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull" - d '{
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "Addresses": [
-        {
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
-            "CountryCode": "CA",
-            "Default": false,
-            "DoNotContact": true,
-            "Email": "Test@Test.com",
-            "Locality": "Mountain View",
-            "Notes": "New residence",
-            "Phone": "(555) 555-5555",
-            "PostalCode": "94043",
-            "PostOfficeBoxNumber": "P.O. Box 1022",
-            "StateCode": "AB",
-            "StreetAddress1": "1600 Amphitheatre Pkwy",
-            "StreetAddress2": "Suite 500"
-        }
-    ],
-    "AlternateName": "Bob",
-    "ContactMethods": [
-        {
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ContactMethodCategoryId": 3,
-            "ContactMethodTypeId": 5,
-            "Default": true,
-            "DoNotContact": true,
-            "Notes": "After 6pm",
-            "Value": "(306) 222-3333"
-        }
-    ],
-    "CustomerExtensions": [
-        {
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ExtensionTypeId": 1,
-            "Value": "66432"
-        }
-    ],
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "MemberOf": [],
-    "Notes": "Interested in iPhone 6",
-    "RelatedCustomers": [],
-    "Title": "Mr"
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
 var request = new RestRequest(Method.post);
  
@@ -1509,7 +1491,14 @@ request.AddParameter("application/json", "{
 }", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-full-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-full-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -1676,15 +1665,17 @@ GET /Companies({CompanyId})/CustomerFull
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-all-full-customers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-full-customers" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-all-full-customers" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-full-customers">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
 var request = new RestRequest(Method.get);
  
@@ -1694,7 +1685,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-full-customers">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-full-customers">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -1911,15 +1909,17 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-full-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-a-full-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-full-customer">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
 var request = new RestRequest(Method.get);
  
@@ -1929,7 +1929,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-full-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-full-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2046,15 +2053,17 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-deleting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-deleting-a-full-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-deleting-a-full-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-deleting-a-full-customer">
 <pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
 var request = new RestRequest(Method.delete);
  
@@ -2063,7 +2072,14 @@ request.AddHeader("Authorization", "Bearer (Access Token)");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-deleting-a-full-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-full-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2113,23 +2129,17 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-adding-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-adding-a-customer-contact-method" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-adding-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-adding-a-customer-contact-method">
 <pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods" - d '{
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "ContactMethodCategoryId": 3,
-    "ContactMethodTypeId": 5,
-    "Default": true,
-    "DoNotContact": true,
-    "Notes": "After 6pm",
-    "Value": "(306) 222-3333"
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
 var request = new RestRequest(Method.post);
  
@@ -2148,7 +2158,14 @@ request.AddParameter("application/json", "{
 }", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-contact-method">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-adding-a-customer-contact-method">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2225,15 +2242,17 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-all-contact-methods-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-contact-methods-for-a-customer" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-all-contact-methods-for-a-customer" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-contact-methods-for-a-customer">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
 var request = new RestRequest(Method.get);
  
@@ -2243,7 +2262,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-contact-methods-for-a-customer">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-contact-methods-for-a-customer">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2344,15 +2370,17 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-getting-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-customer-contact-method" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-getting-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer-contact-method">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
 var request = new RestRequest(Method.get);
  
@@ -2362,7 +2390,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-contact-method">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer-contact-method">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2430,27 +2465,17 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-updating-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-customer-contact-method" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-updating-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer-contact-method">
 <pre>
-curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" - d '{
-    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "ContactMethodCategory": "Email",
-    "ContactMethodCategoryId": 3,
-    "ContactMethodType": "Work phone",
-    "ContactMethodTypeId": 5,
-    "Default": true,
-    "DoNotContact": true,
-    "Notes": "After 6pm",
-    "Value": "(306) 222-3333",
-    "Version": 1
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
 var request = new RestRequest(Method.put);
  
@@ -2473,7 +2498,14 @@ request.AddParameter("application/json", "{
 }", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-contact-method">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer-contact-method">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2558,15 +2590,17 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-removing-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-removing-a-customer-contact-method" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-removing-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-removing-a-customer-contact-method">
 <pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
 var request = new RestRequest(Method.delete);
  
@@ -2575,7 +2609,14 @@ request.AddHeader("Authorization", "Bearer (Access Token)");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-removing-a-customer-contact-method">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-removing-a-customer-contact-method">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2632,15 +2673,17 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-searching-for-customers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-searching-for-customers" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-searching-for-customers" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-searching-for-customers">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
 var request = new RestRequest(Method.get);
  
@@ -2650,7 +2693,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-searching-for-customers">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-searching-for-customers">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
@@ -2782,15 +2832,17 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
+<h4>Code Samples</h4>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#csharp-customer-search" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-customer-search" data-toggle="tab">Java</a></li>
+    <li><a href="#ruby-customer-search" data-toggle="tab">Ruby</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="csharp-customer-search">
 <pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
+<code class="language-csharp">
 var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'");
 var request = new RestRequest(Method.get);
  
@@ -2800,7 +2852,14 @@ request.AddHeader("Accept", "application/json");
 request.AddParameter("application/json", "", ParameterType.RequestBody);
 
 IRestResponse response = client.Execute(request);
+</code>
 </pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-customer-search">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-customer-search">
+    </div>
+</div>
 
 
 <h4>URI Parameters</h4>
