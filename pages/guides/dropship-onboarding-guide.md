@@ -4,7 +4,7 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 18-12-2015
+last_updated: 11-01-2016
 summary: 
 ---
 
@@ -129,11 +129,34 @@ To get a list of Classifications based on your provided Classification Tree ID, 
 
 ### 2.2 Get All Field Definitions
 
-A field definition contains all metadata about a product's attribute, such as name, units, and how it should be displayed.  
-
-A field is an instance of a field definition. Each product field has a definition and a value. Field definitions are agnostic of industry and are considered global attributes.
+A field definition contains all the metadata about a product's attributes, such as name, units, and how it should be displayed. A field is an instance of a field definition. Each product field has a definition and a value. Field definitions are agnostic of industry and are considered global attributes.
 
 To get all Field Definitions, see [Getting Field Definitions](/api/field-definitions/#getting-field-definitions)
+
+#### Mapping Field Definitions
+
+When mapping field definitions between the environments there are two identifiers to consider:
+
+* Field definition **identifiers** are specific to each environment
+* Field definition **string identifiers** are consistent across all environments. 
+
+
+To add a Product to your Product Feed, the API request requires the field definition **identifier** field. Follow these instructions to map your field definitions between the various environments.
+
+1. Get a list of all field definitions from the Production environment. 
+2. Search and map the fields from your system with the fields from the API.
+3. While mapping, locate the field identifier and string identifiers from the API and add them to a configuration table.
+4. Get a list of all fields definitions from the Demo environment.
+5. Search for the string identifiers to be mapped and add their corresponding field identifier to your configuration table.
+
+**Example: Mapping Fields Between Environments**
+
+| Your Definition | String ID | ID in Demo | ID in Production |
+|:----------------|:----------|:-----------|:-----------------|
+| Packing Height | Packaging Height | 175 | 141 |
+| Packing Width | Packaging Width  | 176 | 142 |
+| Packing Depth | Packaging Depth  | 177 | 143 |
+
 
 ##### Example Request
 
