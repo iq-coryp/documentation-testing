@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 12-01-2016
+last_updated: 12-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -257,7 +257,8 @@ POST /Companies({CompanyId})/Customers
     <div role="tabpanel" class="tab-pane" id="java-creating-a-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -395,7 +396,8 @@ GET /Companies({CompanyId})/Customers
     <div role="tabpanel" class="tab-pane" id="java-getting-all-customers">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -584,7 +586,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -707,7 +710,8 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -851,7 +855,8 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -956,7 +961,8 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
     <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-address">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -1109,7 +1115,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
     <div role="tabpanel" class="tab-pane" id="java-getting-all-addresses-for-a-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -1284,7 +1291,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-address">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -1418,7 +1426,8 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-address">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -1580,7 +1589,8 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     <div role="tabpanel" class="tab-pane" id="java-removing-an-address-from-a-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -1689,7 +1699,8 @@ POST /Companies({CompanyId})/CustomerFull
     <div role="tabpanel" class="tab-pane" id="java-creating-a-full-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -1916,7 +1927,8 @@ GET /Companies({CompanyId})/CustomerFull
     <div role="tabpanel" class="tab-pane" id="java-getting-all-full-customers">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -2189,7 +2201,8 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
     <div role="tabpanel" class="tab-pane" id="java-getting-a-full-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -2361,7 +2374,8 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-full-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -2466,7 +2480,8 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
     <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-contact-method">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -2603,7 +2618,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
     <div role="tabpanel" class="tab-pane" id="java-getting-all-contact-methods-for-a-customer">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -2760,7 +2776,8 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-contact-method">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -2885,7 +2902,8 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-contact-method">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -3029,7 +3047,8 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
     <div role="tabpanel" class="tab-pane" id="java-removing-a-customer-contact-method">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -3140,7 +3159,8 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
     <div role="tabpanel" class="tab-pane" id="java-searching-for-customers">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -3328,7 +3348,8 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
     <div role="tabpanel" class="tab-pane" id="java-customer-search">
 
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
