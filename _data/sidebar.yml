@@ -123,6 +123,13 @@ entries:
           version: all
           print: true
 
+        - title: eCommerce Integration Guide
+          url: /guides/commerce-guide/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
     - title: API Reference
       audience: writers, designers
       platform: all
@@ -140,13 +147,6 @@ entries:
 
         - title: Assets
           url: /api/assets/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
-        - title: Availability
-          url: /api/availability/
           audience: writers, designers
           platform: all
           product: all
@@ -180,7 +180,7 @@ entries:
           product: all
           version: all
 
-        - title: CRM
+        - title: Customers
           url: /api/crm/
           audience: writers, designers
           platform: all
@@ -253,6 +253,13 @@ entries:
 
         - title: General Ledger
           url: /api/general-ledger/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+        - title: Inventory Availability
+          url: /api/availability/
           audience: writers, designers
           platform: all
           product: all
