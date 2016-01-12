@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 11-01-2016
+last_updated: 12-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -234,40 +234,62 @@ POST /Companies({CompanyId})/Customers
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-creating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-creating-a-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-creating-a-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-creating-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-creating-a-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingACustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-request.AddParameter("application/json", "{
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Notes": "Interested in iPhone 6",
-    "Title": "Mr"
-}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\"}", ParameterType.RequestBody);
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingACustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\"}";
+
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -351,28 +373,57 @@ GET /Companies({CompanyId})/Customers
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-all-customers" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-all-customers" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-all-customers" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-all-customers" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-customers" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-customers">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllCustomers()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-customers">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllCustomers() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-customers">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -511,28 +562,57 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-a-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-a-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingACustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingACustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -604,43 +684,62 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-updating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-updating-a-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-updating-a-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-updating-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
-var request = new RestRequest(Method.put);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse UpdatingACustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-request.AddParameter("application/json", "{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
-    "CustomerType": "Company",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Notes": "Interested in iPhone 6",
-    "Title": "Mr",
-    "Version": 1
-}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\",\"Version\":1}", ParameterType.RequestBody);
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingACustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\",\"Version\":1}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\",\"Version\":1}";
+
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -731,27 +830,54 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-deleting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-deleting-a-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-deleting-a-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-deleting-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-deleting-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-deleting-a-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse DeletingACustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse DeletingACustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -807,44 +933,62 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-adding-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-adding-a-customer-address" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-adding-a-customer-address" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-adding-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-adding-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-adding-a-customer-address">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse AddingACustomerAddress()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-request.AddParameter("application/json", "{
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
-    "CountryCode": "CA",
-    "Default": false,
-    "DoNotContact": true,
-    "Email": "Test@Test.com",
-    "Locality": "Mountain View",
-    "Notes": "New residence",
-    "Phone": "(555) 555-5555",
-    "PostalCode": "94043",
-    "PostOfficeBoxNumber": "P.O. Box 1022",
-    "StateCode": "AB",
-    "StreetAddress1": "1600 Amphitheatre Pkwy",
-    "StreetAddress2": "Suite 500"
-}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}", ParameterType.RequestBody);
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-address">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse AddingACustomerAddress() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-adding-a-customer-address">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}";
+
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -943,28 +1087,57 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-all-addresses-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-all-addresses-for-a-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-all-addresses-for-a-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-all-addresses-for-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-addresses-for-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-addresses-for-a-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllAddressesForACustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-addresses-for-a-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllAddressesForACustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-addresses-for-a-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -1089,28 +1262,57 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-a-customer-address" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-a-customer-address" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer-address">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingACustomerAddress()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-address">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingACustomerAddress() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer-address">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -1193,50 +1395,62 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-updating-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-updating-a-customer-address" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-updating-a-customer-address" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-updating-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer-address">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
-var request = new RestRequest(Method.put);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse UpdatingACustomerAddress()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-request.AddParameter("application/json", "{
-    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "AddressType": "Business",
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
-    "Country": "Canada",
-    "CountryCode": "CA",
-    "Default": false,
-    "DoNotContact": true,
-    "Email": "Test@Test.com",
-    "Locality": "Mountain View",
-    "Notes": "New residence",
-    "Phone": "(555) 555-5555",
-    "PostalCode": "94043",
-    "PostOfficeBoxNumber": "P.O. Box 1022",
-    "State": "Alberta",
-    "StateCode": "AB",
-    "StreetAddress1": "1600 Amphitheatre Pkwy",
-    "StreetAddress2": "Suite 500",
-    "Version": 1
-}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"cb39f178-3577-40bb-a7e5-032f29325b09\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"AddressType\":\"Business\",\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}", ParameterType.RequestBody);
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-address">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingACustomerAddress() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":\"cb39f178-3577-40bb-a7e5-032f29325b09\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"AddressType\":\"Business\",\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer-address">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":\"cb39f178-3577-40bb-a7e5-032f29325b09\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"AddressType\":\"Business\",\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}";
+
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -1345,27 +1559,54 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-removing-an-address-from-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-removing-an-address-from-a-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-removing-an-address-from-a-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-removing-an-address-from-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-removing-an-address-from-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-removing-an-address-from-a-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse RemovingAnAddressFromACustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-removing-an-address-from-a-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse RemovingAnAddressFromACustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-removing-an-address-from-a-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -1425,78 +1666,62 @@ POST /Companies({CompanyId})/CustomerFull
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-creating-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-creating-a-full-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-creating-a-full-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-creating-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-creating-a-full-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingAFullCustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-request.AddParameter("application/json", "{
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "Addresses": [
-        {
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
-            "CountryCode": "CA",
-            "Default": false,
-            "DoNotContact": true,
-            "Email": "Test@Test.com",
-            "Locality": "Mountain View",
-            "Notes": "New residence",
-            "Phone": "(555) 555-5555",
-            "PostalCode": "94043",
-            "PostOfficeBoxNumber": "P.O. Box 1022",
-            "StateCode": "AB",
-            "StreetAddress1": "1600 Amphitheatre Pkwy",
-            "StreetAddress2": "Suite 500"
-        }
-    ],
-    "AlternateName": "Bob",
-    "ContactMethods": [
-        {
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ContactMethodCategoryId": 3,
-            "ContactMethodTypeId": 5,
-            "Default": true,
-            "DoNotContact": true,
-            "Notes": "After 6pm",
-            "Value": "(306) 222-3333"
-        }
-    ],
-    "CustomerExtensions": [
-        {
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ExtensionTypeId": 1,
-            "Value": "66432"
-        }
-    ],
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "MemberOf": [],
-    "Notes": "Interested in iPhone 6",
-    "RelatedCustomers": [],
-    "Title": "Mr"
-}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"Addresses\":[{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Bob\",\"ContactMethods\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ExtensionTypeId\":1,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Mr\"}", ParameterType.RequestBody);
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-full-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingAFullCustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"Addresses\":[{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Bob\",\"ContactMethods\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ExtensionTypeId\":1,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Mr\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-full-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"Addresses\":[{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Bob\",\"ContactMethods\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ExtensionTypeId\":1,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Mr\"}";
+
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -1669,28 +1894,57 @@ GET /Companies({CompanyId})/CustomerFull
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-all-full-customers" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-all-full-customers" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-all-full-customers" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-all-full-customers" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-full-customers" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-full-customers">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllFullCustomers()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-full-customers">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllFullCustomers() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-full-customers">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -1913,28 +2167,57 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-a-full-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-a-full-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-full-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAFullCustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-full-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAFullCustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-full-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2057,27 +2340,54 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-deleting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-deleting-a-full-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-deleting-a-full-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-deleting-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-deleting-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-deleting-a-full-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse DeletingAFullCustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-full-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse DeletingAFullCustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-full-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2133,37 +2443,62 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-adding-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-adding-a-customer-contact-method" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-adding-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-adding-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-adding-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-adding-a-customer-contact-method">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse AddingACustomerContactMethod()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-request.AddParameter("application/json", "{
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "ContactMethodCategoryId": 3,
-    "ContactMethodTypeId": 5,
-    "Default": true,
-    "DoNotContact": true,
-    "Notes": "After 6pm",
-    "Value": "(306) 222-3333"
-}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}", ParameterType.RequestBody);
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-contact-method">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse AddingACustomerContactMethod() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-adding-a-customer-contact-method">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}";
+
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2246,28 +2581,57 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-all-contact-methods-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-all-contact-methods-for-a-customer" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-all-contact-methods-for-a-customer" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-all-contact-methods-for-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-contact-methods-for-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-contact-methods-for-a-customer">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllContactMethodsForACustomer()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-contact-methods-for-a-customer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllContactMethodsForACustomer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-contact-methods-for-a-customer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2374,28 +2738,57 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-getting-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-a-customer-contact-method" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-getting-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-getting-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer-contact-method">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingACustomerContactMethod()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-contact-method">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingACustomerContactMethod() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer-contact-method">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2469,41 +2862,62 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-updating-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-updating-a-customer-contact-method" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-updating-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-updating-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer-contact-method">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
-var request = new RestRequest(Method.put);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse UpdatingACustomerContactMethod()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-request.AddParameter("application/json", "{
-    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "ContactMethodCategory": "Email",
-    "ContactMethodCategoryId": 3,
-    "ContactMethodType": "Work phone",
-    "ContactMethodTypeId": 5,
-    "Default": true,
-    "DoNotContact": true,
-    "Notes": "After 6pm",
-    "Value": "(306) 222-3333",
-    "Version": 1
-}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}", ParameterType.RequestBody);
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-contact-method">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingACustomerContactMethod() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":\"5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer-contact-method">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":\"5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}";
+
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2594,27 +3008,54 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-removing-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-removing-a-customer-contact-method" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-removing-a-customer-contact-method" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-removing-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-removing-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-removing-a-customer-contact-method">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse RemovingACustomerContactMethod()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-removing-a-customer-contact-method">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse RemovingACustomerContactMethod() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-removing-a-customer-contact-method">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2677,28 +3118,57 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-searching-for-customers" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-searching-for-customers" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-searching-for-customers" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-searching-for-customers" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-searching-for-customers" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-searching-for-customers">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse SearchingForCustomers()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-searching-for-customers">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse SearchingForCustomers() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-searching-for-customers">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
@@ -2836,28 +3306,57 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#csharp-customer-search" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-customer-search" data-toggle="tab">Java</a></li>
-    <li><a href="#ruby-customer-search" data-toggle="tab">Ruby</a></li>
+    <li><a href="#java-customer-search" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-customer-search" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="csharp-customer-search">
-<pre>
-<code class="language-csharp">
-var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CustomerSearch()
+{
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-request.AddParameter("application/json", "", ParameterType.RequestBody);
+    
 
-IRestResponse response = client.Execute(request);
-</code>
-</pre>
+    return client.Execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-customer-search">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CustomerSearch() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-customer-search">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
     </div>
 </div>
 
