@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 12-01-2016
+last_updated: 13-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -24,18 +24,18 @@ A Customer is a person or organization that buys goods or services from a store 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
-| MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
-| FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
-| AlternateName | String | Alias or preferred name | `Bob` |
+| Id | GUID | Unique identifier | `659c2a38-d083-4421-9330-46d779702f85` |
+| PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Princess` |
+| MiddleName | String | Middle name. Could also be referred to as Additional name | `Ella` |
+| FamilyName | String | Family name. In the U.S., the last name of a Person | `Jasmine` |
+| AlternateName | String | Alias or preferred name | `Jas` |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
 | CustomerTypeId | Integer | See [CustomerType](#customertype) for a list of acceptable values | `3` |
 | DateOfBirth | DateTime | Customer's birth date, stored in UTC but can be provided in shortened form (yyyy-mm-dd) | `1952-07-23T12:00:00.000` |
 | Disabled | Boolean | A flag to indicate whether or not this Customer is disabled. The Delete operation acts as a Disable operation, as a Customer can not be deleted. When the Disabled flag is set to true, this Customer can still be retrieved and updated normally, defaults to false | `true` |
 | DoNotContact | Boolean | A flag to indicate if this Customer is private and not to be used by external systems (such as a marketing system), defaults to true | `true` |
 | Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
-| Title | String | Title | `Mr` |
+| Title | String | Title | `Ms` |
 | Version | Integer | Latest revision number | `1` |
 
 
@@ -45,18 +45,18 @@ An Address represents a valid address somewhere on the planet.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `cb39f178-3577-40bb-a7e5-032f29325b09` |
-| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| AddressType | String | Name of the [AddressType](#addresstype) | `Business` |
-| AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `3` |
-| AttentionTo | String | Attention To (Attn:) | `iQmetrix` |
+| Id | GUID | Unique identifier | `a08b0640-606a-41f0-901a-facaf50e75dd` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `659c2a38-d083-4421-9330-46d779702f85` |
+| AddressType | String | Name of the [AddressType](#addresstype) | `Home` |
+| AddressTypeId | Integer | See [AddressType](#addresstype) for a list of acceptable values | `2` |
+| AttentionTo | String | Attention To (Attn:) | `Princess` |
 | Country | String | The Country. This value is system-generated and read-only | `Canada` |
 | CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of acceptable codes, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `CA` |
 | Default | Boolean | A flag to indicate if this address is the default address for the customer | `false` |
 | DoNotContact | Boolean | A flag to indicate if this address is private and not to be used by any external systems (such as a marketing system), defaults to true | `true` |
-| Email | String | Email | `Test@Test.com` |
+| Email | String | Email | `Jas@princess.ca` |
 | Locality | String | City, Town, Hamlet | `Mountain View` |
-| Notes | String | Notes related to this Address | `New residence` |
+| Notes | String | Notes related to this Address | `Moved as of April 15 2015` |
 | Phone | String | Phone number | `(555) 555-5555` |
 | PostalCode | String | The postal code/zip code | `94043` |
 | PostOfficeBoxNumber | String | The post office box number for PO box addresses | `P.O. Box 1022` |
@@ -73,8 +73,8 @@ A Contact Method is a method of contacting a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf` |
-| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `b25dd8b2-a24d-4107-8fbe-9c7b21e18137` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `659c2a38-d083-4421-9330-46d779702f85` |
 | ContactMethodCategory | String | Name of the [ContactMethodCategory](#contactmethodcategory) | `Email` |
 | ContactMethodCategoryId | Integer | See [ContactMethodCategory](#contactmethodcategory) for a list of acceptable values | `3` |
 | ContactMethodType | String | Name of the [ContactMethodType](#contactmethodtype) | `Work phone` |
@@ -92,10 +92,10 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `3d2e92e7-36cf-4884-bda1-6a9df8d3b420` |
-| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
+| Id | GUID | Unique identifier | `74b87ece-5f70-454d-9991-7952127146b0` |
+| CustomerId | GUID | Unique identifier for the [Customer](#customer) | `659c2a38-d083-4421-9330-46d779702f85` |
 | ExtensionType | String | Name of the [CustomerExtensionType](#customerextensiontype) | `ExternalCustomerId` |
-| ExtensionTypeId | Integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `1` |
+| ExtensionTypeId | Integer | Identifier for the [CustomerExtensionType](#customerextensiontype) | `2` |
 | Value | String | Value | `66432` |
 | Version | Integer | Latest revision number | `1` |
 
@@ -106,7 +106,7 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `1` |
-| Name | String | Name | `ExternalCustomerId` |
+| Name | String | Name | `CorrelationId` |
 | Data Type | String | Data type | `Integer` |
 
 ###CustomerFull
@@ -115,12 +115,12 @@ CustomerFull is an extension on the Customer resource.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `503d1d4a-c974-4286-b4a2-002699e60ad6` |
-| PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Robert` |
-| MiddleName | String | Middle name. Could also be referred to as Additional name | `Lee` |
-| FamilyName | String | Family name. In the U.S., the last name of a Person | `Smith` |
+| Id | GUID | Unique identifier | `659c2a38-d083-4421-9330-46d779702f85` |
+| PrimaryName | String | First name of a given person or the full name of the business, division, organization, etc | `Princess` |
+| MiddleName | String | Middle name. Could also be referred to as Additional name | `Ella` |
+| FamilyName | String | Family name. In the U.S., the last name of a Person | `Jasmine` |
 | Addresses | Array[<a href='#address'>Address</a>] | A collection of Addresses |  |
-| AlternateName | String | Alias or preferred name | `Bob` |
+| AlternateName | String | Alias or preferred name | `Jas` |
 | ContactMethods | Array[<a href='#contactmethod'>ContactMethod</a>] | A collection of ContactMethods |  |
 | CustomerExtensions | Array[<a href='#customerextension'>CustomerExtension</a>] | A collection of CustomerExtensions |  |
 | CustomerType | String | Name of the [CustomerType](#customertype) | `Company` |
@@ -131,7 +131,7 @@ CustomerFull is an extension on the Customer resource.
 | MemberOf | Array[object] | A collection of Customers that the Customer is a MemberOf (parent relation) |  |
 | Notes | String | Any notes related to this Customer | `Interested in iPhone 6` |
 | RelatedCustomers | Array[object] | A collection of Customers related to the Customer (child relation) |  |
-| Title | String | Title | `Mr` |
+| Title | String | Title | `Ms` |
 | Version | Integer | Latest revision number | `1` |
 
 
@@ -242,14 +242,14 @@ POST /Companies({CompanyId})/Customers
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse CreatingACustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers");
     var request = new RestRequest(Method.POST);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\"}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\"}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -266,12 +266,12 @@ import java.io.IOException;
 
 public static CloseableHttpResponse CreatingACustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\"}");
+    StringEntity body = new StringEntity("{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\"}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -282,9 +282,9 @@ public static CloseableHttpResponse CreatingACustomer() throws IOException {
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre><code class="language-ruby">require 'rest-client'
 
-body = "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\"}";
+body = "{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\"}";
 
-response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers', body, {
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -312,21 +312,21 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-POST /Companies(1)/Customers
+POST /Companies(14146)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "AlternateName": "Jas",
     "CustomerTypeId": 3,
     "DateOfBirth": "1952-07-23T12:00:00.000",
     "Disabled": true,
     "DoNotContact": true,
     "Notes": "Interested in iPhone 6",
-    "Title": "Mr"
+    "Title": "Ms"
 }
 </pre>
 
@@ -340,18 +340,18 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
+    "Id": "659c2a38-d083-4421-9330-46d779702f85",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "AlternateName": "Jas",
     "CustomerType": "Company",
     "CustomerTypeId": 3,
     "DateOfBirth": "1952-07-23T12:00:00.000",
     "Disabled": true,
     "DoNotContact": true,
     "Notes": "Interested in iPhone 6",
-    "Title": "Mr",
+    "Title": "Ms",
     "Version": 1
 }</pre>
 
@@ -382,7 +382,7 @@ GET /Companies({CompanyId})/Customers
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllCustomers()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -405,7 +405,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingAllCustomers() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -420,7 +420,7 @@ public static CloseableHttpResponse GettingAllCustomers() throws IOException {
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -443,7 +443,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Customers
+GET /Companies(14146)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -460,18 +460,18 @@ Array[<a href='#customer'>Customer</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "PrimaryName": "Robert",
-        "MiddleName": "Lee",
-        "FamilyName": "Smith",
-        "AlternateName": "Bob",
+        "Id": "659c2a38-d083-4421-9330-46d779702f85",
+        "PrimaryName": "Princess",
+        "MiddleName": "Ella",
+        "FamilyName": "Jasmine",
+        "AlternateName": "Jas",
         "CustomerType": "Company",
         "CustomerTypeId": 3,
         "DateOfBirth": "1952-07-23T12:00:00.000",
         "Disabled": true,
         "DoNotContact": true,
         "Notes": "Interested in iPhone 6",
-        "Title": "Mr",
+        "Title": "Ms",
         "Version": 1
     }
 ]</pre>
@@ -483,11 +483,11 @@ HTTP 200 Content-Type: application/hal+json
 </pre><pre>{
   "_links": {
     "self": {
-      "href": "Companies(1)/Customers?$skip=0&$top=1",
+      "href": "Companies(14146)/Customers?$skip=0&$top=1",
       "templated": false
     },
     "next": {
-      "href": "Companies(1)/Customers?$skip=1&$top=1",
+      "href": "Companies(14146)/Customers?$skip=1&$top=1",
       "templated": false
     }
   },
@@ -496,31 +496,31 @@ HTTP 200 Content-Type: application/hal+json
       {
         "_links": {
           "self": {
-            "href": "Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+            "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
             "templated": false
           },
           "iq:CustomerFull": {
-            "href": "Companies(1)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+            "href": "Companies(14146)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
             "templated": false
           },
           "iq:Address": {
-            "href": "Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses",
+            "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses",
             "templated": false
           },
           "iq:ContactMethod": {
-            "href": "Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/ContactMethods",
+            "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/ContactMethods",
             "templated": false
           },
           "iq:CustomerExtension": {
-            "href": "Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/CustomerExtensions",
+            "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/CustomerExtensions",
             "templated": false
           },
           "iq:RelatedCustomer": {
-            "href": "Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/RelatedCustomers",
+            "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/RelatedCustomers",
             "templated": false
           },
           "iq:MemberOf": {
-            "href": "Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/MemberOf",
+            "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/MemberOf",
             "templated": false
           }
         },
@@ -572,7 +572,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingACustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -595,7 +595,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingACustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -610,7 +610,7 @@ public static CloseableHttpResponse GettingACustomer() throws IOException {
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -637,7 +637,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
+GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -653,18 +653,18 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
+    "Id": "659c2a38-d083-4421-9330-46d779702f85",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "AlternateName": "Jas",
     "CustomerType": "Company",
     "CustomerTypeId": 3,
     "DateOfBirth": "1952-07-23T12:00:00.000",
     "Disabled": true,
     "DoNotContact": true,
     "Notes": "Interested in iPhone 6",
-    "Title": "Mr",
+    "Title": "Ms",
     "Version": 1
 }</pre>
 
@@ -695,14 +695,14 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse UpdatingACustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.PUT);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"Id\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\",\"Version\":1}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"659c2a38-d083-4421-9330-46d779702f85\",\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\",\"Version\":1}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -719,12 +719,12 @@ import java.io.IOException;
 
 public static CloseableHttpResponse UpdatingACustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Id\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\",\"Version\":1}");
+    StringEntity body = new StringEntity("{\"Id\":\"659c2a38-d083-4421-9330-46d779702f85\",\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\",\"Version\":1}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -735,9 +735,9 @@ public static CloseableHttpResponse UpdatingACustomer() throws IOException {
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre><code class="language-ruby">require 'rest-client'
 
-body = "{\"Id\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"AlternateName\":\"Bob\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Mr\",\"Version\":1}";
+body = "{\"Id\":\"659c2a38-d083-4421-9330-46d779702f85\",\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\",\"Version\":1}";
 
-response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)', {
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -764,28 +764,28 @@ puts response</code></pre>
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) - Required on PUT</li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
 <pre>
-PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
+PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
+    "Id": "659c2a38-d083-4421-9330-46d779702f85",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "AlternateName": "Jas",
     "CustomerType": "Company",
     "CustomerTypeId": 3,
     "DateOfBirth": "1952-07-23T12:00:00.000",
     "Disabled": true,
     "DoNotContact": true,
     "Notes": "Interested in iPhone 6",
-    "Title": "Mr",
+    "Title": "Ms",
     "Version": 1
 }
 </pre>
@@ -800,18 +800,18 @@ Content-Type: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
-    "AlternateName": "Bob",
+    "Id": "659c2a38-d083-4421-9330-46d779702f85",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "AlternateName": "Jas",
     "CustomerType": "Company",
     "CustomerTypeId": 3,
     "DateOfBirth": "1952-07-23T12:00:00.000",
     "Disabled": true,
     "DoNotContact": true,
     "Notes": "Interested in iPhone 6",
-    "Title": "Mr",
+    "Title": "Ms",
     "Version": 1
 }</pre>
 
@@ -842,7 +842,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse DeletingACustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.DELETE);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -864,7 +864,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse DeletingACustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)");
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     
@@ -878,7 +878,7 @@ public static CloseableHttpResponse DeletingACustomer() throws IOException {
 
 
 
-response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)', {
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)', {
      :'Authorization' => 'Bearer (Access Token)',
     } 
 
@@ -904,7 +904,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)
+DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 
 </pre>
@@ -946,14 +946,14 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse AddingACustomerAddress()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses");
     var request = new RestRequest(Method.POST);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -970,12 +970,12 @@ import java.io.IOException;
 
 public static CloseableHttpResponse AddingACustomerAddress() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}");
+    StringEntity body = new StringEntity("{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -986,9 +986,9 @@ public static CloseableHttpResponse AddingACustomerAddress() throws IOException 
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre><code class="language-ruby">require 'rest-client'
 
-body = "{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}";
+body = "{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}";
 
-response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses', body, {
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -1020,19 +1020,19 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
+POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
+    "AddressTypeId": 2,
+    "AttentionTo": "Princess",
     "CountryCode": "CA",
     "Default": false,
     "DoNotContact": true,
-    "Email": "Test@Test.com",
+    "Email": "Jas@princess.ca",
     "Locality": "Mountain View",
-    "Notes": "New residence",
+    "Notes": "Moved as of April 15 2015",
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1052,18 +1052,18 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "AddressType": "Business",
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
+    "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+    "AddressType": "Home",
+    "AddressTypeId": 2,
+    "AttentionTo": "Princess",
     "Country": "Canada",
     "CountryCode": "CA",
     "Default": false,
     "DoNotContact": true,
-    "Email": "Test@Test.com",
+    "Email": "Jas@princess.ca",
     "Locality": "Mountain View",
-    "Notes": "New residence",
+    "Notes": "Moved as of April 15 2015",
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1101,7 +1101,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllAddressesForACustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -1124,7 +1124,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingAllAddressesForACustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -1139,7 +1139,7 @@ public static CloseableHttpResponse GettingAllAddressesForACustomer() throws IOE
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -1166,7 +1166,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/Addresses
+GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1183,18 +1183,18 @@ Array[<a href='#address'>Address</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "AddressType": "Business",
-        "AddressTypeId": 3,
-        "AttentionTo": "iQmetrix",
+        "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+        "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+        "AddressType": "Home",
+        "AddressTypeId": 2,
+        "AttentionTo": "Princess",
         "Country": "Canada",
         "CountryCode": "CA",
         "Default": false,
         "DoNotContact": true,
-        "Email": "Test@Test.com",
+        "Email": "Jas@princess.ca",
         "Locality": "Mountain View",
-        "Notes": "New residence",
+        "Notes": "Moved as of April 15 2015",
         "Phone": "(555) 555-5555",
         "PostalCode": "94043",
         "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1213,20 +1213,20 @@ HTTP 200 Content-Type: application/hal+json
 </pre><pre>{
   "_links": {
     "self": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(e6982d8a-d141-426c-804d-576d5cc22eea)",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(e6982d8a-d141-426c-804d-576d5cc22eea)",
       "templated": false
     },
     "iq:Customer": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
       "templated": false
     },
     "iq:CustomerFull": {
-      "href": "Companies(84644)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+      "href": "Companies(14146)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
       "templated": false
     }
   },
   "_embedded": {},
-   "Id": "ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3",
+   "Id": "659c2a38-d083-4421-9330-46d779702f85",
    "CustomerId": "5ce90b33-1668-46f0-b3a8-0216cef59993",
    "AddressTypeId": 2,
    "AddressType": "Home",
@@ -1277,7 +1277,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingACustomerAddress()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -1300,7 +1300,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingACustomerAddress() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -1315,7 +1315,7 @@ public static CloseableHttpResponse GettingACustomerAddress() throws IOException
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -1346,7 +1346,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
+GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1362,18 +1362,18 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "AddressType": "Business",
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
+    "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+    "AddressType": "Home",
+    "AddressTypeId": 2,
+    "AttentionTo": "Princess",
     "Country": "Canada",
     "CountryCode": "CA",
     "Default": false,
     "DoNotContact": true,
-    "Email": "Test@Test.com",
+    "Email": "Jas@princess.ca",
     "Locality": "Mountain View",
-    "Notes": "New residence",
+    "Notes": "Moved as of April 15 2015",
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1411,14 +1411,14 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse UpdatingACustomerAddress()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
     var request = new RestRequest(Method.PUT);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"Id\":\"cb39f178-3577-40bb-a7e5-032f29325b09\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"AddressType\":\"Business\",\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"AddressType\":\"Home\",\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -1435,12 +1435,12 @@ import java.io.IOException;
 
 public static CloseableHttpResponse UpdatingACustomerAddress() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Id\":\"cb39f178-3577-40bb-a7e5-032f29325b09\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"AddressType\":\"Business\",\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}");
+    StringEntity body = new StringEntity("{\"Id\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"AddressType\":\"Home\",\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -1451,9 +1451,9 @@ public static CloseableHttpResponse UpdatingACustomerAddress() throws IOExceptio
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre><code class="language-ruby">require 'rest-client'
 
-body = "{\"Id\":\"cb39f178-3577-40bb-a7e5-032f29325b09\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"AddressType\":\"Business\",\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}";
+body = "{\"Id\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"AddressType\":\"Home\",\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}";
 
-response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)', {
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -1484,28 +1484,28 @@ puts response</code></pre>
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) - Required on PUT</li><li><code>CustomerId</code> (<strong>Required</strong>) - Required on PUT</li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) - Required on PUT</li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
 <pre>
-PUT /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
+PUT /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "AddressType": "Business",
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
+    "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+    "AddressType": "Home",
+    "AddressTypeId": 2,
+    "AttentionTo": "Princess",
     "Country": "Canada",
     "CountryCode": "CA",
     "Default": false,
     "DoNotContact": true,
-    "Email": "Test@Test.com",
+    "Email": "Jas@princess.ca",
     "Locality": "Mountain View",
-    "Notes": "New residence",
+    "Notes": "Moved as of April 15 2015",
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1527,18 +1527,18 @@ Content-Type: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "AddressType": "Business",
-    "AddressTypeId": 3,
-    "AttentionTo": "iQmetrix",
+    "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+    "AddressType": "Home",
+    "AddressTypeId": 2,
+    "AttentionTo": "Princess",
     "Country": "Canada",
     "CountryCode": "CA",
     "Default": false,
     "DoNotContact": true,
-    "Email": "Test@Test.com",
+    "Email": "Jas@princess.ca",
     "Locality": "Mountain View",
-    "Notes": "New residence",
+    "Notes": "Moved as of April 15 2015",
     "Phone": "(555) 555-5555",
     "PostalCode": "94043",
     "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1576,7 +1576,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse RemovingAnAddressFromACustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
     var request = new RestRequest(Method.DELETE);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -1598,7 +1598,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse RemovingAnAddressFromACustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)");
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     
@@ -1612,7 +1612,7 @@ public static CloseableHttpResponse RemovingAnAddressFromACustomer() throws IOEx
 
 
 
-response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)', {
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)', {
      :'Authorization' => 'Bearer (Access Token)',
     } 
 
@@ -1642,7 +1642,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-DELETE /Companies(1)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(5e8d53e2-a414-4e8a-b591-53454bc5321f)
+DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 
 </pre>
@@ -1684,14 +1684,14 @@ POST /Companies({CompanyId})/CustomerFull
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse CreatingAFullCustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull");
     var request = new RestRequest(Method.POST);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"Addresses\":[{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Bob\",\"ContactMethods\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ExtensionTypeId\":1,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Mr\"}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"Addresses\":[{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Jas\",\"ContactMethods\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ExtensionTypeId\":2,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Ms\"}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -1708,12 +1708,12 @@ import java.io.IOException;
 
 public static CloseableHttpResponse CreatingAFullCustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"Addresses\":[{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Bob\",\"ContactMethods\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ExtensionTypeId\":1,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Mr\"}");
+    StringEntity body = new StringEntity("{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"Addresses\":[{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Jas\",\"ContactMethods\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ExtensionTypeId\":2,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Ms\"}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -1724,9 +1724,9 @@ public static CloseableHttpResponse CreatingAFullCustomer() throws IOException {
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre><code class="language-ruby">require 'rest-client'
 
-body = "{\"PrimaryName\":\"Robert\",\"MiddleName\":\"Lee\",\"FamilyName\":\"Smith\",\"Addresses\":[{\"AddressTypeId\":3,\"AttentionTo\":\"iQmetrix\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Test@Test.com\",\"Locality\":\"Mountain View\",\"Notes\":\"New residence\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Bob\",\"ContactMethods\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ExtensionTypeId\":1,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Mr\"}";
+body = "{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"Addresses\":[{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Jas\",\"ContactMethods\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ExtensionTypeId\":2,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Ms\"}";
 
-response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull', body, {
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -1754,24 +1754,24 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-POST /Companies(1)/CustomerFull
+POST /Companies(14146)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
     "Addresses": [
         {
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
+            "AddressTypeId": 2,
+            "AttentionTo": "Princess",
             "CountryCode": "CA",
             "Default": false,
             "DoNotContact": true,
-            "Email": "Test@Test.com",
+            "Email": "Jas@princess.ca",
             "Locality": "Mountain View",
-            "Notes": "New residence",
+            "Notes": "Moved as of April 15 2015",
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1780,10 +1780,10 @@ Content-Type: application/json
             "StreetAddress2": "Suite 500"
         }
     ],
-    "AlternateName": "Bob",
+    "AlternateName": "Jas",
     "ContactMethods": [
         {
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
             "ContactMethodCategoryId": 3,
             "ContactMethodTypeId": 5,
             "Default": true,
@@ -1794,8 +1794,8 @@ Content-Type: application/json
     ],
     "CustomerExtensions": [
         {
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "ExtensionTypeId": 1,
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+            "ExtensionTypeId": 2,
             "Value": "66432"
         }
     ],
@@ -1806,7 +1806,7 @@ Content-Type: application/json
     "MemberOf": [],
     "Notes": "Interested in iPhone 6",
     "RelatedCustomers": [],
-    "Title": "Mr"
+    "Title": "Ms"
 }
 </pre>
 
@@ -1820,24 +1820,24 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
+    "Id": "659c2a38-d083-4421-9330-46d779702f85",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
     "Addresses": [
         {
-            "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "AddressType": "Business",
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
+            "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+            "AddressType": "Home",
+            "AddressTypeId": 2,
+            "AttentionTo": "Princess",
             "Country": "Canada",
             "CountryCode": "CA",
             "Default": false,
             "DoNotContact": true,
-            "Email": "Test@Test.com",
+            "Email": "Jas@princess.ca",
             "Locality": "Mountain View",
-            "Notes": "New residence",
+            "Notes": "Moved as of April 15 2015",
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -1848,11 +1848,11 @@ HTTP 201 Content-Type: application/json
             "Version": 1
         }
     ],
-    "AlternateName": "Bob",
+    "AlternateName": "Jas",
     "ContactMethods": [
         {
-            "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
             "ContactMethodCategory": "Email",
             "ContactMethodCategoryId": 3,
             "ContactMethodType": "Work phone",
@@ -1866,10 +1866,10 @@ HTTP 201 Content-Type: application/json
     ],
     "CustomerExtensions": [
         {
-            "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "Id": "74b87ece-5f70-454d-9991-7952127146b0",
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
             "ExtensionType": "ExternalCustomerId",
-            "ExtensionTypeId": 1,
+            "ExtensionTypeId": 2,
             "Value": "66432",
             "Version": 1
         }
@@ -1882,7 +1882,7 @@ HTTP 201 Content-Type: application/json
     "MemberOf": [],
     "Notes": "Interested in iPhone 6",
     "RelatedCustomers": [],
-    "Title": "Mr",
+    "Title": "Ms",
     "Version": 1
 }</pre>
 
@@ -1913,7 +1913,7 @@ GET /Companies({CompanyId})/CustomerFull
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllFullCustomers()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -1936,7 +1936,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingAllFullCustomers() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -1951,7 +1951,7 @@ public static CloseableHttpResponse GettingAllFullCustomers() throws IOException
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -1974,7 +1974,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/CustomerFull
+GET /Companies(14146)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1991,24 +1991,24 @@ Array[<a href='#customerfull'>CustomerFull</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "PrimaryName": "Robert",
-        "MiddleName": "Lee",
-        "FamilyName": "Smith",
+        "Id": "659c2a38-d083-4421-9330-46d779702f85",
+        "PrimaryName": "Princess",
+        "MiddleName": "Ella",
+        "FamilyName": "Jasmine",
         "Addresses": [
             {
-                "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-                "AddressType": "Business",
-                "AddressTypeId": 3,
-                "AttentionTo": "iQmetrix",
+                "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+                "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+                "AddressType": "Home",
+                "AddressTypeId": 2,
+                "AttentionTo": "Princess",
                 "Country": "Canada",
                 "CountryCode": "CA",
                 "Default": false,
                 "DoNotContact": true,
-                "Email": "Test@Test.com",
+                "Email": "Jas@princess.ca",
                 "Locality": "Mountain View",
-                "Notes": "New residence",
+                "Notes": "Moved as of April 15 2015",
                 "Phone": "(555) 555-5555",
                 "PostalCode": "94043",
                 "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -2019,11 +2019,11 @@ HTTP 200 Content-Type: application/json
                 "Version": 1
             }
         ],
-        "AlternateName": "Bob",
+        "AlternateName": "Jas",
         "ContactMethods": [
             {
-                "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+                "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
                 "ContactMethodCategory": "Email",
                 "ContactMethodCategoryId": 3,
                 "ContactMethodType": "Work phone",
@@ -2037,10 +2037,10 @@ HTTP 200 Content-Type: application/json
         ],
         "CustomerExtensions": [
             {
-                "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                "Id": "74b87ece-5f70-454d-9991-7952127146b0",
+                "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
                 "ExtensionType": "ExternalCustomerId",
-                "ExtensionTypeId": 1,
+                "ExtensionTypeId": 2,
                 "Value": "66432",
                 "Version": 1
             }
@@ -2053,7 +2053,7 @@ HTTP 200 Content-Type: application/json
         "MemberOf": [],
         "Notes": "Interested in iPhone 6",
         "RelatedCustomers": [],
-        "Title": "Mr",
+        "Title": "Ms",
         "Version": 1
     }
 ]</pre>
@@ -2065,31 +2065,31 @@ HTTP 200 Content-Type: application/hal+json
 </pre><pre>{
   "_links": {
     "self": {
-      "href": "Companies(84644)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+      "href": "Companies(14146)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
       "templated": false
     },
     "iq:Customer": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
       "templated": false
     },
     "iq:Address": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses",
       "templated": false
     },
     "iq:ContactMethod": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/ContactMethods",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/ContactMethods",
       "templated": false
     },
     "iq:CustomerExtension": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/CustomerExtensions",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/CustomerExtensions",
       "templated": false
     },
     "iq:RelatedCustomer": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/RelatedCustomers",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/RelatedCustomers",
       "templated": false
     },
     "iq:MemberOf": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/MemberOf",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/MemberOf",
       "templated": false
     }
   },
@@ -2130,7 +2130,7 @@ HTTP 200 Content-Type: application/hal+json
    ],
    "ContactMethods": [
        {
-           "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
+           "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
            "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
            "ContactMethodCategory": "Phone",
            "ContactMethodCategoryId": 1,
@@ -2145,7 +2145,7 @@ HTTP 200 Content-Type: application/hal+json
    ],
    "CustomerExtensions": [
        {
-           "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
+           "Id": "74b87ece-5f70-454d-9991-7952127146b0",
            "CustomerId": "b8b54200-4c7e-414d-93eb-a3689e473be3",
            "ExtensionType": "ExternalCustomerId",
            "ExtensionTypeId": 1,
@@ -2187,7 +2187,7 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAFullCustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -2210,7 +2210,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingAFullCustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -2225,7 +2225,7 @@ public static CloseableHttpResponse GettingAFullCustomer() throws IOException {
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -2252,7 +2252,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
+GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -2268,24 +2268,24 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-    "PrimaryName": "Robert",
-    "MiddleName": "Lee",
-    "FamilyName": "Smith",
+    "Id": "659c2a38-d083-4421-9330-46d779702f85",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
     "Addresses": [
         {
-            "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-            "AddressType": "Business",
-            "AddressTypeId": 3,
-            "AttentionTo": "iQmetrix",
+            "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+            "AddressType": "Home",
+            "AddressTypeId": 2,
+            "AttentionTo": "Princess",
             "Country": "Canada",
             "CountryCode": "CA",
             "Default": false,
             "DoNotContact": true,
-            "Email": "Test@Test.com",
+            "Email": "Jas@princess.ca",
             "Locality": "Mountain View",
-            "Notes": "New residence",
+            "Notes": "Moved as of April 15 2015",
             "Phone": "(555) 555-5555",
             "PostalCode": "94043",
             "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -2296,11 +2296,11 @@ HTTP 200 Content-Type: application/json
             "Version": 1
         }
     ],
-    "AlternateName": "Bob",
+    "AlternateName": "Jas",
     "ContactMethods": [
         {
-            "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
             "ContactMethodCategory": "Email",
             "ContactMethodCategoryId": 3,
             "ContactMethodType": "Work phone",
@@ -2314,10 +2314,10 @@ HTTP 200 Content-Type: application/json
     ],
     "CustomerExtensions": [
         {
-            "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-            "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+            "Id": "74b87ece-5f70-454d-9991-7952127146b0",
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
             "ExtensionType": "ExternalCustomerId",
-            "ExtensionTypeId": 1,
+            "ExtensionTypeId": 2,
             "Value": "66432",
             "Version": 1
         }
@@ -2330,7 +2330,7 @@ HTTP 200 Content-Type: application/json
     "MemberOf": [],
     "Notes": "Interested in iPhone 6",
     "RelatedCustomers": [],
-    "Title": "Mr",
+    "Title": "Ms",
     "Version": 1
 }</pre>
 
@@ -2361,7 +2361,7 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse DeletingAFullCustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.DELETE);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -2383,7 +2383,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse DeletingAFullCustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)");
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     
@@ -2397,7 +2397,7 @@ public static CloseableHttpResponse DeletingAFullCustomer() throws IOException {
 
 
 
-response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)', {
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)', {
      :'Authorization' => 'Bearer (Access Token)',
     } 
 
@@ -2423,7 +2423,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-DELETE /Companies(1)/CustomerFull(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)
+DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 
 </pre>
@@ -2465,14 +2465,14 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse AddingACustomerContactMethod()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods");
     var request = new RestRequest(Method.POST);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -2489,12 +2489,12 @@ import java.io.IOException;
 
 public static CloseableHttpResponse AddingACustomerContactMethod() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+    HttpPost request = new HttpPost("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}");
+    StringEntity body = new StringEntity("{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -2505,9 +2505,9 @@ public static CloseableHttpResponse AddingACustomerContactMethod() throws IOExce
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre><code class="language-ruby">require 'rest-client'
 
-body = "{\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}";
+body = "{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}";
 
-response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods', body, {
+response = RestClient.post 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -2539,12 +2539,12 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-POST /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
+POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategoryId": 3,
     "ContactMethodTypeId": 5,
     "Default": true,
@@ -2564,8 +2564,8 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategory": "Email",
     "ContactMethodCategoryId": 3,
     "ContactMethodType": "Work phone",
@@ -2604,7 +2604,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllContactMethodsForACustomer()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -2627,7 +2627,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingAllContactMethodsForACustomer() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -2642,7 +2642,7 @@ public static CloseableHttpResponse GettingAllContactMethodsForACustomer() throw
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -2669,7 +2669,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods
+GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -2686,8 +2686,8 @@ Array[<a href='#contactmethod'>ContactMethod</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-        "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+        "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
         "ContactMethodCategory": "Email",
         "ContactMethodCategoryId": 3,
         "ContactMethodType": "Work phone",
@@ -2707,15 +2707,15 @@ HTTP 200 Content-Type: application/hal+json
 </pre><pre>{
   "_links": {
     "self": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/ContactMethods(3f16bbff-c708-4307-856e-7395ea9b92ab)",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/ContactMethods(3f16bbff-c708-4307-856e-7395ea9b92ab)",
       "templated": false
     },
     "iq:Customer": {
-      "href": "Companies(84644)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+      "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
       "templated": false
     },
     "iq:CustomerFull": {
-      "href": "Companies(84644)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
+      "href": "Companies(14146)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
       "templated": false
     }
   },
@@ -2762,7 +2762,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingACustomerContactMethod()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -2785,7 +2785,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingACustomerContactMethod() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -2800,7 +2800,7 @@ public static CloseableHttpResponse GettingACustomerContactMethod() throws IOExc
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -2831,7 +2831,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -2847,8 +2847,8 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategory": "Email",
     "ContactMethodCategoryId": 3,
     "ContactMethodType": "Work phone",
@@ -2887,14 +2887,14 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse UpdatingACustomerContactMethod()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
     var request = new RestRequest(Method.PUT);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"Id\":\"5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"b25dd8b2-a24d-4107-8fbe-9c7b21e18137\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -2911,12 +2911,12 @@ import java.io.IOException;
 
 public static CloseableHttpResponse UpdatingACustomerContactMethod() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Id\":\"5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}");
+    StringEntity body = new StringEntity("{\"Id\":\"b25dd8b2-a24d-4107-8fbe-9c7b21e18137\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -2927,9 +2927,9 @@ public static CloseableHttpResponse UpdatingACustomerContactMethod() throws IOEx
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre><code class="language-ruby">require 'rest-client'
 
-body = "{\"Id\":\"5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf\",\"CustomerId\":\"503d1d4a-c974-4286-b4a2-002699e60ad6\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}";
+body = "{\"Id\":\"b25dd8b2-a24d-4107-8fbe-9c7b21e18137\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}";
 
-response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -2960,18 +2960,18 @@ puts response</code></pre>
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>Id</code> (<strong>Required</strong>) - Required on PUT</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
 
 <h5>Example</h5>
 
 <pre>
-PUT /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategory": "Email",
     "ContactMethodCategoryId": 3,
     "ContactMethodType": "Work phone",
@@ -2994,8 +2994,8 @@ Content-Type: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-    "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+    "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategory": "Email",
     "ContactMethodCategoryId": 3,
     "ContactMethodType": "Work phone",
@@ -3034,7 +3034,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse RemovingACustomerContactMethod()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
     var request = new RestRequest(Method.DELETE);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -3056,7 +3056,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse RemovingACustomerContactMethod() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     
@@ -3070,7 +3070,7 @@ public static CloseableHttpResponse RemovingACustomerContactMethod() throws IOEx
 
 
 
-response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
      :'Authorization' => 'Bearer (Access Token)',
     } 
 
@@ -3100,7 +3100,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-DELETE /Companies(1)/Customers(ed2f44f1-8ef4-460a-a5bc-e57e6c8927a3)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 
 </pre>
@@ -3145,7 +3145,7 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse SearchingForCustomers()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -3168,7 +3168,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse SearchingForCustomers() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -3183,7 +3183,7 @@ public static CloseableHttpResponse SearchingForCustomers() throws IOException {
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -3218,7 +3218,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
+GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -3235,18 +3235,18 @@ Array[<a href='#customer'>Customer</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-        "PrimaryName": "Robert",
-        "MiddleName": "Lee",
-        "FamilyName": "Smith",
-        "AlternateName": "Bob",
+        "Id": "659c2a38-d083-4421-9330-46d779702f85",
+        "PrimaryName": "Princess",
+        "MiddleName": "Ella",
+        "FamilyName": "Jasmine",
+        "AlternateName": "Jas",
         "CustomerType": "Company",
         "CustomerTypeId": 3,
         "DateOfBirth": "1952-07-23T12:00:00.000",
         "Disabled": true,
         "DoNotContact": true,
         "Notes": "Interested in iPhone 6",
-        "Title": "Mr",
+        "Title": "Ms",
         "Version": 1
     }
 ]</pre>
@@ -3311,6 +3311,7 @@ The Criteria filter will search the properties below for the given value.
   </tbody>
 </table>
 
+
 <h4>Request</h4>
 
 <pre>
@@ -3334,7 +3335,7 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse CustomerSearch()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -3357,7 +3358,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse CustomerSearch() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -3372,7 +3373,7 @@ public static CloseableHttpResponse CustomerSearch() throws IOException {
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -3399,7 +3400,7 @@ puts response</code></pre>
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/CustomerSearch?$filter=Criteria eq 'Bob'
+GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -3423,18 +3424,18 @@ HTTP 200 Content-Type: application/json
         "FamilyName": "Smith",
         "Addresses": [
             {
-                "Id": "cb39f178-3577-40bb-a7e5-032f29325b09",
-                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
-                "AddressType": "Business",
-                "AddressTypeId": 3,
-                "AttentionTo": "iQmetrix",
+                "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+                "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+                "AddressType": "Home",
+                "AddressTypeId": 2,
+                "AttentionTo": "Princess",
                 "Country": "Canada",
                 "CountryCode": "CA",
                 "Default": false,
                 "DoNotContact": true,
-                "Email": "Test@Test.com",
+                "Email": "Jas@princess.ca",
                 "Locality": "Mountain View",
-                "Notes": "New residence",
+                "Notes": "Moved as of April 15 2015",
                 "Phone": "(555) 555-5555",
                 "PostalCode": "94043",
                 "PostOfficeBoxNumber": "P.O. Box 1022",
@@ -3448,8 +3449,8 @@ HTTP 200 Content-Type: application/json
         "AlternateName": "Bob",
         "ContactMethods": [
             {
-                "Id": "5935f9bb-cda9-4c86-85ea-0b67c5d8a4bf",
-                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+                "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
                 "ContactMethodCategory": "Email",
                 "ContactMethodCategoryId": 3,
                 "ContactMethodType": "Work phone",
@@ -3463,10 +3464,10 @@ HTTP 200 Content-Type: application/json
         ],
         "CustomerExtensions": [
             {
-                "Id": "3d2e92e7-36cf-4884-bda1-6a9df8d3b420",
-                "CustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+                "Id": "74b87ece-5f70-454d-9991-7952127146b0",
+                "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
                 "ExtensionType": "ExternalCustomerId",
-                "ExtensionTypeId": 1,
+                "ExtensionTypeId": 2,
                 "Value": "66432",
                 "Version": 1
             }
@@ -3525,7 +3526,7 @@ To filter without case sensitivity, you can apply 'tolower' to a resource proper
 
 ###### Example
 
-    GET /Companies(1)/Customers?$filter=substringof('bob', tolower(PrimaryName))
+    GET /Companies(14146)/Customers?$filter=substringof('bob', tolower(PrimaryName))
 
 
 <h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
@@ -3555,15 +3556,15 @@ These links are _relative_, they do not include the base endpoint. It is the res
     {
         "_links": {
             "self": {
-              "href": "Companies(1)/Customers?$skip=10&$top=10",
+              "href": "Companies(14146)/Customers?$skip=10&$top=10",
               "templated": false
             },
             "next": {
-              "href": "Companies(1)/Customers?$skip=20&$top=10",
+              "href": "Companies(14146)/Customers?$skip=20&$top=10",
               "templated": false
             },
             "prev": {
-              "href": "Companies(1)/Customers?$skip=0&$top=10",
+              "href": "Companies(14146)/Customers?$skip=0&$top=10",
               "templated": fals
             }
         },
