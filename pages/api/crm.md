@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 14-01-2016
+last_updated: 14-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -255,10 +255,12 @@ POST /Companies({CompanyId})/Customers
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-customer">
-<pre><code class="http">POST /Companies(14146)/Customers
+<pre><code class="language-http">POST /Companies(14146)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code></pre>
+<pre><code class="language-json">
 {
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
@@ -391,9 +393,11 @@ GET /Companies({CompanyId})/Customers
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-customers">
-<pre><code class="http">GET /Companies(14146)/Customers
+<pre><code class="language-http">GET /Companies(14146)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-customers">
@@ -585,9 +589,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer">
-<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer">
@@ -712,10 +718,12 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer">
-<pre><code class="http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+<pre><code class="language-http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code></pre>
+<pre><code class="language-json">
 {
     "Id": "659c2a38-d083-4421-9330-46d779702f85",
     "PrimaryName": "Princess",
@@ -778,7 +786,7 @@ public static CloseableHttpResponse UpdatingACustomer() throws IOException {
 
 body = "{\"Id\":\"659c2a38-d083-4421-9330-46d779702f85\",\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\",\"Version\":1}";
 
-response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)', {
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -855,8 +863,10 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-customer">
-<pre><code class="http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+<pre><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-customer">
@@ -963,10 +973,12 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-adding-a-customer-address">
-<pre><code class="http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
+<pre><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code></pre>
+<pre><code class="language-json">
 {
     "AddressTypeId": 2,
     "AttentionTo": "Princess",
@@ -1114,9 +1126,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-addresses-for-a-customer">
-<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
+<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-addresses-for-a-customer">
@@ -1294,9 +1308,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer-address">
-<pre><code class="http">GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+<pre><code class="language-http">GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-address">
@@ -1432,10 +1448,12 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer-address">
-<pre><code class="http">PUT /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+<pre><code class="language-http">PUT /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code></pre>
+<pre><code class="language-json">
 {
     "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
@@ -1505,7 +1523,7 @@ public static CloseableHttpResponse UpdatingACustomerAddress() throws IOExceptio
 
 body = "{\"Id\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"AddressType\":\"Home\",\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}";
 
-response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)', {
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -1593,8 +1611,10 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-removing-an-address-from-a-customer">
-<pre><code class="http">DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+<pre><code class="language-http">DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-removing-an-address-from-a-customer">
@@ -1697,10 +1717,12 @@ POST /Companies({CompanyId})/CustomerFull
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-full-customer">
-<pre><code class="http">POST /Companies(14146)/CustomerFull
+<pre><code class="language-http">POST /Companies(14146)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code></pre>
+<pre><code class="language-json">
 {
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
@@ -1922,9 +1944,11 @@ GET /Companies({CompanyId})/CustomerFull
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-full-customers">
-<pre><code class="http">GET /Companies(14146)/CustomerFull
+<pre><code class="language-http">GET /Companies(14146)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-full-customers">
@@ -2200,9 +2224,11 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-full-customer">
-<pre><code class="http">GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
+<pre><code class="language-http">GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-full-customer">
@@ -2374,8 +2400,10 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-full-customer">
-<pre><code class="http">DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
+<pre><code class="language-http">DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-full-customer">
@@ -2482,10 +2510,12 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-adding-a-customer-contact-method">
-<pre><code class="http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
+<pre><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code></pre>
+<pre><code class="language-json">
 {
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategoryId": 3,
@@ -2617,9 +2647,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-contact-methods-for-a-customer">
-<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
+<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-contact-methods-for-a-customer">
@@ -2779,9 +2811,11 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer-contact-method">
-<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-contact-method">
@@ -2908,10 +2942,12 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer-contact-method">
-<pre><code class="http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+<pre><code class="language-http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code></pre>
+<pre><code class="language-json">
 {
     "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
@@ -2972,7 +3008,7 @@ public static CloseableHttpResponse UpdatingACustomerContactMethod() throws IOEx
 
 body = "{\"Id\":\"b25dd8b2-a24d-4107-8fbe-9c7b21e18137\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}";
 
-response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -3051,8 +3087,10 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-removing-a-customer-contact-method">
-<pre><code class="http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+<pre><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-removing-a-customer-contact-method">
@@ -3166,9 +3204,11 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-searching-for-customers">
-<pre><code class="http">GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
+<pre><code class="language-http">GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-searching-for-customers">
@@ -3348,9 +3388,11 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-customer-search">
-<pre><code class="http">GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
+<pre><code class="language-http">GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code></pre>
+<pre><code class="language-json">
 </code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-customer-search">
