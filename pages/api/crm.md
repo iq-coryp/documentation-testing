@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 13-01-2016
+last_updated: 14-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -230,15 +230,49 @@ POST /Companies({CompanyId})/Customers
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-creating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-creating-a-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-creating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-creating-a-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-customer">
+<pre><code class="http">POST /Companies(14146)/Customers
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "AlternateName": "Jas",
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "Notes": "Interested in iPhone 6",
+    "Title": "Ms"
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse CreatingACustomer()
 {
@@ -295,40 +329,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-POST /Companies(14146)/Customers
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "PrimaryName": "Princess",
-    "MiddleName": "Ella",
-    "FamilyName": "Jasmine",
-    "AlternateName": "Jas",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Notes": "Interested in iPhone 6",
-    "Title": "Ms"
-}
-</pre>
 
 <h4>Response</h4>
 
@@ -370,15 +370,33 @@ GET /Companies({CompanyId})/Customers
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-all-customers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-all-customers" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-all-customers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-customers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-customers" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-customers">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-customers">
+<pre><code class="http">GET /Companies(14146)/Customers
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllCustomers()
 {
@@ -430,24 +448,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/Customers
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -560,15 +560,37 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-a-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer">
+<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingACustomer()
 {
@@ -620,28 +642,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -683,15 +683,56 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-updating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-updating-a-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-updating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer">
+<pre><code class="http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Id": "659c2a38-d083-4421-9330-46d779702f85",
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "AlternateName": "Jas",
+    "CustomerType": "Company",
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "Notes": "Interested in iPhone 6",
+    "Title": "Ms",
+    "Version": 1
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse UpdatingACustomer()
 {
@@ -748,47 +789,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>AlternateName</code> (Optional) </li><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>Notes</code> (Optional) </li><li><code>Title</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "Id": "659c2a38-d083-4421-9330-46d779702f85",
-    "PrimaryName": "Princess",
-    "MiddleName": "Ella",
-    "FamilyName": "Jasmine",
-    "AlternateName": "Jas",
-    "CustomerType": "Company",
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "Notes": "Interested in iPhone 6",
-    "Title": "Ms",
-    "Version": 1
-}
-</pre>
 
 <h4>Response</h4>
 
@@ -830,15 +830,36 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-deleting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-deleting-a-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-deleting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-deleting-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-deleting-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-deleting-a-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-deleting-a-customer">
+<pre><code class="http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+Authorization: Bearer (Access Token)
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse DeletingACustomer()
 {
@@ -887,27 +908,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
-Authorization: Bearer (Access Token)
-
-</pre>
 
 <h4>Response</h4>
 
@@ -934,15 +934,57 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul>
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-adding-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-adding-a-customer-address" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-adding-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-adding-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-adding-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-adding-a-customer-address">
+    <div role="tabpanel" class="tab-pane active" id="http-adding-a-customer-address">
+<pre><code class="http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "AddressTypeId": 2,
+    "AttentionTo": "Princess",
+    "CountryCode": "CA",
+    "Default": false,
+    "DoNotContact": true,
+    "Email": "Jas@princess.ca",
+    "Locality": "Mountain View",
+    "Notes": "Moved as of April 15 2015",
+    "Phone": "(555) 555-5555",
+    "PostalCode": "94043",
+    "PostOfficeBoxNumber": "P.O. Box 1022",
+    "StateCode": "AB",
+    "StreetAddress1": "1600 Amphitheatre Pkwy",
+    "StreetAddress2": "Suite 500"
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-adding-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse AddingACustomerAddress()
 {
@@ -999,48 +1041,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "AddressTypeId": 2,
-    "AttentionTo": "Princess",
-    "CountryCode": "CA",
-    "Default": false,
-    "DoNotContact": true,
-    "Email": "Jas@princess.ca",
-    "Locality": "Mountain View",
-    "Notes": "Moved as of April 15 2015",
-    "Phone": "(555) 555-5555",
-    "PostalCode": "94043",
-    "PostOfficeBoxNumber": "P.O. Box 1022",
-    "StateCode": "AB",
-    "StreetAddress1": "1600 Amphitheatre Pkwy",
-    "StreetAddress2": "Suite 500"
-}
-</pre>
 
 <h4>Response</h4>
 
@@ -1089,15 +1089,37 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-all-addresses-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-all-addresses-for-a-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-all-addresses-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-addresses-for-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-addresses-for-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-addresses-for-a-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-addresses-for-a-customer">
+<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-addresses-for-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllAddressesForACustomer()
 {
@@ -1149,28 +1171,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -1265,15 +1265,41 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    
+    <li>
+        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-a-customer-address" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer-address">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer-address">
+<pre><code class="http">GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingACustomerAddress()
 {
@@ -1325,32 +1351,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
-    </li>
-    
-    <li>
-        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -1399,15 +1399,67 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    
+    <li>
+        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) - Required on PUT</li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-updating-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-updating-a-customer-address" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-updating-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer-address">
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer-address">
+<pre><code class="http">PUT /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+    "AddressType": "Home",
+    "AddressTypeId": 2,
+    "AttentionTo": "Princess",
+    "Country": "Canada",
+    "CountryCode": "CA",
+    "Default": false,
+    "DoNotContact": true,
+    "Email": "Jas@princess.ca",
+    "Locality": "Mountain View",
+    "Notes": "Moved as of April 15 2015",
+    "Phone": "(555) 555-5555",
+    "PostalCode": "94043",
+    "PostOfficeBoxNumber": "P.O. Box 1022",
+    "State": "Alberta",
+    "StateCode": "AB",
+    "StreetAddress1": "1600 Amphitheatre Pkwy",
+    "StreetAddress2": "Suite 500",
+    "Version": 1
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse UpdatingACustomerAddress()
 {
@@ -1464,58 +1516,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
-    </li>
-    
-    <li>
-        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (<strong>Required</strong>) - Required on PUT</li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-PUT /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
-    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-    "AddressType": "Home",
-    "AddressTypeId": 2,
-    "AttentionTo": "Princess",
-    "Country": "Canada",
-    "CountryCode": "CA",
-    "Default": false,
-    "DoNotContact": true,
-    "Email": "Jas@princess.ca",
-    "Locality": "Mountain View",
-    "Notes": "Moved as of April 15 2015",
-    "Phone": "(555) 555-5555",
-    "PostalCode": "94043",
-    "PostOfficeBoxNumber": "P.O. Box 1022",
-    "State": "Alberta",
-    "StateCode": "AB",
-    "StreetAddress1": "1600 Amphitheatre Pkwy",
-    "StreetAddress2": "Suite 500",
-    "Version": 1
-}
-</pre>
 
 <h4>Response</h4>
 
@@ -1564,15 +1564,40 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
+    </li>
+    
+    <li>
+        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-removing-an-address-from-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-removing-an-address-from-a-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-removing-an-address-from-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-removing-an-address-from-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-removing-an-address-from-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-removing-an-address-from-a-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-removing-an-address-from-a-customer">
+<pre><code class="http">DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+Authorization: Bearer (Access Token)
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-removing-an-address-from-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse RemovingAnAddressFromACustomer()
 {
@@ -1621,31 +1646,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier of the Company
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}}
-    </li>
-    
-    <li>
-        <code>AddressId</code> (<strong>Required</strong>)  - Identifier for the {{Address}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
-Authorization: Bearer (Access Token)
-
-</pre>
 
 <h4>Response</h4>
 
@@ -1672,15 +1672,87 @@ POST /Companies({CompanyId})/CustomerFull
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-creating-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-creating-a-full-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-creating-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-creating-a-full-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-full-customer">
+<pre><code class="http">POST /Companies(14146)/CustomerFull
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "PrimaryName": "Princess",
+    "MiddleName": "Ella",
+    "FamilyName": "Jasmine",
+    "Addresses": [
+        {
+            "AddressTypeId": 2,
+            "AttentionTo": "Princess",
+            "CountryCode": "CA",
+            "Default": false,
+            "DoNotContact": true,
+            "Email": "Jas@princess.ca",
+            "Locality": "Mountain View",
+            "Notes": "Moved as of April 15 2015",
+            "Phone": "(555) 555-5555",
+            "PostalCode": "94043",
+            "PostOfficeBoxNumber": "P.O. Box 1022",
+            "StateCode": "AB",
+            "StreetAddress1": "1600 Amphitheatre Pkwy",
+            "StreetAddress2": "Suite 500"
+        }
+    ],
+    "AlternateName": "Jas",
+    "ContactMethods": [
+        {
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+            "ContactMethodCategoryId": 3,
+            "ContactMethodTypeId": 5,
+            "Default": true,
+            "DoNotContact": true,
+            "Notes": "After 6pm",
+            "Value": "(306) 222-3333"
+        }
+    ],
+    "CustomerExtensions": [
+        {
+            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+            "ExtensionTypeId": 2,
+            "Value": "66432"
+        }
+    ],
+    "CustomerTypeId": 3,
+    "DateOfBirth": "1952-07-23T12:00:00.000",
+    "Disabled": true,
+    "DoNotContact": true,
+    "MemberOf": [],
+    "Notes": "Interested in iPhone 6",
+    "RelatedCustomers": [],
+    "Title": "Ms"
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse CreatingAFullCustomer()
 {
@@ -1737,78 +1809,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>CustomerTypeId</code> (<strong>Required</strong>) </li><li><code>PrimaryName</code> (Optional) </li><li><code>MiddleName</code> (Optional) </li><li><code>FamilyName</code> (Optional) </li><li><code>Addresses</code> (Optional) </li><ul><li><code>AddressTypeId</code> (<strong>Required</strong>) - Required if Addresses is not null</li><li><code>CountryCode</code> (<strong>Required</strong>) - Required if StateCode is provided</li><li><code>StateCode</code> (<strong>Required</strong>) </li><li><code>AttentionTo</code> (Optional) </li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Email</code> (Optional) </li><li><code>Locality</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Phone</code> (Optional) </li><li><code>PostalCode</code> (Optional) </li><li><code>PostOfficeBoxNumber</code> (Optional) </li><li><code>StreetAddress1</code> (Optional) </li><li><code>StreetAddress2</code> (Optional) </li></ul><li><code>AlternateName</code> (Optional) </li><li><code>ContactMethods</code> (Optional) </li><ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>CustomerExtensions</code> (Optional) </li><ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) </li><li><code>CustomerId</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul><li><code>DateOfBirth</code> (Optional) - UTC but can be provided in shortened form (yyyy-mm-dd)</li><li><code>Disabled</code> (Optional) - Defaults to false</li><li><code>DoNotContact</code> (Optional) - Defaults to true</li><li><code>MemberOf</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>RelatedCustomers</code> (Optional) </li><li><code>Title</code> (Optional) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-POST /Companies(14146)/CustomerFull
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "PrimaryName": "Princess",
-    "MiddleName": "Ella",
-    "FamilyName": "Jasmine",
-    "Addresses": [
-        {
-            "AddressTypeId": 2,
-            "AttentionTo": "Princess",
-            "CountryCode": "CA",
-            "Default": false,
-            "DoNotContact": true,
-            "Email": "Jas@princess.ca",
-            "Locality": "Mountain View",
-            "Notes": "Moved as of April 15 2015",
-            "Phone": "(555) 555-5555",
-            "PostalCode": "94043",
-            "PostOfficeBoxNumber": "P.O. Box 1022",
-            "StateCode": "AB",
-            "StreetAddress1": "1600 Amphitheatre Pkwy",
-            "StreetAddress2": "Suite 500"
-        }
-    ],
-    "AlternateName": "Jas",
-    "ContactMethods": [
-        {
-            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-            "ContactMethodCategoryId": 3,
-            "ContactMethodTypeId": 5,
-            "Default": true,
-            "DoNotContact": true,
-            "Notes": "After 6pm",
-            "Value": "(306) 222-3333"
-        }
-    ],
-    "CustomerExtensions": [
-        {
-            "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-            "ExtensionTypeId": 2,
-            "Value": "66432"
-        }
-    ],
-    "CustomerTypeId": 3,
-    "DateOfBirth": "1952-07-23T12:00:00.000",
-    "Disabled": true,
-    "DoNotContact": true,
-    "MemberOf": [],
-    "Notes": "Interested in iPhone 6",
-    "RelatedCustomers": [],
-    "Title": "Ms"
-}
-</pre>
 
 <h4>Response</h4>
 
@@ -1901,15 +1901,33 @@ GET /Companies({CompanyId})/CustomerFull
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-all-full-customers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-all-full-customers" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-all-full-customers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-full-customers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-full-customers" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-full-customers">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-full-customers">
+<pre><code class="http">GET /Companies(14146)/CustomerFull
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-full-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllFullCustomers()
 {
@@ -1961,24 +1979,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/CustomerFull
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -2175,15 +2175,37 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Unique identifier for the {{Customer}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-a-full-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-full-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-full-customer">
+<pre><code class="http">GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAFullCustomer()
 {
@@ -2235,28 +2257,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Unique identifier for the {{Customer}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -2349,15 +2349,36 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Unique identifier for the {{Customer}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-deleting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-deleting-a-full-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-deleting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-deleting-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-deleting-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-deleting-a-full-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-deleting-a-full-customer">
+<pre><code class="http">DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
+Authorization: Bearer (Access Token)
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse DeletingAFullCustomer()
 {
@@ -2406,27 +2427,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Unique identifier for the {{Customer}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
-Authorization: Bearer (Access Token)
-
-</pre>
 
 <h4>Response</h4>
 
@@ -2453,15 +2453,50 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul>
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-adding-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-adding-a-customer-contact-method" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-adding-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-adding-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-adding-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-adding-a-customer-contact-method">
+    <div role="tabpanel" class="tab-pane active" id="http-adding-a-customer-contact-method">
+<pre><code class="http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+    "ContactMethodCategoryId": 3,
+    "ContactMethodTypeId": 5,
+    "Default": true,
+    "DoNotContact": true,
+    "Notes": "After 6pm",
+    "Value": "(306) 222-3333"
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-adding-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse AddingACustomerContactMethod()
 {
@@ -2518,41 +2553,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-    "ContactMethodCategoryId": 3,
-    "ContactMethodTypeId": 5,
-    "Default": true,
-    "DoNotContact": true,
-    "Notes": "After 6pm",
-    "Value": "(306) 222-3333"
-}
-</pre>
 
 <h4>Response</h4>
 
@@ -2592,15 +2592,37 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-all-contact-methods-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-all-contact-methods-for-a-customer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-all-contact-methods-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-contact-methods-for-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-contact-methods-for-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-all-contact-methods-for-a-customer">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-contact-methods-for-a-customer">
+<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-contact-methods-for-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingAllContactMethodsForACustomer()
 {
@@ -2652,28 +2674,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -2750,15 +2750,41 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    
+    <li>
+        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-getting-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-getting-a-customer-contact-method" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-getting-a-customer-contact-method">
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer-contact-method">
+<pre><code class="http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingACustomerContactMethod()
 {
@@ -2810,32 +2836,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
-    </li>
-    
-    <li>
-        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -2875,15 +2875,58 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    
+    <li>
+        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-updating-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-updating-a-customer-contact-method" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-updating-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-updating-a-customer-contact-method">
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer-contact-method">
+<pre><code class="http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
+    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
+    "ContactMethodCategory": "Email",
+    "ContactMethodCategoryId": 3,
+    "ContactMethodType": "Work phone",
+    "ContactMethodTypeId": 5,
+    "Default": true,
+    "DoNotContact": true,
+    "Notes": "After 6pm",
+    "Value": "(306) 222-3333",
+    "Version": 1
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse UpdatingACustomerContactMethod()
 {
@@ -2940,49 +2983,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
-    </li>
-    
-    <li>
-        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>ContactMethodCategoryId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>ContactMethodTypeId</code> (<strong>Required</strong>) - Required if ContactMethods is not null</li><li><code>CustomerId</code> (Optional) - Required on PUT</li><li><code>Default</code> (Optional) </li><li><code>DoNotContact</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>Value</code> (Optional) </li><li><code>Version</code> (<strong>Required</strong>) </li></ul>
-
-<h5>Example</h5>
-
-<pre>
-PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-{
-    "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
-    "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-    "ContactMethodCategory": "Email",
-    "ContactMethodCategoryId": 3,
-    "ContactMethodType": "Work phone",
-    "ContactMethodTypeId": 5,
-    "Default": true,
-    "DoNotContact": true,
-    "Notes": "After 6pm",
-    "Value": "(306) 222-3333",
-    "Version": 1
-}
-</pre>
 
 <h4>Response</h4>
 
@@ -3022,15 +3022,40 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
+    </li>
+    
+    <li>
+        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-removing-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-removing-a-customer-contact-method" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-removing-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-removing-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-removing-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-removing-a-customer-contact-method">
+    <div role="tabpanel" class="tab-pane active" id="http-removing-a-customer-contact-method">
+<pre><code class="http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+Authorization: Bearer (Access Token)
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-removing-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse RemovingACustomerContactMethod()
 {
@@ -3079,31 +3104,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CustomerId</code> (<strong>Required</strong>)  - Identifier for the {{Customer}} being updated
-    </li>
-    
-    <li>
-        <code>ContactMethodId</code> (<strong>Required</strong>)  - Identifier for the {{ContactMethod}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
-Authorization: Bearer (Access Token)
-
-</pre>
 
 <h4>Response</h4>
 
@@ -3133,15 +3133,45 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>FilterQuery</code> (Optional)  - Filter on customers
+    </li>
+    
+    <li>
+        <code>Skip</code> (Optional)  - Number of records to skip
+    </li>
+    
+    <li>
+        <code>Top</code> (Optional)  - Number of records to take
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-searching-for-customers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-searching-for-customers" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-searching-for-customers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-searching-for-customers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-searching-for-customers" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-searching-for-customers">
+    <div role="tabpanel" class="tab-pane active" id="http-searching-for-customers">
+<pre><code class="http">GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-searching-for-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse SearchingForCustomers()
 {
@@ -3193,36 +3223,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>FilterQuery</code> (Optional)  - Filter on customers
-    </li>
-    
-    <li>
-        <code>Skip</code> (Optional)  - Number of records to skip
-    </li>
-    
-    <li>
-        <code>Top</code> (Optional)  - Number of records to take
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -3323,15 +3323,37 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-<h4>Code Samples</h4>
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>FilterQuery</code> (Optional)  - The filter to apply, "Criteria" is required
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#csharp-customer-search" data-toggle="tab">C# (RestSharp)</a></li>
+    <li class="active"><a href="#http-customer-search" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-customer-search" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-customer-search" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-customer-search" data-toggle="tab">Ruby (rest-client)</a></li>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="csharp-customer-search">
+    <div role="tabpanel" class="tab-pane active" id="http-customer-search">
+<pre><code class="http">GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-customer-search">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse CustomerSearch()
 {
@@ -3383,28 +3405,6 @@ puts response</code></pre>
 </div>
 
 
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>FilterQuery</code> (Optional)  - The filter to apply, "Criteria" is required
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<pre>
-GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
-Authorization: Bearer (Access Token)
-Accept: application/json
-
-</pre>
 
 <h4>Response</h4>
 
@@ -3488,6 +3488,7 @@ HTTP 200 Content-Type: application/json
 
 
 <h2 id="searching" class="clickable-header top-level-header">Searching</h2>
+
 
 The Customers API supports searching of {{Customer}} and [CustomerSearch](#customersearch) resources through the use of filters.
 
