@@ -4,7 +4,7 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 05-01-2016
+last_updated: 14-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -31,13 +31,15 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ###Pricing
 
+{{callout_info}}<b>RQ Connection</b> The following fields are not currently synced to RQ: IsDiscountable and FloorPrice{{end}}
+
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `41614` |
 | CatalogItemId | GUID | [CatalogItem](/api/catalog/#catalogitem) identifier | `d60a8776-2f1f-430a-88f6-6180de43887d` |
 | CompanyId | Integer | Identifier for the Company associated with this Pricing | `1` |
-| EntityId | Integer | [CompanyTreeNode](/anode gepi/company-tree/#companytreenode) identifier at which the price is set | `2` |
-| FloorPrice | Decimal | The minimum amount the CatalogItem should be sold for. This is not enforced by the API | `3.99` |
+| EntityId | Integer | [CompanyTreeNode](/api/company-tree/#companytreenode) identifier at which the price is set | `2` |
+| FloorPrice | Decimal | The minimum amount the CatalogItem should be sold for | `3.99` |
 | IsDiscountable | Boolean | A flag to indicate if this Pricing allows discounting. This is not enforced by the API | `false` |
 | OverridePrice | Decimal | This value is retrieved from the `SalePrice` of the current or default [SaleOverridePrice](#SaleOverridePrice) | `3.99` |
 | PricingTermId | Integer | [PricingTerm](#pricingterm) identifier | `20` |
@@ -45,7 +47,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ###SaleOverridePrice
 
-SaleOverridePrice is used to set a sale pricing for a specific date. Pricing.OverridePrice is set using the <strong>active</strong> SaleOverridePrice SalePrice property, determined using the following rules:<br/><ul><li>If there is a SaleOverridePrice defined for the current date, it is used</li><li>Otherwise, if there is a Default (IsDefault set to true) SaleOverridePrice, it is used </li><li>Otherwise, null is returned</li></ul>
+<p>SaleOverridePrice is used to set a sale pricing for a specific date. <br/>Pricing.OverridePrice is set using the <strong>active</strong> SaleOverridePrice SalePrice property, determined using the following rules:</p><ul><li>If there is a SaleOverridePrice defined for the current date, it is used</li><li>Otherwise, if there is a Default (IsDefault set to true) SaleOverridePrice, it is used </li><li>Otherwise, null is returned</li></ul>{{callout_info}}<b>RQ Connection</b> Future SalveOverridePrice values are not currently synced to RQ, this feature is coming soon.{{end}}
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -54,8 +56,8 @@ SaleOverridePrice is used to set a sale pricing for a specific date. Pricing.Ove
 | IsDefault | Boolean | A flag to indicate that this is the default SaleOverridePrice | `true` |
 | PricingInformationId | Integer | Identifier for a [Pricing](#pricing) | `41614` |
 | SalePrice | Decimal | Sale price | `3.99` |
-| StartDate | DateTime | Date and time the sale pricing begins, in UTC | `2015-12-02T00:00:00` |
-| StopDate | DateTime | Date and time the sale pricing ends, in UTC | `2015-12-31T00:00:00` |
+| StartDateUTC | DateTime | Date and time the sale pricing begins, in UTC | `2015-12-02T00:00:00` |
+| StopDateUTC | DateTime | Date and time the sale pricing ends, in UTC | `2015-12-31T00:00:00` |
 
 
 ###PricingTerm
@@ -657,7 +659,7 @@ POST /Companies({CompanyId})/Pricing({PricingId})/SaleOverridePrices
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>IsDefault</code> (<strong>Required</strong>) - There can only be one default SaleOverridePrice for a Pricing. If StartDate and StopDate are provided, this must be false</li><li><code>StartDate</code> (<strong>Required</strong>) - If provided, StopDate must be provided, StartDate must be before StopDate and IsDefault must be false</li><li><code>StopDate</code> (<strong>Required</strong>) - If provided, StartDate must be provided, StartDate must be before StopDate and IsDefault must be false</li><li><code>SalePrice</code> (Optional) - Must be greater than or equal to 0</li></ul>
+<ul><li><code>IsDefault</code> (<strong>Required</strong>) - There can only be one default SaleOverridePrice for a Pricing. If StartDate and StopDate are provided, this must be false</li><li><code>SalePrice</code> (Optional) - Must be greater than or equal to 0, defaults to 0</li><li><code>StartDateUTC</code> (Optional) - If provided, StopDate must be provided, StartDate must be before StopDate and IsDefault must be false</li><li><code>StopDateUTC</code> (Optional) - If provided, StartDate must be provided, StartDate must be before StopDate and IsDefault must be false</li></ul>
 
 <h5>Example</h5>
 
@@ -669,8 +671,8 @@ Content-Type: application/json
 {
     "IsDefault": true,
     "SalePrice": 3.99,
-    "StartDate": "2015-12-02T00:00:00",
-    "StopDate": "2015-12-31T00:00:00"
+    "StartDateUTC": "2015-12-02T00:00:00",
+    "StopDateUTC": "2015-12-31T00:00:00"
 }
 </pre>
 
@@ -689,8 +691,8 @@ HTTP 201 Content-Type: application/json
     "IsDefault": true,
     "PricingInformationId": 41614,
     "SalePrice": 3.99,
-    "StartDate": "2015-12-02T00:00:00",
-    "StopDate": "2015-12-31T00:00:00"
+    "StartDateUTC": "2015-12-02T00:00:00",
+    "StopDateUTC": "2015-12-31T00:00:00"
 }</pre>
 
 <h2 id='getting-all-sale-pricing' class='clickable-header top-level-header'>Getting All Sale Pricing</h2>
@@ -747,8 +749,8 @@ HTTP 200 Content-Type: application/json
     "IsDefault": true,
     "PricingInformationId": 41614,
     "SalePrice": 3.99,
-    "StartDate": "2015-12-02T00:00:00",
-    "StopDate": "2015-12-31T00:00:00"
+    "StartDateUTC": "2015-12-02T00:00:00",
+    "StopDateUTC": "2015-12-31T00:00:00"
 }</pre>
 
 <h2 id='updating-a-sale-pricing' class='clickable-header top-level-header'>Updating a Sale Pricing</h2>
@@ -787,7 +789,7 @@ PUT /Companies({CompanyId})/Pricing({PricingId})/SaleOverridePrices({SaleOverrid
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>IsDefault</code> (<strong>Required</strong>) - There can only be one default SaleOverridePrice for a Pricing. If StartDate and StopDate are provided, this must be false</li><li><code>StartDate</code> (<strong>Required</strong>) - If provided, StopDate must be provided, StartDate must be before StopDate and IsDefault must be false</li><li><code>StopDate</code> (<strong>Required</strong>) - If provided, StartDate must be provided, StartDate must be before StopDate and IsDefault must be false</li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>SalePrice</code> (Optional) - Must be greater than or equal to 0</li></ul>
+<ul><li><code>IsDefault</code> (<strong>Required</strong>) - There can only be one default SaleOverridePrice for a Pricing. If StartDate and StopDate are provided, this must be false</li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>SalePrice</code> (Optional) - Must be greater than or equal to 0, defaults to 0</li><li><code>StartDateUTC</code> (Optional) - If provided, StopDate must be provided, StartDate must be before StopDate and IsDefault must be false</li><li><code>StopDateUTC</code> (Optional) - If provided, StartDate must be provided, StartDate must be before StopDate and IsDefault must be false</li></ul>
 
 <h5>Example</h5>
 
@@ -802,8 +804,8 @@ Content-Type: application/json
     "IsDefault": true,
     "PricingInformationId": 41614,
     "SalePrice": 3.99,
-    "StartDate": "2015-12-02T00:00:00",
-    "StopDate": "2015-12-31T00:00:00"
+    "StartDateUTC": "2015-12-02T00:00:00",
+    "StopDateUTC": "2015-12-31T00:00:00"
 }
 </pre>
 
@@ -822,8 +824,8 @@ HTTP 200 Content-Type: application/json
     "IsDefault": true,
     "PricingInformationId": 41614,
     "SalePrice": 3.99,
-    "StartDate": "2015-12-02T00:00:00",
-    "StopDate": "2015-12-31T00:00:00"
+    "StartDateUTC": "2015-12-02T00:00:00",
+    "StopDateUTC": "2015-12-31T00:00:00"
 }</pre>
 
 <h2 id='deleting-a-sale-pricing' class='clickable-header top-level-header'>Deleting a Sale Pricing</h2>
