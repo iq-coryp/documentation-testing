@@ -4,7 +4,7 @@ permalink: /api/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-01-2016
+last_updated: 14-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -14,128 +14,7 @@ summary:
 
 In {{ProductLibrary_Concept}} and in your Catalog, products are structured in a way to make managing them easier.
 
-To about Master Products, Variations and Revisions, see {{ProductStructure_Concept}}. 
-
-### Extended Examples
-
-These examples are intended to explain how some of the more complex components of a ProductDocument work.
-
-#### Revision Group
-
-```
-{
-    "Order": 1,
-    "VariationId": 3,
-    "GroupType": "Entity",
-    "Revisions": [
-        {
-            "Id": 4,
-            "Entity": {
-                "Id": 12372,
-                "Name": "Jump.ca"
-            },
-            "Regions": [],
-            "FieldValues": [
-                {
-                    "FieldDefinitionId": 76,
-                    "LanguageInvariantValue": "659.50 CAD"
-                }
-            ]
-        },
-        {
-            "Id": 3,
-            "Entity": {
-                "Id": 3335,
-                "Name": "KENTEL"
-            },
-            "Regions": [],
-            "FieldValues": [
-                {
-                    "FieldDefinitionId": 76,
-                    "LanguageInvariantValue": "449.50 USD"
-                }
-            ]
-        },              
-    ]
-}
-```
-
-In the example above, `"GroupType": "Entity"` signifys that the `Revisions` were created from the same {{Variation}} of a {{MasterProduct}}.
-
-In this case, the two Entities that own these Revisions are {{Company}} Entities, Jump.ca and KENTEL.
-
-The Revision also contains a FieldValue change, using [Getting a Field Definition](/api/field-definitions/#getting-a-fielddefinition) we can determine that this is setting MSRP to `449.50 USD`.
-
-Therefore, Jump.ca owns Revision `4`, which has an MSRP value of `659.50 CAD`, and KENTEL owns Revision `3`, which has a MSRP value of `449.50 USD`.
-
-### Force Overide Example 
-
-```
-{
-  "RootRevision": {
-    "Variations": [
-      {
-        "IdentifierGroups": [
-          {
-            "Type": "VendorSKU",
-            "Identifiers": [
-              {
-                "Type": "ManufacturerSKU",
-                "Value": "ME341LL/A",
-                "Description": "",
-                "Entity": {
-                  "Id": 632,
-                  "Name": "Apple"
-                }
-              }
-            ],
-            "ForceOverride": true
-          }
-        ],
-      },
-    ],
-    "IdentifierGroups": [
-      {
-        "Type": "VendorSKU",
-        "Identifiers": [
-          {
-            "Type": "VendorSKU",
-            "Value": "V8341221L",
-            "Description": "",
-            "Entity": {
-              "Id": 632,
-              "Name": "Apple"
-            }
-          }
-        ],
-        "ForceOverride": true
-      },
-      {
-        "Type": "ManufacturerSKU",
-        "Identifiers": [],
-        "ForceOverride": false
-      },
-      {
-        "Type": "UPC",
-        "Identifiers": [],
-        "ForceOverride": true
-      }            
-      ...
-    ],
-  },
-  ...
-}
-```
-
-In the summarized example of a ProductDocument above, the MasterProduct (`RootRevision`) has a `VendorSKU` IdentifierGroup with an Identifier of `V8341221L`.
-
-With `ForceOverride` set to `true`, we know that all Variations inherit this IdentifierGroup, all Variations have one and only one Vendor SKU - `V8341221L`. 
-
-However, the MasterProduct `ManufacturerSKU` IdentifierGroup has `ForceOverride` set to `false`.
-
-Looking at the Variation, we can see the reason - there is a `ManufacturerSKU` IdentifierGroup with an Identifier of `ME341LL/A`, breaking inheritance from the parent MasterProduct.
-
-The MasterProduct has a Vendor SKU of `V8341221L`, but the Variation has a Vendor SKU of `V8341221L` **and** a Manufacturer SKU of `ME341LL/A`.
+To learn about Master Products, Variations and Revisions, see {{ProductStructure_Concept}}. 
 
 
 ## Endpoints
@@ -160,8 +39,8 @@ A ProductDocument represents the [hierarchical structure](/concepts/product-stru
 | CreatedUtc | DateTime | Created date in UTC | `2015-05-28T12:00:00.000Z` |
 | LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-28T12:00:00.000Z` |
 | Manufacturer | object | Manufacturer information |  |
-| Manufacturer.Id | Integer | Identifier for the Manufacturer | `4` |
-| Manufacturer.Name | String | Name of the Manufacturer | `SampleManufacturer` |
+| Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `4` |
+| Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `SampleManufacturer` |
 | Owner | object | Indicates if this Product is publicly accessible (null) or private (not null) |  |
 | Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `1` |
 | Owner.Name | String | For private products, Name of the Company that owns this Product | `SampleCompany` |
@@ -245,12 +124,12 @@ To learn more about Master Products, Variations and Revisions, see {{product-str
 | ColorDefinitionId | String | Unique identifier for a ColorDefinition | `e572461b-17b0-44c8-9b27-ca76904b9ee2` |
 | FieldValues | Array[<a href='#fieldvalue'>FieldValue</a>] | FieldValues representing properties that determine how this Revision differs from its parent Variation or MasterProduct |  |
 | IdentifierGroups | Array[<a href='#identifiergroup'>IdentifierGroup</a>] | List of IdentifierGroups |  |
-| IsArchived | Boolean | A flag to indicate if this Variation is archived | `false` |
+| IsArchived | Boolean | A flag to indicate if this Variation is archived. Archived Products are hidden from searches and can only be access directly. | `false` |
 
 
 ###FieldValue
 
-A FieldValue represents a product property and defines how Variations and Revisions differ from their parents. FieldValues are made up of a reference to a {{field-definition}} and a value.
+A FieldValue represents a product property and defines how Variations and Revisions differ from their parents. FieldValues are made up of a reference to a {{field-definition}} and a value. See [Extended Examples](#extended-examples).
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -266,9 +145,9 @@ A FieldValue represents a product property and defines how Variations and Revisi
 
 | Name   | Description |
 |:-------|:------------|
-| Region | Geographical region revision |
-| Entity | Company revision |
-| RegionAndEntity | Region and Entity revision | 
+| Region | Variation is specific to a [Country](/api/reference/#country) or [State](/api/reference/#state) |
+| Entity | Variation is specific to a [Company](/api/company-tree/#company) or [Carrier](/api/entity-store/#carrier) |
+| RegionAndEntity | Varation is a combination of the above | 
 
 ### SwatchType
 
@@ -545,7 +424,7 @@ HTTP 201 Content-Type: application/json
 <h4>Request</h4>
 
 <pre>
-POST /ProductDocs/{ProductDocumentId}/Variations
+POST /ProductDocs({ProductDocumentId})/Variations
 </pre>
 
 
@@ -558,7 +437,7 @@ POST /ProductDocs/{ProductDocumentId}/Variations
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>) 
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a [ProductDocument](#productdocument)
     </li>
     </ul>
 
@@ -571,7 +450,7 @@ POST /ProductDocs/{ProductDocumentId}/Variations
 <h5>Example</h5>
 
 <pre>
-POST /ProductDocs/undefined/Variations
+POST /ProductDocs(8)/Variations
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -641,12 +520,13 @@ HTTP 201 Content-Type: application/json
 
 <h2 id='creating-a-revision' class='clickable-header top-level-header'>Creating a Revision</h2>
 
+At least one of the following is required in the URI for this request: `VariationId`, `CountryCode`, `StateCode`, `EntityId`.
 
 
 <h4>Request</h4>
 
 <pre>
-POST /ProductDocs/{ProductDocumentId}/Revisions?variationId={variationId}&countryCode={countryCode}&stateCode={stateCode}&entityId={entityId}&parentEntityId={parentEntityId}
+POST /ProductDocs({ProductDocumentId})/Revisions?variationId={VariationId}&countryCode={CountryCode}&stateCode={StateCode}&entityId={EntityId}
 </pre>
 
 
@@ -659,27 +539,23 @@ POST /ProductDocs/{ProductDocumentId}/Revisions?variationId={variationId}&countr
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>) 
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a [ProductDocument](#productdocument)
     </li>
     
     <li>
-        <code>variationId</code> (<strong>Required</strong>) 
+        <code>VariationId</code> (Optional)  - Identifier for a [Variation](#variation)
     </li>
     
     <li>
-        <code>countryCode</code> (<strong>Required</strong>) 
+        <code>CountryCode</code> (Optional)  - Two letter country code for a Country. Uses the ISO 3166-1 alpha-2 standard
     </li>
     
     <li>
-        <code>stateCode</code> (<strong>Required</strong>) 
+        <code>StateCode</code> (Optional)  - Two letter state code for a State or Province. Based off the ISO 3166-2 standard
     </li>
     
     <li>
-        <code>entityId</code> (<strong>Required</strong>) 
-    </li>
-    
-    <li>
-        <code>parentEntityId</code> (<strong>Required</strong>) 
+        <code>EntityId</code> (Optional)  - Identifier for a {{Company}} or {{Carrier}}
     </li>
     </ul>
 
@@ -692,7 +568,7 @@ POST /ProductDocs/{ProductDocumentId}/Revisions?variationId={variationId}&countr
 <h5>Example</h5>
 
 <pre>
-POST /ProductDocs/undefined/Revisions?variationId=undefined&countryCode=undefined&stateCode=undefined&entityId=undefined&parentEntityId=undefined
+POST /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -776,3 +652,149 @@ HTTP 201 Content-Type: application/json
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
+
+<h2 id="extended-examples" class="clickable-header top-level-header">Extended Examples</h2>
+
+These examples are intended to illustrate some of the more complex concepts in the Product Structure API.
+
+#### Revision Group
+
+A [RevisionGroup](#revisiongroup) is how child Revisions of a given Master Product or Variation are represented in the API.
+
+```
+{
+    "VariationId": 3,
+    "GroupType": "Entity",
+    "Revisions": [
+        {
+            "Id": 4,
+            "Entity": {
+                "Id": 12372,
+                "Name": "Jump.ca"
+            }
+        },
+        {
+            "Id": 3,
+            "Entity": {
+                "Id": 3335,
+                "Name": "KENTEL"
+            }
+        },              
+    ]
+}
+```
+
+The example above is a snippet from a {{MasterProduct}} with two child Revisions.
+
+`"GroupType": "Entity"` signifies that these Revisions are Entity Revisions, created for a specific Entity, such as a Company or Carrier. 
+
+In this case, the two Entities that own these Revisions are {{Company}} Entities, Jump.ca and KENTEL.
+
+#### Field Values
+
+A [FieldValue](#fieldvalue) pairs a {{FieldDefinition}} with a value that allows us to see how a child Variation or Revision differs from its parent.
+
+```
+{
+    "Revisions": [
+        {
+            "Id": 4,
+            "FieldValues": [
+                {
+                    "FieldDefinitionId": 76,
+                    "LanguageInvariantValue": "659.50 CAD"
+                }
+            ]
+        },
+        {
+            "Id": 3,
+            "FieldValues": [
+                {
+                    "FieldDefinitionId": 76,
+                    "LanguageInvariantValue": "449.50 USD"
+                }
+            ]
+        },              
+    ]
+}
+```
+
+The example above is a snippet from a {{MasterProduct}} with two child Revisions which have one FieldValue change each.
+
+Using [Getting a Field Definition](/api/field-definitions/#getting-a-fielddefinition) we can determine that the FieldDefinition specified is MSRP.
+
+Therefore, these Revisions differ from the MasterProduct by MSRP, one Revision has `659.50 CAD` and the other has `449.50 USD`.
+
+#### Force Overide 
+
+Products in Product Library can have an **inheritance** relationship between a parent (Master Product or Variation) and child (Variation or Revision).
+
+Inheriting an [IdentifierGroup](#identigiergroup) allows a child to have an identicial set of [Identifiers](#identifier) as its parent.
+
+IdentifierGroups can also be **synched**, allowing a child to automatically inherit any changes made to the inherited group.
+
+Note that Identifiers can only be synced as a complete set, either all Identifiers of a specific type (Vendur, UPC, Manufacturer) are synced, or none are.
+
+By forcing a child to override an IdentifierGroup, we prevent the sync and allow the child to have different Identifiers than its parent.
+
+```
+{
+  "Variations": [
+    {
+      "IdentifierGroups": [
+        {
+          "Type": "VendorSKU",
+          "Identifiers": [
+            {
+              "Type": "VendorSKU",
+              "Value": "V8341221L"
+            }
+          ],
+          "ForceOverride": true
+        },
+        {    
+          "Type": "ManufacturerSKU",
+          "Identifiers": [
+            {
+              "Type": "ManufacturerSKU",
+              "Value": "ME341LL/A"
+            }
+          ],
+          "ForceOverride": false
+        }
+      ],
+    },
+  ],
+  "IdentifierGroups": [
+    {
+      "Type": "VendorSKU",
+      "Identifiers": [
+        {
+          "Type": "VendorSKU",
+          "Value": "V8341221L"
+        }
+      ],
+      "ForceOverride": true
+    },
+    {    
+      "Type": "ManufacturerSKU",
+      "Identifiers": [
+        {
+          "Type": "ManufacturerSKU",
+          "Value": "545512G/A"
+        }
+      ],
+      "ForceOverride": false
+    }        
+    ...
+  ]
+}
+```
+
+The example above is a summarized {{MasterProduct}} with one child {{Variation}}, one Vendor SKU (`V8341221L`) and one Manufacturer SKU (`545512G/A`).
+
+With ForceOverride set to `true` for Vendor SKUs, we know that the child Variation has one and only one Vendor SKU - `V8341221L`.
+
+However, Manufacturer SKU's have ForceOverride set to `false`, showing that the child Variation is not inheriting all of the parent Master Product's Manufacturer SKUs.
+
+Looking at the Variation, there is a Manufacturer SKU with a value of `ME341LL/A` that is breaking inheritance.

@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 14-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -45,23 +45,33 @@ A CatalogSearchResult resource is used to return information about Product resou
 | Items.CanonicalClassification | <a href='#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
 | Items.CatalogItemId | GUID | Unique identifier for the CatalogItem | `d60a8776-2f1f-430a-88f6-6180de43887d` |
 | Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) | `21` |
+| Items.ColorDefinition | <a href='#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
 | Items.CompanyId | Integer | Identifier for the Company | `1` |
 | Items.DateAddedUtc | DateTime | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
 | Items.HeroShotId | GUID | An identifier for a [Hero Shot](/api/glossary/#hero-shot) | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| Items.Identifiers | Array[<a href='#identifier'>Identifier</a>] | Identifiers |  |
 | Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | Items.IsDropShippable | Boolean | A flag to indicate if this Product can be shipped | `true` |
-| Items.Manufacturer | <a href='#manufacturerrep'>ManufacturerRep</a> | Manufacturer information for the Product |  |
-| Items.MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
-| Items.Msrp | <a href='#msrp'>MSRP</a> | Manufacturer suggested retail price information for the Product |  |
-| Items.ProductVersion | Integer | Latest revision number | `1` |
-| Items.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
-| Items.Slug | String | URL friendly identifier for the Product | `M3-V1` |
-| Items.VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#Variations) this Product represents | `1` |
-| Items.Vendors | Array[<a href='#vendorrep'>VendorRep</a>] | Vendors for the Product |  |
+| Items.Manufacturer | object | [Manufacturer](/api/entity-store/#manufacturer) information for the Product |  |
+| Items.Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `4` |
+| Items.Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `SampleManufacturer` |
+| Items.Manufacturer.MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
+| Items.Manufacturer.Msrp | object | Manufacturer suggested retail price information for the Product |  |
+| Items.Manufacturer.Msrp.Amount | Decimal | Manufacturers suggested retail price | `100` |
+| Items.Manufacturer.Msrp.CurrencyCode | String | Currency. For a list of acceptable values, see <a href='/api/reference/#getting-all-currencies'>Getting All Currencies</a> | `USD` |
+| Items.Manufacturer.Msrp.ProductVersion | Integer | Latest revision number | `1` |
+| Items.Manufacturer.Msrp.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
+| Items.Manufacturer.Msrp.Slug | String | URL friendly identifier for the Product | `M3-V1` |
+| Items.Manufacturer.Msrp.VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#Variations) this Product represents | `1` |
+| Items.Manufacturer.Msrp.Vendors | Array[object] | Vendors for the Product |  |
+| Items.Manufacturer.Msrp.Vendors.Id | Integer | Identifier for the [Supplier](/api/entity-store/#supplier) | `14` |
+| Items.Manufacturer.Msrp.Vendors.Name | String | Name of the [Supplier](/api/entity-store/#supplier) | `SampleSupplier` |
 | Facets | object | Summary of Manufacturer and Vendor information for the Items |  |
-| Facets.ClassificationAndCategories | Array[<a href='#classificationcount'>ClassificationCount</a>] | Count of Classification and Categories in results |  |
-| Facets.Manufacturers | Array[<a href='#manufacturer'>Manufacturer</a>] | Manufacturer information for the Items |  |
-| Facets.Vendors | Array[<a href='#manufacturer'>Manufacturer</a>] | Vendor information for the Items |  |
+| Facets.ClassificationAndCategories | Array[object] | Count of Classification and Categories in results |  |
+| Facets.ClassificationAndCategories.Count | Integer | Number of items in the response with the Classification or Category specified in Item | `1` |
+| Facets.ClassificationAndCategories.Item | Integer | Identifier of a Classification or Category | `1` |
+| Facets.ClassificationAndCategories.Manufacturers | Array[<a href='#manufacturer'>Manufacturer</a>] | Manufacturer information for the Items |  |
+| Facets.ClassificationAndCategories.Vendors | Array[<a href='#manufacturer'>Manufacturer</a>] | Vendor information for the Items |  |
 | MetaData | object | Data representing pagination details |  |
 | MetaData.Page | Integer | Page of Items to be included in the resource | `1` |
 | MetaData.PageSize | Integer | Number of Items included in the resource | `20` |
@@ -96,11 +106,11 @@ A CatalogSearchResult resource is used to return information about Product resou
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
 | LongDescription | String | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
-| Manufacturer | object | Manufacturer information |  |
-| Manufacturer.Id | Integer | Identifier for the Manufacturer | `4` |
-| Manufacturer.Name | String | Name of the Manufacturer | `SampleManufacturer` |
+| Manufacturer | object | [Manufacturer](/api/entity-store/#manufacturer) information for the Product |  |
+| Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `4` |
+| Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `SampleManufacturer` |
 | ManufacturerSkus | Array[<a href='#sku'>Sku</a>] | Manufacturer SKUs |  |
-| MasterProductId | Integer | Identifier for the Master Product | `3` |
+| MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
 | MSRP | object | Manufacturers suggested retail price information |  |
 | MSRP.Amount | Decimal | Manufacturers suggested retail price | `100` |
 | MSRP.CurrencyCode | String | Currency. For a list of acceptable values, see <a href='/api/reference/#getting-all-currencies'>Getting All Currencies</a> | `USD` |
@@ -127,7 +137,6 @@ A CatalogSearchResult resource is used to return information about Product resou
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier for the [Classification](/api/classification-tree/#classification) or [Category](/api/classification-tree/#category) | `1` |
-| TreeId | Integer | Identifier for a [ClassificationTree](/api/classification-tree/#classificationtree) | `21` |
 | Name | String | Name of the Classification/Category | `Smartphones` |
 | ParentCategories | Array[object] | List of Parent Categories |  |
 | ParentCategories.Id | Integer | Identifier | `2` |
@@ -141,9 +150,12 @@ A ColorDefinition allows you to define the available Colors for a Product
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier | `e572461b-17b0-44c8-9b27-ca76904b9ee2` |
 | Name | String | Name | `Emerald Green` |
-| ColorTagIds | Array[integer] | List of ColorTag identifiers representing the main colors in the product, see [ColorTags](#colortags) for a list of acceptable values | `5` |
-| ColorTags | Array[string] | List of ColorTag names associated with the ColorTagIds | `Green` |
+| ColorTags | Array[object] | Color information |  |
+| ColorTags.Id | Integer | Identifier | `5` |
+| ColorTags.Name | String | Name | `Green` |
+| ColorTags.ColorCode | String | A valid Hex code representing this color | `#51B14D` |
 | Swatch | <a href='#swatch'>Swatch</a> | An icon to display on a screen next to a color showing the actual color of the product. Can be provided as an image Asset or hex code |  |
+
 
 ###Swatch
 
@@ -195,6 +207,16 @@ A ColorDefinition allows you to define the available Colors for a Product
 | Fields.Value | String | Value to be used for this Field | `true` |
 
 
+###Identifier
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Sku | String | Sku | `EM-JE040-RA` |
+| SkuType | String | A string to indicate the type of Entity this Identifier is for. Acceptable values are: ManufacturerSku, VendorSku or UPC | `ManufacturerSku` |
+| Entity | object | Entity information for this Identifier |  |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
+| Entity.Name | String | Entity name | `SampleCompany` |
+| Description | String | Description | `Manufacturer SKU` |
 
 
 
@@ -205,30 +227,6 @@ A ColorDefinition allows you to define the available Colors for a Product
 
 
 
-<h2 id="enumerations" class="clickable-header">Enumerations</h2>
-
-<h3 id="colortags" class="clickable-header">ColorTag</h3>
-
-ColorTags are used to describe the major colors in a product
-
-| Id | Name | ColorCode |
-|:---|:-----|:----------|
-| 1 | <span style="color:#000000">Black</span> | `#000000` |
-| 2 | <span style="color:#1B1BB3">Blue</span>  | `#1B1BB3` |
-| 3 | <span style="color:#673D00">Brown</span> | `#673D00` |
-| 4 | <span style="color:#7D7D7D">Gray</span> | `#7D7D7D` |
-| 5 | <span style="color:#00AD2D">Green</span> | `#00AD2D` |
-| 6 | <span style="color:#FF7F00">Orange</span> | `#FF7F00` |
-| 7 | <span style="color:#D62F82">Pink</span> | `#D62F82` |
-| 8 | <span style="color:#5C0DAC">Purple</span> | `#5C0DAC` |
-| 9 | <span style="color:#FF0000">Red</span> | `#FF0000` |
-| 10 | <span style="color:#FFFFFF; background-color:#000000">Translucent</span> | `#FFFFFF` |
-| 11 | <span style="color:#4EBABA;">Turquoise</span> | `#4EBABA` |
-| 12 | <span style="color:#FFFFFF; background-color:#000000">White</span> | `#FFFFFF` |
-| 13 | <span style="color:#FFFF00;">Yellow</span> | `#FFFF00` |
-| 14 | <span style="color:#FFD700">Gold</span> | `#FFD700` |
-| 15 | <span style="color:#C0C0C0">Silver</span> | `#C0C0C0` |
-| 16 | <span style="color:#CD7F32">Bronze</span> | `#CD7F32` |
 
 
 
@@ -246,26 +244,6 @@ GET /Companies({CompanyId})/Catalog/Items
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -320,26 +298,6 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -379,11 +337,12 @@ HTTP 200 Content-Type: application/json
     "ColorDefinition": {
         "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
         "Name": "Emerald Green",
-        "ColorTagIds": [
-            5
-        ],
         "ColorTags": [
-            "Green"
+            {
+                "Id": 5,
+                "Name": "Green",
+                "ColorCode": "#51B14D"
+            }
         ],
         "Swatch": {
             "Type": "ColorCode",
@@ -401,7 +360,6 @@ HTTP 200 Content-Type: application/json
     ],
     "CanonicalClassification": {
         "Id": 1,
-        "TreeId": 21,
         "Name": "Smartphones",
         "ParentCategories": [
             {
@@ -515,26 +473,6 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Compatible" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Compatible");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -594,26 +532,6 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Variations" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Variations");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -675,26 +593,6 @@ GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vend
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -761,26 +659,6 @@ GET /Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryO
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?CategoryOrClassificationId=1&Page=1&PageSize=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?CategoryOrClassificationId=1&Page=1&PageSize=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -828,7 +706,6 @@ HTTP 200 Content-Type: application/json
             "Name": "iPhone 4S 16GB White",
             "CanonicalClassification": {
                 "Id": 1,
-                "TreeId": 21,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
@@ -839,9 +716,35 @@ HTTP 200 Content-Type: application/json
             },
             "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
+            "ColorDefinition": {
+                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                "Name": "Emerald Green",
+                "ColorTags": [
+                    {
+                        "Id": 5,
+                        "Name": "Green",
+                        "ColorCode": "#51B14D"
+                    }
+                ],
+                "Swatch": {
+                    "Type": "ColorCode",
+                    "ColorCode": "#238718"
+                }
+            },
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
             "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "Identifiers": [
+                {
+                    "Sku": "EM-JE040-RA",
+                    "SkuType": "ManufacturerSku",
+                    "Entity": {
+                        "Id": 1,
+                        "Name": "SampleCompany"
+                    },
+                    "Description": "Manufacturer SKU"
+                }
+            ],
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
@@ -913,26 +816,6 @@ GET /Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Pag
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?ManufacturerIds=4,5&Page=1&PageSize=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?ManufacturerIds=4,5&Page=1&PageSize=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -980,7 +863,6 @@ HTTP 200 Content-Type: application/json
             "Name": "iPhone 4S 16GB White",
             "CanonicalClassification": {
                 "Id": 1,
-                "TreeId": 21,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
@@ -991,9 +873,35 @@ HTTP 200 Content-Type: application/json
             },
             "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
+            "ColorDefinition": {
+                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                "Name": "Emerald Green",
+                "ColorTags": [
+                    {
+                        "Id": 5,
+                        "Name": "Green",
+                        "ColorCode": "#51B14D"
+                    }
+                ],
+                "Swatch": {
+                    "Type": "ColorCode",
+                    "ColorCode": "#238718"
+                }
+            },
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
             "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "Identifiers": [
+                {
+                    "Sku": "EM-JE040-RA",
+                    "SkuType": "ManufacturerSku",
+                    "Entity": {
+                        "Id": 1,
+                        "Name": "SampleCompany"
+                    },
+                    "Description": "Manufacturer SKU"
+                }
+            ],
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
@@ -1065,26 +973,6 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&Pag
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&Page=1&PageSize=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&Page=1&PageSize=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1132,7 +1020,6 @@ HTTP 200 Content-Type: application/json
             "Name": "iPhone 4S 16GB White",
             "CanonicalClassification": {
                 "Id": 1,
-                "TreeId": 21,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
@@ -1143,9 +1030,35 @@ HTTP 200 Content-Type: application/json
             },
             "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
+            "ColorDefinition": {
+                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                "Name": "Emerald Green",
+                "ColorTags": [
+                    {
+                        "Id": 5,
+                        "Name": "Green",
+                        "ColorCode": "#51B14D"
+                    }
+                ],
+                "Swatch": {
+                    "Type": "ColorCode",
+                    "ColorCode": "#238718"
+                }
+            },
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
             "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "Identifiers": [
+                {
+                    "Sku": "EM-JE040-RA",
+                    "SkuType": "ManufacturerSku",
+                    "Entity": {
+                        "Id": 1,
+                        "Name": "SampleCompany"
+                    },
+                    "Description": "Manufacturer SKU"
+                }
+            ],
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
@@ -1217,26 +1130,6 @@ GET /Companies({CompanyId})/Catalog/Search?IsDropshippable={IsDropShippable}&Pag
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?IsDropshippable=true&Page=1&PageSize=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?IsDropshippable=true&Page=1&PageSize=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1284,7 +1177,6 @@ HTTP 200 Content-Type: application/json
             "Name": "iPhone 4S 16GB White",
             "CanonicalClassification": {
                 "Id": 1,
-                "TreeId": 21,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
@@ -1295,9 +1187,35 @@ HTTP 200 Content-Type: application/json
             },
             "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
+            "ColorDefinition": {
+                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                "Name": "Emerald Green",
+                "ColorTags": [
+                    {
+                        "Id": 5,
+                        "Name": "Green",
+                        "ColorCode": "#51B14D"
+                    }
+                ],
+                "Swatch": {
+                    "Type": "ColorCode",
+                    "ColorCode": "#238718"
+                }
+            },
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
             "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "Identifiers": [
+                {
+                    "Sku": "EM-JE040-RA",
+                    "SkuType": "ManufacturerSku",
+                    "Entity": {
+                        "Id": 1,
+                        "Name": "SampleCompany"
+                    },
+                    "Description": "Manufacturer SKU"
+                }
+            ],
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
@@ -1364,33 +1282,13 @@ SearchTerms specified in the URI are compared against the following Product fiel
 <h4>Request</h4>
 
 <pre>
-GET /Companies({CompanyId})/Catalog/Search?&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+GET /Companies({CompanyId})/Catalog/Search?SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
 </pre>
 
 
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -1426,7 +1324,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
+GET /Companies(1)/Catalog/Search?SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1447,7 +1345,6 @@ HTTP 200 Content-Type: application/json
             "Name": "iPhone 4S 16GB White",
             "CanonicalClassification": {
                 "Id": 1,
-                "TreeId": 21,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
@@ -1458,9 +1355,35 @@ HTTP 200 Content-Type: application/json
             },
             "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
+            "ColorDefinition": {
+                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                "Name": "Emerald Green",
+                "ColorTags": [
+                    {
+                        "Id": 5,
+                        "Name": "Green",
+                        "ColorCode": "#51B14D"
+                    }
+                ],
+                "Swatch": {
+                    "Type": "ColorCode",
+                    "ColorCode": "#238718"
+                }
+            },
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
             "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "Identifiers": [
+                {
+                    "Sku": "EM-JE040-RA",
+                    "SkuType": "ManufacturerSku",
+                    "Entity": {
+                        "Id": 1,
+                        "Name": "SampleCompany"
+                    },
+                    "Description": "Manufacturer SKU"
+                }
+            ],
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
@@ -1524,33 +1447,13 @@ Search filters can be combined to narrow down results. The example below illustr
 <h4>Request</h4>
 
 <pre>
-GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&Page={Page}&PageSize={PageSize}
+GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds={ManufacturerIds}&IsDropshippable={IsDropShippable}&CategoryOrClassificationId={CategoryOrClassificationId}&ClassificationTreeId={ClassificationTreeId}&SearchTerms={SearchTerms}&OrderBy={OrderBy}&OrderDir={OrderDir}&PrivateProduct={PrivateProduct}&Page={Page}&PageSize={PageSize}
 </pre>
 
 
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -1577,6 +1480,10 @@ IRestResponse response = client.Execute(request);
     </li>
     
     <li>
+        <code>ClassificationTreeId</code> (Optional)  - Identifier for a {{ClassificationTree}} to search within. If CategoryOrClassificationId is provided, this value is ignored
+    </li>
+    
+    <li>
         <code>SearchTerms</code> (Optional)  - Search terms
     </li>
     
@@ -1586,6 +1493,10 @@ IRestResponse response = client.Execute(request);
     
     <li>
         <code>OrderDir</code> (Optional)  - A string value representing the sort direction. Acceptable values are asc and desc. Defaults to asc if not specified
+    </li>
+    
+    <li>
+        <code>PrivateProduct</code> (Optional)  - A flag to indicate if the search should be restricted to Private Products
     </li>
     
     <li>
@@ -1602,7 +1513,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
+GET /Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=4&ClassificationTreeId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&PrivateProduct=false&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1623,7 +1534,6 @@ HTTP 200 Content-Type: application/json
             "Name": "iPhone 4S 16GB White",
             "CanonicalClassification": {
                 "Id": 1,
-                "TreeId": 21,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
@@ -1634,9 +1544,35 @@ HTTP 200 Content-Type: application/json
             },
             "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
             "ClassificationTreeId": 21,
+            "ColorDefinition": {
+                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                "Name": "Emerald Green",
+                "ColorTags": [
+                    {
+                        "Id": 5,
+                        "Name": "Green",
+                        "ColorCode": "#51B14D"
+                    }
+                ],
+                "Swatch": {
+                    "Type": "ColorCode",
+                    "ColorCode": "#238718"
+                }
+            },
             "CompanyId": 1,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
             "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "Identifiers": [
+                {
+                    "Sku": "EM-JE040-RA",
+                    "SkuType": "ManufacturerSku",
+                    "Entity": {
+                        "Id": 1,
+                        "Name": "SampleCompany"
+                    },
+                    "Description": "Manufacturer SKU"
+                }
+            ],
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
@@ -1692,8 +1628,6 @@ HTTP 200 Content-Type: application/json
         "TotalResults": 5
     }
 }</pre>
-
-
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
