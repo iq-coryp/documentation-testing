@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 14-01-2016
+last_updated: 15-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -259,7 +259,7 @@ POST /Companies({CompanyId})/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
     "FamilyName": "Jasmine",
@@ -394,7 +394,7 @@ GET /Companies({CompanyId})/Customers
 <pre><code class="language-http">GET /Companies(14146)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -588,7 +588,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})
 <pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -716,7 +716,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Id": "659c2a38-d083-4421-9330-46d779702f85",
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
@@ -857,7 +857,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-customer">
 <pre><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -967,7 +967,7 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "AddressTypeId": 2,
     "AttentionTo": "Princess",
     "CountryCode": "CA",
@@ -1117,7 +1117,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses
 <pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-addresses-for-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -1297,7 +1297,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 <pre><code class="language-http">GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -1436,7 +1436,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "AddressType": "Home",
@@ -1595,7 +1595,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     <div role="tabpanel" class="tab-pane active" id="http-removing-an-address-from-a-customer">
 <pre><code class="language-http">DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-removing-an-address-from-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -1701,7 +1701,7 @@ POST /Companies({CompanyId})/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
     "FamilyName": "Jasmine",
@@ -1925,7 +1925,7 @@ GET /Companies({CompanyId})/CustomerFull
 <pre><code class="language-http">GET /Companies(14146)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-full-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -2203,7 +2203,7 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
 <pre><code class="language-http">GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -2376,7 +2376,7 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-full-customer">
 <pre><code class="language-http">DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -2486,7 +2486,7 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategoryId": 3,
     "ContactMethodTypeId": 5,
@@ -2620,7 +2620,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
 <pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-contact-methods-for-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -2782,7 +2782,7 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 <pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -2912,7 +2912,7 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategory": "Email",
@@ -3053,7 +3053,7 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
     <div role="tabpanel" class="tab-pane active" id="http-removing-a-customer-contact-method">
 <pre><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
 Authorization: Bearer (Access Token)
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-removing-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -3169,7 +3169,7 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
 <pre><code class="language-http">GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-searching-for-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -3351,7 +3351,7 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
 <pre><code class="language-http">GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
 Authorization: Bearer (Access Token)
 Accept: application/json
-</code></pre>
+</code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-customer-search">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
