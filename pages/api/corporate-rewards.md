@@ -4,9 +4,15 @@ permalink: /api/corporate-rewards/
 tags: []
 keywords: 
 audience: 
-last_updated: 15-12-2015
+last_updated: 18-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -33,7 +39,7 @@ summary:
 | SalesPersonName | String | Name of the sales person who tendered the Transaction | `Mike Johnson` |
 | InvoiceId | String | Identifier of the Invoice. Only unique in the context of a dealer | `36977459` |
 | OriginalInvoiceId | String | When SalesTransactionType is Refund, this property is the InvoiceId of the original invoice. Only unique in the context of a dealer | `36977400` |
-| SalesDataDateTime | Datetime | Date when the Transaction occured (store local time) | `2015-12-03 17:35:00.000` |
+| SalesTransactionDateTime | DateTime | Date when the Transaction occured (store local time) | `2015-12-03 17:35:00.000` |
 | SalesTransactionType | String | Type of Transaction (i.e. Sales, Refund) | `Sales` |
 | ProductName | String | Name of the Product on the Transaction | `Sales` |
 | ProductSku | String | Product SKU saved in RQ dealer database | `WDDDSM000146` |
@@ -92,17 +98,76 @@ GET /partners({PartnerId})/salesTransactions?startDate={StartDate}&endDate={EndD
 
 <h5>Example</h5>
 
-<pre>
-GET /partners(36)/salesTransactions?startDate=2015-12-03T17:35:00.000Z&endDate=2015-12-30T12:00:00.000Z&$skip=0&$top=10
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-sales-transactions" data-toggle="tab">HTTP</a></li>
+    <li><a href="#csharp-getting-sales-transactions" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-sales-transactions" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-sales-transactions" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-sales-transactions">
+<pre><code class="language-http">GET /partners(36)/salesTransactions?startDate=2015-12-03T23:35:00.000Z&endDate=2015-12-30T18:00:00.000Z&$skip=0&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-sales-transactions">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingSalesTransactions()
+{
+    var client = new RestClient("https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03T23:35:00.000Z&endDate=2015-12-30T18:00:00.000Z&$skip=0&$top=10");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-sales-transactions">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingSalesTransactions() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03T23:35:00.000Z&endDate=2015-12-30T18:00:00.000Z&$skip=0&$top=10");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-sales-transactions">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03T23:35:00.000Z&endDate=2015-12-30T18:00:00.000Z&$skip=0&$top=10', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
 
-<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#transaction'>Transaction</a>]) </li><ul><li><code>CompanyId</code> (Integer) </li><li><code>CompanyName</code> (String) </li><li><code>StoreId</code> (Integer) </li><li><code>StoreName</code> (String) </li><li><code>RQEmployeeId</code> (Integer) </li><li><code>SalesPersonName</code> (String) </li><li><code>InvoiceId</code> (String) </li><li><code>OriginalInvoiceId</code> (String) </li><li><code>SalesDataDateTime</code> (Datetime) </li><li><code>SalesTransactionType</code> (String) </li><li><code>ProductName</code> (String) </li><li><code>ProductSku</code> (String) </li><li><code>ProductLibrarySlug</code> (String) </li><li><code>SerialNumber</code> (String) </li><li><code>ManufacturerName</code> (String) </li><li><code>ActivationType</code> (String) </li><li><code>CarrierName</code> (String) </li></ul></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#transaction'>Transaction</a>]) </li><ul><li><code>CompanyId</code> (Integer) </li><li><code>CompanyName</code> (String) </li><li><code>StoreId</code> (Integer) </li><li><code>StoreName</code> (String) </li><li><code>RQEmployeeId</code> (Integer) </li><li><code>SalesPersonName</code> (String) </li><li><code>InvoiceId</code> (String) </li><li><code>OriginalInvoiceId</code> (String) </li><li><code>SalesTransactionDateTime</code> (Datetime) </li><li><code>SalesTransactionType</code> (String) </li><li><code>ProductName</code> (String) </li><li><code>ProductSku</code> (String) </li><li><code>ProductLibrarySlug</code> (String) </li><li><code>SerialNumber</code> (String) </li><li><code>ManufacturerName</code> (String) </li><li><code>ActivationType</code> (String) </li><li><code>CarrierName</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -129,7 +194,7 @@ HTTP 200 Content-Type: application/json
             "SalesPersonName": "Mike Johnson",
             "InvoiceId": "36977459",
             "OriginalInvoiceId": "36977400",
-            "SalesDataDateTime": "2015-12-03 17:35:00.000",
+            "SalesTransactionDateTime": "2015-12-03 17:35:00.000",
             "SalesTransactionType": "Sales",
             "ProductName": "Sales",
             "ProductSku": "WDDDSM000146",
