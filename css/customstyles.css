@@ -677,6 +677,7 @@ li.activeSeries {
   padding-left:20px;
 }
 
+/* ---- Dan's Section ---- */
 div.special_table table,
 div.special_table td {
   border-left-style: solid;
@@ -704,6 +705,44 @@ div.special_table table > thead > tr > th {
 div.special_table table > tbody > tr > td {
   font-size: 12px;
 }
+
+.desc{
+  display:table-cell;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.img{
+  display:table-cell; 
+  vertical-align: middle; 
+  padding: 3px;
+  padding-left: 10px; 
+/*  padding-right: 30px;*/
+}
+
+.td-props{
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  vertical-align: middle;
+}
+
+#content > img{
+  display: block;
+  margin: auto;
+}
+
+#table-prop{
+  background-color: #EDEDED;
+  width: 755px;
+  min-width: 507px;
+}
+
+#table-prop td:first-child{
+  width: 0;
+}
+
+/* -------------------------- */
 
 #page-selector .text-center {
   margin-top: 15px;
