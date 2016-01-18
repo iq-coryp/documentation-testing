@@ -4,7 +4,7 @@ permalink: /concepts/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 06-01-2015
+last_updated: 18-01-2016
 summary: 
 ---
 
@@ -22,8 +22,6 @@ If you use RQ, you have limited control of your Company Tree.
 {{end}}
 
 See the figure below for a general concept of how a Company Tree is structured. 
-
-<!-- <img src="{{ "/images/tree-structure.png" | prepend: site.url }}" /> -->
 
 <img src="{{ "/images/company-tree-node.png" | prepend: site.url }}" />
 
@@ -89,18 +87,13 @@ If an RQ company structure is imported into the Company Tree API, the following 
 
 iQmetrix APIs use the hierarchical structure of a Company Tree to pass information "down" the Tree. This is called **inheritance**.
 
-<!-- <img src="{{ "/images/company-tree-hierarchy.png" | prepend: site.url }}" />-->
-
 <img src="{{ "/images/company-tree-inheritance.png" | prepend: site.url }}" />
 
 
-In the example above, we have priced an iPhone 5 Case at the Alberta, Manitoba and Calgary Nodes for 8.99, 11.99 and 10.99, respectively. 
+In the example above, we have priced an iPhone Case at the KENTEL Node for 8.99. Alberta, Manitoba, Calgary and Winnipeg inherit this price, as they do not have a price explicitly set. 
 
-<!-- use the [Pricing](/api/pricing), [Company Tree](/api/company-tree) and [Product Catalog](/api/catalog) APIs to set the price of an iPhone 5C Flash Case at the Alberta and Edmonton Nodes for 9.99 and 8.99, respectively.
+However, Edmonton Mall does have a price set for 11.99 and does not inherit the price from its parent, Alberta.
 
-However, because the Calgary Node does not have a price explicitly set, it inherits the 9.99 pricing from its parent, Alberta.-->
-
-However, because the Edmonton and Winnipeg Nodes do not have a price explicitly set, they inherit their pricing from their parents, Alberta, and Manitoba.
 
 ## Example
 
@@ -110,8 +103,6 @@ The fictional company used for these examples is KENTEL, a cellular mobility sto
 
 KENTEL has two retail locations in Edmonton and Calgary. 
 
-<!-- <img src="{{ "/images/westeros.png" | prepend: site.url }}" /> -->
-
 <img src="{{ "/images/company-tree-ex1.png" | prepend: site.url }}" />
 
 Through a successful social media campaign, KENTEL gains thousands of followers on social media.
@@ -120,8 +111,6 @@ This translates into record sales, and KENTEL decides to expand into the neighbo
 
 A new province means a new set of taxes and regulations, so KENTEL hires a regional store manager. The Company Tree is modified to include regional groups Manitoba and Alberta.
 
-<!-- <img src="{{ "/images/westeros-2.png" | prepend: site.url }}" /> -->
-
 <img src="{{ "/images/company-tree-ex2.png" | prepend: site.url }}" />
 
 A few months later, KENTEL acquires retail stores in Manitoba and California through a merger with a competitor, Wireless Realm. The company name changes to KENTEL Corporation as a result and the Canadian store are rebranded as Mobile etc.
@@ -129,7 +118,5 @@ A few months later, KENTEL acquires retail stores in Manitoba and California thr
 Wanting to improve the customer experience, KENTEL decides to add devices to the Edmonton and San Francisco retail stores.
 
 To simplify management, the Company Tree is divided into Divisions.
-
-<!-- <img src="{{ "/images/westeros-3.png" | prepend: site.url }}" /> -->
 
 <img src="{{ "/images/company-tree-ex3.png" | prepend: site.url }}" />
