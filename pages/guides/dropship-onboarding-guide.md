@@ -4,7 +4,7 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 19-01-2016
+last_updated: 20-01-2016
 summary: 
 ---
 
@@ -345,6 +345,35 @@ We can now combine the information gathered from the previous steps to [Adding a
 
 ## Step 3 - Product Subscription
 
+While the [Product Content Feed](/api/product-feed) provides iQmetrix with details of your products, the [Product Subscription Feed](/api/product-subscription) is similar to an RSS feed. In this case, retailers subscribe to your feed to get a list of your latest dropship products. 
+
+Each [Product Subscription Feed](/api/product-subscription) contains a list of SKUs and their selling price, allowing you control over which products are visible to each retailer that is a part of your program. 
+
+Optionally you can provide more than one feed, serving different products to different groups of retailers. For example, one feed could be based on the manufacturer (e.g. Supply Inc - Otterbox sub feed) while another could be based on the product line (e.g. Supply Inc. - iPhone sub feed).
+
+Once a retailer is subscribed your feed(s), they will see the products available to them through the various iQmetrix applications they use. 
+
+Synchronization of these feeds occurs nightly, updating all of your subscribed retailers with the products you have added or removed from your feeds, allowing you to control which products are available for dropship. 
+
+<img src="{{ "/images/product-subscription.jpg" | prepend: site.url }}" alt="product subscription" />
+
+
+Below is an example of a supplier updating their product subscription feed:
+
+* Monday:      8 products
+* Tuesday:    +2 products
+* Wednesday:  -1 product
+
+On Monday, a supplier provides 8 products to their Feed. Since synchronization occurs at night, subscribed  retailers see the 8 products on Tuesday. 
+
+On Tuesday evening, the supplier then adds 2 more products to their Subscription Feed. This is done by including 2 additional products to their original list, which now has 10 products instead of 8. The following morning, subscribed retailers see 10 products total. 
+
+Finally on Wednesday morning, the supplier removes 1 product, leaving the Subscription Feed with 9 products. 
+
+The following morning, subscribed retailers now have 9 products.
+
+
+<!-- 
 Whilst the product feed provides iQmetrix with all the products and their content, the product subscription provides a subset of products that are available for dropship or other purposes.  The [Product Subscription](/api/product-subscription) contains a list of SKUs and their selling price. Each retailer that is a part of the supplier's program will be subscribed to the product subscription. Once subscribed, the retailer will have all of the products available to them in RQ, XQ and online, depending on the iQmetrix applications they use.
 
 In some cases, each product subscription could be used to control which products are distributed to which retailers, such as being based on the manufacturer or product line.
@@ -352,6 +381,8 @@ In some cases, each product subscription could be used to control which products
 During synchronization, this feed updates all subscribed retailers with all products added or removed from the feed. This allows the supplier to control which products are available to consumers for dropship.  More than one feed may be provided by a supplier, which could serve different groups of retailers.
 
 <img src="{{ "/images/product-subscription.jpg" | prepend: site.url }}" alt="product subscription" />
+
+-->
 
 ### 3.1 Add Products
 
