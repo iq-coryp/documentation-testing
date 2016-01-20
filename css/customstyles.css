@@ -835,6 +835,9 @@ h1, h2, h3, h4, h5, h6 {
 .copy-button {
   margin-top: 10px;
   margin-left: 23%;
+}
+
+.tab-pane pre, .tab-pane code {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
