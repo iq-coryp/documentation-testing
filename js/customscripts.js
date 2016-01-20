@@ -9,7 +9,7 @@ $( document ).ready(function() {
     });
 
     //Check if there is a code preference, if so set it
-    if(getCookie("code-preference") != "") {
+    if(getCookie("code-preference") != "" && getCookie("code-preference") != null) {
         setTabsToPreference(getCookie("code-preference"));
     }
 
