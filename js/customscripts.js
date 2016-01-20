@@ -3,52 +3,75 @@ $('#mysidebar').height($(".nav").height());
 
 
 $( document ).ready(function() {
-
-    //this script says, if the height of the viewport is greater than 800px, then insert affix class, which makes the nav bar float in a fixed
-    // position as your scroll. if you have a lot of nav items, this height may not work for you.
-    var h = $(window).height();
-
-    if (h > 800) {
-        $( "#mysidebar" ).attr("class", "nav affix");
-        $( ".pageMetadata" ).addClass("affix");
-    }
     // activate tooltips. although this is a bootstrap js function, it must be activated this way in your theme.
     $('[data-toggle="tooltip"]').tooltip({
         placement : 'top'
     });
 
+    //Check if there is a code preference, if so set it
+    if(getCookie("code-preference") != "") {
+        setTabsToPreference(getCookie("code-preference"));
+    }
+
+    //When a user clicks a tab, set that as the new preference for 30 days
+    $(".nav-tabs li a").click(function(e) { 
+        var preference = $(e.target).text();
+
+        setCookie("code-preference", preference, 30)
+        
+        var href = $(e.target).attr("href"); // #(language)-(name) => #(language)-code-(name)
+        var pos = href.indexOf("-");
+        var methodName = href.substring(pos+1);
+        var methodHook =  href.substring(0, pos+1) + "code-" + methodName;
+
+        setCopyTarget(methodName, methodHook);
+    });
+
+    var clipboard = new Clipboard('.copy-button');
+
 });
 
-// needed for nav tabs on pages. See Formatting > Nav tabs for more details.
-// script from http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload
-$(function() {
-    var json, tabsState;
-    $('a[data-toggle="pill"], a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var href, json, parentId, tabsState;
+function setCopyTarget(methodName, methodHook) {
+    $("#copy-" + methodName).attr("data-clipboard-target", methodHook);
+}
 
-        tabsState = localStorage.getItem("tabs-state");
-        json = JSON.parse(tabsState || "{}");
-        parentId = $(e.target).parents("ul.nav.nav-pills, ul.nav.nav-tabs").attr("id");
-        href = $(e.target).attr('href');
-        json[parentId] = href;
+function setTabsToPreference(preference) {
 
-        return localStorage.setItem("tabs-state", JSON.stringify(json));
-    });
+    $(".nav-tabs li").removeClass("active");
 
-    tabsState = localStorage.getItem("tabs-state");
-    json = JSON.parse(tabsState || "{}");
+    $(".nav-tabs li").each(function() {
+        
+        var value = $(this).children()[0].text.toLowerCase();
 
-    $.each(json, function(containerId, href) {
-        return $("#" + containerId + " a[href=" + href + "]").tab('show');
-    });
+        if(value == preference.toLowerCase()) {
+            $(this).children()[0].click();
 
-    $("ul.nav.nav-pills, ul.nav.nav-tabs").each(function() {
-        var $this = $(this);
-        if (!json[$this.attr("id")]) {
-            return $this.find("a[data-toggle=tab]:first, a[data-toggle=pill]:first").tab("show");
+            var href = $(this).children()[0].href.substring($(this).children()[0].href.indexOf("#")); // #(language)-(name) => #(language)-code-(name)
+            var pos = href.indexOf("-");
+            var methodName = href.substring(pos+1);
+            var methodHook =  href.substring(0, pos+1) + "code-" + methodName;
+
+            setCopyTarget(methodName, methodHook);
+
         }
     });
-});
+}
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
+}
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
 
