@@ -4,7 +4,7 @@ permalink: /api/epc/
 tags: []
 keywords: 
 audience: 
-last_updated: 20-1-2016
+last_updated: 20-01-2016
 summary: 
 ---
 
