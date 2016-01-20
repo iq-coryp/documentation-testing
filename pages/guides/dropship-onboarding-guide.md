@@ -4,7 +4,7 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 11-01-2016
+last_updated: 19-01-2016
 summary: 
 ---
 
@@ -354,6 +354,8 @@ During synchronization, this feed updates all subscribed retailers with all prod
 <img src="{{ "/images/product-subscription.jpg" | prepend: site.url }}" alt="product subscription" />
 
 ### 3.1 Add Products
+
+{{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
 
 | Parameter | Value |
 |:----------|:------|
