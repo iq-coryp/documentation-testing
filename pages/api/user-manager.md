@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 21-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -24,20 +24,22 @@ To learn more about User Manager, see {{UserManager_Concept}}.
 
 ## Resources
 
+
+
 ###User
 
 A User represents an account that can be used to perform actions on your data within iQmetrix APIs.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier | `22212` |
-| FirstName | String | First name | `Sam` |
-| LastName | String | Last name | `Smith` |
-| UserName | String | Name to be used to identify this User, must be unique | `sample@iqmetrix.com` |
+| Id | Integer | Identifier | `2576` |
+| FirstName | String | First name | `John` |
+| LastName | String | Last name | `Bates` |
+| UserName | String | Name to be used to identify this User, must be unique | `johnb@kentel.com` |
 | Address | <a href='#address'>Address</a> | Address |  |
 | Attributes | Object | Set of key-value pairs that contain extra data to store with the User | `{"Department": "Sales"}` |
 | ClientUserId | String | Identifier for the User in an external system | `132` |
-| Email | String | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `sample@iqmetrix.com` |
+| Email | String | Email for the User. Must be unique. A notification will be sent to this address when a User is created. | `johnb@kentel.com` |
 | IsActive | Boolean | Flag to indicate if the Users login is enabled, false if it is disabled | `true` |
 | JobTitle | String | Job title | `Sales Clerk` |
 | ParentEntityId | Integer | Identifier for the Company to which this User belongs | `1` |
@@ -51,20 +53,20 @@ A User represents an account that can be used to perform actions on your data wi
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| AddressLine1 | String |  | `1600 Amphitheatre Pkwy` |
-| AddressLine2 | String |  | `Suite 500` |
-| City | String |  | `Smith` |
-| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `BC` |
+| AddressLine1 | String |  | `1432 Merry View Road` |
+| AddressLine2 | String |  |  |
+| City | String |  | `Big Windy` |
+| StateCode | String | Code for the State in which this address resides. Based off the ISO 3166-2 standard | `ON` |
 | CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of accptable Countries, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `CA` |
-| Zip | String | Zip or Postal Code | `94043` |
+| Zip | String | Zip or Postal Code | `A1A2B2` |
 
 ###PhoneNumber
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Number | String | Must be at least 7 characters | `5555555555` |
-| Extension | String | Extension | `1234` |
-| Type | String | Type of phone number | `Home` |
+| Number | String | Must be at least 7 characters | `6135550127` |
+| Extension | String | Extension | `5532` |
+| Type | String | Type of phone number | `Work` |
 
 
 
@@ -93,90 +95,13 @@ POST /Users/importExisting
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting" - d '{
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
-    "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
-        "CountryCode": "CA",
-        "Zip": "94043"
-    },
-    "Attributes": {
-        "Department": "Sales"
-    },
-    "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
-    "JobTitle": "Sales Clerk",
-    "ParentEntityId": 1,
-    "PhoneNumbers": [
-        {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
-        }
-    ],
-    "Picture": {},
-    "Version": 1
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "{
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
-    "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
-        "CountryCode": "CA",
-        "Zip": "94043"
-    },
-    "Attributes": {
-        "Department": "Sales"
-    },
-    "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
-    "JobTitle": "Sales Clerk",
-    "ParentEntityId": 1,
-    "PhoneNumbers": [
-        {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
-        }
-    ],
-    "Picture": {},
-    "Version": 1
-}", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) - The name used to identify this User. Must be unique</li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) - Must be at least 7 characters</li><li><code>Extension</code> (Optional) - If provided, Number must also be provided</li><li><code>Type</code> (Optional) - Required if Number is provided</li></ul><li><code>Picture</code> (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li></ul>
+<ul><li><code>UserName</code> (<strong>Required</strong>) - The name used to identify this User. Must be unique</li><li><code>ParentEntityId</code> (<strong>Required</strong>) - Identifier for the Company to which this User belongs</li><li><code>Password</code> (Optional) - The User's password. If supplied, it must be a nonempty string</li><li><code>Email</code> (Optional) - The User's email address. Must be unique</li><li><code>FirstName</code> (Optional) </li><li><code>LastName</code> (Optional) </li><li><code>ClientUserId</code> (Optional) - Identifier for the User in an external system</li><li><code>JobTitle</code> (Optional) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) - Must include a valid CountryCode if provided. For a list of acceptable codes see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) - Must be at least 7 characters</li><li><code>Extension</code> (Optional) - If provided, Number must also be provided</li><li><code>Type</code> (Optional) - Required if Number is provided</li></ul><li><code>Attributes</code> (Optional) - Set of key-value pairs that contain extra data to store with the User</li></ul>
 
 <h5>Example</h5>
 
@@ -186,33 +111,32 @@ Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
-    "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
-        "CountryCode": "CA",
-        "Zip": "94043"
-    },
-    "Attributes": {
-        "Department": "Sales"
-    },
-    "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
-    "JobTitle": "Sales Clerk",
+    "UserName": "johnb@kentel.com",
+    "Password": "samplepassword",
+    "Email": "johnb@kentel.com",
+    "FirstName": "John",
+    "LastName": "Bates",
     "ParentEntityId": 1,
+    "ClientUserId": "132",
+    "JobTitle": "Sales Clerk",
+    "Address": {
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
+        "CountryCode": "CA",
+        "Zip": "A1A2B2"
+    },
     "PhoneNumbers": [
         {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
         }
     ],
-    "Picture": {},
-    "Version": 1
+    "Attributes": {
+        "Department": "Sales"
+    }
 }
 </pre>
 
@@ -226,31 +150,31 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
+    "Id": 2576,
+    "FirstName": "John",
+    "LastName": "Bates",
+    "UserName": "johnb@kentel.com",
     "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
         "CountryCode": "CA",
-        "Zip": "94043"
+        "Zip": "A1A2B2"
     },
     "Attributes": {
         "Department": "Sales"
     },
     "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
+    "Email": "johnb@kentel.com",
     "IsActive": true,
     "JobTitle": "Sales Clerk",
     "ParentEntityId": 1,
     "PhoneNumbers": [
         {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
         }
     ],
     "Picture": {},
@@ -272,26 +196,6 @@ GET /Users({UserId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -306,7 +210,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Users(22212)
+GET /Users(2576)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -322,31 +226,31 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
+    "Id": 2576,
+    "FirstName": "John",
+    "LastName": "Bates",
+    "UserName": "johnb@kentel.com",
     "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
         "CountryCode": "CA",
-        "Zip": "94043"
+        "Zip": "A1A2B2"
     },
     "Attributes": {
         "Department": "Sales"
     },
     "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
+    "Email": "johnb@kentel.com",
     "IsActive": true,
     "JobTitle": "Sales Clerk",
     "ParentEntityId": 1,
     "PhoneNumbers": [
         {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
         }
     ],
     "Picture": {},
@@ -369,87 +273,6 @@ PUT /Users({UserId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)" - d '{
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
-    "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
-        "CountryCode": "CA",
-        "Zip": "94043"
-    },
-    "Attributes": {
-        "Department": "Sales"
-    },
-    "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
-    "IsActive": true,
-    "JobTitle": "Sales Clerk",
-    "ParentEntityId": 1,
-    "PhoneNumbers": [
-        {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
-        }
-    ],
-    "Picture": {},
-    "Version": 1
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)");
-var request = new RestRequest(Method.put);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "{
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
-    "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
-        "CountryCode": "CA",
-        "Zip": "94043"
-    },
-    "Attributes": {
-        "Department": "Sales"
-    },
-    "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
-    "IsActive": true,
-    "JobTitle": "Sales Clerk",
-    "ParentEntityId": 1,
-    "PhoneNumbers": [
-        {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
-        }
-    ],
-    "Picture": {},
-    "Version": 1
-}", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -463,41 +286,41 @@ IRestResponse response = client.Execute(request);
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) - The name used to identify this User. Must be unique</li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) - Must be at least 7 characters</li><li><code>Extension</code> (Optional) - If provided, Number must also be provided</li><li><code>Type</code> (Optional) - Required if Number is provided</li></ul><li><code>Picture</code> (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li></ul>
+<ul><li><code>FirstName</code> (<strong>Required</strong>) </li><li><code>LastName</code> (<strong>Required</strong>) </li><li><code>UserName</code> (<strong>Required</strong>) - The name used to identify this User. Must be unique</li><li><code>ParentEntityId</code> (<strong>Required</strong>) </li><li><code>Address</code> (Optional) </li><ul><li><code>AddressLine1</code> (Optional) </li><li><code>AddressLine2</code> (Optional) </li><li><code>City</code> (Optional) </li><li><code>StateCode</code> (Optional) - Must include a valid CountryCode if provided. For a list of acceptable codes see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (Optional) </li><li><code>Zip</code> (Optional) </li></ul><li><code>Attributes</code> (Optional) </li><li><code>ClientUserId</code> (Optional) </li><li><code>Email</code> (Optional) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>JobTitle</code> (Optional) </li><li><code>PhoneNumbers</code> (Optional) </li><ul><li><code>Number</code> (Optional) - Must be at least 7 characters</li><li><code>Extension</code> (Optional) - If provided, Number must also be provided</li><li><code>Type</code> (Optional) - Required if Number is provided</li></ul><li><code>Picture</code> (Optional) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Optional) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li></ul>
 
 <h5>Example</h5>
 
 <pre>
-PUT /Users(22212)
+PUT /Users(2576)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 {
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
+    "Id": 2576,
+    "FirstName": "John",
+    "LastName": "Bates",
+    "UserName": "johnb@kentel.com",
     "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
         "CountryCode": "CA",
-        "Zip": "94043"
+        "Zip": "A1A2B2"
     },
     "Attributes": {
         "Department": "Sales"
     },
     "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
+    "Email": "johnb@kentel.com",
     "IsActive": true,
     "JobTitle": "Sales Clerk",
     "ParentEntityId": 1,
     "PhoneNumbers": [
         {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
         }
     ],
     "Picture": {},
@@ -515,31 +338,31 @@ Content-Type: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
+    "Id": 2576,
+    "FirstName": "John",
+    "LastName": "Bates",
+    "UserName": "johnb@kentel.com",
     "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
         "CountryCode": "CA",
-        "Zip": "94043"
+        "Zip": "A1A2B2"
     },
     "Attributes": {
         "Department": "Sales"
     },
     "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
+    "Email": "johnb@kentel.com",
     "IsActive": true,
     "JobTitle": "Sales Clerk",
     "ParentEntityId": 1,
     "PhoneNumbers": [
         {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
         }
     ],
     "Picture": {},
@@ -564,25 +387,6 @@ DELETE /Users({UserId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -597,7 +401,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-DELETE /Users(22212)
+DELETE /Users(2576)
 Authorization: Bearer (Access Token)
 
 </pre>
@@ -628,26 +432,6 @@ GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$skip=1&$top=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$skip=1&$top=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -670,7 +454,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Entities(1)/Users?$skip=1&$top=10
+GET /Entities(14146)/Users?$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -679,7 +463,7 @@ Accept: application/json
 <h4>Response</h4>
 
 
-<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable codes see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -688,41 +472,41 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "_links": {
         "prev": "null",
-        "self": "null",
+        "self": "/v1/entities(14146)/users?$skip=0&$top=30",
         "next": "null"
     },
     "_metadata": {
-        "count": 15,
+        "count": 1,
         "skip": 0,
-        "top": 5
+        "top": 30
     },
     "items": [
         {
-            "Id": 22212,
-            "FirstName": "Sam",
-            "LastName": "Smith",
-            "UserName": "sample@iqmetrix.com",
+            "Id": 2576,
+            "FirstName": "John",
+            "LastName": "Bates",
+            "UserName": "johnb@kentel.com",
             "Address": {
-                "AddressLine1": "1600 Amphitheatre Pkwy",
-                "AddressLine2": "Suite 500",
-                "City": "Smith",
-                "StateCode": "BC",
+                "AddressLine1": "1432 Merry View Road",
+                "AddressLine2": "",
+                "City": "Big Windy",
+                "StateCode": "ON",
                 "CountryCode": "CA",
-                "Zip": "94043"
+                "Zip": "A1A2B2"
             },
             "Attributes": {
                 "Department": "Sales"
             },
             "ClientUserId": "132",
-            "Email": "sample@iqmetrix.com",
+            "Email": "johnb@kentel.com",
             "IsActive": true,
             "JobTitle": "Sales Clerk",
             "ParentEntityId": 1,
             "PhoneNumbers": [
                 {
-                    "Number": "5555555555",
-                    "Extension": "1234",
-                    "Type": "Home"
+                    "Number": "6135550127",
+                    "Extension": "5532",
+                    "Type": "Work"
                 }
             ],
             "Picture": {},
@@ -746,26 +530,6 @@ GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -793,7 +557,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Entities(1)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
+GET /Entities(14146)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -802,7 +566,7 @@ Accept: application/json
 <h4>Response</h4>
 
 
-<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable Codes <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
+<ul><li><code>_links</code> (Object) - Relative URL's used for Pagination</li><ul><li><code>prev</code> (String) - Refers to a resource containing the previous page of results, null if there is no previous page</li><li><code>self</code> (String) - The request that returned these results</li><li><code>next</code> (String) - Refers to a resource containing the next page of results, null if this is the last page</li></ul><li><code>_metadata</code> (Object) - Data representing Pagination details</li><ul><li><code>count</code> (Integer) - The total number of results returned from the request</li><li><code>skip</code> (Integer) - Value of skip in the request URI, if not specified the value will be 0</li><li><code>top</code> (Integer) - Value of top in the request URI, if not specified the value will be 30</li></ul><li><code>items</code> (Array[<a href='#user'>User</a>]) </li><ul><li><code>Id</code> (Integer) </li><li><code>FirstName</code> (String) </li><li><code>LastName</code> (String) </li><li><code>UserName</code> (String) - The name used to identify this User. Must be unique</li><li><code>Address</code> (<a href='#address'>Address</a>) </li><ul><li><code>AddressLine1</code> (String) </li><li><code>AddressLine2</code> (String) </li><li><code>City</code> (String) </li><li><code>StateCode</code> (String) - Must include a valid CountryCode if provided. For a list of acceptable codes see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a></li><li><code>CountryCode</code> (String) </li><li><code>Zip</code> (String) </li></ul><li><code>Attributes</code> (Object) </li><li><code>ClientUserId</code> (String) </li><li><code>Email</code> (String) - The User's email address. Must be unique. No notification will be sent when this User is updated</li><li><code>IsActive</code> (Boolean) </li><li><code>JobTitle</code> (String) </li><li><code>ParentEntityId</code> (Integer) </li><li><code>PhoneNumbers</code> (Array[<a href='#phonenumber'>PhoneNumber</a>]) </li><ul><li><code>Number</code> (String) - Must be at least 7 characters</li><li><code>Extension</code> (String) - If provided, Number must also be provided</li><li><code>Type</code> (String) - Required if Number is provided</li></ul><li><code>Picture</code> (Object) - A reference to an Asset that is a photo of the User. Once the Picture property is populated, it is immutable. However, it can be removed completely by setting Picture to null in the body of a PUT reqest</li><li><code>Version</code> (Integer) - The current version of the User, incremented on PUT if any other fields are changed. If provided, the version number will be verified against the version of the User in the database and rejected if not up to date</li><li><code>CorrelationId</code> (String) </li><li><code>Profiles</code> (Object) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -811,41 +575,41 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "_links": {
         "prev": "null",
-        "self": "null",
+        "self": "/v1/entities(14146)/users?$skip=0&$top=30",
         "next": "null"
     },
     "_metadata": {
-        "count": 15,
+        "count": 1,
         "skip": 0,
-        "top": 5
+        "top": 30
     },
     "items": [
         {
-            "Id": 22212,
-            "FirstName": "Sam",
-            "LastName": "Smith",
-            "UserName": "sample@iqmetrix.com",
+            "Id": 2576,
+            "FirstName": "John",
+            "LastName": "Bates",
+            "UserName": "johnb@kentel.com",
             "Address": {
-                "AddressLine1": "1600 Amphitheatre Pkwy",
-                "AddressLine2": "Suite 500",
-                "City": "Smith",
-                "StateCode": "BC",
+                "AddressLine1": "1432 Merry View Road",
+                "AddressLine2": "",
+                "City": "Big Windy",
+                "StateCode": "ON",
                 "CountryCode": "CA",
-                "Zip": "94043"
+                "Zip": "A1A2B2"
             },
             "Attributes": {
                 "Department": "Sales"
             },
             "ClientUserId": "132",
-            "Email": "sample@iqmetrix.com",
+            "Email": "johnb@kentel.com",
             "IsActive": true,
             "JobTitle": "Sales Clerk",
             "ParentEntityId": 1,
             "PhoneNumbers": [
                 {
-                    "Number": "5555555555",
-                    "Extension": "1234",
-                    "Type": "Home"
+                    "Number": "6135550127",
+                    "Extension": "5532",
+                    "Type": "Work"
                 }
             ],
             "Picture": {},
@@ -872,27 +636,6 @@ PUT /Users({UserId})/Locations({LocationId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)");
-var request = new RestRequest(Method.put);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -911,7 +654,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-PUT /Users(22212)/Locations(2)
+PUT /Users(2576)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -943,26 +686,6 @@ DELETE /Users({UserId})/Locations({LocationId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations(2)");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -981,7 +704,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-DELETE /Users(22212)/Locations(2)
+DELETE /Users(2576)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1012,26 +735,6 @@ GET /Users({UserId})/Locations
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Locations");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1046,7 +749,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Users(22212)/Locations
+GET /Users(2576)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1062,9 +765,9 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "UserId": 22212,
+    "UserId": 2576,
     "LocationIDs": [
-        4
+        14202
     ]
 }</pre>
 
@@ -1082,26 +785,6 @@ GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip=
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -1129,7 +812,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Entities(1)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
+GET /Entities(14146)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1146,31 +829,31 @@ Array[<a href='#user'>User</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": 22212,
-        "FirstName": "Sam",
-        "LastName": "Smith",
-        "UserName": "sample@iqmetrix.com",
+        "Id": 2576,
+        "FirstName": "John",
+        "LastName": "Bates",
+        "UserName": "johnb@kentel.com",
         "Address": {
-            "AddressLine1": "1600 Amphitheatre Pkwy",
-            "AddressLine2": "Suite 500",
-            "City": "Smith",
-            "StateCode": "BC",
+            "AddressLine1": "1432 Merry View Road",
+            "AddressLine2": "",
+            "City": "Big Windy",
+            "StateCode": "ON",
             "CountryCode": "CA",
-            "Zip": "94043"
+            "Zip": "A1A2B2"
         },
         "Attributes": {
             "Department": "Sales"
         },
         "ClientUserId": "132",
-        "Email": "sample@iqmetrix.com",
+        "Email": "johnb@kentel.com",
         "IsActive": true,
         "JobTitle": "Sales Clerk",
         "ParentEntityId": 1,
         "PhoneNumbers": [
             {
-                "Number": "5555555555",
-                "Extension": "1234",
-                "Type": "Home"
+                "Number": "6135550127",
+                "Extension": "5532",
+                "Type": "Work"
             }
         ],
         "Picture": {},
@@ -1199,27 +882,6 @@ POST /Users({UserId})/Lock
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Lock" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Lock");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1234,7 +896,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-POST /Users(22212)/Lock
+POST /Users(2576)/Lock
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1267,26 +929,6 @@ GET /Users({UserId})/Unlock
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1301,7 +943,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /Users(22212)/Unlock
+GET /Users(2576)/Unlock
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1341,27 +983,6 @@ POST /Users({UserId})/Unlock
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Unlock");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1376,7 +997,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-POST /Users(22212)/Unlock
+POST /Users(2576)/Unlock
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1408,27 +1029,6 @@ POST /Users({UserId})/Enable
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Enable" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(22212)/Enable");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1443,7 +1043,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-POST /Users(22212)/Enable
+POST /Users(2576)/Enable
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1460,43 +1060,149 @@ Content-Type: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 22212,
-    "FirstName": "Sam",
-    "LastName": "Smith",
-    "UserName": "sample@iqmetrix.com",
+    "Id": 2576,
+    "FirstName": "John",
+    "LastName": "Bates",
+    "UserName": "johnb@kentel.com",
     "Address": {
-        "AddressLine1": "1600 Amphitheatre Pkwy",
-        "AddressLine2": "Suite 500",
-        "City": "Smith",
-        "StateCode": "BC",
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
         "CountryCode": "CA",
-        "Zip": "94043"
+        "Zip": "A1A2B2"
     },
     "Attributes": {
         "Department": "Sales"
     },
     "ClientUserId": "132",
-    "Email": "sample@iqmetrix.com",
+    "Email": "johnb@kentel.com",
     "IsActive": true,
     "JobTitle": "Sales Clerk",
     "ParentEntityId": 1,
     "PhoneNumbers": [
         {
-            "Number": "5555555555",
-            "Extension": "1234",
-            "Type": "Home"
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
         }
     ],
     "Picture": {},
     "Version": 1
 }</pre>
 
+<h2 id='updating-a-password' class='clickable-header top-level-header'>Updating a Password</h2>
 
+{{important}}The new password must be a <strong>non-empty</strong> string{{end}}
+
+
+<h4>Request</h4>
+
+<pre>
+PUT /Users({UserId})/Password
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>Password</code> (<strong>Required</strong>) </li></ul>
+
+<h5>Example</h5>
+
+<pre>
+PUT /Users(2576)/Password
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Password": "newpa55word"
+}
+</pre>
+
+<h4>Response</h4>
+
+
+
+<h5>Example</h5>
+
+<pre>
+HTTP 204 Content-Type: application/json
+</pre>
+
+<h2 id='setting-a-temporary-password' class='clickable-header top-level-header'>Setting a Temporary Password</h2>
+
+This request will set a User's password to the provided value and mark it as temporary, forcing the User to change it on first login. 
+{{important}}The temporary password must be a <strong>non-empty</strong> string and <strong>at least 6 characters long</strong>{{end}}
+
+
+<h4>Request</h4>
+
+<pre>
+PUT /Users({UserId})/TemporaryPassword
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>UserId</code> (<strong>Required</strong>)  - Identifier for the {{User}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>Password</code> (<strong>Required</strong>) </li></ul>
+
+<h5>Example</h5>
+
+<pre>
+PUT /Users(2576)/TemporaryPassword
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Password": "newpa55word"
+}
+</pre>
+
+<h4>Response</h4>
+
+
+
+<h5>Example</h5>
+
+<pre>
+HTTP 204 Content-Type: application/json
+</pre>
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
+| `HTTP 400` | `The temporary password must be at least 6 characters long` | Ensure the provided password is at least 6 characters long and not an empty string |
 | `HTTP 400` | `Bad Request` | Ensure all of the required fields are provided and formatted accurately, for more details see error message |
 | `HTTP 400` | `No search terms provided` | Ensure search terms are provided in URI |
 | `HTTP 400` | `Query string parameter '$top'`<br/>`should be within 1 to 100 range but was {x}` | Ensure `$skip` is in the range [0-100] |
@@ -1530,8 +1236,8 @@ These links are _relative_, they do not include the base endpoint. It is the res
     {
         "_links": {
             "prev": null,
-            "self": "/v1/Entities(1)/Users?$skip=0&$top=5",
-            "next": "/v1/Entities(1)/Users?$skip=5&$top=5"
+            "self": "/v1/Entities(14146)/Users?$skip=0&$top=5",
+            "next": "/v1/Entities(14146)/Users?$skip=5&$top=5"
         },
         "_metadata": {
             "count": 15,
