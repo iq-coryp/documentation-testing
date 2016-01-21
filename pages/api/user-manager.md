@@ -4,7 +4,7 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 21-01-2016
+last_updated: 21-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -1153,7 +1153,7 @@ This request will set a User's password to the provided value and mark it as tem
 <h4>Request</h4>
 
 <pre>
-PUT /Users({UserId})/TemporaryPassword
+POST /Users({UserId})/TemporaryPassword
 </pre>
 
 
@@ -1179,7 +1179,7 @@ PUT /Users({UserId})/TemporaryPassword
 <h5>Example</h5>
 
 <pre>
-PUT /Users(2576)/TemporaryPassword
+POST /Users(2576)/TemporaryPassword
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
