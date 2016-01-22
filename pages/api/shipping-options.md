@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 22-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -72,7 +72,8 @@ API key must be provided in header and is configurable.
 | Quantity | Integer | Amount of products | `11` |
 | Sku | String | Product sku | `87932OTS45S6` |
 
-###ShippingOptions
+
+###ShippingOption
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -108,13 +109,17 @@ The specification for the request must be in the format below:
 
 #### Request Parameters
 
-<ul><li><code>CompanyId</code> (<strong>Required</strong>) </li><li><code>PostalCode</code> (<strong>Required</strong>) </li><li><code>Items</code> (Optional) </li><ul><li><code>ProductName</code> (<strong>Required</strong>) </li><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>Sku</code> (<strong>Required</strong>) </li></ul></ul>
+<ul><li><code>CompanyId</code> (<strong>Required</strong>) </li><li><code>PostalCode</code> (<strong>Required</strong>) </li><li><code>Items</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>Sku</code> (<strong>Required</strong>) </li><li><code>ProductName</code> (Optional) </li></ul></ul>
 
 ###### Example
 
 <pre>
 POST /ShippingOptions
-Authorization: BasicAccept: application/jsonContent-Type: application/jsonHost: supplier.azure-api.net
+Authorization: Basic
+Accept: application/json
+Content-Type: application/json
+Host: supplier.azure-api.net
+
 {
     "CompanyId": 123,
     "Items": [
@@ -132,12 +137,12 @@ Authorization: BasicAccept: application/jsonContent-Type: application/jsonHost: 
 
 The specification of the response must be in the format below:
 
-  <li><code>Id</code> (<strong>Required</strong>) </li>
-  <li><code>Cost</code> (<strong>Required</strong>) </li>
-  <li><code>Currency</code> (<strong>Required</strong>) </li>
-  <li><code>EstimatedTransitTime</code> (Optional) </li>
-  <li><code>Name</code> (Optional) </li>
-
+* `ShippingOptions` (**Required**)
+    * `Id` (**Required**) 
+    * `Cost` (**Required**)
+    * `Currency` (**Required**)
+    * `EstimatedTransitTime` (Optional) 
+    * `Name` (Optional)
 
 ###### Example
 
@@ -145,15 +150,17 @@ The specification of the response must be in the format below:
 HTTP 200 Content-Type: application/json
 </pre>
 <pre>
-[
-    {
-        "Id": "350",
-        "Cost": 7.94,
-        "Currency": "CAD",
-        "EstimatedTransitTime": "1 week",
-        "Name": "PurolatorExpress"
-    }
-]
+{
+    "ShippingOptions": [
+        {
+            "Id": "350",
+            "Name": "PurolatorExpress",
+            "Cost": 7.94,
+            "Currency": "CAD",
+            "EstimatedTransitTime": "1 week",
+        }
+    ]
+}
 </pre>
 
 
