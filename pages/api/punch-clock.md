@@ -4,9 +4,15 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 27-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -29,18 +35,25 @@ An instance of a clock punch for an employee at a location, with a punch-in time
 | Id | Integer | Unique Identifier | `1953` |
 | CreatedDateUtc | DateTime | Created date and time, in UTC | `2015-09-23T15:41:59.403` |
 | EmployeeVerified | Boolean | A flag to indicate if the employee has verified the PunchEntry | `false` |
-| EmployeeSpecialId | Boolean | Special identifier for Employee in RQ | `1002` |
+| EmployeeSpecialId | String | Special identifier for Employee in RQ | `1002` |
 | LastUpdateDateUtc | DateTime | Time of the last update, in UTC | `2015-09-23T15:55:09.927` |
 | LocationCode | String(100) | An identifier for the Location in an external system | `CWW` |
-| LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `2` |
+| LocationId | Integer | Identifier for the [Location](/api/company-tree/#location) | `14202` |
 | ManagerVerified | Boolean | A flag to indicate if the manager has verified the PunchEntry | `false` |
 | PunchInComments | String(100) | Punch in comments | `IN - FingerPrint/HomeConsole` |
 | PunchOutComments | String(100) | Punch out comments | `OUT - HomeConsole` |
 | TimeInAtStore | DateTime | Punch in time (local time at store), in UTC | `2015-09-23T09:41:52.653` |
 | TimeOutAtStore | DateTime | Punch out time (local time at store), in UTC | `2015-09-23T09:55:03.973` |
-| UserId | Integer | Identifier for a [User](/api/user-manager/#user) | `22212` |
+| UserId | Integer | Identifier for a [User](/api/user-manager/#user) | `2576` |
 | Version | Integer | Latest revision number | `1` |
 | *RQPunchId* | *Integer* | *Reserved for internal use* | |
+
+
+
+
+
+
+
 
 
 
@@ -63,28 +76,8 @@ GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{
 
 
 <h4>Headers</h4>
-<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/hal+json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://punchclockdemo.iqmetrix.net/v1/Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://punchclockdemo.iqmetrix.net/v1/Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -115,89 +108,120 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Companies(1)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T00:00:00.000Z' and LastUpdateDateUtc le datetime'2015-12-31T23:59:59.000Z'&$skip=1&$top=10
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-punch-entries" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-punch-entries" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-punch-entries" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-punch-entries" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-punch-entries" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-punch-entries">
+<pre><code class="language-http">GET /Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
-Accept: application/json
+Accept: application/hal+json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-punch-entries">
+<pre><code class="language-http">curl -X GET "https://punchclockdemo.iqmetrix.net/v1/Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-punch-entries">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllPunchEntries()
+{
+    var client = new RestClient("https://punchclockdemo.iqmetrix.net/v1/Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/hal+json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-punch-entries">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllPunchEntries() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://punchclockdemo.iqmetrix.net/v1/Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/hal+json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-punch-entries">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://punchclockdemo.iqmetrix.net/v1/Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/hal+json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
 
-Array[<a href='#punchentry'>PunchEntry</a>]
 
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>[
-    {
-        "Id": 1953,
-        "CreatedDateUtc": "2015-09-23T15:41:59.403",
-        "EmployeeVerified": false,
-        "EmployeeSpecialId": 1002,
-        "LastUpdateDateUtc": "2015-09-23T15:55:09.927",
-        "LocationCode": "CWW",
-        "LocationId": 2,
-        "ManagerVerified": false,
-        "PunchInComments": "IN - FingerPrint/HomeConsole",
-        "PunchOutComments": "OUT - HomeConsole",
-        "TimeInAtStore": "2015-09-23T09:41:52.653",
-        "TimeOutAtStore": "2015-09-23T09:55:03.973",
-        "UserId": 22212,
-        "Version": 1
-    }
-]</pre>
 
 <h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/hal+json
 </pre><pre>{
-  "_links": {
-      "self": {
-          "href": "v1/Companies(1)/PunchEntries?$filter=ransactionDateUTC ge datetime"2015-01-01T00:00:00.000" and TransactionDateUTC le datetime"2015-12-31T23:59:59.000"&$skip=0&$top=10",
-          "templated": false
-      },
-      "next": {
-          "href": "v1/Companies(1)/PunchEntries?$filterTransactionDateUTC ge datetime"2015-01-01T00:00:00.000" and TransactionDateUTC le datetime"2015-12-31T23:59:59.000"&$skip=10&$top=10",
-          "templated": false
-      }
-  },
-  "_embedded": {
-      "self": [
-          {
-              "_links": {
-                  "self": {
-                      "href": "v1/Companies(1)/PunchEntries(15)",
-                      "templated": false
-                  }
-              },
-              "_embedded": {},
-              "Id": 1953,
-              "CreatedDateUtc": "2015-09-23T15:41:59.403",
-              "EmployeeVerified": false,
-              "EmployeeSpecialId": "0001",
-              "HasBeenRevised": false,
-              "LastUpdateDateUtc": "2015-09-23T15:55:09.927",
-              "LocationCode": "CWW",
-              "LocationId": 4,
-              "ManagerVerified": false,
-              "PunchInComments": "IN - Fingerprint/HomeConsole",
-              "PunchOutComments": "OUT - HomeConsole",
-              "TimeInAtStore": "2015-09-23T09:41:52.653",
-              "TimeOutAtStore": "2015-09-23T09:55:03.973",
-              "UserId": 22212
-              "Version": 1
-          }
-      ]
-  }
-}
-
-</pre>
-
-
+    "_links": {
+        "prev": null,
+        "self": {
+            "href": "v1/Companies(14146)/PunchEntries?$filter=ransactionDateUTC ge datetime'2015-01-01T00:00:00.000' and TransactionDateUTC le datetime'2015-12-31T23:59:59.000'&$skip=0&$top=10",
+            "templated": false
+        },
+        "next": null
+    },
+    "_embedded": {
+        "self": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "v1/Companies(14146)/PunchEntries(15)",
+                        "templated": false
+                    }
+                },
+                "_embedded": {},
+                "Id": 1953,
+                "CreatedDateUtc": "2015-09-23T15:41:59.403",
+                "EmployeeVerified": false,
+                "EmployeeSpecialId": 1002,
+                "LastUpdateDateUtc": "2015-09-23T15:55:09.927",
+                "LocationCode": "CWW",
+                "LocationId": 14202,
+                "ManagerVerified": false,
+                "PunchInComments": "IN - FingerPrint/HomeConsole",
+                "PunchOutComments": "OUT - HomeConsole",
+                "TimeInAtStore": "2015-09-23T09:41:52.653",
+                "TimeOutAtStore": "2015-09-23T09:55:03.973",
+                "UserId": 2576,
+                "Version": 1
+            }
+        ]
+    }
+}</pre>
 
 <h2 id="pagination" class="clickable-header top-level-header">Pagination</h2>
 
@@ -222,8 +246,8 @@ These links are _relative_, they do not include the base endpoint. It is the res
     {
         "_links": {
             "prev": null,
-            "self": "v1/Companies(1)/PunchEntries?$skip=0&$top=5",
-            "next": "v1/Companies(1)/PunchEntries?$skip=5&$top=5"
+            "self": "v1/Companies(14146)/PunchEntries?$skip=0&$top=5",
+            "next": "v1/Companies(14146)/PunchEntries?$skip=5&$top=5"
         },
         "_metadata": {
             "count": 15,

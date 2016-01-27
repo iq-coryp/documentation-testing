@@ -39,6 +39,17 @@ The date format used in the table below is mm/dd/yyyy
 
 | Date | Changes |
 |:-----|:--------|
+| 01/25/2016 | Partner Reporting: Fixed date string to be without a time. Added Setting a Temporary Password to User Manager Reference. Fixed typo in Supplier Orders page and Dropship Order guide. Added  Subscription Feed example to Dropship Onboarding guide. |
+| 01/22/2016 | JSON/HAL examples are now generated, a few mistakes were corrected as a result in: CRM, Carrier Integration, Commissions, Punch Clock. Fixed a mistake in ShippingOptions, the response was missing a "ShippingOptions" object. Renamed Corporate Rewards to Partner Reporting. |
+| 01/20/2016 | Added note about adding product subsriptions in Dropship Onboarding guide. Added Corporate Rewards API reference in Reporting section. Updated "Import a User" function to properly include "password" |
+| 01/19/2016 | Fixed error in Company Tree - Contacts is an Array of Objects. Added cookie to save Code Sample preference |
+| 01/18/2016 | MAJOR CHANGES - Added Product Structure API reference, added RQ context to Pricing API reference, added Code Samples to some reference pages and updated all reference page examples to real API data. Added UML diagram to Security Roles API reference. Updated inheritance for Company Tree concept |
+| 01/15/2016 | Updated response codes for updating Supplier Orders.
+| 01/14/2016 | Added SaleOverridePrice resource, endpoints and logic to Pricing Reference page. Added detailed overview to Carrier Integration reference |
+| 01/12/2016 | Updated images and examples for Company Concept and images for Dropship Order guide. Added Test Order Guide. Added field mapping to Dropship Onboarding guide.
+| 01/11/2016 | Added property for future use, TypeId to all Entities (Company, Location, Division, Group, Supplier, Manufacturer, Carrier). Updated changelog table to show 10 pages on load. Minor styling changes |
+| 01/04/2016 | Updated Dropship onboarding guide and Product Feed to include required fields, updated ProductName field in Shipping Options |
+| 12/23/2015 | Added Commerce integration guide, updated Catalog Reference to include numerous new properties and fix some formatting errors |
 | 12/11/2015 | Fixed various spelling/grammar errors |
 | 12/10/2015 | Fixed problem with Errors and Pagination not appearing in TOC. Added clarifyication to Customer Search in CRM. New pages: Reference and Partner Relationships |
 | 12/09/2015 | Fixed problem with TOC being larger then page height |

@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-01-2016
+last_updated: 22-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -61,8 +61,8 @@ API key must be provided in header and is configurable.
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
-| Items | Array[<a href='#item'>Item</a>] | List of Products to be added to shipping query |  |
 | PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
+| Items | Array[<a href='#item'>Item</a>] | List of Products to be added to shipping query |  |
 
 ###Item
 
@@ -122,6 +122,7 @@ Host: supplier.azure-api.net
 
 {
     "CompanyId": 123,
+    "PostalCode": "A1A1A1"
     "Items": [
         {
             "ProductName": "Galaxy S6 Defender Case - Glacier",
@@ -129,7 +130,6 @@ Host: supplier.azure-api.net
             "Sku": "87932OTS45S6"
         }
     ],
-    "PostalCode": "A1A1A1"
 }
 </pre>
 

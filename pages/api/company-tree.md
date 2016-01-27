@@ -4,9 +4,15 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 19-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -33,9 +39,9 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Unique identifier | `1` |
-| Name | String(250) | Name | `SampleCompany` |
-| Description | String(255) | Description | `Company creating great experiences.` |
+| Id | Integer | Unique identifier | `14146` |
+| Name | String(250) | Name | `Kentel Corp` |
+| Description | String(255) | Description | `Wireless accessories provider with store locations all across the globe.` |
 | Roles | Array[object] | The value must be Company |  |
 | Roles.Name | String | Name | `Company` |
 | ClientEntityId | String | Identifier in an external system | `123` |
@@ -44,23 +50,24 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | <a href='#asset'>Asset</a> | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
-| SortName | String | A string used for sorting | `samplecompany` |
+| SortName | String | A string used for sorting | `kentel corp` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Role* | *String* | *Reserved for internal use* | |
+| *TypeId* | *String* | *Reserved for future use* | |
 
 
 ###Asset
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
-| Name | String | File name | `iqmetrix.jpg` |
-| Height | Integer | Height in pixels | `145` |
-| Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
+| Id | GUID | Unique identifier | `d22291d9-db1d-45e2-ab60-32ac9c145323` |
+| Name | String | File name | `globe-rocket.jpg` |
+| Height | Integer | Height in pixels | `341` |
+| Href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/d22291d9-db1d-45e2-ab60-32ac9c145323.jpg` |
+| Md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `d2d0b491ad3eecd9d8c3dabb0610197d` |
 | MimeType | String | Mime type | `image/jpeg` |
-| Width | Integer | Width in pixels | `240` |
+| Width | Integer | Width in pixels | `450` |
 
 ###CompanyTree
 
@@ -70,9 +77,9 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Company identifier | `1` |
-| Name | String(250) | Company name | `SampleCompany` |
-| Description | String(255) | Description | `Company creating great experiences.` |
+| Id | Integer | Company identifier | `14146` |
+| Name | String(250) | Company name | `Kentel Corp` |
+| Description | String(255) | Description | `Wireless accessories provider with store locations all across the globe.` |
 | Role | String | Role | `Company` |
 | Nodes | Array[<a href='#companytreenode'>CompanyTreeNode</a>] | The Company Tree hierarchy made up of Nodes |  |
 
@@ -82,9 +89,9 @@ CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can r
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier | `55` |
-| Name | String(250) | Name | `Western BC` |
-| Description | String(255) | Description | `Western area of BC.` |
+| Id | Integer | Identifier | `14159` |
+| Name | String(250) | Name | `T-hut Wireless` |
+| Description | String(255) | Description | `Division of Kiosks` |
 | Role | String | Role, possible values include: Company, Group, Division and Location | `Division` |
 | Nodes | Array[object] | Children |  |
 
@@ -94,9 +101,9 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Unique identifier | `2` |
-| Name | String(250) | Name | `SampleLocation` |
-| Description | String(255) | Description | `The SampleLocation is used to clear out discounted inventory` |
+| Id | Integer | Unique identifier | `14202` |
+| Name | String(250) | Name | `Dufferin Mall` |
+| Description | String(255) | Description | `This Location is used to clear out discounted inventory` |
 | Roles | Array[object] | The Role of this Location, the value must be Location |  |
 | Roles.Name | String | Name | `Location` |
 | CreatedUTC | DateTime | Created date in UTC | `2015-02-26T00:03:01.372Z` |
@@ -107,12 +114,12 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | Address | <a href='#address'>Address</a> | Address |  |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | ClientEntityId | String | Identifier in an external system | `123` |
-| Contacts | <a href='#contact'>Contact</a> | Contact information |  |
+| Contacts | Array[<a href='#contact'>Contact</a>] | Contact information |  |
 | Geography | object | Geographic coordinates of this Location |  |
 | Geography.Longitude | Decimal | Longitude, must be between -180 and 180 | `-104.612034` |
 | Geography.Latitude | Decimal | Latitude, must be between -90 and 90 | `50.443559` |
 | Relationships | Array[object] | Relationship information, such as the parent node in the Company Tree |  |
-| SortName | String | A string used for sorting | `samplecompany` |
+| SortName | String | A string used for sorting | `dufferin mall` |
 | StoreHours | <a href='#storehours'>StoreHours</a> | Store hours for this Location |  |
 | StorePhoneNumbers | Array[<a href='#phonenumber'>PhoneNumber</a>] | Phone numbers |  |
 | TimeZone | <a href='#timezone'>TimeZone</a> | Timezone information for the Location |  |
@@ -122,6 +129,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 | *LocationSubType* | *String* | *Reserved for future use* | |
 | *Logo* | *Object* | *Reserved for internal use* | |
 | *Role* | *String* | *Reserved for internal use* | |
+| *TypeId* | *String* | *Reserved for future use* | |
 
 
 
@@ -133,9 +141,9 @@ To learn more about Divisions, see {{Division_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Unique identifier | `5` |
-| Name | String(250) | Name | `SampleDivision` |
-| Description | String(255) | Description | `Division creating great experiences.` |
+| Id | Integer | Unique identifier | `14159` |
+| Name | String(250) | Name | `T-hut Wireless` |
+| Description | String(255) | Description | `Division of Kiosks` |
 | Roles | Array[object] | The value must be Division |  |
 | Roles.Name | String | Name | `Division` |
 | ClientEntityId | String | Identifier in an external system | `187` |
@@ -144,10 +152,11 @@ To learn more about Divisions, see {{Division_Concept}}.
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
-| SortName | String | A string used for sorting | `sampledivision` |
+| SortName | String | A string used for sorting | `t-hut wireless` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Role* | *String* | *Reserved for internal use* | |
+| *TypeId* | *String* | *Reserved for future use* | |
 
 
 ###Group
@@ -158,9 +167,9 @@ Managerial or geographical groupings.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Unique identifier | `16` |
-| Name | String(250) | Name | `SampleGroup` |
-| Description | String(255) | Description | `Group creating great experiences.` |
+| Id | Integer | Unique identifier | `14166` |
+| Name | String(250) | Name | `Toronto` |
+| Description | String(255) | Description | `Group within Ontario` |
 | Roles | Array[object] | The value must be Group |  |
 | Roles.Name | String | Name | `Group` |
 | ClientEntityId | String | Identifier in an external system | `187` |
@@ -169,10 +178,11 @@ Managerial or geographical groupings.
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
 | Logo | <a href='#asset'>Asset</a> | A reference to an Asset |  |
 | Relationships | Array[object] | Relationship information, such child Locations, Suppliers and Carriers |  |
-| SortName | String | A string used for sorting | `samplegroup` |
+| SortName | String | A string used for sorting | `toronto` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Role* | *String* | *Reserved for internal use* | |
+| *TypeId* | *String* | *Reserved for future use* | |
 
 
 
@@ -212,26 +222,6 @@ GET /Companies({CompanyId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -245,12 +235,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Companies(1)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-company" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-company" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-company" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-company">
+<pre><code class="language-http">GET /Companies(14146)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-company">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-company">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingACompany()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-company">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingACompany() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-company">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -262,9 +315,9 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 1,
-    "Name": "SampleCompany",
-    "Description": "Company creating great experiences.",
+    "Id": 14146,
+    "Name": "Kentel Corp",
+    "Description": "Wireless accessories provider with store locations all across the globe.",
     "Roles": [
         {
             "Name": "Company"
@@ -275,16 +328,16 @@ HTTP 200 Content-Type: application/json
     "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
     "Attributes": {},
     "Logo": {
-        "Id": "732130d2-b673-461c-812b-f2b614d6076e",
-        "Name": "iqmetrix.jpg",
-        "Height": 145,
-        "Href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-        "Md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
+        "Id": "d22291d9-db1d-45e2-ab60-32ac9c145323",
+        "Name": "globe-rocket.jpg",
+        "Height": 341,
+        "Href": "https://amsdemostorage.blob.core.windows.net/assets/d22291d9-db1d-45e2-ab60-32ac9c145323.jpg",
+        "Md5Checksum": "d2d0b491ad3eecd9d8c3dabb0610197d",
         "MimeType": "image/jpeg",
-        "Width": 240
+        "Width": 450
     },
     "Relationships": [],
-    "SortName": "samplecompany",
+    "SortName": "kentel corp",
     "Version": 1
 }</pre>
 
@@ -303,26 +356,6 @@ GET /Companies({CompanyId})/Tree
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -336,12 +369,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Companies(1)/Tree
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-company-tree" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-company-tree" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-company-tree" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-company-tree" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-company-tree" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-company-tree">
+<pre><code class="language-http">GET /Companies(14146)/Tree
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-company-tree">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-company-tree">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingACompanyTree()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-company-tree">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingACompanyTree() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-company-tree">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -353,15 +449,15 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 1,
-    "Name": "SampleCompany",
-    "Description": "Company creating great experiences.",
+    "Id": 14146,
+    "Name": "Kentel Corp",
+    "Description": "Wireless accessories provider with store locations all across the globe.",
     "Role": "Company",
     "Nodes": [
         {
-            "Id": 55,
-            "Name": "Western BC",
-            "Description": "Western area of BC.",
+            "Id": 14159,
+            "Name": "T-hut Wireless",
+            "Description": "Division of Kiosks",
             "Role": "Division",
             "Nodes": []
         }
@@ -382,271 +478,6 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations" - d '{
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
-    "Roles": [
-        {
-            "Name": "Location"
-        }
-    ],
-    "Area": {
-        "Value": 1100,
-        "Unit": "SqFt"
-    },
-    "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
-        "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
-        "CountryCode": "CA",
-        "CountryName": "Canada",
-        "Zip": "S4P2L1"
-    },
-    "Attributes": {},
-    "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
-    "Geography": {
-        "Longitude": -104.612034,
-        "Latitude": 50.443559
-    },
-    "StoreHours": {
-        "Monday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Tuesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Wednesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Thursday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Friday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Saturday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Sunday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        }
-    },
-    "StorePhoneNumbers": [
-        {
-            "Description": "Main Line",
-            "Number": "5555555555",
-            "Extension": "1234"
-        }
-    ],
-    "TimeZone": {
-        "Id": "Alaskan Standard Time",
-        "DaylightSavingTimeEnabled": true
-    }
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "{
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
-    "Roles": [
-        {
-            "Name": "Location"
-        }
-    ],
-    "Area": {
-        "Value": 1100,
-        "Unit": "SqFt"
-    },
-    "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
-        "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
-        "CountryCode": "CA",
-        "CountryName": "Canada",
-        "Zip": "S4P2L1"
-    },
-    "Attributes": {},
-    "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
-    "Geography": {
-        "Longitude": -104.612034,
-        "Latitude": 50.443559
-    },
-    "StoreHours": {
-        "Monday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Tuesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Wednesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Thursday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Friday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Saturday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Sunday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        }
-    },
-    "StorePhoneNumbers": [
-        {
-            "Description": "Main Line",
-            "Number": "5555555555",
-            "Extension": "1234"
-        }
-    ],
-    "TimeZone": {
-        "Id": "Alaskan Standard Time",
-        "DaylightSavingTimeEnabled": true
-    }
-}", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 <h4>URI Parameters</h4>
@@ -669,14 +500,22 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-POST /Companies(1)/Tree/Nodes(2)/Locations
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-a-location" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-a-location" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-a-location" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-location" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-location" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-location">
+<pre><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
+</code><code class="language-csharp">{
+    "Name": "Dufferin Mall",
+    "Description": "This Location is used to clear out discounted inventory",
     "Roles": [
         {
             "Name": "Location"
@@ -687,28 +526,30 @@ Content-Type: application/json
         "Unit": "SqFt"
     },
     "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
+        "AddressLine1": "4970 Hillside Avenue",
+        "AddressLine2": "Apt 115",
         "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
+        "StateCode": "ON",
+        "StateName": "Ontario",
         "CountryCode": "CA",
         "CountryName": "Canada",
-        "Zip": "S4P2L1"
+        "Zip": "P9H 9I4"
     },
     "Attributes": {},
     "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
+    "Contacts": [
+        {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        }
+    ],
     "Geography": {
         "Longitude": -104.612034,
         "Latitude": 50.443559
@@ -796,8 +637,192 @@ Content-Type: application/json
         "Id": "Alaskan Standard Time",
         "DaylightSavingTimeEnabled": true
     }
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-a-location">
+<pre><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Name": "Dufferin Mall",
+    "Description": "This Location is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "4970 Hillside Avenue",
+        "AddressLine2": "Apt 115",
+        "City": "Edmonton",
+        "StateCode": "ON",
+        "StateName": "Ontario",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "P9H 9I4"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": [
+        {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        }
+    ],
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    }
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-location">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingALocation()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true}}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-location">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingALocation() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true}}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-location">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true}}";
+
+response = RestClient.post 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -809,9 +834,9 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Id": 14202,
+    "Name": "Dufferin Mall",
+    "Description": "This Location is used to clear out discounted inventory",
     "Roles": [
         {
             "Name": "Location"
@@ -824,34 +849,36 @@ HTTP 201 Content-Type: application/json
         "Unit": "SqFt"
     },
     "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
+        "AddressLine1": "4970 Hillside Avenue",
+        "AddressLine2": "Apt 115",
         "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
+        "StateCode": "ON",
+        "StateName": "Ontario",
         "CountryCode": "CA",
         "CountryName": "Canada",
-        "Zip": "S4P2L1"
+        "Zip": "P9H 9I4"
     },
     "Attributes": {},
     "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
+    "Contacts": [
+        {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        }
+    ],
     "Geography": {
         "Longitude": -104.612034,
         "Latitude": 50.443559
     },
     "Relationships": [],
-    "SortName": "samplecompany",
+    "SortName": "dufferin mall",
     "StoreHours": {
         "Monday": {
             "Open": {
@@ -961,283 +988,6 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x put -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations(2)" - d '{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
-    "Roles": [
-        {
-            "Name": "Location"
-        }
-    ],
-    "CreatedUTC": "2015-02-26T00:03:01.372Z",
-    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-    "Area": {
-        "Value": 1100,
-        "Unit": "SqFt"
-    },
-    "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
-        "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
-        "CountryCode": "CA",
-        "CountryName": "Canada",
-        "Zip": "S4P2L1"
-    },
-    "Attributes": {},
-    "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
-    "Geography": {
-        "Longitude": -104.612034,
-        "Latitude": 50.443559
-    },
-    "Relationships": [],
-    "SortName": "samplecompany",
-    "StoreHours": {
-        "Monday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Tuesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Wednesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Thursday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Friday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Saturday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Sunday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        }
-    },
-    "StorePhoneNumbers": [
-        {
-            "Description": "Main Line",
-            "Number": "5555555555",
-            "Extension": "1234"
-        }
-    ],
-    "TimeZone": {
-        "Id": "Alaskan Standard Time",
-        "DaylightSavingTimeEnabled": true
-    },
-    "Version": 13
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(2)/Locations(2)");
-var request = new RestRequest(Method.put);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
-    "Roles": [
-        {
-            "Name": "Location"
-        }
-    ],
-    "CreatedUTC": "2015-02-26T00:03:01.372Z",
-    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
-    "Area": {
-        "Value": 1100,
-        "Unit": "SqFt"
-    },
-    "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
-        "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
-        "CountryCode": "CA",
-        "CountryName": "Canada",
-        "Zip": "S4P2L1"
-    },
-    "Attributes": {},
-    "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
-    "Geography": {
-        "Longitude": -104.612034,
-        "Latitude": 50.443559
-    },
-    "Relationships": [],
-    "SortName": "samplecompany",
-    "StoreHours": {
-        "Monday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Tuesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Wednesday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Thursday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Friday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Saturday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        },
-        "Sunday": {
-            "Open": {
-                "Hour": 10,
-                "Minute": 0
-            },
-            "Close": {
-                "Hour": 10,
-                "Minute": 0
-            }
-        }
-    },
-    "StorePhoneNumbers": [
-        {
-            "Description": "Main Line",
-            "Number": "5555555555",
-            "Extension": "1234"
-        }
-    ],
-    "TimeZone": {
-        "Id": "Alaskan Standard Time",
-        "DaylightSavingTimeEnabled": true
-    },
-    "Version": 13
-}", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1263,15 +1013,23 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-PUT /Companies(1)/Tree/Nodes(2)/Locations(2)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-updating-a-location" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-updating-a-location" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-updating-a-location" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-location" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-location" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-location">
+<pre><code class="language-http">PUT /Companies(14146)/Tree/Nodes(14159)/Locations(14202)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
+</code><code class="language-csharp">{
+    "Id": 14202,
+    "Name": "Dufferin Mall",
+    "Description": "This Location is used to clear out discounted inventory",
     "Roles": [
         {
             "Name": "Location"
@@ -1284,34 +1042,36 @@ Content-Type: application/json
         "Unit": "SqFt"
     },
     "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
+        "AddressLine1": "4970 Hillside Avenue",
+        "AddressLine2": "Apt 115",
         "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
+        "StateCode": "ON",
+        "StateName": "Ontario",
         "CountryCode": "CA",
         "CountryName": "Canada",
-        "Zip": "S4P2L1"
+        "Zip": "P9H 9I4"
     },
     "Attributes": {},
     "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
+    "Contacts": [
+        {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        }
+    ],
     "Geography": {
         "Longitude": -104.612034,
         "Latitude": 50.443559
     },
     "Relationships": [],
-    "SortName": "samplecompany",
+    "SortName": "dufferin mall",
     "StoreHours": {
         "Monday": {
             "Open": {
@@ -1396,22 +1156,13 @@ Content-Type: application/json
         "DaylightSavingTimeEnabled": true
     },
     "Version": 13
-}
-</pre>
-
-<h4>Response</h4>
-
-
-<a href='#location'>Location</a>
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-updating-a-location">
+<pre><code class="language-http">curl -X PUT "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations(14202)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Id": 14202,
+    "Name": "Dufferin Mall",
+    "Description": "This Location is used to clear out discounted inventory",
     "Roles": [
         {
             "Name": "Location"
@@ -1424,34 +1175,235 @@ HTTP 200 Content-Type: application/json
         "Unit": "SqFt"
     },
     "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
+        "AddressLine1": "4970 Hillside Avenue",
+        "AddressLine2": "Apt 115",
         "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
+        "StateCode": "ON",
+        "StateName": "Ontario",
         "CountryCode": "CA",
         "CountryName": "Canada",
-        "Zip": "S4P2L1"
+        "Zip": "P9H 9I4"
     },
     "Attributes": {},
     "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
+    "Contacts": [
+        {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        }
+    ],
     "Geography": {
         "Longitude": -104.612034,
         "Latitude": 50.443559
     },
     "Relationships": [],
-    "SortName": "samplecompany",
+    "SortName": "dufferin mall",
+    "StoreHours": {
+        "Monday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Tuesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Wednesday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Thursday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Friday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Saturday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        },
+        "Sunday": {
+            "Open": {
+                "Hour": 10,
+                "Minute": 0
+            },
+            "Close": {
+                "Hour": 10,
+                "Minute": 0
+            }
+        }
+    },
+    "StorePhoneNumbers": [
+        {
+            "Description": "Main Line",
+            "Number": "5555555555",
+            "Extension": "1234"
+        }
+    ],
+    "TimeZone": {
+        "Id": "Alaskan Standard Time",
+        "DaylightSavingTimeEnabled": true
+    },
+    "Version": 13
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-location">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse UpdatingALocation()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations(14202)");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Id\":14202,\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"CreatedUTC\":\"2015-02-26T00:03:01.372Z\",\"LastModifiedUTC\":\"2015-02-27T00:03:06.392Z\",\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"Relationships\":[],\"SortName\":\"dufferin mall\",\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true},\"Version\":13}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-location">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingALocation() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations(14202)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":14202,\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"CreatedUTC\":\"2015-02-26T00:03:01.372Z\",\"LastModifiedUTC\":\"2015-02-27T00:03:06.392Z\",\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"Relationships\":[],\"SortName\":\"dufferin mall\",\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true},\"Version\":13}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-location">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":14202,\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"CreatedUTC\":\"2015-02-26T00:03:01.372Z\",\"LastModifiedUTC\":\"2015-02-27T00:03:06.392Z\",\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"Relationships\":[],\"SortName\":\"dufferin mall\",\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true},\"Version\":13}";
+
+response = RestClient.put 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations(14202)', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
+
+<h4>Response</h4>
+
+
+<a href='#location'>Location</a>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": 14202,
+    "Name": "Dufferin Mall",
+    "Description": "This Location is used to clear out discounted inventory",
+    "Roles": [
+        {
+            "Name": "Location"
+        }
+    ],
+    "CreatedUTC": "2015-02-26T00:03:01.372Z",
+    "LastModifiedUTC": "2015-02-27T00:03:06.392Z",
+    "Area": {
+        "Value": 1100,
+        "Unit": "SqFt"
+    },
+    "Address": {
+        "AddressLine1": "4970 Hillside Avenue",
+        "AddressLine2": "Apt 115",
+        "City": "Edmonton",
+        "StateCode": "ON",
+        "StateName": "Ontario",
+        "CountryCode": "CA",
+        "CountryName": "Canada",
+        "Zip": "P9H 9I4"
+    },
+    "Attributes": {},
+    "ClientEntityId": "123",
+    "Contacts": [
+        {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        }
+    ],
+    "Geography": {
+        "Longitude": -104.612034,
+        "Latitude": 50.443559
+    },
+    "Relationships": [],
+    "SortName": "dufferin mall",
     "StoreHours": {
         "Monday": {
             "Open": {
@@ -1553,26 +1505,6 @@ GET /Companies({CompanyId})/Locations({LocationId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations(2)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations(2)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1590,12 +1522,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Companies(1)/Locations(2)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-location-for-a-company" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-location-for-a-company" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-location-for-a-company" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-location-for-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-location-for-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-location-for-a-company">
+<pre><code class="language-http">GET /Companies(14146)/Locations(14202)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-location-for-a-company">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14202)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-location-for-a-company">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingALocationForACompany()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14202)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-location-for-a-company">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingALocationForACompany() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14202)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-location-for-a-company">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14202)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -1607,9 +1602,9 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 2,
-    "Name": "SampleLocation",
-    "Description": "The SampleLocation is used to clear out discounted inventory",
+    "Id": 14202,
+    "Name": "Dufferin Mall",
+    "Description": "This Location is used to clear out discounted inventory",
     "Roles": [
         {
             "Name": "Location"
@@ -1622,34 +1617,36 @@ HTTP 200 Content-Type: application/json
         "Unit": "SqFt"
     },
     "Address": {
-        "AddressLine1": "123 Sample Street",
-        "AddressLine2": "Unit 200",
+        "AddressLine1": "4970 Hillside Avenue",
+        "AddressLine2": "Apt 115",
         "City": "Edmonton",
-        "StateCode": "AB",
-        "StateName": "Alberta",
+        "StateCode": "ON",
+        "StateName": "Ontario",
         "CountryCode": "CA",
         "CountryName": "Canada",
-        "Zip": "S4P2L1"
+        "Zip": "P9H 9I4"
     },
     "Attributes": {},
     "ClientEntityId": "123",
-    "Contacts": {
-        "Name": "John Smith",
-        "Description": "Store Manager",
-        "PhoneNumbers": [
-            {
-                "Description": "Main Line",
-                "Number": "5555555555",
-                "Extension": "1234"
-            }
-        ]
-    },
+    "Contacts": [
+        {
+            "Name": "John Smith",
+            "Description": "Store Manager",
+            "PhoneNumbers": [
+                {
+                    "Description": "Main Line",
+                    "Number": "5555555555",
+                    "Extension": "1234"
+                }
+            ]
+        }
+    ],
     "Geography": {
         "Longitude": -104.612034,
         "Latitude": 50.443559
     },
     "Relationships": [],
-    "SortName": "samplecompany",
+    "SortName": "dufferin mall",
     "StoreHours": {
         "Monday": {
             "Open": {
@@ -1751,26 +1748,6 @@ GET /Companies({CompanyId})/Locations
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Locations");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -1784,12 +1761,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Companies(1)/Locations
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-locations-for-a-company" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-locations-for-a-company" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-locations-for-a-company" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-locations-for-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-locations-for-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-locations-for-a-company">
+<pre><code class="language-http">GET /Companies(14146)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-locations-for-a-company">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-locations-for-a-company">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllLocationsForACompany()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-locations-for-a-company">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllLocationsForACompany() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-locations-for-a-company">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -1802,9 +1842,9 @@ Array[<a href='#location'>Location</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": 2,
-        "Name": "SampleLocation",
-        "Description": "The SampleLocation is used to clear out discounted inventory",
+        "Id": 14202,
+        "Name": "Dufferin Mall",
+        "Description": "This Location is used to clear out discounted inventory",
         "Roles": [
             {
                 "Name": "Location"
@@ -1817,34 +1857,36 @@ HTTP 200 Content-Type: application/json
             "Unit": "SqFt"
         },
         "Address": {
-            "AddressLine1": "123 Sample Street",
-            "AddressLine2": "Unit 200",
+            "AddressLine1": "4970 Hillside Avenue",
+            "AddressLine2": "Apt 115",
             "City": "Edmonton",
-            "StateCode": "AB",
-            "StateName": "Alberta",
+            "StateCode": "ON",
+            "StateName": "Ontario",
             "CountryCode": "CA",
             "CountryName": "Canada",
-            "Zip": "S4P2L1"
+            "Zip": "P9H 9I4"
         },
         "Attributes": {},
         "ClientEntityId": "123",
-        "Contacts": {
-            "Name": "John Smith",
-            "Description": "Store Manager",
-            "PhoneNumbers": [
-                {
-                    "Description": "Main Line",
-                    "Number": "5555555555",
-                    "Extension": "1234"
-                }
-            ]
-        },
+        "Contacts": [
+            {
+                "Name": "John Smith",
+                "Description": "Store Manager",
+                "PhoneNumbers": [
+                    {
+                        "Description": "Main Line",
+                        "Number": "5555555555",
+                        "Extension": "1234"
+                    }
+                ]
+            }
+        ],
         "Geography": {
             "Longitude": -104.612034,
             "Latitude": 50.443559
         },
         "Relationships": [],
-        "SortName": "samplecompany",
+        "SortName": "dufferin mall",
         "StoreHours": {
             "Monday": {
                 "Open": {
@@ -1952,37 +1994,6 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Divisions" - d '{
-    "Name": "SampleDivision",
-    "Description": "Division creating great experiences.",
-    "ClientEntityId": "187",
-    "Attributes": {}
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Divisions");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "{
-    "Name": "SampleDivision",
-    "Description": "Division creating great experiences.",
-    "ClientEntityId": "187",
-    "Attributes": {}
-}", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -2004,18 +2015,91 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-POST /Companies(1)/Tree/Nodes(16)/Divisions
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-a-division" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-a-division" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-a-division" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-division" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-division" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-division">
+<pre><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Divisions
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-    "Name": "SampleDivision",
-    "Description": "Division creating great experiences.",
+</code><code class="language-csharp">{
+    "Name": "T-hut Wireless",
+    "Description": "Division of Kiosks",
     "ClientEntityId": "187",
     "Attributes": {}
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-a-division">
+<pre><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Divisions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Name": "T-hut Wireless",
+    "Description": "Division of Kiosks",
+    "ClientEntityId": "187",
+    "Attributes": {}
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-division">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingADivision()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Divisions");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Name\":\"T-hut Wireless\",\"Description\":\"Division of Kiosks\",\"ClientEntityId\":\"187\",\"Attributes\":{}}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-division">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingADivision() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Divisions");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Name\":\"T-hut Wireless\",\"Description\":\"Division of Kiosks\",\"ClientEntityId\":\"187\",\"Attributes\":{}}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-division">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Name\":\"T-hut Wireless\",\"Description\":\"Division of Kiosks\",\"ClientEntityId\":\"187\",\"Attributes\":{}}";
+
+response = RestClient.post 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Divisions', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -2027,24 +2111,31 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-  "Id": 5,
-  "Name": "SampleDivision",
-  "Description": "Division creating great experiences.",
-  "Roles": [
-      {
-          "Name": "Division"
-      }
-  ],
-  "ClientEntityId": "187",
-  "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-  "LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
-  "Attributes": {},
-  "Logo": {},
-  "Relationships": [],
-  "SortName": "sampledivision",
-  "Version": 1
-}
-</pre>
+    "Id": 14159,
+    "Name": "T-hut Wireless",
+    "Description": "Division of Kiosks",
+    "Roles": [
+        {
+            "Name": "Division"
+        }
+    ],
+    "ClientEntityId": "187",
+    "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
+    "LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
+    "Attributes": {},
+    "Logo": {
+        "Id": "d22291d9-db1d-45e2-ab60-32ac9c145323",
+        "Name": "globe-rocket.jpg",
+        "Height": 341,
+        "Href": "https://amsdemostorage.blob.core.windows.net/assets/d22291d9-db1d-45e2-ab60-32ac9c145323.jpg",
+        "Md5Checksum": "d2d0b491ad3eecd9d8c3dabb0610197d",
+        "MimeType": "image/jpeg",
+        "Width": 450
+    },
+    "Relationships": [],
+    "SortName": "t-hut wireless",
+    "Version": 1
+}</pre>
 
 <h2 id='creating-a-group' class='clickable-header top-level-header'>Creating a Group</h2>
 
@@ -2066,37 +2157,6 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Groups" - d '{
-    "Name": "SampleGroup",
-    "Description": "Group creating great experiences.",
-    "ClientEntityId": "187",
-    "Attributes": {}
-}'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)/Groups");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "{
-    "Name": "SampleGroup",
-    "Description": "Group creating great experiences.",
-    "ClientEntityId": "187",
-    "Attributes": {}
-}", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -2118,18 +2178,91 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-POST /Companies(1)/Tree/Nodes(16)/Groups
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-a-group" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-a-group" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-a-group" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-group" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-group" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-group">
+<pre><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Groups
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-    "Name": "SampleGroup",
-    "Description": "Group creating great experiences.",
+</code><code class="language-csharp">{
+    "Name": "Toronto",
+    "Description": "Group within Ontario",
     "ClientEntityId": "187",
     "Attributes": {}
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-a-group">
+<pre><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Groups" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Name": "Toronto",
+    "Description": "Group within Ontario",
+    "ClientEntityId": "187",
+    "Attributes": {}
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-group">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingAGroup()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Groups");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Name\":\"Toronto\",\"Description\":\"Group within Ontario\",\"ClientEntityId\":\"187\",\"Attributes\":{}}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-group">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingAGroup() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Groups");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Name\":\"Toronto\",\"Description\":\"Group within Ontario\",\"ClientEntityId\":\"187\",\"Attributes\":{}}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-group">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Name\":\"Toronto\",\"Description\":\"Group within Ontario\",\"ClientEntityId\":\"187\",\"Attributes\":{}}";
+
+response = RestClient.post 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Groups', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -2141,24 +2274,32 @@ Content-Type: application/json
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-  "Id": 16,
-  "Name": "SampleGroup",
-  "Description": "Group creating great experiences.",
-  "Roles": [
-      {
-          "Name": "Group"
-      }
-  ],
-  "ClientEntityId": "187",
-  "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-  "LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
-  "Attributes": {},
-  "Logo": { },
-  "Relationships": [],
-  "SortName": "samplegroup",
-  "Version": 1
-}
-</pre>
+    "Id": 14166,
+    "Name": "Toronto",
+    "Description": "Group within Ontario",
+    "Roles": [
+        {
+            "Name": "Group"
+        }
+    ],
+    "ClientEntityId": "187",
+    "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
+    "LastModifiedUTC": "2015-05-20T23:06:29.7700813Z",
+    "Attributes": {},
+    "Logo": {
+        "id": "09fe1ee4-42b1-43a6-bd80-cd2bda21e90a",
+        "name": "49ebd282-4161-4a9d-9b40-a5a20d144b6f.png",
+        "height": 1024,
+        "href": "https://amsdemo.iqmetrix.net/images/09fe1ee4-42b1-43a6-bd80-cd2bda21e90a.png",
+        "md5Checksum": "1f88a2813737aa0019a63069586055ed",
+        "mimeType": "image/png",
+        "width": 502,
+        "success": true
+    },
+    "Relationships": [],
+    "SortName": "toronto",
+    "Version": 1
+}</pre>
 
 <h2 id='deleting-a-group-or-division' class='clickable-header top-level-header'>Deleting a Group or Division</h2>
 
@@ -2184,25 +2325,6 @@ DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" - "https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(1)/Tree/Nodes(16)");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -2220,11 +2342,71 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-DELETE /Companies(1)/Tree/Nodes(16)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-deleting-a-group-or-division" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-deleting-a-group-or-division" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-deleting-a-group-or-division" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-deleting-a-group-or-division" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-deleting-a-group-or-division" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-deleting-a-group-or-division">
+<pre><code class="language-http">DELETE /Companies(14146)/Tree/Nodes(14159)
 Authorization: Bearer (Access Token)
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-deleting-a-group-or-division">
+<pre><code class="language-http">curl -X DELETE "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)" -H "Authorization: Bearer (Access Token)"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-group-or-division">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse DeletingAGroupOrDivision()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-deleting-a-group-or-division">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse DeletingAGroupOrDivision() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-group-or-division">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -2255,26 +2437,6 @@ GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Entities(1)/Nodes?$filter=123" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Entities(1)/Nodes?$filter=123");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -2292,12 +2454,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Entities(1)/Nodes?$filter=123
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-searching-by-cliententityid" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-searching-by-cliententityid" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-searching-by-cliententityid" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-searching-by-cliententityid" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-searching-by-cliententityid" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-searching-by-cliententityid">
+<pre><code class="language-http">GET /Entities(14146)/Nodes?$filter=123
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-searching-by-cliententityid">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Entities(14146)/Nodes?$filter=123" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-searching-by-cliententityid">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse SearchingByCliententityid()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Entities(14146)/Nodes?$filter=123");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-searching-by-cliententityid">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse SearchingByCliententityid() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Entities(14146)/Nodes?$filter=123");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-searching-by-cliententityid">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Entities(14146)/Nodes?$filter=123', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -2310,27 +2535,27 @@ Accept: application/json
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": 2,
-        "Name": "SampleLocation",
-        "Description": "The SampleLocation is used to clear out discounted inventory",
+        "Id": 14202,
+        "Name": "Dufferin Mall",
+        "Description": "This Location is used to clear out discounted inventory",
         "Role": "Location",
         "Path": [
             {
-                "Id": 2,
-                "Name": "SampleLocation",
-                "Description": "The SampleLocation is used to clear out discounted inventory",
+                "Id": 14202,
+                "Name": "Dufferin Mall",
+                "Description": "This Location is used to clear out discounted inventory",
                 "Role": "Location"
             }
         ]
     }
 ]</pre>
 
-
-
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
+| `HTTP 400` | `New node {x} must be related to its parent role. `<br/>`Parent node {y} must be in same tree as Company {z}` | Ensure the NodeId is a valid CompanyTreeNode and is in the correct Company Tree |
+| `HTTP 400` | `Invalid Canadian postal code. Should have valid `<br/>`letters and format A1A 1A1 where A is a letter and 1 is a digit.` | Ensure Postal/Zip Code is valid |
 | `HTTP 400` | `Request Parameter Doesn't Match Expected Value` | Ensure all **Required** parameters are provided, see `Description` of Error for more details |
 | `HTTP 400` | `Please move or delete attached locations`<br/>` before deleting this entity` | Ensure Node to be deleted does not have child Locations |
 | `HTTP 400` | `'{x}' should not be empty.` | Ensure required parameters are included |

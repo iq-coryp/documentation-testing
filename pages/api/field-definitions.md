@@ -4,9 +4,15 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 19-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -16,9 +22,9 @@ A **Field Definition** defines both how {{Product}} specification details are di
 
 As an example, the following Field Definition describes how battery capacity for a product might be displayed.
 
-```json
+```csharp
 {
-    "Id": 44,
+    "Id": 58,
     "StringId": "BatteryCapacity",
     "InputType": "Float",
     "IsRequired": false,
@@ -67,12 +73,12 @@ The result displayed on the page, with some styling, is shown below
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier | `84` |
-| StringId | String | Consistent identifier across all [Environments](/api/environments) | `CDMA` |
-| InputType | String | Type of UI element this FieldDefinition uses, see [InputTypes](#inputypes) for a list of acceptable values | `YesNo` |
-| IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `false` |
+| Id | Integer | Identifier | `1` |
+| StringId | String | Consistent identifier across all [Environments](/api/environments) | `Product Name` |
+| InputType | String | Type of UI element this FieldDefinition uses, see [InputTypes](#inputypes) for a list of acceptable values | `TestSingleLine` |
+| IsRequired | Boolean | A flag to indicate if the input represented by this FieldDefinition can be empty (false) or not (true) | `true` |
 | LanguageInvariantUnit | String | Unit | `mm` |
-| DisplayName | String | Value to be displayed in the UI | `CDMA` |
+| DisplayName | String | Value to be displayed in the UI | `Product Name` |
 | Options | Array[object] | List of Options, only used when InputType is SingleSelect or MultiSelect |  |
 | Options.Id | Integer | Identifier | `1` |
 | Options.Value | String | Value | `Blue` |
@@ -115,38 +121,81 @@ GET /FieldDefinitions
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h5>Example</h5>
 
-<pre>
-GET /FieldDefinitions
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-fielddefinitions" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-fielddefinitions" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-fielddefinitions" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-fielddefinitions" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-fielddefinitions" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-fielddefinitions">
+<pre><code class="language-http">GET /FieldDefinitions
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-fielddefinitions">
+<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-fielddefinitions">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllFielddefinitions()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-fielddefinitions">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllFielddefinitions() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-fielddefinitions">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -159,12 +208,11 @@ Array[<a href='#fielddefinition'>FieldDefinition</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": 84,
-        "StringId": "CDMA",
-        "InputType": "YesNo",
-        "IsRequired": false,
-        "LanguageInvariantUnit": "mm",
-        "DisplayName": "CDMA",
+        "Id": 1,
+        "StringId": "Product Name",
+        "InputType": "TestSingleLine",
+        "IsRequired": true,
+        "DisplayName": "Product Name",
         "Options": [
             {}
         ]
@@ -186,26 +234,6 @@ GET /FieldDefinitions({FieldDefinitionId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(84)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(84)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -219,12 +247,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /FieldDefinitions(84)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-fielddefinition" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-fielddefinition" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-fielddefinition" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-fielddefinition" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-fielddefinition" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-fielddefinition">
+<pre><code class="language-http">GET /FieldDefinitions(1)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-fielddefinition">
+<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-fielddefinition">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAFielddefinition()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-fielddefinition">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAFielddefinition() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-fielddefinition">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -236,18 +327,15 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 84,
-    "StringId": "CDMA",
-    "InputType": "YesNo",
-    "IsRequired": false,
-    "LanguageInvariantUnit": "mm",
-    "DisplayName": "CDMA",
+    "Id": 1,
+    "StringId": "Product Name",
+    "InputType": "TestSingleLine",
+    "IsRequired": true,
+    "DisplayName": "Product Name",
     "Options": [
         {}
     ]
 }</pre>
-
-
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 

@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 14-01-2016
+last_updated: 18-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -28,10 +28,10 @@ Archived CatalogItem resources can still be updated and retrieved individually, 
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| CatalogItemId | GUID | Unique identifier | `d60a8776-2f1f-430a-88f6-6180de43887d` |
+| CatalogItemId | GUID | Unique identifier | `a183f1a9-c58f-426a-930a-9a6357db52ed` |
 | IsArchived | Boolean | A flag to indicate if this CatalogItem is Archived. When archived, this CatalogItem is excluded from search results | `false` |
 | RmsId | String | Identifier for the CatalogItem in an external inventory system | `1` |
-| Slug | String | Unique identifier for a [Product](#product) | `M3-V1` |
+| Slug | String | Unique identifier for a [Product](#product) | `M1248-V1` |
 
 
 ###CatalogSearchResult
@@ -41,35 +41,35 @@ A CatalogSearchResult resource is used to return information about Product resou
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Items | Array[object] | Products matching the search criteria |  |
-| Items.Name | String | Name of the Product | `iPhone 4S 16GB White` |
+| Items.Name | String | Name | `Galaxy S6 edge+ 32GB - Black Sapphire` |
 | Items.CanonicalClassification | <a href='#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
-| Items.CatalogItemId | GUID | Unique identifier for the CatalogItem | `d60a8776-2f1f-430a-88f6-6180de43887d` |
-| Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) | `21` |
+| Items.CatalogItemId | GUID | Unique identifier for the CatalogItem | `a183f1a9-c58f-426a-930a-9a6357db52ed` |
+| Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) | `1` |
 | Items.ColorDefinition | <a href='#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
-| Items.CompanyId | Integer | Identifier for the Company | `1` |
+| Items.CompanyId | Integer | Identifier for the Company | `14146` |
 | Items.DateAddedUtc | DateTime | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
-| Items.HeroShotId | GUID | An identifier for a [Hero Shot](/api/glossary/#hero-shot) | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| Items.HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `44f60963-5515-44bc-9509-71aef6463580` |
 | Items.Identifiers | Array[<a href='#identifier'>Identifier</a>] | Identifiers |  |
 | Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | Items.IsDropShippable | Boolean | A flag to indicate if this Product can be shipped | `true` |
 | Items.Manufacturer | object | [Manufacturer](/api/entity-store/#manufacturer) information for the Product |  |
-| Items.Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `4` |
-| Items.Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `SampleManufacturer` |
-| Items.Manufacturer.MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
+| Items.Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `13149` |
+| Items.Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `OtterBox` |
+| Items.Manufacturer.MasterProductId | Integer | Identifier for the Master Product | `1248` |
 | Items.Manufacturer.Msrp | object | Manufacturer suggested retail price information for the Product |  |
 | Items.Manufacturer.Msrp.Amount | Decimal | Manufacturers suggested retail price | `100` |
 | Items.Manufacturer.Msrp.CurrencyCode | String | Currency. For a list of acceptable values, see <a href='/api/reference/#getting-all-currencies'>Getting All Currencies</a> | `USD` |
 | Items.Manufacturer.Msrp.ProductVersion | Integer | Latest revision number | `1` |
-| Items.Manufacturer.Msrp.ShortDescription | String | Short Description for the Product | `Better then iPhone 3G` |
-| Items.Manufacturer.Msrp.Slug | String | URL friendly identifier for the Product | `M3-V1` |
+| Items.Manufacturer.Msrp.ShortDescription | String | Short Description | `Next is Now` |
+| Items.Manufacturer.Msrp.Slug | String | URL friendly identifier for the Product | `M1248-V1` |
 | Items.Manufacturer.Msrp.VariationId | Integer | Identifier for the [Variation](/concepts/product-structure/#Variations) this Product represents | `1` |
 | Items.Manufacturer.Msrp.Vendors | Array[object] | Vendors for the Product |  |
-| Items.Manufacturer.Msrp.Vendors.Id | Integer | Identifier for the [Supplier](/api/entity-store/#supplier) | `14` |
-| Items.Manufacturer.Msrp.Vendors.Name | String | Name of the [Supplier](/api/entity-store/#supplier) | `SampleSupplier` |
+| Items.Manufacturer.Msrp.Vendors.Id | Integer | Identifier for the [Supplier](/api/entity-store/#supplier) | `14107` |
+| Items.Manufacturer.Msrp.Vendors.Name | String | Name of the [Supplier](/api/entity-store/#supplier) | `NOZAMA Inc.` |
 | Facets | object | Summary of Manufacturer and Vendor information for the Items |  |
 | Facets.ClassificationAndCategories | Array[object] | Count of Classification and Categories in results |  |
 | Facets.ClassificationAndCategories.Count | Integer | Number of items in the response with the Classification or Category specified in Item | `1` |
-| Facets.ClassificationAndCategories.Item | Integer | Identifier of a Classification or Category | `1` |
+| Facets.ClassificationAndCategories.Item | Integer | Identifier of a Classification or Category | `4` |
 | Facets.ClassificationAndCategories.Manufacturers | Array[<a href='#manufacturer'>Manufacturer</a>] | Manufacturer information for the Items |  |
 | Facets.ClassificationAndCategories.Vendors | Array[<a href='#manufacturer'>Manufacturer</a>] | Vendor information for the Items |  |
 | MetaData | object | Data representing pagination details |  |
@@ -93,33 +93,33 @@ A CatalogSearchResult resource is used to return information about Product resou
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | String | Identifier | `M3-V1` |
-| Name | String | Name | `iPhone 4S 16GB White` |
+| Id | String | Identifier | `M1248-V1` |
+| Name | String | Name | `Galaxy S6 edge+ 32GB - Black Sapphire` |
 | ColorDefinition | <a href='#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
 | Assets | Array[<a href='#asset'>Asset</a>] | Asset information |  |
 | CanonicalClassification | <a href='#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
 | Entity | object | Entity information, used for Entity revisions |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
-| Entity.Name | String | Entity name | `SampleCompany` |
-| HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
-| HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9` |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
+| Entity.Name | String | Entity name | `Kentel Corp` |
+| HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `44f60963-5515-44bc-9509-71aef6463580` |
+| HeroShotUri | String | URI to a Hero Shot Asset | `https://imagehost/images/44f60963-5515-44bc-9509-71aef6463580` |
 | IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | IsSaleable | Boolean | A flag to indicate if this product can be sold | `true` |
-| LongDescription | String | Long Description | `The iPhone 4S is a gradual step over the iPhone 4.` |
+| LongDescription | String | Long Description | `The world’s first dual-edge display was born from a need to create something new...` |
 | Manufacturer | object | [Manufacturer](/api/entity-store/#manufacturer) information for the Product |  |
-| Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `4` |
-| Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `SampleManufacturer` |
+| Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `13149` |
+| Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `OtterBox` |
 | ManufacturerSkus | Array[<a href='#sku'>Sku</a>] | Manufacturer SKUs |  |
-| MasterProductId | Integer | Identifier for the [Master Product](/concepts/product-structure/#master-products) | `3` |
+| MasterProductId | Integer | Identifier for the [Master Product](/api/product-structure/#masterproduct) | `1248` |
 | MSRP | object | Manufacturers suggested retail price information |  |
 | MSRP.Amount | Decimal | Manufacturers suggested retail price | `100` |
 | MSRP.CurrencyCode | String | Currency. For a list of acceptable values, see <a href='/api/reference/#getting-all-currencies'>Getting All Currencies</a> | `USD` |
 | Owner | object | Owner information used to designate if this is a public product (null) or private (not-null) |  |
-| Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `1` |
-| Owner.Name | String | For private products, Name of the Company that owns this Product | `SampleCompany` |
+| Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `14146` |
+| Owner.Name | String | For private products, Name of the Company that owns this Product | `Kentel Corp` |
 | Region | <a href='#region'>Region</a> | Region information, for Regional Carrier Revisions |  |
 | ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
-| ShortDescription | String | Short Description | `Better than iPhone 3G` |
+| ShortDescription | String | Short Description | `Next is Now` |
 | Specifications | Array[object] | Details such as color, dimension, etc |  |
 | Specifications.Name | String | Name | `Color` |
 | Specifications.Fields | <a href='#field'>Field</a> | Group of ProductFields |  |
@@ -136,11 +136,11 @@ A CatalogSearchResult resource is used to return information about Product resou
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Identifier for the [Classification](/api/classification-tree/#classification) or [Category](/api/classification-tree/#category) | `1` |
+| Id | Integer | Identifier for the [Classification](/api/classification-tree/#classification) or [Category](/api/classification-tree/#category) | `4` |
 | Name | String | Name of the Classification/Category | `Smartphones` |
 | ParentCategories | Array[object] | List of Parent Categories |  |
 | ParentCategories.Id | Integer | Identifier | `2` |
-| ParentCategories.Name | String | Name | `Device` |
+| ParentCategories.Name | String | Name | `Devices` |
 
 ###ColorDefinition
 
@@ -148,12 +148,12 @@ A ColorDefinition allows you to define the available Colors for a Product
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Unique identifier | `e572461b-17b0-44c8-9b27-ca76904b9ee2` |
-| Name | String | Name | `Emerald Green` |
+| Id | GUID | Unique identifier | `5c6e2779-79d1-4fbd-b6a8-36b81e851b15` |
+| Name | String | Name | `Black Sapphire` |
 | ColorTags | Array[object] | Color information |  |
-| ColorTags.Id | Integer | Identifier | `5` |
-| ColorTags.Name | String | Name | `Green` |
-| ColorTags.ColorCode | String | A valid Hex code representing this color | `#51B14D` |
+| ColorTags.Id | Integer | Identifier | `1` |
+| ColorTags.Name | String | Name | `Black` |
+| ColorTags.ColorCode | String | A valid Hex code representing this color | `#303232` |
 | Swatch | <a href='#swatch'>Swatch</a> | An icon to display on a screen next to a color showing the actual color of the product. Can be provided as an image Asset or hex code |  |
 
 
@@ -162,8 +162,8 @@ A ColorDefinition allows you to define the available Colors for a Product
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String | Acceptable values are Asset, ColorCodes or Empty | `ColorCode` |
-| AssetId | GUID | If Type is Asset, an identifier for an Asset. Otherwise, this property is ignored | `732130d2-b673-461c-812b-f2b614d6076e` |
-| ColorCode | String | If Type is ColorCode, a valid hex code for a color. Otherwise, this propety is ignored | `#238718` |
+| AssetId | GUID | If Type is Asset, an identifier for an Asset. Otherwise, this property is ignored | `7443d13e-dc14-4b30-833b-2919d765964e` |
+| ColorCode | String | If Type is ColorCode, a valid hex code for a color. Otherwise, this propety is ignored | `#C0C8D0` |
 
 ###Asset
 
@@ -179,11 +179,11 @@ A ColorDefinition allows you to define the available Colors for a Product
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Value | String | Value | `NSMG900VUM295ISPT-M0` |
+| Value | String | Value | `JBLPULSEBLKAM` |
 | Description | String | Description |  |
 | Entity | object | Identifier for an Entity this SKU is associated with |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
-| Entity.Name | String | Entity name | `SampleCompany` |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
+| Entity.Name | String | Entity name | `Kentel Corp` |
 
 ###Region
 
@@ -199,11 +199,11 @@ A ColorDefinition allows you to define the available Colors for a Product
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| VariationId | Integer | Identifier for a Variation | `4` |
-| Slug | String | Identifier for the Variation | `M5-V1` |
+| VariationId | Integer | Identifier for a Variation | `1` |
+| Slug | String | Identifier for the Variation | `M1248-V1` |
 | Fields | Array[object] | Fields which describe how the Variation differs from its parent |  |
-| Fields.FieldId | Integer | Identifier for a [FieldDefinition](/api/field-definitions/#fielddefinition) | `84` |
-| Fields.Name | String | Name | `CDMA` |
+| Fields.FieldId | Integer | Identifier for a [FieldDefinition](/api/field-definitions/#fielddefinition) | `1` |
+| Fields.Name | String | Name | `Product Name` |
 | Fields.Value | String | Value to be used for this Field | `true` |
 
 
@@ -214,8 +214,8 @@ A ColorDefinition allows you to define the available Colors for a Product
 | Sku | String | Sku | `EM-JE040-RA` |
 | SkuType | String | A string to indicate the type of Entity this Identifier is for. Acceptable values are: ManufacturerSku, VendorSku or UPC | `ManufacturerSku` |
 | Entity | object | Entity information for this Identifier |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
-| Entity.Name | String | Entity name | `SampleCompany` |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
+| Entity.Name | String | Entity name | `Kentel Corp` |
 | Description | String | Description | `Manufacturer SKU` |
 
 
@@ -259,7 +259,7 @@ GET /Companies({CompanyId})/Catalog/Items
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Items
+GET /Companies(14146)/Catalog/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -276,10 +276,10 @@ Array[<a href='#catalogitem'>CatalogItem</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+        "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
         "IsArchived": false,
         "RmsId": "1",
-        "Slug": "M3-V1"
+        "Slug": "M1248-V1"
     }
 ]</pre>
 
@@ -316,7 +316,7 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/ProductDetails
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/ProductDetails
+GET /Companies(14146)/Catalog/Items(a183f1a9-c58f-426a-930a-9a6357db52ed)/ProductDetails
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -332,23 +332,8 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": "M3-V1",
-    "Name": "iPhone 4S 16GB White",
-    "ColorDefinition": {
-        "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-        "Name": "Emerald Green",
-        "ColorTags": [
-            {
-                "Id": 5,
-                "Name": "Green",
-                "ColorCode": "#51B14D"
-            }
-        ],
-        "Swatch": {
-            "Type": "ColorCode",
-            "ColorCode": "#238718"
-        }
-    },
+    "Id": "M1248-V1",
+    "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
     "Assets": [
         {
             "Id": "732130d2-b673-461c-812b-f2b614d6076e",
@@ -359,46 +344,46 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "CanonicalClassification": {
-        "Id": 1,
+        "Id": 4,
         "Name": "Smartphones",
         "ParentCategories": [
             {
                 "Id": 2,
-                "Name": "Device"
+                "Name": "Devices"
             }
         ]
     },
     "Entity": {
-        "Id": 1,
-        "Name": "SampleCompany"
+        "Id": 14146,
+        "Name": "Kentel Corp"
     },
-    "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
-    "HeroShotUri": "https://imagehost/images/95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+    "HeroShotId": "44f60963-5515-44bc-9509-71aef6463580",
+    "HeroShotUri": "https://imagehost/images/44f60963-5515-44bc-9509-71aef6463580",
     "IsLinkedToCuratedProduct": true,
     "IsSaleable": true,
-    "LongDescription": "The iPhone 4S is a gradual step over the iPhone 4.",
+    "LongDescription": "The world’s first dual-edge display was born from a need to create something new...",
     "Manufacturer": {
-        "Id": 4,
-        "Name": "SampleManufacturer"
+        "Id": 13149,
+        "Name": "OtterBox"
     },
     "ManufacturerSkus": [
         {
-            "Value": "NSMG900VUM295ISPT-M0",
+            "Value": "JBLPULSEBLKAM",
             "Description": "",
             "Entity": {
-                "Id": 1,
-                "Name": "SampleCompany"
+                "Id": 14146,
+                "Name": "Kentel Corp"
             }
         }
     ],
-    "MasterProductId": 3,
+    "MasterProductId": 1248,
     "MSRP": {
         "Amount": 100,
         "CurrencyCode": "USD"
     },
     "Owner": {
-        "Id": 1,
-        "Name": "SampleCompany"
+        "Id": 14146,
+        "Name": "Kentel Corp"
     },
     "Region": {
         "CountryCode": "CA",
@@ -407,19 +392,19 @@ HTTP 200 Content-Type: application/json
         "StateName": "British Columbia"
     },
     "ReleaseDate": "2011-10-14T12:00:00.000",
-    "ShortDescription": "Better than iPhone 3G",
+    "ShortDescription": "Next is Now",
     "Specifications": [
         {
             "Name": "Color",
             "Fields": [
                 {
-                    "Id": 84,
-                    "Name": "CDMA",
-                    "DisplayName": "CDMA",
-                    "InputType": "SingleSelect",
-                    "StringId": "CDMA",
-                    "Unit": "mm",
-                    "Value": "true"
+                    "Id": 54,
+                    "Name": "Height",
+                    "DisplayName": "Height",
+                    "StringId": "Height",
+                    "Type": "Float",
+                    "Unit": "inches",
+                    "Value": "6.08"
                 }
             ]
         }
@@ -434,12 +419,12 @@ HTTP 200 Content-Type: application/json
     "VariationId": 1,
     "VariationInfo": [
         {
-            "VariationId": 4,
-            "Slug": "M5-V1",
+            "VariationId": 1,
+            "Slug": "M1248-V1",
             "Fields": [
                 {
-                    "FieldId": 84,
-                    "Name": "CDMA",
+                    "FieldId": 1,
+                    "Name": "Product Name",
                     "Value": "true"
                 }
             ]
@@ -447,11 +432,11 @@ HTTP 200 Content-Type: application/json
     ],
     "VendorSkus": [
         {
-            "Value": "NSMG900VUM295ISPT-M0",
+            "Value": "JBLPULSEBLKAM",
             "Description": "",
             "Entity": {
-                "Id": 1,
-                "Name": "SampleCompany"
+                "Id": 14146,
+                "Name": "Kentel Corp"
             }
         }
     ],
@@ -491,7 +476,7 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Compatible
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Compatible
+GET /Companies(14146)/Catalog/Items(a183f1a9-c58f-426a-930a-9a6357db52ed)/Compatible
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -509,10 +494,10 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
-            "Name": "iPhone 4/4s Screen Protector",
-            "Slug": "M3-V1",
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
-            "HeroShotId": "80aec415-306c-4d23-a16c-73d8d7b27fdc"
+            "Name": "JBL Pulse",
+            "Slug": "M45",
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+            "HeroShotId": "8402481f-da22-4081-900b-dbcf9c27490d"
         }
     ]
 }</pre>
@@ -551,7 +536,7 @@ GET /Companies({CompanyId})/Catalog/Items({CatalogItemId})/Variations
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Items(f6642545-9136-4f44-a163-0e97e32e2e27)/Variations
+GET /Companies(14146)/Catalog/Items(a183f1a9-c58f-426a-930a-9a6357db52ed)/Variations
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -567,14 +552,14 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Name": "iPhone 4/4s Screen Protector",
-    "Slug": "M3-V1",
-    "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+    "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
+    "Slug": "M1248-V1",
+    "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
     "Revisions": [
         {
-            "Name": "iPhone 4/4s Screen Protector",
-            "Slug": "M3-V1",
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d"
+            "Name": "Galaxy S6 edge+ 32GB - Black Sapphir",
+            "Slug": "M1248-V1-E38",
+            "CatalogItemId": "c8f9cd4f-6889-4791-88ea-df2ada72e4ee"
         }
     ]
 }</pre>
@@ -616,7 +601,7 @@ GET /Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vend
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Items/ByVendorSku?vendorsku=43,45&vendorid=47
+GET /Companies(14146)/Catalog/Items/ByVendorSku?vendorsku=408853&vendorid=1217
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -632,14 +617,14 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Sku": "403405",
-    "VendorId": 47,
+    "Sku": "408853",
+    "VendorId": 1217,
     "Items": [
         {
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
             "IsArchived": false,
             "RmsId": "1",
-            "Slug": "M3-V1"
+            "Slug": "M1248-V1"
         }
     ]
 }</pre>
@@ -685,7 +670,7 @@ GET /Companies({CompanyId})/Catalog/Search?CategoryOrClassificationId={CategoryO
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?CategoryOrClassificationId=1&Page=1&PageSize=10
+GET /Companies(14146)/Catalog/Search?CategoryOrClassificationId=1&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -703,44 +688,29 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
-            "Name": "iPhone 4S 16GB White",
+            "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
             "CanonicalClassification": {
-                "Id": 1,
+                "Id": 4,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
                         "Id": 2,
-                        "Name": "Device"
+                        "Name": "Devices"
                     }
                 ]
             },
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
-            "ClassificationTreeId": 21,
-            "ColorDefinition": {
-                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-                "Name": "Emerald Green",
-                "ColorTags": [
-                    {
-                        "Id": 5,
-                        "Name": "Green",
-                        "ColorCode": "#51B14D"
-                    }
-                ],
-                "Swatch": {
-                    "Type": "ColorCode",
-                    "ColorCode": "#238718"
-                }
-            },
-            "CompanyId": 1,
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+            "ClassificationTreeId": 1,
+            "CompanyId": 14146,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "HeroShotId": "44f60963-5515-44bc-9509-71aef6463580",
             "Identifiers": [
                 {
                     "Sku": "EM-JE040-RA",
                     "SkuType": "ManufacturerSku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Description": "Manufacturer SKU"
                 }
@@ -748,22 +718,22 @@ HTTP 200 Content-Type: application/json
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
+                "Id": 13149,
+                "Name": "OtterBox"
             },
-            "MasterProductId": 3,
+            "MasterProductId": 1248,
             "Msrp": {
                 "Amount": 100,
                 "CurrencyCode": "USD"
             },
             "ProductVersion": 1,
-            "ShortDescription": "Better then iPhone 3G",
-            "Slug": "M3-V1",
+            "ShortDescription": "Next is Now",
+            "Slug": "M1248-V1",
             "VariationId": 1,
             "Vendors": [
                 {
-                    "Id": 14,
-                    "Name": "SampleSupplier"
+                    "Id": 14107,
+                    "Name": "NOZAMA Inc."
                 }
             ]
         }
@@ -772,15 +742,15 @@ HTTP 200 Content-Type: application/json
         "ClassificationAndCategories": [
             {
                 "Count": 1,
-                "Item": 1
+                "Item": 4
             }
         ],
         "Manufacturers": [
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ],
@@ -788,8 +758,8 @@ HTTP 200 Content-Type: application/json
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ]
@@ -842,7 +812,7 @@ GET /Companies({CompanyId})/Catalog/Search?ManufacturerIds={ManufacturerIds}&Pag
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?ManufacturerIds=4,5&Page=1&PageSize=10
+GET /Companies(14146)/Catalog/Search?ManufacturerIds=10540&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -860,44 +830,29 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
-            "Name": "iPhone 4S 16GB White",
+            "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
             "CanonicalClassification": {
-                "Id": 1,
+                "Id": 4,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
                         "Id": 2,
-                        "Name": "Device"
+                        "Name": "Devices"
                     }
                 ]
             },
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
-            "ClassificationTreeId": 21,
-            "ColorDefinition": {
-                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-                "Name": "Emerald Green",
-                "ColorTags": [
-                    {
-                        "Id": 5,
-                        "Name": "Green",
-                        "ColorCode": "#51B14D"
-                    }
-                ],
-                "Swatch": {
-                    "Type": "ColorCode",
-                    "ColorCode": "#238718"
-                }
-            },
-            "CompanyId": 1,
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+            "ClassificationTreeId": 1,
+            "CompanyId": 14146,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "HeroShotId": "44f60963-5515-44bc-9509-71aef6463580",
             "Identifiers": [
                 {
                     "Sku": "EM-JE040-RA",
                     "SkuType": "ManufacturerSku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Description": "Manufacturer SKU"
                 }
@@ -905,22 +860,22 @@ HTTP 200 Content-Type: application/json
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
+                "Id": 13149,
+                "Name": "OtterBox"
             },
-            "MasterProductId": 3,
+            "MasterProductId": 1248,
             "Msrp": {
                 "Amount": 100,
                 "CurrencyCode": "USD"
             },
             "ProductVersion": 1,
-            "ShortDescription": "Better then iPhone 3G",
-            "Slug": "M3-V1",
+            "ShortDescription": "Next is Now",
+            "Slug": "M1248-V1",
             "VariationId": 1,
             "Vendors": [
                 {
-                    "Id": 14,
-                    "Name": "SampleSupplier"
+                    "Id": 14107,
+                    "Name": "NOZAMA Inc."
                 }
             ]
         }
@@ -929,15 +884,15 @@ HTTP 200 Content-Type: application/json
         "ClassificationAndCategories": [
             {
                 "Count": 1,
-                "Item": 1
+                "Item": 4
             }
         ],
         "Manufacturers": [
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ],
@@ -945,8 +900,8 @@ HTTP 200 Content-Type: application/json
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ]
@@ -999,7 +954,7 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&Page={Page}&Pag
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?VendorIds=47,42&Page=1&PageSize=10
+GET /Companies(14146)/Catalog/Search?VendorIds=1217&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1017,44 +972,29 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
-            "Name": "iPhone 4S 16GB White",
+            "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
             "CanonicalClassification": {
-                "Id": 1,
+                "Id": 4,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
                         "Id": 2,
-                        "Name": "Device"
+                        "Name": "Devices"
                     }
                 ]
             },
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
-            "ClassificationTreeId": 21,
-            "ColorDefinition": {
-                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-                "Name": "Emerald Green",
-                "ColorTags": [
-                    {
-                        "Id": 5,
-                        "Name": "Green",
-                        "ColorCode": "#51B14D"
-                    }
-                ],
-                "Swatch": {
-                    "Type": "ColorCode",
-                    "ColorCode": "#238718"
-                }
-            },
-            "CompanyId": 1,
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+            "ClassificationTreeId": 1,
+            "CompanyId": 14146,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "HeroShotId": "44f60963-5515-44bc-9509-71aef6463580",
             "Identifiers": [
                 {
                     "Sku": "EM-JE040-RA",
                     "SkuType": "ManufacturerSku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Description": "Manufacturer SKU"
                 }
@@ -1062,22 +1002,22 @@ HTTP 200 Content-Type: application/json
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
+                "Id": 13149,
+                "Name": "OtterBox"
             },
-            "MasterProductId": 3,
+            "MasterProductId": 1248,
             "Msrp": {
                 "Amount": 100,
                 "CurrencyCode": "USD"
             },
             "ProductVersion": 1,
-            "ShortDescription": "Better then iPhone 3G",
-            "Slug": "M3-V1",
+            "ShortDescription": "Next is Now",
+            "Slug": "M1248-V1",
             "VariationId": 1,
             "Vendors": [
                 {
-                    "Id": 14,
-                    "Name": "SampleSupplier"
+                    "Id": 14107,
+                    "Name": "NOZAMA Inc."
                 }
             ]
         }
@@ -1086,15 +1026,15 @@ HTTP 200 Content-Type: application/json
         "ClassificationAndCategories": [
             {
                 "Count": 1,
-                "Item": 1
+                "Item": 4
             }
         ],
         "Manufacturers": [
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ],
@@ -1102,8 +1042,8 @@ HTTP 200 Content-Type: application/json
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ]
@@ -1156,7 +1096,7 @@ GET /Companies({CompanyId})/Catalog/Search?IsDropshippable={IsDropShippable}&Pag
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?IsDropshippable=true&Page=1&PageSize=10
+GET /Companies(14146)/Catalog/Search?IsDropshippable=true&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1174,44 +1114,29 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
-            "Name": "iPhone 4S 16GB White",
+            "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
             "CanonicalClassification": {
-                "Id": 1,
+                "Id": 4,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
                         "Id": 2,
-                        "Name": "Device"
+                        "Name": "Devices"
                     }
                 ]
             },
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
-            "ClassificationTreeId": 21,
-            "ColorDefinition": {
-                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-                "Name": "Emerald Green",
-                "ColorTags": [
-                    {
-                        "Id": 5,
-                        "Name": "Green",
-                        "ColorCode": "#51B14D"
-                    }
-                ],
-                "Swatch": {
-                    "Type": "ColorCode",
-                    "ColorCode": "#238718"
-                }
-            },
-            "CompanyId": 1,
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+            "ClassificationTreeId": 1,
+            "CompanyId": 14146,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "HeroShotId": "44f60963-5515-44bc-9509-71aef6463580",
             "Identifiers": [
                 {
                     "Sku": "EM-JE040-RA",
                     "SkuType": "ManufacturerSku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Description": "Manufacturer SKU"
                 }
@@ -1219,22 +1144,22 @@ HTTP 200 Content-Type: application/json
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
+                "Id": 13149,
+                "Name": "OtterBox"
             },
-            "MasterProductId": 3,
+            "MasterProductId": 1248,
             "Msrp": {
                 "Amount": 100,
                 "CurrencyCode": "USD"
             },
             "ProductVersion": 1,
-            "ShortDescription": "Better then iPhone 3G",
-            "Slug": "M3-V1",
+            "ShortDescription": "Next is Now",
+            "Slug": "M1248-V1",
             "VariationId": 1,
             "Vendors": [
                 {
-                    "Id": 14,
-                    "Name": "SampleSupplier"
+                    "Id": 14107,
+                    "Name": "NOZAMA Inc."
                 }
             ]
         }
@@ -1243,15 +1168,15 @@ HTTP 200 Content-Type: application/json
         "ClassificationAndCategories": [
             {
                 "Count": 1,
-                "Item": 1
+                "Item": 4
             }
         ],
         "Manufacturers": [
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ],
@@ -1259,8 +1184,8 @@ HTTP 200 Content-Type: application/json
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ]
@@ -1324,7 +1249,7 @@ GET /Companies({CompanyId})/Catalog/Search?SearchTerms={SearchTerms}&OrderBy={Or
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
+GET /Companies(14146)/Catalog/Search?SearchTerms=iPhone&OrderBy=name&OrderDir=asc&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1342,44 +1267,29 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
-            "Name": "iPhone 4S 16GB White",
+            "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
             "CanonicalClassification": {
-                "Id": 1,
+                "Id": 4,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
                         "Id": 2,
-                        "Name": "Device"
+                        "Name": "Devices"
                     }
                 ]
             },
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
-            "ClassificationTreeId": 21,
-            "ColorDefinition": {
-                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-                "Name": "Emerald Green",
-                "ColorTags": [
-                    {
-                        "Id": 5,
-                        "Name": "Green",
-                        "ColorCode": "#51B14D"
-                    }
-                ],
-                "Swatch": {
-                    "Type": "ColorCode",
-                    "ColorCode": "#238718"
-                }
-            },
-            "CompanyId": 1,
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+            "ClassificationTreeId": 1,
+            "CompanyId": 14146,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "HeroShotId": "44f60963-5515-44bc-9509-71aef6463580",
             "Identifiers": [
                 {
                     "Sku": "EM-JE040-RA",
                     "SkuType": "ManufacturerSku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Description": "Manufacturer SKU"
                 }
@@ -1387,22 +1297,22 @@ HTTP 200 Content-Type: application/json
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
+                "Id": 13149,
+                "Name": "OtterBox"
             },
-            "MasterProductId": 3,
+            "MasterProductId": 1248,
             "Msrp": {
                 "Amount": 100,
                 "CurrencyCode": "USD"
             },
             "ProductVersion": 1,
-            "ShortDescription": "Better then iPhone 3G",
-            "Slug": "M3-V1",
+            "ShortDescription": "Next is Now",
+            "Slug": "M1248-V1",
             "VariationId": 1,
             "Vendors": [
                 {
-                    "Id": 14,
-                    "Name": "SampleSupplier"
+                    "Id": 14107,
+                    "Name": "NOZAMA Inc."
                 }
             ]
         }
@@ -1411,15 +1321,15 @@ HTTP 200 Content-Type: application/json
         "ClassificationAndCategories": [
             {
                 "Count": 1,
-                "Item": 1
+                "Item": 4
             }
         ],
         "Manufacturers": [
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ],
@@ -1427,8 +1337,8 @@ HTTP 200 Content-Type: application/json
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ]
@@ -1513,7 +1423,7 @@ GET /Companies({CompanyId})/Catalog/Search?VendorIds={VendorIds}&ManufacturerIds
 <h5>Example</h5>
 
 <pre>
-GET /Companies(1)/Catalog/Search?VendorIds=47,42&ManufacturerIds=4,5&IsDropshippable=true&CategoryOrClassificationId=4&ClassificationTreeId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&PrivateProduct=false&Page=1&PageSize=10
+GET /Companies(14146)/Catalog/Search?VendorIds=1217&ManufacturerIds=10540&IsDropshippable=true&CategoryOrClassificationId=4&ClassificationTreeId=1&SearchTerms=iPhone&OrderBy=name&OrderDir=asc&PrivateProduct=false&Page=1&PageSize=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 
@@ -1531,44 +1441,29 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Items": [
         {
-            "Name": "iPhone 4S 16GB White",
+            "Name": "Galaxy S6 edge+ 32GB - Black Sapphire",
             "CanonicalClassification": {
-                "Id": 1,
+                "Id": 4,
                 "Name": "Smartphones",
                 "ParentCategories": [
                     {
                         "Id": 2,
-                        "Name": "Device"
+                        "Name": "Devices"
                     }
                 ]
             },
-            "CatalogItemId": "d60a8776-2f1f-430a-88f6-6180de43887d",
-            "ClassificationTreeId": 21,
-            "ColorDefinition": {
-                "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-                "Name": "Emerald Green",
-                "ColorTags": [
-                    {
-                        "Id": 5,
-                        "Name": "Green",
-                        "ColorCode": "#51B14D"
-                    }
-                ],
-                "Swatch": {
-                    "Type": "ColorCode",
-                    "ColorCode": "#238718"
-                }
-            },
-            "CompanyId": 1,
+            "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+            "ClassificationTreeId": 1,
+            "CompanyId": 14146,
             "DateAddedUtc": "2011-10-14T12:00:00.000",
-            "HeroShotId": "95905d3e-5e01-4735-96dd-61d78eeb6ea9",
+            "HeroShotId": "44f60963-5515-44bc-9509-71aef6463580",
             "Identifiers": [
                 {
                     "Sku": "EM-JE040-RA",
                     "SkuType": "ManufacturerSku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Description": "Manufacturer SKU"
                 }
@@ -1576,22 +1471,22 @@ HTTP 200 Content-Type: application/json
             "IsLinkedToCuratedProduct": true,
             "IsDropShippable": true,
             "Manufacturer": {
-                "Id": 4,
-                "Name": "SampleManufacturer"
+                "Id": 13149,
+                "Name": "OtterBox"
             },
-            "MasterProductId": 3,
+            "MasterProductId": 1248,
             "Msrp": {
                 "Amount": 100,
                 "CurrencyCode": "USD"
             },
             "ProductVersion": 1,
-            "ShortDescription": "Better then iPhone 3G",
-            "Slug": "M3-V1",
+            "ShortDescription": "Next is Now",
+            "Slug": "M1248-V1",
             "VariationId": 1,
             "Vendors": [
                 {
-                    "Id": 14,
-                    "Name": "SampleSupplier"
+                    "Id": 14107,
+                    "Name": "NOZAMA Inc."
                 }
             ]
         }
@@ -1600,15 +1495,15 @@ HTTP 200 Content-Type: application/json
         "ClassificationAndCategories": [
             {
                 "Count": 1,
-                "Item": 1
+                "Item": 4
             }
         ],
         "Manufacturers": [
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ],
@@ -1616,8 +1511,8 @@ HTTP 200 Content-Type: application/json
             {
                 "Count": 1,
                 "Item": {
-                    "Id": 4,
-                    "Name": "SampleManufacturer"
+                    "Id": 13149,
+                    "Name": "OtterBox"
                 }
             }
         ]

@@ -4,9 +4,15 @@ permalink: /api/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 14-01-2016
+last_updated: 22-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -32,18 +38,18 @@ A ProductDocument represents the [hierarchical structure](/concepts/product-stru
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `8` |
 | Classification | object | [Classification](/api/classification-tree/#classification) information |  |
-| Classification.TreeId | Integer | Identifier for a ClassificationTree | `21` |
-| Classification.Id | Integer | Identifier for a Classification | `1` |
+| Classification.TreeId | Integer | Identifier for a ClassificationTree | `1` |
+| Classification.Id | Integer | Identifier for a Classification | `4` |
 | Classification.Name | String | Name of the Classification | `Smartphones` |
 | ColorDefinitions | Array[<a href='#colordefinition'>ColorDefinition</a>] | List of [ColorDefinitions](/api/catalog/#colordefinition) |  |
 | CreatedUtc | DateTime | Created date in UTC | `2015-05-28T12:00:00.000Z` |
 | LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-28T12:00:00.000Z` |
 | Manufacturer | object | [Manufacturer](/api/entity-store/#manufacturer) information |  |
-| Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `4` |
-| Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `SampleManufacturer` |
+| Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `13149` |
+| Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `OtterBox` |
 | Owner | object | Indicates if this Product is publicly accessible (null) or private (not null) |  |
-| Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `1` |
-| Owner.Name | String | For private products, Name of the Company that owns this Product | `SampleCompany` |
+| Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `14146` |
+| Owner.Name | String | For private products, Name of the Company that owns this Product | `Kentel Corp` |
 | RevisionGroups | Array[<a href='#revisiongroup'>RevisionGroup</a>] | Revisions |  |
 | RootRevision | <a href='#masterproduct'>MasterProduct</a> | Master Product, root of the Product hierarchy |  |
 | Version | Integer | The latest revision number | `130` |
@@ -53,7 +59,7 @@ A ProductDocument represents the [hierarchical structure](/concepts/product-stru
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ColorDefinitionId | String | Unique identifier for a ColorDefinition | `e572461b-17b0-44c8-9b27-ca76904b9ee2` |
+| ColorDefinitionId | String | Unique identifier for a ColorDefinition | `5c6e2779-79d1-4fbd-b6a8-36b81e851b15` |
 | FieldValues | Array[<a href='#fieldvalue'>FieldValue</a>] | List of FieldValues which represent the properties this Master Product has such as name, screen size, etc |  |
 | IdentifierGroups | Array[<a href='#identifiergroup'>IdentifierGroup</a>] | List of IdentifierGroups |  |
 | IsArchived | Boolean | A flag to indicate if the MasterProduct is archived | `false` |
@@ -70,8 +76,8 @@ An Identifier is a value that uniquely represents a product within a certain con
 | Identifiers | Array[object] | List of Identifiers of the given type |  |
 | Description | String | Description | `Manufacturer sku` |
 | Entity | object | Manufacturer or Vendor information for ManufacturerSKU or VendorSKU |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
-| Entity.Name | String | Entity name | `SampleCompany` |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
+| Entity.Name | String | Entity name | `Kentel Corp` |
 | Type | String | This value should match the Type property of the IdentifierGroup | `ManufacturerSKU` |
 | Value | String | Value | `ManufacturerSKU` |
 
@@ -81,8 +87,8 @@ An Identifier is a value that uniquely represents a product within a certain con
 |:-----|:----------|:------------|:--------|
 | Description | String | Description | `Manufacturer sku` |
 | Entity | object | Manufacturer or Vendor information for ManufacturerSKU or VendorSKU |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
-| Entity.Name | String | Entity name | `SampleCompany` |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
+| Entity.Name | String | Entity name | `Kentel Corp` |
 | Type | String | This value should match the Type property of the IdentifierGroup | `ManufacturerSKU` |
 | Value | String | Value | `ManufacturerSKU` |
 
@@ -104,10 +110,10 @@ To learn more about Master Products, Variations and Revisions, see {{product-str
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `5` |
-| ColorDefinitionId | String | Unique identifier for a ColorDefinition | `e572461b-17b0-44c8-9b27-ca76904b9ee2` |
+| ColorDefinitionId | String | Unique identifier for a ColorDefinition | `5c6e2779-79d1-4fbd-b6a8-36b81e851b15` |
 | Entity | object | An identifier for an Entity this Revision was created for |  |
-| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `1` |
-| Entity.Name | String | Entity name | `SampleCompany` |
+| Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
+| Entity.Name | String | Entity name | `Kentel Corp` |
 | FieldValues | Array[<a href='#fieldvalue'>FieldValue</a>] | FieldValues representing properties that determine how this Revision differs from its parent Variation or MasterProduct |  |
 | IdentifierGroups | Array[<a href='#identifiergroup'>IdentifierGroup</a>] | List of IdentifierGroups |  |
 | Regions | Array[object] | List of regions this Revision is applicable to |  |
@@ -121,7 +127,7 @@ To learn more about Master Products, Variations and Revisions, see {{product-str
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ColorDefinitionId | String | Unique identifier for a ColorDefinition | `e572461b-17b0-44c8-9b27-ca76904b9ee2` |
+| ColorDefinitionId | String | Unique identifier for a ColorDefinition | `5c6e2779-79d1-4fbd-b6a8-36b81e851b15` |
 | FieldValues | Array[<a href='#fieldvalue'>FieldValue</a>] | FieldValues representing properties that determine how this Revision differs from its parent Variation or MasterProduct |  |
 | IdentifierGroups | Array[<a href='#identifiergroup'>IdentifierGroup</a>] | List of IdentifierGroups |  |
 | IsArchived | Boolean | A flag to indicate if this Variation is archived. Archived Products are hidden from searches and can only be access directly. | `false` |
@@ -133,7 +139,7 @@ A FieldValue represents a product property and defines how Variations and Revisi
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| FieldDefinitionId | Integer | Identifier for a FieldDefinition | `84` |
+| FieldDefinitionId | Integer | Identifier for a FieldDefinition | `1` |
 | LanguageInvariantValue | String | Value for the FieldDefinition | `iPhone 4S 16 GB Black` |
 
 
@@ -194,40 +200,48 @@ POST /ProductDocs
 
 <h5>Example</h5>
 
-<pre>
-POST /ProductDocs
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-a-master-product" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-a-master-product" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-a-master-product" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-master-product" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-master-product" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-master-product">
+<pre><code class="language-http">POST /ProductDocs
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Classification": {
-        "TreeId": 21,
-        "Id": 1
+        "TreeId": 1,
+        "Id": 4
     },
     "ColorDefinitions": [
         {
-            "Name": "Emerald Green",
+            "Name": "Black Sapphire",
             "ColorTags": [
                 {
-                    "Id": 5
+                    "Id": 1
                 }
             ],
             "Swatch": {
                 "Type": "ColorCode",
-                "ColorCode": "#238718"
+                "ColorCode": "#C0C8D0"
             }
         }
     ],
     "Manufacturer": {
-        "Id": 4,
-        "Name": "SampleManufacturer"
+        "Id": 13149,
+        "Name": "OtterBox"
     },
     "Owner": {},
     "RootRevision": {
-        "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+        "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
         "FieldValues": [
             {
-                "FieldDefinitionId": 84,
+                "FieldDefinitionId": 1,
                 "LanguageInvariantValue": "iPhone 4S 16 GB Black"
             }
         ],
@@ -239,7 +253,7 @@ Content-Type: application/json
                     {
                         "Description": "Manufacturer sku",
                         "Entity": {
-                            "Id": 1
+                            "Id": 14146
                         },
                         "Type": "ManufacturerSKU",
                         "Value": "ManufacturerSKU"
@@ -248,13 +262,120 @@ Content-Type: application/json
             }
         ]
     }
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-a-master-product">
+<pre><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Classification": {
+        "TreeId": 1,
+        "Id": 4
+    },
+    "ColorDefinitions": [
+        {
+            "Name": "Black Sapphire",
+            "ColorTags": [
+                {
+                    "Id": 1
+                }
+            ],
+            "Swatch": {
+                "Type": "ColorCode",
+                "ColorCode": "#C0C8D0"
+            }
+        }
+    ],
+    "Manufacturer": {
+        "Id": 13149,
+        "Name": "OtterBox"
+    },
+    "Owner": {},
+    "RootRevision": {
+        "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+        "FieldValues": [
+            {
+                "FieldDefinitionId": 1,
+                "LanguageInvariantValue": "iPhone 4S 16 GB Black"
+            }
+        ],
+        "IdentifierGroups": [
+            {
+                "Type": "ManufacturerSKU",
+                "ForceOverride": false,
+                "Identifiers": [
+                    {
+                        "Description": "Manufacturer sku",
+                        "Entity": {
+                            "Id": 14146
+                        },
+                        "Type": "ManufacturerSKU",
+                        "Value": "ManufacturerSKU"
+                    }
+                ]
+            }
+        ]
+    }
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-master-product">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingAMasterProduct()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Classification\":{\"TreeId\":1,\"Id\":4},\"ColorDefinitions\":[{\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{},\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-master-product">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingAMasterProduct() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Classification\":{\"TreeId\":1,\"Id\":4},\"ColorDefinitions\":[{\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{},\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-master-product">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Classification\":{\"TreeId\":1,\"Id\":4},\"ColorDefinitions\":[{\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{},\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}}";
+
+response = RestClient.post 'https://productlibrarydemo.iqmetrix.net/v1/ProductDocs', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
 
-<a href='#productdocument'>ProductDocument</a>
+ <a href='#productdocument'>ProductDocument</a>
 
 <h5>Example</h5>
 
@@ -263,36 +384,36 @@ HTTP 201 Content-Type: application/json
 </pre><pre>{
     "Id": 8,
     "Classification": {
-        "TreeId": 21,
-        "Id": 1,
+        "TreeId": 1,
+        "Id": 4,
         "Name": "Smartphones"
     },
     "ColorDefinitions": [
         {
-            "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-            "Name": "Emerald Green",
+            "Id": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+            "Name": "Black Sapphire",
             "ColorTags": [
                 {
-                    "Id": 5,
-                    "Name": "Green",
-                    "ColorCode": "#51B14D"
+                    "Id": 1,
+                    "Name": "Black",
+                    "ColorCode": "#303232"
                 }
             ],
             "Swatch": {
                 "Type": "ColorCode",
-                "ColorCode": "#238718"
+                "ColorCode": "#C0C8D0"
             }
         }
     ],
     "CreatedUtc": "2015-05-28T12:00:00.000Z",
     "LastModifiedUtc": "2015-05-28T12:00:00.000Z",
     "Manufacturer": {
-        "Id": 4,
-        "Name": "SampleManufacturer"
+        "Id": 13149,
+        "Name": "OtterBox"
     },
     "Owner": {
-        "Id": 1,
-        "Name": "SampleCompany"
+        "Id": 14146,
+        "Name": "Kentel Corp"
     },
     "RevisionGroups": [
         {
@@ -301,14 +422,14 @@ HTTP 201 Content-Type: application/json
             "Revisions": [
                 {
                     "Id": 5,
-                    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "FieldValues": [
                         {
-                            "FieldDefinitionId": 84,
+                            "FieldDefinitionId": 1,
                             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
                         }
                     ],
@@ -320,8 +441,8 @@ HTTP 201 Content-Type: application/json
                                 {
                                     "Description": "Manufacturer sku",
                                     "Entity": {
-                                        "Id": 1,
-                                        "Name": "SampleCompany"
+                                        "Id": 14146,
+                                        "Name": "Kentel Corp"
                                     },
                                     "Type": "ManufacturerSKU",
                                     "Value": "ManufacturerSKU"
@@ -342,10 +463,10 @@ HTTP 201 Content-Type: application/json
         }
     ],
     "RootRevision": {
-        "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+        "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
         "FieldValues": [
             {
-                "FieldDefinitionId": 84,
+                "FieldDefinitionId": 1,
                 "LanguageInvariantValue": "iPhone 4S 16 GB Black"
             }
         ],
@@ -357,8 +478,8 @@ HTTP 201 Content-Type: application/json
                     {
                         "Description": "Manufacturer sku",
                         "Entity": {
-                            "Id": 1,
-                            "Name": "SampleCompany"
+                            "Id": 14146,
+                            "Name": "Kentel Corp"
                         },
                         "Type": "ManufacturerSKU",
                         "Value": "ManufacturerSKU"
@@ -392,7 +513,7 @@ GET /ProductDocs({ProductDocumentId})
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>) 
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a {{ProductDocument}}
     </li>
     </ul>
 
@@ -400,17 +521,78 @@ GET /ProductDocs({ProductDocumentId})
 
 <h5>Example</h5>
 
-<pre>
-GET /ProductDocs(undefined)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-product-hierarchy" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-product-hierarchy" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-product-hierarchy" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-product-hierarchy" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-product-hierarchy" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-product-hierarchy">
+<pre><code class="language-http">GET /ProductDocs(8)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-product-hierarchy">
+<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-product-hierarchy">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAProductHierarchy()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-product-hierarchy">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAProductHierarchy() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-product-hierarchy">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
 
-<a href='#productdocument'>ProductDocument</a>
+ <a href='#productdocument'>ProductDocument</a>
 
 <h5>Example</h5>
 
@@ -419,36 +601,36 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Id": 8,
     "Classification": {
-        "TreeId": 21,
-        "Id": 1,
+        "TreeId": 1,
+        "Id": 4,
         "Name": "Smartphones"
     },
     "ColorDefinitions": [
         {
-            "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-            "Name": "Emerald Green",
+            "Id": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+            "Name": "Black Sapphire",
             "ColorTags": [
                 {
-                    "Id": 5,
-                    "Name": "Green",
-                    "ColorCode": "#51B14D"
+                    "Id": 1,
+                    "Name": "Black",
+                    "ColorCode": "#303232"
                 }
             ],
             "Swatch": {
                 "Type": "ColorCode",
-                "ColorCode": "#238718"
+                "ColorCode": "#C0C8D0"
             }
         }
     ],
     "CreatedUtc": "2015-05-28T12:00:00.000Z",
     "LastModifiedUtc": "2015-05-28T12:00:00.000Z",
     "Manufacturer": {
-        "Id": 4,
-        "Name": "SampleManufacturer"
+        "Id": 13149,
+        "Name": "OtterBox"
     },
     "Owner": {
-        "Id": 1,
-        "Name": "SampleCompany"
+        "Id": 14146,
+        "Name": "Kentel Corp"
     },
     "RevisionGroups": [
         {
@@ -457,14 +639,14 @@ HTTP 200 Content-Type: application/json
             "Revisions": [
                 {
                     "Id": 5,
-                    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "FieldValues": [
                         {
-                            "FieldDefinitionId": 84,
+                            "FieldDefinitionId": 1,
                             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
                         }
                     ],
@@ -476,8 +658,8 @@ HTTP 200 Content-Type: application/json
                                 {
                                     "Description": "Manufacturer sku",
                                     "Entity": {
-                                        "Id": 1,
-                                        "Name": "SampleCompany"
+                                        "Id": 14146,
+                                        "Name": "Kentel Corp"
                                     },
                                     "Type": "ManufacturerSKU",
                                     "Value": "ManufacturerSKU"
@@ -498,10 +680,10 @@ HTTP 200 Content-Type: application/json
         }
     ],
     "RootRevision": {
-        "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+        "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
         "FieldValues": [
             {
-                "FieldDefinitionId": 84,
+                "FieldDefinitionId": 1,
                 "LanguageInvariantValue": "iPhone 4S 16 GB Black"
             }
         ],
@@ -513,8 +695,8 @@ HTTP 200 Content-Type: application/json
                     {
                         "Description": "Manufacturer sku",
                         "Entity": {
-                            "Id": 1,
-                            "Name": "SampleCompany"
+                            "Id": 14146,
+                            "Name": "Kentel Corp"
                         },
                         "Type": "ManufacturerSKU",
                         "Value": "ManufacturerSKU"
@@ -547,7 +729,7 @@ PUT /ProductDocs({ProductDocumentId})
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>) 
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a {{ProductDocument}}
     </li>
     </ul>
 
@@ -559,44 +741,52 @@ PUT /ProductDocs({ProductDocumentId})
 
 <h5>Example</h5>
 
-<pre>
-PUT /ProductDocs(undefined)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-updating-a-master-product" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-updating-a-master-product" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-updating-a-master-product" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-master-product" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-master-product" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-master-product">
+<pre><code class="language-http">PUT /ProductDocs(8)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Id": 8,
     "Classification": {
-        "TreeId": 21,
-        "Id": 1,
+        "TreeId": 1,
+        "Id": 4,
         "Name": "Smartphones"
     },
     "ColorDefinitions": [
         {
-            "Id": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-            "Name": "Emerald Green",
+            "Id": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+            "Name": "Black Sapphire",
             "ColorTags": [
                 {
-                    "Id": 5,
-                    "Name": "Green",
-                    "ColorCode": "#51B14D"
+                    "Id": 1,
+                    "Name": "Black",
+                    "ColorCode": "#303232"
                 }
             ],
             "Swatch": {
                 "Type": "ColorCode",
-                "ColorCode": "#238718"
+                "ColorCode": "#C0C8D0"
             }
         }
     ],
     "CreatedUtc": "2015-05-28T12:00:00.000Z",
     "LastModifiedUtc": "2015-05-28T12:00:00.000Z",
     "Manufacturer": {
-        "Id": 4,
-        "Name": "SampleManufacturer"
+        "Id": 13149,
+        "Name": "OtterBox"
     },
     "Owner": {
-        "Id": 1,
-        "Name": "SampleCompany"
+        "Id": 14146,
+        "Name": "Kentel Corp"
     },
     "RevisionGroups": [
         {
@@ -605,14 +795,14 @@ Content-Type: application/json
             "Revisions": [
                 {
                     "Id": 5,
-                    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+                    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "FieldValues": [
                         {
-                            "FieldDefinitionId": 84,
+                            "FieldDefinitionId": 1,
                             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
                         }
                     ],
@@ -624,8 +814,8 @@ Content-Type: application/json
                                 {
                                     "Description": "Manufacturer sku",
                                     "Entity": {
-                                        "Id": 1,
-                                        "Name": "SampleCompany"
+                                        "Id": 14146,
+                                        "Name": "Kentel Corp"
                                     },
                                     "Type": "ManufacturerSKU",
                                     "Value": "ManufacturerSKU"
@@ -646,10 +836,10 @@ Content-Type: application/json
         }
     ],
     "RootRevision": {
-        "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+        "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
         "FieldValues": [
             {
-                "FieldDefinitionId": 84,
+                "FieldDefinitionId": 1,
                 "LanguageInvariantValue": "iPhone 4S 16 GB Black"
             }
         ],
@@ -661,8 +851,8 @@ Content-Type: application/json
                     {
                         "Description": "Manufacturer sku",
                         "Entity": {
-                            "Id": 1,
-                            "Name": "SampleCompany"
+                            "Id": 14146,
+                            "Name": "Kentel Corp"
                         },
                         "Type": "ManufacturerSKU",
                         "Value": "ManufacturerSKU"
@@ -673,8 +863,175 @@ Content-Type: application/json
         "IsArchived": false
     },
     "Version": 130
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-updating-a-master-product">
+<pre><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Id": 8,
+    "Classification": {
+        "TreeId": 1,
+        "Id": 4,
+        "Name": "Smartphones"
+    },
+    "ColorDefinitions": [
+        {
+            "Id": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+            "Name": "Black Sapphire",
+            "ColorTags": [
+                {
+                    "Id": 1,
+                    "Name": "Black",
+                    "ColorCode": "#303232"
+                }
+            ],
+            "Swatch": {
+                "Type": "ColorCode",
+                "ColorCode": "#C0C8D0"
+            }
+        }
+    ],
+    "CreatedUtc": "2015-05-28T12:00:00.000Z",
+    "LastModifiedUtc": "2015-05-28T12:00:00.000Z",
+    "Manufacturer": {
+        "Id": 13149,
+        "Name": "OtterBox"
+    },
+    "Owner": {
+        "Id": 14146,
+        "Name": "Kentel Corp"
+    },
+    "RevisionGroups": [
+        {
+            "GroupType": "Entity",
+            "Order": 1,
+            "Revisions": [
+                {
+                    "Id": 5,
+                    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+                    "Entity": {
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
+                    },
+                    "FieldValues": [
+                        {
+                            "FieldDefinitionId": 1,
+                            "LanguageInvariantValue": "iPhone 4S 16 GB Black"
+                        }
+                    ],
+                    "IdentifierGroups": [
+                        {
+                            "Type": "ManufacturerSKU",
+                            "ForceOverride": false,
+                            "Identifiers": [
+                                {
+                                    "Description": "Manufacturer sku",
+                                    "Entity": {
+                                        "Id": 14146,
+                                        "Name": "Kentel Corp"
+                                    },
+                                    "Type": "ManufacturerSKU",
+                                    "Value": "ManufacturerSKU"
+                                }
+                            ]
+                        }
+                    ],
+                    "Regions": [
+                        {
+                            "Code": "CAMB",
+                            "Country": "Canada",
+                            "State": "Manitoba"
+                        }
+                    ]
+                }
+            ],
+            "VariationId": 5
+        }
+    ],
+    "RootRevision": {
+        "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+        "FieldValues": [
+            {
+                "FieldDefinitionId": 1,
+                "LanguageInvariantValue": "iPhone 4S 16 GB Black"
+            }
+        ],
+        "IdentifierGroups": [
+            {
+                "Type": "ManufacturerSKU",
+                "ForceOverride": false,
+                "Identifiers": [
+                    {
+                        "Description": "Manufacturer sku",
+                        "Entity": {
+                            "Id": 14146,
+                            "Name": "Kentel Corp"
+                        },
+                        "Type": "ManufacturerSKU",
+                        "Value": "ManufacturerSKU"
+                    }
+                ]
+            }
+        ],
+        "IsArchived": false
+    },
+    "Version": 130
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-master-product">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse UpdatingAMasterProduct()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Id\":8,\"Classification\":{\"TreeId\":1,\"Id\":4,\"Name\":\"Smartphones\"},\"ColorDefinitions\":[{\"Id\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1,\"Name\":\"Black\",\"ColorCode\":\"#303232\"}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"CreatedUtc\":\"2015-05-28T12:00:00.000Z\",\"LastModifiedUtc\":\"2015-05-28T12:00:00.000Z\",\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"RevisionGroups\":[{\"GroupType\":\"Entity\",\"Order\":1,\"Revisions\":[{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}],\"VariationId\":5}],\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false},\"Version\":130}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-master-product">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingAMasterProduct() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":8,\"Classification\":{\"TreeId\":1,\"Id\":4,\"Name\":\"Smartphones\"},\"ColorDefinitions\":[{\"Id\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1,\"Name\":\"Black\",\"ColorCode\":\"#303232\"}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"CreatedUtc\":\"2015-05-28T12:00:00.000Z\",\"LastModifiedUtc\":\"2015-05-28T12:00:00.000Z\",\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"RevisionGroups\":[{\"GroupType\":\"Entity\",\"Order\":1,\"Revisions\":[{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}],\"VariationId\":5}],\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false},\"Version\":130}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-master-product">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":8,\"Classification\":{\"TreeId\":1,\"Id\":4,\"Name\":\"Smartphones\"},\"ColorDefinitions\":[{\"Id\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1,\"Name\":\"Black\",\"ColorCode\":\"#303232\"}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"CreatedUtc\":\"2015-05-28T12:00:00.000Z\",\"LastModifiedUtc\":\"2015-05-28T12:00:00.000Z\",\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"RevisionGroups\":[{\"GroupType\":\"Entity\",\"Order\":1,\"Revisions\":[{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}],\"VariationId\":5}],\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false},\"Version\":130}";
+
+response = RestClient.put 'https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -706,7 +1063,7 @@ POST /ProductDocs({ProductDocumentId})/Variations
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a [ProductDocument](#productdocument)
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a {{ProductDocument}}
     </li>
     </ul>
 
@@ -718,16 +1075,24 @@ POST /ProductDocs({ProductDocumentId})/Variations
 
 <h5>Example</h5>
 
-<pre>
-POST /ProductDocs(8)/Variations
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-a-variation" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-a-variation" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-a-variation" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-variation" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-variation" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-variation">
+<pre><code class="language-http">POST /ProductDocs(8)/Variations
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+</code><code class="language-csharp">{
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "FieldValues": [
         {
-            "FieldDefinitionId": 84,
+            "FieldDefinitionId": 1,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
@@ -739,7 +1104,7 @@ Content-Type: application/json
                 {
                     "Description": "Manufacturer sku",
                     "Entity": {
-                        "Id": 1
+                        "Id": 14146
                     },
                     "Type": "ManufacturerSKU",
                     "Value": "ManufacturerSKU"
@@ -747,13 +1112,95 @@ Content-Type: application/json
             ]
         }
     ]
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-a-variation">
+<pre><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+    "FieldValues": [
+        {
+            "FieldDefinitionId": 1,
+            "LanguageInvariantValue": "iPhone 4S 16 GB Black"
+        }
+    ],
+    "IdentifierGroups": [
+        {
+            "Type": "ManufacturerSKU",
+            "ForceOverride": false,
+            "Identifiers": [
+                {
+                    "Description": "Manufacturer sku",
+                    "Entity": {
+                        "Id": 14146
+                    },
+                    "Type": "ManufacturerSKU",
+                    "Value": "ManufacturerSKU"
+                }
+            ]
+        }
+    ]
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-variation">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingAVariation()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-variation">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingAVariation() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-variation">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}";
+
+response = RestClient.post 'https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
 
-<ul><li><code>VariationId</code> (Integer) - Identifier for a {{Variation}}</li></ul>
+ <ul><li><code>VariationId</code> (Integer) - Identifier for a {{Variation}}</li></ul>
 
 <h5>Example</h5>
 
@@ -783,7 +1230,7 @@ PUT /ProductDocs({ProductDocumentId})/Variations?variationId={VariationId}
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a [ProductDocument](#productdocument)
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a {{ProductDocument}}
     </li>
     
     <li>
@@ -799,16 +1246,24 @@ PUT /ProductDocs({ProductDocumentId})/Variations?variationId={VariationId}
 
 <h5>Example</h5>
 
-<pre>
-PUT /ProductDocs(8)/Variations?variationId=1
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-updating-a-variation" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-updating-a-variation" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-updating-a-variation" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-variation" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-variation" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-variation">
+<pre><code class="language-http">PUT /ProductDocs(8)/Variations?variationId=1
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+</code><code class="language-csharp">{
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "FieldValues": [
         {
-            "FieldDefinitionId": 84,
+            "FieldDefinitionId": 1,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
@@ -820,8 +1275,8 @@ Content-Type: application/json
                 {
                     "Description": "Manufacturer sku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Type": "ManufacturerSKU",
                     "Value": "ManufacturerSKU"
@@ -830,8 +1285,92 @@ Content-Type: application/json
         }
     ],
     "IsArchived": false
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-updating-a-variation">
+<pre><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations?variationId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+    "FieldValues": [
+        {
+            "FieldDefinitionId": 1,
+            "LanguageInvariantValue": "iPhone 4S 16 GB Black"
+        }
+    ],
+    "IdentifierGroups": [
+        {
+            "Type": "ManufacturerSKU",
+            "ForceOverride": false,
+            "Identifiers": [
+                {
+                    "Description": "Manufacturer sku",
+                    "Entity": {
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
+                    },
+                    "Type": "ManufacturerSKU",
+                    "Value": "ManufacturerSKU"
+                }
+            ]
+        }
+    ],
+    "IsArchived": false
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-variation">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse UpdatingAVariation()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations?variationId=1");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-variation">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingAVariation() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations?variationId=1");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-variation">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false}";
+
+response = RestClient.put 'https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations?variationId=1', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -864,11 +1403,11 @@ POST /ProductDocs({ProductDocumentId})/Revisions?variationId={VariationId}&count
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a [ProductDocument](#productdocument)
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a {{ProductDocument}}
     </li>
     
     <li>
-        <code>VariationId</code> (Optional)  - Identifier for a [Variation](#variation), to get a list of Variations for a Product, see [Getting a Product Hierarchy](#getting-a-product-hierarchy)
+        <code>VariationId</code> (Optional)  - Identifier for a {{Variation}}, to get a list of Variations for a Product, see <a href="#getting-a-product-hierarchy">Getting a Product Hierarchy</a>
     </li>
     
     <li>
@@ -892,16 +1431,24 @@ POST /ProductDocs({ProductDocumentId})/Revisions?variationId={VariationId}&count
 
 <h5>Example</h5>
 
-<pre>
-POST /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-a-revision" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-a-revision" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-a-revision" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-revision" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-revision" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-revision">
+<pre><code class="language-http">POST /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
-    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+</code><code class="language-csharp">{
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "FieldValues": [
         {
-            "FieldDefinitionId": 84,
+            "FieldDefinitionId": 1,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
@@ -913,7 +1460,7 @@ Content-Type: application/json
                 {
                     "Description": "Manufacturer sku",
                     "Entity": {
-                        "Id": 1
+                        "Id": 14146
                     },
                     "Type": "ManufacturerSKU",
                     "Value": "ManufacturerSKU"
@@ -921,28 +1468,14 @@ Content-Type: application/json
             ]
         }
     ]
-}
-</pre>
-
-<h4>Response</h4>
-
-
-<a href='#revision'>Revision</a>
-
-<h5>Example</h5>
-
-<pre>
-HTTP 201 Content-Type: application/json
-</pre><pre>{
-    "Id": 5,
-    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
-    "Entity": {
-        "Id": 1,
-        "Name": "SampleCompany"
-    },
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-a-revision">
+<pre><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "FieldValues": [
         {
-            "FieldDefinitionId": 84,
+            "FieldDefinitionId": 1,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
@@ -954,8 +1487,104 @@ HTTP 201 Content-Type: application/json
                 {
                     "Description": "Manufacturer sku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146
+                    },
+                    "Type": "ManufacturerSKU",
+                    "Value": "ManufacturerSKU"
+                }
+            ]
+        }
+    ]
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-revision">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse CreatingARevision()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-revision">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingARevision() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-revision">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}";
+
+response = RestClient.post 'https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ <a href='#revision'>Revision</a>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 201 Content-Type: application/json
+</pre><pre>{
+    "Id": 5,
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+    "Entity": {
+        "Id": 14146,
+        "Name": "Kentel Corp"
+    },
+    "FieldValues": [
+        {
+            "FieldDefinitionId": 1,
+            "LanguageInvariantValue": "iPhone 4S 16 GB Black"
+        }
+    ],
+    "IdentifierGroups": [
+        {
+            "Type": "ManufacturerSKU",
+            "ForceOverride": false,
+            "Identifiers": [
+                {
+                    "Description": "Manufacturer sku",
+                    "Entity": {
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Type": "ManufacturerSKU",
                     "Value": "ManufacturerSKU"
@@ -999,11 +1628,11 @@ PUT /ProductDocs({ProductDocumentId})/Revisions?variationId={VariationId}&countr
 <ul>
     
     <li>
-        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a [ProductDocument](#productdocument)
+        <code>ProductDocumentId</code> (<strong>Required</strong>)  - Identifier for a {{ProductDocument}}
     </li>
     
     <li>
-        <code>VariationId</code> (Optional)  - Identifier for a [Variation](#variation), to get a list of Variations for a Product, see [Getting a Product Hierarchy](#getting-a-product-hierarchy)
+        <code>VariationId</code> (Optional)  - Identifier for a {{Variation}}, to get a list of Variations for a Product, see <a href="#getting-a-product-hierarchy">Getting a Product Hierarchy</a>
     </li>
     
     <li>
@@ -1027,21 +1656,29 @@ PUT /ProductDocs({ProductDocumentId})/Revisions?variationId={VariationId}&countr
 
 <h5>Example</h5>
 
-<pre>
-PUT /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-updating-a-revision" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-updating-a-revision" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-updating-a-revision" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-revision" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-revision" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-revision">
+<pre><code class="language-http">PUT /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Id": 5,
-    "ColorDefinitionId": "e572461b-17b0-44c8-9b27-ca76904b9ee2",
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "Entity": {
-        "Id": 1,
-        "Name": "SampleCompany"
+        "Id": 14146,
+        "Name": "Kentel Corp"
     },
     "FieldValues": [
         {
-            "FieldDefinitionId": 84,
+            "FieldDefinitionId": 1,
             "LanguageInvariantValue": "iPhone 4S 16 GB Black"
         }
     ],
@@ -1053,8 +1690,8 @@ Content-Type: application/json
                 {
                     "Description": "Manufacturer sku",
                     "Entity": {
-                        "Id": 1,
-                        "Name": "SampleCompany"
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
                     },
                     "Type": "ManufacturerSKU",
                     "Value": "ManufacturerSKU"
@@ -1069,8 +1706,103 @@ Content-Type: application/json
             "State": "Manitoba"
         }
     ]
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-updating-a-revision">
+<pre><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Id": 5,
+    "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
+    "Entity": {
+        "Id": 14146,
+        "Name": "Kentel Corp"
+    },
+    "FieldValues": [
+        {
+            "FieldDefinitionId": 1,
+            "LanguageInvariantValue": "iPhone 4S 16 GB Black"
+        }
+    ],
+    "IdentifierGroups": [
+        {
+            "Type": "ManufacturerSKU",
+            "ForceOverride": false,
+            "Identifiers": [
+                {
+                    "Description": "Manufacturer sku",
+                    "Entity": {
+                        "Id": 14146,
+                        "Name": "Kentel Corp"
+                    },
+                    "Type": "ManufacturerSKU",
+                    "Value": "ManufacturerSKU"
+                }
+            ]
+        }
+    ],
+    "Regions": [
+        {
+            "Code": "CAMB",
+            "Country": "Canada",
+            "State": "Manitoba"
+        }
+    ]
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-revision">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse UpdatingARevision()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-revision">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingARevision() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-revision">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}";
+
+response = RestClient.put 'https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -1103,17 +1835,78 @@ GET /ColorTags
 
 <h5>Example</h5>
 
-<pre>
-GET /ColorTags
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-color-tags" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-color-tags" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-color-tags" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-color-tags" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-color-tags" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-color-tags">
+<pre><code class="language-http">GET /ColorTags
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-color-tags">
+<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ColorTags" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-color-tags">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllColorTags()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ColorTags");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-color-tags">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllColorTags() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/ColorTags");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-color-tags">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://productlibrarydemo.iqmetrix.net/v1/ColorTags', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
 
-<ul><li><code>ColorTags</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ColorCode</code> (String) </li></ul></ul>
+ <ul><li><code>ColorTags</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>ColorCode</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -1122,9 +1915,9 @@ HTTP 200 Content-Type: application/json
 </pre><pre>{
     "ColorTags": [
         {
-            "Id": 5,
-            "Name": "Green",
-            "ColorCode": "#51B14D"
+            "Id": 1,
+            "Name": "Black",
+            "ColorCode": "#303232"
         }
     ]
 }</pre>
@@ -1205,11 +1998,11 @@ Therefore, these Revisions differ from the MasterProduct by MSRP, one Revision h
 
 Products in Product Library can have an **inheritance** relationship between a parent (Master Product or Variation) and child (Variation or Revision).
 
-Inheriting an [IdentifierGroup](#identigiergroup) allows a child to have an identicial set of [Identifiers](#identifier) as its parent.
+Inheriting an [IdentifierGroup](#identifiergroup) allows a child to have an identicial set of [Identifiers](#identifier) as its parent.
 
 IdentifierGroups can also be **synched**, allowing a child to automatically inherit any changes made to the inherited group.
 
-Note that Identifiers can only be synced as a complete set, either all Identifiers of a specific type (Vendur, UPC, Manufacturer) are synced, or none are.
+Note that Identifiers can only be synced as a complete set, either all Identifiers of a specific type (Vendor, UPC, Manufacturer) are synced, or none are.
 
 By forcing a child to override an IdentifierGroup, we prevent the sync and allow the child to have different Identifiers than its parent.
 
@@ -1267,7 +2060,7 @@ By forcing a child to override an IdentifierGroup, we prevent the sync and allow
 }
 ```
 
-The example above is a summarized {{MasterProduct}} with one child {{Variation}}, one Vendor SKU (`V8341221L`) and one Manufacturer SKU (`545512G/A`).
+The example above is a summarized {{MasterProduct}} which includes one child {{Variation}}, one Vendor SKU (`V8341221L`) and one Manufacturer SKU (`545512G/A`).
 
 With ForceOverride set to `true` for Vendor SKUs, we know that the child Variation has one and only one Vendor SKU - `V8341221L`.
 

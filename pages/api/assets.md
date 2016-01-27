@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 18-1-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -24,13 +24,13 @@ An **Asset** is an image or video associated with a Product.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| id | GUID | Unique identifier | `732130d2-b673-461c-812b-f2b614d6076e` |
-| name | String | File name | `iqmetrix.jpg` |
-| height | Integer | Height in pixels | `145` |
-| href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg` |
-| md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `2c8f3b3774df219b8246ca02a2a2a892` |
-| mimeType | String | The mime type | `image/jpeg` |
-| width | Integer | Width in pixels | `240` |
+| id | GUID | Unique identifier | `09fe1ee4-42b1-43a6-bd80-cd2bda21e90a` |
+| name | String | File name | `49ebd282-4161-4a9d-9b40-a5a20d144b6f.png` |
+| height | Integer | Height in pixels | `1024` |
+| href | String | URL that points to an actual file where the digital asset is stored | `https://amsdemo.iqmetrix.net/images/09fe1ee4-42b1-43a6-bd80-cd2bda21e90a.png` |
+| md5Checksum | String | String that can be used for upload integrity checks or comparing two assets | `1f88a2813737aa0019a63069586055ed` |
+| mimeType | String | The mime type | `image/png` |
+| width | Integer | Width in pixels | `502` |
 | success | Boolean | A flag to indicate that the Asset was uploaded. This only appears when asset is first uploaded | `true` |
 
 
@@ -52,27 +52,6 @@ POST /assets
 <h4>Headers</h4>
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: multipart/form-data</code></li></ul>
 
-
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: multipart/form-data" - "https://amsdemo.iqmetrix.net/assets" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://amsdemo.iqmetrix.net/assets");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "multipart/form-data"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
 
 
 
@@ -103,13 +82,13 @@ Content-Type: multipart/form-data
 <pre>
 HTTP 201 Content-Type: application/json
 </pre><pre>{
-    "id": "732130d2-b673-461c-812b-f2b614d6076e",
-    "name": "iqmetrix.jpg",
-    "height": 145,
-    "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-    "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-    "mimeType": "image/jpeg",
-    "width": 240,
+    "id": "09fe1ee4-42b1-43a6-bd80-cd2bda21e90a",
+    "name": "49ebd282-4161-4a9d-9b40-a5a20d144b6f.png",
+    "height": 1024,
+    "href": "https://amsdemo.iqmetrix.net/images/09fe1ee4-42b1-43a6-bd80-cd2bda21e90a.png",
+    "md5Checksum": "1f88a2813737aa0019a63069586055ed",
+    "mimeType": "image/png",
+    "width": 502,
     "success": true
 }</pre>
 
@@ -128,25 +107,6 @@ GET /assets/{AssetId}
 <ul><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Accept: application/json" - "https://amsdemo.iqmetrix.net/assets/732130d2-b673-461c-812b-f2b614d6076e" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://amsdemo.iqmetrix.net/assets/732130d2-b673-461c-812b-f2b614d6076e");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -161,7 +121,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /assets/732130d2-b673-461c-812b-f2b614d6076e
+GET /assets/09fe1ee4-42b1-43a6-bd80-cd2bda21e90a
 Accept: application/json
 
 </pre>
@@ -176,13 +136,13 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "id": "732130d2-b673-461c-812b-f2b614d6076e",
-    "name": "iqmetrix.jpg",
-    "height": 145,
-    "href": "https://amsdemostorage.blob.core.windows.net/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg",
-    "md5Checksum": "2c8f3b3774df219b8246ca02a2a2a892",
-    "mimeType": "image/jpeg",
-    "width": 240,
+    "id": "09fe1ee4-42b1-43a6-bd80-cd2bda21e90a",
+    "name": "49ebd282-4161-4a9d-9b40-a5a20d144b6f.png",
+    "height": 1024,
+    "href": "https://amsdemo.iqmetrix.net/images/09fe1ee4-42b1-43a6-bd80-cd2bda21e90a.png",
+    "md5Checksum": "1f88a2813737aa0019a63069586055ed",
+    "mimeType": "image/png",
+    "width": 502,
     "success": true
 }</pre>
 
@@ -198,24 +158,6 @@ GET /images/{AssetId}
 
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get - "https://amsdemo.iqmetrix.net/images/732130d2-b673-461c-812b-f2b614d6076e" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://amsdemo.iqmetrix.net/images/732130d2-b673-461c-812b-f2b614d6076e");
-var request = new RestRequest(Method.get);
- 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -230,7 +172,7 @@ IRestResponse response = client.Execute(request);
 <h5>Example</h5>
 
 <pre>
-GET /images/732130d2-b673-461c-812b-f2b614d6076e
+GET /images/09fe1ee4-42b1-43a6-bd80-cd2bda21e90a
 
 </pre>
 
@@ -242,9 +184,8 @@ GET /images/732130d2-b673-461c-812b-f2b614d6076e
 
 <pre>
 HTTP 303 Content-Type: application/text
-</pre><pre>Location: https://url/assets/732130d2-b673-461c-812b-f2b614d6076e.jpg</pre>
-
-
+</pre><pre>Location: https://amsdemo.iqmetrix.net/images/09fe1ee4-42b1-43a6-bd80-cd2bda21e90a.png
+</pre>
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 

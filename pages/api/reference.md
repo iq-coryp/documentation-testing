@@ -4,9 +4,15 @@ permalink: /api/reference/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 19-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -84,36 +90,77 @@ GET /Countries
 <ul><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Accept: application/json" - "https://referencedemo.iqmetrix.net/v1/Countries" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://referencedemo.iqmetrix.net/v1/Countries");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h5>Example</h5>
 
-<pre>
-GET /Countries
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-countries" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-countries" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-countries" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-countries" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-countries" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-countries">
+<pre><code class="language-http">GET /Countries
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-countries">
+<pre><code class="language-http">curl -X GET "https://referencedemo.iqmetrix.net/v1/Countries" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-countries">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllCountries()
+{
+    var client = new RestClient("https://referencedemo.iqmetrix.net/v1/Countries");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-countries">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllCountries() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://referencedemo.iqmetrix.net/v1/Countries");
+     
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-countries">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://referencedemo.iqmetrix.net/v1/Countries', {
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -154,36 +201,77 @@ GET /TimeZones
 <ul><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Accept: application/json" - "https://referencedemo.iqmetrix.net/v1/TimeZones" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://referencedemo.iqmetrix.net/v1/TimeZones");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h5>Example</h5>
 
-<pre>
-GET /TimeZones
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-time-zones" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-time-zones" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-time-zones" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-time-zones" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-time-zones" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-time-zones">
+<pre><code class="language-http">GET /TimeZones
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-time-zones">
+<pre><code class="language-http">curl -X GET "https://referencedemo.iqmetrix.net/v1/TimeZones" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-time-zones">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllTimeZones()
+{
+    var client = new RestClient("https://referencedemo.iqmetrix.net/v1/TimeZones");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-time-zones">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllTimeZones() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://referencedemo.iqmetrix.net/v1/TimeZones");
+     
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-time-zones">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://referencedemo.iqmetrix.net/v1/TimeZones', {
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -217,36 +305,77 @@ GET /Currencies
 <ul><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Accept: application/json" - "https://referencedemo.iqmetrix.net/v1/Currencies" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://referencedemo.iqmetrix.net/v1/Currencies");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h5>Example</h5>
 
-<pre>
-GET /Currencies
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-currencies" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-currencies" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-currencies" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-currencies" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-currencies" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-currencies">
+<pre><code class="language-http">GET /Currencies
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-currencies">
+<pre><code class="language-http">curl -X GET "https://referencedemo.iqmetrix.net/v1/Currencies" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-currencies">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllCurrencies()
+{
+    var client = new RestClient("https://referencedemo.iqmetrix.net/v1/Currencies");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-currencies">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllCurrencies() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://referencedemo.iqmetrix.net/v1/Currencies");
+     
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-currencies">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://referencedemo.iqmetrix.net/v1/Currencies', {
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -268,4 +397,3 @@ HTTP 200 Content-Type: application/json
         "Version": 1
     }
 ]</pre>
-

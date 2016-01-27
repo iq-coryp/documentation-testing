@@ -4,7 +4,7 @@ permalink: /api/supplier-orders/
 tags: []
 keywords: supplier orders dropship
 audience: 
-last_updated: 22-12-2015
+last_updated: 25-01-2016
 summary: 
 ---
 
@@ -251,7 +251,7 @@ For best practices, it is recommended to store the timestamp for the last order 
 
 #### Request
 
-    PUT /Supplier({SupplierId})/Orders({OrderId})/OrderStatusUpdate
+    PUT /Suppliers({SupplierId})/Orders({OrderId})/OrderStatusUpdate
 
     {
         {OrderStatusUpdate}
@@ -280,7 +280,7 @@ For best practices, it is recommended to store the timestamp for the last order 
 
 ###### Example
 
-    PUT /Supplier(60455)/Orders(0b05f9fb-1210-4494-b654-d051948716b4)/OrderStatusUpdate
+    PUT /Suppliers(60455)/Orders(0b05f9fb-1210-4494-b654-d051948716b4)/OrderStatusUpdate
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -299,7 +299,7 @@ Returns [OrderStatusUpdate](#orderstatusupdate) that was created, if successful
 
 ###### Example
 
-    HTTP 200 OK Content-Type: application/json
+    HTTP 202 Accepted Content-Type: application/json
     {
         "Id": "0b05f9fb-1210-4494-b654-d051948716b4",
         "Status": "Shipped",
@@ -382,7 +382,7 @@ Returns [ItemStatusUpdate](#itemstatusupdate) that was created, if successful
 
 ###### Example
 
-    HTTP 200 OK Content-Type: application/json
+    HTTP 202 Accepted Content-Type: application/json
     {
         "Id": "0b05f9fb-1210-4494-b654-d051948716b4",
         "ItemInformation": [

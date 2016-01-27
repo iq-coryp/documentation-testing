@@ -4,9 +4,15 @@ permalink: /api/entity-store/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 19-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -27,20 +33,21 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Unique identifier | `9` |
-| Name | String | The value must be Carrier | `Carrier` |
-| Description | String | Description | `Carrier creating great experiences.` |
+| Name | String | Name | `Helios` |
+| Description | String | Description |  |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| CreatedUTC | DateTime | Created date, in UTC | `2015-05-20T23:06:29.7700813Z` |
-| ClientEntityId | String | Identifier in an external system | `123` |
+| CreatedUTC | DateTime | Created date, in UTC | `2014-07-28T20:52:12.929Z` |
+| ClientEntityId | String | Identifier in an external system | `Carrier_25` |
 | LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Carrier` |
 | Roles | Array[object] | The value must be Carrier |  |
 | Roles.Name | String |  | `Carrier` |
-| SortName | String | A string used for sorting | `samplecarrier` |
+| SortName | String | A string used for sorting | `helios` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
+| *TypeId* | *String* | *Reserved for future use* | |
 
 
 
@@ -48,21 +55,22 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Unique identifier | `4` |
-| Name | String | Name | `SampleManufacturer` |
-| Description | String | Description | `Manufacturer creating great experiences.` |
+| Id | Integer | Unique identifier | `13149` |
+| Name | String | Name | `OtterBox` |
+| Description | String | Description | `#1 Most Trusted Brand in Smartphone Protection` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| CreatedUtc | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| ClientEntityId | String | Identifier in an external system | `123` |
+| CreatedUtc | DateTime | Created date in UTC | `2015-02-24T19:29:31.073Z` |
+| ClientEntityId | String | Identifier in an external system | `Manufacturer_145` |
 | LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
 | Role | String | Role | `Manufacturer` |
 | Roles | Array[object] | The value must be Manufacturer |  |
 | Roles.Name | String |  | `Manufacturer` |
-| SortName | String | A string used for sorting | `samplemanufacturer` |
+| SortName | String | A string used for sorting | `otterbox` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
+| *TypeId* | *String* | *Reserved for future use* | |
 
 
 
@@ -70,21 +78,22 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Unique identifier | `14` |
-| Name | String | Name | `SampleSupplier` |
-| Description | String | Description | `Supplier creating great experiences.` |
+| Id | Integer | Unique identifier | `14107` |
+| Name | String | Name | `NOZAMA Inc.` |
+| Description | String | Description | `Provides supplies for KENTEL Corp.` |
 | Attributes | Object | Set of key-value pairs that contain extra data |  |
-| CreatedUtc | DateTime | Created date in UTC | `2015-05-20T23:06:29.7700813Z` |
-| ClientEntityId | String | Identifier in an external system | `123` |
+| CreatedUtc | DateTime | Created date in UTC | `2015-11-05T18:15:26.558Z` |
+| ClientEntityId | String | Identifier in an external system | `Supplier_151` |
 | LastModifiedUtc | DateTime | Last modified date in UTC | `2015-05-20T23:06:29.7700813Z` |
 | Logo | Object | A reference to an [Asset](/api/assets/#asset) |  |
 | Relationships | Array[object] | Relationships |  |
-| Role | String | Role | `Supplier` |
-| Roles | Array[object] | The value must be Supplier |  |
-| Roles.Name | String |  | `Supplier` |
-| SortName | String | A string used for sorting | `samplesupplier` |
+| Role | String | Role | `Vendor` |
+| Roles | Array[object] | The value must be Vendor |  |
+| Roles.Name | String |  | `Vendor` |
+| SortName | String | A string used for sorting | `nozama inc.` |
 | Version | Integer | Latest revision number | `1` |
 | *CorrelationId* | *String* | *Reserved for internal use* | |
+| *TypeId* | *String* | *Reserved for future use* | |
 
 
 
@@ -108,38 +117,81 @@ GET /Carriers
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Carriers" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h5>Example</h5>
 
-<pre>
-GET /Carriers
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-carriers" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-carriers" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-carriers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-carriers" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-carriers" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-carriers">
+<pre><code class="language-http">GET /Carriers
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-carriers">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Carriers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-carriers">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllCarriers()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-carriers">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllCarriers() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Carriers");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-carriers">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Carriers', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -153,11 +205,11 @@ HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
         "Id": 9,
-        "Name": "Carrier",
-        "Description": "Carrier creating great experiences.",
+        "Name": "Helios",
+        "Description": "",
         "Attributes": {},
-        "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-        "ClientEntityId": "123",
+        "CreatedUTC": "2014-07-28T20:52:12.929Z",
+        "ClientEntityId": "Carrier_25",
         "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
         "Logo": {},
         "Relationships": [],
@@ -167,7 +219,7 @@ HTTP 200 Content-Type: application/json
                 "Name": "Carrier"
             }
         ],
-        "SortName": "samplecarrier",
+        "SortName": "helios",
         "Version": 1
     }
 ]</pre>
@@ -187,26 +239,6 @@ GET /Carriers({CarrierId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -220,12 +252,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Carriers(9)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-carrier" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-carrier" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-carrier" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-carrier" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-carrier" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-carrier">
+<pre><code class="language-http">GET /Carriers(9)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-carrier">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-carrier">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingACarrier()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-carrier">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingACarrier() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-carrier">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -238,11 +333,11 @@ Accept: application/json
 HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Id": 9,
-    "Name": "Carrier",
-    "Description": "Carrier creating great experiences.",
+    "Name": "Helios",
+    "Description": "",
     "Attributes": {},
-    "CreatedUTC": "2015-05-20T23:06:29.7700813Z",
-    "ClientEntityId": "123",
+    "CreatedUTC": "2014-07-28T20:52:12.929Z",
+    "ClientEntityId": "Carrier_25",
     "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
     "Logo": {},
     "Relationships": [],
@@ -252,7 +347,7 @@ HTTP 200 Content-Type: application/json
             "Name": "Carrier"
         }
     ],
-    "SortName": "samplecarrier",
+    "SortName": "helios",
     "Version": 1
 }</pre>
 
@@ -271,38 +366,81 @@ GET /Manufacturers
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h5>Example</h5>
 
-<pre>
-GET /Manufacturers
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-manufacturers" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-manufacturers" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-manufacturers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-manufacturers" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-manufacturers" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-manufacturers">
+<pre><code class="language-http">GET /Manufacturers
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-manufacturers">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-manufacturers">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllManufacturers()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-manufacturers">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllManufacturers() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-manufacturers">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -315,12 +453,12 @@ Array[<a href='#manufacturer'>Manufacturer</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": 4,
-        "Name": "SampleManufacturer",
-        "Description": "Manufacturer creating great experiences.",
+        "Id": 13149,
+        "Name": "OtterBox",
+        "Description": "#1 Most Trusted Brand in Smartphone Protection",
         "Attributes": {},
-        "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-        "ClientEntityId": "123",
+        "CreatedUtc": "2015-02-24T19:29:31.073Z",
+        "ClientEntityId": "Manufacturer_145",
         "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
         "Logo": {},
         "Relationships": [],
@@ -330,7 +468,7 @@ HTTP 200 Content-Type: application/json
                 "Name": "Manufacturer"
             }
         ],
-        "SortName": "samplemanufacturer",
+        "SortName": "otterbox",
         "Version": 1
     }
 ]</pre>
@@ -350,26 +488,6 @@ GET /Manufacturers({ManufacturerId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(4)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(4)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -383,12 +501,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Manufacturers(4)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-manufacturer" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-manufacturer" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-manufacturer" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-manufacturer" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-manufacturer" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-manufacturer">
+<pre><code class="language-http">GET /Manufacturers(13149)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-manufacturer">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(13149)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-manufacturer">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAManufacturer()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(13149)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-manufacturer">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAManufacturer() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(13149)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-manufacturer">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(13149)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -400,12 +581,12 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 4,
-    "Name": "SampleManufacturer",
-    "Description": "Manufacturer creating great experiences.",
+    "Id": 13149,
+    "Name": "OtterBox",
+    "Description": "#1 Most Trusted Brand in Smartphone Protection",
     "Attributes": {},
-    "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-    "ClientEntityId": "123",
+    "CreatedUtc": "2015-02-24T19:29:31.073Z",
+    "ClientEntityId": "Manufacturer_145",
     "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
     "Logo": {},
     "Relationships": [],
@@ -415,7 +596,7 @@ HTTP 200 Content-Type: application/json
             "Name": "Manufacturer"
         }
     ],
-    "SortName": "samplemanufacturer",
+    "SortName": "otterbox",
     "Version": 1
 }</pre>
 
@@ -434,38 +615,81 @@ GET /Suppliers
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 
 
 
 <h5>Example</h5>
 
-<pre>
-GET /Suppliers
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-suppliers" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-suppliers" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-suppliers" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-suppliers" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-suppliers" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-suppliers">
+<pre><code class="language-http">GET /Suppliers
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-suppliers">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-suppliers">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllSuppliers()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-suppliers">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllSuppliers() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-suppliers">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Suppliers', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -478,22 +702,22 @@ Array[<a href='#supplier'>Supplier</a>]
 HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
-        "Id": 14,
-        "Name": "SampleSupplier",
-        "Description": "Supplier creating great experiences.",
+        "Id": 14107,
+        "Name": "NOZAMA Inc.",
+        "Description": "Provides supplies for KENTEL Corp.",
         "Attributes": {},
-        "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-        "ClientEntityId": "123",
+        "CreatedUtc": "2015-11-05T18:15:26.558Z",
+        "ClientEntityId": "Supplier_151",
         "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
         "Logo": {},
         "Relationships": [],
-        "Role": "Supplier",
+        "Role": "Vendor",
         "Roles": [
             {
-                "Name": "Supplier"
+                "Name": "Vendor"
             }
         ],
-        "SortName": "samplesupplier",
+        "SortName": "nozama inc.",
         "Version": 1
     }
 ]</pre>
@@ -513,26 +737,6 @@ GET /Suppliers({SupplierId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -546,12 +750,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /Suppliers(14)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-supplier" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-supplier" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-supplier" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-supplier" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-supplier" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-supplier">
+<pre><code class="language-http">GET /Suppliers(14107)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-supplier">
+<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14107)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-supplier">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingASupplier()
+{
+    var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14107)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-supplier">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingASupplier() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14107)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-supplier">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14107)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -563,22 +830,21 @@ Accept: application/json
 <pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
-    "Id": 14,
-    "Name": "SampleSupplier",
-    "Description": "Supplier creating great experiences.",
+    "Id": 14107,
+    "Name": "NOZAMA Inc.",
+    "Description": "Provides supplies for KENTEL Corp.",
     "Attributes": {},
-    "CreatedUtc": "2015-05-20T23:06:29.7700813Z",
-    "ClientEntityId": "123",
+    "CreatedUtc": "2015-11-05T18:15:26.558Z",
+    "ClientEntityId": "Supplier_151",
     "LastModifiedUtc": "2015-05-20T23:06:29.7700813Z",
     "Logo": {},
     "Relationships": [],
-    "Role": "Supplier",
+    "Role": "Vendor",
     "Roles": [
         {
-            "Name": "Supplier"
+            "Name": "Vendor"
         }
     ],
-    "SortName": "samplesupplier",
+    "SortName": "nozama inc.",
     "Version": 1
 }</pre>
-

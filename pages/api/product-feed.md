@@ -4,19 +4,22 @@ permalink: /api/product-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 22-12-2015
+last_updated: 19-1-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
 ## Overview
 
 A **Product Feed** contains the Products information for a specific vendor. Each feed will have its own unique **Feed ID**.
-
-
-{{important}} A Product must contain, at minimum, the following fields: <strong>Product Name</strong>, <strong>Long Description</strong>, 
-<strong>MSRP</strong>. {{end}}
+{{important}} A Product must contain, at minimum, the following fields: <strong>Product Name</strong>, <strong>Long Description</strong>, <strong>MSRP</strong>. {{end}}
 
 
 ## Endpoints
@@ -58,9 +61,9 @@ Product information for the feed. It is **highly recommended** to include `Model
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | Integer | Classification identifier | `1` |
+| Id | Integer | Classification identifier | `4` |
 | Name | String | The name of the Classification your product falls under | `Smartphones` |
-| TreeId | Integer | Classification Tree identifier | `21` |
+| TreeId | Integer | Classification Tree identifier | `1` |
 
 
 ###Field
@@ -123,127 +126,6 @@ POST /ProductFeeds({FeedId})/Products
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x post -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products" - d '{
-  "Classification": {
-    "TreeId": 1,
-    "Id": 4
-  },
-  "Fields": [
-    {
-      "Definition": {
-        "Id": 1,
-        "StringId": "Product Name"
-      },
-      "Value": "Agent18 SlimShield Case for iPhone 6 - Black"
-    },
-    {
-      "Definition": {
-        "Id": 129
-      },
-      "Value": "Black"
-    },
-      "Definition": {
-        "Id": 76,
-        "StringId": "MSRP",
-        "InputType": "Currency"
-      },
-      "Value": "24.99 CAD"                          
-  ],
-  "Assets": [
-    {
-      "AssetUrl": "http://image.sample.com/a.jpg"
-    },
-    {
-      "AssetUrl": "http://image.sample.com/b.png"
-    },
-    {
-      "AssetUrl": "http://image.sample.com/c.mov"
-    }
-  ],
-  "ModelName": "Agent18 SlimShield Case for iPhone 6",
-  "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
-  "Manufacturer": "Agent18",
-  "ManufacturerSku": "980113579",
-  "UPC": "723755004337",
-  "VendorSkus": [
-    {
-      "Description": "Online retailer",
-      "Sku": "1115884",
-      "VendorName": "Amazon"
-    }
-  ]
-}
-'
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
-var request = new RestRequest(Method.post);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-request.AddHeader("Content-Type", "application/json"); 
-
-request.AddParameter("application/json", "{
-  "Classification": {
-    "TreeId": 1,
-    "Id": 4
-  },
-  "Fields": [
-    {
-      "Definition": {
-        "Id": 1,
-        "StringId": "Product Name"
-      },
-      "Value": "Agent18 SlimShield Case for iPhone 6 - Black"
-    },
-    {
-      "Definition": {
-        "Id": 129
-      },
-      "Value": "Black"
-    },
-      "Definition": {
-        "Id": 76,
-        "StringId": "MSRP",
-        "InputType": "Currency"
-      },
-      "Value": "24.99 CAD"                          
-  ],
-  "Assets": [
-    {
-      "AssetUrl": "http://image.sample.com/a.jpg"
-    },
-    {
-      "AssetUrl": "http://image.sample.com/b.png"
-    },
-    {
-      "AssetUrl": "http://image.sample.com/c.mov"
-    }
-  ],
-  "ModelName": "Agent18 SlimShield Case for iPhone 6",
-  "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
-  "Manufacturer": "Agent18",
-  "ManufacturerSku": "980113579",
-  "UPC": "723755004337",
-  "VendorSkus": [
-    {
-      "Description": "Online retailer",
-      "Sku": "1115884",
-      "VendorName": "Amazon"
-    }
-  ]
-}
-", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -257,16 +139,24 @@ IRestResponse response = client.Execute(request);
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>TreeId</code> (<strong>Required</strong>) </li></ul><li><code>Fields</code> (<strong>Required</strong>) </li><ul><li><code>Definition</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Value</code> (<strong>Required</strong>) </li></ul><li><code>ModelName</code> (<strong>Required</strong>) </li><li><code>Assets</code> (Optional) </li><ul><li><code>AssetUrl</code> (<strong>Required</strong>) </li></ul><li><code>ClassificationTreeName</code> (Optional) </li><li><code>LastModifiedByVendorUtc</code> (Optional) </li><li><code>Manufacturer</code> (Optional) </li><li><code>ManufacturerSku</code> (Optional) </li><li><code>UPC</code> (Optional) </li><li><code>VendorSkus</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Sku</code> (Optional) </li><li><code>VendorName</code> (Optional) </li></ul></ul>
+<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (<strong>Required</strong>) </li><li><code>TreeId</code> (<strong>Required</strong>) </li></ul><li><code>Fields</code> (<strong>Required</strong>) </li><ul><li><code>Definition</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Value</code> (<strong>Required</strong>) </li></ul><li><code>Assets</code> (Optional) </li><ul><li><code>AssetUrl</code> (<strong>Required</strong>) </li></ul><li><code>ClassificationTreeName</code> (Optional) </li><li><code>LastModifiedByVendorUtc</code> (Optional) </li><li><code>Manufacturer</code> (Optional) </li><li><code>ManufacturerSku</code> (Optional) </li><li><code>ModelName</code> (Optional) </li><li><code>UPC</code> (Optional) </li><li><code>VendorSkus</code> (Optional) </li><ul><li><code>Description</code> (Optional) </li><li><code>Sku</code> (Optional) </li><li><code>VendorName</code> (Optional) </li></ul></ul>
 
 <h5>Example</h5>
 
-<pre>
-POST /ProductFeeds(34)/Products
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-adding-a-product-to-a-feed" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-adding-a-product-to-a-feed" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-adding-a-product-to-a-feed" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-adding-a-product-to-a-feed" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-adding-a-product-to-a-feed" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-adding-a-product-to-a-feed">
+<pre><code class="language-http">POST /ProductFeeds(34)/Products
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
   "Classification": {
     "TreeId": 1,
     "Id": 4
@@ -285,12 +175,14 @@ Content-Type: application/json
       },
       "Value": "Black"
     },
+    {
       "Definition": {
         "Id": 76,
         "StringId": "MSRP",
         "InputType": "Currency"
       },
-      "Value": "24.99 CAD"                          
+      "Value": "24.99 CAD"
+    }                          
   ],
   "Assets": [
     {
@@ -316,8 +208,120 @@ Content-Type: application/json
     }
   ]
 }
+</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-adding-a-product-to-a-feed">
+<pre><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+  "Classification": {
+    "TreeId": 1,
+    "Id": 4
+  },
+  "Fields": [
+    {
+      "Definition": {
+        "Id": 1,
+        "StringId": "Product Name"
+      },
+      "Value": "Agent18 SlimShield Case for iPhone 6 - Black"
+    },
+    {
+      "Definition": {
+        "Id": 129
+      },
+      "Value": "Black"
+    },
+    {
+      "Definition": {
+        "Id": 76,
+        "StringId": "MSRP",
+        "InputType": "Currency"
+      },
+      "Value": "24.99 CAD"
+    }                          
+  ],
+  "Assets": [
+    {
+      "AssetUrl": "http://image.sample.com/a.jpg"
+    },
+    {
+      "AssetUrl": "http://image.sample.com/b.png"
+    },
+    {
+      "AssetUrl": "http://image.sample.com/c.mov"
+    }
+  ],
+  "ModelName": "Agent18 SlimShield Case for iPhone 6",
+  "LastModifiedByVendorUtc": "2015-09-16T10:40:31.101Z",
+  "Manufacturer": "Agent18",
+  "ManufacturerSku": "980113579",
+  "UPC": "723755004337",
+  "VendorSkus": [
+    {
+      "Description": "Online retailer",
+      "Sku": "1115884",
+      "VendorName": "Amazon"
+    }
+  ]
+}
+'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-adding-a-product-to-a-feed">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse AddingAProductToAFeed()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-</pre>
+     request.AddParameter("application/json", "{\"Classification\":{\"TreeId\":1,\"Id\":4},\"Fields\":[{\"Definition\":{\"Id\":1,\"StringId\":\"Product Name\"},\"Value\":\"Agent18 SlimShield Case for iPhone 6 - Black\"},{\"Definition\":{\"Id\":129},\"Value\":\"Black\"},{\"Definition\":{\"Id\":76,\"StringId\":\"MSRP\",\"InputType\":\"Currency\"},\"Value\":\"24.99 CAD\"}],\"Assets\":[{\"AssetUrl\":\"http://image.sample.com/a.jpg\"},{\"AssetUrl\":\"http://image.sample.com/b.png\"},{\"AssetUrl\":\"http://image.sample.com/c.mov\"}],\"ModelName\":\"Agent18 SlimShield Case for iPhone 6\",\"LastModifiedByVendorUtc\":\"2015-09-16T10:40:31.101Z\",\"Manufacturer\":\"Agent18\",\"ManufacturerSku\":\"980113579\",\"UPC\":\"723755004337\",\"VendorSkus\":[{\"Description\":\"Online retailer\",\"Sku\":\"1115884\",\"VendorName\":\"Amazon\"}]}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-adding-a-product-to-a-feed">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse AddingAProductToAFeed() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Classification\":{\"TreeId\":1,\"Id\":4},\"Fields\":[{\"Definition\":{\"Id\":1,\"StringId\":\"Product Name\"},\"Value\":\"Agent18 SlimShield Case for iPhone 6 - Black\"},{\"Definition\":{\"Id\":129},\"Value\":\"Black\"},{\"Definition\":{\"Id\":76,\"StringId\":\"MSRP\",\"InputType\":\"Currency\"},\"Value\":\"24.99 CAD\"}],\"Assets\":[{\"AssetUrl\":\"http://image.sample.com/a.jpg\"},{\"AssetUrl\":\"http://image.sample.com/b.png\"},{\"AssetUrl\":\"http://image.sample.com/c.mov\"}],\"ModelName\":\"Agent18 SlimShield Case for iPhone 6\",\"LastModifiedByVendorUtc\":\"2015-09-16T10:40:31.101Z\",\"Manufacturer\":\"Agent18\",\"ManufacturerSku\":\"980113579\",\"UPC\":\"723755004337\",\"VendorSkus\":[{\"Description\":\"Online retailer\",\"Sku\":\"1115884\",\"VendorName\":\"Amazon\"}]}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-adding-a-product-to-a-feed">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+body = "{\"Classification\":{\"TreeId\":1,\"Id\":4},\"Fields\":[{\"Definition\":{\"Id\":1,\"StringId\":\"Product Name\"},\"Value\":\"Agent18 SlimShield Case for iPhone 6 - Black\"},{\"Definition\":{\"Id\":129},\"Value\":\"Black\"},{\"Definition\":{\"Id\":76,\"StringId\":\"MSRP\",\"InputType\":\"Currency\"},\"Value\":\"24.99 CAD\"}],\"Assets\":[{\"AssetUrl\":\"http://image.sample.com/a.jpg\"},{\"AssetUrl\":\"http://image.sample.com/b.png\"},{\"AssetUrl\":\"http://image.sample.com/c.mov\"}],\"ModelName\":\"Agent18 SlimShield Case for iPhone 6\",\"LastModifiedByVendorUtc\":\"2015-09-16T10:40:31.101Z\",\"Manufacturer\":\"Agent18\",\"ManufacturerSku\":\"980113579\",\"UPC\":\"723755004337\",\"VendorSkus\":[{\"Description\":\"Online retailer\",\"Sku\":\"1115884\",\"VendorName\":\"Amazon\"}]}
+
+response = RestClient.post 'https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -443,26 +447,6 @@ GET /ProductFeeds({FeedId})/Products
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -476,12 +460,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /ProductFeeds(34)/Products
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-products-in-a-feed" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-products-in-a-feed" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-products-in-a-feed" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-products-in-a-feed" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-products-in-a-feed" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-products-in-a-feed">
+<pre><code class="language-http">GET /ProductFeeds(34)/Products
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-products-in-a-feed">
+<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-products-in-a-feed">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAllProductsInAFeed()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-products-in-a-feed">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllProductsInAFeed() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-products-in-a-feed">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -506,9 +553,9 @@ HTTP 200 Content-Type: application/json
             }
         ],
         "Classification": {
-            "Id": 1,
+            "Id": 4,
             "Name": "Smartphones",
-            "TreeId": 21
+            "TreeId": 1
         },
         "ClassificationTreeName": "Cellular & Accessories",
         "Fields": [
@@ -550,26 +597,6 @@ GET /ProductFeeds({FeedId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x get -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)");
-var request = new RestRequest(Method.get);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-request.AddHeader("Accept", "application/json"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -583,12 +610,75 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-GET /ProductFeeds(34)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-product-feed" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-product-feed" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-product-feed" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-product-feed" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-product-feed" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-product-feed">
+<pre><code class="language-http">GET /ProductFeeds(34)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-product-feed">
+<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-product-feed">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse GettingAProductFeed()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-product-feed">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAProductFeed() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-product-feed">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -616,9 +706,9 @@ HTTP 200 Content-Type: application/json
                 }
             ],
             "Classification": {
-                "Id": 1,
+                "Id": 4,
                 "Name": "Smartphones",
-                "TreeId": 21
+                "TreeId": 1
             },
             "ClassificationTreeName": "Cellular & Accessories",
             "Fields": [
@@ -662,25 +752,6 @@ DELETE /ProductFeeds({FeedId})/Products({ProductId})
 <ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
 
 
-### Code Sample (cURL)
-
-<pre>
-curl -x delete -H "Authorization: Bearer (Access Token)" - "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)" - d ''
-</pre>
-
-### Code Sample (C# RestSharp)
-
-<pre>
-var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)");
-var request = new RestRequest(Method.delete);
- 
-request.AddHeader("Authorization", "Bearer (Access Token)"); 
-
-request.AddParameter("application/json", "", ParameterType.RequestBody);
-
-IRestResponse response = client.Execute(request);
-</pre>
-
 
 <h4>URI Parameters</h4>
 <ul>
@@ -698,11 +769,71 @@ IRestResponse response = client.Execute(request);
 
 <h5>Example</h5>
 
-<pre>
-DELETE /ProductFeeds(34)/Products(2)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-removing-a-product-from-a-feed" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-removing-a-product-from-a-feed" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-removing-a-product-from-a-feed" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-removing-a-product-from-a-feed" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-removing-a-product-from-a-feed" data-toggle="tab">Ruby (rest-client)</a></li>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-removing-a-product-from-a-feed">
+<pre><code class="language-http">DELETE /ProductFeeds(34)/Products(2)
 Authorization: Bearer (Access Token)
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-removing-a-product-from-a-feed">
+<pre><code class="language-http">curl -X DELETE "https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)" -H "Authorization: Bearer (Access Token)"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-removing-a-product-from-a-feed">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre><code class="language-csharp">static IRestResponse RemovingAProductFromAFeed()
+{
+    var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-removing-a-product-from-a-feed">
+
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse RemovingAProductFromAFeed() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-removing-a-product-from-a-feed">
+
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(2)', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+
 
 <h4>Response</h4>
 
@@ -713,8 +844,6 @@ Authorization: Bearer (Access Token)
 <pre>
 HTTP 204 Content-Type: application/json
 </pre>
-
-
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
