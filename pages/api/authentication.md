@@ -4,7 +4,7 @@ permalink: /api/authentication/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-11-2015
+last_updated: 27-01-2016
 summary: 
 ---
 
