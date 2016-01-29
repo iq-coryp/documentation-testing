@@ -343,6 +343,22 @@ We can now combine the information gathered from the previous steps to [Adding a
         "ModelName": "Agent18 SlimShield Case for iPhone 6"
     }
 
+
+### Optional: Remove/Update a Product
+
+Each Product entered into the Product Feed will have a corresponding ID from the response. 
+
+* To **remove** products from the Product Feed, you must [remove each Product](/api/product-feed/#removing-a-product-from-a-feed) by providing their ProductId. 
+* To **update** products in the Product Feed, the products must be [deleted](/api/product-feed/#removing-a-product-from-a-feed) first, updated locally, and then [added again](/api/product-feed/#add-product-to-product-feed) (DELETE + POST).
+
+##### Example Request
+
+    DELETE /v1/ProductFeeds(34)/Products(2)
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+
+
 ## Step 3 - Product Subscription
 
 While the [Product Content Feed](/api/product-feed) provides iQmetrix with details of your products, the [Product Subscription Feed](/api/product-subscription) is similar to an RSS feed. In this case, retailers subscribe to your feed to get a list of your latest dropship products. 
