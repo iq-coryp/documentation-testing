@@ -4,13 +4,15 @@ permalink: /dropship-faq/
 tags: []
 keywords: 
 audience: 
-last_updated: 10-02-2016
+last_updated: 11-02-2016
 summary: 
 ---
 {% include linkrefs.html %}
 
-## Option A:
 
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#sub-btn" >Subscription Feed</button>
+
+<div id="sub-btn" class="collapse" style="border: 1px solid #ddd;">
 
 <div class="panel-group" id="accordion">
 <div class="panel panel-default">
@@ -47,7 +49,10 @@ summary:
 </div>
 </div> 
 
+</div>
 
+
+<!--
 ## Option B:
 
 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#sub-items" >Subscription Feed</button>
@@ -59,25 +64,24 @@ summary:
 <div id="sub1" class="collapse">Availability is cached on our end before displaying in RQ. Availability on a per supplier level, not retailer level. Shipping options query will reject is sku not available (throw an error). For example, put a threshold at 100 set for dropship and sell remaining items by other means. Any items removed from list would no longer be dropshippable.
 </div>
 
----
+
 
 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#sub2">How are companies linked to subscribable lists?</button>
 
 <div id="sub2" class="collapse">Availability is cached on our end before displaying in RQ. Availability on a per supplier level, not retailer level. Shipping options query will reject is sku not available (throw an error). For example, put a threshold at 100 set for dropship and sell remaining items by other means. Any items removed from list would no longer be dropshippable.
 </div>
 
----
+
 
 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#sub3">How to remove product from subscribable list?</button>
 
 <div id="sub3" class="collapse">Availability is cached on our end before displaying in RQ. Availability on a per supplier level, not retailer level. Shipping options query will reject is sku not available (throw an error). For example, put a threshold at 100 set for dropship and sell remaining items by other means. Any items removed from list would no longer be dropshippable.
 </div>
 
----
+
 
 </div>
 
--------
 
 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ava-items" >Availability Feed</button>
 
@@ -91,8 +95,10 @@ summary:
 
 </div>
         
+-->
 
-### Product Feed
+
+#### Product Feed
 
 * How do we handle the case where the supplier’s product categories are not as granular as our classifications.
         
