@@ -11,9 +11,7 @@ summary:
 
 Below are the most commonly asked questions from suppliers around the Dropship program. If you do not find a suitable answer to your question, then send an email to API Support. 
 
-<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#sub-btn" >Subscription Feed</button>
-
-<div id="sub-btn" class="collapse" style="border: 1px solid #ddd;">
+### Subscription Feed
 
 <div class="panel-group" id="subscription">
   <div class="panel panel-default">
@@ -48,15 +46,12 @@ Below are the most commonly asked questions from suppliers around the Dropship p
       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
     </div>
   </div>
-</div> 
-
 </div>
 
----
 
-<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#av-btn" >Availability Feed</button>
 
-<div id="av-btn" class="collapse" style="border: 1px solid #ddd"> 
+### Availability Feed
+
 
 <div class="panel-group" id="availability">
   <div class="panel panel-default">
@@ -80,25 +75,53 @@ Below are the most commonly asked questions from suppliers around the Dropship p
     </div>
   </div>
 </div>
+
+
+### Product Feed 
+
+<div class="panel-group" id="product">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#product" href="#pr1">How do we handle the case where the supplier’s product categories are not as granular as our classifications?</a>
+      </h4>
+    </div>
+    <div id="pr1" class="panel-collapse collapse in">
+      <div class="panel-body">Availability is cached on our end before displaying in RQ. Availability on a per supplier level, not retailer level. Shipping options query will reject is sku not available (throw an error). For example, put a threshold at 100 set for dropship and sell remaining items by other means. Any items removed from list would no longer be dropshippable.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#product" href="#pr2">What is the relationship between Classification Tree and Master Product/Variations?</a>
+      </h4>
+    </div>
+    <div id="pr2" class="panel-collapse collapse">
+      <div class="panel-body">Availability is cached on our end before displaying in RQ. Availability on a per supplier level, not retailer level. Shipping options query will reject is sku not available (throw an error). For example, put a threshold at 100 set for dropship and sell remaining items by other means. Any items removed from list would no longer be dropshippable.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#product" href="#pr3">Explain Master Product in Guide?</a>
+      </h4>
+    </div>
+    <div id="pr3" class="panel-collapse collapse">
+      <div class="panel-body">
+        <ul>
+          <li>could be simple diagram of 3 products (one for each colour)</li>
+          <li>use the term product family instead of product hierarchy</li>
+          <li>provide examples for fields that need specific values (options)</li>
+          <li>manufacturer color (i.e. color)</li>
+          <li>RGB color (i.e. color tag)</li>
+        </div>
+    </div>
+  </div>
 </div>
 
 
-#### Product Feed 
-
-* How do we handle the case where the supplier’s product categories are not as granular as our classifications.
         
 #### TESSCO Questions:
-
-
-#### Product Feed
-
-* what is the relationship between Classification Tree and Master Product/Variations?
-* explain Master Product in Guide?
-* could be simple diagram of 3 products (one for each colour)
-* use the term product family instead of product hierarchy
-* provide examples for fields that need specific values (options)
-* manufacturer color (i.e. color)
-* RGB color (i.e. color tag)
 
  
 #### Customer / Company Data
