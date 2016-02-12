@@ -4,7 +4,7 @@ permalink: /guides/dropship-test-order-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 06-01-2016
+last_updated: 11-02-2016
 summary: 
 ---
 
@@ -29,20 +29,20 @@ Should you have any issues generating test order data consult with <a href="mail
 
 | Property | Description | Example |
 |:---------|:------------|:--------|
-| CompanyId | [Company](/api/company-tree/#company) | 14146 |
-| CustomerId | [Customer](/api/crm/#customer) | 659c2a38-d083-4421-9330-46d779702f85 |
-| OrderId | [Order](/api/orders/#order) | cdd26b8f-4ed1-409d-9984-982e081c425e |
-| AddressId | [Address](/api/crm/#address) | a08b0640-606a-41f0-901a-facaf50e75dd |
+| CompanyId | [Company](/api/company-tree/#company) | {the provided company ID} |
+| CustomerId | [Customer](/api/crm/#customer) | {the customer ID from section 3} |
+| OrderId | [Order](/api/orders/#order) | {the order ID from section 4} |
+| AddressId | [Address](/api/crm/#address) | {the address ID from section 3} |
 | AddressTypeId | [AddressType](/api/crm/#addresstype) | 2 (Home), 3 (Shipping) |
-| CatalogItemId | [CatalogItem](/api/catalog/#catalogitem) | b85cb879-bb5f-4847-a856-8287de0a92d5 |
+| CatalogItemId | [CatalogItem](/api/catalog/#catalogitem) | {catalog ID corresponding to your SKU } |
 | CustomerTypeId | [CustomerType](/api/crm/#customertype) | 2 (Person) |
 | LocationId | [Location](/api/company-tree/#location) | 14223 |
 | ItemStatusId | [ItemStatus](/api/orders/#itemstatus)  | 1 (new dropship order), 15 (shipment) |
 | ItemTypeId | [ItemType](/api/orders/#itemtype) | 1 (dropship), 4 (shipping) |
 | OrderTypeId | [OrderType](/api/orders/#ordertype)  | 1 (Sales order placed by customer) |
 | ShippingOptionId | Identifier for your shipping endpoint | 101 |
-| SKU | [Sku Identifier](/api/catalog/#identifier) | B00LAOKN4S |
-| SupplierId | Supplier identifier | 14107 |
+| SKU | [Sku Identifier](/api/catalog/#identifier) | {your provided SKU} |
+| SupplierId | Supplier identifier | {your supplier ID} |
 
 
 ## Step 1 - Authentication
@@ -63,15 +63,132 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
     Authorization: Bearer (Access Token)
 
 
-## Step 2 - Create a Dropship Customer
+## Step 2 - Get the Company Data
 
-The first step in creating a dropship test order is to create a customer account. The address for this customer will be the shipping endpoint for the order. In this scenario, we will be shipping a product to the customer's address.
+The goal of this step is to get catalog IDs based on your vendor SKUs and a list of locations for the company. The LocationId is required to create an order. 
 
-### Step 2.1 - Create Customer
+### Step 2.1 - Get the Catalog IDs
+
+The first step involves getting the catalog IDs for your corresponding supplier SKUs. There is a simple call to get each individual product catalog ID based on the vendor SKU.
 
 ##### Example Request
 
-    POST /Companies({CompanyId})/Customers
+    GET https://catalogsdemo.iqmetrix.net/v1/Companies({CompanyId})/Catalog/Items/ByVendorSku?vendorsku={VendorSku}&vendorid={VendorId}
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+
+##### Example Response
+
+    HTTP 200 Content-Type: application/json
+
+    {
+        "Sku": "408853",
+        "VendorId": 1217,
+        "Items": [
+            {
+                "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+                "IsArchived": false,
+                "RmsId": "1",
+                "Slug": "M1248-V1"
+            }
+        ]
+    }
+
+### Step 2.2 - Get Company Locations
+
+Getting the company tree is the quickest wayt to retrieve a list of locations for that company.
+
+##### Example Request
+
+    GET https://entitymanagerdemo.iqmetrix.net/v1/Companies({CompanyId})/Tree
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+
+##### Example Response
+
+    HTTP 200 Content-Type: application/json
+    {
+        "Id": 14146,
+        "Name": "Kentel Corp",
+        "Description": "Wireless accessories provider with store locations all across the globe.",
+        "Role": "Company",
+        "Nodes": [
+            {
+                "Id": 14159,
+                "Name": "T-hut Wireless",
+                "Description": "Division of Kiosks",
+                "Role": "Division",
+                "Nodes": []
+            }
+        ]
+    }
+
+
+
+## Step 3 - Setup a Dropship Customer
+
+The first step in creating a dropship test order is to setup a customer account. The address for this customer will be the shipping endpoint for the order. In this scenario, we will be shipping a product to the customer's address.
+
+### Step 3.1a - Get an Existing Customer
+
+Rather than having to go through the steps of creating a customer account, it is much simpler to use an existing customer from the company. By getting a list of customers, you simply grab the customer ID to be used for your testing.  
+
+##### Example Request
+
+    GET https://crmdemo.iqmetrix.net/v1/Companies({CompanyId})/Customers
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+
+##### Example Response
+
+Any of the Ids from the response list can be used for your testing.
+
+    HTTP 200 OK Content-Type: application/json
+
+    [
+      {
+        "Id": "59a9a9df-fda4-4041-abd9-659331e56e78",
+        "CustomerTypeId": 2,
+        "CustomerType": "Person",
+        "Title": null,
+        "PrimaryName": "Tony",
+        "AlternateName": null,
+        "MiddleName": null,
+        "FamilyName": "Stark",
+        "DateOfBirth": null,
+        "Notes": null,
+        "Disabled": false,
+        "DoNotContact": false,
+        "Version": 1
+      },
+      {
+        "Id": "5d3eb8a2-0e8a-4d70-858d-6b2812741ab1",
+        "CustomerTypeId": 2,
+        "CustomerType": "Person",
+        "Title": null,
+        "PrimaryName": "Hugo",
+        "AlternateName": null,
+        "MiddleName": null,
+        "FamilyName": "Victor",
+        "DateOfBirth": null,
+        "Notes": null,
+        "Disabled": false,
+        "DoNotContact": false,
+        "Version": 1
+      }
+    ]
+
+
+### Step 3.1b - Create Customer
+
+Should there not be any existing customers in the company, then the next step would be to create a customer and assign it an address.
+
+##### Example Request
+
+    POST https://crmdemo.iqmetrix.net/v1/Companies({CompanyId})/Customers
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -86,11 +203,11 @@ The first step in creating a dropship test order is to create a customer account
         "DoNotContact": false
     }
 
-### Step 2.2 - Add a Billing Address
+### Step 3.2 - Add a Billing Address
 
 ##### Example Request
 
-    POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
+    POST https://crmdemo.iqmetrix.net/v1/Companies({CompanyId})/Customers({CustomerId})/Addresses
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -107,13 +224,13 @@ The first step in creating a dropship test order is to create a customer account
 
 
 
-### Step 2.3 - Add a Shipping Address
+### Step 3.3 - Add a Shipping Address
 
 Shipping address is the same as the billing address.
 
 ##### Example Request
 
-    POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
+    POST https://crmdemo.iqmetrix.net/v1/Companies({CompanyId})/Customers({CustomerId})/Addresses
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -129,16 +246,16 @@ Shipping address is the same as the billing address.
     }
 
 
-## Step 3 - Create Order for Dropship
+## Step 4 - Create Order for Dropship
 
 The next step is to fill in the order entry. 
 
-### Step 3.1 - Create Order Content
+### Step 4.1 - Create Order Content
 
 
 ##### Example Request
 
-    POST /Companies({CompanyId})/Orders
+    POST https://orderdemo.iqmetrix.net/v1/Companies({CompanyId})/Orders
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -157,12 +274,12 @@ The next step is to fill in the order entry.
 
 
 
-### Step 3.2 - Add Product Item
+### Step 4.2 - Add Product Item
 
 
 ##### Example Request
 
-    POST /Companies({CompanyId})/Orders({OrderId})/Items
+    POST https://orderdemo.iqmetrix.net/v1/Companies({CompanyId})/Orders({OrderId})/Items
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -183,11 +300,11 @@ The next step is to fill in the order entry.
 
 
 
-### Step 3.3 - Add Shipping Item
+### Step 4.3 - Add Shipping Item
 
 ##### Example Request
 
-    POST /Companies({CompanyId})/Orders({OrderId})/Items
+    POST https://orderdemo.iqmetrix.net/v1/Companies({CompanyId})/Orders({OrderId})/Items
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -206,13 +323,13 @@ The next step is to fill in the order entry.
 
 
 
-### Step 3.4 - Process the Order
+### Step 4.4 - Process the Order
 
 The final step is to process the order.
 
 ##### Example Request
 
-    POST /Companies({CompanyId})/Orders({OrderId})/Process
+    POST https://orderdemo.iqmetrix.net/v1/Companies({CompanyId})/Orders({OrderId})/Process
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
