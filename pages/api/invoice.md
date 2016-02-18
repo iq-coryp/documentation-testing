@@ -4,7 +4,7 @@ permalink: /api/invoice/
 tags: []
 keywords: 
 audience: 
-last_updated: 16-02-2016
+last_updated: 18-2-2016
 summary: 
 ---
 
@@ -199,12 +199,15 @@ A tax line item, including the tax calculation results.
 
 <h2 id='getting-invoice-summaries-for-a-company' class='clickable-header top-level-header'>Getting Invoice Summaries for a Company</h2>
 
+The sorting order of the response will be **descending** order by `CreatedDateUtc` with the most recent invoices listed first.
+
+See [Filtering](#filtering) to learn more about filtering resources.
 
 
 <h4>Request</h4>
 
 <pre>
-GET /Companies({CompanyId})/InvoiceSummaries
+GET /Companies({CompanyId})/InvoiceSummaries?$filter=CustomerId eq guid'{CustomerId}' and LocationId eq {LocationId} and EmployeeId eq {EmployeeId}
 </pre>
 
 
@@ -218,6 +221,18 @@ GET /Companies({CompanyId})/InvoiceSummaries
     
     <li>
         <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>CustomerId</code> (Optional)  - Identifier of a {{Customer}} to filter by
+    </li>
+    
+    <li>
+        <code>LocationId</code> (Optional)  - Identifier of a {{Location}} to filter by
+    </li>
+    
+    <li>
+        <code>EmployeeId</code> (Optional)  - EmployeeId value to filter by
     </li>
     </ul>
 
@@ -234,19 +249,19 @@ GET /Companies({CompanyId})/InvoiceSummaries
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-invoice-summaries-for-a-company">
-<pre><code class="language-http">GET /Companies(14146)/InvoiceSummaries
+<pre><code class="language-http">GET /Companies(14146)/InvoiceSummaries?$filter=CustomerId eq guid'503d1d4a-c974-4286-b4a2-002699e60ad6' and LocationId eq 4 and EmployeeId eq 15
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-invoice-summaries-for-a-company">
-<pre><code class="language-http">curl -X GET "https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre><code class="language-http">curl -X GET "https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries?$filter=CustomerId eq guid'503d1d4a-c974-4286-b4a2-002699e60ad6' and LocationId eq 4 and EmployeeId eq 15" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-invoice-summaries-for-a-company">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre><code class="language-csharp">static IRestResponse GettingInvoiceSummariesForACompany()
 {
-    var client = new RestClient("https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries");
+    var client = new RestClient("https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries?$filter=CustomerId eq guid'503d1d4a-c974-4286-b4a2-002699e60ad6' and LocationId eq 4 and EmployeeId eq 15");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -269,7 +284,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingInvoiceSummariesForACompany() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries");
+    HttpGet request = new HttpGet("https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries?$filter=CustomerId eq guid'503d1d4a-c974-4286-b4a2-002699e60ad6' and LocationId eq 4 and EmployeeId eq 15");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -284,7 +299,7 @@ public static CloseableHttpResponse GettingInvoiceSummariesForACompany() throws 
 
 
 
-response = RestClient.get 'https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries', {
+response = RestClient.get 'https://invoicedemo.iqmetrix.net/v1/Companies(14146)/InvoiceSummaries?$filter=CustomerId eq guid'503d1d4a-c974-4286-b4a2-002699e60ad6' and LocationId eq 4 and EmployeeId eq 15', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -1028,3 +1043,51 @@ HTTP 201 Content-Type: application/json
         ]
     }
 }</pre>
+
+<h2 id="filtering" class="clickable-header top-level-header">Filtering</h2>
+
+
+The Invoice API supports filtering of [InvoiceSummary](#invoicesummary) resources through the use of filters.
+
+The `$filter` query parameter is used for specifying filtering criteria.
+
+The type of filters available depend on the Data Type of the property being filtered on.
+
+### Availabile Properties
+
+Any [InvoiceSummary](#invoicesummary) property can be filtered on, but the endpoint has been optimized to filter on the following properties:
+
+* LocationId
+* EmployeeId
+* CustomerId
+
+#### Available Filters
+
+See the table below for available filters and the syntax of using each filter.
+
+| Keyword | Filter Description | Data Type | Examples |
+|:--------|:-------------------|:----------|:---------|
+| `eq` | Property is equal to value | Integer, Boolean, String, Date | `EmployeeId eq 15` <br/> `CustomerId eq guid'503d1d4a-c974-4286-b4a2-002699e60ad6'` <br/> `CreatedDateUtc eq DateTime'2016-01-10'` |
+| `gt` | Property is greater than value(s) | Integer, Date | `CreatedDateUtc gt DateTime'2016-01-10'` |
+| `lt` | Property is less than value(s) | Integer, Date | `CreatedDateUtc lt DateTime'2016-01-10'` |
+| `ge` | Property is greater than or equal to value(s) | Integer, Date | `CreatedDateUtc ge DateTime'2016-01-10'` |
+| `le`| Property is less than or equal to value(s) | Integer, Date | `CreatedDateUtc le DateTime'2016-01-10'` |
+| `substringof` | Property contains value | String | `substringof('iPhone', Notes)` |
+
+#### Combining Filters
+
+Filters can be combined using the keyword `and` as shown below.
+
+###### Example
+
+    EmployeeId eq 15 and LocationId eq 4
+
+#### Case Sensitivity
+
+Filters are **case sensitive**.
+
+To filter without case sensitivity, you can apply 'tolower' to a resource property.
+
+###### Example
+
+    GET /Companies(14146)/InvoiceSummaries?$filter=substringof('iPhone', tolower(Notes))        
