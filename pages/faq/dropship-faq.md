@@ -1,10 +1,10 @@
 ---
 title: Dropship FAQ
-permalink: /dropship-faq/
+permalink: /faq/dropship-faq/
 tags: []
 keywords: 
 audience: 
-last_updated: 11-02-2016
+last_updated: 22-02-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -17,7 +17,7 @@ Below are the most commonly asked questions from suppliers around the Dropship p
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#subscription" href="#sub1">How to create more than one subscribable list?</a>
+        <a data-toggle="collapse" data-parent="#subscription" href="#sub1">How do I create more than one subscribable list?</a>
       </h4>
     </div>
     <div id="sub1" class="panel-collapse collapse in">
@@ -60,7 +60,7 @@ Below are the most commonly asked questions from suppliers around the Dropship p
         <a data-toggle="collapse" data-parent="#availability" href="#av1">Is supplier availability on a global level or per retail?</a>
       </h4>
     </div>
-    <div id="av1" class="panel-collapse collapse in">
+    <div id="av1" class="panel-collapse collapse">
       <div class="panel-body">Availability is cached on our end before displaying in RQ. Availability on a per supplier level, not retailer level. Shipping options query will reject is sku not available (throw an error). For example, put a threshold at 100 set for dropship and sell remaining items by other means. Any items removed from list would no longer be dropshippable.</div>
     </div>
   </div>
@@ -86,7 +86,7 @@ Below are the most commonly asked questions from suppliers around the Dropship p
         <a data-toggle="collapse" data-parent="#product" href="#pr1">How do we handle the case where the supplier’s product categories are not as granular as our classifications?</a>
       </h4>
     </div>
-    <div id="pr1" class="panel-collapse collapse in">
+    <div id="pr1" class="panel-collapse collapse">
       <div class="panel-body">Availability is cached on our end before displaying in RQ. Availability on a per supplier level, not retailer level. Shipping options query will reject is sku not available (throw an error). For example, put a threshold at 100 set for dropship and sell remaining items by other means. Any items removed from list would no longer be dropshippable.</div>
     </div>
   </div>

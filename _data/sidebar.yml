@@ -336,6 +336,21 @@ entries:
           product: all
           version: all
 
+    - title: Frequently Asked Questions
+      audience: writers, designers
+      platform: all
+      product: all
+      version: all
+
+      items:
+
+        - title: Dropship FAQ
+          url: /faq/dropship-faq/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
     - title: Dropship
       url: /documentation-testing/dropship/
       audience: writers, designers
