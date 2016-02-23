@@ -40,6 +40,27 @@ To learn more about authentication, see [Obtaining an Access Token](/api/authent
 
 Version control is done on a per service basis, located in the endpoint URI. Currently **v1** is deployed across our APIs, with the exception of [Carrier Integration](/api/carrier-integration).
 
+### Postman
+
+iQmetrix uses a tool called Postman for debugging and testing our APIs. Postman is an application designed for API development and testing. It allows you to import and export collections of API requests and environment variables.
+
+To learn more about installing postman and its various features, see <a href="https://www.getpostman.com/docs/">Postman Documentation</a> .
+
+For iQmetrix, each collection would be considered all the methods for an endpoint or guide, and there would be two environments: sandbox and production.
+
+The table below contains Postman collections for the various APIs and guides. The environment variable values (e.g. {{CompanyId}}) would be provided from elsewhere, such as from your onboarding package.
+
+iQmetrix API collections are in RAML format, instead of JSON format. However, Postman is able to understand this format. For more information on importing RAML folders into Postman, see <a href="https://www.getpostman.com/docs/importing_folders">Postman - Importing Folders</a> .
+
+<br />
+**Table 1**: Table of Collections
+
+| Topic | Endpoint | Collection |
+|:------|:---------|:-----------|
+| API Reference | Authentication | ex1 |
+| Guides | Dropship Test Order Guide | ere |
+
+
 ### Changelog
 
 Any new documents or changes made to our documentation is reflected in our [Changelog](/api/changelog/).
