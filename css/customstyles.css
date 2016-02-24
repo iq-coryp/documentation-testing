@@ -885,3 +885,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #364956;
   border-color: #364956;
 }
+
+.panel-default > .panel-heading{
+  background-color: #364956;
+}
+
+a[data-toggle]{
+  color: #fff;
+}
