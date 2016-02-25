@@ -18,6 +18,31 @@
 <script src="{{ "js/toc.js" | prepend:site.pagefileurl }}"></script>
 <script src="{{ "js/customscripts.js" | prepend:site.pagefileurl }}"></script>
 <link rel="shortcut icon" href="{{ "images/favicon.ico" | prepend:site.pagefileurl }}" type="image/x-icon">
+
+<!-- Image popup source files -->
+<link rel="stylesheet" type="text/css" href="{{ "css/magnific-popup.css" | prepend:site.pagefileurl }}">
+<script src="{{ "js/jquery.magnific-popup.js" | prepend:site.pagefileurl }}"></script>
+
+<script>
+    $(document).ready(function() {
+
+        // surround each image with an anchor class  for image popup
+        $('img').each( function() {
+            var $img = $(this),
+            href = $img.attr('src');
+            $img.wrap('<a class="image-link" href=' + href + '></a>');
+             
+        });
+
+        // make each image with image-link class popup "on click"
+        // !! Drawback -- all images could popup :(
+        $('.image-link').magnificPopup({
+            type:'image'
+        });
+                
+    });    
+</script>
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

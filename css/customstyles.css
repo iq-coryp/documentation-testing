@@ -742,6 +742,33 @@ div.special_table table > tbody > tr > td {
   width: 0;
 }
 
+.copy-button {
+  margin-top: 10px;
+  margin-left: 23%;
+}
+
+.btn-info{
+  background-color: #364956;
+  border-color: #364956;
+}
+
+.btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open>.dropdown-toggle.btn-info{
+  background-color: #364956;
+  border-color: #364956;
+}
+
+.panel-default > .panel-heading{
+  background-color: #364956;
+}
+
+a[data-toggle]{
+  color: #fff;
+}
+
+a.image-link {
+  outline: none;
+}
+
 /* -------------------------- */
 
 #page-selector .text-center {
@@ -871,25 +898,3 @@ h1, h2, h3, h4, h5, h6 {
   color: #333;
 }
 
-.copy-button {
-  margin-top: 10px;
-  margin-left: 23%;
-}
-
-.btn-info{
-  background-color: #364956;
-  border-color: #364956;
-}
-
-.btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open>.dropdown-toggle.btn-info{
-  background-color: #364956;
-  border-color: #364956;
-}
-
-.panel-default > .panel-heading{
-  background-color: #364956;
-}
-
-a[data-toggle]{
-  color: #fff;
-}
