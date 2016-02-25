@@ -4,7 +4,7 @@ permalink: /api/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-12-2015
+last_updated: 25-02-2015
 summary: 
 ---
 {% include linkrefs.html %}
@@ -31,15 +31,6 @@ When using our APIs, your account must be [authenticated](/api/authentication/) 
 
 To learn more about authentication, see [Obtaining an Access Token](/api/authentication/#obtaining-an-access-token).
 
-### Rate Limits
-
-[Rate Limiting](/api/rate-limiting) is done on a per API basis.
-
-
-### Versioning
-
-Version control is done on a per service basis, located in the endpoint URI. Currently **v1** is deployed across our APIs, with the exception of [Carrier Integration](/api/carrier-integration).
-
 ### Postman
 
 iQmetrix uses a tool called Postman for debugging and testing our APIs. Postman is an application designed for API development and testing. It allows you to import and export collections of API requests and environment variables.
@@ -59,6 +50,17 @@ iQmetrix API collections are in RAML format, instead of JSON format. However, Po
 |:------|:---------|:-----------|
 | API Reference | Authentication | ex1 |
 | Guides | Dropship Test Order Guide | ere |
+
+
+### Rate Limits
+
+[Rate Limiting](/api/rate-limiting) is done on a per API basis.
+
+
+### Versioning
+
+Version control is done on a per service basis, located in the endpoint URI. Currently **v1** is deployed across our APIs, with the exception of [Carrier Integration](/api/carrier-integration).
+
 
 
 ### Changelog
