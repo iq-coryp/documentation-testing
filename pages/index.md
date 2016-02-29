@@ -33,23 +33,31 @@ To learn more about authentication, see [Obtaining an Access Token](/api/authent
 
 ### Postman
 
-iQmetrix uses a tool called Postman for debugging and testing our APIs. Postman is an application designed for API development and testing. It allows you to import and export collections of API requests and environment variables.
+iQmetrix uses the Postman application when debugging our APIs. Postman also gives you the ability to import and export collections of API requests and environment variables to debug APIs.
 
-To learn more about installing postman and its various features, see <a href="https://www.getpostman.com/docs/">Postman Documentation</a> .
+To learn more about installing Postman and its various features, see <a href="https://www.getpostman.com/docs/" target="_blank">Postman Documentation</a>.
 
-For iQmetrix, each collection would be considered all the methods for an endpoint or guide, and there would be two environments: sandbox and production.
+From an iQmetrix perspective, each collection would be considered the various methods for an endpoint or guide, and there would be two environments: sandbox and production.
 
-The table below contains Postman collections for the various APIs and guides. The environment variable values (e.g. {{CompanyId}}) would be provided from elsewhere, such as from your onboarding package.
+The tables below contain Postman collections for each API and guides. The environment variable values (e.g. {{CompanyId}}) would be provided from other sources, such as from your onboarding package.
 
-iQmetrix API collections are in RAML format, instead of JSON format. However, Postman is able to understand this format. For more information on importing RAML folders into Postman, see <a href="https://www.getpostman.com/docs/importing_folders">Postman - Importing Folders</a> .
+The iQmetrix API collections below are in RAML format, instead of JSON. Postman is able to understand this format and import RAML folders. For more information on importing RAML folders into Postman, see <a href="https://www.getpostman.com/docs/importing_folders" target="_blank">Postman - Importing Folders</a>.
 
 <br />
-**Table 1**: Table of Collections
+**Table 1**: API Collections
 
-| Topic | Endpoint | Collection |
-|:------|:---------|:-----------|
-| API Reference | Authentication | ex1 |
-| Guides | Dropship Test Order Guide | ere |
+| Endpoint | Collection |
+|:---------|:-----------|
+| Authentication | ex1 |
+| Assets | ex1 |
+
+
+<br />
+**Table 2**: Guide Collections
+
+| Endpoint | Collection |
+|:---------|:-----------|
+| Dropship Test Order Guide | ere |
 
 
 ### Rate Limits
