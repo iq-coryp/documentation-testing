@@ -4,7 +4,7 @@ permalink: /guides/ea-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-03-2016
+last_updated: 
 summary: 
 ---
 
@@ -179,7 +179,7 @@ HTTP 200 Content-Type: application/json
 ]
 ```
 
-#### Getting Items on an Order
+#### Getting Order Items
 
 To get the Items for each Order, [Getting All Items on an Order](/api/orders/#getting-all-items-on-an-order) can be used.
 
@@ -221,77 +221,6 @@ HTTP 200 Content-Type: application/json
 ]
 ```
 
-#### Syncing Customers
-
-When an {{Order}} is created in Endless Aisle, a {{Customer}} is created using the initials entered in checkout, as shown below. 
-
-<img src="{{ "/images/ea-user-input.png" | prepend: site.url }}" alt="Endless Aisle Customer Input" />
-
-The Customer has the following specifications:
-
-* The value submitted is placed in the `PrimaryName` property
-* An {{Address}} is created and associated with the Customer using the address of the current store
-* `CustomerType` is set to `Person`
-
-To sync a Customer to an external system, [Getting a Full Customer](/api/crm/#getting-a-full-customer) can be used.
-
-##### Example Request
-
-```
-GET https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(3d778021-2745-4f13-8397-2eca3058a808)
-Authorization: Bearer (Access Token)
-Accept: application/json
-```
-
-##### Example Response
-
-```
-HTTP 200 Content-Type: application/json
-{
-  "Addresses": [
-    {
-      "Id": "c253b1bf-3b26-4340-b219-3fe3b6aa1af5",
-      "CustomerId": "3d778021-2745-4f13-8397-2eca3058a808",
-      "AddressTypeId": 3,
-      "AddressType": "Shipping",
-      "Default": false,
-      "DoNotContact": true,
-      "CountryCode": "AU",
-      "Country": "Australia",
-      "Locality": "Perth",
-      "StateCode": "WA",
-      "State": "Western",
-      "PostalCode": "",
-      "PostOfficeBoxNumber": "",
-      "StreetAddress1": "",
-      "StreetAddress2": "",
-      "Notes": null,
-      "Version": 1,
-      "AttentionTo": null,
-      "Phone": "",
-      "Email": ""
-    }
-  ],
-  "ContactMethods": [],
-  "CustomerExtensions": [],
-  "RelatedCustomers": [],
-  "MemberOf": [],
-  "Id": "3d778021-2745-4f13-8397-2eca3058a808",
-  "CustomerTypeId": 2,
-  "CustomerType": "Person",
-  "Title": null,
-  "PrimaryName": "MK",
-  "AlternateName": null,
-  "MiddleName": null,
-  "FamilyName": "",
-  "DateOfBirth": null,
-  "Notes": "XQ-Shelf Guest",
-  "Disabled": false,
-  "DoNotContact": true,
-  "Version": 1
-}
-```
-
 <hr/>
 
 ### Corporate Hierarchy
@@ -306,13 +235,9 @@ To learn more about your Company Tree, see <a href="/concepts/company-tree/">Com
 
 Changes to your corporate hierarchy should be pushed to Endless Aisle to ensure Pricing and Availability are accurate.
 
-#### Relevant API Requests
+#### Relevant API Reference
 
-* [Creating a Location](/api/company-tree/#creating-a-location)
-* [Updating a Location](/api/company-tree/#updating-a-location)
-* [Creating a Division](/api/company-tree/#creating-a-division)
-* [Creating a Group](/api/company-tree/#creating-a-group)
-* [Deleting a Group or Division](/api/company-tree/#deleting-a-group-or-division)
+* [Company Tree](/api/company-tree/)
 
 <hr/>
 
@@ -326,27 +251,9 @@ To learn more about Product Library and your Catalog, see <a href="/concepts/pro
 
 Pushing a new product to Endless Aisle involves:
 
+* Creating a Rule in Endless Aisle
 * Creating a Product Structure
 * Adding a Product to your Catalog
-* Creating a Rule in Endless Aisle
-
-#### Creating a Product Structure
-
-The first step in adding a new product to Endless Aisle involves creating a Product Structure of a Master Product and any Variations and/or Revisions.
-
-{{tip}}
-To learn more about Master Products, Variations and Revisions see <a href="/concepts/product-structure/">Product Structure</a>
-{{end}}
-
-#### Relevant API Requests
-
-* [Creating a Master Product](/api/product-structure/#creating-a-master-product)
-* [Creating a Variation](/api/product-structure/#creating-a-variation)
-* [Creating a Revision](/api/product-structure/#creating-a-revision)
-
-#### Adding a Product to your Catalog
-
-Adding Products to your Catalog must be done through [iQmetrix Hub](https://hub.iqmetrix.net/).
 
 #### Creating a Rule in Endless Aisle
 
@@ -358,13 +265,148 @@ Products can be added to an Endless Aisle display **manually** or **automaticall
 
 Once these rules are set up, any products added to your Catalog matching the rule criteria will **automatically** be added to Endless Aisle in the configured category.
 
+For more information on configuring rules, see [Shelf Configuration Creation and Management](http://iqmetrix.helpdocsonline.com/shelf-configuration-creation-and-management).
+
 ##### Example
 
 Using the following rule:
 
 <img src="{{ "/images/ea-rule-add.PNG" | prepend: site.url }}" alt="Adding a Rule to Endless Aisle" />
 
-Any product added to the Catalog with a **Classification** of **Smartphones** will automatically be added to Endless Aisle.
+Any product added to the Catalog with a **Classification** of **Shoes** will automatically be added to Endless Aisle.
+
+#### Creating a Product Structure
+
+The first step in adding a new product to Endless Aisle involves creating a Product Structure of a Master Product and any Variations and/or Revisions.
+
+{{tip}}
+To learn more about Master Products, Variations and Revisions see <a href="/concepts/product-structure/">Product Structure</a>
+{{end}}
+
+To ensure the Product is added to Endless Aisle, you should ensure the Product will match a rule set up in [Creating a Rule in Endless Aisle](#creating-a-rule-in-endless-aisle).
+
+##### Example Request
+
+In this example, we will [Create a Master Product](/api/product-structure/#creating-a-master-product).
+
+The Master Product will have the following specifications:
+
+* `Classification.TreeId` will use the Apparel & Accessories tree, which has an Id of `88`
+* `Classification.Id` will be Dress, which has an Id of `166`, determined using [Getting a Classification Tree](/api/classification-tree/#getting-a-classification-tree). **NOTE**: This category is within the rule created in [Creating a Rule in Endless Aisle](#creating-a-rule-in-endless-aisle)
+* The Manufacturer is Rampage, which has an Id of `11706`, determined using [Getting All Manufacturers](/api/entity-store/#getting-all-manufacturers)
+* Product Name will be specified using the {{FieldDefinition}} for Product Name, which has an Id of `1`, determined using [Getting All Field Definitions](/api/field-definitions/#getting-all-field-definitions)
+
+```
+POST https://productlibrarydemo.iqmetrix.net/v1/ProductDocs
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "Classification": {
+        "TreeId": 88,
+        "Id": 166
+    },
+    "ColorDefinitions": null,
+    "Manufacturer": {
+        "Id": 11706,
+        "Name": "Rampage"
+    },
+    "Owner": null,
+    "RootRevision": {
+        "ColorDefinitionId": null,
+        "FieldValues": [
+          {
+            "FieldDefinitionId": 1,
+            "LanguageInvariantValue": "Daisy Lou Pump - Youth"
+          },
+          ...
+        ],
+        "IdentifierGroups": null
+    }
+}
+```
+
+##### Example Response
+
+```
+HTTP 201 Content-Type: application/json
+{
+    "Id": 460,
+    "Classification": {
+        "TreeId": 88,
+        "Id": 166,
+        "Name": "Dress"
+    },
+    "ColorDefinitions": null,
+    "CreatedUtc": "2015-05-28T12:00:00.000Z",
+    "LastModifiedUtc": "2015-05-28T12:00:00.000Z",
+    "Manufacturer": {
+        "Id": 13149,
+        "Name": "OtterBox"
+    },
+    "Owner": null,
+    "RevisionGroups": null,
+    "RootRevision": {
+        "ColorDefinitionId": null,
+        "FieldValues": [
+          {
+            "FieldDefinitionId": 1,
+            "LanguageInvariantValue": "Daisy Lou Pump - Youth"
+          },
+          ...
+        ],
+        "IdentifierGroups": null,
+        "IsArchived": false
+    },
+    "Version": 1
+}
+```
+
+#### Relevant API Reference
+
+* [Product Structure](/api/product-structure/)
+* [Classification Tree](/api/classification-tree/)
+* [Entities](/api/entity-store/)
+* [Field Definitions](/api/field-definitions/)
+
+#### Adding a Product to your Catalog
+
+Once you have created a {{ProductStructure}}, you can add the Product to your Catalog.
+
+The **Slug** value for your Product can be determined using the [Product Slug Formula](/api/catalog/#product-slug).
+
+Alternatively, you can search for a Product Slug using [Searching for Products by Identifier](/api/product-library/#searching-for-products-by-identifier).
+
+##### Example Request
+
+In the example below, the Slug is determined using the `Id` of the Master Product created in [Creating a Product Structure](#creating-a-product-structure).
+
+```
+POST https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+  "Slug": "M460"
+}
+```
+
+##### Example Response
+
+```
+HTTP 201 Content-Type: application/json
+{
+  "RmsId": null,
+  "Slug": "M460",
+  "CatalogItemId": "bb54cb25-e1df-4710-9e05-c2473192cc99",
+  "IsArchived": false
+}
+```
+
+#### Relevant API Reference
+
+* [Catalog](/api/catalog/)
+* [Products](/api/product-library/)
 
 <hr/> 
 
@@ -376,14 +418,14 @@ When a Customer selects a product in Endless Aisle their product details are dis
 
 The table below lists where each component comes from and how it can be modified, if possible:
 
-| Component | Source | How to Modify |
-|:----------|:-------|:--------------|
-| iPhone 6s | [Product](/api/catalog/#product).Name | [Updating A Product](#updating-a-product) |
-| [Hero Shot](/api/glossary/#hero-shot) | [Product](/api/catalog/#product).HeroShot | |
-| $649.99 | [Pricing](/api/pricing/).OverridePrice **or** [Pricing](/api/pricing/).RegularPrice | [Updating Pricing](#updating-pricing) |
-| IN STOCK | [Availability](/api/availability/#availability).Quantity | |
-| Space Gray | [ColorDefinition](/api/catalog/#colordefinition).Name | [Updating A Product](#updating-a-product) |
-| Color Selector | [Swatch](/api/catalog/#swatch) | [Updating A Product](#updating-a-product) |
+| Component | Source | Service | How to Modify |
+|:----------|:-------|:--------|:--------------|
+| Caitlin Mary Jane Shoe - Youth | [Product](/api/catalog/#product).Name | Product Library | [Updating A Product](#updating-a-product) |
+| [Hero Shot](/api/glossary/#hero-shot) | [Product](/api/catalog/#product).HeroShot | Product Library | |
+| $29.99 | [Pricing](/api/pricing/).OverridePrice **or** [Pricing](/api/pricing/).RegularPrice | Pricing | [Updating Pricing](#updating-pricing) |
+| IN STOCK | [Availability](/api/availability/#availability).Quantity | Availability | |
+| Navy | [ColorDefinition](/api/catalog/#colordefinition).Name | Product Library | [Updating A Product](#updating-a-product) |
+| Color Selector | [Swatch](/api/catalog/#swatch) | Product Library | [Updating A Product](#updating-a-product) |
 
 #### Updating a Product
 
@@ -412,12 +454,9 @@ To learn more about Master Products, Variations and Revisions see <a href="/conc
 * Modifying {{FieldDefinitions}} that describe the Revision
 * Adding or modifying Revision-level identifiers
 
-#### Relevant API Requests
+#### Relevant API Reference
 
-* [Getting a Product Hierarchy](/api/product-structure/#getting-a-product-hierarchy)
-* [Updating a Master Product](/api/product-structure/#updating-a-master-product)
-* [Updating a Variation](/api/product-structure/#updating-a-variation)
-* [Updating a Revision](/api/product-structure/#updating-a-revision)
+* [Product Structure](/api/product-structure/)
 
 #### Updating Pricing 
 
@@ -429,10 +468,6 @@ The following rules determine which value is displayed:
 2. Otherwise, if `OverridePrice` has value, display it 
 3. Otherwise, display `RegularPrice`
 
-#### Relevant API Requests
+#### Relevant API Reference
 
-* [Creating or Updating Product Pricing at Company Level](/api/pricing/#creating-or-updating-product-pricing-at-company-level)
-* [Creating or Updating Product Pricing at Location Level](/api/pricing/#creating-or-updating-product-pricing-at-location-level)
-* [Creating a Sale Price](/api/pricing/#creating-a-sale-price)
-* [Updating a Sale Pricing](/api/pricing/#updating-a-sale-pricing)
-* [Deleting a Sale Pricing](/api/pricing/#deleting-a-sale-pricing)
+* [Pricing](/api/pricing/)
