@@ -4,7 +4,7 @@ permalink: /guides/ea-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 19-02-2016
+last_updated: 
 summary: 
 ---
 
@@ -12,7 +12,7 @@ summary:
 
 ## Overview
 
-This guide is intended to demonstrate how iQmetrix APIs could be used to integrate an external system with Endless Aisle.
+This guide is intended to demonstrate common integration scenarios between the iQmetrix Endless Aisle solution and external systems utilizing APIs.
 
 <img src="{{ "/images/ea-overview.png" | prepend: site.url }}" alt="Endless Aisle Overall Diagram" />
 
@@ -20,10 +20,12 @@ This guide is intended to demonstrate how iQmetrix APIs could be used to integra
 
 ## Who Is This Guide For? 
 
-You may be interested in this guide if you are:
+You may be interested in this guide if you are integrating an external system with Endless Aisle, such as...
 
-* Creating an integration for Endless Aisle
-* Integrating an external system to push data to Endless Aisle
+* eCommerce Solutions
+* Content Management Systems
+* Inventory Management Systems
+* Point of Sale Systems
 
 <hr/>
 
@@ -32,7 +34,6 @@ You may be interested in this guide if you are:
 To use this guide, the following steps must be completed:
 
 * You must have your **onboarding package** from iQmetrix, which includes your access credentials
-* Your {{Catalog_Concept}}, or physical inventory for your store(s), must be set up
 * Your {{CompanyTree_Concept}}, representing company structure (stores, groups, divisions, etc), must be created
 
 {{tip}}
@@ -62,23 +63,13 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 
 ## Integration Points
 
-This guide is organized by general components of an external system that you may wish to integrate with Endless Aisle.
+This guide is organized by functional areas of an external system that you may wish to integrate with Endless Aisle.
 
-Feel free to to skip to any section you are interested in:
+Feel free to skip to any section you are interested in:
 
 <div id="page-selector">
   <div class="row">
     <span class="col-md-3 text-center">
-      <a href="#orders">
-        <span class="col-md-12">
-          <h4>Orders</h4>
-        </span>             
-        <span class="col-md-12">
-          <i class="fa fa-file-text-o fa-4x"></i>
-        </span>
-      </a>   
-    </span>   
-    <span class="col-md-3 text-center">     
       <a href="#corporate-hierarchy">
         <span class="col-md-12">
           <h4>Corporate Hierarchy</h4>
@@ -86,18 +77,18 @@ Feel free to to skip to any section you are interested in:
         <span class="col-md-12">
           <i class="fa fa-map-marker fa-4x"></i>
         </span>
-      </a>   
-    </span> 
-    <span class="col-md-3 text-center">  
+      </a>
+    </span>
+    <span class="col-md-3 text-center">
       <a href="#content">
         <span class="col-md-12">
           <h4>Content</h4>
         </span>             
         <span class="col-md-12">
-          <i class="fa fa-cubes fa-4x"></i>
+          <i class="fa fa-list-alt fa-4x"></i>
         </span>
-      </a>   
-    </span>  
+      </a>    
+    </span> 
     <span class="col-md-3 text-center">
       <a href="#inventory">
         <span class="col-md-12">
@@ -105,6 +96,16 @@ Feel free to to skip to any section you are interested in:
         </span>             
         <span class="col-md-12">
           <i class="fa fa-barcode fa-4x"></i>
+        </span>
+      </a>       
+    </span>  
+    <span class="col-md-3 text-center">
+      <a href="#orders">
+        <span class="col-md-12">
+          <h4>Orders</h4>
+        </span>             
+        <span class="col-md-12">
+          <i class="fa fa-file-text-o fa-4x"></i>
         </span>
       </a>   
     </span>
@@ -115,18 +116,25 @@ Feel free to to skip to any section you are interested in:
 
 ### Orders
 
-In Endless Aisle, an {{Order}} is created when a Customer presses "Checkout", as shown below:
+In Endless Aisle, after a Customer presses "Checkout" an {{Order}} is created, as shown below: 
 
 <img src="{{ "/images/ea-checkout-2.png" | prepend: site.url }}" alt="Endless Aisle Checkout" />
 
 #### Getting Orders
 
-An Order created in Endless Aisle has the following specifications:
+Orders created in Endless Aisle have the following specifications:
 
-* Each product in the cart is an {{OrderItem}} on the Order
+* Each product in the cart corresponds to an {{OrderItem}} on the Order
 * Order `Status` is set to `Pending`
+* A {{Customer}} is created and associated with the Order
 
-To get these Orders for an external system, [Getting Pending Orders by Location](/api/orders/#getting-pending-orders-by-location) can be used.
+Orders can be synched to an external system using [Getting Pending Orders by Location](/api/orders/#getting-pending-orders-by-location).
+
+Syncing Orders might be used to:
+
+* Transfer the contents of a cart to a POS to complete a transaction
+* Modify an Order in an eCommerce solution
+* Keep a record of an Order in an Inventory Management System
 
 ##### Example Request
 
@@ -142,30 +150,30 @@ Accept: application/json
 HTTP 200 Content-Type: application/json
 [
   {
-    "Id": "412f6b53-8dea-4868-a270-a0a288eadf4a",
+    "Id": "65bb1c32-3e6b-4d3f-80b5-2e7c861ce5af",
     "OrderTypeId": 1,
     "OrderType": "Sales",
     "State": "Pending",
-    "PrintableId": "Q820499",
-    "Name": "XQ-Shelf Cart 900bea04-9746-48de-a7f9-c812b2dc5fc0",
+    "PrintableId": "24T8E9T",
+    "Name": "XQ-Shelf Cart f71cc25c-cda5-43ed-9288-77c12903968d",
     "TenderId": null,
     "TenderOrigin": null,
     "SourceId": null,
     "SourceName": null,
-    "EntityId": 14202,
+    "EntityId": 14192,
     "ShippingEntityId": 0,
-    "CustomerId": "81df4cd1-b559-4939-a6d1-089dea90e3d2",
-    "BillingCustomerId": "81df4cd1-b559-4939-a6d1-089dea90e3d2",
-    "ShippingCustomerId": "81df4cd1-b559-4939-a6d1-089dea90e3d2",
-    "ShippingAddressId": "eeb71fe3-3bcd-4c3d-a434-6dd78f6a10e3",
-    "BillingAddressId": "eeb71fe3-3bcd-4c3d-a434-6dd78f6a10e3",
+    "CustomerId": "3d778021-2745-4f13-8397-2eca3058a808",
+    "BillingCustomerId": "3d778021-2745-4f13-8397-2eca3058a808",
+    "ShippingCustomerId": "3d778021-2745-4f13-8397-2eca3058a808",
+    "ShippingAddressId": "c253b1bf-3b26-4340-b219-3fe3b6aa1af5",
+    "BillingAddressId": "c253b1bf-3b26-4340-b219-3fe3b6aa1af5",
     "EmployeeId": 0,
     "DiscountCode": null,
     "DiscountDescription": null,
     "DiscountAmount": 0,
-    "CreatedDateUtc": "2016-02-11T19:47:35.303",
+    "CreatedDateUtc": "2016-03-03T14:22:53.687",
     "OrderExpiryHours": 12,
-    "OrderExpiryDate": "2016-02-12T07:47:35.303"
+    "OrderExpiryDate": "2016-03-04T02:22:53.687"
   },
   ...
 ]
@@ -178,7 +186,7 @@ To get the Items for each Order, [Getting All Items on an Order](/api/orders/#ge
 ##### Example Request
 
 ```
-GET https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(412f6b53-8dea-4868-a270-a0a288eadf4a)/Items
+GET https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(65bb1c32-3e6b-4d3f-80b5-2e7c861ce5af)/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 ```
@@ -189,20 +197,20 @@ Accept: application/json
 HTTP 200 Content-Type: application/json
 [
   {
-    "Id": "5e09e105-7e6f-4b2f-9608-fd65fc04ea32",
-    "OrderId": "412f6b53-8dea-4868-a270-a0a288eadf4a",
+    "Id": "753620e8-589c-4767-be9f-1727f528cb63",
+    "OrderId": "65bb1c32-3e6b-4d3f-80b5-2e7c861ce5af",
     "ItemTypeId": 2,
     "ItemType": "InStock",
     "ItemStatusId": 9,
     "ItemStatus": "New",
-    "ProductId": "4e1feb8d-cdc6-4788-80e7-67b0aafbf181",
+    "ProductId": "92841bed-454b-42f8-9fb0-4bb29c299c82",
     "SupplierEntityId": 0,
     "Quantity": 1,
     "Cost": 0,
     "ListPrice": 0,
-    "SellingPrice": 49.99,
+    "SellingPrice": 10,
     "Index": 0,
-    "Description": "iPhone 6s 16GB - Space Gray",
+    "Description": "Alexa Mary Jane Flat - Youth",
     "SKU": null,
     "Notes": null,
     "SerialNumbers": [],
@@ -230,7 +238,7 @@ To sync a Customer to an external system, [Getting a Full Customer](/api/crm/#ge
 ##### Example Request
 
 ```
-GET https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(81df4cd1-b559-4939-a6d1-089dea90e3d2)
+GET https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(3d778021-2745-4f13-8397-2eca3058a808)
 Authorization: Bearer (Access Token)
 Accept: application/json
 ```
@@ -242,20 +250,20 @@ HTTP 200 Content-Type: application/json
 {
   "Addresses": [
     {
-      "Id": "eeb71fe3-3bcd-4c3d-a434-6dd78f6a10e3",
-      "CustomerId": "81df4cd1-b559-4939-a6d1-089dea90e3d2",
+      "Id": "c253b1bf-3b26-4340-b219-3fe3b6aa1af5",
+      "CustomerId": "3d778021-2745-4f13-8397-2eca3058a808",
       "AddressTypeId": 3,
       "AddressType": "Shipping",
       "Default": false,
       "DoNotContact": true,
-      "CountryCode": "CA",
-      "Country": "Canada",
-      "Locality": "Regina",
-      "StateCode": "SK",
-      "State": "Saskatchewan",
-      "PostalCode": "S4P0J5",
+      "CountryCode": "AU",
+      "Country": "Australia",
+      "Locality": "Perth",
+      "StateCode": "WA",
+      "State": "Western",
+      "PostalCode": "",
       "PostOfficeBoxNumber": "",
-      "StreetAddress1": "2102 11th Avenue",
+      "StreetAddress1": "",
       "StreetAddress2": "",
       "Notes": null,
       "Version": 1,
@@ -268,7 +276,7 @@ HTTP 200 Content-Type: application/json
   "CustomerExtensions": [],
   "RelatedCustomers": [],
   "MemberOf": [],
-  "Id": "81df4cd1-b559-4939-a6d1-089dea90e3d2",
+  "Id": "3d778021-2745-4f13-8397-2eca3058a808",
   "CustomerTypeId": 2,
   "CustomerType": "Person",
   "Title": null,
@@ -289,6 +297,8 @@ HTTP 200 Content-Type: application/json
 ### Corporate Hierarchy
 
 In Endless Aisle, {{Pricing}} and {{Availability}} are set at different levels in your Company Tree, which represents your corporate hierarchy. 
+
+Availability is set at the store level while Pricing can be set at the Company level.
 
 {{tip}}
 To learn more about your Company Tree, see <a href="/concepts/company-tree/">Company Tree</a>
@@ -344,15 +354,15 @@ Products can be added to an Endless Aisle display **manually** or **automaticall
 
 **Manually** adding products must be done through [iQmetrix Hub](https://hub.iqmetrix.net/).
 
-**Automatically** adding products involves creating **rules** using Classification, Manufacturer or Availability.
+**Automatically** adding products involves creating **rules** in [iQmetrix Hub](https://hub.iqmetrix.net/) using Classification, Manufacturer or Availability.
 
-Once these rules are set up, any products added to your Catalog  matching the rule criteria will **automatically** be added to Endless Aisle in the configured category.
+Once these rules are set up, any products added to your Catalog matching the rule criteria will **automatically** be added to Endless Aisle in the configured category.
 
 ##### Example
 
 Using the following rule:
 
-<img src="{{ "/images/ea-rule-add.png" | prepend: site.url }}" alt="Adding a Rule to Endless Aisle" />
+<img src="{{ "/images/ea-rule-add.PNG" | prepend: site.url }}" alt="Adding a Rule to Endless Aisle" />
 
 Any product added to the Catalog with a **Classification** of **Smartphones** will automatically be added to Endless Aisle.
 
@@ -360,7 +370,7 @@ Any product added to the Catalog with a **Classification** of **Smartphones** wi
 
 ### Inventory
 
-When a Customer selects a product in Endless Aisle, product details are displayed, as shown below.
+When a Customer selects a product in Endless Aisle their product details are displayed, as shown below.
 
 <img src="{{ "/images/ea-product-detail.png" | prepend: site.url }}" alt="Endless Aisle Product Detail" />
 
@@ -375,9 +385,9 @@ The table below lists where each component comes from and how it can be modified
 | Space Gray | [ColorDefinition](/api/catalog/#colordefinition).Name | [Updating A Product](#updating-a-product) |
 | Color Selector | [Swatch](/api/catalog/#swatch) | [Updating A Product](#updating-a-product) |
 
-#### Updating A Product
+#### Updating a Product
 
-To update a Products in Endless Aisle, you must update a Master Product, Variation or Revision, depending on the change.
+To update Products in Endless Aisle, you must update a Master Product, Variation or Revision, depending on the change.
 
 {{tip}}
 To learn more about Master Products, Variations and Revisions see <a href="/concepts/product-structure/">Product Structure</a>
@@ -411,7 +421,7 @@ To learn more about Master Products, Variations and Revisions see <a href="/conc
 
 #### Updating Pricing 
 
-Endless Aisle determines displays the price of a product using the request [Getting Product Pricing for a Retail Location](/api/pricing/#getting-product-pricing-for-a-retail-location).
+Endless Aisle displays the price of a product using the request [Getting Product Pricing for a Retail Location](/api/pricing/#getting-product-pricing-for-a-retail-location).
 
 The following rules determine which value is displayed:
 
