@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 3-3-2016
+last_updated: 03-03-2016
 summary: 
 ---
 
