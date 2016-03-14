@@ -4,7 +4,7 @@ permalink: /guides/ea-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-03-2016
+last_updated: 
 summary: 
 ---
 
@@ -13,8 +13,6 @@ summary:
 ## Overview
 
 This guide is intended to demonstrate common integration scenarios between the iQmetrix Endless Aisle solution and external systems utilizing APIs.
-
-<img src="{{ "/images/ea-overview.png" | prepend: site.url }}" alt="Endless Aisle Overall Diagram" />
 
 <hr/>
 
