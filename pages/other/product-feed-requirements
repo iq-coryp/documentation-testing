@@ -1,0 +1,28 @@
+---
+title: Product Feed Requirements
+permalink: /product-feed-requirements/
+tags: []
+keywords: 
+audience: 
+last_updated: 21-03-2016
+summary: 
+datatable: true
+metadata: true
+---
+{% include linkrefs.html %}
+
+## Background
+
+This page contains the latest updates on field information and formatting for accessory product classifications.
+
+## Annotated Product Templates
+
+Field priority is indicated by Required, Recommended, and Optional.
+
+Classification-specific fields are indicated in addition to the "General Accessory" fields which are present in all accessory classifications.
+
+### General Accessory
+
+| Field Group | Field | Type | Use Indication | Example | Recommended Formatting Notes |
+|:------------|:------|:-----|:---------------|:--------|:-----------------------------|
+|  | Depth | Float (inches) | Recommended | 0.29 |  |
