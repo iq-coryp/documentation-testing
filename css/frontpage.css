@@ -22,7 +22,7 @@ body {
 }
 
 #navbar-custom-front {
-    background-image: url(/documentation-testing/images/header-image.png);
+    background-image: url(/images/header-image.png);
     background-repeat: repeat;
     margin-bottom:0px;
     border: 0px;
@@ -88,7 +88,7 @@ body {
 #iqproducts {
     padding-top: 50px;
     padding-bottom: 50px;
-    background-image: url(/documentation-testing/images/grey-texture.png);
+    background-image: url(/images/grey-texture.png);
 }
 
 #iqproducts > span {

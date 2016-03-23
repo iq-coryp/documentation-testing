@@ -4,7 +4,7 @@ permalink: /api/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -45,8 +45,10 @@ summary:
  
 Query parameters are used to specify search criteria using the following format:
  
-    {OptionName}={OptionValue}
- 
+```csharp
+{OptionName}={OptionValue}
+```
+
 Multiple options are separated with a `&` symbol.
  
 <h3>Available Options</h3>
@@ -90,20 +92,21 @@ GET /Products/FindByIdentifier?{Options}
     <li><a href="#csharp-searching-for-products-by-identifier" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-searching-for-products-by-identifier" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-searching-for-products-by-identifier" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-searching-for-products-by-identifier" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-searching-for-products-by-identifier"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-searching-for-products-by-identifier">
-<pre><code class="language-http">GET /Products/FindByIdentifier?value=336963&type=VendorSKU&entityId=13238
+<pre id="http-code-searching-for-products-by-identifier"><code class="language-http">GET /Products/FindByIdentifier?value=336963&type=VendorSKU&entityId=13238
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-searching-for-products-by-identifier">
-<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/Products/FindByIdentifier?value=336963&type=VendorSKU&entityId=13238" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-searching-for-products-by-identifier"><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/Products/FindByIdentifier?value=336963&type=VendorSKU&entityId=13238" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-searching-for-products-by-identifier">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse SearchingForProductsByIdentifier()
+<pre id="csharp-code-searching-for-products-by-identifier"><code class="language-csharp">static IRestResponse SearchingForProductsByIdentifier()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/Products/FindByIdentifier?value=336963&type=VendorSKU&entityId=13238");
     var request = new RestRequest(Method.GET);
@@ -117,9 +120,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-searching-for-products-by-identifier">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-searching-for-products-by-identifier"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -137,9 +139,8 @@ public static CloseableHttpResponse SearchingForProductsByIdentifier() throws IO
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-searching-for-products-by-identifier">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-searching-for-products-by-identifier"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -152,12 +153,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<ul><li><code>Products</code> (Array) </li><ul><li><code>Slug</code> (String) </li></ul></ul>
+ <ul><li><code>Products</code> (Array) </li><ul><li><code>Slug</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 

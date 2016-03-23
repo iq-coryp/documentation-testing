@@ -159,20 +159,6 @@ entries:
           product: all
           version: all
 
-        - title: Classification Tree
-          url: /api/classification-tree/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
-        - title: Customer Managed Inventory (CMI)
-          url: /api/cmi/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
         - title: Company Tree
           url: /api/company-tree/
           audience: writers, designers
@@ -244,13 +230,6 @@ entries:
           product: all
           version: all
 
-        - title: Field Definitions
-          url: /api/field-definitions/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all          
-
         - title: General Ledger
           url: /api/general-ledger/
           audience: writers, designers
@@ -272,6 +251,28 @@ entries:
           product: all
           version: all
 
+        - title: Partners
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
+
+          thirdLevelItems:
+
+            - title: Partner Reporting
+              url: /api/partner-reporting/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all 
+
+            - title: Relationships
+              url: /api/partner-relationships/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
         - title: Pricing
           url: /api/pricing/
           audience: writers, designers
@@ -280,11 +281,47 @@ entries:
           version: all
 
         - title: Product Library
-          url: /api/product-library/
           audience: writers, designers
           platform: all
           product: all
-          version: all  
+          version: all
+
+          thirdLevelItems:
+
+            - title: Classification Tree
+              url: /api/classification-tree/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+            - title: Field Definitions
+              url: /api/field-definitions/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all          
+
+            - title: Products
+              url: /api/product-library/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+            - title: Product Structure
+              url: /api/product-structure/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+        - title: Reference
+          url: /api/reference/
+          audience: writers, designers
+          platform: all
+          product: all
+          version: all
 
         - title: RQ
           audience: writers, designers
@@ -296,6 +333,13 @@ entries:
 
             - title: Carrier Integration
               url: /api/carrier-integration/
+              audience: writers, designers
+              platform: all
+              product: all
+              version: all
+
+            - title: Customer Managed Inventory (CMI)
+              url: /api/cmi/
               audience: writers, designers
               platform: all
               product: all
@@ -336,7 +380,7 @@ entries:
           product: all
           version: all
 
-    - title: Frequently Asked Questions
+    - title: FAQ
       audience: writers, designers
       platform: all
       product: all
@@ -350,13 +394,6 @@ entries:
           platform: all
           product: all
           version: all
-
-    - title: Dropship
-      url: /documentation-testing/dropship/
-      audience: writers, designers
-      platform: all
-      product: all
-      version: all    
 
     - title: Changelog
       url: /api/changelog/

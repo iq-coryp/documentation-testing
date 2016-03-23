@@ -4,7 +4,7 @@ permalink: /api/authentication/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -77,7 +77,7 @@ As long as an access token is not expired, it can be used to authorize requests 
 
 ###### Code Sample (C#)
 
-```c#
+```csharp
 using RestSharp;
 using RestSharp.Contrib;
 
@@ -156,7 +156,7 @@ The client credentials must be the same as those used in the request to acquire 
 
 ###### Code Sample (C#)
 
-```c#
+```csharp
 using RestSharp;
 using RestSharp.Contrib;
 

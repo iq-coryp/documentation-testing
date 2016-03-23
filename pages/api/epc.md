@@ -4,7 +4,7 @@ permalink: /api/epc/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -29,7 +29,7 @@ The Electronic Product Catalog API allows you to import products into {{ProductL
 ## Resources
 
 
-###RegularProduct
+### RegularProduct
 
 For more information about Regular Products, see [Regular Products](http://iqmetrix.helpdocsonline.com/regular-products$General)
 
@@ -68,7 +68,7 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 | WarehouseLocation | String | Name of the Warehouse location | `Cornwall` |
 
 
-###RegularProductPricing
+### RegularProductPricing
 
 {{important}}When a new RegularProductPricing is created, the <b>default pricing</b> values will be used for any properties that are not supplied. However, for any subsequent updates, each RegularProductPricing will have to be changed individually as the change(s) to <b>default pricing fields</b> will not propagate.{{end}}
 
@@ -92,7 +92,7 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 | ShowOnInvoice | Boolean | A flag to indicate if the price should be shown on the invoice | `true` |
 | StoreInStorePrice | Object | Store in Store price. See [Store In Store](http://iqmetrix.helpdocsonline.com/store-in-store-sis) for more information | `399.99` |
 
-###RegularProductPricingLocation
+### RegularProductPricingLocation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -119,7 +119,7 @@ For more information about Regular Products, see [Regular Products](http://iqmet
 | TargetLocationName | String | Name of a channel, region, district or location to apply this pricing to. To select the entire Company, leave this value empty and select All for TargetLocationType | `Saskatchewan` |
 | TargetLocationType | String | See [TargetLocations](#targetlocations) for a list of acceptable values | `RegionName` |
 
-###NonStockedProduct
+### NonStockedProduct
 
 For more information about Non-Stocked Products, see [Non-Stocked Products](http://iqmetrix.helpdocsonline.com/non-stocked-products)
 
@@ -148,7 +148,7 @@ For more information about Non-Stocked Products, see [Non-Stocked Products](http
 | SerialNumberPromptText | String | Text displayed when user is prompted to enter a serial number for the product | `null` |
 | ShortDescription | String | Short description | `Prepaid plan` |
 
-###NonStockedProductPricing
+### NonStockedProductPricing
 
 {{important}}When a new NonStockedProductPricing is created, the <b>default pricing</b> values will be used for any properties that are not supplied. However, for any subsequent updates, each NonStockedProductPricing will have to be changed individually as the change(s) to <b>default pricing fields</b> will not propagate.{{end}}
 
@@ -167,7 +167,7 @@ For more information about Non-Stocked Products, see [Non-Stocked Products](http
 | ShowOnInvoice | Boolean | A flag to indicate if the price should be shown on the invoice | `true` |
 | StoreInStorePrice | Object | Store in Store price. See [Store In Store](http://iqmetrix.helpdocsonline.com/store-in-store-sis) for more information | `399.99` |
 
-###NonStockedProductPricingLocation
+### NonStockedProductPricingLocation
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -189,7 +189,7 @@ For more information about Non-Stocked Products, see [Non-Stocked Products](http
 | TargetLocationName | String | Applies pricing to a single location, or all locations in a company, channel, region or district | `Saskatchewan` |
 | TargetLocationType | String | Where to apply the pricing, see [TargetLocations](#targetlocations) for a list of acceptable values | `RegionName` |
 
-###VendorRebateProduct
+### VendorRebateProduct
 
 For more information about Vendor Rebates, see [Vendor Rebates](http://iqmetrix.helpdocsonline.com/vendor-rebates)
 
@@ -219,7 +219,7 @@ For more information about Vendor Rebates, see [Vendor Rebates](http://iqmetrix.
 | ShortDescription | String | Short description | `2 yr rebate` |
 | VendorAccountName | String | Vendor name | `Verizon` |
 
-###NonRevenueProduct
+### NonRevenueProduct
 
 {{note}}The NonStockedProduct and NonRevenueProduct resources are identical, but will diverge in the future as different properties are added the resources{{end}}
 
@@ -249,7 +249,7 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | SerialNumberPromptText | String | Text displayed when user is prompted to enter a serial number for the product | `Serial prompt text here` |
 | ShortDescription | String | Short description | `Recycling fee` |
 
-###LocationVendor
+### LocationVendor
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -263,7 +263,7 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | VendorName | String | Vendor name | `SampleVendor` |
 | WriteOff | Boolean | A flag to indicate that the Product is a write-off. Defaults to false | `false` |
 
-###Vendor
+### Vendor
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -277,7 +277,7 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | WriteOff | Boolean | A flag to indicate that the Product is a write-off. Defaults to false | `false` |
 
 
-###BatchStatus
+### BatchStatus
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -290,7 +290,7 @@ For more information about Non-Revenue Products, see [Non-Revenue Products](http
 | StatusName | String | Name of the associated BatchStatus | `Completed` |
 | TotalProducts | Integer | Total number of Products in the Batch | `2` |
 
-###ProductStatus
+### ProductStatus
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -380,10 +380,11 @@ POST /companies({CompanyId})/products
     <li><a href="#csharp-importing-products" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-importing-products" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-importing-products" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-importing-products" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-importing-products"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-importing-products">
-<pre><code class="language-http">POST /companies(1)/products
+<pre id="http-code-importing-products"><code class="language-http">POST /companies(1)/products
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -679,7 +680,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-importing-products">
-<pre><code class="language-http">curl -X POST "https://platformepcdemo.iqmetrix.net/v1/companies(1)/products" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-importing-products"><code class="language-http">curl -X POST "https://platformepcdemo.iqmetrix.net/v1/companies(1)/products" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "RegularProducts": [
         {
             "Barcodes": [
@@ -972,7 +973,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-importing-products">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse ImportingProducts()
+<pre id="csharp-code-importing-products"><code class="language-csharp">static IRestResponse ImportingProducts()
 {
     var client = new RestClient("https://platformepcdemo.iqmetrix.net/v1/companies(1)/products");
     var request = new RestRequest(Method.POST);
@@ -987,9 +988,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-importing-products">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-importing-products"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1010,9 +1010,8 @@ public static CloseableHttpResponse ImportingProducts() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-importing-products">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-importing-products"><code class="language-ruby">require 'rest-client'
 
 body = "{\"RegularProducts\":[{\"Barcodes\":[\"BARCODE123\"],\"ProductName\":\"iPhone 4S 16GB White\",\"CategoryName\":\"Products > Phones > Smartphones\",\"DaysKeptInStock\":10,\"DefaultPricing\":{\"AllowReturns\":true,\"Discountable\":true,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"LockMinMaxed\":true,\"Margin\":1,\"MaximumQuantity\":10,\"MinimumQuantity\":1,\"MsrpAmount\":499.99,\"MsrpCurrencyCode\":\"USD\",\"Price\":499.99,\"PrimaryVendorName\":\"Apple\",\"RefundPeriod\":10,\"RefundToUsed\":false,\"ShowOnInvoice\":true,\"StoreInStorePrice\":399.99},\"Enabled\":true,\"EnforcedTrackingNumberLength\":50,\"ExtendedAttributes\":[{\"Name\":\"ProductId\",\"Value\":\"66\"}],\"GlCostOfSalesAccountNumber\":\"1001\",\"GlInventoryAccountNumber\":\"1002\",\"GlInventoryCorrectionsAccountNumber\":\"1001\",\"GlSalesAccountNumber\":\"1003\",\"IgnoreAutomaticTaxAddition\":false,\"LocationVendors\":[{\"Cost\":99.99,\"DiscontinuedDate\":\"2016-01-01T12:00:00.000\",\"DoNotOrder\":false,\"EndOfLife\":\"2016-01-01T12:00:00.000\",\"SpecialOrder\":false,\"TargetLocationName\":\"Saskatchewan\",\"TargetLocationType\":\"RegionName\",\"VendorName\":\"SampleVendor\",\"WriteOff\":false}],\"LongDescription\":\"The iPhone 4S is a gradualstep over the iPhone 4.\",\"ManufacturerName\":\"Apple\",\"ManufacturerSku\":\"ABC123\",\"Model\":\"iPhone 6\",\"PricingAndPurchasingLocations\":[{\"AllowReturns\":true,\"Discountable\":true,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"LockMinMaxed\":true,\"Margin\":1,\"MaximumQuantity\":10,\"MinimumQuantity\":1,\"MsrpAmount\":499.99,\"MsrpCurrencyCode\":\"USD\",\"Price\":499.99,\"PrimaryVendorName\":\"Apple\",\"RefundPeriod\":10,\"RefundToUsed\":false,\"SaleBeginDate\":\"2015-10-14T12:00:00.000\",\"SaleEndDate\":\"2015-10-18T12:00:00.000\",\"SalePrice\":399.99,\"ShowOnInvoice\":true,\"StoreInStorePrice\":399.99,\"TargetLocationName\":\"Saskatchewan\",\"TargetLocationType\":\"RegionName\"}],\"PricingMethod\":\"Fixed\",\"ProductLabel\":\"\",\"ProductReferenceId\":\"PRO123\",\"ReleaseDate\":\"2011-10-14T12:00:00.000\",\"Serialized\":true,\"SerialNumberPromptText\":\"Serial prompt text here\",\"ShortDescription\":\"Better than the iPhone 3G\",\"Vendors\":[{\"Cost\":99.99,\"DiscontinuedDate\":\"2016-01-01T12:00:00.000\",\"DoNotOrder\":false,\"EndOfLife\":\"2016-01-01T12:00:00.000\",\"SpecialOrder\":false,\"VendorName\":\"SampleVendor\",\"VendorSku\":\"DEF987\",\"WriteOff\":false}],\"WarehouseLocation\":\"Cornwall\"}],\"NonStockedProducts\":[{\"ProductName\":\"Prepaid Rate Plan\",\"CategoryName\":\"Rate Plans > Rate Plans\",\"DefaultPricing\":{\"AllowReturns\":false,\"CarrierPrice\":0,\"Cost\":0,\"Discountable\":false,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"Margin\":0,\"Price\":0,\"RefundPeriod\":null,\"ShowOnInvoice\":true,\"StoreInStorePrice\":399.99},\"Enabled\":true,\"EnforcedTrackingNumberLength\":50,\"ExtendedAttributes\":[{\"Name\":\"ProductId\",\"Value\":\"66\"}],\"GlCostOfSalesAccountNumber\":\"1001\",\"GlInventoryAccountNumber\":\"1002\",\"GlSalesAccountNumber\":\"1003\",\"IgnoreAutomaticTaxAddition\":true,\"LongDescription\":\"Prepaid plan forpeople on the go\",\"PricingLocations\":[{\"AllowReturns\":false,\"CarrierPrice\":0,\"Cost\":0,\"Discountable\":false,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"Margin\":0,\"Price\":0,\"SalePrice\":0,\"SaleBeginDate\":\"null\",\"SaleEndDate\":\"null\",\"ShowOnInvoice\":true,\"RefundPeriod\":null,\"StoreInStorePrice\":399.99,\"TargetLocationName\":\"Saskatchewan\",\"TargetLocationType\":\"RegionName\"}],\"PricingMethod\":\"Fixed\",\"ProductLabel\":\"Prepaid Rate Plan\",\"ProductReferenceId\":\"PRO123A\",\"RefundPeriod\":null,\"Serialized\":false,\"SerialNumberPromptText\":\"null\",\"ShortDescription\":\"Prepaid plan\"}],\"NonRevenueProducts\":[{\"ProductName\":\"Recycling Fee\",\"CategoryName\":\"Misc > Misc. Fees\",\"DefaultPricing\":{\"AllowReturns\":false,\"CarrierPrice\":0,\"Cost\":0,\"Discountable\":false,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"Margin\":0,\"Price\":0,\"RefundPeriod\":null,\"ShowOnInvoice\":true,\"StoreInStorePrice\":399.99},\"Enabled\":true,\"EnforcedTrackingNumberLength\":50,\"ExtendedAttributes\":[{\"Name\":\"ProductId\",\"Value\":\"66\"}],\"GlCostOfSalesAccountNumber\":\"1001\",\"GlInventoryAccountNumber\":\"1002\",\"GlSalesAccountNumber\":\"1003\",\"IgnoreAutomaticTaxAddition\":false,\"LongDescription\":\"Recycling fee to disposeof old handset\",\"PricingLocations\":[{\"AllowReturns\":false,\"CarrierPrice\":0,\"Cost\":0,\"Discountable\":false,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"Margin\":0,\"Price\":0,\"SalePrice\":0,\"SaleBeginDate\":\"null\",\"SaleEndDate\":\"null\",\"ShowOnInvoice\":true,\"RefundPeriod\":null,\"StoreInStorePrice\":399.99,\"TargetLocationName\":\"Saskatchewan\",\"TargetLocationType\":\"RegionName\"}],\"PricingMethod\":\"Fixed\",\"ProductLabel\":\"Recycling Fee\",\"ProductReferenceId\":\"PRO123C\",\"Serialized\":true,\"SerialNumberPromptText\":\"Serial prompt text here\",\"ShortDescription\":\"Recycling fee\"}],\"VendorRebateProducts\":[{\"VendorName\":\"SampleVendor\",\"ProductName\":\"2 YR New Act\",\"CategoryName\":\"Rate Plans > Rate Plan Rebates\",\"DefaultPricing\":{\"AllowReturns\":false,\"CarrierPrice\":0,\"Cost\":0,\"Discountable\":false,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"Margin\":0,\"Price\":0,\"RefundPeriod\":null,\"ShowOnInvoice\":true,\"StoreInStorePrice\":399.99},\"Enabled\":true,\"EnforcedTrackingNumberLength\":50,\"ExtendedAttributes\":[{\"Name\":\"ProductId\",\"Value\":\"66\"}],\"GlCostOfSalesAccountNumber\":\"1001\",\"GlInventoryAccountNumber\":\"1002\",\"GlSalesAccountNumber\":\"1003\",\"IgnoreAutomaticTaxAddition\":false,\"LongDescription\":\"Rebate on 2 year actiations\",\"PricingLocations\":[{\"AllowReturns\":false,\"CarrierPrice\":0,\"Cost\":0,\"Discountable\":false,\"FloorPrice\":0,\"ForSale\":true,\"InvoiceComments\":\"Invoice comment\",\"Margin\":0,\"Price\":0,\"SalePrice\":0,\"SaleBeginDate\":\"null\",\"SaleEndDate\":\"null\",\"ShowOnInvoice\":true,\"RefundPeriod\":null,\"StoreInStorePrice\":399.99,\"TargetLocationName\":\"Saskatchewan\",\"TargetLocationType\":\"RegionName\"}],\"PricingMethod\":\"Fixed\",\"ProductLabel\":\"2 YR New Act\",\"ProductReferenceId\":\"PRO123B\",\"Serialized\":true,\"SerialNumberPromptText\":\"Serial prompt text here\",\"ShortDescription\":\"2 yr rebate\",\"VendorAccountName\":\"Verizon\"}]}";
 
@@ -1026,12 +1025,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<ul><li><code>Status</code> (String) </li></ul>
+ <ul><li><code>Status</code> (String) </li></ul>
 
 <h5>Example</h5>
 
@@ -1079,20 +1076,21 @@ GET /companies({CompanyId})/batches({BatchId})/status
     <li><a href="#csharp-getting-status-for-a-batch" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-status-for-a-batch" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-status-for-a-batch" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-status-for-a-batch" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-status-for-a-batch"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-status-for-a-batch">
-<pre><code class="language-http">GET /companies(1)/batches(3)/status
+<pre id="http-code-getting-status-for-a-batch"><code class="language-http">GET /companies(1)/batches(3)/status
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-status-for-a-batch">
-<pre><code class="language-http">curl -X GET "https://platformepcdemo.iqmetrix.net/v1/companies(1)/batches(3)/status" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-status-for-a-batch"><code class="language-http">curl -X GET "https://platformepcdemo.iqmetrix.net/v1/companies(1)/batches(3)/status" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-status-for-a-batch">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingStatusForABatch()
+<pre id="csharp-code-getting-status-for-a-batch"><code class="language-csharp">static IRestResponse GettingStatusForABatch()
 {
     var client = new RestClient("https://platformepcdemo.iqmetrix.net/v1/companies(1)/batches(3)/status");
     var request = new RestRequest(Method.GET);
@@ -1106,9 +1104,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-status-for-a-batch">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-status-for-a-batch"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1126,9 +1123,8 @@ public static CloseableHttpResponse GettingStatusForABatch() throws IOException 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-status-for-a-batch">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-status-for-a-batch"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1141,12 +1137,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#batchstatus'>BatchStatus</a>
+ <a href='#batchstatus'>BatchStatus</a>
 
 <h5>Example</h5>
 

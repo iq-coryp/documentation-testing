@@ -4,7 +4,7 @@ permalink: /api/punch-clock/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -24,7 +24,7 @@ summary:
 
 ## Resources
 
-###PunchEntry
+### PunchEntry
 
 An instance of a clock punch for an employee at a location, with a punch-in time and (optionally) a punch-out time.
 
@@ -114,20 +114,21 @@ GET /Companies({CompanyId})/PunchEntries?$filter=LastUpdateDateUtc ge datetime'{
     <li><a href="#csharp-getting-all-punch-entries" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-punch-entries" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-punch-entries" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-punch-entries" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-punch-entries"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-punch-entries">
-<pre><code class="language-http">GET /Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10
+<pre id="http-code-getting-all-punch-entries"><code class="language-http">GET /Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-punch-entries">
-<pre><code class="language-http">curl -X GET "https://punchclockdemo.iqmetrix.net/v1/Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-getting-all-punch-entries"><code class="language-http">curl -X GET "https://punchclockdemo.iqmetrix.net/v1/Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-punch-entries">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllPunchEntries()
+<pre id="csharp-code-getting-all-punch-entries"><code class="language-csharp">static IRestResponse GettingAllPunchEntries()
 {
     var client = new RestClient("https://punchclockdemo.iqmetrix.net/v1/Companies(14146)/PunchEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10");
     var request = new RestRequest(Method.GET);
@@ -141,9 +142,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-punch-entries">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-punch-entries"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -161,9 +161,8 @@ public static CloseableHttpResponse GettingAllPunchEntries() throws IOException 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-punch-entries">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-punch-entries"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -243,18 +242,20 @@ These links are _relative_, they do not include the base endpoint. It is the res
 
 ##### Example
 
-    {
-        "_links": {
-            "prev": null,
-            "self": "v1/Companies(14146)/PunchEntries?$skip=0&$top=5",
-            "next": "v1/Companies(14146)/PunchEntries?$skip=5&$top=5"
-        },
-        "_metadata": {
-            "count": 15,
-            "skip": 0,
-            "top": 5
-        }
+```csharp
+{
+    "_links": {
+        "prev": null,
+        "self": "v1/Companies(14146)/PunchEntries?$skip=0&$top=5",
+        "next": "v1/Companies(14146)/PunchEntries?$skip=5&$top=5"
+    },
+    "_metadata": {
+        "count": 15,
+        "skip": 0,
+        "top": 5
     }
+}
+```
 
 In the example above, the `_links` section is included in the data returned from an API call to [Getting All Punch Entries](#getting-all-punch-entries), where `$skip=0` and `$top=5`.
 

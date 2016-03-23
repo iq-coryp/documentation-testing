@@ -34,18 +34,43 @@
                 });
 
             });
+
+
+            if(window.location.hostname == "apidocumentation-dev-westus.azurewebsites.net")
+            {
+                $("a").each(function(e) {
+                    var url = $(this).attr("href");
+                    
+                    if(url.indexOf("developers.iqmetrix.com") > -1) {
+                        url = url.replace("developers.iqmetrix.com", "apidocumentation-dev-westus.azurewebsites.net");
+                    }
+
+                    $(this).attr("href", url);
+                });
+
+                $("img").each(function(e) {
+                    var url = $(this).attr("src");
+                    
+                    if(url.indexOf("developers.iqmetrix.com") > -1) {
+                        url = url.replace("developers.iqmetrix.com", "apidocumentation-dev-westus.azurewebsites.net");
+                    }
+
+                    $(this).attr("src", url);
+                });                    
+            }
+                            
         </script>
 
         {% include custom/conditions.html %}
 
-        <ul id="mysidebar" class="nav">
+        <ul id="mysidebar" class="nav affix">
             {% for entry in sidebar %}
                 {% for subcategory in entry.subcategories %}
                     {% if subcategory.url != null %}
                         <li><a href="{{ subcategory.url }}">{{ subcategory.title }}</a>
                     {% elsif subcategory.audience contains audience and subcategory.product contains product and subcategory.platform contains platform and subcategory.version contains version and subcategory.web != false %}
                         <li><a href="#">{{ subcategory.title }}</a>
-                            <ul>
+                            <ul style="display: none;">
                                 {% for item in subcategory.items %}
                                     {% if item.thirdLevelItems != null %}
                                         <li class="thirdlevel"><a href="#">{{ item.title }}</a>
@@ -54,9 +79,9 @@
                                                     {% if deepItem.external_url %}
                                                         <li><a href="{{deepItem.external_url}}" target="_blank">{{deepItem.title}}</a></li>
                                                     {% elsif page.url contains deepItem.url %}
-                                                        <li class="active"><a href="{{deepItem.url | prepend: site.url | append: site.suffix}}">{{deepItem.title}}</a></li>
+                                                        <li class="active"><a href="{{deepItem.url | append: site.suffix}}">{{deepItem.title}}</a></li>
                                                     {% else %}
-                                                        <li><a href="{{deepItem.url | prepend: site.url | append: site.suffix}}">{{deepItem.title}}</a></li>
+                                                        <li><a href="{{deepItem.url | append: site.suffix}}">{{deepItem.title}}</a></li>
                                                     {% endif %}
                                                 {% endfor %}
                                             </ul>
@@ -65,9 +90,9 @@
                                         {% if item.external_url %}
                                             <li><a href="{{item.external_url}}" target="_blank">{{subcategory.title}}</a></li>
                                         {% elsif page.url contains item.url %}
-                                            <li class="active"><a href="{{item.url | prepend: site.url | append: site.suffix}}">{{item.title}}</a></li>
+                                            <li class="active"><a href="{{item.url | append: site.suffix}}">{{item.title}}</a></li>
                                         {% else %}
-                                            <li><a href="{{item.url | prepend: site.url | append: site.suffix}}">{{item.title}}</a></li>
+                                            <li><a href="{{item.url | append: site.suffix}}">{{item.title}}</a></li>
                                         {% endif %}
                                     {% endif %}
                                 {% endfor %}

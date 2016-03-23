@@ -4,7 +4,7 @@ permalink: /api/shipping-options/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -16,12 +16,6 @@ summary:
 Providing a Shipping Options API gives iQmetrix the ability to request your shipping options for a specific zip/postal code and set of products. The shipping options provided from your API will be displayed to the customer. Once the customer has selected their shipping option, the shipping option ID will be returned in the order during processing.
 
 For this call, you will need to create an endpoint based on the specification provided by iQmetrix (see below). You will also need to provide an endpoint URL for iQmetrix and credentials for authentication.
-
-<!-- For a swagger (yaml) reference, download the file here: (insert file link here). 
-
-Copy the contents of the yaml file and paste into Swagger Editor: http://editor.swagger.io/
-
--->
 
 
 ## Endpoint Format
@@ -51,33 +45,33 @@ API key must be provided in header and is configurable.
 
 ##### Example
 
-    Api-Key: 890g8f90dfgsd890fs89          
+    Api-Key: 9c269e40-92f3-4c21-9ff3-c4a00c985021          
 
 
 ## Resources
 
-###ShippingQuery
+### ShippingQuery
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | CompanyId | Integer | Company identifier | `123` |
-| PostalCode | String | Postal or zip code of shipping address | `A1A1A1` |
+| PostalCode | String | Postal or zip code of shipping address | `A1A1A1`, `08540`, or `02139-4301` |
 | Items | Array[<a href='#item'>Item</a>] | List of Products to be added to shipping query |  |
 
-###Item
+### Item
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | ProductName | String | Product name  | `Galaxy S6 Defender Case - Glacier` |
 | Quantity | Integer | Amount of products | `11` |
-| Sku | String | Product sku | `87932OTS45S6` |
+| Sku | String | Vendor SKU | `87932OTS45S6` |
 
 
-###ShippingOption
+### ShippingOption
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | String | Identifier for the shipping option | `350` |
+| Id | String | Your internal shipping option method identifier that is linked to the same shipping method | `350` |
 | Cost | Decimal | Cost for shipping option | `7.94` |
 | Currency | String(3) | Cost currency (USD or CAD) | `CAD` |
 | EstimatedTransitTime | String | Total time to be in transit, where units are provided by supplier | `1 week` |
@@ -135,7 +129,9 @@ Host: supplier.azure-api.net
 
 #### Response
 
-The specification of the response must be in the format below:
+The specification of the response must be in the format below. 
+
+The `Id` corresponds to the identifier of your shipping option method. For example, Id: 350 always corresponds to PurolatorExpress with charge 7.94 CAD.
 
 * `ShippingOptions` (**Required**)
     * `Id` (**Required**) 
@@ -159,6 +155,7 @@ HTTP 200 Content-Type: application/json
             "Currency": "CAD",
             "EstimatedTransitTime": "1 week",
         }
+        ...
     ]
 }
 </pre>

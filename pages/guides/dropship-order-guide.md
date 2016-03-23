@@ -4,7 +4,7 @@ permalink: /guides/dropship-order-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 07-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -15,6 +15,9 @@ summary:
 The following document outlines the APIs and calls required for a dropship integration with iQmetrix. The steps outlined in this guide are focused on order management and are meant to be performed sequentially. 
 
 Each segment in this guide will provide high-level concepts before describing examples of the API call required.
+
+<br />
+**Figure 1:** Illustrates the interactions between supplier and iQmetrix APIs.
 
 <img src="{{ "/images/dropship-order-flow.jpg" | prepend: site.url }}" alt="dropship order diagram" />
 
@@ -50,6 +53,9 @@ In order to make authorized requests to iQmetrix APIs, you need an {{AccessToken
 
 See the table below for different ways of getting an Access Token.
 
+<br />
+**Table 1:** Methods for Obtaining an Access Token
+
 | If... | Then... |
 |:------|:--------|
 | You do not have an Access Token | See [Obtaining an Access Token](/api/authentication/#obtaining-an-access-token) |
@@ -69,6 +75,15 @@ The [Order Notifications Feed](/api/supplier-orders/#order-notifications-feed) a
 When reading the order entry, one of two shipping addresses are given: the store address or the customer address. The differentiator between these addresses will be in the `type` field under the `shipping-address` resource.
 
 Order notifications are an archive of all your orders, regardless of retailer or location.
+
+Each page of the feed will contain up to 50 events. If a page has 50 events and a new event occurs, then those 50 events are pushed into an archived page. The current feed will contain the new event at this time. This feed must be monitored by the supplier and when a new order is placed the supplier can process this order. It is up to the supplier's system to keep track of the orders that have been processed and their current status.
+
+It is also possible to get historical archives from the order feed. Each order feed archive, including the current order feed, contains a link to the previously archived 50 events.
+
+For best practices, it is recommended to store the timestamp for the last order retrieved or the feed updated timestamp, and use this marker as your timestamp for retrieving the next batch of orders.
+
+<br />
+**Figure 2:** Illustrates dropship orders being pushed from retailers through iQmetrix and to a supplier. 
 
 <img src="{{ "/images/order-feed.jpg" | prepend: site.url }}" alt="dropship order feed" />
 
@@ -168,6 +183,8 @@ To get the latest Order Notification Feed entries, see [Getting the Order Feed](
 
 This API also allows you to provide [Order Status Updates](/api/supplier-orders/#order-status-updates) to your orders as you receive them, based on the `order-id`. iQmetrix provides you a list of [statuses](/api/supplier-orders/#orderstatus) options to choose from.
 
+<br />
+**Figure 3:** Illustrates a supplier updating the status of orders using the iQmetrix APIs.  
 <img src="{{ "/images/order-status.jpg" | prepend: site.url }}" alt="dropship order status" />
 
 #### Order Statuses
@@ -180,16 +197,12 @@ There are two scenarios when updating the status of an order:
 2. One or more items are not available and the order requires [partial shipment](#optional-partially-shipping-an-order) to the end customer
 
 
-
 Should your system statuses differ greatly from the ones provided by iQmetrix, you may use either the `Other` state or contact <a href="mailto:{{site.support_email}}?subject=Dropship Order States">API Support</a> to find an appropriate solution. 
-
-
 
 
 ### Shipping an Order
 
 It is recommended to hold the order (i.e. `BackOrdered`) until all items are available and in-stock to reduce any overhead involved with partial shipments.
-
 
 
 Partial shipments are supported but are currently limited. It is **highly recommended** to ship a complete order, rather than a partially shipped order. See [Partial Shipments](#optional-partially-shipping-an-order) for more information.
@@ -198,6 +211,8 @@ Partial shipments are supported but are currently limited. It is **highly recomm
 
 The diagram below demonstrates all potential states when a full shipment occurs.
 
+<br />
+**Figure 4:** Illustrates a flow diagram for a complete order update.
 <img src="{{ "/images/order-full-flow.jpg" | prepend: site.url }}" alt="dropship full order states" />
 
 
@@ -216,7 +231,7 @@ You must update order status in the dropship order feed via [Updating Order Stat
 
 ##### Example Request
 
-    PUT https://dropshipdemo.iqmetrix.net/v1/Supplier(60455)/Orders(0b05f9fb-1210-4494-b654-d051948716b4)/OrderStatusUpdate
+    PUT https://dropshipdemo.iqmetrix.net/v1/Suppliers(60455)/Orders(0b05f9fb-1210-4494-b654-d051948716b4)/OrderStatusUpdate
     Authorization: Bearer (Access Token)
     Accept: application/json
     Content-Type: application/json
@@ -231,7 +246,7 @@ You must update order status in the dropship order feed via [Updating Order Stat
 
 ##### Example Response
 
-    HTTP 200 OK Content-Type: application/json
+    HTTP 202 Accepted Content-Type: application/json
     {
         "Id": "0b05f9fb-1210-4494-b654-d051948716b4",
         "Status": "Shipped",
@@ -270,6 +285,8 @@ For example, an order has 3 different items that have different levels of availa
 
 The diagram below demonstrates all potential states when a partial shipment occurs.
 
+<br />
+**Figure 5:** Illustrates a flow diagram for a partial order update.
 <img src="{{ "/images/order-partial-flow.jpg" | prepend: site.url }}" alt="dropship partial order states" />
 
 Only one email is sent out from iQmetrix once any of the items in the order has changed to `Shipped`. 
@@ -305,7 +322,7 @@ You must update item status in the dropship order feed via [Updating Item Status
 ##### Example Response
 
 
-    HTTP 200 OK Content-Type: application/json
+    HTTP 202 Accepted Content-Type: application/json
     {
         "Id": "0b05f9fb-1210-4494-b654-d051948716b4",
         "ItemInformation": [
@@ -346,6 +363,7 @@ This scenario follows the same process as a supplier cancelling an order.
 #### 3. Customer Cancels Order 
 
 Customers cannot cancel orders with a supplier, they must cancel with the retailer, who will contact the supplier to cancel the order.
+
 
 
 ## Step 4: Next Steps

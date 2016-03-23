@@ -4,7 +4,7 @@ permalink: /api/availability/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -24,14 +24,26 @@ summary:
 
 ## Resources
 
-###Availability
+### Availability
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `a183f1a9-c58f-426a-930a-9a6357db52ed` |
+| CompanyId | Integer | Identifier for a [Company](/api/company-tree/#company) | `14146` |
 | EntityId | Integer | Identifier for a [CompanyTreeNode](/api/company-tree/#companytreenode) | `14146` |
 | Quantity | Integer | Quantity | `15` |
-| IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#catalogitem) can be shipped | `true` |
+| IsDropShippable | Boolean | A flag to indicate if the [CatalogItem](/api/catalog/#catalogitem) can be shipped | `false` |
+| IsSerialized | Boolean | A flag to indicate Quantity is determined by a count of SerialNumbers. When true, Quantitiy is read-only and flag cannot be modified | `false` |
+
+
+### SerialNumber
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | String | Serial number | `B7FQ-RANC` |
+| CatalogProductId | GUID | Unique identifier for a [CatalogItem](/api/catalog/#catalogitem) | `a183f1a9-c58f-426a-930a-9a6357db52ed` |
+| EntityId | Integer | Identifier for a [CompanyTreeNode](/api/company-tree/#companytreenode) | `14146` |
+| CompanyId | Integer | Identifier for a [Company](/api/company-tree/#company) | `14146` |
 
 
 
@@ -81,20 +93,21 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
     <li><a href="#csharp-getting-availability-for-a-catalog-item-by-location" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-availability-for-a-catalog-item-by-location" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-availability-for-a-catalog-item-by-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-availability-for-a-catalog-item-by-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-availability-for-a-catalog-item-by-location"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-availability-for-a-catalog-item-by-location">
-<pre><code class="language-http">GET /Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)
+<pre id="http-code-getting-availability-for-a-catalog-item-by-location"><code class="language-http">GET /Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-availability-for-a-catalog-item-by-location">
-<pre><code class="language-http">curl -X GET "https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-availability-for-a-catalog-item-by-location"><code class="language-http">curl -X GET "https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-availability-for-a-catalog-item-by-location">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAvailabilityForACatalogItemByLocation()
+<pre id="csharp-code-getting-availability-for-a-catalog-item-by-location"><code class="language-csharp">static IRestResponse GettingAvailabilityForACatalogItemByLocation()
 {
     var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)");
     var request = new RestRequest(Method.GET);
@@ -108,9 +121,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-availability-for-a-catalog-item-by-location">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-availability-for-a-catalog-item-by-location"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -128,9 +140,8 @@ public static CloseableHttpResponse GettingAvailabilityForACatalogItemByLocation
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-availability-for-a-catalog-item-by-location">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-availability-for-a-catalog-item-by-location"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -154,9 +165,11 @@ puts response</code></pre>
 HTTP 200 Content-Type: application/json
 </pre><pre>{
     "Id": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+    "CompanyId": 14146,
     "EntityId": 14146,
     "Quantity": 15,
-    "IsDropShippable": true
+    "IsDropShippable": false,
+    "IsSerialized": false
 }</pre>
 
 <h2 id='getting-availability-for-a-catalog-item-by-locations' class='clickable-header top-level-header'>Getting Availability For a Catalog Item By Locations</h2>
@@ -197,20 +210,21 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Availability
     <li><a href="#csharp-getting-availability-for-a-catalog-item-by-locations" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-availability-for-a-catalog-item-by-locations" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-availability-for-a-catalog-item-by-locations" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-availability-for-a-catalog-item-by-locations" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-availability-for-a-catalog-item-by-locations"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-availability-for-a-catalog-item-by-locations">
-<pre><code class="language-http">GET /Companies(14146)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/Availability
+<pre id="http-code-getting-availability-for-a-catalog-item-by-locations"><code class="language-http">GET /Companies(14146)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/Availability
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-availability-for-a-catalog-item-by-locations">
-<pre><code class="language-http">curl -X GET "https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/Availability" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-availability-for-a-catalog-item-by-locations"><code class="language-http">curl -X GET "https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/Availability" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-availability-for-a-catalog-item-by-locations">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAvailabilityForACatalogItemByLocations()
+<pre id="csharp-code-getting-availability-for-a-catalog-item-by-locations"><code class="language-csharp">static IRestResponse GettingAvailabilityForACatalogItemByLocations()
 {
     var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/Availability");
     var request = new RestRequest(Method.GET);
@@ -224,9 +238,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-availability-for-a-catalog-item-by-locations">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-availability-for-a-catalog-item-by-locations"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -244,9 +257,8 @@ public static CloseableHttpResponse GettingAvailabilityForACatalogItemByLocation
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-availability-for-a-catalog-item-by-locations">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-availability-for-a-catalog-item-by-locations"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -271,9 +283,376 @@ HTTP 200 Content-Type: application/json
 </pre><pre>[
     {
         "Id": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+        "CompanyId": 14146,
         "EntityId": 14146,
         "Quantity": 15,
-        "IsDropShippable": true
+        "IsDropShippable": false,
+        "IsSerialized": false
+    }
+]</pre>
+
+<h2 id='getting-serial-numbers-for-a-catalog-item' class='clickable-header top-level-header'>Getting Serial Numbers For a Catalog Item</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/SerialNumbers
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Identifier for the {{CatalogItem}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-serial-numbers-for-a-catalog-item" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-serial-numbers-for-a-catalog-item" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-serial-numbers-for-a-catalog-item" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-serial-numbers-for-a-catalog-item" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-serial-numbers-for-a-catalog-item" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-serial-numbers-for-a-catalog-item" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-serial-numbers-for-a-catalog-item"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-serial-numbers-for-a-catalog-item">
+<pre id="http-code-getting-serial-numbers-for-a-catalog-item"><code class="language-http">GET /Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-serial-numbers-for-a-catalog-item">
+<pre id="curl-code-getting-serial-numbers-for-a-catalog-item"><code class="language-http">curl -X GET "https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-serial-numbers-for-a-catalog-item">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-serial-numbers-for-a-catalog-item"><code class="language-csharp">static IRestResponse GettingSerialNumbersForACatalogItem()
+{
+    var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-serial-numbers-for-a-catalog-item">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-serial-numbers-for-a-catalog-item"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingSerialNumbersForACatalogItem() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-serial-numbers-for-a-catalog-item">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-serial-numbers-for-a-catalog-item"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ Array[<a href='#serialnumber'>SerialNumber</a>]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": "B7FQ-RANC",
+        "CatalogProductId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+        "EntityId": 14146,
+        "CompanyId": 14146
+    }
+]</pre>
+
+<h2 id='getting-a-serial-number' class='clickable-header top-level-header'>Getting a Serial Number</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/SerialNumbers({SerialNumber})
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>CatalogItemId</code> (<strong>Required</strong>)  - Identifier for the {{CatalogItem}}
+    </li>
+    
+    <li>
+        <code>SerialNumber</code> (<strong>Required</strong>)  - Serial Number
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-serial-number" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-serial-number" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-serial-number" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-serial-number" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-serial-number" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-serial-number" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-serial-number"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-serial-number">
+<pre id="http-code-getting-a-serial-number"><code class="language-http">GET /Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers(B7FQ-RANC)
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-serial-number">
+<pre id="curl-code-getting-a-serial-number"><code class="language-http">curl -X GET "https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers(B7FQ-RANC)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-serial-number">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-a-serial-number"><code class="language-csharp">static IRestResponse GettingASerialNumber()
+{
+    var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers(B7FQ-RANC)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-serial-number">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-a-serial-number"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingASerialNumber() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers(B7FQ-RANC)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-serial-number">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-a-serial-number"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(41519509-b798-4630-abba-89c9a30df83a)/SerialNumbers(B7FQ-RANC)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ <a href='#serialnumber'>SerialNumber</a>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "B7FQ-RANC",
+    "CatalogProductId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+    "EntityId": 14146,
+    "CompanyId": 14146
+}</pre>
+
+<h2 id='getting-a-serial-number-by-location' class='clickable-header top-level-header'>Getting a Serial Number by Location</h2>
+
+This request may return multiple {{SerialNumber}} resources if a Serial Number is associated with more than one {{CatalogItem}} for a {{Location}}.
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Entities({LocationId})/SerialNumbers?$filter=Id eq '{SerialNumber}'
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
+    </li>
+    
+    <li>
+        <code>SerialNumber</code> (<strong>Required</strong>)  - Serial Number
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-serial-number-by-location" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-serial-number-by-location" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-serial-number-by-location" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-serial-number-by-location" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-serial-number-by-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-serial-number-by-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-serial-number-by-location"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-serial-number-by-location">
+<pre id="http-code-getting-a-serial-number-by-location"><code class="language-http">GET /Companies(14146)/Entities(14202)/SerialNumbers?$filter=Id eq 'B7FQ-RANC'
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-serial-number-by-location">
+<pre id="curl-code-getting-a-serial-number-by-location"><code class="language-http">curl -X GET "https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/SerialNumbers?$filter=Id eq 'B7FQ-RANC'" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-serial-number-by-location">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-a-serial-number-by-location"><code class="language-csharp">static IRestResponse GettingASerialNumberByLocation()
+{
+    var client = new RestClient("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/SerialNumbers?$filter=Id eq 'B7FQ-RANC'");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-serial-number-by-location">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-a-serial-number-by-location"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingASerialNumberByLocation() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/SerialNumbers?$filter=Id eq 'B7FQ-RANC'");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-serial-number-by-location">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-a-serial-number-by-location"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://availabilitydemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/SerialNumbers?$filter=Id eq 'B7FQ-RANC'', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ Array[<a href='#serialnumber'>SerialNumber</a>]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": "B7FQ-RANC",
+        "CatalogProductId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+        "EntityId": 14146,
+        "CompanyId": 14146
     }
 ]</pre>
 
@@ -282,4 +661,5 @@ HTTP 200 Content-Type: application/json
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
 | `HTTP 404` | `InventoryAvailability resource with EntityId {x}` <br/> `and ProductId {y} cannot be found, nor is there`<br> `availability in the tree branch.` | Ensure CatalogItemId is valid and belongs to the [Location](/api/company-tree/#location) specified in the request |
+| `HTTP 404` | `Resource cannot be found` | Ensure Serial Number is valid |
 | `HTTP 500` | `Entity is not related to company` | Ensure [Location](/api/company-tree/#location) belongs to Company specified in request |  

@@ -4,7 +4,7 @@ permalink: /api/crm/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -38,7 +38,7 @@ summary:
 
 
 
-###Customer
+### Customer
 
 A Customer is a person or organization that buys goods or services from a store or business.
 
@@ -64,7 +64,7 @@ A Customer is a person or organization that buys goods or services from a store 
 
 
 
-###Address
+### Address
 
 An Address represents a valid address somewhere on the planet.
 
@@ -97,7 +97,7 @@ An Address represents a valid address somewhere on the planet.
 
 
 
-###ContactMethod
+### ContactMethod
 
 A Contact Method is a method of contacting a Customer.
 
@@ -121,7 +121,7 @@ A Contact Method is a method of contacting a Customer.
 
 
 
-###CustomerExtension
+### CustomerExtension
 
 A CustomerExtension resource is used for adding custom properties to a Customer.
 
@@ -134,7 +134,7 @@ A CustomerExtension resource is used for adding custom properties to a Customer.
 | Value | String | Value | `66432` |
 | Version | Integer | Latest revision number | `1` |
 
-###CustomerExtensionType
+### CustomerExtensionType
 
 CustomerExtensionType resources are created by iQmetrix and are used to provide custom properties for the CustomerExtension resource.
 
@@ -149,7 +149,7 @@ CustomerExtensionType resources are created by iQmetrix and are used to provide 
 
 
 
-###CustomerFull
+### CustomerFull
 
 CustomerFull is an extension on the Customer resource.
 
@@ -175,7 +175,7 @@ CustomerFull is an extension on the Customer resource.
 | Version | Integer | Latest revision number | `1` |
 
 
-###CustomerSearch
+### CustomerSearch
 
 CustomerSearch is used to search for CustomerFull resources based on a Criteria. A CustomerSearch resource is an extension on the CustomerFull resource.
 
@@ -297,20 +297,21 @@ GET /Companies({CompanyId})/Customers?$skip={Skip}&top={Top}
     <li><a href="#csharp-getting-all-customers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-customers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-customers" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-customers" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-customers"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-customers">
-<pre><code class="language-http">GET /Companies(14146)/Customers?$skip=1&top=10
+<pre id="http-code-getting-all-customers"><code class="language-http">GET /Companies(14146)/Customers?$skip=1&top=10
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-customers">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$skip=1&top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-getting-all-customers"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$skip=1&top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllCustomers()
+<pre id="csharp-code-getting-all-customers"><code class="language-csharp">static IRestResponse GettingAllCustomers()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$skip=1&top=10");
     var request = new RestRequest(Method.GET);
@@ -324,9 +325,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-customers">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-customers"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -344,9 +344,8 @@ public static CloseableHttpResponse GettingAllCustomers() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-customers">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-customers"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -461,10 +460,11 @@ POST /Companies({CompanyId})/Customers
     <li><a href="#csharp-creating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-customer">
-<pre><code class="language-http">POST /Companies(14146)/Customers
+<pre id="http-code-creating-a-customer"><code class="language-http">POST /Companies(14146)/Customers
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -482,7 +482,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-customer">
-<pre><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-customer"><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
     "FamilyName": "Jasmine",
@@ -497,7 +497,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingACustomer()
+<pre id="csharp-code-creating-a-customer"><code class="language-csharp">static IRestResponse CreatingACustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers");
     var request = new RestRequest(Method.POST);
@@ -512,9 +512,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-customer"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -535,9 +534,8 @@ public static CloseableHttpResponse CreatingACustomer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-customer"><code class="language-ruby">require 'rest-client'
 
 body = "{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\"}";
 
@@ -614,20 +612,21 @@ GET /Companies({CompanyId})/Customers({CustomerId})
     <li><a href="#csharp-getting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer">
-<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+<pre id="http-code-getting-a-customer"><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-customer">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-customer"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingACustomer()
+<pre id="csharp-code-getting-a-customer"><code class="language-csharp">static IRestResponse GettingACustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.GET);
@@ -641,9 +640,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-customer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -661,9 +659,8 @@ public static CloseableHttpResponse GettingACustomer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-customer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -743,10 +740,11 @@ PUT /Companies({CompanyId})/Customers({CustomerId})
     <li><a href="#csharp-updating-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer">
-<pre><code class="language-http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+<pre id="http-code-updating-a-customer"><code class="language-http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -767,7 +765,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-customer">
-<pre><code class="language-http">curl -X PUT "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-customer"><code class="language-http">curl -X PUT "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": "659c2a38-d083-4421-9330-46d779702f85",
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
@@ -785,7 +783,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingACustomer()
+<pre id="csharp-code-updating-a-customer"><code class="language-csharp">static IRestResponse UpdatingACustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.PUT);
@@ -800,9 +798,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-customer"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -823,9 +820,8 @@ public static CloseableHttpResponse UpdatingACustomer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-customer"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":\"659c2a38-d083-4421-9330-46d779702f85\",\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"AlternateName\":\"Jas\",\"CustomerType\":\"Company\",\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"Notes\":\"Interested in iPhone 6\",\"Title\":\"Ms\",\"Version\":1}";
 
@@ -902,19 +898,20 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})
     <li><a href="#csharp-deleting-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-deleting-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-deleting-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-deleting-a-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-deleting-a-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-customer">
-<pre><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
+<pre id="http-code-deleting-a-customer"><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-deleting-a-customer">
-<pre><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-deleting-a-customer"><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse DeletingACustomer()
+<pre id="csharp-code-deleting-a-customer"><code class="language-csharp">static IRestResponse DeletingACustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.DELETE);
@@ -927,9 +924,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-deleting-a-customer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -946,9 +942,8 @@ public static CloseableHttpResponse DeletingACustomer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-deleting-a-customer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1016,20 +1011,21 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses?$skip={Skip}&top={
     <li><a href="#csharp-getting-all-addresses-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-addresses-for-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-addresses-for-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-addresses-for-a-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-addresses-for-a-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-addresses-for-a-customer">
-<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10
+<pre id="http-code-getting-all-addresses-for-a-customer"><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-addresses-for-a-customer">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-getting-all-addresses-for-a-customer"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-addresses-for-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllAddressesForACustomer()
+<pre id="csharp-code-getting-all-addresses-for-a-customer"><code class="language-csharp">static IRestResponse GettingAllAddressesForACustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10");
     var request = new RestRequest(Method.GET);
@@ -1043,9 +1039,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-addresses-for-a-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-addresses-for-a-customer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1063,9 +1058,8 @@ public static CloseableHttpResponse GettingAllAddressesForACustomer() throws IOE
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-addresses-for-a-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-addresses-for-a-customer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1179,18 +1173,19 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses?$skip={Skip}&top=
     <li><a href="#csharp-adding-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-adding-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-adding-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-adding-a-customer-address" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-adding-a-customer-address"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-adding-a-customer-address">
-<pre><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10
+<pre id="http-code-adding-a-customer-address"><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-adding-a-customer-address">
-<pre><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10"</code></pre>
+<pre id="curl-code-adding-a-customer-address"><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-adding-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse AddingACustomerAddress()
+<pre id="csharp-code-adding-a-customer-address"><code class="language-csharp">static IRestResponse AddingACustomerAddress()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses?$skip=1&top=10");
     var request = new RestRequest(Method.POST);
@@ -1202,9 +1197,8 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses?$skip={Skip}&top=
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-address">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-adding-a-customer-address"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1220,9 +1214,8 @@ public static CloseableHttpResponse AddingACustomerAddress() throws IOException 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-adding-a-customer-address">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-adding-a-customer-address"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1278,10 +1271,11 @@ POST /Companies({CompanyId})/Customers({CustomerId})/Addresses
     <li><a href="#csharp-adding-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-adding-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-adding-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-adding-a-customer-address" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-adding-a-customer-address"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-adding-a-customer-address">
-<pre><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
+<pre id="http-code-adding-a-customer-address"><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1303,7 +1297,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-adding-a-customer-address">
-<pre><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-adding-a-customer-address"><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "AddressTypeId": 2,
     "AttentionTo": "Princess",
     "CountryCode": "CA",
@@ -1322,7 +1316,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-adding-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse AddingACustomerAddress()
+<pre id="csharp-code-adding-a-customer-address"><code class="language-csharp">static IRestResponse AddingACustomerAddress()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/Addresses");
     var request = new RestRequest(Method.POST);
@@ -1337,9 +1331,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-address">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-adding-a-customer-address"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1360,9 +1353,8 @@ public static CloseableHttpResponse AddingACustomerAddress() throws IOException 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-adding-a-customer-address">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-adding-a-customer-address"><code class="language-ruby">require 'rest-client'
 
 body = "{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}";
 
@@ -1450,20 +1442,21 @@ GET /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     <li><a href="#csharp-getting-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-customer-address" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-customer-address"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer-address">
-<pre><code class="language-http">GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+<pre id="http-code-getting-a-customer-address"><code class="language-http">GET /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-customer-address">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-customer-address"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingACustomerAddress()
+<pre id="csharp-code-getting-a-customer-address"><code class="language-csharp">static IRestResponse GettingACustomerAddress()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
     var request = new RestRequest(Method.GET);
@@ -1477,9 +1470,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-address">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-customer-address"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1497,9 +1489,8 @@ public static CloseableHttpResponse GettingACustomerAddress() throws IOException
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer-address">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-customer-address"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1590,10 +1581,11 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     <li><a href="#csharp-updating-a-customer-address" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-customer-address" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-customer-address" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-customer-address" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-customer-address"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer-address">
-<pre><code class="language-http">PUT /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+<pre id="http-code-updating-a-customer-address"><code class="language-http">PUT /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1621,7 +1613,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-customer-address">
-<pre><code class="language-http">curl -X PUT "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-customer-address"><code class="language-http">curl -X PUT "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "AddressType": "Home",
@@ -1646,7 +1638,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-customer-address">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingACustomerAddress()
+<pre id="csharp-code-updating-a-customer-address"><code class="language-csharp">static IRestResponse UpdatingACustomerAddress()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
     var request = new RestRequest(Method.PUT);
@@ -1661,9 +1653,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-address">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-customer-address"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1684,9 +1675,8 @@ public static CloseableHttpResponse UpdatingACustomerAddress() throws IOExceptio
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer-address">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-customer-address"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"AddressType\":\"Home\",\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"Country\":\"Canada\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"State\":\"Alberta\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\",\"Version\":1}";
 
@@ -1774,19 +1764,20 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/Addresses({AddressId})
     <li><a href="#csharp-removing-an-address-from-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-removing-an-address-from-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-removing-an-address-from-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-removing-an-address-from-a-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-removing-an-address-from-a-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-removing-an-address-from-a-customer">
-<pre><code class="language-http">DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
+<pre id="http-code-removing-an-address-from-a-customer"><code class="language-http">DELETE /Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-removing-an-address-from-a-customer">
-<pre><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-removing-an-address-from-a-customer"><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-removing-an-address-from-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse RemovingAnAddressFromACustomer()
+<pre id="csharp-code-removing-an-address-from-a-customer"><code class="language-csharp">static IRestResponse RemovingAnAddressFromACustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses(a08b0640-606a-41f0-901a-facaf50e75dd)");
     var request = new RestRequest(Method.DELETE);
@@ -1799,9 +1790,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-removing-an-address-from-a-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-removing-an-address-from-a-customer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1818,9 +1808,8 @@ public static CloseableHttpResponse RemovingAnAddressFromACustomer() throws IOEx
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-removing-an-address-from-a-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-removing-an-address-from-a-customer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1841,222 +1830,6 @@ puts response</code></pre>
 <pre>
 HTTP 200 Content-Type: application/json
 </pre>
-
-<h2 id='getting-all-full-customers' class='clickable-header top-level-header'>Getting All Full Customers</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-GET /Companies({CompanyId})/CustomerFull?$skip={Skip}&top={Top}
-</pre>
-
-
-<h4>Headers</h4>
-<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/hal+json</code></li></ul>
-
-
-
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>Skip</code> (Optional)  - Number of records to skip
-    </li>
-    
-    <li>
-        <code>Top</code> (Optional)  - Number of records to take
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#http-getting-all-full-customers" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-getting-all-full-customers" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-getting-all-full-customers" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-all-full-customers" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-getting-all-full-customers" data-toggle="tab">Ruby (rest-client)</a></li>
-</ul>
-<div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-getting-all-full-customers">
-<pre><code class="language-http">GET /Companies(14146)/CustomerFull?$skip=1&top=10
-Authorization: Bearer (Access Token)
-Accept: application/hal+json
-</code><code class="language-csharp"></code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="curl-getting-all-full-customers">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull?$skip=1&top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-full-customers">
-        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllFullCustomers()
-{
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull?$skip=1&top=10");
-    var request = new RestRequest(Method.GET);
-     
-    request.AddHeader("Authorization", "Bearer (Access Token)"); 
-    request.AddHeader("Accept", "application/hal+json"); 
-
-    
-
-    return client.Execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="java-getting-all-full-customers">
-
-        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import java.io.IOException;
-
-public static CloseableHttpResponse GettingAllFullCustomers() throws IOException {
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull?$skip=1&top=10");
-     
-    request.addHeader("Authorization", "Bearer (Access Token)"); 
-    request.addHeader("Accept", "application/hal+json"); 
-    
-    return httpClient.execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-full-customers">
-
-        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
-
-
-
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull?$skip=1&top=10', {
-     :'Authorization' => 'Bearer (Access Token)',
-     :'Accept' => 'application/hal+json',
-    } 
-
-puts response</code></pre>
-    </div>
-</div>
-
-<h4>Response</h4>
-
-
-
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/hal+json
-</pre><pre>{
-    "_links": {
-        "prev": "null",
-        "self": "Companies(14146)/CustomerFull?$skip=0&$top=1",
-        "next": "null"
-    },
-    "_embedded": {
-        "self": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "Companies(14146)/CustomerFull(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
-                        "templated": false
-                    },
-                    "iq:Customer": {
-                        "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)",
-                        "templated": false
-                    },
-                    "iq:Address": {
-                        "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/Addresses",
-                        "templated": false
-                    },
-                    "iq:ContactMethod": {
-                        "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/ContactMethods",
-                        "templated": false
-                    },
-                    "iq:CustomerExtension": {
-                        "href": "Companies(14146)/Customers(902cdc91-65f4-4c7d-b336-5f291849f2fe)/CustomerExtensions",
-                        "templated": false
-                    },
-                    "iq:RelatedCustomer": {},
-                    "iq:MemberOf": {}
-                },
-                "_embedded": {},
-                "Id": "659c2a38-d083-4421-9330-46d779702f85",
-                "PrimaryName": "Princess",
-                "MiddleName": "Ella",
-                "FamilyName": "Jasmine",
-                "Addresses": [
-                    {
-                        "Id": "a08b0640-606a-41f0-901a-facaf50e75dd",
-                        "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-                        "AddressType": "Home",
-                        "AddressTypeId": 2,
-                        "AttentionTo": "Princess",
-                        "Country": "Canada",
-                        "CountryCode": "CA",
-                        "Default": false,
-                        "DoNotContact": true,
-                        "Email": "Jas@princess.ca",
-                        "Locality": "Mountain View",
-                        "Notes": "Moved as of April 15 2015",
-                        "Phone": "(555) 555-5555",
-                        "PostalCode": "94043",
-                        "PostOfficeBoxNumber": "P.O. Box 1022",
-                        "State": "Alberta",
-                        "StateCode": "AB",
-                        "StreetAddress1": "1600 Amphitheatre Pkwy",
-                        "StreetAddress2": "Suite 500",
-                        "Version": 1
-                    }
-                ],
-                "AlternateName": "Jas",
-                "ContactMethods": [
-                    {
-                        "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
-                        "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-                        "ContactMethodCategory": "Email",
-                        "ContactMethodCategoryId": 3,
-                        "ContactMethodType": "Work phone",
-                        "ContactMethodTypeId": 5,
-                        "Default": true,
-                        "DoNotContact": true,
-                        "Notes": "After 6pm",
-                        "Value": "(306) 222-3333",
-                        "Version": 1
-                    }
-                ],
-                "CustomerExtensions": [
-                    {
-                        "Id": "74b87ece-5f70-454d-9991-7952127146b0",
-                        "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
-                        "ExtensionType": "ExternalCustomerId",
-                        "ExtensionTypeId": 2,
-                        "Value": "66432",
-                        "Version": 1
-                    }
-                ],
-                "CustomerType": "Company",
-                "CustomerTypeId": 3,
-                "DateOfBirth": "1952-07-23T12:00:00.000",
-                "Disabled": true,
-                "DoNotContact": true,
-                "MemberOf": [],
-                "Notes": "Interested in iPhone 6",
-                "RelatedCustomers": [],
-                "Title": "Ms",
-                "Version": 1
-            }
-        ]
-    }
-}</pre>
 
 <h2 id='creating-a-full-customer' class='clickable-header top-level-header'>Creating a Full Customer</h2>
 
@@ -2096,10 +1869,11 @@ POST /Companies({CompanyId})/CustomerFull
     <li><a href="#csharp-creating-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-full-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-full-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-full-customer">
-<pre><code class="language-http">POST /Companies(14146)/CustomerFull
+<pre id="http-code-creating-a-full-customer"><code class="language-http">POST /Companies(14146)/CustomerFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -2155,7 +1929,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-full-customer">
-<pre><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-full-customer"><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "PrimaryName": "Princess",
     "MiddleName": "Ella",
     "FamilyName": "Jasmine",
@@ -2208,7 +1982,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingAFullCustomer()
+<pre id="csharp-code-creating-a-full-customer"><code class="language-csharp">static IRestResponse CreatingAFullCustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull");
     var request = new RestRequest(Method.POST);
@@ -2223,9 +1997,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-full-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-full-customer"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2246,9 +2019,8 @@ public static CloseableHttpResponse CreatingAFullCustomer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-full-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-full-customer"><code class="language-ruby">require 'rest-client'
 
 body = "{\"PrimaryName\":\"Princess\",\"MiddleName\":\"Ella\",\"FamilyName\":\"Jasmine\",\"Addresses\":[{\"AddressTypeId\":2,\"AttentionTo\":\"Princess\",\"CountryCode\":\"CA\",\"Default\":false,\"DoNotContact\":true,\"Email\":\"Jas@princess.ca\",\"Locality\":\"Mountain View\",\"Notes\":\"Moved as of April 15 2015\",\"Phone\":\"(555) 555-5555\",\"PostalCode\":\"94043\",\"PostOfficeBoxNumber\":\"P.O. Box 1022\",\"StateCode\":\"AB\",\"StreetAddress1\":\"1600 Amphitheatre Pkwy\",\"StreetAddress2\":\"Suite 500\"}],\"AlternateName\":\"Jas\",\"ContactMethods\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}],\"CustomerExtensions\":[{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ExtensionTypeId\":2,\"Value\":\"66432\"}],\"CustomerTypeId\":3,\"DateOfBirth\":\"1952-07-23T12:00:00.000\",\"Disabled\":true,\"DoNotContact\":true,\"MemberOf\":[],\"Notes\":\"Interested in iPhone 6\",\"RelatedCustomers\":[],\"Title\":\"Ms\"}";
 
@@ -2376,20 +2148,21 @@ GET /Companies({CompanyId})/CustomerFull({CustomerId})
     <li><a href="#csharp-getting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-full-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-full-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-full-customer">
-<pre><code class="language-http">GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
+<pre id="http-code-getting-a-full-customer"><code class="language-http">GET /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-full-customer">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-full-customer"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAFullCustomer()
+<pre id="csharp-code-getting-a-full-customer"><code class="language-csharp">static IRestResponse GettingAFullCustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.GET);
@@ -2403,9 +2176,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-full-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-full-customer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2423,9 +2195,8 @@ public static CloseableHttpResponse GettingAFullCustomer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-full-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-full-customer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -2552,19 +2323,20 @@ DELETE /Companies({CompanyId})/CustomerFull({CustomerId})
     <li><a href="#csharp-deleting-a-full-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-deleting-a-full-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-deleting-a-full-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-deleting-a-full-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-deleting-a-full-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-full-customer">
-<pre><code class="language-http">DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
+<pre id="http-code-deleting-a-full-customer"><code class="language-http">DELETE /Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-deleting-a-full-customer">
-<pre><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-deleting-a-full-customer"><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-full-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse DeletingAFullCustomer()
+<pre id="csharp-code-deleting-a-full-customer"><code class="language-csharp">static IRestResponse DeletingAFullCustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerFull(659c2a38-d083-4421-9330-46d779702f85)");
     var request = new RestRequest(Method.DELETE);
@@ -2577,9 +2349,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-full-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-deleting-a-full-customer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2596,9 +2367,8 @@ public static CloseableHttpResponse DeletingAFullCustomer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-full-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-deleting-a-full-customer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -2666,20 +2436,21 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods?$skip={Skip}&
     <li><a href="#csharp-getting-all-contact-methods-for-a-customer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-contact-methods-for-a-customer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-contact-methods-for-a-customer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-contact-methods-for-a-customer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-contact-methods-for-a-customer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-contact-methods-for-a-customer">
-<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods?$skip=1&top=10
+<pre id="http-code-getting-all-contact-methods-for-a-customer"><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods?$skip=1&top=10
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-contact-methods-for-a-customer">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods?$skip=1&top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-getting-all-contact-methods-for-a-customer"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods?$skip=1&top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-contact-methods-for-a-customer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllContactMethodsForACustomer()
+<pre id="csharp-code-getting-all-contact-methods-for-a-customer"><code class="language-csharp">static IRestResponse GettingAllContactMethodsForACustomer()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods?$skip=1&top=10");
     var request = new RestRequest(Method.GET);
@@ -2693,9 +2464,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-contact-methods-for-a-customer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-contact-methods-for-a-customer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2713,9 +2483,8 @@ public static CloseableHttpResponse GettingAllContactMethodsForACustomer() throw
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-contact-methods-for-a-customer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-contact-methods-for-a-customer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -2819,10 +2588,11 @@ POST /Companies({CompanyId})/Customers({CustomerId})/ContactMethods
     <li><a href="#csharp-adding-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-adding-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-adding-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-adding-a-customer-contact-method" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-adding-a-customer-contact-method"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-adding-a-customer-contact-method">
-<pre><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
+<pre id="http-code-adding-a-customer-contact-method"><code class="language-http">POST /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -2837,7 +2607,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-adding-a-customer-contact-method">
-<pre><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-adding-a-customer-contact-method"><code class="language-http">curl -X POST "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategoryId": 3,
     "ContactMethodTypeId": 5,
@@ -2849,7 +2619,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-adding-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse AddingACustomerContactMethod()
+<pre id="csharp-code-adding-a-customer-contact-method"><code class="language-csharp">static IRestResponse AddingACustomerContactMethod()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods");
     var request = new RestRequest(Method.POST);
@@ -2864,9 +2634,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-adding-a-customer-contact-method">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-adding-a-customer-contact-method"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2887,9 +2656,8 @@ public static CloseableHttpResponse AddingACustomerContactMethod() throws IOExce
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-adding-a-customer-contact-method">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-adding-a-customer-contact-method"><code class="language-ruby">require 'rest-client'
 
 body = "{\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategoryId\":3,\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\"}";
 
@@ -2933,7 +2701,7 @@ HTTP 201 Content-Type: application/json
 <h4>Request</h4>
 
 <pre>
-GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId})
 </pre>
 
 
@@ -2968,22 +2736,23 @@ GET /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
     <li><a href="#csharp-getting-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-customer-contact-method" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-customer-contact-method"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-customer-contact-method">
-<pre><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+<pre id="http-code-getting-a-customer-contact-method"><code class="language-http">GET /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-customer-contact-method">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-customer-contact-method"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingACustomerContactMethod()
+<pre id="csharp-code-getting-a-customer-contact-method"><code class="language-csharp">static IRestResponse GettingACustomerContactMethod()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -2995,9 +2764,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-customer-contact-method">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-customer-contact-method"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -3006,7 +2774,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingACustomerContactMethod() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    HttpGet request = new HttpGet("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -3015,13 +2783,12 @@ public static CloseableHttpResponse GettingACustomerContactMethod() throws IOExc
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-customer-contact-method">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-customer-contact-method"><code class="language-ruby">require 'rest-client'
 
 
 
-response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+response = RestClient.get 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -3060,7 +2827,7 @@ HTTP 200 Content-Type: application/json
 <h4>Request</h4>
 
 <pre>
-PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId})
 </pre>
 
 
@@ -3099,10 +2866,11 @@ PUT /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMetho
     <li><a href="#csharp-updating-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-customer-contact-method" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-customer-contact-method"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-customer-contact-method">
-<pre><code class="language-http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+<pre id="http-code-updating-a-customer-contact-method"><code class="language-http">PUT /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -3121,7 +2889,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-customer-contact-method">
-<pre><code class="language-http">curl -X PUT "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-customer-contact-method"><code class="language-http">curl -X PUT "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": "b25dd8b2-a24d-4107-8fbe-9c7b21e18137",
     "CustomerId": "659c2a38-d083-4421-9330-46d779702f85",
     "ContactMethodCategory": "Email",
@@ -3137,9 +2905,9 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingACustomerContactMethod()
+<pre id="csharp-code-updating-a-customer-contact-method"><code class="language-csharp">static IRestResponse UpdatingACustomerContactMethod()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)");
     var request = new RestRequest(Method.PUT);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -3152,9 +2920,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-customer-contact-method">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-customer-contact-method"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -3163,7 +2930,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse UpdatingACustomerContactMethod() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    HttpPut request = new HttpPut("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -3175,13 +2942,12 @@ public static CloseableHttpResponse UpdatingACustomerContactMethod() throws IOEx
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-customer-contact-method">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-customer-contact-method"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":\"b25dd8b2-a24d-4107-8fbe-9c7b21e18137\",\"CustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ContactMethodCategory\":\"Email\",\"ContactMethodCategoryId\":3,\"ContactMethodType\":\"Work phone\",\"ContactMethodTypeId\":5,\"Default\":true,\"DoNotContact\":true,\"Notes\":\"After 6pm\",\"Value\":\"(306) 222-3333\",\"Version\":1}";
 
-response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', body, {
+response = RestClient.put 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)', body, {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
      :'Content-Type' => 'application/json',
@@ -3221,7 +2987,7 @@ HTTP 200 Content-Type: application/json
 <h4>Request</h4>
 
 <pre>
-DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId}
+DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMethodId})
 </pre>
 
 
@@ -3256,21 +3022,22 @@ DELETE /Companies({CompanyId})/Customers({CustomerId})/ContactMethods({ContactMe
     <li><a href="#csharp-removing-a-customer-contact-method" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-removing-a-customer-contact-method" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-removing-a-customer-contact-method" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-removing-a-customer-contact-method" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-removing-a-customer-contact-method"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-removing-a-customer-contact-method">
-<pre><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791
+<pre id="http-code-removing-a-customer-contact-method"><code class="language-http">DELETE /Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-removing-a-customer-contact-method">
-<pre><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-removing-a-customer-contact-method"><code class="language-http">curl -X DELETE "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-removing-a-customer-contact-method">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse RemovingACustomerContactMethod()
+<pre id="csharp-code-removing-a-customer-contact-method"><code class="language-csharp">static IRestResponse RemovingACustomerContactMethod()
 {
-    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)");
     var request = new RestRequest(Method.DELETE);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -3281,9 +3048,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-removing-a-customer-contact-method">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-removing-a-customer-contact-method"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -3292,7 +3058,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse RemovingACustomerContactMethod() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791");
+    HttpDelete request = new HttpDelete("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     
@@ -3300,13 +3066,12 @@ public static CloseableHttpResponse RemovingACustomerContactMethod() throws IOEx
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-removing-a-customer-contact-method">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-removing-a-customer-contact-method"><code class="language-ruby">require 'rest-client'
 
 
 
-response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791', {
+response = RestClient.delete 'https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers(659c2a38-d083-4421-9330-46d779702f85)/ContactMethods(0c877e33-e0a4-46ca-be34-49718f29e791)', {
      :'Authorization' => 'Bearer (Access Token)',
     } 
 
@@ -3373,20 +3138,21 @@ GET /Companies({CompanyId})/Customers?$filter={FilterQuery}$skip={Skip}&$top={To
     <li><a href="#csharp-searching-for-customers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-searching-for-customers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-searching-for-customers" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-searching-for-customers" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-searching-for-customers"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-searching-for-customers">
-<pre><code class="language-http">GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
+<pre id="http-code-searching-for-customers"><code class="language-http">GET /Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-searching-for-customers">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-searching-for-customers"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-searching-for-customers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse SearchingForCustomers()
+<pre id="csharp-code-searching-for-customers"><code class="language-csharp">static IRestResponse SearchingForCustomers()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers?$filter=PrimaryName eq 'bob'$skip=1&$top=10");
     var request = new RestRequest(Method.GET);
@@ -3400,9 +3166,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-searching-for-customers">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-searching-for-customers"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -3420,9 +3185,8 @@ public static CloseableHttpResponse SearchingForCustomers() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-searching-for-customers">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-searching-for-customers"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -3556,20 +3320,21 @@ GET /Companies({CompanyId})/CustomerSearch?$filter={FilterQuery}
     <li><a href="#csharp-customer-search" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-customer-search" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-customer-search" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-customer-search" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-customer-search"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-customer-search">
-<pre><code class="language-http">GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
+<pre id="http-code-customer-search"><code class="language-http">GET /Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-customer-search">
-<pre><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-customer-search"><code class="language-http">curl -X GET "https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-customer-search">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CustomerSearch()
+<pre id="csharp-code-customer-search"><code class="language-csharp">static IRestResponse CustomerSearch()
 {
     var client = new RestClient("https://crmdemo.iqmetrix.net/v1/Companies(14146)/CustomerSearch?$filter=Criteria eq 'Bob'");
     var request = new RestRequest(Method.GET);
@@ -3583,9 +3348,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-customer-search">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-customer-search"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -3603,9 +3367,8 @@ public static CloseableHttpResponse CustomerSearch() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-customer-search">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-customer-search"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -3763,25 +3526,27 @@ These links are _relative_, they do not include the base endpoint. It is the res
 
 ##### Example
 
-    {
-        "_links": {
-            "self": {
-              "href": "Companies(14146)/Customers?$skip=10&$top=10",
-              "templated": false
-            },
-            "next": {
-              "href": "Companies(14146)/Customers?$skip=20&$top=10",
-              "templated": false
-            },
-            "prev": {
-              "href": "Companies(14146)/Customers?$skip=0&$top=10",
-              "templated": fals
-            }
+```csharp
+{
+    "_links": {
+        "self": {
+          "href": "Companies(14146)/Customers?$skip=10&$top=10",
+          "templated": false
         },
-        "_embedded": {
-            "self": [ ]
+        "next": {
+          "href": "Companies(14146)/Customers?$skip=20&$top=10",
+          "templated": false
+        },
+        "prev": {
+          "href": "Companies(14146)/Customers?$skip=0&$top=10",
+          "templated": false
         }
+    },
+    "_embedded": {
+        "self": [ ]
     }
+}
+```
 
 In the example above, the `_links` section is included in the data returned from an API request to get Customers, where `$skip=10` and `$top=10`.
 

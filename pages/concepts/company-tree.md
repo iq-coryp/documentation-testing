@@ -4,7 +4,7 @@ permalink: /concepts/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 18-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -93,7 +93,6 @@ iQmetrix APIs use the hierarchical structure of a Company Tree to pass informati
 In the example above, we have priced an iPhone Case at the KENTEL Node for 8.99. Alberta, Manitoba, Calgary and Winnipeg inherit this price, as they do not have a price explicitly set. 
 
 However, Edmonton Mall does have a price set for 11.99 and does not inherit the price from its parent, Alberta.
-
 
 ## Example
 

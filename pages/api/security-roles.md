@@ -4,7 +4,7 @@ permalink: /api/security-roles/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -38,7 +38,7 @@ Changes within the Security Roles API involve complex actions behind the scenes 
 
 ## Resources
 
-###SecurityRole
+### SecurityRole
 
 A SecurityRole represents the relationship between a {{User}} and a set of Permissions. SecurityRoles allow you create custom groups that can hold Permissions
 
@@ -48,7 +48,7 @@ A SecurityRole represents the relationship between a {{User}} and a set of Permi
 | Name | String | Name | `Store Manager` |
 
 
-###AssignedRole
+### AssignedRole
 
 An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}} and Entity.
 
@@ -60,7 +60,7 @@ An AssignedRole represents the relationship between a {{User}}, {{SecurityRole}}
 | UserId | Integer | Identifier of a [User](/api/usermanager/#user) | `2576` |
 
 
-###Permission
+### Permission
 
 Permissions are the building blocks of SecurityRoles and represent the ability to perform an action within iQmetrix APIs.
 
@@ -119,20 +119,21 @@ GET /Entities({EntityId})/Permissions
     <li><a href="#csharp-getting-all-permissions-for-an-entity" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-permissions-for-an-entity" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-permissions-for-an-entity" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-permissions-for-an-entity" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-permissions-for-an-entity"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-permissions-for-an-entity">
-<pre><code class="language-http">GET /Entities(14146)/Permissions
+<pre id="http-code-getting-all-permissions-for-an-entity"><code class="language-http">GET /Entities(14146)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-permissions-for-an-entity">
-<pre><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Permissions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-permissions-for-an-entity"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Permissions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-permissions-for-an-entity">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllPermissionsForAnEntity()
+<pre id="csharp-code-getting-all-permissions-for-an-entity"><code class="language-csharp">static IRestResponse GettingAllPermissionsForAnEntity()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Permissions");
     var request = new RestRequest(Method.GET);
@@ -146,9 +147,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-permissions-for-an-entity">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-permissions-for-an-entity"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -166,9 +166,8 @@ public static CloseableHttpResponse GettingAllPermissionsForAnEntity() throws IO
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-permissions-for-an-entity">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-permissions-for-an-entity"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -181,12 +180,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#permission'>Permission</a>]
+ Array[<a href='#permission'>Permission</a>]
 
 <h5>Example</h5>
 
@@ -242,10 +239,11 @@ POST /Entities({EntityId})/SecurityRoles
     <li><a href="#csharp-creating-a-security-role" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-security-role" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-security-role" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-security-role" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-security-role"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-security-role">
-<pre><code class="language-http">POST /Entities(14146)/SecurityRoles
+<pre id="http-code-creating-a-security-role"><code class="language-http">POST /Entities(14146)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -254,13 +252,13 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-security-role">
-<pre><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-security-role"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Name": "Store Manager"
 }'</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-security-role">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingASecurityRole()
+<pre id="csharp-code-creating-a-security-role"><code class="language-csharp">static IRestResponse CreatingASecurityRole()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles");
     var request = new RestRequest(Method.POST);
@@ -275,9 +273,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-security-role">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-security-role"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -298,9 +295,8 @@ public static CloseableHttpResponse CreatingASecurityRole() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-security-role">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-security-role"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Name\":\"Store Manager\"}";
 
@@ -314,12 +310,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#securityrole'>SecurityRole</a>
+ <a href='#securityrole'>SecurityRole</a>
 
 <h5>Example</h5>
 
@@ -364,20 +358,21 @@ GET /Entities({EntityId})/SecurityRoles
     <li><a href="#csharp-getting-all-security-roles-for-an-entity" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-security-roles-for-an-entity" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-security-roles-for-an-entity" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-security-roles-for-an-entity" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-security-roles-for-an-entity"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-security-roles-for-an-entity">
-<pre><code class="language-http">GET /Entities(14146)/SecurityRoles
+<pre id="http-code-getting-all-security-roles-for-an-entity"><code class="language-http">GET /Entities(14146)/SecurityRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-security-roles-for-an-entity">
-<pre><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-security-roles-for-an-entity"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-security-roles-for-an-entity">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllSecurityRolesForAnEntity()
+<pre id="csharp-code-getting-all-security-roles-for-an-entity"><code class="language-csharp">static IRestResponse GettingAllSecurityRolesForAnEntity()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles");
     var request = new RestRequest(Method.GET);
@@ -391,9 +386,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-security-roles-for-an-entity">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-security-roles-for-an-entity"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -411,9 +405,8 @@ public static CloseableHttpResponse GettingAllSecurityRolesForAnEntity() throws 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-security-roles-for-an-entity">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-security-roles-for-an-entity"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -426,12 +419,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#securityrole'>SecurityRole</a>]
+ Array[<a href='#securityrole'>SecurityRole</a>]
 
 <h5>Example</h5>
 
@@ -486,21 +477,22 @@ PUT /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permissio
     <li><a href="#csharp-enabling-a-permission-for-a-security-role" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-enabling-a-permission-for-a-security-role" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-enabling-a-permission-for-a-security-role" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-enabling-a-permission-for-a-security-role" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-enabling-a-permission-for-a-security-role"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-enabling-a-permission-for-a-security-role">
-<pre><code class="language-http">PUT /Entities(14146)/SecurityRoles(316)/Permissions(101)
+<pre id="http-code-enabling-a-permission-for-a-security-role"><code class="language-http">PUT /Entities(14146)/SecurityRoles(316)/Permissions(101)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-enabling-a-permission-for-a-security-role">
-<pre><code class="language-http">curl -X PUT "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions(101)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json"</code></pre>
+<pre id="curl-code-enabling-a-permission-for-a-security-role"><code class="language-http">curl -X PUT "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions(101)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-enabling-a-permission-for-a-security-role">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse EnablingAPermissionForASecurityRole()
+<pre id="csharp-code-enabling-a-permission-for-a-security-role"><code class="language-csharp">static IRestResponse EnablingAPermissionForASecurityRole()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions(101)");
     var request = new RestRequest(Method.PUT);
@@ -515,9 +507,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-enabling-a-permission-for-a-security-role">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-enabling-a-permission-for-a-security-role"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -536,9 +527,8 @@ public static CloseableHttpResponse EnablingAPermissionForASecurityRole() throws
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-enabling-a-permission-for-a-security-role">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-enabling-a-permission-for-a-security-role"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -551,8 +541,6 @@ response = RestClient.put 'https://usermanagerdemo.iqmetrix.net/v1/Entities(1414
 puts response</code></pre>
     </div>
 </div>
-
-
 
 <h4>Response</h4>
 
@@ -606,19 +594,20 @@ DELETE /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions({Permis
     <li><a href="#csharp-disabling-a-permission-for-a-security-role" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-disabling-a-permission-for-a-security-role" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-disabling-a-permission-for-a-security-role" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-disabling-a-permission-for-a-security-role" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-disabling-a-permission-for-a-security-role"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-disabling-a-permission-for-a-security-role">
-<pre><code class="language-http">DELETE /Entities(14146)/SecurityRoles(316)/Permissions(101)
+<pre id="http-code-disabling-a-permission-for-a-security-role"><code class="language-http">DELETE /Entities(14146)/SecurityRoles(316)/Permissions(101)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-disabling-a-permission-for-a-security-role">
-<pre><code class="language-http">curl -X DELETE "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions(101)" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-disabling-a-permission-for-a-security-role"><code class="language-http">curl -X DELETE "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions(101)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-disabling-a-permission-for-a-security-role">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse DisablingAPermissionForASecurityRole()
+<pre id="csharp-code-disabling-a-permission-for-a-security-role"><code class="language-csharp">static IRestResponse DisablingAPermissionForASecurityRole()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions(101)");
     var request = new RestRequest(Method.DELETE);
@@ -631,9 +620,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-disabling-a-permission-for-a-security-role">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-disabling-a-permission-for-a-security-role"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -650,9 +638,8 @@ public static CloseableHttpResponse DisablingAPermissionForASecurityRole() throw
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-disabling-a-permission-for-a-security-role">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-disabling-a-permission-for-a-security-role"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -663,8 +650,6 @@ response = RestClient.delete 'https://usermanagerdemo.iqmetrix.net/v1/Entities(1
 puts response</code></pre>
     </div>
 </div>
-
-
 
 <h4>Response</h4>
 
@@ -714,20 +699,21 @@ GET /Entities({EntityId})/SecurityRoles({SecurityRoleId})/Permissions
     <li><a href="#csharp-getting-permissions-for-a-security-role" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-permissions-for-a-security-role" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-permissions-for-a-security-role" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-permissions-for-a-security-role" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-permissions-for-a-security-role"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-permissions-for-a-security-role">
-<pre><code class="language-http">GET /Entities(14146)/SecurityRoles(316)/Permissions
+<pre id="http-code-getting-permissions-for-a-security-role"><code class="language-http">GET /Entities(14146)/SecurityRoles(316)/Permissions
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-permissions-for-a-security-role">
-<pre><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-permissions-for-a-security-role"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-permissions-for-a-security-role">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingPermissionsForASecurityRole()
+<pre id="csharp-code-getting-permissions-for-a-security-role"><code class="language-csharp">static IRestResponse GettingPermissionsForASecurityRole()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/SecurityRoles(316)/Permissions");
     var request = new RestRequest(Method.GET);
@@ -741,9 +727,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-permissions-for-a-security-role">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-permissions-for-a-security-role"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -761,9 +746,8 @@ public static CloseableHttpResponse GettingPermissionsForASecurityRole() throws 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-permissions-for-a-security-role">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-permissions-for-a-security-role"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -776,12 +760,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#permission'>Permission</a>]
+ Array[<a href='#permission'>Permission</a>]
 
 <h5>Example</h5>
 
@@ -837,10 +819,11 @@ POST /Users({UserId})/AssignedRoles
     <li><a href="#csharp-assigning-a-security-role-to-a-user" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-assigning-a-security-role-to-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-assigning-a-security-role-to-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-assigning-a-security-role-to-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-assigning-a-security-role-to-a-user"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-assigning-a-security-role-to-a-user">
-<pre><code class="language-http">POST /Users(2576)/AssignedRoles
+<pre id="http-code-assigning-a-security-role-to-a-user"><code class="language-http">POST /Users(2576)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -850,14 +833,14 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-assigning-a-security-role-to-a-user">
-<pre><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/AssignedRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-assigning-a-security-role-to-a-user"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/AssignedRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "EntityId": 14202,
     "SecurityRoleId": 316
 }'</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-assigning-a-security-role-to-a-user">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse AssigningASecurityRoleToAUser()
+<pre id="csharp-code-assigning-a-security-role-to-a-user"><code class="language-csharp">static IRestResponse AssigningASecurityRoleToAUser()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/AssignedRoles");
     var request = new RestRequest(Method.POST);
@@ -872,9 +855,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-assigning-a-security-role-to-a-user">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-assigning-a-security-role-to-a-user"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -895,9 +877,8 @@ public static CloseableHttpResponse AssigningASecurityRoleToAUser() throws IOExc
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-assigning-a-security-role-to-a-user">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-assigning-a-security-role-to-a-user"><code class="language-ruby">require 'rest-client'
 
 body = "{\"EntityId\":14202,\"SecurityRoleId\":316}";
 
@@ -911,12 +892,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#assignedrole'>AssignedRole</a>
+ <a href='#assignedrole'>AssignedRole</a>
 
 <h5>Example</h5>
 
@@ -963,20 +942,21 @@ GET /Users({UserId})/AssignedRoles
     <li><a href="#csharp-getting-assigned-roles-for-a-user" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-assigned-roles-for-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-assigned-roles-for-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-assigned-roles-for-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-assigned-roles-for-a-user"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-assigned-roles-for-a-user">
-<pre><code class="language-http">GET /Users(2576)/AssignedRoles
+<pre id="http-code-getting-assigned-roles-for-a-user"><code class="language-http">GET /Users(2576)/AssignedRoles
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-assigned-roles-for-a-user">
-<pre><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/AssignedRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-assigned-roles-for-a-user"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/AssignedRoles" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-assigned-roles-for-a-user">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAssignedRolesForAUser()
+<pre id="csharp-code-getting-assigned-roles-for-a-user"><code class="language-csharp">static IRestResponse GettingAssignedRolesForAUser()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/AssignedRoles");
     var request = new RestRequest(Method.GET);
@@ -990,9 +970,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-assigned-roles-for-a-user">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-assigned-roles-for-a-user"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1010,9 +989,8 @@ public static CloseableHttpResponse GettingAssignedRolesForAUser() throws IOExce
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-assigned-roles-for-a-user">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-assigned-roles-for-a-user"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1025,12 +1003,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#assignedrole'>AssignedRole</a>]
+ Array[<a href='#assignedrole'>AssignedRole</a>]
 
 <h5>Example</h5>
 
@@ -1083,19 +1059,20 @@ DELETE /Users({UserId})/AssignedRoles({SecurityRoleId})
     <li><a href="#csharp-unassigning-a-security-role-from-a-user" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-unassigning-a-security-role-from-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-unassigning-a-security-role-from-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-unassigning-a-security-role-from-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-unassigning-a-security-role-from-a-user"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-unassigning-a-security-role-from-a-user">
-<pre><code class="language-http">DELETE /Users(2572)/AssignedRoles(316)
+<pre id="http-code-unassigning-a-security-role-from-a-user"><code class="language-http">DELETE /Users(2572)/AssignedRoles(316)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-unassigning-a-security-role-from-a-user">
-<pre><code class="language-http">curl -X DELETE "https://usermanagerdemo.iqmetrix.net/v1/Users(2572)/AssignedRoles(316)" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-unassigning-a-security-role-from-a-user"><code class="language-http">curl -X DELETE "https://usermanagerdemo.iqmetrix.net/v1/Users(2572)/AssignedRoles(316)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-unassigning-a-security-role-from-a-user">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UnassigningASecurityRoleFromAUser()
+<pre id="csharp-code-unassigning-a-security-role-from-a-user"><code class="language-csharp">static IRestResponse UnassigningASecurityRoleFromAUser()
 {
     var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2572)/AssignedRoles(316)");
     var request = new RestRequest(Method.DELETE);
@@ -1108,9 +1085,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-unassigning-a-security-role-from-a-user">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-unassigning-a-security-role-from-a-user"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1127,9 +1103,8 @@ public static CloseableHttpResponse UnassigningASecurityRoleFromAUser() throws I
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-unassigning-a-security-role-from-a-user">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-unassigning-a-security-role-from-a-user"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1140,8 +1115,6 @@ response = RestClient.delete 'https://usermanagerdemo.iqmetrix.net/v1/Users(2572
 puts response</code></pre>
     </div>
 </div>
-
-
 
 <h4>Response</h4>
 

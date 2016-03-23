@@ -4,7 +4,6 @@
 <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% endif %}">
 <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
 <title>{% if page.homepage == true %} {{site.homepage_title}} {% elsif page.title %}{{ page.title }}{% endif %}  | {{ site.site_title }}</title>
-<link rel="stylesheet" type="text/css" href="{{ "css/syntax.css" | prepend:site.pagefileurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "css/font-awesome.min.css" | prepend:site.pagefileurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "css/bootstrap.min.css" | prepend:site.pagefileurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "css/modern-business.css" | prepend:site.pagefileurl }}">
@@ -19,10 +18,13 @@
 <script src="{{ "js/customscripts.js" | prepend:site.pagefileurl }}"></script>
 <link rel="shortcut icon" href="{{ "images/favicon.ico" | prepend:site.pagefileurl }}" type="image/x-icon">
 
+
 <!-- Image popup source files -->
+<!-- http://dimsemenov.com/plugins/magnific-popup/ -->
 <link rel="stylesheet" type="text/css" href="{{ "css/magnific-popup.css" | prepend:site.pagefileurl }}">
 <script src="{{ "js/jquery.magnific-popup.js" | prepend:site.pagefileurl }}"></script>
 
+{% unless page.noPopUp == true %}
 <script>
     $(document).ready(function() {
 
@@ -43,6 +45,7 @@
                 
     });    
 </script>
+{% endunless %}
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

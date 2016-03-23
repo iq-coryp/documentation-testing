@@ -4,7 +4,7 @@ permalink: /api/cost-feed/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -37,15 +37,15 @@ Ensure each company ID has only <strong>one</strong> cost per product.
 
 ## Resources
 
-###Cost
+### Cost
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| Id | GUID | Identifer for the cost feed | `2e18496c-8f73-4298-8c96-a07816926734` |
+| Id | GUID | Unique identifer | `2e18496c-8f73-4298-8c96-a07816926734` |
 | Products | Array[object] | List of products for which the cost is being updated |  |
-| Products.Sku | String | SKU identifier for the product from product feed | `1115884` |
-| Products.Cost | Decimal | Wholesale cost for the associated companies | `12.99` |
-| Products.CompanyIds | Array[integer] | List of [Company](/api/company-tree#company) identifiers that are applied to the products cost | `14146` |
+| Products.Sku | String | Vendor product SKU | `1115884` |
+| Products.Cost | Decimal | Vendor product cost applied to the associated companies | `12.99` |
+| Products.CompanyIds | Array[integer] | List of [Company](/api/company-tree#company) identifiers to receive Vendor product cost | `14146` |
 
 
 
@@ -91,10 +91,11 @@ POST /Suppliers({SupplierId})/Cost
     <li><a href="#csharp-adding-a-product-to-cost-feed" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-adding-a-product-to-cost-feed" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-adding-a-product-to-cost-feed" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-adding-a-product-to-cost-feed" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-adding-a-product-to-cost-feed"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-adding-a-product-to-cost-feed">
-<pre><code class="language-http">POST /Suppliers(14107)/Cost
+<pre id="http-code-adding-a-product-to-cost-feed"><code class="language-http">POST /Suppliers(14107)/Cost
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -111,7 +112,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-adding-a-product-to-cost-feed">
-<pre><code class="language-http">curl -X POST "https://dropshipdemo.iqmetrix.net/v1/Suppliers(14107)/Cost" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-adding-a-product-to-cost-feed"><code class="language-http">curl -X POST "https://dropshipdemo.iqmetrix.net/v1/Suppliers(14107)/Cost" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Products": [
         {
             "Sku": "1115884",
@@ -125,7 +126,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-adding-a-product-to-cost-feed">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse AddingAProductToCostFeed()
+<pre id="csharp-code-adding-a-product-to-cost-feed"><code class="language-csharp">static IRestResponse AddingAProductToCostFeed()
 {
     var client = new RestClient("https://dropshipdemo.iqmetrix.net/v1/Suppliers(14107)/Cost");
     var request = new RestRequest(Method.POST);
@@ -140,9 +141,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-adding-a-product-to-cost-feed">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-adding-a-product-to-cost-feed"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -163,9 +163,8 @@ public static CloseableHttpResponse AddingAProductToCostFeed() throws IOExceptio
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-adding-a-product-to-cost-feed">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-adding-a-product-to-cost-feed"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Products\":[{\"Sku\":\"1115884\",\"Cost\":12.99,\"CompanyIds\":[14146]}]}";
 
@@ -179,12 +178,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#cost'>Cost</a>
+ <a href='#cost'>Cost</a>
 
 <h5>Example</h5>
 

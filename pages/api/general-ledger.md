@@ -4,7 +4,7 @@ permalink: /api/general-ledger/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -38,7 +38,7 @@ Account balances will be affected by Debits and Credits in the following ways:
 
 ## Resources
 
-###Account
+### Account
 
 A General Ledger **Account** is a record used to sort and store Transactions.
 
@@ -59,7 +59,7 @@ A General Ledger **Account** is a record used to sort and store Transactions.
 | IsEnabled | Boolean | A flag to indicate if this Account is Enabled | `true` |
 | Version | Integer | Latest revision number | `1` |
 
-###Transaction
+### Transaction
 
 {{note}}A single Transaction must have 2 or more Entries where the sum of the Debits and Credits of those Entries is the same value, this is called a Balanced Transaction{{end}}
 
@@ -72,7 +72,7 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | CreatedByUserId | Integer | Auditing column, the identifier of the [User](/api/user-manager/#user) that created this Account | `2576` |
 | Entries | Array[<a href='#entry'>Entry</a>] | The collection of Entries for this Transaction |  |
 
-###Entry
+### Entry
 
 * A Transaction is <b>immutable</b> and permanent after it has been created it cannot be updated or deleted
 * Debit and Credit are decimal values without an associated currency
@@ -89,6 +89,11 @@ A **Transaction** is a financial record that affects two or more **Accounts**.
 | Memo | String(1024) | Memo string for this Entry | `Memo` |
 | ReferenceID | String(128) | Reference number string, such as the invoice that caused the Transaction | `INV005` |
 | ReferenceType | String(128) | String value to indicate what ReferenceID is referring to. See [ReferenceType](#referencetype) | `Invoice ID` |
+
+
+
+
+
 
 
 
@@ -164,20 +169,21 @@ GET /Companies({CompanyId})/Accounts?$skip={Skip}&$top={Top}
     <li><a href="#csharp-getting-accounts" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-accounts" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-accounts" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-accounts" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-accounts"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-accounts">
-<pre><code class="language-http">GET /Companies(14146)/Accounts?$skip=0&$top=5
+<pre id="http-code-getting-accounts"><code class="language-http">GET /Companies(14146)/Accounts?$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-accounts">
-<pre><code class="language-http">curl -X GET "https://generalledgerdemo.iqmetrix.net/v1/Companies(14146)/Accounts?$skip=0&$top=5" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-getting-accounts"><code class="language-http">curl -X GET "https://generalledgerdemo.iqmetrix.net/v1/Companies(14146)/Accounts?$skip=0&$top=5" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-accounts">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAccounts()
+<pre id="csharp-code-getting-accounts"><code class="language-csharp">static IRestResponse GettingAccounts()
 {
     var client = new RestClient("https://generalledgerdemo.iqmetrix.net/v1/Companies(14146)/Accounts?$skip=0&$top=5");
     var request = new RestRequest(Method.GET);
@@ -191,9 +197,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-accounts">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-accounts"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -211,9 +216,8 @@ public static CloseableHttpResponse GettingAccounts() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-accounts">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-accounts"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -281,6 +285,7 @@ HTTP 200 Content-Type: application/hal+json
 
 {{callout_info}}<b>Sorting Order</b><br/>When getting Transactions, the order is ascending by <code>TransactionDateUTC</code> with the oldest Transactions listed first{{end}}
 
+
 <h4>Request</h4>
 
 <pre>
@@ -327,20 +332,21 @@ GET /Companies({CompanyId})/Transactions?$filter=TransactionDateUTC ge datetime'
     <li><a href="#csharp-getting-transactions-by-date" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-transactions-by-date" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-transactions-by-date" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-transactions-by-date" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-transactions-by-date"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-transactions-by-date">
-<pre><code class="language-http">GET /Companies(14146)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T06:00:00.000Z' and TransactionDateUTC le datetime'2016-01-01T05:59:59.000Z'&$skip=0&$top=5
+<pre id="http-code-getting-transactions-by-date"><code class="language-http">GET /Companies(14146)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T06:00:00.000Z' and TransactionDateUTC le datetime'2016-01-01T05:59:59.000Z'&$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-transactions-by-date">
-<pre><code class="language-http">curl -X GET "https://generalledgerdemo.iqmetrix.net/v1/Companies(14146)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T06:00:00.000Z' and TransactionDateUTC le datetime'2016-01-01T05:59:59.000Z'&$skip=0&$top=5" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-getting-transactions-by-date"><code class="language-http">curl -X GET "https://generalledgerdemo.iqmetrix.net/v1/Companies(14146)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T06:00:00.000Z' and TransactionDateUTC le datetime'2016-01-01T05:59:59.000Z'&$skip=0&$top=5" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-transactions-by-date">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingTransactionsByDate()
+<pre id="csharp-code-getting-transactions-by-date"><code class="language-csharp">static IRestResponse GettingTransactionsByDate()
 {
     var client = new RestClient("https://generalledgerdemo.iqmetrix.net/v1/Companies(14146)/Transactions?$filter=TransactionDateUTC ge datetime'2015-01-01T06:00:00.000Z' and TransactionDateUTC le datetime'2016-01-01T05:59:59.000Z'&$skip=0&$top=5");
     var request = new RestRequest(Method.GET);
@@ -354,9 +360,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-transactions-by-date">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-transactions-by-date"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -374,9 +379,8 @@ public static CloseableHttpResponse GettingTransactionsByDate() throws IOExcepti
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-transactions-by-date">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-transactions-by-date"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -487,26 +491,28 @@ These links are _relative_, they do not include the base endpoint. It is the res
  
 ##### Example
  
-    {
-        "_links": {
-            "self": {
-                "href": "Companies(14146)/Accounts?$skip=10&$top=10",
-                "templated": false
-            },
-            "next": {
-                "href": "Companies(14146)/Accounts?$skip=20&$top=10",
-                "templated": false
-            },
-            "prev": {
-                "href": "Companies(14146)/Accounts?$skip=0&$top=10",
-                "templated": false
-            }
+```csharp
+{
+    "_links": {
+        "self": {
+            "href": "Companies(14146)/Accounts?$skip=10&$top=10",
+            "templated": false
         },
-        "_embedded": {
-            "self": []
+        "next": {
+            "href": "Companies(14146)/Accounts?$skip=20&$top=10",
+            "templated": false
+        },
+        "prev": {
+            "href": "Companies(14146)/Accounts?$skip=0&$top=10",
+            "templated": false
         }
+    },
+    "_embedded": {
+        "self": []
     }
- 
+}
+```
+
 In the example above, the `_links` section is included in the data returned from an API call to get General Ledger Accounts, where `$skip=10` and `$top=10`.
  
 The `self`.`href` value is the encoded version of the API request that returned these results.

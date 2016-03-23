@@ -4,7 +4,7 @@ permalink: /api/rate-limiting/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -53,11 +53,41 @@ All responses from the iQmetrix API's have the following headers, which provide 
 | X-RateLimit-Reset | The time when the rate limit window will reset in UTC |
 | X-RateLimit-ResetSeconds | The number of seconds until the rate limit resets | 
 
+## Checking a Rate Limit
+
+To determine the **Authenticated** Rate Limit for an API, make an authenticated request to the API and check the HTTP headers in the response.
+
+In the example below, a request is made to the [Customers](/api/crm/) API with a valid {{AccessToken_Glossary}} in the `Authorization` header.
+
+##### Example Request
+
+    GET https://crmdemo.iqmetrix.net/v1/Companies(14146)/Customers
+    Authorization: Bearer (Access Token)
+    Accept: application/json
+
+##### Example Response
+
+    HTTP 200 Content-Type: application/json
+    X-RateLimit-Limit: 1000
+    X-RateLimit-Remaining: 999
+    X-RateLimit-Reset: 2016-02-25T13:00:00.0000000Z
+    X-RateLimit-ResetSeconds: 59
+    {
+        ...
+    }
+
+Looking at the HTTP headers in the response, we can determine:
+
+* Our rate limit window ends in **59 seconds** or at precisely **2016-02-25T13:00:00.0000000Z** UTC
+* In the next **59 seconds** we can make **999** more requests
+* In **59 seconds**, or at **2016-02-25T13:00:00.0000000Z** UTC, the counter will reset and we will be able to make another **1000 requests**
+
 ## Exceeding Rate Limit
 
 If the rate limit is exceeded, the response will be `429 Too Many Requests` and the service will not be able to make further requests until the quota resets.
 
 ###### Example
+
     HTTP/1.1 429 Too Many Requests
     Content-Type: text/plain
     X-RateLimit-Limit: 1000

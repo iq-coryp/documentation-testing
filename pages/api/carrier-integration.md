@@ -4,7 +4,7 @@ permalink: /api/carrier-integration/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -57,7 +57,7 @@ Below is a full list of these properties along with iQmetrix recommendation:
 
 ## Resources
 
-###Activation
+### Activation
 
 An <strong>Activation</strong> contains IDs necessary to identify an activation, and all the activation details.
 
@@ -69,7 +69,7 @@ An <strong>Activation</strong> contains IDs necessary to identify an activation,
 | CompanyId | Integer | Identifier of the [Company](/api/company-tree/#company) making this request | `1234` |
 | LocationId | Integer | Identifier of the [Location](/api/company-tree/#location) making this request | `5678` |
 
-###CarrierActivationDetails
+### CarrierActivationDetails
 
 A <strong>CarrierActivationDetails</strong> contains all of the customer, product, and rate plan information necessary to process an activation.
 
@@ -107,7 +107,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | *UpgradeCode* | *String* | *Reserved for future use* | |
 | *UpgradeSourceNumber* | *String* | *Reserved for future use* | |
 
-###Subscriber
+### Subscriber
 
  A <strong>Subscriber</strong> contains all of the customer information related to an activation. 
 
@@ -132,7 +132,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | *SecondName* | *String* | *Reserved for future use* | |
 | *PreferredLanguage* | *String* | *Reserved for future use* | |
 
-###Account
+### Account
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -140,14 +140,14 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | Notes | String | Custom notes related to the associated account |  |
 | TrackingNumber | String | Carrier-specific tracking number for the associated account | `5656565656` |
 
-###PhoneNumber
+### PhoneNumber
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String | The type of phone number. See [PhoneNumberType](#phonenumbertype) for the list of acceptable values | `Home` |
 | Value | String(32) | Phone number | `1234561234` |
 
-###Address
+### Address
 
 <h4>RQ Limitations</h4> 
 
@@ -168,7 +168,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | SuiteNumber | String(32) | Suite number | `100` |
 | Type | String | The type of this Address. See [AddressType](#addresstype) for a list of acceptable values | `Residential` |
 
-###RatePlan
+### RatePlan
 
 <h4>RQ Limitations</h4>
 
@@ -187,7 +187,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 | *IsSharedPlan* | *Boolean* | *Reserved for future use* | |
 
-###RatePlanFeature
+### RatePlanFeature
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -198,7 +198,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | SOCCode | String(64) | Carrier-specific SOC code | `XYZ5678` |
 | *CommissionAmount* | *Decimal* | *Reserved for future use* | |
 
-###ActivatedProduct
+### ActivatedProduct
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -218,7 +218,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | *IsCarrierSupplied* | *Boolean* | *Reserved for future use* | |
 | *NumberPortedIn* | *Boolean* | *Reserved for future use* | |
 
-###Tab
+### Tab
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -226,7 +226,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | Commission | <a href='#vendorrebate'>VendorRebate</a> |  |  |
 | ReferenceNumber | String | Carrier reference number, identifier in an external system | `abc123` |
 
-###AdditionalFee
+### AdditionalFee
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -238,7 +238,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | ReferenceNumber | String(64) | Carrier reference number, identifier in an external system | `abc123` |
 | SOCCode | String(64) | Carrier-specific SOC code | `BB3221` |
 
-###VendorRebate
+### VendorRebate
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -249,7 +249,7 @@ A <strong>CarrierActivationDetails</strong> contains all of the customer, produc
 | ReferenceNumber | String(64) | Carrier reference number, identifier in an external system | `abc123` |
 | SOCCode | String(64) | Carrier-specific SOC code | `AGG242` |
 
-###ConfirmedActivation
+### ConfirmedActivation
 
 A ConfirmedActivation resource represents a payment transaction that completed the activation of one or more phones.
 
@@ -271,7 +271,7 @@ A ConfirmedActivation resource represents a payment transaction that completed t
 
 
 
-###ActivationDetails
+### ActivationDetails
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -368,7 +368,7 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
     </li>
     
     <li>
-        <code>ActivationId</code> (<strong>Required</strong>)  - Identifier for the {{Activation}}
+        <code>ActivationId</code> (<strong>Required</strong>)  - Identifier for the [Activation](#activation)
     </li>
     </ul>
 
@@ -386,10 +386,11 @@ PUT /Companies({CompanyId})/Locations({LocationId})/Carriers({CarrierId})/Activa
     <li><a href="#csharp-creating-an-activation" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-an-activation" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-an-activation" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-an-activation" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-an-activation"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-an-activation">
-<pre><code class="language-http">PUT /Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
+<pre id="http-code-creating-an-activation"><code class="language-http">PUT /Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -541,7 +542,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-an-activation">
-<pre><code class="language-http">curl -X PUT "https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-an-activation"><code class="language-http">curl -X PUT "https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": "1=35854205829867",
     "CarrierActivationDetails": {
         "ActivationId": 354,
@@ -690,7 +691,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-an-activation">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingAnActivation()
+<pre id="csharp-code-creating-an-activation"><code class="language-csharp">static IRestResponse CreatingAnActivation()
 {
     var client = new RestClient("https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Locations(5678)/Carriers(41)/Activations(6=1115550123)");
     var request = new RestRequest(Method.PUT);
@@ -705,9 +706,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-an-activation">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-an-activation"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -728,9 +728,8 @@ public static CloseableHttpResponse CreatingAnActivation() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-an-activation">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-an-activation"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":\"1=35854205829867\",\"CarrierActivationDetails\":{\"ActivationId\":354,\"ActivationDate\":\"2015-06-19T05:44:39.7163989Z\",\"ActivatedProduct\":{\"Description\":\"Samsung Galaxy S5\",\"ESN\":\"35854205829867\",\"IMEI\":\"351756051523999\",\"Make\":\"Samsung\",\"MobileDeviceNumber\":\"5555550123\",\"Model\":\"Galaxy S5\",\"Price\":499,\"ProductId\":\"\",\"SerialNumber\":\"98769456321\",\"SIM\":\"89000000000000001234\",\"SKU\":\"DEF987\",\"SOCCode\":\"DEF987\",\"Tab\":{\"Amount\":50,\"Commission\":{\"Name\":\"Promo\",\"Description\":\"FREE Roam Like Home\",\"Amount\":55,\"Notes\":\"US\",\"ReferenceNumber\":\"abc123\",\"SOCCode\":\"AGG242\"},\"ReferenceNumber\":\"abc123\"}},\"ActivationState\":\"Pending\",\"ActivationTermCode\":\"EarlyUpgrade\",\"ActivationType\":\"NewActivation\",\"AdditionalFees\":[{\"Name\":\"Roaming\",\"Description\":\"Roam like home\",\"Amount\":55,\"Notes\":\"US\",\"Rebate\":{\"Name\":\"Promo\",\"Description\":\"FREE Roam Like Home\",\"Amount\":55,\"Notes\":\"US\",\"ReferenceNumber\":\"abc123\",\"SOCCode\":\"AGG242\"},\"ReferenceNumber\":\"abc123\",\"SOCCode\":\"BB3221\"}],\"ContractLengthInMonths\":24,\"ContractNumberIsAccountNumber\":false,\"DealerName\":\"IAPR\",\"DealerCode\":\"IAPR\",\"Deposit\":{\"Name\":\"Roaming\",\"Description\":\"Roam like home\",\"Amount\":55,\"Notes\":\"US\",\"Rebate\":{\"Name\":\"Promo\",\"Description\":\"FREE Roam Like Home\",\"Amount\":55,\"Notes\":\"US\",\"ReferenceNumber\":\"abc123\",\"SOCCode\":\"AGG242\"},\"ReferenceNumber\":\"abc123\",\"SOCCode\":\"BB3221\"},\"Notes\":\"Notes go here!\",\"OrderNumber\":\"ORD1234\",\"RatePlans\":[{\"RatePlanId\":\"ABC1234\",\"Name\":\"Country-wide Unlimited\",\"ContractTerms\":\"Some terms\",\"Description\":\"The perfect plan for lots of calling!\",\"IncludedRatePlanFeatures\":[{\"RatePlanAddonId\":\"XYZ5678\",\"Name\":\"TEXT100\",\"Description\":\"One hundred additional text messages.\",\"MonthlyRecurringCharges\":5,\"SOCCode\":\"XYZ5678\"}],\"MonthlyRecurringCharges\":55,\"RatePlanFeatureAddons\":[{\"RatePlanAddonId\":\"XYZ5678\",\"Name\":\"TEXT100\",\"Description\":\"One hundred additional text messages.\",\"MonthlyRecurringCharges\":5,\"SOCCode\":\"XYZ5678\"}],\"SOCCode\":\"ABC1234\"}],\"RemoteActivationID\":\"3023997373\",\"Subscriber\":{\"SubscriberId\":\"12121212121\",\"FirstName\":\"Joe\",\"LastName\":\"Smith\",\"Addresses\":[{\"AddressLine1\":\"123 Main Street\",\"AddressLine2\":\"Apt 200\",\"City\":\"Dover\",\"Country\":\"USA\",\"County\":\"Fairfield\",\"POBox\":\"PO Box 123\",\"PostalCode\":\"19901\",\"Province\":\"DE\",\"SuiteNumber\":\"100\",\"Type\":\"Residential\"}],\"AssociatedAccount\":{\"AccountId\":\"343434343\",\"Notes\":\"\",\"TrackingNumber\":\"5656565656\"},\"BirthDate\":\"5/16/1980\",\"CompanyName\":\"\",\"Email\":\"subscriber@example.com\",\"IsIndividual\":true,\"Notes\":\"24 Month Term\",\"PhoneNumbers\":[{\"Type\":\"Home\",\"Value\":\"1234561234\"}],\"SSN\":\"6789\",\"TrackingNumber\":\"2121212121\"},\"TrackingNumber\":\"3023997373\"},\"CarrierId\":41,\"CompanyId\":1234,\"LocationId\":5678}";
 
@@ -950,20 +949,21 @@ GET /Companies({CompanyId})/Carriers({CarrierId})/ConfirmedActivations?$filter=C
     <li><a href="#csharp-retrieving-completed-activations" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-retrieving-completed-activations" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-retrieving-completed-activations" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-retrieving-completed-activations" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-retrieving-completed-activations"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-retrieving-completed-activations">
-<pre><code class="language-http">GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T21:29:31.000Z'&$skip=0&$top=5
+<pre id="http-code-retrieving-completed-activations"><code class="language-http">GET /Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T21:29:31.000Z'&$skip=0&$top=5
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-retrieving-completed-activations">
-<pre><code class="language-http">curl -X GET "https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T21:29:31.000Z'&$skip=0&$top=5" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-retrieving-completed-activations"><code class="language-http">curl -X GET "https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T21:29:31.000Z'&$skip=0&$top=5" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-retrieving-completed-activations">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse RetrievingCompletedActivations()
+<pre id="csharp-code-retrieving-completed-activations"><code class="language-csharp">static IRestResponse RetrievingCompletedActivations()
 {
     var client = new RestClient("https://carrierservicesdemo.iqmetrix.net/v2/Companies(123)/Carriers(45)/ConfirmedActivations?$filter=ConfirmationDateUTC ge DateTime'2015-07-16T21:29:31.000Z'&$skip=0&$top=5");
     var request = new RestRequest(Method.GET);
@@ -977,9 +977,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-retrieving-completed-activations">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-retrieving-completed-activations"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -997,9 +996,8 @@ public static CloseableHttpResponse RetrievingCompletedActivations() throws IOEx
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-retrieving-completed-activations">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-retrieving-completed-activations"><code class="language-ruby">require 'rest-client'
 
 
 

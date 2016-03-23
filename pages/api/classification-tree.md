@@ -4,7 +4,7 @@ permalink: /api/classification-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -30,7 +30,7 @@ To learn more about Classification Trees, see {{ClassificationTree_Concept}}.
 
 ## Resources
 
-###Classification
+### Classification
 
 Classifications are used to group Products together by similar features.
 A Product can only have a single Classification.
@@ -43,14 +43,14 @@ For example, a Samsung Galaxy S6 Edge, HTC One M9 and iPhone 5C might all have a
 | Order | Integer | Sorting order | `1` |
 | ProductTemplate | <a href='#producttemplate'>ProductTemplate</a> |  |  |
 
-###ProductTemplate
+### ProductTemplate
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `16` |
 | Name | String | Name | `Wireless Device` |
 
-###Category
+### Category
 
 A Category is a node in a Classification Tree that represents a logical grouping of related Classifications.
 For example, 'iPhone' and 'Tablet' Classifications might both be children of a 'Device' Category.
@@ -64,7 +64,7 @@ There is a limit to 20 levels of depth for Categories.
 | Classifications | Array[object] | Child Classifications |  |
 | Order | Integer | Sorting order | `1` |
 
-###ClassificationTree
+### ClassificationTree
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -77,7 +77,7 @@ There is a limit to 20 levels of depth for Categories.
 | Version | Integer | Latest revision number | `41` |
 | *IsCanonical* | *Boolean* | *Reserved for internal use* | |
 
-###Owner
+### Owner
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -123,20 +123,21 @@ GET /ClassificationTrees({ClassificationTreeId})
     <li><a href="#csharp-getting-a-classification-tree" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-classification-tree" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-classification-tree" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-classification-tree" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-classification-tree"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-classification-tree">
-<pre><code class="language-http">GET /ClassificationTrees(1)
+<pre id="http-code-getting-a-classification-tree"><code class="language-http">GET /ClassificationTrees(1)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-classification-tree">
-<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ClassificationTrees(1)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-classification-tree"><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ClassificationTrees(1)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-classification-tree">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAClassificationTree()
+<pre id="csharp-code-getting-a-classification-tree"><code class="language-csharp">static IRestResponse GettingAClassificationTree()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ClassificationTrees(1)");
     var request = new RestRequest(Method.GET);
@@ -150,9 +151,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-classification-tree">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-classification-tree"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -170,9 +170,8 @@ public static CloseableHttpResponse GettingAClassificationTree() throws IOExcept
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-classification-tree">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-classification-tree"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -185,12 +184,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#classificationtree'>ClassificationTree</a>
+ <a href='#classificationtree'>ClassificationTree</a>
 
 <h5>Example</h5>
 

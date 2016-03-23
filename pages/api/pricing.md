@@ -4,7 +4,7 @@ permalink: /api/pricing/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -35,7 +35,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 ## Resources
 
-###Pricing
+### Pricing
 
 {{callout_info}}<b>RQ Connection</b> The following fields are not currently synced to RQ: IsDiscountable and FloorPrice{{end}}
 
@@ -51,7 +51,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 | PricingTermId | Integer | [PricingTerm](#pricingterm) identifier | `78` |
 | RegularPrice | Decimal | The regular price, must be greater than or equal to 0 | `10.0` |
 
-###SaleOverridePrice
+### SaleOverridePrice
 
 <p>SaleOverridePrice is used to set a sale pricing for a specific date. <br/>Pricing.OverridePrice is set using the <strong>active</strong> SaleOverridePrice SalePrice property, determined using the following rules:</p><ul><li>If there is a SaleOverridePrice defined for the current date, it is used</li><li>Otherwise, if there is a Default (IsDefault set to true) SaleOverridePrice, it is used </li><li>Otherwise, null is returned</li></ul>{{callout_info}}<b>RQ Connection</b> Future SalveOverridePrice values are not currently synced to RQ, this feature is coming soon.{{end}}
 
@@ -66,7 +66,7 @@ Pricing information for products can be retrieved and managed using the Pricing 
 | StopDateUTC | DateTime | Date and time the sale pricing ends, in UTC | `2015-12-31T00:00:00` |
 
 
-###PricingTerm
+### PricingTerm
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -84,9 +84,12 @@ Pricing information for products can be retrieved and managed using the Pricing 
 
 
 
-<h2 id='creating-product-pricing-at-company-level' class='clickable-header top-level-header'>Creating Product Pricing at Company Level</h2>
+<h2 id='creating-or-updating-product-pricing-at-company-level' class='clickable-header top-level-header'>Creating or Updating Product Pricing at Company Level</h2>
 
-{{note}}When Product Pricing is set at the Company level, all Locations within the Company will use this Product Pricing by default unless <b>overridden</b> by a Location level Pricing. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
+{{note}}
+  When Product Pricing is set at the Company level, all Locations within the Company will use this Product Pricing by default unless <b>overridden</b> by a Location level Pricing. 
+  For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.
+{{end}}
 
 
 <h4>Request</h4>
@@ -118,15 +121,16 @@ POST /Companies({CompanyId})/Pricing
 <h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#http-creating-product-pricing-at-company-level" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-creating-product-pricing-at-company-level" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-creating-product-pricing-at-company-level" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-creating-product-pricing-at-company-level" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-creating-product-pricing-at-company-level" data-toggle="tab">Ruby (rest-client)</a></li>
+    <li class="active"><a href="#http-creating-or-updating-product-pricing-at-company-level" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-or-updating-product-pricing-at-company-level" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-or-updating-product-pricing-at-company-level" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-or-updating-product-pricing-at-company-level" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-or-updating-product-pricing-at-company-level" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-or-updating-product-pricing-at-company-level" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-or-updating-product-pricing-at-company-level"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-creating-product-pricing-at-company-level">
-<pre><code class="language-http">POST /Companies(14146)/Pricing
+    <div role="tabpanel" class="tab-pane active" id="http-creating-or-updating-product-pricing-at-company-level">
+<pre id="http-code-creating-or-updating-product-pricing-at-company-level"><code class="language-http">POST /Companies(14146)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -140,8 +144,8 @@ Content-Type: application/json
     "RegularPrice": 10
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="curl-creating-product-pricing-at-company-level">
-<pre><code class="language-http">curl -X POST "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    <div role="tabpanel" class="tab-pane" id="curl-creating-or-updating-product-pricing-at-company-level">
+<pre id="curl-code-creating-or-updating-product-pricing-at-company-level"><code class="language-http">curl -X POST "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
     "CompanyId": 14146,
     "EntityId": 14202,
@@ -151,9 +155,9 @@ Content-Type: application/json
     "RegularPrice": 10
 }'</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-creating-product-pricing-at-company-level">
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-or-updating-product-pricing-at-company-level">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingProductPricingAtCompanyLevel()
+<pre id="csharp-code-creating-or-updating-product-pricing-at-company-level"><code class="language-csharp">static IRestResponse CreatingOrUpdatingProductPricingAtCompanyLevel()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing");
     var request = new RestRequest(Method.POST);
@@ -167,17 +171,16 @@ Content-Type: application/json
     return client.Execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="java-creating-product-pricing-at-company-level">
-
+    <div role="tabpanel" class="tab-pane" id="java-creating-or-updating-product-pricing-at-company-level">
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-or-updating-product-pricing-at-company-level"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import java.io.IOException;
 
-public static CloseableHttpResponse CreatingProductPricingAtCompanyLevel() throws IOException {
+public static CloseableHttpResponse CreatingOrUpdatingProductPricingAtCompanyLevel() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
     HttpPost request = new HttpPost("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing");
      
@@ -190,10 +193,9 @@ public static CloseableHttpResponse CreatingProductPricingAtCompanyLevel() throw
     return httpClient.execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-creating-product-pricing-at-company-level">
-
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-or-updating-product-pricing-at-company-level">
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-or-updating-product-pricing-at-company-level"><code class="language-ruby">require 'rest-client'
 
 body = "{\"CatalogItemId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"CompanyId\":14146,\"EntityId\":14202,\"FloorPrice\":3.99,\"IsDiscountable\":false,\"PricingTermId\":78,\"RegularPrice\":10}";
 
@@ -207,12 +209,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#pricing'>Pricing</a>
+ <a href='#pricing'>Pricing</a>
 
 <h5>Example</h5>
 
@@ -230,7 +230,7 @@ HTTP 201 Content-Type: application/json
     "RegularPrice": 10
 }</pre>
 
-<h2 id='creating-product-pricing-at-location-level' class='clickable-header top-level-header'>Creating Product Pricing at Location Level</h2>
+<h2 id='creating-or-updating-product-pricing-at-location-level' class='clickable-header top-level-header'>Creating or Updating Product Pricing at Location Level</h2>
 
 {{note}}This request can be used to set Product Pricing for a specific Location. Location level Pricing <b>overrides</b> any Product Pricing set at the Company level. For more information, see <a href="http://developers.iqmetrix.com/concepts/company-tree/#inheritance">Company Tree Inheritance</a>.{{end}}
 
@@ -272,15 +272,16 @@ POST /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId}
 <h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#http-creating-product-pricing-at-location-level" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-creating-product-pricing-at-location-level" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-creating-product-pricing-at-location-level" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-creating-product-pricing-at-location-level" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-creating-product-pricing-at-location-level" data-toggle="tab">Ruby (rest-client)</a></li>
+    <li class="active"><a href="#http-creating-or-updating-product-pricing-at-location-level" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-or-updating-product-pricing-at-location-level" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-or-updating-product-pricing-at-location-level" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-or-updating-product-pricing-at-location-level" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-or-updating-product-pricing-at-location-level" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-or-updating-product-pricing-at-location-level" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-or-updating-product-pricing-at-location-level"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-creating-product-pricing-at-location-level">
-<pre><code class="language-http">POST /Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
+    <div role="tabpanel" class="tab-pane active" id="http-creating-or-updating-product-pricing-at-location-level">
+<pre id="http-code-creating-or-updating-product-pricing-at-location-level"><code class="language-http">POST /Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -294,8 +295,8 @@ Content-Type: application/json
     "RegularPrice": 10
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="curl-creating-product-pricing-at-location-level">
-<pre><code class="language-http">curl -X POST "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    <div role="tabpanel" class="tab-pane" id="curl-creating-or-updating-product-pricing-at-location-level">
+<pre id="curl-code-creating-or-updating-product-pricing-at-location-level"><code class="language-http">curl -X POST "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
     "CompanyId": 14146,
     "EntityId": 14202,
@@ -305,9 +306,9 @@ Content-Type: application/json
     "RegularPrice": 10
 }'</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-creating-product-pricing-at-location-level">
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-or-updating-product-pricing-at-location-level">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingProductPricingAtLocationLevel()
+<pre id="csharp-code-creating-or-updating-product-pricing-at-location-level"><code class="language-csharp">static IRestResponse CreatingOrUpdatingProductPricingAtLocationLevel()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
     var request = new RestRequest(Method.POST);
@@ -321,17 +322,16 @@ Content-Type: application/json
     return client.Execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="java-creating-product-pricing-at-location-level">
-
+    <div role="tabpanel" class="tab-pane" id="java-creating-or-updating-product-pricing-at-location-level">
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-or-updating-product-pricing-at-location-level"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import java.io.IOException;
 
-public static CloseableHttpResponse CreatingProductPricingAtLocationLevel() throws IOException {
+public static CloseableHttpResponse CreatingOrUpdatingProductPricingAtLocationLevel() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
     HttpPost request = new HttpPost("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
      
@@ -344,10 +344,9 @@ public static CloseableHttpResponse CreatingProductPricingAtLocationLevel() thro
     return httpClient.execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-creating-product-pricing-at-location-level">
-
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-or-updating-product-pricing-at-location-level">
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-or-updating-product-pricing-at-location-level"><code class="language-ruby">require 'rest-client'
 
 body = "{\"CatalogItemId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"CompanyId\":14146,\"EntityId\":14202,\"FloorPrice\":3.99,\"IsDiscountable\":false,\"PricingTermId\":78,\"RegularPrice\":10}";
 
@@ -361,12 +360,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#pricing'>Pricing</a>
+ <a href='#pricing'>Pricing</a>
 
 <h5>Example</h5>
 
@@ -426,20 +423,21 @@ GET /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})
     <li><a href="#csharp-getting-product-pricing-for-a-retail-location" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-product-pricing-for-a-retail-location" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-product-pricing-for-a-retail-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-product-pricing-for-a-retail-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-product-pricing-for-a-retail-location"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-product-pricing-for-a-retail-location">
-<pre><code class="language-http">GET /Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
+<pre id="http-code-getting-product-pricing-for-a-retail-location"><code class="language-http">GET /Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-product-pricing-for-a-retail-location">
-<pre><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-product-pricing-for-a-retail-location"><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-product-pricing-for-a-retail-location">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingProductPricingForARetailLocation()
+<pre id="csharp-code-getting-product-pricing-for-a-retail-location"><code class="language-csharp">static IRestResponse GettingProductPricingForARetailLocation()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
     var request = new RestRequest(Method.GET);
@@ -453,9 +451,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-product-pricing-for-a-retail-location">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-product-pricing-for-a-retail-location"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -473,9 +470,8 @@ public static CloseableHttpResponse GettingProductPricingForARetailLocation() th
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-product-pricing-for-a-retail-location">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-product-pricing-for-a-retail-location"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -488,264 +484,15 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#pricing'>Pricing</a>
+ <a href='#pricing'>Pricing</a>
 
 <h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
-</pre><pre>{
-    "Id": 16446,
-    "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
-    "CompanyId": 14146,
-    "EntityId": 14202,
-    "FloorPrice": 3.99,
-    "IsDiscountable": false,
-    "OverridePrice": 3.99,
-    "PricingTermId": 78,
-    "RegularPrice": 10
-}</pre>
-
-<h2 id='updating-product-pricing-for-a-retail-location' class='clickable-header top-level-header'>Updating Product Pricing for a Retail Location</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-PUT /Companies({CompanyId})/Entities({LocationId})/CatalogItems({CatalogItemId})/Pricing
-</pre>
-
-
-
-
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>LocationId</code> (<strong>Required</strong>)  - Identifier for the {{Location}}
-    </li>
-    
-    <li>
-        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#http-updating-product-pricing-for-a-retail-location" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-updating-product-pricing-for-a-retail-location" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-updating-product-pricing-for-a-retail-location" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-updating-product-pricing-for-a-retail-location" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-updating-product-pricing-for-a-retail-location" data-toggle="tab">Ruby (rest-client)</a></li>
-</ul>
-<div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-updating-product-pricing-for-a-retail-location">
-<pre><code class="language-http">PUT /Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
-</code><code class="language-csharp"></code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="curl-updating-product-pricing-for-a-retail-location">
-<pre><code class="language-http">curl -X PUT "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing"</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-updating-product-pricing-for-a-retail-location">
-        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingProductPricingForARetailLocation()
-{
-    var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
-    var request = new RestRequest(Method.PUT);
-     
-
-    
-
-    return client.Execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="java-updating-product-pricing-for-a-retail-location">
-
-        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import java.io.IOException;
-
-public static CloseableHttpResponse UpdatingProductPricingForARetailLocation() throws IOException {
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPut request = new HttpPut("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
-     
-    
-    return httpClient.execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-updating-product-pricing-for-a-retail-location">
-
-        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
-
-
-
-response = RestClient.put 'https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14202)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing', body 
-
-puts response</code></pre>
-    </div>
-</div>
-
-
-
-<h4>Response</h4>
-
-
-
-<h2 id='creating-product-pricing-at-company-level' class='clickable-header top-level-header'>Creating Product Pricing at Company Level</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-POST /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
-</pre>
-
-
-<h4>Headers</h4>
-<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
-
-
-
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>CatalogItemId</code> (<strong>Required</strong>) </li><li><code>EntityId</code> (<strong>Required</strong>) </li><li><code>RegularPrice</code> (<strong>Required</strong>) </li><li><code>CompanyId</code> (Optional) </li><li><code>FloorPrice</code> (Optional) </li><li><code>IsDiscountable</code> (Optional) - Defaults to false</li><li><code>PricingTermId</code> (Optional) </li></ul>
-
-<h5>Example</h5>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#http-creating-product-pricing-at-company-level" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-creating-product-pricing-at-company-level" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-creating-product-pricing-at-company-level" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-creating-product-pricing-at-company-level" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-creating-product-pricing-at-company-level" data-toggle="tab">Ruby (rest-client)</a></li>
-</ul>
-<div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-creating-product-pricing-at-company-level">
-<pre><code class="language-http">POST /Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-</code><code class="language-csharp">{
-    "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
-    "CompanyId": 14146,
-    "EntityId": 14202,
-    "FloorPrice": 3.99,
-    "IsDiscountable": false,
-    "PricingTermId": 78,
-    "RegularPrice": 10
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="curl-creating-product-pricing-at-company-level">
-<pre><code class="language-http">curl -X POST "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
-    "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
-    "CompanyId": 14146,
-    "EntityId": 14202,
-    "FloorPrice": 3.99,
-    "IsDiscountable": false,
-    "PricingTermId": 78,
-    "RegularPrice": 10
-}'</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-creating-product-pricing-at-company-level">
-        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingProductPricingAtCompanyLevel()
-{
-    var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
-    var request = new RestRequest(Method.POST);
-     
-    request.AddHeader("Authorization", "Bearer (Access Token)"); 
-    request.AddHeader("Accept", "application/json"); 
-    request.AddHeader("Content-Type", "application/json"); 
-
-     request.AddParameter("application/json", "{\"CatalogItemId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"CompanyId\":14146,\"EntityId\":14202,\"FloorPrice\":3.99,\"IsDiscountable\":false,\"PricingTermId\":78,\"RegularPrice\":10}", ParameterType.RequestBody);
-
-    return client.Execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="java-creating-product-pricing-at-company-level">
-
-        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import java.io.IOException;
-
-public static CloseableHttpResponse CreatingProductPricingAtCompanyLevel() throws IOException {
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPost request = new HttpPost("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
-     
-    request.addHeader("Authorization", "Bearer (Access Token)"); 
-    request.addHeader("Accept", "application/json"); 
-    request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"CatalogItemId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"CompanyId\":14146,\"EntityId\":14202,\"FloorPrice\":3.99,\"IsDiscountable\":false,\"PricingTermId\":78,\"RegularPrice\":10}");
-    request.setEntity(body);
-    
-    return httpClient.execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-creating-product-pricing-at-company-level">
-
-        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
-
-body = "{\"CatalogItemId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"CompanyId\":14146,\"EntityId\":14202,\"FloorPrice\":3.99,\"IsDiscountable\":false,\"PricingTermId\":78,\"RegularPrice\":10}";
-
-response = RestClient.post 'https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing', body, {
-     :'Authorization' => 'Bearer (Access Token)',
-     :'Accept' => 'application/json',
-     :'Content-Type' => 'application/json',
-    } 
-
-puts response</code></pre>
-    </div>
-</div>
-
-
-
-<h4>Response</h4>
-
-
-<a href='#pricing'>Pricing</a>
-
-<h5>Example</h5>
-
-<pre>
-HTTP 201 Content-Type: application/json
 </pre><pre>{
     "Id": 16446,
     "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
@@ -765,7 +512,7 @@ HTTP 201 Content-Type: application/json
 <h4>Request</h4>
 
 <pre>
-GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
+GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing
 </pre>
 
 
@@ -796,22 +543,23 @@ GET /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/
     <li><a href="#csharp-getting-product-pricing-at-company-level" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-product-pricing-at-company-level" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-product-pricing-at-company-level" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-product-pricing-at-company-level" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-product-pricing-at-company-level"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-product-pricing-at-company-level">
-<pre><code class="language-http">GET /Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
+<pre id="http-code-getting-product-pricing-at-company-level"><code class="language-http">GET /Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-product-pricing-at-company-level">
-<pre><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-product-pricing-at-company-level"><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-product-pricing-at-company-level">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingProductPricingAtCompanyLevel()
+<pre id="csharp-code-getting-product-pricing-at-company-level"><code class="language-csharp">static IRestResponse GettingProductPricingAtCompanyLevel()
 {
-    var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
+    var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -823,9 +571,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-product-pricing-at-company-level">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-product-pricing-at-company-level"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -834,7 +581,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingProductPricingAtCompanyLevel() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
+    HttpGet request = new HttpGet("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -843,13 +590,12 @@ public static CloseableHttpResponse GettingProductPricingAtCompanyLevel() throws
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-product-pricing-at-company-level">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-product-pricing-at-company-level"><code class="language-ruby">require 'rest-client'
 
 
 
-response = RestClient.get 'https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing', {
+response = RestClient.get 'https://pricingdemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
@@ -858,12 +604,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#pricing'>Pricing</a>]
+ Array[<a href='#pricing'>Pricing</a>]
 
 <h5>Example</h5>
 
@@ -882,100 +626,6 @@ HTTP 200 Content-Type: application/json
         "RegularPrice": 10
     }
 ]</pre>
-
-<h2 id='updating-product-pricing-at-company-level' class='clickable-header top-level-header'>Updating Product Pricing at Company Level</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-PUT /Companies({CompanyId})/Entities({CompanyId})/CatalogItems({CatalogItemId})/Pricing
-</pre>
-
-
-
-
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    
-    <li>
-        <code>CatalogItemId</code> (<strong>Required</strong>)  - Unique identifier for the {{CatalogItem}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#http-updating-product-pricing-at-company-level" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-updating-product-pricing-at-company-level" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-updating-product-pricing-at-company-level" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-updating-product-pricing-at-company-level" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-updating-product-pricing-at-company-level" data-toggle="tab">Ruby (rest-client)</a></li>
-</ul>
-<div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-updating-product-pricing-at-company-level">
-<pre><code class="language-http">PUT /Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing
-</code><code class="language-csharp"></code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="curl-updating-product-pricing-at-company-level">
-<pre><code class="language-http">curl -X PUT "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing"</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-updating-product-pricing-at-company-level">
-        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingProductPricingAtCompanyLevel()
-{
-    var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
-    var request = new RestRequest(Method.PUT);
-     
-
-    
-
-    return client.Execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="java-updating-product-pricing-at-company-level">
-
-        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import java.io.IOException;
-
-public static CloseableHttpResponse UpdatingProductPricingAtCompanyLevel() throws IOException {
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPut request = new HttpPut("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing");
-     
-    
-    return httpClient.execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-updating-product-pricing-at-company-level">
-
-        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
-
-
-
-response = RestClient.put 'https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Entities(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing', body 
-
-puts response</code></pre>
-    </div>
-</div>
-
-
-
-<h4>Response</h4>
-
-
 
 <h2 id='getting-all-active-pricing-terms' class='clickable-header top-level-header'>Getting all Active Pricing Terms</h2>
 
@@ -1011,20 +661,21 @@ GET /Companies({CompanyId})/PricingTerms
     <li><a href="#csharp-getting-all-active-pricing-terms" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-active-pricing-terms" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-active-pricing-terms" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-active-pricing-terms" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-active-pricing-terms"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-active-pricing-terms">
-<pre><code class="language-http">GET /Companies(14146)/PricingTerms
+<pre id="http-code-getting-all-active-pricing-terms"><code class="language-http">GET /Companies(14146)/PricingTerms
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-active-pricing-terms">
-<pre><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/PricingTerms" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-active-pricing-terms"><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/PricingTerms" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-active-pricing-terms">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllActivePricingTerms()
+<pre id="csharp-code-getting-all-active-pricing-terms"><code class="language-csharp">static IRestResponse GettingAllActivePricingTerms()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/PricingTerms");
     var request = new RestRequest(Method.GET);
@@ -1038,9 +689,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-active-pricing-terms">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-active-pricing-terms"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1058,9 +708,8 @@ public static CloseableHttpResponse GettingAllActivePricingTerms() throws IOExce
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-active-pricing-terms">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-active-pricing-terms"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1073,12 +722,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#pricingterm'>PricingTerm</a>]
+ Array[<a href='#pricingterm'>PricingTerm</a>]
 
 <h5>Example</h5>
 
@@ -1134,20 +781,21 @@ GET /Companies({CompanyId})/PricingTerms({PricingTermId})
     <li><a href="#csharp-getting-a-pricing-term" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-pricing-term" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-pricing-term" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-pricing-term" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-pricing-term"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-pricing-term">
-<pre><code class="language-http">GET /Companies(14146)/PricingTerms(78)
+<pre id="http-code-getting-a-pricing-term"><code class="language-http">GET /Companies(14146)/PricingTerms(78)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-pricing-term">
-<pre><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/PricingTerms(78)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-pricing-term"><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/PricingTerms(78)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-pricing-term">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAPricingTerm()
+<pre id="csharp-code-getting-a-pricing-term"><code class="language-csharp">static IRestResponse GettingAPricingTerm()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/PricingTerms(78)");
     var request = new RestRequest(Method.GET);
@@ -1161,9 +809,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-pricing-term">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-pricing-term"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1181,9 +828,8 @@ public static CloseableHttpResponse GettingAPricingTerm() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-pricing-term">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-pricing-term"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1196,12 +842,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#pricingterm'>PricingTerm</a>
+ <a href='#pricingterm'>PricingTerm</a>
 
 <h5>Example</h5>
 
@@ -1267,10 +911,11 @@ POST /Companies({CompanyId})/Pricing({PricingId})/SaleOverridePrices
     <li><a href="#csharp-creating-a-sale-price" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-sale-price" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-sale-price" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-sale-price" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-sale-price"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-sale-price">
-<pre><code class="language-http">POST /Companies(14146)/Pricing(16446)/SaleOverridePrices
+<pre id="http-code-creating-a-sale-price"><code class="language-http">POST /Companies(14146)/Pricing(16446)/SaleOverridePrices
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1282,7 +927,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-sale-price">
-<pre><code class="language-http">curl -X POST "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-sale-price"><code class="language-http">curl -X POST "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "IsDefault": true,
     "SalePrice": 3.99,
     "StartDateUTC": "2015-12-02T00:00:00",
@@ -1291,7 +936,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-sale-price">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingASalePrice()
+<pre id="csharp-code-creating-a-sale-price"><code class="language-csharp">static IRestResponse CreatingASalePrice()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices");
     var request = new RestRequest(Method.POST);
@@ -1306,9 +951,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-sale-price">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-sale-price"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1329,9 +973,8 @@ public static CloseableHttpResponse CreatingASalePrice() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-sale-price">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-sale-price"><code class="language-ruby">require 'rest-client'
 
 body = "{\"IsDefault\":true,\"SalePrice\":3.99,\"StartDateUTC\":\"2015-12-02T00:00:00\",\"StopDateUTC\":\"2015-12-31T00:00:00\"}";
 
@@ -1345,12 +988,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#saleoverrideprice'>SaleOverridePrice</a>
+ <a href='#saleoverrideprice'>SaleOverridePrice</a>
 
 <h5>Example</h5>
 
@@ -1404,20 +1045,21 @@ GET /Companies({CompanyId})/Pricing({PricingId})/SaleOverridePrices
     <li><a href="#csharp-getting-all-sale-pricing" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-sale-pricing" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-sale-pricing" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-sale-pricing" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-sale-pricing"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-sale-pricing">
-<pre><code class="language-http">GET /Companies(14146)/Pricing(16446)/SaleOverridePrices
+<pre id="http-code-getting-all-sale-pricing"><code class="language-http">GET /Companies(14146)/Pricing(16446)/SaleOverridePrices
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-sale-pricing">
-<pre><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-sale-pricing"><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-sale-pricing">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllSalePricing()
+<pre id="csharp-code-getting-all-sale-pricing"><code class="language-csharp">static IRestResponse GettingAllSalePricing()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices");
     var request = new RestRequest(Method.GET);
@@ -1431,9 +1073,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-sale-pricing">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-sale-pricing"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1451,9 +1092,8 @@ public static CloseableHttpResponse GettingAllSalePricing() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-sale-pricing">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-sale-pricing"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1466,12 +1106,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#saleoverrideprice'>SaleOverridePrice</a>
+ <a href='#saleoverrideprice'>SaleOverridePrice</a>
 
 <h5>Example</h5>
 
@@ -1533,10 +1171,11 @@ PUT /Companies({CompanyId})/Pricing({PricingId})/SaleOverridePrices({SaleOverrid
     <li><a href="#csharp-updating-a-sale-pricing" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-sale-pricing" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-sale-pricing" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-sale-pricing" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-sale-pricing"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-sale-pricing">
-<pre><code class="language-http">PUT /Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)
+<pre id="http-code-updating-a-sale-pricing"><code class="language-http">PUT /Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1551,7 +1190,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-sale-pricing">
-<pre><code class="language-http">curl -X PUT "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-sale-pricing"><code class="language-http">curl -X PUT "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": 1177,
     "CompanyId": 14146,
     "IsDefault": true,
@@ -1563,7 +1202,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-sale-pricing">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingASalePricing()
+<pre id="csharp-code-updating-a-sale-pricing"><code class="language-csharp">static IRestResponse UpdatingASalePricing()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)");
     var request = new RestRequest(Method.PUT);
@@ -1578,9 +1217,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-sale-pricing">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-sale-pricing"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1601,9 +1239,8 @@ public static CloseableHttpResponse UpdatingASalePricing() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-sale-pricing">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-sale-pricing"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":1177,\"CompanyId\":14146,\"IsDefault\":true,\"PricingInformationId\":16446,\"SalePrice\":3.99,\"StartDateUTC\":\"2015-12-02T00:00:00\",\"StopDateUTC\":\"2015-12-31T00:00:00\"}";
 
@@ -1617,12 +1254,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#saleoverrideprice'>SaleOverridePrice</a>
+ <a href='#saleoverrideprice'>SaleOverridePrice</a>
 
 <h5>Example</h5>
 
@@ -1680,19 +1315,20 @@ DELETE /Companies({CompanyId})/Pricing({PricingId})/SaleOverridePrices({SaleOver
     <li><a href="#csharp-deleting-a-sale-pricing" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-deleting-a-sale-pricing" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-deleting-a-sale-pricing" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-deleting-a-sale-pricing" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-deleting-a-sale-pricing"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-sale-pricing">
-<pre><code class="language-http">DELETE /Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)
+<pre id="http-code-deleting-a-sale-pricing"><code class="language-http">DELETE /Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-deleting-a-sale-pricing">
-<pre><code class="language-http">curl -X DELETE "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-deleting-a-sale-pricing"><code class="language-http">curl -X DELETE "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-sale-pricing">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse DeletingASalePricing()
+<pre id="csharp-code-deleting-a-sale-pricing"><code class="language-csharp">static IRestResponse DeletingASalePricing()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/Pricing(16446)/SaleOverridePrices(2802)");
     var request = new RestRequest(Method.DELETE);
@@ -1705,9 +1341,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-sale-pricing">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-deleting-a-sale-pricing"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1724,9 +1359,8 @@ public static CloseableHttpResponse DeletingASalePricing() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-sale-pricing">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-deleting-a-sale-pricing"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1737,8 +1371,6 @@ response = RestClient.delete 'https://pricingdemo.iqmetrix.net/v1/Companies(1414
 puts response</code></pre>
     </div>
 </div>
-
-
 
 <h4>Response</h4>
 
@@ -1792,20 +1424,21 @@ GET /Companies({CompanyId})/CatalogItems({CatalogItemId})/Pricing?$filter={Prici
     <li><a href="#csharp-getting-product-pricing-by-pricing-term" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-product-pricing-by-pricing-term" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-product-pricing-by-pricing-term" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-product-pricing-by-pricing-term" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-product-pricing-by-pricing-term"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-product-pricing-by-pricing-term">
-<pre><code class="language-http">GET /Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing?$filter=78
+<pre id="http-code-getting-product-pricing-by-pricing-term"><code class="language-http">GET /Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing?$filter=78
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-product-pricing-by-pricing-term">
-<pre><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing?$filter=78" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-product-pricing-by-pricing-term"><code class="language-http">curl -X GET "https://pricingdemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing?$filter=78" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-product-pricing-by-pricing-term">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingProductPricingByPricingTerm()
+<pre id="csharp-code-getting-product-pricing-by-pricing-term"><code class="language-csharp">static IRestResponse GettingProductPricingByPricingTerm()
 {
     var client = new RestClient("https://pricingdemo.iqmetrix.net/v1/Companies(14146)/CatalogItems(a183f1a9-c58f-426a-930a-9a6357db52ed)/Pricing?$filter=78");
     var request = new RestRequest(Method.GET);
@@ -1819,9 +1452,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-product-pricing-by-pricing-term">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-product-pricing-by-pricing-term"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1839,9 +1471,8 @@ public static CloseableHttpResponse GettingProductPricingByPricingTerm() throws 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-product-pricing-by-pricing-term">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-product-pricing-by-pricing-term"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1854,12 +1485,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#pricing'>Pricing</a>]
+ Array[<a href='#pricing'>Pricing</a>]
 
 <h5>Example</h5>
 

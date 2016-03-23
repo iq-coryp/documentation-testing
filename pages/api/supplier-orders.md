@@ -4,7 +4,7 @@ permalink: /api/supplier-orders/
 tags: []
 keywords: supplier orders dropship
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -35,14 +35,9 @@ If the supplier wants to provide reasoning behind an order or item's specific st
 
 ### Order Notifications Feed
 
-The order notifications feed contains a list of dropship order events for a supplier in "[Atom Syndication Format](http://tools.ietf.org/html/rfc4287)" using "[Archived Feeds](https://tools.ietf.org/html/rfc5005#page-6)" and is encoded as `atom+xml`.
+The order notifications feed contains a list of dropship order events for a supplier in "[Atom Syndication Format](http://tools.ietf.org/html/rfc4287)" using "[Archived Feeds](https://tools.ietf.org/html/rfc5005#page-6)" and is encoded as `atom+xml`. Newly created orders are prepended to the beginning of the notification feed.
 
-Each page of the feed will contain up to 50 events. This feed must be monitored by the supplier and when a new order is placed the supplier can process this order. It is up to the supplier's system to keep track of the orders that have been processed and their current status.
-
-It is also possible to get historical archives from the order feed. Each order feed archive, including the current order feed, contains a link to the previously archived 50 events.
-
-For best practices, it is recommended to store the timestamp for the last order retrieved and use this marker as your timestamp for retrieving the next batch of orders.
-
+Each page of the feed will contain up to 50 events. 
 
 ## Endpoints
 
@@ -82,7 +77,7 @@ For best practices, it is recommended to store the timestamp for the last order 
 | ProductName | String | Name of the product | `239234SMS L720 BLU SPT RTD8863` |
 | Quantity | Integer | Used in the case of partial shipments. | `5` |
 | Status | String | Current [ItemStatus](#itemstatus) | `Exception` |
-| Sku | String | Must match SKUs provided as part of the content feed | `9356SAMGL6S` |
+| Sku | String | Vendor SKU | `9356SAMGL6S` |
 | TrackingInfo | String | The tracking number for this shipped product | `23923408863` |
 | ShippingProvider | String | The shipping carrier that the product was shipped with | `UPS` |
 | *ReferenceName*  | *String* | *Reserved for internal use*|  |
@@ -101,7 +96,7 @@ For best practices, it is recommended to store the timestamp for the last order 
     <tbody>
         <tr><td colspan="3">id</td><td>GUID</td><td>Identifier for the Feed</td><td><code>urn:uuid:f1be4a74-508f-4159-b3f1-c6efe76c03e4</code></td></tr>
         <tr><td colspan="3">title</td><td>String</td><td>Title of order feed</td><td><code>Dropship Order Event Feed</code></td></tr>
-        <tr><td colspan="3">updated</td><td>DateTime</td><td>Last updated</td><td><code>2015-10-23T21:37:34Z</code></td></tr>
+        <tr><td colspan="3">updated</td><td>DateTime</td><td>Timestamp based on newest entry timestamp</td><td><code>2015-10-23T21:37:34Z</code></td></tr>
         <tr><td colspan="3">author</td><td>Object</td><td>Container for author name</td><td></td></tr>
         <tr><td class="spacing"></td><td colspan="2">name</td><td>String</td><td>Name of author</td><td><code>iQmetrix</code></td></tr>
         <tr><td colspan="3">link current</td><td>String</td><td>Link to the order feed endpoint</td><td><code>https://dropship.iqmetrix.net/v1/Suppliers(60455)/Notifications</code></td></tr>
@@ -147,7 +142,7 @@ For best practices, it is recommended to store the timestamp for the last order 
         <tr><td class="spacing"></td><td class="spacing"></td><td>description</td><td>String</td><td>Description of item</td><td><code>Some Item</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>quantity</td><td>Integer</td><td>Number of items</td><td><code>1</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>selling-price</td><td>Decimal</td><td>Price of item</td><td><code>100</code></td></tr>
-        <tr><td class="spacing"></td><td class="spacing"></td><td>sku</td><td>String</td><td>Item Sku</td><td><code>AB-JH0786-MI</code></td></tr>
+        <tr><td class="spacing"></td><td class="spacing"></td><td>sku</td><td>String</td><td>Vendor SKU</td><td><code>AB-JH0786-MI</code></td></tr>
         <tr><td colspan="3">seller</td><td>Object</td><td>Information for selling store</td><td><code>Dropship Order Event Feed</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">company-id</td><td>Integer</td><td>Company identifier</td><td><code>33772</code></td></tr>
         <tr><td class="spacing"></td><td colspan="2">location-id</td><td>Integer</td><td>Store location identifier</td><td><code>33773</code></td></tr>
@@ -204,7 +199,7 @@ For best practices, it is recommended to store the timestamp for the last order 
         <tr><td class="spacing"></td><td class="spacing"></td><td>message</td><td>String</td><td>A reason for the status of an order</td><td><code>Error: Product '98ESP456' is unavailable</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>quantity</td><td>Integer</td><td>Number of items</td><td><code>1</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>shipping-provider</td><td>String</td><td>Shipping provider</td><td><code>Purolator</code></td></tr>
-        <tr><td class="spacing"></td><td class="spacing"></td><td>sku</td><td>String</td><td>Product SKU</td><td><code>AB-JH0786-MI</code></td></tr>
+        <tr><td class="spacing"></td><td class="spacing"></td><td>sku</td><td>String</td><td>Vendor SKU</td><td><code>AB-JH0786-MI</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>status</td><td>String</td><td><a href="#itemstatus">Order item status</a></td><td><code>Other</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td>tracking-info</td><td>String</td><td>The tracking number for this shipped product</td><td><code>23923408863</code></td></tr>
         <tr><td class="spacing"></td><td class="spacing"></td><td><em>reference-name</em></td><td><em>String</em></td><td><em>Reserved for internal use</em></td><td></td></tr>

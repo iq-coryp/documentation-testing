@@ -7,6 +7,7 @@ audience:
 summary: 
 datatable: true
 metadata: false
+noPopUp: true
 ---
 
 {% include linkrefs.html %}
@@ -39,6 +40,21 @@ The date format used in the table below is mm/dd/yyyy
 
 | Date | Changes |
 |:-----|:--------|
+| 03/11/2016 | Updated Order page to clarify order states |
+| 03/10/2016 | Updated Product Structure concept to clarify, removed field from product structure API reference that was set to required by mistake |
+| 03/08/2016 | Added Dropship FAQ |
+| 02/26/2016 | Updated Classification Tree definition in Product Feed. Added a "copy" button to code samples |
+| 02/25/2016 | Other: Images popup when clicked |
+| 02/23/2016 | Minor updates to Dropship Onboarding Guide. |
+| 02/17/2016 | Added new methods to Product Subscriptions API reference. Pricing API update calls were documented incorrectly, this has been fixed |
+| 02/16/2016 | Minor fix to Order - Adding an Item to an Order. ItemStatusId is required, but was not listed as required. Added Getting A Serial Number By Location to Inventory Availability API reference. Added code samples to Carrier Integration, CRM, General Ledger, Commissions and Punch Clock pages. Removed application/json responses from requests that use application/hal+json |
+| 02/15/2016 | Improved and updated content for Dropship Test Order Guide. |
+| 02/10/2016 | Removing a documented endpoint that did not actual exist (oops) - Getting All Full Customers. Updated Dropship Shipping Options, Supplier Orders pages and Dropship guides. |
+| 02/10/2016 | Updated examples for Classification Tree concept. |
+| 02/04/2016 | Updated examples in Dropship Onboarding guide, Field Definitions and Product Feed pages. |
+| 02/01/2016 | Added note to Dropship Onboarding guide for updating product content. |
+| 01/29/2016 | Added serial numbers to Availability. Sidebar changes: moved Product Structure to under Product Library and Partner Reporting to under Partners |
+| 01/27/2016 | Audit of all dropship API references and Dropship Onboarding Guide. |
 | 01/25/2016 | Partner Reporting: Fixed date string to be without a time. Added Setting a Temporary Password to User Manager Reference. Fixed typo in Supplier Orders page and Dropship Order guide. Added  Subscription Feed example to Dropship Onboarding guide. |
 | 01/22/2016 | JSON/HAL examples are now generated, a few mistakes were corrected as a result in: CRM, Carrier Integration, Commissions, Punch Clock. Fixed a mistake in ShippingOptions, the response was missing a "ShippingOptions" object. Renamed Corporate Rewards to Partner Reporting. |
 | 01/20/2016 | Added note about adding product subsriptions in Dropship Onboarding guide. Added Corporate Rewards API reference in Reporting section. Updated "Import a User" function to properly include "password" |

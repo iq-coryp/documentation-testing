@@ -4,7 +4,7 @@ permalink: /api/assets/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -18,7 +18,7 @@ summary:
 
 ## Resources
 
-###Asset
+### Asset
 
 An **Asset** is an image or video associated with a Product.
 
@@ -75,7 +75,7 @@ Content-Type: multipart/form-data
 <h4>Response</h4>
 
 
-<a href='#asset'>Asset</a>
+ <a href='#asset'>Asset</a>
 
 <h5>Example</h5>
 
@@ -129,7 +129,7 @@ Accept: application/json
 <h4>Response</h4>
 
 
-<a href='#asset'>Asset</a>
+ <a href='#asset'>Asset</a>
 
 <h5>Example</h5>
 

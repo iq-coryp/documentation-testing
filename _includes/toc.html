@@ -2,11 +2,26 @@
 <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
 <script>
 $( document ).ready(function() {
-  // Handler for .ready() called.
 
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2, h3' });
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2, h3' });
 
+    var windowHeight = $(window).height();
+    var windowWidth = $(window).width();
+
+    var tocHeight = $(".pageMetadata").height();
+
+    if(windowWidth < 1560) {
+        
+        //Grab "pageMetadata" and move it to first  child of .post-header
+        $(".pageMetadata").prependTo(".post-header");
+        $( ".pageMetadata" ).removeClass("affix");        
+    }
+    else if (windowHeight < tocHeight) {
+        $( "#mysidebar" ).removeClass("affix");
+        $( ".pageMetadata" ).removeClass("affix");
+    }
 });
+
 </script>
 
 <div id="toc"></div>

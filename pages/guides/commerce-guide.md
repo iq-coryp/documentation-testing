@@ -1,10 +1,10 @@
 ---
-title:  Commerce Integration Guide
+title:  eCommerce Integration Guide
 permalink: /guides/commerce-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 18-12-2015
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -12,7 +12,7 @@ summary:
 
 ## Overview
 
-This guide is intended to demonstrate an example of how iQmetrix APIs could be used to create an eCommerce site.
+This guide is intended to demonstrate an example of how iQmetrix APIs could be used to create an eCommerce site or integrate existing eCommerce site with our other products.
 
 <img src="{{ "/images/commerce-flow.png" | prepend: site.url }}" alt="commerce flow diagram" />
 
@@ -38,7 +38,7 @@ You may be interested in this guide if you are:
 
 To use this guide, the following steps must be completed:
 
-* You must have your **onboarding package** from iQmetrix, which includes your access credentials and environments
+* You must have your **onboarding package** from iQmetrix, which includes your access credentials
 * Your {{Catalog_Concept}}, or physical inventory for your store(s), must be set up
 * Your {{CompanyTree_Concept}}, representing company structure (stores, groups, divisions, etc), must be created
 
@@ -74,10 +74,10 @@ Feel free to to skip to any page you are interested in:
     <span class="col-md-4 text-center">
       <a href="#search">
         <span class="col-md-12">
-          <i class="fa fa-search fa-4x"></i>'
+          <i class="fa fa-search fa-4x"></i>
         </span>
         <span class="col-md-12"> 
-          <h4>Search</h4
+          <h4>Search</h4>
         </span> 
       </a>   
     </span>
@@ -97,7 +97,7 @@ Feel free to to skip to any page you are interested in:
           <i class="fa fa-mobile fa-4x"></i>
         </span>
         <span class="col-md-12">
-          <h4>Product Detail</h4>
+          <h4>Product Details</h4>
         </span>
       </a>
     </span>
@@ -138,7 +138,7 @@ Feel free to to skip to any page you are interested in:
     <span class="col-md-12 text-center">
       <a href="#compatible-products">
         <span class="col-md-12">  
-          <i class="fa fa-plus-circle fa-4x"></i>
+          <i class="fa fa-plug fa-4x"></i>
         </span>
         <span class="col-md-12">
           <h4>Compatible Products</h4>
@@ -374,9 +374,9 @@ In this example, we will filter our list using the following filters:
       }
     }
 
-### Product Detail
+### Product Details
 
-A Product Detail page is used to provide more information about a Product a Customer is interested in.
+A Product Details page is used to provide more information about a Product a Customer is interested in.
 
 #### Getting Product Details
 
@@ -505,7 +505,7 @@ If a Product has a `HeroShotId` or other Assets, we can get the appropriate imag
       "mimeType": "image/png"
     }
 
-#### Geting Stock Levels
+#### Getting Stock Levels
 
 This request can be used to display stock levels for the Product in every Location in the Company.
 
@@ -543,7 +543,7 @@ This request can be used to get Pricing for a single Location for a Product.
 * Two types of prices are supported: regular price (`RegularPrice`) and sale price (`OverridePrice`)
 * Multiple currencies are not supported, default retailer currency is implied
 * Pricing information for products can be set up at any level in the {{CompanyTree_Concept}}
-* Term-based pricing is available to accommodate for scenarios where price varies based on contractual commitmen
+* Term-based pricing is available to accommodate for scenarios where price varies based on contractual commitment
 
 #### Relevant API Reference Pages 
 
@@ -816,7 +816,7 @@ The example below demonstrates updating an existing Contact Method, specifically
 
 A Customer might visit a "Find a Store" page to find:
 
-* Holiday hours
+* Store hours
 * Phone number for a store
 * Address of the nearest store 
 
@@ -914,7 +914,7 @@ The following filters are available:
 | Filter | Example |
 |:-------|:--------|
 | [OrderState](/api/orders/#orderstate) | `/Companies(14146)/OrderFull?$filter=State eq 'Pending'` |
-| EntityId (Location) | `/Companies(14146)/OrderFull?$filter=EntityId eq 14202` |
+| EntityId (Pick up Location) | `/Companies(14146)/OrderFull?$filter=EntityId eq 14202` |
 | Name | `/Companies(14146)/OrderFull?$filter=substringof(Name, 'iPhone')` |
 | PrintableId | `/Companies(14146)/OrderFull?$filter=PrintableId eq '2042068'` |
 | CreatedDateUtc | `/Companies(14146)/OrderFull?$filter=CreatedDateUtc gt '2015-12-01T23:11:07.057'` |
@@ -922,7 +922,7 @@ The following filters are available:
 The example below demonstrates using the following filters:
 
 * State of `Pending`
-* Dufferin Mall location (EntityId `14202`)
+* Dufferin Mall pick-up location (EntityId `14202`)
 
 #### Relevant API Reference Pages 
 
@@ -1117,9 +1117,9 @@ In the example below, we are adding a Shipping Address (`ShippingAddressId`) to 
 
 ### Compatible Products
 
-This page is generally within the checkout flow, and displays a list of Products that work well with other Products.
+This page is generally within the checkout flow or when browsing products, and displays a list of Products that work well with other Products.
 
-For example, if a customer has a battery-operated Radio in their Order, the Compatible Products page might include AAA batteries, or a carrying case.
+For example, if a customer has a Galaxy S4 Order, the Compatible Products page might include appropriate cases or screen protectors.
 
 #### Getting Compatible Products 
 

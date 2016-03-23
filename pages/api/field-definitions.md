@@ -4,7 +4,7 @@ permalink: /api/field-definitions/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -67,7 +67,7 @@ The result displayed on the page, with some styling, is shown below
 
 ## Resources
 
-###FieldDefinition
+### FieldDefinition
 
 {{note}} Use the <strong>StringId</strong> identifier instead of <strong>Id</strong>, as Id may change across Environments {{end}}
 
@@ -106,7 +106,7 @@ The result displayed on the page, with some styling, is shown below
 
 
 
-<h2 id='getting-all-fielddefinitions' class='clickable-header top-level-header'>Getting All FieldDefinitions</h2>
+<h2 id='getting-all-field-definitions' class='clickable-header top-level-header'>Getting All Field Definitions</h2>
 
 
 
@@ -128,25 +128,26 @@ GET /FieldDefinitions
 <h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#http-getting-all-fielddefinitions" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-getting-all-fielddefinitions" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-getting-all-fielddefinitions" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-all-fielddefinitions" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-getting-all-fielddefinitions" data-toggle="tab">Ruby (rest-client)</a></li>
+    <li class="active"><a href="#http-getting-all-field-definitions" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-field-definitions" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-field-definitions" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-field-definitions" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-field-definitions" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-field-definitions" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-field-definitions"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-getting-all-fielddefinitions">
-<pre><code class="language-http">GET /FieldDefinitions
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-field-definitions">
+<pre id="http-code-getting-all-field-definitions"><code class="language-http">GET /FieldDefinitions
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="curl-getting-all-fielddefinitions">
-<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-field-definitions">
+<pre id="curl-code-getting-all-field-definitions"><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-fielddefinitions">
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-field-definitions">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllFielddefinitions()
+<pre id="csharp-code-getting-all-field-definitions"><code class="language-csharp">static IRestResponse GettingAllFieldDefinitions()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions");
     var request = new RestRequest(Method.GET);
@@ -159,17 +160,16 @@ Accept: application/json
     return client.Execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="java-getting-all-fielddefinitions">
-
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-field-definitions">
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-field-definitions"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import java.io.IOException;
 
-public static CloseableHttpResponse GettingAllFielddefinitions() throws IOException {
+public static CloseableHttpResponse GettingAllFieldDefinitions() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
     HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions");
      
@@ -179,10 +179,9 @@ public static CloseableHttpResponse GettingAllFielddefinitions() throws IOExcept
     return httpClient.execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-fielddefinitions">
-
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-field-definitions">
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-field-definitions"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -195,12 +194,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#fielddefinition'>FieldDefinition</a>]
+ Array[<a href='#fielddefinition'>FieldDefinition</a>]
 
 <h5>Example</h5>
 
@@ -219,7 +216,7 @@ HTTP 200 Content-Type: application/json
     }
 ]</pre>
 
-<h2 id='getting-a-fielddefinition' class='clickable-header top-level-header'>Getting a FieldDefinition</h2>
+<h2 id='getting-a-field-definition' class='clickable-header top-level-header'>Getting a Field Definition</h2>
 
 
 
@@ -248,25 +245,26 @@ GET /FieldDefinitions({FieldDefinitionId})
 <h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#http-getting-a-fielddefinition" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-getting-a-fielddefinition" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-getting-a-fielddefinition" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-a-fielddefinition" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-getting-a-fielddefinition" data-toggle="tab">Ruby (rest-client)</a></li>
+    <li class="active"><a href="#http-getting-a-field-definition" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-field-definition" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-field-definition" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-field-definition" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-field-definition" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-field-definition" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-field-definition"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-getting-a-fielddefinition">
-<pre><code class="language-http">GET /FieldDefinitions(1)
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-field-definition">
+<pre id="http-code-getting-a-field-definition"><code class="language-http">GET /FieldDefinitions(1)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="curl-getting-a-fielddefinition">
-<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-field-definition">
+<pre id="curl-code-getting-a-field-definition"><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-fielddefinition">
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-field-definition">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAFielddefinition()
+<pre id="csharp-code-getting-a-field-definition"><code class="language-csharp">static IRestResponse GettingAFieldDefinition()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)");
     var request = new RestRequest(Method.GET);
@@ -279,17 +277,16 @@ Accept: application/json
     return client.Execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="java-getting-a-fielddefinition">
-
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-field-definition">
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-field-definition"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import java.io.IOException;
 
-public static CloseableHttpResponse GettingAFielddefinition() throws IOException {
+public static CloseableHttpResponse GettingAFieldDefinition() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
     HttpGet request = new HttpGet("https://productlibrarydemo.iqmetrix.net/v1/FieldDefinitions(1)");
      
@@ -299,10 +296,9 @@ public static CloseableHttpResponse GettingAFielddefinition() throws IOException
     return httpClient.execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-fielddefinition">
-
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-field-definition">
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-field-definition"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -315,12 +311,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#fielddefinition'>FieldDefinition</a>
+ <a href='#fielddefinition'>FieldDefinition</a>
 
 <h5>Example</h5>
 
