@@ -42,7 +42,15 @@
                             url = url.replace("http://melissakendall.github.io/", "http://melissakendall.github.io/documentation-testing/");
 
                         $(this).attr("href", url);
-                    });                   
+                    });
+
+                    $("#mysidebar li a").each(function(e) {
+                        var url = $(this).attr("href");
+
+                        url = "/documentation-testing" + url;
+
+                        $(this).attr("href", url);
+                    });
                 }
                
 
