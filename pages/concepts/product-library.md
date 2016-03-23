@@ -4,7 +4,7 @@ permalink: /concepts/product-library/
 tags: []
 keywords: 
 audience: 
-last_updated: 09-11-2015
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -18,7 +18,7 @@ summary:
 
 Retailers can select products from the Product Library to create a **Retailer Catalog**, a collection of products that can be sold. 
 
-Every Product in Product Library must belong to a single {{ClassificationTree_Concept}}, refered to as an **industry**.
+Every Product in Product Library must belong to a single {{ClassificationTree_Concept}}, referred to as an **industry**.
 
 This is a similar model to iTunes where users have access to many different types of products such as songs, movies and books (Industries) in the iTunes Store (Product Library) from which they can build their library (Retailer Catalog).
 

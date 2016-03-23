@@ -4,7 +4,7 @@ permalink: /api/product-structure/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -30,7 +30,7 @@ To learn about Master Products, Variations and Revisions, see {{ProductStructure
 
 ## Resources
 
-###ProductDocument
+### ProductDocument
 
 A ProductDocument represents the [hierarchical structure](/concepts/product-structure/) of Products in Product Library.
 
@@ -55,7 +55,7 @@ A ProductDocument represents the [hierarchical structure](/concepts/product-stru
 | Version | Integer | The latest revision number | `130` |
 
 
-###MasterProduct
+### MasterProduct
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -65,7 +65,7 @@ A ProductDocument represents the [hierarchical structure](/concepts/product-stru
 | IsArchived | Boolean | A flag to indicate if the MasterProduct is archived | `false` |
 | Variations | Array[<a href='#variation'>Variation</a>] | Variations |  |
 
-###IdentifierGroup
+### IdentifierGroup
 
 An Identifier is a value that uniquely represents a product within a certain context. For example, a product sold by one vendor may have different SKU identifiers than the same product sold by another vendor. IdentifierGroups are used to group Identifiers by type.
 
@@ -81,7 +81,7 @@ An Identifier is a value that uniquely represents a product within a certain con
 | Type | String | This value should match the Type property of the IdentifierGroup | `ManufacturerSKU` |
 | Value | String | Value | `ManufacturerSKU` |
 
-###Identifier
+### Identifier
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -92,7 +92,7 @@ An Identifier is a value that uniquely represents a product within a certain con
 | Type | String | This value should match the Type property of the IdentifierGroup | `ManufacturerSKU` |
 | Value | String | Value | `ManufacturerSKU` |
 
-###RevisionGroup
+### RevisionGroup
 
 RevisionGroups are used to group Revisions by type and parent Variation. See [Extended Examples](#extended-examples)
 
@@ -103,9 +103,9 @@ RevisionGroups are used to group Revisions by type and parent Variation. See [Ex
 | Revisions | Array[<a href='#revision'>Revision</a>] | List of Revisions in this category |  |
 | VariationId | Integer | Identifier for the Variation, if this Revision was created off of a Variation | `5` |
 
-###Revision
+### Revision
 
-To learn more about Master Products, Variations and Revisions, see {{product-structure}}.
+To learn more about Master Products, Variations and Revisions, see {{ProductStructure_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -121,9 +121,9 @@ To learn more about Master Products, Variations and Revisions, see {{product-str
 | Regions.Country | String | Country | `Canada` |
 | Regions.State | String | State | `Manitoba` |
 
-###Variation
+### Variation
 
-To learn more about Master Products, Variations and Revisions, see {{product-structure}}.
+To learn more about Master Products, Variations and Revisions, see {{ProductStructure_Concept}}.
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -133,7 +133,7 @@ To learn more about Master Products, Variations and Revisions, see {{product-str
 | IsArchived | Boolean | A flag to indicate if this Variation is archived. Archived Products are hidden from searches and can only be access directly. | `false` |
 
 
-###FieldValue
+### FieldValue
 
 A FieldValue represents a product property and defines how Variations and Revisions differ from their parents. FieldValues are made up of a reference to a {{field-definition}} and a value. See [Extended Examples](#extended-examples).
 
@@ -143,7 +143,7 @@ A FieldValue represents a product property and defines how Variations and Revisi
 | LanguageInvariantValue | String | Value for the FieldDefinition | `iPhone 4S 16 GB Black` |
 
 
-###ColorTag
+### ColorTag
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -196,7 +196,7 @@ POST /ProductDocs
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>TreeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li></ul><li><code>Manufacturer</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li><li><code>Name</code> (Optional) </li></ul><li><code>RootRevision</code> (<strong>Required</strong>) </li><ul><li><code>ColorDefinitionId</code> (<strong>Required</strong>) </li><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul><li><code>Variations</code> (Optional) </li><ul><li><code>FieldValues</code> (<strong>Required</strong>) - Must be unique across all Variations for the MasterProduct</li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul></ul><li><code>ColorDefinitions</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>ColorTags</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Swatch</code> (Optional) </li><ul><li><code>Type</code> (Optional) </li><li><code>AssetId</code> (Optional) </li><li><code>ColorCode</code> (Optional) </li></ul></ul><li><code>Owner</code> (Optional) </li><ul></ul></ul>
+<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>TreeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li></ul><li><code>Manufacturer</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li><li><code>Name</code> (Optional) </li></ul><li><code>RootRevision</code> (<strong>Required</strong>) </li><ul><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul><li><code>ColorDefinitions</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>ColorTags</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Swatch</code> (Optional) </li><ul><li><code>Type</code> (Optional) </li><li><code>AssetId</code> (Optional) </li><li><code>ColorCode</code> (Optional) </li></ul></ul><li><code>Owner</code> (Optional) </li><ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -206,10 +206,11 @@ POST /ProductDocs
     <li><a href="#csharp-creating-a-master-product" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-master-product" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-master-product" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-master-product" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-master-product"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-master-product">
-<pre><code class="language-http">POST /ProductDocs
+<pre id="http-code-creating-a-master-product"><code class="language-http">POST /ProductDocs
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -265,7 +266,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-master-product">
-<pre><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-master-product"><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Classification": {
         "TreeId": 1,
         "Id": 4
@@ -318,7 +319,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-master-product">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingAMasterProduct()
+<pre id="csharp-code-creating-a-master-product"><code class="language-csharp">static IRestResponse CreatingAMasterProduct()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs");
     var request = new RestRequest(Method.POST);
@@ -333,9 +334,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-master-product">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-master-product"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -356,9 +356,8 @@ public static CloseableHttpResponse CreatingAMasterProduct() throws IOException 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-master-product">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-master-product"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Classification\":{\"TreeId\":1,\"Id\":4},\"ColorDefinitions\":[{\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{},\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}}";
 
@@ -527,20 +526,21 @@ GET /ProductDocs({ProductDocumentId})
     <li><a href="#csharp-getting-a-product-hierarchy" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-product-hierarchy" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-product-hierarchy" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-product-hierarchy" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-product-hierarchy"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-product-hierarchy">
-<pre><code class="language-http">GET /ProductDocs(8)
+<pre id="http-code-getting-a-product-hierarchy"><code class="language-http">GET /ProductDocs(8)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-product-hierarchy">
-<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-product-hierarchy"><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-product-hierarchy">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAProductHierarchy()
+<pre id="csharp-code-getting-a-product-hierarchy"><code class="language-csharp">static IRestResponse GettingAProductHierarchy()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)");
     var request = new RestRequest(Method.GET);
@@ -554,9 +554,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-product-hierarchy">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-product-hierarchy"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -574,9 +573,8 @@ public static CloseableHttpResponse GettingAProductHierarchy() throws IOExceptio
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-product-hierarchy">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-product-hierarchy"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -737,7 +735,7 @@ PUT /ProductDocs({ProductDocumentId})
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>TreeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li></ul><li><code>Manufacturer</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li><li><code>Name</code> (Optional) </li></ul><li><code>RootRevision</code> (<strong>Required</strong>) </li><ul><li><code>ColorDefinitionId</code> (<strong>Required</strong>) </li><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul><li><code>Variations</code> (Optional) </li><ul><li><code>FieldValues</code> (<strong>Required</strong>) - Must be unique across all Variations for the MasterProduct</li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul></ul><li><code>ColorDefinitions</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>ColorTags</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Swatch</code> (Optional) </li><ul><li><code>Type</code> (Optional) </li><li><code>AssetId</code> (Optional) </li><li><code>ColorCode</code> (Optional) </li></ul></ul><li><code>Owner</code> (Optional) </li><ul></ul></ul>
+<ul><li><code>Classification</code> (<strong>Required</strong>) </li><ul><li><code>TreeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li></ul><li><code>Manufacturer</code> (<strong>Required</strong>) </li><ul><li><code>Id</code> (Optional) </li><li><code>Name</code> (Optional) </li></ul><li><code>RootRevision</code> (<strong>Required</strong>) </li><ul><li><code>FieldValues</code> (<strong>Required</strong>) </li><ul><li><code>FieldDefinitionId</code> (<strong>Required</strong>) </li><li><code>LanguageInvariantValue</code> (<strong>Required</strong>) </li></ul><li><code>ColorDefinitionId</code> (Optional) </li><li><code>IdentifierGroups</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>ForceOverride</code> (Optional) </li><li><code>Identifiers</code> (Optional) </li><ul><li><code>Type</code> (<strong>Required</strong>) </li><li><code>Value</code> (<strong>Required</strong>) </li><li><code>Description</code> (Optional) </li><li><code>Entity</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul></ul></ul></ul><li><code>ColorDefinitions</code> (Optional) </li><ul><li><code>Name</code> (<strong>Required</strong>) </li><li><code>ColorTags</code> (Optional) </li><ul><li><code>Id</code> (Optional) </li></ul><li><code>Swatch</code> (Optional) </li><ul><li><code>Type</code> (Optional) </li><li><code>AssetId</code> (Optional) </li><li><code>ColorCode</code> (Optional) </li></ul></ul><li><code>Owner</code> (Optional) </li><ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -747,10 +745,11 @@ PUT /ProductDocs({ProductDocumentId})
     <li><a href="#csharp-updating-a-master-product" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-master-product" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-master-product" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-master-product" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-master-product"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-master-product">
-<pre><code class="language-http">PUT /ProductDocs(8)
+<pre id="http-code-updating-a-master-product"><code class="language-http">PUT /ProductDocs(8)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -866,7 +865,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-master-product">
-<pre><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-master-product"><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": 8,
     "Classification": {
         "TreeId": 1,
@@ -979,7 +978,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-master-product">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingAMasterProduct()
+<pre id="csharp-code-updating-a-master-product"><code class="language-csharp">static IRestResponse UpdatingAMasterProduct()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)");
     var request = new RestRequest(Method.PUT);
@@ -994,9 +993,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-master-product">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-master-product"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1017,9 +1015,8 @@ public static CloseableHttpResponse UpdatingAMasterProduct() throws IOException 
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-master-product">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-master-product"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":8,\"Classification\":{\"TreeId\":1,\"Id\":4,\"Name\":\"Smartphones\"},\"ColorDefinitions\":[{\"Id\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Name\":\"Black Sapphire\",\"ColorTags\":[{\"Id\":1,\"Name\":\"Black\",\"ColorCode\":\"#303232\"}],\"Swatch\":{\"Type\":\"ColorCode\",\"ColorCode\":\"#C0C8D0\"}}],\"CreatedUtc\":\"2015-05-28T12:00:00.000Z\",\"LastModifiedUtc\":\"2015-05-28T12:00:00.000Z\",\"Manufacturer\":{\"Id\":13149,\"Name\":\"OtterBox\"},\"Owner\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"RevisionGroups\":[{\"GroupType\":\"Entity\",\"Order\":1,\"Revisions\":[{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}],\"VariationId\":5}],\"RootRevision\":{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false},\"Version\":130}";
 
@@ -1081,10 +1078,11 @@ POST /ProductDocs({ProductDocumentId})/Variations
     <li><a href="#csharp-creating-a-variation" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-variation" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-variation" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-variation" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-variation"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-variation">
-<pre><code class="language-http">POST /ProductDocs(8)/Variations
+<pre id="http-code-creating-a-variation"><code class="language-http">POST /ProductDocs(8)/Variations
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1115,7 +1113,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-variation">
-<pre><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-variation"><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "FieldValues": [
         {
@@ -1143,7 +1141,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-variation">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingAVariation()
+<pre id="csharp-code-creating-a-variation"><code class="language-csharp">static IRestResponse CreatingAVariation()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations");
     var request = new RestRequest(Method.POST);
@@ -1158,9 +1156,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-variation">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-variation"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1181,9 +1178,8 @@ public static CloseableHttpResponse CreatingAVariation() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-variation">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-variation"><code class="language-ruby">require 'rest-client'
 
 body = "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}";
 
@@ -1234,7 +1230,7 @@ PUT /ProductDocs({ProductDocumentId})/Variations?variationId={VariationId}
     </li>
     
     <li>
-        <code>VariationId</code> (<strong>Required</strong>)  - Identifier of the {{Variation}}. To get a list of Variations for a Product, see [Getting a Product Hierarchy](#getting-a-product-hierarchy)
+        <code>VariationId</code> (<strong>Required</strong>)  - Identifier of the {{Variation}}. To get a list of Variations for a Product, see <a href="#getting-a-product-hierarchy">Getting a Product Hierarchy</a>
     </li>
     </ul>
 
@@ -1252,10 +1248,11 @@ PUT /ProductDocs({ProductDocumentId})/Variations?variationId={VariationId}
     <li><a href="#csharp-updating-a-variation" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-variation" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-variation" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-variation" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-variation"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-variation">
-<pre><code class="language-http">PUT /ProductDocs(8)/Variations?variationId=1
+<pre id="http-code-updating-a-variation"><code class="language-http">PUT /ProductDocs(8)/Variations?variationId=1
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1288,7 +1285,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-variation">
-<pre><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations?variationId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-variation"><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations?variationId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "FieldValues": [
         {
@@ -1318,7 +1315,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-variation">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingAVariation()
+<pre id="csharp-code-updating-a-variation"><code class="language-csharp">static IRestResponse UpdatingAVariation()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Variations?variationId=1");
     var request = new RestRequest(Method.PUT);
@@ -1333,9 +1330,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-variation">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-variation"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1356,9 +1352,8 @@ public static CloseableHttpResponse UpdatingAVariation() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-variation">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-variation"><code class="language-ruby">require 'rest-client'
 
 body = "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"IsArchived\":false}";
 
@@ -1437,10 +1432,11 @@ POST /ProductDocs({ProductDocumentId})/Revisions?variationId={VariationId}&count
     <li><a href="#csharp-creating-a-revision" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-revision" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-revision" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-revision" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-revision"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-revision">
-<pre><code class="language-http">POST /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
+<pre id="http-code-creating-a-revision"><code class="language-http">POST /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1471,7 +1467,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-revision">
-<pre><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-revision"><code class="language-http">curl -X POST "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "FieldValues": [
         {
@@ -1499,7 +1495,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-revision">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingARevision()
+<pre id="csharp-code-creating-a-revision"><code class="language-csharp">static IRestResponse CreatingARevision()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1");
     var request = new RestRequest(Method.POST);
@@ -1514,9 +1510,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-revision">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-revision"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1537,9 +1532,8 @@ public static CloseableHttpResponse CreatingARevision() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-revision">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-revision"><code class="language-ruby">require 'rest-client'
 
 body = "{\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}]}";
 
@@ -1662,10 +1656,11 @@ PUT /ProductDocs({ProductDocumentId})/Revisions?variationId={VariationId}&countr
     <li><a href="#csharp-updating-a-revision" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-revision" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-revision" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-revision" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-revision"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-revision">
-<pre><code class="language-http">PUT /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
+<pre id="http-code-updating-a-revision"><code class="language-http">PUT /ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1709,7 +1704,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-revision">
-<pre><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-revision"><code class="language-http">curl -X PUT "https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": 5,
     "ColorDefinitionId": "5c6e2779-79d1-4fbd-b6a8-36b81e851b15",
     "Entity": {
@@ -1750,7 +1745,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-revision">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingARevision()
+<pre id="csharp-code-updating-a-revision"><code class="language-csharp">static IRestResponse UpdatingARevision()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(8)/Revisions?variationId=4&countryCode=CA&stateCode=MB&entityId=1");
     var request = new RestRequest(Method.PUT);
@@ -1765,9 +1760,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-revision">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-revision"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1788,9 +1782,8 @@ public static CloseableHttpResponse UpdatingARevision() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-revision">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-revision"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":5,\"ColorDefinitionId\":\"5c6e2779-79d1-4fbd-b6a8-36b81e851b15\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"FieldValues\":[{\"FieldDefinitionId\":1,\"LanguageInvariantValue\":\"iPhone 4S 16 GB Black\"}],\"IdentifierGroups\":[{\"Type\":\"ManufacturerSKU\",\"ForceOverride\":false,\"Identifiers\":[{\"Description\":\"Manufacturer sku\",\"Entity\":{\"Id\":14146,\"Name\":\"Kentel Corp\"},\"Type\":\"ManufacturerSKU\",\"Value\":\"ManufacturerSKU\"}]}],\"Regions\":[{\"Code\":\"CAMB\",\"Country\":\"Canada\",\"State\":\"Manitoba\"}]}";
 
@@ -1841,20 +1834,21 @@ GET /ColorTags
     <li><a href="#csharp-getting-all-color-tags" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-color-tags" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-color-tags" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-color-tags" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-color-tags"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-color-tags">
-<pre><code class="language-http">GET /ColorTags
+<pre id="http-code-getting-all-color-tags"><code class="language-http">GET /ColorTags
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-color-tags">
-<pre><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ColorTags" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-color-tags"><code class="language-http">curl -X GET "https://productlibrarydemo.iqmetrix.net/v1/ColorTags" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-color-tags">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllColorTags()
+<pre id="csharp-code-getting-all-color-tags"><code class="language-csharp">static IRestResponse GettingAllColorTags()
 {
     var client = new RestClient("https://productlibrarydemo.iqmetrix.net/v1/ColorTags");
     var request = new RestRequest(Method.GET);
@@ -1868,9 +1862,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-color-tags">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-color-tags"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1888,9 +1881,8 @@ public static CloseableHttpResponse GettingAllColorTags() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-color-tags">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-color-tags"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1930,7 +1922,7 @@ These examples are intended to illustrate some of the more complex concepts in t
 
 A [RevisionGroup](#revisiongroup) is how child Revisions of a given Master Product or Variation are represented in the API.
 
-```
+```csharp
 {
     "VariationId": 3,
     "GroupType": "Entity",
@@ -1948,14 +1940,14 @@ A [RevisionGroup](#revisiongroup) is how child Revisions of a given Master Produ
                 "Id": 3335,
                 "Name": "KENTEL"
             }
-        },              
+        }              
     ]
 }
 ```
 
 The example above is a snippet from a {{MasterProduct}} with two child Revisions.
 
-`"GroupType": "Entity"` signifies that these Revisions are Entity Revisions, created for a specific Entity, such as a Company or Carrier. 
+`"GroupType": "Entity"` means that these Revisions are Entity Revisions, owned by a specific Entity, such as a Company or Carrier. 
 
 In this case, the two Entities that own these Revisions are {{Company}} Entities, Jump.ca and KENTEL.
 
@@ -1963,7 +1955,7 @@ In this case, the two Entities that own these Revisions are {{Company}} Entities
 
 A [FieldValue](#fieldvalue) pairs a {{FieldDefinition}} with a value that allows us to see how a child Variation or Revision differs from its parent.
 
-```
+```csharp
 {
     "Revisions": [
         {
@@ -2006,7 +1998,7 @@ Note that Identifiers can only be synced as a complete set, either all Identifie
 
 By forcing a child to override an IdentifierGroup, we prevent the sync and allow the child to have different Identifiers than its parent.
 
-```
+```csharp
 {
   "Variations": [
     {

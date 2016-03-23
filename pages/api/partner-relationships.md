@@ -4,7 +4,7 @@ permalink: /api/partner-relationships/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -30,7 +30,7 @@ A {{Company}} to {{Partner}} Relationship is formed when a Company engages a Par
 
 
 
-###Relationship
+### Relationship
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -87,20 +87,21 @@ GET /Partners({PartnerId})/Relationships/Companies?$skip={Skip}&$top={Top}
     <li><a href="#csharp-getting-company-relationships-for-a-partner" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-company-relationships-for-a-partner" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-company-relationships-for-a-partner" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-company-relationships-for-a-partner" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-company-relationships-for-a-partner"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-company-relationships-for-a-partner">
-<pre><code class="language-http">GET /Partners(36)/Relationships/Companies?$skip=1&$top=10
+<pre id="http-code-getting-company-relationships-for-a-partner"><code class="language-http">GET /Partners(36)/Relationships/Companies?$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-company-relationships-for-a-partner">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Partners(36)/Relationships/Companies?$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-company-relationships-for-a-partner"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Partners(36)/Relationships/Companies?$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-company-relationships-for-a-partner">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingCompanyRelationshipsForAPartner()
+<pre id="csharp-code-getting-company-relationships-for-a-partner"><code class="language-csharp">static IRestResponse GettingCompanyRelationshipsForAPartner()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Partners(36)/Relationships/Companies?$skip=1&$top=10");
     var request = new RestRequest(Method.GET);
@@ -114,9 +115,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-company-relationships-for-a-partner">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-company-relationships-for-a-partner"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -134,9 +134,8 @@ public static CloseableHttpResponse GettingCompanyRelationshipsForAPartner() thr
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-company-relationships-for-a-partner">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-company-relationships-for-a-partner"><code class="language-ruby">require 'rest-client'
 
 
 

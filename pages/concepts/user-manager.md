@@ -4,20 +4,19 @@ permalink: /concepts/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 09-11-2015
+last_updated: 23-03-2016
 summary: 
 ---
 
 {% include linkrefs.html %}
-{% include externallinks.html %}
-
-<img src="{{ "/images/user_manager.jpg" | prepend: site.url }}" />
 
 User Manager allows you to:
 
 * Manage [User](#users) accounts for your {{Company}}
 * Organize Users by [Security Roles](#security-roles)
 * Determine the actions that can be done with [Permissions](#permissions)
+
+<img src="{{ "/images/user_manager.jpg" | prepend: site.url }}" />
 
 {{note}}
 Changes to User Manager are coming soon
@@ -43,13 +42,13 @@ The only way to revoke a User's access is to change a Security Role or remove a 
 
 A Permission will never overrule another Permission.
 
-For example, the `readcustomerresources` (View Customers) Permission enables a User to {{Get_A_Customer}} and the `managecustomerresources` (Edit Customers) Permissions enables the user to {{Update_A_customer}}. Both Permissions are required to perform both requests.
+For example, the `readcustomerresources` (View Customers) Permission enables a User to {{Get_A_Customer}} and the `managecustomerresources` (Edit Customers) Permissions enables the user to {{Update_A_Customer}}. Both Permissions are required to perform both requests.
 
 ### Permissions are Positive
 
 Assigning a Permission to a Security Role always **grants** an action, never denies. 
 
-For example, you would never assign a "Cannot View Customers" Permission, instead you would unassign the `readcustomerresources` (View Customers) Permission.
+For example, you would never assign a "Cannot View Customers" Permission. Instead, you would unassign the `readcustomerresources` (View Customers) Permission.
 
 ### Restricted Permissions
 

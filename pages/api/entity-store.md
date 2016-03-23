@@ -4,7 +4,7 @@ permalink: /api/entity-store/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -28,7 +28,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 ## Resources
 
-###Carrier
+### Carrier
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -51,7 +51,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-###Manufacturer
+### Manufacturer
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -74,7 +74,7 @@ The Entity Store helps manage your Company structure. It also manages relationsh
 
 
 
-###Supplier
+### Supplier
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -129,20 +129,21 @@ GET /Carriers
     <li><a href="#csharp-getting-all-carriers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-carriers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-carriers" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-carriers" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-carriers"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-carriers">
-<pre><code class="language-http">GET /Carriers
+<pre id="http-code-getting-all-carriers"><code class="language-http">GET /Carriers
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-carriers">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Carriers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-carriers"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Carriers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-carriers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllCarriers()
+<pre id="csharp-code-getting-all-carriers"><code class="language-csharp">static IRestResponse GettingAllCarriers()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers");
     var request = new RestRequest(Method.GET);
@@ -156,9 +157,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-carriers">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-carriers"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -176,9 +176,8 @@ public static CloseableHttpResponse GettingAllCarriers() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-carriers">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-carriers"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -191,12 +190,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#carrier'>Carrier</a>]
+ Array[<a href='#carrier'>Carrier</a>]
 
 <h5>Example</h5>
 
@@ -258,20 +255,21 @@ GET /Carriers({CarrierId})
     <li><a href="#csharp-getting-a-carrier" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-carrier" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-carrier" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-carrier" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-carrier"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-carrier">
-<pre><code class="language-http">GET /Carriers(9)
+<pre id="http-code-getting-a-carrier"><code class="language-http">GET /Carriers(9)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-carrier">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-carrier"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-carrier">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingACarrier()
+<pre id="csharp-code-getting-a-carrier"><code class="language-csharp">static IRestResponse GettingACarrier()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Carriers(9)");
     var request = new RestRequest(Method.GET);
@@ -285,9 +283,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-carrier">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-carrier"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -305,9 +302,8 @@ public static CloseableHttpResponse GettingACarrier() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-carrier">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-carrier"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -320,12 +316,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#carrier'>Carrier</a>
+ <a href='#carrier'>Carrier</a>
 
 <h5>Example</h5>
 
@@ -378,20 +372,21 @@ GET /Manufacturers
     <li><a href="#csharp-getting-all-manufacturers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-manufacturers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-manufacturers" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-manufacturers" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-manufacturers"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-manufacturers">
-<pre><code class="language-http">GET /Manufacturers
+<pre id="http-code-getting-all-manufacturers"><code class="language-http">GET /Manufacturers
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-manufacturers">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-manufacturers"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-manufacturers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllManufacturers()
+<pre id="csharp-code-getting-all-manufacturers"><code class="language-csharp">static IRestResponse GettingAllManufacturers()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers");
     var request = new RestRequest(Method.GET);
@@ -405,9 +400,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-manufacturers">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-manufacturers"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -425,9 +419,8 @@ public static CloseableHttpResponse GettingAllManufacturers() throws IOException
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-manufacturers">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-manufacturers"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -440,12 +433,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#manufacturer'>Manufacturer</a>]
+ Array[<a href='#manufacturer'>Manufacturer</a>]
 
 <h5>Example</h5>
 
@@ -507,20 +498,21 @@ GET /Manufacturers({ManufacturerId})
     <li><a href="#csharp-getting-a-manufacturer" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-manufacturer" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-manufacturer" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-manufacturer" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-manufacturer"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-manufacturer">
-<pre><code class="language-http">GET /Manufacturers(13149)
+<pre id="http-code-getting-a-manufacturer"><code class="language-http">GET /Manufacturers(13149)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-manufacturer">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(13149)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-manufacturer"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(13149)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-manufacturer">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAManufacturer()
+<pre id="csharp-code-getting-a-manufacturer"><code class="language-csharp">static IRestResponse GettingAManufacturer()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Manufacturers(13149)");
     var request = new RestRequest(Method.GET);
@@ -534,9 +526,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-manufacturer">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-manufacturer"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -554,9 +545,8 @@ public static CloseableHttpResponse GettingAManufacturer() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-manufacturer">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-manufacturer"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -569,12 +559,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#manufacturer'>Manufacturer</a>
+ <a href='#manufacturer'>Manufacturer</a>
 
 <h5>Example</h5>
 
@@ -627,20 +615,21 @@ GET /Suppliers
     <li><a href="#csharp-getting-all-suppliers" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-suppliers" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-suppliers" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-suppliers" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-suppliers"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-suppliers">
-<pre><code class="language-http">GET /Suppliers
+<pre id="http-code-getting-all-suppliers"><code class="language-http">GET /Suppliers
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-suppliers">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-suppliers"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-suppliers">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllSuppliers()
+<pre id="csharp-code-getting-all-suppliers"><code class="language-csharp">static IRestResponse GettingAllSuppliers()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers");
     var request = new RestRequest(Method.GET);
@@ -654,9 +643,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-suppliers">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-suppliers"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -674,9 +662,8 @@ public static CloseableHttpResponse GettingAllSuppliers() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-suppliers">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-suppliers"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -689,12 +676,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#supplier'>Supplier</a>]
+ Array[<a href='#supplier'>Supplier</a>]
 
 <h5>Example</h5>
 
@@ -756,20 +741,21 @@ GET /Suppliers({SupplierId})
     <li><a href="#csharp-getting-a-supplier" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-supplier" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-supplier" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-supplier" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-supplier"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-supplier">
-<pre><code class="language-http">GET /Suppliers(14107)
+<pre id="http-code-getting-a-supplier"><code class="language-http">GET /Suppliers(14107)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-supplier">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14107)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-supplier"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14107)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-supplier">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingASupplier()
+<pre id="csharp-code-getting-a-supplier"><code class="language-csharp">static IRestResponse GettingASupplier()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Suppliers(14107)");
     var request = new RestRequest(Method.GET);
@@ -783,9 +769,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-supplier">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-supplier"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -803,9 +788,8 @@ public static CloseableHttpResponse GettingASupplier() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-supplier">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-supplier"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -818,12 +802,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#supplier'>Supplier</a>
+ <a href='#supplier'>Supplier</a>
 
 <h5>Example</h5>
 

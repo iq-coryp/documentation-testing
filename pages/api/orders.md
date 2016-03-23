@@ -4,7 +4,7 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -16,6 +16,15 @@ summary:
 {% include linkrefs.html %}
 
 
+## Overview
+
+The Order service is a centralized location for interacting with orders and their items. Each order is assigned an OrderType and OrderStatus, as are the items in the order. For example, an order could have an `InStock` item that has been `Processed`.
+
+Orders are typically created in an application, such as RQ, Endless Aisle, or eCommerce, and completed in another (e.g. RQ). Each order could be filled and consumed by another service for further processing. For example, Endless Aisle may make use of the order, filling it with Retailer Catalog items, and that same order may be accessed through RQ where the sale could be completed.
+
+The state flow illustrated below shows the process from creating an order to its completion. An order can only be cancelled when in the `Pending` state, and cannot be cancelled otherwise.
+<img src="{{ "/images/order-state-flow.png" | prepend: site.url }}" style="height: 80%; width: 80%" />
+
 
 ## Endpoints
 
@@ -25,7 +34,7 @@ summary:
 ## Resources
 
 
-###Order
+### Order
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -53,7 +62,7 @@ summary:
 | *TenderOrigin* | *String* | *Reserved for future use* | |
 
 
-###Item
+### Item
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -76,11 +85,13 @@ summary:
 | ShippingOptionId | String | Identifier for the ShippingOption that this Item will use | `1` |
 | SupplierEntityId | Integer | Identifier for the Supplier of this Item | `14107` |
 | SupplierReference | String | May be used for additional Supplier reference information | `10` |
-| TrackingInformation | Array[<a href='#trackinginformation'>TrackingInformation</a>] | Tracking information in the form of key-value pairs |  |
+| TrackingInformation | Array[object] | Tracking information in the form of key-value pairs |  |
+| TrackingInformation.Quantity | Integer | Number of items being tracked | `1` |
+| TrackingInformation.TrackingNumber | String | Tracking number | `1TTTTN4421` |
 
 
 
-###OrderFull
+### OrderFull
 
 **OrderFull** is an extension on the Order resource
 
@@ -148,13 +159,13 @@ summary:
 
 ### OrderState
 
-| Name |
-|:-----|
-| Cancelled |
-| Created |
-| Completed |
-| Pending |
-| Processed |
+| Id | Name |
+|:---|:-----|
+| 0 | Created |
+| 1 | Pending |
+| 2 | Processed |
+| 3 | Cancelled |
+| 4 | Completed |
 
 ### OrderType
 
@@ -206,10 +217,11 @@ POST /Companies({CompanyId})/Orders
     <li><a href="#csharp-creating-an-order" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-an-order" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-an-order" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-an-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-an-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-an-order">
-<pre><code class="language-http">POST /Companies(14146)/Orders
+<pre id="http-code-creating-an-order"><code class="language-http">POST /Companies(14146)/Orders
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -231,7 +243,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-an-order">
-<pre><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-an-order"><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Name": "iPhone 5 Order",
     "BillingAddressId": "a08b0640-606a-41f0-901a-facaf50e75dd",
     "BillingCustomerId": "659c2a38-d083-4421-9330-46d779702f85",
@@ -250,7 +262,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-an-order">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingAnOrder()
+<pre id="csharp-code-creating-an-order"><code class="language-csharp">static IRestResponse CreatingAnOrder()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders");
     var request = new RestRequest(Method.POST);
@@ -265,9 +277,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-an-order">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-an-order"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -288,9 +299,8 @@ public static CloseableHttpResponse CreatingAnOrder() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-an-order">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-an-order"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryHours\":20,\"OrderTypeId\":3,\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"TenderId\":\"TT101IN18\"}";
 
@@ -304,12 +314,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#order'>Order</a>
+ <a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -372,20 +380,21 @@ GET /Companies({CompanyId})/Orders
     <li><a href="#csharp-getting-a-single-order" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-single-order" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-single-order" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-single-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-single-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-single-order">
-<pre><code class="language-http">GET /Companies(14146)/Orders
+<pre id="http-code-getting-a-single-order"><code class="language-http">GET /Companies(14146)/Orders
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-single-order">
-<pre><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-single-order"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-single-order">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingASingleOrder()
+<pre id="csharp-code-getting-a-single-order"><code class="language-csharp">static IRestResponse GettingASingleOrder()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders");
     var request = new RestRequest(Method.GET);
@@ -399,9 +408,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-single-order">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-single-order"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -419,9 +427,8 @@ public static CloseableHttpResponse GettingASingleOrder() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-single-order">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-single-order"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -434,12 +441,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#order'>Order</a>]
+ Array[<a href='#order'>Order</a>]
 
 <h5>Example</h5>
 
@@ -502,7 +507,7 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul>
+<ul><li><code>ItemStatusId</code> (<strong>Required</strong>) </li><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -512,17 +517,18 @@ POST /Companies({CompanyId})/Orders({OrderId})/Items
     <li><a href="#csharp-adding-an-item-to-an-order" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-adding-an-item-to-an-order" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-adding-an-item-to-an-order" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-adding-an-item-to-an-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-adding-an-item-to-an-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-adding-an-item-to-an-order">
-<pre><code class="language-http">POST /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
+<pre id="http-code-adding-an-item-to-an-order"><code class="language-http">POST /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
 </code><code class="language-csharp">{
     "Cost": 5.99,
     "Description": "Samsung Galaxy S4 Standard Battery",
-    "ItemStatus": "New",
+    "ItemStatusId": 1,
     "ItemTypeId": "1",
     "Index": 0,
     "ListPrice": 12.99,
@@ -540,16 +546,16 @@ Content-Type: application/json
     "TrackingInformation": [
         {
             "Quantity": 1,
-            "TrackingNumber": "`1TTTTN4421"
+            "TrackingNumber": "1TTTTN4421"
         }
     ]
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-adding-an-item-to-an-order">
-<pre><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-adding-an-item-to-an-order"><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Cost": 5.99,
     "Description": "Samsung Galaxy S4 Standard Battery",
-    "ItemStatus": "New",
+    "ItemStatusId": 1,
     "ItemTypeId": "1",
     "Index": 0,
     "ListPrice": 12.99,
@@ -567,14 +573,14 @@ Content-Type: application/json
     "TrackingInformation": [
         {
             "Quantity": 1,
-            "TrackingNumber": "`1TTTTN4421"
+            "TrackingNumber": "1TTTTN4421"
         }
     ]
 }'</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-adding-an-item-to-an-order">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse AddingAnItemToAnOrder()
+<pre id="csharp-code-adding-an-item-to-an-order"><code class="language-csharp">static IRestResponse AddingAnItemToAnOrder()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items");
     var request = new RestRequest(Method.POST);
@@ -583,15 +589,14 @@ Content-Type: application/json
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatusId\":1,\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-adding-an-item-to-an-order">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-adding-an-item-to-an-order"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -605,18 +610,17 @@ public static CloseableHttpResponse AddingAnItemToAnOrder() throws IOException {
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}");
+    StringEntity body = new StringEntity("{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatusId\":1,\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}");
     request.setEntity(body);
     
     return httpClient.execute(request);
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-adding-an-item-to-an-order">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-adding-an-item-to-an-order"><code class="language-ruby">require 'rest-client'
 
-body = "{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}";
+body = "{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatusId\":1,\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}";
 
 response = RestClient.post 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items', body, {
      :'Authorization' => 'Bearer (Access Token)',
@@ -628,12 +632,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#item'>Item</a>
+ <a href='#item'>Item</a>
 
 <h5>Example</h5>
 
@@ -664,7 +666,7 @@ HTTP 201 Content-Type: application/json
     "TrackingInformation": [
         {
             "Quantity": 1,
-            "TrackingNumber": "`1TTTTN4421"
+            "TrackingNumber": "1TTTTN4421"
         }
     ]
 }</pre>
@@ -707,20 +709,21 @@ GET /Companies({CompanyId})/Orders({OrderId})/Items
     <li><a href="#csharp-getting-all-items-on-an-order" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-items-on-an-order" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-items-on-an-order" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-items-on-an-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-items-on-an-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-items-on-an-order">
-<pre><code class="language-http">GET /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
+<pre id="http-code-getting-all-items-on-an-order"><code class="language-http">GET /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-items-on-an-order">
-<pre><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-items-on-an-order"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-items-on-an-order">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllItemsOnAnOrder()
+<pre id="csharp-code-getting-all-items-on-an-order"><code class="language-csharp">static IRestResponse GettingAllItemsOnAnOrder()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items");
     var request = new RestRequest(Method.GET);
@@ -734,9 +737,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-items-on-an-order">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-items-on-an-order"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -754,9 +756,8 @@ public static CloseableHttpResponse GettingAllItemsOnAnOrder() throws IOExceptio
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-items-on-an-order">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-items-on-an-order"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -769,12 +770,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#item'>Item</a>]
+ Array[<a href='#item'>Item</a>]
 
 <h5>Example</h5>
 
@@ -806,7 +805,7 @@ HTTP 200 Content-Type: application/json
         "TrackingInformation": [
             {
                 "Quantity": 1,
-                "TrackingNumber": "`1TTTTN4421"
+                "TrackingNumber": "1TTTTN4421"
             }
         ]
     }
@@ -850,20 +849,21 @@ GET /Companies({CompanyId})/Orders({OrderId})
     <li><a href="#csharp-getting-an-order" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-an-order" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-an-order" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-an-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-an-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-an-order">
-<pre><code class="language-http">GET /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
+<pre id="http-code-getting-an-order"><code class="language-http">GET /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-an-order">
-<pre><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-an-order"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-an-order">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAnOrder()
+<pre id="csharp-code-getting-an-order"><code class="language-csharp">static IRestResponse GettingAnOrder()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)");
     var request = new RestRequest(Method.GET);
@@ -877,9 +877,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-an-order">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-an-order"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -897,9 +896,8 @@ public static CloseableHttpResponse GettingAnOrder() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-an-order">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-an-order"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -912,12 +910,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#order'>Order</a>
+ <a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -988,10 +984,11 @@ PUT /Companies({CompanyId})/Orders({OrderId})
     <li><a href="#csharp-updating-an-order" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-an-order" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-an-order" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-an-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-an-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-an-order">
-<pre><code class="language-http">PUT /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
+<pre id="http-code-updating-an-order"><code class="language-http">PUT /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1019,7 +1016,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-an-order">
-<pre><code class="language-http">curl -X PUT "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-an-order"><code class="language-http">curl -X PUT "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": "cdd26b8f-4ed1-409d-9984-982e081c425e",
     "Name": "iPhone 5 Order",
     "BillingAddressId": "a08b0640-606a-41f0-901a-facaf50e75dd",
@@ -1044,7 +1041,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-an-order">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingAnOrder()
+<pre id="csharp-code-updating-an-order"><code class="language-csharp">static IRestResponse UpdatingAnOrder()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)");
     var request = new RestRequest(Method.PUT);
@@ -1059,9 +1056,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-an-order">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-an-order"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1082,9 +1078,8 @@ public static CloseableHttpResponse UpdatingAnOrder() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-an-order">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-an-order"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"TT101IN18\"}";
 
@@ -1098,12 +1093,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#order'>Order</a>
+ <a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -1174,10 +1167,11 @@ POST /Companies({CompanyId})/Orders({OrderId})/Process
     <li><a href="#csharp-processing-an-order" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-processing-an-order" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-processing-an-order" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-processing-an-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-processing-an-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-processing-an-order">
-<pre><code class="language-http">POST /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
+<pre id="http-code-processing-an-order"><code class="language-http">POST /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1186,13 +1180,13 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-processing-an-order">
-<pre><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-processing-an-order"><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "OrderId": "cdd26b8f-4ed1-409d-9984-982e081c425e"
 }'</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-processing-an-order">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse ProcessingAnOrder()
+<pre id="csharp-code-processing-an-order"><code class="language-csharp">static IRestResponse ProcessingAnOrder()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Process");
     var request = new RestRequest(Method.POST);
@@ -1207,9 +1201,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-processing-an-order">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-processing-an-order"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1230,9 +1223,8 @@ public static CloseableHttpResponse ProcessingAnOrder() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-processing-an-order">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-processing-an-order"><code class="language-ruby">require 'rest-client'
 
 body = "{\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\"}";
 
@@ -1246,12 +1238,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#order'>Order</a>
+ <a href='#order'>Order</a>
 
 <h5>Example</h5>
 
@@ -1309,7 +1299,7 @@ POST /Companies({CompanyId})/OrderFull
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) - Must belong to the Company specified in the URI. Required to Process an Order</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
+<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) - Must belong to the Company specified in the URI. Required to Process an Order</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemStatusId</code> (<strong>Required</strong>) </li><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -1319,10 +1309,11 @@ POST /Companies({CompanyId})/OrderFull
     <li><a href="#csharp-creating-an-order-with-items" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-an-order-with-items" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-an-order-with-items" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-an-order-with-items" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-an-order-with-items"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-an-order-with-items">
-<pre><code class="language-http">POST /Companies(14146)/OrderFull
+<pre id="http-code-creating-an-order-with-items"><code class="language-http">POST /Companies(14146)/OrderFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1345,7 +1336,7 @@ Content-Type: application/json
         {
             "Cost": 5.99,
             "Description": "Samsung Galaxy S4 Standard Battery",
-            "ItemStatus": "New",
+            "ItemStatusId": 1,
             "ItemTypeId": "1",
             "Index": 0,
             "ListPrice": 12.99,
@@ -1363,7 +1354,7 @@ Content-Type: application/json
             "TrackingInformation": [
                 {
                     "Quantity": 1,
-                    "TrackingNumber": "`1TTTTN4421"
+                    "TrackingNumber": "1TTTTN4421"
                 }
             ]
         }
@@ -1371,7 +1362,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-an-order-with-items">
-<pre><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-an-order-with-items"><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Name": "iPhone 5 Order",
     "BillingAddressId": "a08b0640-606a-41f0-901a-facaf50e75dd",
     "BillingCustomerId": "659c2a38-d083-4421-9330-46d779702f85",
@@ -1390,7 +1381,7 @@ Content-Type: application/json
         {
             "Cost": 5.99,
             "Description": "Samsung Galaxy S4 Standard Battery",
-            "ItemStatus": "New",
+            "ItemStatusId": 1,
             "ItemTypeId": "1",
             "Index": 0,
             "ListPrice": 12.99,
@@ -1408,7 +1399,7 @@ Content-Type: application/json
             "TrackingInformation": [
                 {
                     "Quantity": 1,
-                    "TrackingNumber": "`1TTTTN4421"
+                    "TrackingNumber": "1TTTTN4421"
                 }
             ]
         }
@@ -1417,7 +1408,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-an-order-with-items">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingAnOrderWithItems()
+<pre id="csharp-code-creating-an-order-with-items"><code class="language-csharp">static IRestResponse CreatingAnOrderWithItems()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull");
     var request = new RestRequest(Method.POST);
@@ -1426,15 +1417,14 @@ Content-Type: application/json
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryHours\":20,\"OrderTypeId\":3,\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"TenderId\":\"INV112\",\"Items\":[{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}]}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryHours\":20,\"OrderTypeId\":3,\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"TenderId\":\"INV112\",\"Items\":[{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatusId\":1,\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-an-order-with-items">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-an-order-with-items"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1448,18 +1438,17 @@ public static CloseableHttpResponse CreatingAnOrderWithItems() throws IOExceptio
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryHours\":20,\"OrderTypeId\":3,\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"TenderId\":\"INV112\",\"Items\":[{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}]}");
+    StringEntity body = new StringEntity("{\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryHours\":20,\"OrderTypeId\":3,\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"TenderId\":\"INV112\",\"Items\":[{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatusId\":1,\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}");
     request.setEntity(body);
     
     return httpClient.execute(request);
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-an-order-with-items">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-an-order-with-items"><code class="language-ruby">require 'rest-client'
 
-body = "{\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryHours\":20,\"OrderTypeId\":3,\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"TenderId\":\"INV112\",\"Items\":[{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}]}";
+body = "{\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryHours\":20,\"OrderTypeId\":3,\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"TenderId\":\"INV112\",\"Items\":[{\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatusId\":1,\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}";
 
 response = RestClient.post 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull', body, {
      :'Authorization' => 'Bearer (Access Token)',
@@ -1471,12 +1460,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#orderfull'>OrderFull</a>
+ <a href='#orderfull'>OrderFull</a>
 
 <h5>Example</h5>
 
@@ -1529,7 +1516,7 @@ HTTP 201 Content-Type: application/json
             "TrackingInformation": [
                 {
                     "Quantity": 1,
-                    "TrackingNumber": "`1TTTTN4421"
+                    "TrackingNumber": "1TTTTN4421"
                 }
             ]
         }
@@ -1570,20 +1557,21 @@ GET /Companies({CompanyId})/OrderFull
     <li><a href="#csharp-getting-all-orders-for-a-company" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-orders-for-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-orders-for-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-orders-for-a-company" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-orders-for-a-company"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-orders-for-a-company">
-<pre><code class="language-http">GET /Companies(14146)/OrderFull
+<pre id="http-code-getting-all-orders-for-a-company"><code class="language-http">GET /Companies(14146)/OrderFull
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-orders-for-a-company">
-<pre><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-orders-for-a-company"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-orders-for-a-company">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllOrdersForACompany()
+<pre id="csharp-code-getting-all-orders-for-a-company"><code class="language-csharp">static IRestResponse GettingAllOrdersForACompany()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull");
     var request = new RestRequest(Method.GET);
@@ -1597,9 +1585,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-orders-for-a-company">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-orders-for-a-company"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1617,9 +1604,8 @@ public static CloseableHttpResponse GettingAllOrdersForACompany() throws IOExcep
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-orders-for-a-company">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-orders-for-a-company"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1632,12 +1618,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#orderfull'>OrderFull</a>]
+ Array[<a href='#orderfull'>OrderFull</a>]
 
 <h5>Example</h5>
 
@@ -1691,7 +1675,7 @@ HTTP 200 Content-Type: application/json
                 "TrackingInformation": [
                     {
                         "Quantity": 1,
-                        "TrackingNumber": "`1TTTTN4421"
+                        "TrackingNumber": "1TTTTN4421"
                     }
                 ]
             }
@@ -1737,20 +1721,21 @@ GET /Companies({CompanyId})/OrderFull({OrderId})
     <li><a href="#csharp-getting-an-order-with-items" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-an-order-with-items" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-an-order-with-items" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-an-order-with-items" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-an-order-with-items"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-an-order-with-items">
-<pre><code class="language-http">GET /Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
+<pre id="http-code-getting-an-order-with-items"><code class="language-http">GET /Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-an-order-with-items">
-<pre><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-an-order-with-items"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-an-order-with-items">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAnOrderWithItems()
+<pre id="csharp-code-getting-an-order-with-items"><code class="language-csharp">static IRestResponse GettingAnOrderWithItems()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)");
     var request = new RestRequest(Method.GET);
@@ -1764,9 +1749,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-an-order-with-items">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-an-order-with-items"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1784,9 +1768,8 @@ public static CloseableHttpResponse GettingAnOrderWithItems() throws IOException
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-an-order-with-items">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-an-order-with-items"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1799,12 +1782,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#orderfull'>OrderFull</a>
+ <a href='#orderfull'>OrderFull</a>
 
 <h5>Example</h5>
 
@@ -1857,7 +1838,7 @@ HTTP 200 Content-Type: application/json
             "TrackingInformation": [
                 {
                     "Quantity": 1,
-                    "TrackingNumber": "`1TTTTN4421"
+                    "TrackingNumber": "1TTTTN4421"
                 }
             ]
         }
@@ -1897,7 +1878,7 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) - Must belong to the Company specified in the URI. Required to Process an Order</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>ItemStatus</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
+<ul><li><code>OrderTypeId</code> (<strong>Required</strong>) </li><li><code>Id</code> (<strong>Required</strong>) </li><li><code>Name</code> (Optional) </li><li><code>BillingAddressId</code> (Optional) </li><li><code>BillingCustomerId</code> (Optional) - Must belong to the Company specified in the URI. Required to Process an Order</li><li><code>DiscountAmount</code> (Optional) </li><li><code>DiscountCode</code> (Optional) </li><li><code>DiscountDescription</code> (Optional) </li><li><code>EmployeeId</code> (Optional) - Must belong to the Company specified in the URI</li><li><code>EntityId</code> (Optional) </li><li><code>OrderExpiryHours</code> (Optional) </li><li><code>ShippingAddressId</code> (Optional) </li><li><code>ShippingCustomerId</code> (Optional) </li><li><code>ShippingEntityId</code> (Optional) - If this value is provided, ShippingCustomerId must be excluded</li><li><code>TenderId</code> (Optional) </li><li><code>Items</code> (Optional) </li><ul><li><code>ItemStatusId</code> (<strong>Required</strong>) </li><li><code>ItemTypeId</code> (<strong>Required</strong>) </li><li><code>Cost</code> (Optional) </li><li><code>Description</code> (Optional) </li><li><code>Index</code> (Optional) </li><li><code>ListPrice</code> (Optional) </li><li><code>Notes</code> (Optional) </li><li><code>ProductId</code> (Optional) </li><li><code>Quantity</code> (Optional) </li><li><code>SellingPrice</code> (Optional) </li><li><code>SerialNumbers</code> (Optional) </li><li><code>SKU</code> (Optional) </li><li><code>ShippingOptionId</code> (Optional) </li><li><code>SupplierEntityId</code> (Optional) </li><li><code>SupplierReference</code> (Optional) </li><li><code>TrackingInformation</code> (Optional) </li><ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>TrackingNumber</code> (<strong>Required</strong>) </li></ul></ul></ul>
 
 <h5>Example</h5>
 
@@ -1907,10 +1888,11 @@ PUT /Companies({CompanyId})/OrderFull({OrderId})
     <li><a href="#csharp-updating-an-order-with-items" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-an-order-with-items" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-an-order-with-items" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-an-order-with-items" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-an-order-with-items"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-an-order-with-items">
-<pre><code class="language-http">PUT /Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
+<pre id="http-code-updating-an-order-with-items"><code class="language-http">PUT /Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1961,7 +1943,7 @@ Content-Type: application/json
             "TrackingInformation": [
                 {
                     "Quantity": 1,
-                    "TrackingNumber": "`1TTTTN4421"
+                    "TrackingNumber": "1TTTTN4421"
                 }
             ]
         }
@@ -1969,7 +1951,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-an-order-with-items">
-<pre><code class="language-http">curl -X PUT "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-an-order-with-items"><code class="language-http">curl -X PUT "https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": "cdd26b8f-4ed1-409d-9984-982e081c425e",
     "Name": "iPhone 5 Order",
     "BillingAddressId": "a08b0640-606a-41f0-901a-facaf50e75dd",
@@ -2016,7 +1998,7 @@ Content-Type: application/json
             "TrackingInformation": [
                 {
                     "Quantity": 1,
-                    "TrackingNumber": "`1TTTTN4421"
+                    "TrackingNumber": "1TTTTN4421"
                 }
             ]
         }
@@ -2025,7 +2007,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-an-order-with-items">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingAnOrderWithItems()
+<pre id="csharp-code-updating-an-order-with-items"><code class="language-csharp">static IRestResponse UpdatingAnOrderWithItems()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)");
     var request = new RestRequest(Method.PUT);
@@ -2034,15 +2016,14 @@ Content-Type: application/json
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}]}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-an-order-with-items">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-an-order-with-items"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2056,18 +2037,17 @@ public static CloseableHttpResponse UpdatingAnOrderWithItems() throws IOExceptio
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}]}");
+    StringEntity body = new StringEntity("{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}");
     request.setEntity(body);
     
     return httpClient.execute(request);
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-an-order-with-items">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-an-order-with-items"><code class="language-ruby">require 'rest-client'
 
-body = "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"`1TTTTN4421\"}]}]}";
+body = "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}";
 
 response = RestClient.put 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)', body, {
      :'Authorization' => 'Bearer (Access Token)',
@@ -2079,12 +2059,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#orderfull'>OrderFull</a>
+ <a href='#orderfull'>OrderFull</a>
 
 <h5>Example</h5>
 
@@ -2137,7 +2115,7 @@ HTTP 200 Content-Type: application/json
             "TrackingInformation": [
                 {
                     "Quantity": 1,
-                    "TrackingNumber": "`1TTTTN4421"
+                    "TrackingNumber": "1TTTTN4421"
                 }
             ]
         }
@@ -2182,20 +2160,21 @@ GET /Companies({CompanyId})/Orders?$filter=State eq 'Pending' and EntityId eq {L
     <li><a href="#csharp-getting-pending-orders-by-location" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-pending-orders-by-location" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-pending-orders-by-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-pending-orders-by-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-pending-orders-by-location"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-pending-orders-by-location">
-<pre><code class="language-http">GET /Companies(14146)/Orders?$filter=State eq 'Pending' and EntityId eq 14202
+<pre id="http-code-getting-pending-orders-by-location"><code class="language-http">GET /Companies(14146)/Orders?$filter=State eq 'Pending' and EntityId eq 14202
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-pending-orders-by-location">
-<pre><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders?$filter=State eq 'Pending' and EntityId eq 14202" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-pending-orders-by-location"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders?$filter=State eq 'Pending' and EntityId eq 14202" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-pending-orders-by-location">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingPendingOrdersByLocation()
+<pre id="csharp-code-getting-pending-orders-by-location"><code class="language-csharp">static IRestResponse GettingPendingOrdersByLocation()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders?$filter=State eq 'Pending' and EntityId eq 14202");
     var request = new RestRequest(Method.GET);
@@ -2209,9 +2188,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-pending-orders-by-location">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-pending-orders-by-location"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2229,9 +2207,8 @@ public static CloseableHttpResponse GettingPendingOrdersByLocation() throws IOEx
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-pending-orders-by-location">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-pending-orders-by-location"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -2244,12 +2221,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#order'>Order</a>]
+ Array[<a href='#order'>Order</a>]
 
 <h5>Example</h5>
 
@@ -2318,20 +2293,21 @@ GET /Companies({CompanyId})/Orders?$filter=PrintableId eq '{PrintableId}'
     <li><a href="#csharp-getting-orders-by-printableid" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-orders-by-printableid" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-orders-by-printableid" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-orders-by-printableid" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-orders-by-printableid"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-orders-by-printableid">
-<pre><code class="language-http">GET /Companies(14146)/Orders?$filter=PrintableId eq 'TT101IN18'
+<pre id="http-code-getting-orders-by-printableid"><code class="language-http">GET /Companies(14146)/Orders?$filter=PrintableId eq 'TT101IN18'
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-orders-by-printableid">
-<pre><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders?$filter=PrintableId eq 'TT101IN18'" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-orders-by-printableid"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders?$filter=PrintableId eq 'TT101IN18'" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-orders-by-printableid">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingOrdersByPrintableid()
+<pre id="csharp-code-getting-orders-by-printableid"><code class="language-csharp">static IRestResponse GettingOrdersByPrintableid()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders?$filter=PrintableId eq 'TT101IN18'");
     var request = new RestRequest(Method.GET);
@@ -2345,9 +2321,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-orders-by-printableid">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-orders-by-printableid"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2365,9 +2340,8 @@ public static CloseableHttpResponse GettingOrdersByPrintableid() throws IOExcept
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-orders-by-printableid">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-orders-by-printableid"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -2380,12 +2354,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#order'>Order</a>]
+ Array[<a href='#order'>Order</a>]
 
 <h5>Example</h5>
 

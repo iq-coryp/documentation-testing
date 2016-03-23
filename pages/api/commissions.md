@@ -4,7 +4,7 @@ permalink: /api/commissions/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -24,7 +24,7 @@ summary:
 
 ## Resources
 
-###CommissionEntry
+### CommissionEntry
 
 Commission earned by an employee.
 {{callout_info}}<b>RQ Connection</b>For more information on Commissions in RQ, see <a href='http://iqmetrix.helpdocsonline.com/employee-commission-setup'>Employee Commission Setup</a>{{end}}
@@ -128,7 +128,7 @@ By default, the sorting order of the response to this request will be **descendi
 <h4>Request</h4>
 
 <pre>
-GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"{StartDate}" and LastUpdateDateUtc le datetime"{EndDate}"&$skip={Skip}&$top={Top}
+GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datetime'{StartDate}' and LastUpdateDateUtc le datetime'{EndDate}'&$skip={Skip}&$top={Top}
 </pre>
 
 
@@ -171,22 +171,23 @@ GET /Companies({CompanyId})/CommissionEntries?$filter=LastUpdateDateUtc ge datet
     <li><a href="#csharp-getting-all-commission-entries" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-commission-entries" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-commission-entries" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-commission-entries" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-commission-entries"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-commission-entries">
-<pre><code class="language-http">GET /Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T06:00:00.000Z" and LastUpdateDateUtc le datetime"2016-01-01T05:59:59.000Z"&$skip=1&$top=10
+<pre id="http-code-getting-all-commission-entries"><code class="language-http">GET /Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/hal+json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-commission-entries">
-<pre><code class="language-http">curl -X GET "https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T06:00:00.000Z" and LastUpdateDateUtc le datetime"2016-01-01T05:59:59.000Z"&$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
+<pre id="curl-code-getting-all-commission-entries"><code class="language-http">curl -X GET "https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/hal+json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-commission-entries">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllCommissionEntries()
+<pre id="csharp-code-getting-all-commission-entries"><code class="language-csharp">static IRestResponse GettingAllCommissionEntries()
 {
-    var client = new RestClient("https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T06:00:00.000Z" and LastUpdateDateUtc le datetime"2016-01-01T05:59:59.000Z"&$skip=1&$top=10");
+    var client = new RestClient("https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -198,9 +199,8 @@ Accept: application/hal+json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-commission-entries">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-commission-entries"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -209,7 +209,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingAllCommissionEntries() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T06:00:00.000Z" and LastUpdateDateUtc le datetime"2016-01-01T05:59:59.000Z"&$skip=1&$top=10");
+    HttpGet request = new HttpGet("https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/hal+json"); 
@@ -218,13 +218,12 @@ public static CloseableHttpResponse GettingAllCommissionEntries() throws IOExcep
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-commission-entries">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-commission-entries"><code class="language-ruby">require 'rest-client'
 
 
 
-response = RestClient.get 'https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime"2015-01-01T06:00:00.000Z" and LastUpdateDateUtc le datetime"2016-01-01T05:59:59.000Z"&$skip=1&$top=10', {
+response = RestClient.get 'https://commissiondemo.iqmetrix.net/v1/Companies(14146)/CommissionEntries?$filter=LastUpdateDateUtc ge datetime'2015-01-01T06:00:00.000Z' and LastUpdateDateUtc le datetime'2016-01-01T05:59:59.000Z'&$skip=1&$top=10', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/hal+json',
     } 
@@ -323,18 +322,20 @@ These links are _relative_, they do not include the base endpoint. It is the res
 
 ##### Example
 
-    {
-        "_links": {
-            "prev": null,
-            "self": "v1/Companies(14146)/CommissionEntries?$skip=0&$top=5",
-            "next": "v1/Companies(14146)/CommissionEntries?$skip=5&$top=5"
-        },
-        "_metadata": {
-            "count": 15,
-            "skip": 0,
-            "top": 5
-        }
+```csharp
+{
+    "_links": {
+        "prev": null,
+        "self": "v1/Companies(14146)/CommissionEntries?$skip=0&$top=5",
+        "next": "v1/Companies(14146)/CommissionEntries?$skip=5&$top=5"
+    },
+    "_metadata": {
+        "count": 15,
+        "skip": 0,
+        "top": 5
     }
+}
+```
 
 In the example above, the `_links` section is included in the data returned from an API call to [Getting All Commission Entries](#getting-all-commission-entries), where `$skip=0` and `$top=5`.
 

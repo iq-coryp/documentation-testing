@@ -4,7 +4,7 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 03-03-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -18,31 +18,7 @@ summary:
 
 ## Overview
 
-Retailers can select products from the {{ProductLibrary_Concept}} to create a **Retailer Catalog**, a collection of products that can be sold.
-
-### Product Slug
-
-A **slug** is an identifier for a Product within the Product Library, determined using its {{ProductStructure_Concept}} and the following formula:
-
-```
-M{ProductDocumentId}-V{VariationId}-E{EntityId}-R{Region}
-```
-
-* ProductDocumentId - Identifier for a {{ProductDocument}}
-* VariationId - Identifier for a {{Variation}}
-* EntityId - Identifier for a {{Company}} or {{Carrier}} associated with a Revision, as described in [Creating a Revision](/api/product-structure/#creating-a-revision)
-* Region - Must contain 2 or 4 characters, either a Country Code, or Country Code plus a State Code, as described in [Creating a Revision](/api/product-structure/#creating-a-revision)
-
-##### Example
-
-    M1-V2-E3-RCABC
-
-Using the slug in the example above, we can determine the following:
-
-* The identifier for the {{ProductDocument}} for this Product is **1**
-* This Revision was made from a Variation, as there is a **V** present
-* The Company or Carrier that owns this Revision has an Id of `3`
-* This Revision is specific to British Columbia (`BC`), Canada (`CA`)
+Retailers can select products from the {{ProductLibrary_Concept}} to create a **Retailer Catalog**, a collection of products that can be sold. 
 
 
 ## Endpoints
@@ -260,7 +236,6 @@ A ColorDefinition allows you to define the available Colors for a Product
 
 
 
-
 <h2 id='getting-all-catalog-items' class='clickable-header top-level-header'>Getting All Catalog Items</h2>
 
 
@@ -350,133 +325,6 @@ public static CloseableHttpResponse GettingAllCatalogItems() throws IOException 
 response = RestClient.get 'https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
-    } 
-
-puts response</code></pre>
-    </div>
-</div>
-
-<h4>Response</h4>
-
-
- Array[<a href='#catalogitem'>CatalogItem</a>]
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>[
-    {
-        "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
-        "IsArchived": false,
-        "RmsId": "1",
-        "Slug": "M1248-V1"
-    }
-]</pre>
-
-<h2 id='adding-a-catalog-item-from-product-library' class='clickable-header top-level-header'>Adding a Catalog Item from Product Library</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-POST /Companies({CompanyId})/Catalog/Items
-</pre>
-
-
-<h4>Headers</h4>
-<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
-
-
-
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>Slug</code> (<strong>Required</strong>) - Unique identifier for a Product in Product Library</li></ul>
-
-<h5>Example</h5>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#http-adding-a-catalog-item-from-product-library" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-adding-a-catalog-item-from-product-library" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-adding-a-catalog-item-from-product-library" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-adding-a-catalog-item-from-product-library" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-adding-a-catalog-item-from-product-library" data-toggle="tab">Ruby (rest-client)</a></li>
-    <button id="copy-adding-a-catalog-item-from-product-library" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-adding-a-catalog-item-from-product-library"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
-</ul>
-<div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-adding-a-catalog-item-from-product-library">
-<pre id="http-code-adding-a-catalog-item-from-product-library"><code class="language-http">POST /Companies(14146)/Catalog/Items
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-</code><code class="language-csharp">{
-    "Slug": "M1248-V1"
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="curl-adding-a-catalog-item-from-product-library">
-<pre id="curl-code-adding-a-catalog-item-from-product-library"><code class="language-http">curl -X POST "https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
-    "Slug": "M1248-V1"
-}'</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-adding-a-catalog-item-from-product-library">
-        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre id="csharp-code-adding-a-catalog-item-from-product-library"><code class="language-csharp">static IRestResponse AddingACatalogItemFromProductLibrary()
-{
-    var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items");
-    var request = new RestRequest(Method.POST);
-     
-    request.AddHeader("Authorization", "Bearer (Access Token)"); 
-    request.AddHeader("Accept", "application/json"); 
-    request.AddHeader("Content-Type", "application/json"); 
-
-     request.AddParameter("application/json", "{\"Slug\":\"M1248-V1\"}", ParameterType.RequestBody);
-
-    return client.Execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="java-adding-a-catalog-item-from-product-library">
-        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre id="java-code-adding-a-catalog-item-from-product-library"><code class="language-java">import org.apache.http.entity.StringEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import java.io.IOException;
-
-public static CloseableHttpResponse AddingACatalogItemFromProductLibrary() throws IOException {
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPost request = new HttpPost("https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items");
-     
-    request.addHeader("Authorization", "Bearer (Access Token)"); 
-    request.addHeader("Accept", "application/json"); 
-    request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Slug\":\"M1248-V1\"}");
-    request.setEntity(body);
-    
-    return httpClient.execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-adding-a-catalog-item-from-product-library">
-        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre id="ruby-code-adding-a-catalog-item-from-product-library"><code class="language-ruby">require 'rest-client'
-
-body = "{\"Slug\":\"M1248-V1\"}";
-
-response = RestClient.post 'https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items', body, {
-     :'Authorization' => 'Bearer (Access Token)',
-     :'Accept' => 'application/json',
-     :'Content-Type' => 'application/json',
     } 
 
 puts response</code></pre>
@@ -2346,5 +2194,4 @@ HTTP 200 Content-Type: application/json
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
-| `HTTP 400` | `Cannot add product to catalog` | Ensure {{Slug_Glossary}} is valid |
 | `HTTP 404` | `Catalog Item not found` | Ensure CatalogItem GUID is valid and the CatalogItem exists |

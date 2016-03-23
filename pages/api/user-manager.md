@@ -4,9 +4,15 @@ permalink: /api/user-manager/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
+
 {% include linkrefs.html %}
 
 
@@ -26,7 +32,7 @@ To learn more about User Manager, see {{UserManager_Concept}}.
 
 
 
-###User
+### User
 
 A User represents an account that can be used to perform actions on your data within iQmetrix APIs.
 
@@ -49,7 +55,7 @@ A User represents an account that can be used to perform actions on your data wi
 | *CorrelationId* | *String* | *Reserved for internal use* | |
 | *Profiles* | *Object* | *This is a legacy property that should not be used* | |
 
-###Address
+### Address
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -60,7 +66,7 @@ A User represents an account that can be used to perform actions on your data wi
 | CountryCode | String | Country in which this address resides. Uses the ISO 3166-1 alpha-2 standard. For a list of accptable Countries, see <a href='/api/reference/#getting-all-countries'>Getting All Countries</a> | `CA` |
 | Zip | String | Zip or Postal Code | `A1A2B2` |
 
-###PhoneNumber
+### PhoneNumber
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -105,12 +111,21 @@ POST /Users/importExisting
 
 <h5>Example</h5>
 
-<pre>
-POST /Users/importExisting
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-importing-an-existing-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-importing-an-existing-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-importing-an-existing-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-importing-an-existing-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-importing-an-existing-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-importing-an-existing-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-importing-an-existing-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-importing-an-existing-user">
+<pre id="http-code-importing-an-existing-user"><code class="language-http">POST /Users/importExisting
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "UserName": "johnb@kentel.com",
     "Password": "samplepassword",
     "Email": "johnb@kentel.com",
@@ -137,8 +152,91 @@ Content-Type: application/json
     "Attributes": {
         "Department": "Sales"
     }
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-importing-an-existing-user">
+<pre id="curl-code-importing-an-existing-user"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "UserName": "johnb@kentel.com",
+    "Password": "samplepassword",
+    "Email": "johnb@kentel.com",
+    "FirstName": "John",
+    "LastName": "Bates",
+    "ParentEntityId": 1,
+    "ClientUserId": "132",
+    "JobTitle": "Sales Clerk",
+    "Address": {
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
+        "CountryCode": "CA",
+        "Zip": "A1A2B2"
+    },
+    "PhoneNumbers": [
+        {
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
+        }
+    ],
+    "Attributes": {
+        "Department": "Sales"
+    }
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-importing-an-existing-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-importing-an-existing-user"><code class="language-csharp">static IRestResponse ImportingAnExistingUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"UserName\":\"johnb@kentel.com\",\"Password\":\"samplepassword\",\"Email\":\"johnb@kentel.com\",\"FirstName\":\"John\",\"LastName\":\"Bates\",\"ParentEntityId\":1,\"ClientUserId\":\"132\",\"JobTitle\":\"Sales Clerk\",\"Address\":{\"AddressLine1\":\"1432 Merry View Road\",\"AddressLine2\":\"\",\"City\":\"Big Windy\",\"StateCode\":\"ON\",\"CountryCode\":\"CA\",\"Zip\":\"A1A2B2\"},\"PhoneNumbers\":[{\"Number\":\"6135550127\",\"Extension\":\"5532\",\"Type\":\"Work\"}],\"Attributes\":{\"Department\":\"Sales\"}}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-importing-an-existing-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-importing-an-existing-user"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse ImportingAnExistingUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"UserName\":\"johnb@kentel.com\",\"Password\":\"samplepassword\",\"Email\":\"johnb@kentel.com\",\"FirstName\":\"John\",\"LastName\":\"Bates\",\"ParentEntityId\":1,\"ClientUserId\":\"132\",\"JobTitle\":\"Sales Clerk\",\"Address\":{\"AddressLine1\":\"1432 Merry View Road\",\"AddressLine2\":\"\",\"City\":\"Big Windy\",\"StateCode\":\"ON\",\"CountryCode\":\"CA\",\"Zip\":\"A1A2B2\"},\"PhoneNumbers\":[{\"Number\":\"6135550127\",\"Extension\":\"5532\",\"Type\":\"Work\"}],\"Attributes\":{\"Department\":\"Sales\"}}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-importing-an-existing-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-importing-an-existing-user"><code class="language-ruby">require 'rest-client'
+
+body = "{\"UserName\":\"johnb@kentel.com\",\"Password\":\"samplepassword\",\"Email\":\"johnb@kentel.com\",\"FirstName\":\"John\",\"LastName\":\"Bates\",\"ParentEntityId\":1,\"ClientUserId\":\"132\",\"JobTitle\":\"Sales Clerk\",\"Address\":{\"AddressLine1\":\"1432 Merry View Road\",\"AddressLine2\":\"\",\"City\":\"Big Windy\",\"StateCode\":\"ON\",\"CountryCode\":\"CA\",\"Zip\":\"A1A2B2\"},\"PhoneNumbers\":[{\"Number\":\"6135550127\",\"Extension\":\"5532\",\"Type\":\"Work\"}],\"Attributes\":{\"Department\":\"Sales\"}}";
+
+response = RestClient.post 'https://usermanagerdemo.iqmetrix.net/v1/Users/importExisting', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -209,12 +307,72 @@ GET /Users({UserId})
 
 <h5>Example</h5>
 
-<pre>
-GET /Users(2576)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-a-user">
+<pre id="http-code-getting-a-user"><code class="language-http">GET /Users(2576)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-a-user">
+<pre id="curl-code-getting-a-user"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-a-user"><code class="language-csharp">static IRestResponse GettingAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-a-user"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-a-user"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -290,12 +448,21 @@ PUT /Users({UserId})
 
 <h5>Example</h5>
 
-<pre>
-PUT /Users(2576)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-updating-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-updating-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-updating-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-updating-a-user">
+<pre id="http-code-updating-a-user"><code class="language-http">PUT /Users(2576)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Id": 2576,
     "FirstName": "John",
     "LastName": "Bates",
@@ -325,8 +492,94 @@ Content-Type: application/json
     ],
     "Picture": {},
     "Version": 1
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-updating-a-user">
+<pre id="curl-code-updating-a-user"><code class="language-http">curl -X PUT "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Id": 2576,
+    "FirstName": "John",
+    "LastName": "Bates",
+    "UserName": "johnb@kentel.com",
+    "Address": {
+        "AddressLine1": "1432 Merry View Road",
+        "AddressLine2": "",
+        "City": "Big Windy",
+        "StateCode": "ON",
+        "CountryCode": "CA",
+        "Zip": "A1A2B2"
+    },
+    "Attributes": {
+        "Department": "Sales"
+    },
+    "ClientUserId": "132",
+    "Email": "johnb@kentel.com",
+    "IsActive": true,
+    "JobTitle": "Sales Clerk",
+    "ParentEntityId": 1,
+    "PhoneNumbers": [
+        {
+            "Number": "6135550127",
+            "Extension": "5532",
+            "Type": "Work"
+        }
+    ],
+    "Picture": {},
+    "Version": 1
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-updating-a-user"><code class="language-csharp">static IRestResponse UpdatingAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Id\":2576,\"FirstName\":\"John\",\"LastName\":\"Bates\",\"UserName\":\"johnb@kentel.com\",\"Address\":{\"AddressLine1\":\"1432 Merry View Road\",\"AddressLine2\":\"\",\"City\":\"Big Windy\",\"StateCode\":\"ON\",\"CountryCode\":\"CA\",\"Zip\":\"A1A2B2\"},\"Attributes\":{\"Department\":\"Sales\"},\"ClientUserId\":\"132\",\"Email\":\"johnb@kentel.com\",\"IsActive\":true,\"JobTitle\":\"Sales Clerk\",\"ParentEntityId\":1,\"PhoneNumbers\":[{\"Number\":\"6135550127\",\"Extension\":\"5532\",\"Type\":\"Work\"}],\"Picture\":{},\"Version\":1}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-updating-a-user"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":2576,\"FirstName\":\"John\",\"LastName\":\"Bates\",\"UserName\":\"johnb@kentel.com\",\"Address\":{\"AddressLine1\":\"1432 Merry View Road\",\"AddressLine2\":\"\",\"City\":\"Big Windy\",\"StateCode\":\"ON\",\"CountryCode\":\"CA\",\"Zip\":\"A1A2B2\"},\"Attributes\":{\"Department\":\"Sales\"},\"ClientUserId\":\"132\",\"Email\":\"johnb@kentel.com\",\"IsActive\":true,\"JobTitle\":\"Sales Clerk\",\"ParentEntityId\":1,\"PhoneNumbers\":[{\"Number\":\"6135550127\",\"Extension\":\"5532\",\"Type\":\"Work\"}],\"Picture\":{},\"Version\":1}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-updating-a-user"><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":2576,\"FirstName\":\"John\",\"LastName\":\"Bates\",\"UserName\":\"johnb@kentel.com\",\"Address\":{\"AddressLine1\":\"1432 Merry View Road\",\"AddressLine2\":\"\",\"City\":\"Big Windy\",\"StateCode\":\"ON\",\"CountryCode\":\"CA\",\"Zip\":\"A1A2B2\"},\"Attributes\":{\"Department\":\"Sales\"},\"ClientUserId\":\"132\",\"Email\":\"johnb@kentel.com\",\"IsActive\":true,\"JobTitle\":\"Sales Clerk\",\"ParentEntityId\":1,\"PhoneNumbers\":[{\"Number\":\"6135550127\",\"Extension\":\"5532\",\"Type\":\"Work\"}],\"Picture\":{},\"Version\":1}";
+
+response = RestClient.put 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -400,11 +653,68 @@ DELETE /Users({UserId})
 
 <h5>Example</h5>
 
-<pre>
-DELETE /Users(2576)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-disabling-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-disabling-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-disabling-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-disabling-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-disabling-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-disabling-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-disabling-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-disabling-a-user">
+<pre id="http-code-disabling-a-user"><code class="language-http">DELETE /Users(2576)
 Authorization: Bearer (Access Token)
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-disabling-a-user">
+<pre id="curl-code-disabling-a-user"><code class="language-http">curl -X DELETE "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)" -H "Authorization: Bearer (Access Token)"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-disabling-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-disabling-a-user"><code class="language-csharp">static IRestResponse DisablingAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-disabling-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-disabling-a-user"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse DisablingAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-disabling-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-disabling-a-user"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -453,12 +763,72 @@ GET /Entities({CompanyId})/Users?$skip={Skip}&$top={Top}
 
 <h5>Example</h5>
 
-<pre>
-GET /Entities(14146)/Users?$skip=1&$top=10
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-users-for-a-company" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-users-for-a-company" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-users-for-a-company" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-users-for-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-users-for-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-users-for-a-company" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-users-for-a-company"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-users-for-a-company">
+<pre id="http-code-getting-all-users-for-a-company"><code class="language-http">GET /Entities(14146)/Users?$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-users-for-a-company">
+<pre id="curl-code-getting-all-users-for-a-company"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-users-for-a-company">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-all-users-for-a-company"><code class="language-csharp">static IRestResponse GettingAllUsersForACompany()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$skip=1&$top=10");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-users-for-a-company">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-all-users-for-a-company"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllUsersForACompany() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$skip=1&$top=10");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-users-for-a-company">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-all-users-for-a-company"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$skip=1&$top=10', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -556,12 +926,72 @@ GET /Entities({CompanyId})/Users/Search?terms={Terms}&$skip={Skip}&$top={Top}
 
 <h5>Example</h5>
 
-<pre>
-GET /Entities(14146)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-searching-for-users" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-searching-for-users" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-searching-for-users" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-searching-for-users" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-searching-for-users" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-searching-for-users" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-searching-for-users"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-searching-for-users">
+<pre id="http-code-searching-for-users"><code class="language-http">GET /Entities(14146)/Users/Search?terms=Sam+Smith&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-searching-for-users">
+<pre id="curl-code-searching-for-users"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users/Search?terms=Sam+Smith&$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-searching-for-users">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-searching-for-users"><code class="language-csharp">static IRestResponse SearchingForUsers()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users/Search?terms=Sam+Smith&$skip=1&$top=10");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-searching-for-users">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-searching-for-users"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse SearchingForUsers() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users/Search?terms=Sam+Smith&$skip=1&$top=10");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-searching-for-users">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-searching-for-users"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users/Search?terms=Sam+Smith&$skip=1&$top=10', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -653,13 +1083,76 @@ PUT /Users({UserId})/Locations({LocationId})
 
 <h5>Example</h5>
 
-<pre>
-PUT /Users(2576)/Locations(2)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-assigning-a-user-to-a-location" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-assigning-a-user-to-a-location" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-assigning-a-user-to-a-location" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-assigning-a-user-to-a-location" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-assigning-a-user-to-a-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-assigning-a-user-to-a-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-assigning-a-user-to-a-location"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-assigning-a-user-to-a-location">
+<pre id="http-code-assigning-a-user-to-a-location"><code class="language-http">PUT /Users(2576)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-assigning-a-user-to-a-location">
+<pre id="curl-code-assigning-a-user-to-a-location"><code class="language-http">curl -X PUT "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-assigning-a-user-to-a-location">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-assigning-a-user-to-a-location"><code class="language-csharp">static IRestResponse AssigningAUserToALocation()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-assigning-a-user-to-a-location">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-assigning-a-user-to-a-location"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse AssigningAUserToALocation() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-assigning-a-user-to-a-location">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-assigning-a-user-to-a-location"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.put 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -703,12 +1196,72 @@ DELETE /Users({UserId})/Locations({LocationId})
 
 <h5>Example</h5>
 
-<pre>
-DELETE /Users(2576)/Locations(2)
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-unassigning-a-user-from-a-location" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-unassigning-a-user-from-a-location" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-unassigning-a-user-from-a-location" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-unassigning-a-user-from-a-location" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-unassigning-a-user-from-a-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-unassigning-a-user-from-a-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-unassigning-a-user-from-a-location"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-unassigning-a-user-from-a-location">
+<pre id="http-code-unassigning-a-user-from-a-location"><code class="language-http">DELETE /Users(2576)/Locations(2)
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-unassigning-a-user-from-a-location">
+<pre id="curl-code-unassigning-a-user-from-a-location"><code class="language-http">curl -X DELETE "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-unassigning-a-user-from-a-location">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-unassigning-a-user-from-a-location"><code class="language-csharp">static IRestResponse UnassigningAUserFromALocation()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-unassigning-a-user-from-a-location">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-unassigning-a-user-from-a-location"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UnassigningAUserFromALocation() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-unassigning-a-user-from-a-location">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-unassigning-a-user-from-a-location"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations(2)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -748,12 +1301,72 @@ GET /Users({UserId})/Locations
 
 <h5>Example</h5>
 
-<pre>
-GET /Users(2576)/Locations
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-assigned-locations-for-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-assigned-locations-for-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-assigned-locations-for-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-assigned-locations-for-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-assigned-locations-for-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-assigned-locations-for-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-assigned-locations-for-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-assigned-locations-for-a-user">
+<pre id="http-code-getting-assigned-locations-for-a-user"><code class="language-http">GET /Users(2576)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-assigned-locations-for-a-user">
+<pre id="curl-code-getting-assigned-locations-for-a-user"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-assigned-locations-for-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-assigned-locations-for-a-user"><code class="language-csharp">static IRestResponse GettingAssignedLocationsForAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-assigned-locations-for-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-assigned-locations-for-a-user"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAssignedLocationsForAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-assigned-locations-for-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-assigned-locations-for-a-user"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Locations', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -811,12 +1424,72 @@ GET /Entities({CompanyId})/Users?$filter=ClientUserId eq '{ClientUserId}'&$skip=
 
 <h5>Example</h5>
 
-<pre>
-GET /Entities(14146)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-users-by-clientuserid" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-users-by-clientuserid" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-users-by-clientuserid" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-users-by-clientuserid" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-users-by-clientuserid" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-users-by-clientuserid" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-users-by-clientuserid"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-users-by-clientuserid">
+<pre id="http-code-getting-users-by-clientuserid"><code class="language-http">GET /Entities(14146)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-users-by-clientuserid">
+<pre id="curl-code-getting-users-by-clientuserid"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-users-by-clientuserid">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-users-by-clientuserid"><code class="language-csharp">static IRestResponse GettingUsersByClientuserid()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-users-by-clientuserid">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-users-by-clientuserid"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingUsersByClientuserid() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-users-by-clientuserid">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-users-by-clientuserid"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/Users?$filter=ClientUserId eq '132'&$skip=1&$top=10', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -895,13 +1568,76 @@ POST /Users({UserId})/Lock
 
 <h5>Example</h5>
 
-<pre>
-POST /Users(2576)/Lock
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-locking-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-locking-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-locking-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-locking-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-locking-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-locking-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-locking-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-locking-a-user">
+<pre id="http-code-locking-a-user"><code class="language-http">POST /Users(2576)/Lock
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-locking-a-user">
+<pre id="curl-code-locking-a-user"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Lock" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-locking-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-locking-a-user"><code class="language-csharp">static IRestResponse LockingAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Lock");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-locking-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-locking-a-user"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse LockingAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Lock");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-locking-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-locking-a-user"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.post 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Lock', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -942,12 +1678,72 @@ GET /Users({UserId})/Unlock
 
 <h5>Example</h5>
 
-<pre>
-GET /Users(2576)/Unlock
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-the-lock-status-of-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-the-lock-status-of-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-the-lock-status-of-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-the-lock-status-of-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-the-lock-status-of-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-the-lock-status-of-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-the-lock-status-of-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-the-lock-status-of-a-user">
+<pre id="http-code-getting-the-lock-status-of-a-user"><code class="language-http">GET /Users(2576)/Unlock
 Authorization: Bearer (Access Token)
 Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-the-lock-status-of-a-user">
+<pre id="curl-code-getting-the-lock-status-of-a-user"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-the-lock-status-of-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-the-lock-status-of-a-user"><code class="language-csharp">static IRestResponse GettingTheLockStatusOfAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-the-lock-status-of-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-the-lock-status-of-a-user"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingTheLockStatusOfAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-the-lock-status-of-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-the-lock-status-of-a-user"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -996,13 +1792,76 @@ POST /Users({UserId})/Unlock
 
 <h5>Example</h5>
 
-<pre>
-POST /Users(2576)/Unlock
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-unlocking-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-unlocking-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-unlocking-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-unlocking-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-unlocking-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-unlocking-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-unlocking-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-unlocking-a-user">
+<pre id="http-code-unlocking-a-user"><code class="language-http">POST /Users(2576)/Unlock
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-unlocking-a-user">
+<pre id="curl-code-unlocking-a-user"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-unlocking-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-unlocking-a-user"><code class="language-csharp">static IRestResponse UnlockingAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-unlocking-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-unlocking-a-user"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UnlockingAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-unlocking-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-unlocking-a-user"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.post 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Unlock', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -1042,13 +1901,76 @@ POST /Users({UserId})/Enable
 
 <h5>Example</h5>
 
-<pre>
-POST /Users(2576)/Enable
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-enabling-a-user" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-enabling-a-user" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-enabling-a-user" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-enabling-a-user" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-enabling-a-user" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-enabling-a-user" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-enabling-a-user"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-enabling-a-user">
+<pre id="http-code-enabling-a-user"><code class="language-http">POST /Users(2576)/Enable
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-enabling-a-user">
+<pre id="curl-code-enabling-a-user"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Enable" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-enabling-a-user">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-enabling-a-user"><code class="language-csharp">static IRestResponse EnablingAUser()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Enable");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
 
-</pre>
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-enabling-a-user">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-enabling-a-user"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse EnablingAUser() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Enable");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-enabling-a-user">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-enabling-a-user"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.post 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/Enable', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -1125,15 +2047,82 @@ POST /Users({UserId})/TemporaryPassword
 
 <h5>Example</h5>
 
-<pre>
-POST /Users(2576)/TemporaryPassword
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-setting-a-temporary-password" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-setting-a-temporary-password" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-setting-a-temporary-password" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-setting-a-temporary-password" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-setting-a-temporary-password" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-setting-a-temporary-password" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-setting-a-temporary-password"><i class="fa fa-clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-setting-a-temporary-password">
+<pre id="http-code-setting-a-temporary-password"><code class="language-http">POST /Users(2576)/TemporaryPassword
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
-{
+</code><code class="language-csharp">{
     "Password": "newpa55word"
-}
-</pre>
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-setting-a-temporary-password">
+<pre id="curl-code-setting-a-temporary-password"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/TemporaryPassword" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Password": "newpa55word"
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-setting-a-temporary-password">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-setting-a-temporary-password"><code class="language-csharp">static IRestResponse SettingATemporaryPassword()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/TemporaryPassword");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Password\":\"newpa55word\"}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-setting-a-temporary-password">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-setting-a-temporary-password"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse SettingATemporaryPassword() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/TemporaryPassword");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Password\":\"newpa55word\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-setting-a-temporary-password">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-setting-a-temporary-password"><code class="language-ruby">require 'rest-client'
+
+body = "{\"Password\":\"newpa55word\"}";
+
+response = RestClient.post 'https://usermanagerdemo.iqmetrix.net/v1/Users(2576)/TemporaryPassword', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
 
 <h4>Response</h4>
 
@@ -1180,19 +2169,20 @@ These links are _relative_, they do not include the base endpoint. It is the res
 
 ##### Example
 
-    {
-        "_links": {
-            "prev": null,
-            "self": "/v1/Entities(14146)/Users?$skip=0&$top=5",
-            "next": "/v1/Entities(14146)/Users?$skip=5&$top=5"
-        },
-        "_metadata": {
-            "count": 15,
-            "skip": 0,
-            "top": 5
-        }
+```csharp
+{
+    "_links": {
+        "prev": null,
+        "self": "/v1/Entities(14146)/Users?$skip=0&$top=5",
+        "next": "/v1/Entities(14146)/Users?$skip=5&$top=5"
+    },
+    "_metadata": {
+        "count": 15,
+        "skip": 0,
+        "top": 5
     }
-
+}
+```
 In the example above, the `_links` section is included in the data returned from an API call to <a href="#getting-all-users-for-a-company">Getting All Users for a Company</a>, where `$skip=0` and `$top=5`.
 
 The `self`.`href` value is the relative version of the API call that returned these results.

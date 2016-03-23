@@ -4,7 +4,7 @@ permalink: /guides/dropship-test-order-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 12-02-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -37,22 +37,6 @@ If the above steps are not complete or you are not sure, contact <a href="mailto
 **Figure 1:** Showcases which variables must be filled prior to creating the test orders. The remaining variables (not shown in figure) will be automatically populated based on the steps below.
 
 <img src="{{ "/images/postman-credentials.png" | prepend: site.url }}" alt="postman screenshot"/>
-
-
-<!--
-
-#### Prior Steps
-
-Prior to starting this guide, you must have completed the requests in the [Dropship Order Management Guide](/guides/dropship-order-guide). You will have been given user credentials for a test company, subscribed to your dropship feed.
-
-A <a href="{{ "/files/create-test-order.zip" | prepend: site.url }}">Postman Collection</a> will contain the sample data below. Please fill in the environment data from your supplier account in order to complete the steps. See the screenshot below.
-
-<img src="{{ "/images/postman-credentials.png" | prepend: site.url }}" alt="postman screenshot"/>
-
-Should you have any issues generating test order data consult with <a href="mailto:{{site.support_email}}?subject=Dropship Order Test Data">API Support</a>.
-
--->
-
    
 <br />
 **Table 1:** Test Data Variables for Environment

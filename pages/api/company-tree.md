@@ -4,7 +4,7 @@ permalink: /api/company-tree/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -35,7 +35,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 
 ## Resources
 
-###Company
+### Company
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -57,7 +57,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | *TypeId* | *String* | *Reserved for future use* | |
 
 
-###Asset
+### Asset
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -69,7 +69,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | MimeType | String | Mime type | `image/jpeg` |
 | Width | Integer | Width in pixels | `450` |
 
-###CompanyTree
+### CompanyTree
 
 Your Company Tree is a hierarchial representation of how your Company is structured, including the root Company, Groups, Divisions and Locations.
 
@@ -83,7 +83,7 @@ To learn more about Company Trees, see {{CompanyTree_Concept}}.
 | Role | String | Role | `Company` |
 | Nodes | Array[<a href='#companytreenode'>CompanyTreeNode</a>] | The Company Tree hierarchy made up of Nodes |  |
 
-###CompanyTreeNode
+### CompanyTreeNode
 
 CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can represent a {{Group}}, {{Division}}, {{Location}} or device.
 
@@ -95,7 +95,7 @@ CompanyTreeNodes are used to represent hierarchy in a Company Tree. A Node can r
 | Role | String | Role, possible values include: Company, Group, Division and Location | `Division` |
 | Nodes | Array[object] | Children |  |
 
-###Location
+### Location
 
 A **Location** is a physical or virtual presence that may hold inventory or process transactions.
 
@@ -133,7 +133,7 @@ A **Location** is a physical or virtual presence that may hold inventory or proc
 
 
 
-###Division
+### Division
 
 Division, as well as Groups, serve as generic buckets clients can use to organize the company tree. Divisions could be used to represent sub-brand or sub-company of a main company.
 
@@ -159,7 +159,7 @@ To learn more about Divisions, see {{Division_Concept}}.
 | *TypeId* | *String* | *Reserved for future use* | |
 
 
-###Group
+### Group
 
 Managerial or geographical groupings.
 
@@ -189,7 +189,7 @@ Managerial or geographical groupings.
 
 
 
-###TimeZone
+### TimeZone
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -241,20 +241,21 @@ GET /Companies({CompanyId})
     <li><a href="#csharp-getting-a-company" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-company" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-company"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-company">
-<pre><code class="language-http">GET /Companies(14146)
+<pre id="http-code-getting-a-company"><code class="language-http">GET /Companies(14146)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-company">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-company"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-company">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingACompany()
+<pre id="csharp-code-getting-a-company"><code class="language-csharp">static IRestResponse GettingACompany()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)");
     var request = new RestRequest(Method.GET);
@@ -268,9 +269,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-company">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-company"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -288,9 +288,8 @@ public static CloseableHttpResponse GettingACompany() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-company">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-company"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -303,12 +302,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#company'>Company</a>
+ <a href='#company'>Company</a>
 
 <h5>Example</h5>
 
@@ -375,20 +372,21 @@ GET /Companies({CompanyId})/Tree
     <li><a href="#csharp-getting-a-company-tree" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-company-tree" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-company-tree" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-company-tree" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-company-tree"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-company-tree">
-<pre><code class="language-http">GET /Companies(14146)/Tree
+<pre id="http-code-getting-a-company-tree"><code class="language-http">GET /Companies(14146)/Tree
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-company-tree">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-company-tree"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-company-tree">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingACompanyTree()
+<pre id="csharp-code-getting-a-company-tree"><code class="language-csharp">static IRestResponse GettingACompanyTree()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree");
     var request = new RestRequest(Method.GET);
@@ -402,9 +400,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-company-tree">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-company-tree"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -422,9 +419,8 @@ public static CloseableHttpResponse GettingACompanyTree() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-company-tree">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-company-tree"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -437,12 +433,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#companytree'>CompanyTree</a>
+ <a href='#companytree'>CompanyTree</a>
 
 <h5>Example</h5>
 
@@ -506,10 +500,11 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations
     <li><a href="#csharp-creating-a-location" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-location" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-location"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-location">
-<pre><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Locations
+<pre id="http-code-creating-a-location"><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -640,7 +635,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-location">
-<pre><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-location"><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Name": "Dufferin Mall",
     "Description": "This Location is used to clear out discounted inventory",
     "Roles": [
@@ -768,7 +763,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-location">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingALocation()
+<pre id="csharp-code-creating-a-location"><code class="language-csharp">static IRestResponse CreatingALocation()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations");
     var request = new RestRequest(Method.POST);
@@ -783,9 +778,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-location">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-location"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -806,9 +800,8 @@ public static CloseableHttpResponse CreatingALocation() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-location">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-location"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true}}";
 
@@ -822,12 +815,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#location'>Location</a>
+ <a href='#location'>Location</a>
 
 <h5>Example</h5>
 
@@ -1019,10 +1010,11 @@ PUT /Companies({CompanyId})/Tree/Nodes({NodeId})/Locations({LocationId})
     <li><a href="#csharp-updating-a-location" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-updating-a-location" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-updating-a-location" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-a-location" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-a-location"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-updating-a-location">
-<pre><code class="language-http">PUT /Companies(14146)/Tree/Nodes(14159)/Locations(14202)
+<pre id="http-code-updating-a-location"><code class="language-http">PUT /Companies(14146)/Tree/Nodes(14159)/Locations(14202)
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -1159,7 +1151,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-updating-a-location">
-<pre><code class="language-http">curl -X PUT "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations(14202)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-updating-a-location"><code class="language-http">curl -X PUT "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations(14202)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Id": 14202,
     "Name": "Dufferin Mall",
     "Description": "This Location is used to clear out discounted inventory",
@@ -1293,7 +1285,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-updating-a-location">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse UpdatingALocation()
+<pre id="csharp-code-updating-a-location"><code class="language-csharp">static IRestResponse UpdatingALocation()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Locations(14202)");
     var request = new RestRequest(Method.PUT);
@@ -1308,9 +1300,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-updating-a-location">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-updating-a-location"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1331,9 +1322,8 @@ public static CloseableHttpResponse UpdatingALocation() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-updating-a-location">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-updating-a-location"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Id\":14202,\"Name\":\"Dufferin Mall\",\"Description\":\"This Location is used to clear out discounted inventory\",\"Roles\":[{\"Name\":\"Location\"}],\"CreatedUTC\":\"2015-02-26T00:03:01.372Z\",\"LastModifiedUTC\":\"2015-02-27T00:03:06.392Z\",\"Area\":{\"Value\":1100,\"Unit\":\"SqFt\"},\"Address\":{\"AddressLine1\":\"4970 Hillside Avenue\",\"AddressLine2\":\"Apt 115\",\"City\":\"Edmonton\",\"StateCode\":\"ON\",\"StateName\":\"Ontario\",\"CountryCode\":\"CA\",\"CountryName\":\"Canada\",\"Zip\":\"P9H 9I4\"},\"Attributes\":{},\"ClientEntityId\":\"123\",\"Contacts\":[{\"Name\":\"John Smith\",\"Description\":\"Store Manager\",\"PhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}]}],\"Geography\":{\"Longitude\":-104.612034,\"Latitude\":50.443559},\"Relationships\":[],\"SortName\":\"dufferin mall\",\"StoreHours\":{\"Monday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Tuesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Wednesday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Thursday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Friday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Saturday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}},\"Sunday\":{\"Open\":{\"Hour\":10,\"Minute\":0},\"Close\":{\"Hour\":10,\"Minute\":0}}},\"StorePhoneNumbers\":[{\"Description\":\"Main Line\",\"Number\":\"5555555555\",\"Extension\":\"1234\"}],\"TimeZone\":{\"Id\":\"Alaskan Standard Time\",\"DaylightSavingTimeEnabled\":true},\"Version\":13}";
 
@@ -1347,12 +1337,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#location'>Location</a>
+ <a href='#location'>Location</a>
 
 <h5>Example</h5>
 
@@ -1528,20 +1516,21 @@ GET /Companies({CompanyId})/Locations({LocationId})
     <li><a href="#csharp-getting-a-location-for-a-company" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-a-location-for-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-a-location-for-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-a-location-for-a-company" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-location-for-a-company"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-a-location-for-a-company">
-<pre><code class="language-http">GET /Companies(14146)/Locations(14202)
+<pre id="http-code-getting-a-location-for-a-company"><code class="language-http">GET /Companies(14146)/Locations(14202)
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-a-location-for-a-company">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14202)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-a-location-for-a-company"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14202)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-a-location-for-a-company">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingALocationForACompany()
+<pre id="csharp-code-getting-a-location-for-a-company"><code class="language-csharp">static IRestResponse GettingALocationForACompany()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14202)");
     var request = new RestRequest(Method.GET);
@@ -1555,9 +1544,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-a-location-for-a-company">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-a-location-for-a-company"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1575,9 +1563,8 @@ public static CloseableHttpResponse GettingALocationForACompany() throws IOExcep
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-a-location-for-a-company">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-a-location-for-a-company"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1590,12 +1577,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#location'>Location</a>
+ <a href='#location'>Location</a>
 
 <h5>Example</h5>
 
@@ -1767,20 +1752,21 @@ GET /Companies({CompanyId})/Locations
     <li><a href="#csharp-getting-all-locations-for-a-company" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-all-locations-for-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-all-locations-for-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-locations-for-a-company" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-locations-for-a-company"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-all-locations-for-a-company">
-<pre><code class="language-http">GET /Companies(14146)/Locations
+<pre id="http-code-getting-all-locations-for-a-company"><code class="language-http">GET /Companies(14146)/Locations
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-all-locations-for-a-company">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-all-locations-for-a-company"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-all-locations-for-a-company">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingAllLocationsForACompany()
+<pre id="csharp-code-getting-all-locations-for-a-company"><code class="language-csharp">static IRestResponse GettingAllLocationsForACompany()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations");
     var request = new RestRequest(Method.GET);
@@ -1794,9 +1780,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-all-locations-for-a-company">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-all-locations-for-a-company"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -1814,9 +1799,8 @@ public static CloseableHttpResponse GettingAllLocationsForACompany() throws IOEx
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-all-locations-for-a-company">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-locations-for-a-company"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -1829,12 +1813,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-Array[<a href='#location'>Location</a>]
+ Array[<a href='#location'>Location</a>]
 
 <h5>Example</h5>
 
@@ -2021,10 +2003,11 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Divisions
     <li><a href="#csharp-creating-a-division" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-division" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-division" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-division" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-division"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-division">
-<pre><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Divisions
+<pre id="http-code-creating-a-division"><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Divisions
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -2036,7 +2019,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-division">
-<pre><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Divisions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-division"><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Divisions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Name": "T-hut Wireless",
     "Description": "Division of Kiosks",
     "ClientEntityId": "187",
@@ -2045,7 +2028,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-division">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingADivision()
+<pre id="csharp-code-creating-a-division"><code class="language-csharp">static IRestResponse CreatingADivision()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Divisions");
     var request = new RestRequest(Method.POST);
@@ -2060,9 +2043,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-division">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-division"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2083,9 +2065,8 @@ public static CloseableHttpResponse CreatingADivision() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-division">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-division"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Name\":\"T-hut Wireless\",\"Description\":\"Division of Kiosks\",\"ClientEntityId\":\"187\",\"Attributes\":{}}";
 
@@ -2099,12 +2080,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#division'>Division</a>
+ <a href='#division'>Division</a>
 
 <h5>Example</h5>
 
@@ -2184,10 +2163,11 @@ POST /Companies({CompanyId})/Tree/Nodes({NodeId})/Groups
     <li><a href="#csharp-creating-a-group" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-creating-a-group" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-creating-a-group" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-group" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-group"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-creating-a-group">
-<pre><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Groups
+<pre id="http-code-creating-a-group"><code class="language-http">POST /Companies(14146)/Tree/Nodes(14159)/Groups
 Authorization: Bearer (Access Token)
 Accept: application/json
 Content-Type: application/json
@@ -2199,7 +2179,7 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-creating-a-group">
-<pre><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Groups" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+<pre id="curl-code-creating-a-group"><code class="language-http">curl -X POST "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Groups" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
     "Name": "Toronto",
     "Description": "Group within Ontario",
     "ClientEntityId": "187",
@@ -2208,7 +2188,7 @@ Content-Type: application/json
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-creating-a-group">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse CreatingAGroup()
+<pre id="csharp-code-creating-a-group"><code class="language-csharp">static IRestResponse CreatingAGroup()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)/Groups");
     var request = new RestRequest(Method.POST);
@@ -2223,9 +2203,8 @@ Content-Type: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-creating-a-group">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">import org.apache.http.entity.StringEntity;
+<pre id="java-code-creating-a-group"><code class="language-java">import org.apache.http.entity.StringEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2246,9 +2225,8 @@ public static CloseableHttpResponse CreatingAGroup() throws IOException {
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-creating-a-group">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-creating-a-group"><code class="language-ruby">require 'rest-client'
 
 body = "{\"Name\":\"Toronto\",\"Description\":\"Group within Ontario\",\"ClientEntityId\":\"187\",\"Attributes\":{}}";
 
@@ -2262,12 +2240,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<a href='#group'>Group</a>
+ <a href='#group'>Group</a>
 
 <h5>Example</h5>
 
@@ -2348,19 +2324,20 @@ DELETE /Companies({CompanyId})/Tree/Nodes({NodeId})
     <li><a href="#csharp-deleting-a-group-or-division" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-deleting-a-group-or-division" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-deleting-a-group-or-division" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-deleting-a-group-or-division" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-deleting-a-group-or-division"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-deleting-a-group-or-division">
-<pre><code class="language-http">DELETE /Companies(14146)/Tree/Nodes(14159)
+<pre id="http-code-deleting-a-group-or-division"><code class="language-http">DELETE /Companies(14146)/Tree/Nodes(14159)
 Authorization: Bearer (Access Token)
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-deleting-a-group-or-division">
-<pre><code class="language-http">curl -X DELETE "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)" -H "Authorization: Bearer (Access Token)"</code></pre>
+<pre id="curl-code-deleting-a-group-or-division"><code class="language-http">curl -X DELETE "https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)" -H "Authorization: Bearer (Access Token)"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-deleting-a-group-or-division">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse DeletingAGroupOrDivision()
+<pre id="csharp-code-deleting-a-group-or-division"><code class="language-csharp">static IRestResponse DeletingAGroupOrDivision()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Tree/Nodes(14159)");
     var request = new RestRequest(Method.DELETE);
@@ -2373,9 +2350,8 @@ Authorization: Bearer (Access Token)
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-deleting-a-group-or-division">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-deleting-a-group-or-division"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2392,9 +2368,8 @@ public static CloseableHttpResponse DeletingAGroupOrDivision() throws IOExceptio
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-deleting-a-group-or-division">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-deleting-a-group-or-division"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -2405,8 +2380,6 @@ response = RestClient.delete 'https://entitymanagerdemo.iqmetrix.net/v1/Companie
 puts response</code></pre>
     </div>
 </div>
-
-
 
 <h4>Response</h4>
 
@@ -2460,20 +2433,21 @@ GET /Entities({CompanyId})/Nodes?$filter={ClientEntityId}
     <li><a href="#csharp-searching-by-cliententityid" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-searching-by-cliententityid" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-searching-by-cliententityid" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-searching-by-cliententityid" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-searching-by-cliententityid"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-searching-by-cliententityid">
-<pre><code class="language-http">GET /Entities(14146)/Nodes?$filter=123
+<pre id="http-code-searching-by-cliententityid"><code class="language-http">GET /Entities(14146)/Nodes?$filter=123
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-searching-by-cliententityid">
-<pre><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Entities(14146)/Nodes?$filter=123" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-searching-by-cliententityid"><code class="language-http">curl -X GET "https://entitymanagerdemo.iqmetrix.net/v1/Entities(14146)/Nodes?$filter=123" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-searching-by-cliententityid">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse SearchingByCliententityid()
+<pre id="csharp-code-searching-by-cliententityid"><code class="language-csharp">static IRestResponse SearchingByCliententityid()
 {
     var client = new RestClient("https://entitymanagerdemo.iqmetrix.net/v1/Entities(14146)/Nodes?$filter=123");
     var request = new RestRequest(Method.GET);
@@ -2487,9 +2461,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-searching-by-cliententityid">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-searching-by-cliententityid"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -2507,9 +2480,8 @@ public static CloseableHttpResponse SearchingByCliententityid() throws IOExcepti
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-searching-by-cliententityid">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-searching-by-cliententityid"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -2522,12 +2494,10 @@ puts response</code></pre>
     </div>
 </div>
 
-
-
 <h4>Response</h4>
 
 
-<ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li><li><code>Path</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li></ul></ul>
+ <ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li><li><code>Path</code> (Array) </li><ul><li><code>Id</code> (Integer) </li><li><code>Name</code> (String) </li><li><code>Description</code> (String) </li><li><code>Role</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 

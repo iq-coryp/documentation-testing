@@ -4,7 +4,7 @@ permalink: /api/partner-reporting/
 tags: []
 keywords: 
 audience: 
-last_updated: 27-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -27,7 +27,7 @@ summary:
 
 
 
-###Transaction
+### Transaction
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
@@ -104,20 +104,21 @@ GET /partners({PartnerId})/salesTransactions?startDate={StartDate}&endDate={EndD
     <li><a href="#csharp-getting-sales-transactions" data-toggle="tab">C# (RestSharp)</a></li>
     <li><a href="#java-getting-sales-transactions" data-toggle="tab">Java (HttpComponents)</a></li>
     <li><a href="#ruby-getting-sales-transactions" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-sales-transactions" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-sales-transactions"><i class="fa fa-clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-sales-transactions">
-<pre><code class="language-http">GET /partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10
+<pre id="http-code-getting-sales-transactions"><code class="language-http">GET /partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-sales-transactions">
-<pre><code class="language-http">curl -X GET "https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-sales-transactions"><code class="language-http">curl -X GET "https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-sales-transactions">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre><code class="language-csharp">static IRestResponse GettingSalesTransactions()
+<pre id="csharp-code-getting-sales-transactions"><code class="language-csharp">static IRestResponse GettingSalesTransactions()
 {
     var client = new RestClient("https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10");
     var request = new RestRequest(Method.GET);
@@ -131,9 +132,8 @@ Accept: application/json
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="java-getting-sales-transactions">
-
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre><code class="language-java">
+<pre id="java-code-getting-sales-transactions"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -151,9 +151,8 @@ public static CloseableHttpResponse GettingSalesTransactions() throws IOExceptio
 }</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="ruby-getting-sales-transactions">
-
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-sales-transactions"><code class="language-ruby">require 'rest-client'
 
 
 

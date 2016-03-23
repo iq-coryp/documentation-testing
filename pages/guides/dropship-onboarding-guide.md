@@ -4,7 +4,7 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 20-01-2016
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -16,6 +16,8 @@ The following document outlines the APIs and calls required for a dropship integ
 
 Each segment in this guide will provide high-level concepts before describing examples of the API call required.
 
+<br />
+**Figure 1:** Illustrates the interactions between supplier and iQmetrix APIs.
 <img src="{{ "/images/dropship-flow.jpg" | prepend: site.url }}" alt="dropship flow diagram" />
 
 The following APIs will be covered in this guide:
@@ -56,6 +58,9 @@ In order to make authorized requests to iQmetrix APIs, you need an {{AccessToken
 
 See the table below for different ways of getting an Access Token.
 
+<br />
+**Table 1:** Methods for Obtaining an Access Token
+
 | If... | Then... |
 |:------|:--------|
 | You do not have an Access Token | See [Obtaining an Access Token](/api/authentication/#obtaining-an-access-token) |
@@ -72,6 +77,9 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 A [Product Feed](/api/product-feed) allows you to continuously channel all of your products' information into a single source within the iQmetrix system. The product feed you provide will be curated by iQmetrix into the Product Library and made available to retailers. 
 
 Each product that has been curated will be <strong>removed from the feed</strong>, leaving the delta from your last push. It's recommended to update the `LastModifiedByVendorUtc` field for this product feed lifecycle, as it gives visibility to the curation team should there be any new products added to the feed or any product information updates.
+
+<br />
+**Figure 2:** Illustrates supplier pushing products to be curated. 
 
 <img src="{{ "/images/product-feed.jpg" | prepend: site.url }}" alt="product feed diagram" />
 
@@ -93,37 +101,37 @@ To get a list of Classifications based on your provided Classification Tree ID, 
 
     HTTP 200 Content-Type: application/json
     {
-        "Id": 21,
+        "Id": 1,
         "Name": "Cellular & Accessories",
-        "Description": "Classification of products for wireless retail",
+        "IsCanonical": true,
+        "Description": "iQmetrix classification of products for wireless retail",
+        "Owner": {
+            "Id": 1,
+            "Name": "iQmetrix"
+        },
         "Categories": [
             {
-                "Id": 2,
-                "Name": "Devices",
-                "Order": 1,
-                "Categories": [...],
-                "Classifications": [...]
+              "Id": 2,
+              "Name": "Devices",
+              "Order": 1,
+              "Categories": [...],
+              "Classifications": [...]
             },
             ...
         ],
         "Classifications": [
-            {         
-                "Id": 1,
-                "Name": "Smartphones",
-                "Order": 2,
-                "ProductTemplate": {
-                    "Id": 60,
-                    "Name": "Wireless Device"
-                }
+            {
+              "Id": 69,
+              "Name": "SIM Cards",
+              "Order": 5,
+              "ProductTemplate": {
+                "Id": 16,
+                "Name": "Wireless Device"
+              }
             },
             ...
         ],
-        "IsCanonical": false,
-        "Owner": {
-            "Id": 1,
-            "Name": "SampleCompany"
-        },
-        "Version": 41
+        "Version": 148
     }
 
 
@@ -132,6 +140,8 @@ To get a list of Classifications based on your provided Classification Tree ID, 
 A field definition contains all the metadata about a product's attributes, such as name, units, and how it should be displayed. A field is an instance of a field definition. Each product field has a definition and a value. Field definitions are agnostic of industry and are considered global attributes.
 
 To get all Field Definitions, see [Getting Field Definitions](/api/field-definitions/#getting-field-definitions)
+
+--- 
 
 #### Mapping Field Definitions
 
@@ -149,13 +159,16 @@ To add a Product to your Product Feed, the API request requires the field defini
 4. Get a list of all fields definitions from the Demo environment.
 5. Search for the string identifiers to be mapped and add their corresponding field identifier to your configuration table.
 
-**Example: Mapping Fields Between Environments**
+<br />
+**Table 2:** Mapping Fields Between Environments
 
 | Your Definition | String ID | ID in Demo | ID in Production |
 |:----------------|:----------|:-----------|:-----------------|
 | Packing Height | Packaging Height | 175 | 141 |
 | Packing Width | Packaging Width  | 176 | 142 |
 | Packing Depth | Packaging Depth  | 177 | 143 |
+
+---
 
 
 ##### Example Request
@@ -168,39 +181,88 @@ To add a Product to your Product Feed, the API request requires the field defini
     HTTP 200 Content-Type: application/json
     [
         {
-            "Id": 110,
-            "StringId": "ProcessingCores",
-            "InputType": "SingleSelect",
+            "Id": 139,
+            "StringId": "Color Tags",
+            "InputType": "MultiSelect",
             "IsRequired": false,
-            "LanguageInvariantUnit": null,
-            "DisplayName": "Processing Cores",
-            "Unit": null,
+            "LanguageInvariantUnit": "",
+            "DisplayName": "Color Tags",
+            "Unit": "",
             "Options": [
                 {
                     "Id": 1,
-                    "Value": "Single"
+                    "Value": "Black"
                 },
                 {
                     "Id": 2,
-                    "Value": "Dual"
+                    "Value": "Blue"
                 },
                 {
                     "Id": 3,
-                    "Value": "Quad"
+                    "Value": "Brown"
                 },
                 {
                     "Id": 4,
-                    "Value": "Hexa"
+                    "Value": "Gray"
                 },
                 {
                     "Id": 5,
-                    "Value": "Octa"
+                    "Value": "Green"
                 },
                 {
                     "Id": 6,
-                    "Value": "Triple"
+                    "Value": "Orange"
+                },
+                {
+                    "Id": 7,
+                    "Value": "Pink"
+                },
+                {
+                    "Id": 8,
+                    "Value": "Purple"
+                },
+                {
+                    "Id": 9,
+                    "Value": "Red"
+                },
+                {
+                    "Id": 10,
+                    "Value": "Translucent"
+                },
+                {
+                    "Id": 11,
+                    "Value": "Turquoise"
+                },
+                {
+                    "Id": 12,
+                    "Value": "White"
+                },
+                {
+                    "Id": 13,
+                    "Value": "Yellow"
+                },
+                {
+                    "Id": 14,
+                    "Value": "Gold"
+                },
+                {
+                    "Id": 15,
+                    "Value": "Silver"
+                },
+                {
+                    "Id": 16,
+                    "Value": "Bronze"
+                },
+                {
+                    "Id": 17,
+                    "Value": "Multicolor"
+                },
+                {
+                    "Id": 18,
+                    "Value": "Pattern"
                 }
-            ]
+            ],
+            "LanguageInvariantName": "Color Tags"
         },
         {
             "Id": 84,
@@ -222,17 +284,35 @@ Now that you have a list of Field Definitions and Classifications, there are als
 
 We can now combine the information gathered from the previous steps to [Adding a Product to your Product Feed](/api/product-feed/#addding-a-product-to-product-feed)
 
-<hr>
+---
 
-<strong>Required Fields:</strong>
+**ModelName Mapping:**
 
-* `Product Name` - Since there is a Manufacturer field, the manufacturer doesn't need to ba part of the product name
-* `Long Description` - Formatting should be handled with HTML tags
-* `MSRP` - Requires value and currency code (e.g. 35.99 CAD, 24.00 USD)
+The `ModelName` field should be specific enough that variations of one product should be able to be grouped together, but different products wouldn't be grouped together. 
 
-<hr>
+The table below shows results from actual entries versus the expected entry.
 
-<strong>Recommendations:</strong>
+<br />
+**Table 3:** ModelName Mapping Examples
+
+| Actual | Expected | 
+|:-------|:---------|
+| Dualtek Product for iPhone 5 | iPhone 5 DualTek Extreme Shock Case|
+| Data Cable for Apple iPhone 5s | 4' Lightning Charge/Sync Cable |
+| Shell and Holster for Apple iPhone 6 | iPhone 6/6s Hip Case+ |
+| Data Cable | microUSB 72" Charge-sync Cord |
+
+--- 
+
+**Required Fields:**
+
+* `Product Name` - Since there is a Manufacturer field, the manufacturer doesn't need to be apart of the product name.
+* `Long Description` - Supports up to ~20,000 characters, but products typically use 2,000 characters at most. Formatting should be handled with HTML tags.
+* `MSRP` - Requires value and currency code (e.g. 35.99 CAD, 24.00 USD).
+
+---
+
+**Recommendations:**
 
 * Ensure your product images (assets) have a transparent background. We crop out any backgrounds so that we can create a clean reflection in XQ.
 * Ensure your product images are of high quality, as these images will be projected on high-resolution displays.
@@ -241,9 +321,9 @@ We can now combine the information gathered from the previous steps to [Adding a
 * Ensure `Classification` is not null.
 * Ensure the `color` definition uses model descriptions, such as Space Gray
 * Ensure the `color tag` definition uses multiple of the following palette:
- * Black, Blue, Brown, Gray, Green, Orange, Pink, Purple, Red, Translucent, Turquoise, White, Yellow, Gold, Silver, Bronze
+ * Black, Blue, Brown, Gray, Green, Orange, Pink, Purple, Red, Translucent, Turquoise, White, Yellow, Gold, Silver, Bronze, Multicolor, Pattern
 
-<hr>
+---
 
 ##### Example Request
 
@@ -283,6 +363,12 @@ We can now combine the information gathered from the previous steps to [Adding a
                     "StringId": "Color Tags"
                 },
                 "Value": "Black"
+            },
+            {
+                "Definition": {
+                    "Id": 129,
+                },
+                "Value": "Red"
             },
             {
                 "Definition": {
@@ -346,16 +432,22 @@ We can now combine the information gathered from the previous steps to [Adding a
 
 ### Optional: Remove/Update a Product
 
-Each Product entered into the Product Feed will have a corresponding ID from the response. 
+Each Product entered into the Product Feed will have a corresponding ID from the response. The steps below describe how to remove or update products that are **still** in the Product feed, and have not been curated yet.
+
+Should a product have already been curated, then simply add the product to the Product feed again with the new changes. The curation team will update the curated product with the new details.
 
 * To **remove** products from the Product Feed, you must [remove each Product](/api/product-feed/#removing-a-product-from-a-feed) by providing their ProductId. 
 * To **update** products in the Product Feed, the products must be [deleted](/api/product-feed/#removing-a-product-from-a-feed) first, updated locally, and then [added again](/api/product-feed/#add-product-to-product-feed) (DELETE + POST).
 
 ##### Example Request
 
-    DELETE /v1/ProductFeeds(34)/Products(2)
+    DELETE https://productlibrarydemo.iqmetrix.net/v1/ProductFeeds(34)/Products(17)
     Authorization: Bearer (Access Token)
     Accept: application/json
+
+##### Example Response
+
+    HTTP 204 No Content
 
 
 
@@ -363,7 +455,7 @@ Each Product entered into the Product Feed will have a corresponding ID from the
 
 While the [Product Content Feed](/api/product-feed) provides iQmetrix with details of your products, the [Product Subscription Feed](/api/product-subscription) is similar to an RSS feed. In this case, retailers subscribe to your feed to get a list of your latest dropship products. 
 
-Each [Product Subscription Feed](/api/product-subscription) contains a list of SKUs and their selling price, allowing you control over which products are visible to each retailer that is a part of your program. 
+Each [Product Subscription Feed](/api/product-subscription) contains a list of SKUs and their selling price (MSRP), allowing you control over which products are visible to each retailer that is a part of your program. 
 
 Optionally you can provide more than one feed, serving different products to different groups of retailers. For example, one feed could be based on the manufacturer (e.g. Supply Inc - Otterbox sub feed) while another could be based on the product line (e.g. Supply Inc. - iPhone sub feed).
 
@@ -371,8 +463,12 @@ Once a retailer is subscribed your feed(s), they will see the products available
 
 Synchronization of these feeds occurs nightly, updating all of your subscribed retailers with the products you have added or removed from your feeds, allowing you to control which products are available for dropship. 
 
+<br />
+**Figure 3:** Illustrates supplier pushing product rules to their various companies. 
 <img src="{{ "/images/product-subscription.jpg" | prepend: site.url }}" alt="product subscription" />
 
+
+#### Example Scenario
 
 Below is an example of a supplier updating their product subscription feed:
 
@@ -380,7 +476,7 @@ Below is an example of a supplier updating their product subscription feed:
 * Tuesday:    +2 products
 * Wednesday:  -1 product
 
-On Monday, a supplier provides 8 products to their Feed. Since synchronization occurs at night, subscribed  retailers see the 8 products on Tuesday. 
+On Monday, a supplier provides 8 products to their Subscription Feed. Since synchronization occurs at night, subscribed  retailers see the 8 products on Tuesday. 
 
 On Tuesday evening, the supplier then adds 2 more products to their Subscription Feed. This is done by including 2 additional products to their original list, which now has 10 products instead of 8. The following morning, subscribed retailers see 10 products total. 
 
@@ -389,28 +485,20 @@ Finally on Wednesday morning, the supplier removes 1 product, leaving the Subscr
 The following morning, subscribed retailers now have 9 products.
 
 
-<!-- 
-Whilst the product feed provides iQmetrix with all the products and their content, the product subscription provides a subset of products that are available for dropship or other purposes.  The [Product Subscription](/api/product-subscription) contains a list of SKUs and their selling price. Each retailer that is a part of the supplier's program will be subscribed to the product subscription. Once subscribed, the retailer will have all of the products available to them in RQ, XQ and online, depending on the iQmetrix applications they use.
-
-In some cases, each product subscription could be used to control which products are distributed to which retailers, such as being based on the manufacturer or product line.
-
-During synchronization, this feed updates all subscribed retailers with all products added or removed from the feed. This allows the supplier to control which products are available to consumers for dropship.  More than one feed may be provided by a supplier, which could serve different groups of retailers.
-
-<img src="{{ "/images/product-subscription.jpg" | prepend: site.url }}" alt="product subscription" />
-
--->
-
 ### 3.1 Add Products
 
-{{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by vendor sku) will have their slug and version data copied over into the new products.{{end}}
+{{note}}The new product list in the payload replaces the old product list. Any matching old products (determined by Vendor SKU) will have their slug and version data copied over into the new products.{{end}}
+
+<br />
+**Table 4:** Product Feed Variables
 
 | Parameter | Value |
 |:----------|:------|
 | EntityId | SupplierId |
 | Name | Subscribable list name |
 | ProductName | ModelName from Product Feed |
-| VendorSku | Product Sku |
-| Price | Wholesale price |
+| VendorSku | Vendor product SKU |
+| Price | Wholesale price to retailers |
 | Dropshippable | true |
 
 To add products, see [Updating Products in a Subscribable List](/api/product-subscription/#updating-products-in-a-subscribable-list). 
@@ -488,6 +576,9 @@ You can get a list of all your companies via [Getting All Companies in a Product
 
 The [Supplier Availability](/api/supplier-availability) provides iQmetrix with a continuously updated cache of product availability.  This will allow iQmetrix to inform customers of the availability of a product.  Once a product is marked as unavailable by a supplier, iQmetrix will mark this product as unavailable to prevent future purchases.
 
+<br />
+**Figure 4:** Illustrates supplier pushing their product availability to be viewed by companies. 
+
 <img src="{{ "/images/supplier-availability.jpg" | prepend: site.url }}" alt="supplier availability" />
 
 ### 4.1 Configure Availability
@@ -530,7 +621,10 @@ To configure product availability, see [Configuring Product Availability](/api/s
 
 ## Step 5 - Cost Feed
 
-The [Cost Feed](/api/cost-feed) allows you to continually provide wholesale costs for the various products you supply for your companies, based on the product’s Sku. The Sku must correspond with the Sku found in the Product Library. 
+The [Cost Feed](/api/cost-feed) allows you to continually provide wholesale costs for the various products you supply for your companies, based on the product’s Vendor SKU (the same SKU found from the Product Content Feed). 
+
+<br />
+**Figure 5:** Illustrates supplier pushing their product cost to be viewed by companies. 
 
 <img src="{{ "/images/cost-feed.jpg" | prepend: site.url }}" class=".img-responsive" alt="cost feed" />
 
@@ -587,6 +681,9 @@ You must provide a [Shipping Options](/api/shipping-options) API to iQmetrix. Yo
 Once an order has been created, shipping options will be requested via the SACCS service. 
 
 {{callout_info}}The <strong>SACCS service</strong> is a shipping options arbitrator between end customer products (e.g. RQ) and iQmetrix services. The SACCS service will first call out the Supplier Availability service to determine whether or not the products are available, and pass this information to the Shipping service. Then the Shipping service will request shipping options via your API and includes the shipping address' postal code.{{end}}
+
+<br />
+**Figure 6:** Illustrates high-level interaction diagram of an iQmetrix product attempting to obtain a supplier's shipping options. 
 
 <img src="{{ "/images/shipping-options.jpg" | prepend: site.url }}" class=".img-responsive" alt="shipping options" />
 

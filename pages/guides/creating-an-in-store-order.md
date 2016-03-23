@@ -4,7 +4,7 @@ permalink: /guides/creating-an-in-store-order/
 tags: []
 keywords: 
 audience: 
-last_updated: 18-12-2015
+last_updated: 23-03-2016
 summary: 
 ---
 
@@ -119,7 +119,7 @@ There are many different OrderTypes. We will use the `Sales` type for an in-stor
 
 ##### Example
 
-    "OrderType": 1
+    "OrderTypeId": 1
 
 ## (Optional) Step 6 - Adding Optional Order Properties
 
@@ -206,19 +206,19 @@ We can now combine the information gathered in previous steps to [Create an Orde
     Accept: application/json
     Content-Type: application/json
     {
-        "OrderTypeId": 3,
-        "EntityId": 8,
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "OrderTypeId": 1,
+        "EntityId": 64,
+        "BillingCustomerId": "3E59F6C5-D7FC-48CF-A36D-9E871D5F5D0D",
         "Name": "Interactive Display Order 331", 
         "OrderExpiryHours": 72,
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
+        "BillingAddressId": "A39DC672-17D1-4200-B5BF-98FE2D8E25E3",
         "DiscountAmount": 15.0,
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "Items": [
             {
-                "ItemStatusId": 1,
-                "ItemTypeId": 1,
+                "ItemStatusId": 9,
+                "ItemTypeId": 2,
                 "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
                 "Description": "LG G3 phone case",
                 "Notes": "",
@@ -236,15 +236,15 @@ Note that some fields are omitted from the response as they are not relevant to 
     {
         "Id": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
         "Name": "Interactive Display Order 331", 
-        "EntityId": 8,
+        "EntityId": 64,
         "State": "Created",
         "OrderExpiryDate": "2015-05-08T18:05:13.137",
         "OrderExpiryHours": 72,
         "OrderType": "Sales",
-        "OrderTypeId": 3,
+        "OrderTypeId": 1,
         "CreatedDateUtc": "2015-05-05T18:05:13.137",
-        "BillingAddressId": "cb39f178-3577-40bb-a7e5-032f29325b09",
-        "BillingCustomerId": "503d1d4a-c974-4286-b4a2-002699e60ad6",
+        "BillingAddressId": "A39DC672-17D1-4200-B5BF-98FE2D8E25E3",
+        "BillingCustomerId": "3E59F6C5-D7FC-48CF-A36D-9E871D5F5D0D",
         "DiscountCode": "MTRY-15",
         "DiscountDescription": "Military discount",
         "DiscountAmount": 15.0,
@@ -252,10 +252,10 @@ Note that some fields are omitted from the response as they are not relevant to 
         "Items": [
             {
                 "Id": "2ad88692-7757-4a72-915b-dfe8f2539279",
-                "OrderId": "216f7424-ae18-4c69-9597-984b430d0759",
+                "OrderId": "902cdc91-65f4-4c7d-b336-5f291849f2fe",
                 "ItemStatus": "New",
-                "ItemStatusId": 1,
-                "ItemTypeId": 1,
+                "ItemStatusId": 9,
+                "ItemTypeId": 2,
                 "ProductId": "f6642545-9136-4f44-a163-0e97e32e2e27",
                 "Description": "LG G3 phone case",
                 "Notes": "",
