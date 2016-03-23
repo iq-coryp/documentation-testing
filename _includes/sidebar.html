@@ -36,14 +36,12 @@
             });
 
 
-            if(window.location.hostname == "apidocumentation-dev-westus.azurewebsites.net")
+            if(window.location.hostname == "http://melissakendall.github.io/")
             {
                 $("a").each(function(e) {
                     var url = $(this).attr("href");
-                    
-                    if(url.indexOf("developers.iqmetrix.com") > -1) {
-                        url = url.replace("developers.iqmetrix.com", "apidocumentation-dev-westus.azurewebsites.net");
-                    }
+
+                    url = url.replace("http://melissakendall.github.io/", "http://melissakendall.github.io/documentation-testing/");
 
                     $(this).attr("href", url);
                 });
@@ -51,9 +49,7 @@
                 $("img").each(function(e) {
                     var url = $(this).attr("src");
                     
-                    if(url.indexOf("developers.iqmetrix.com") > -1) {
-                        url = url.replace("developers.iqmetrix.com", "apidocumentation-dev-westus.azurewebsites.net");
-                    }
+                    url = url.replace("http://melissakendall.github.io/", "http://melissakendall.github.io/documentation-testing/");
 
                     $(this).attr("src", url);
                 });                    
