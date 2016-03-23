@@ -33,28 +33,21 @@
                     $("#mysidebar").navgoco('toggle', true);
                 });
 
+                if(window.location.hostname == "melissakendall.github.io")
+                {
+                    $("a").each(function(e) {
+                        var url = $(this).attr("href");
+
+                        if(url.indexOf("documentation-testing") == -1)
+                            url = url.replace("http://melissakendall.github.io/", "http://melissakendall.github.io/documentation-testing/");
+
+                        $(this).attr("href", url);
+                    });                   
+                }
+               
+
             });
-
-
-            if(window.location.hostname == "melissakendall.github.io")
-            {
-                $("a").each(function(e) {
-                    var url = $(this).attr("href");
-
-                    url = url.replace("http://melissakendall.github.io/", "http://melissakendall.github.io/documentation-testing/");
-
-                    $(this).attr("href", url);
-                });
-
-                $("img").each(function(e) {
-                    var url = $(this).attr("src");
-                    
-                    url = url.replace("http://melissakendall.github.io/", "http://melissakendall.github.io/documentation-testing/");
-
-                    $(this).attr("src", url);
-                });                    
-            }
-                            
+             
         </script>
 
         {% include custom/conditions.html %}
