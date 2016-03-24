@@ -608,22 +608,10 @@ SOAPAction: "http://www.iqmetrix.com/CreatePurchaseOrderShipmentNotice"
           <VendorSKU>string</VendorSKU>
           <SerialNumbers>
             <string>string</string>
-            <string>string</string>
+            ...
           </SerialNumbers>
         </PurchaseOrderShipmentNotice>
-        <PurchaseOrderShipmentNotice>
-          <ShipmentNumber>string</ShipmentNumber>
-          <PurchaseOrderID>guid</PurchaseOrderID>
-          <RQPurchaseOrderID>int</RQPurchaseOrderID>
-          <VendorInvoiceNumber>string</VendorInvoiceNumber>
-          <ProductItemID>int</ProductItemID>
-          <Quantity>int</Quantity>
-          <VendorSKU>string</VendorSKU>
-          <SerialNumbers>
-            <string>string</string>
-            <string>string</string>
-          </SerialNumbers>
-        </PurchaseOrderShipmentNotice>
+        ...
       </notice>
     </CreatePurchaseOrderShipmentNotice>
   </soap:Body>

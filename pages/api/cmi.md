@@ -772,7 +772,19 @@ HTTP 200 Content-Type: application/xml
 ###### Example
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?> <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body> <GetStoreList xmlns="http://www.iqmetrix.com"> <client> <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID> <Username>sampleusername</Username> <Password>samplepassword</Password> </client> </GetStoreList> </soap:Body> </soap:Envelope>
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Body>
+    <GetStoreList xmlns="http://www.iqmetrix.com">
+    <client>
+        <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
+        <Username>sampleusername</Username>
+        <Password>samplepassword</Password>
+    </client>
+</GetStoreList>
+</soap:Body>
+</soap:Envelope>
+
 ```
 
 ###### Code Example
