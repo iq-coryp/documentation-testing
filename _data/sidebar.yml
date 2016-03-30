@@ -374,7 +374,7 @@ entries:
               product: all
               version: all
 
-            - title: Vendor Managed Inventory (CMI)
+            - title: Vendor Managed Inventory (VMI)
               url: /api/vmi/
               audience: writers, designers
               platform: all

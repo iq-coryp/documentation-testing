@@ -339,9 +339,9 @@ Change the interaction status of a company. By enabling a company, it will be vi
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(VMI_VENDORID);
-vendor.Username = VMI_USER;
-vendor.Password = VMI_PASSWORD;
+vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
+vendor.Username = "sampleusername";
+vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
 vmiService.EnableCompany(vendor, true); // false to disable a company
@@ -384,6 +384,310 @@ HTTP 200 Content-Type: application/xml
         </GetStoreListResponse>
     </soap:Body>
 </soap:Envelope>
+
+```
+
+## Getting All VMI Enabled Companies
+
+Retrieves a list of all companies that has VMI enabled for the vendor.
+
+Get a list of VMI enabled companies. This list contains a unique identifier for each company which is used in subsequent web method calls.
+
+
+#### Request
+
+#### Headers
+
+* `Content-Type: application/xml`
+
+#### Authorization Parameters
+ 
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Client specific username supplied by iQmetrix 
+* `Password` (**Required**) - Client specific password supplied by iQmetrix
+
+
+
+###### Example
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetCompanyList xmlns="http://www.iqmetrix.com">
+      <vendor>
+        <VendorID>guid</VendorID>
+        <Username>string</Username>
+        <Password>string</Password>
+        <Client>
+          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
+          <Username>sampleusername</Username>
+          <Password>samplepassword</Password>
+        </Client>
+      </vendor>
+    </GetCompanyList>
+  </soap:Body>
+</soap:Envelope>          
+
+```
+
+###### Code Example
+
+```java
+VendorIdentity vendor = new VendorIdentity();
+vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
+vendor.Username = "sampleusername";
+vendor.Password = "samplepassword";
+VMIServiceSoapClient vmiService = new VMIServiceSoapClient();
+CompanyInformation[] companies = vmiService.GetCompanyList(vendor);
+
+```
+
+#### Response
+
+
+<a href='#storeinformation'>StoreInformation</a>
+
+###### Example
+
+```
+HTTP 200 Content-Type: application/xml
+```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
+            <GetStoreListResult>
+                <StoreInformation>
+                    <StoreID>36</StoreID>
+                    <Name>Cornwall West</Name>
+                    <Abbreviation>22222</Abbreviation>
+                    <Region>Regina</Region>
+                    <District>Regina</District>
+                    <Address>2102 11th Ave</Address>
+                    <City>Regina</City>
+                    <ProvinceState>SK</ProvinceState>
+                    <PostalZipCode>S2S 2S2</PostalZipCode>
+                    <Country>Canada</Country>
+                    <PhoneNumber>5555555555</PhoneNumber>
+                    <ShipToStoreID>55</ShipToStoreID>
+                    <BillToStoreID>55</BillToStoreID>
+                </StoreInformation>
+                ...
+            </GetStoreListResult>
+        </GetStoreListResponse>
+    </soap:Body>
+</soap:Envelope>
+
+```
+
+## Getting All VMI Enabled Stores
+
+Retrieves a list of VMI enabled stores
+
+GetHierarchyInfo() Get the company location structure, complete with store counts
+
+
+#### Request
+
+#### Headers
+
+* `Content-Type: application/xml`
+
+#### Authorization Parameters
+ 
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Client specific username supplied by iQmetrix 
+* `Password` (**Required**) - Client specific password supplied by iQmetrix
+
+
+
+###### Example
+
+```xml
+<?xml version="1.0" encoding="utf-8"?> <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body> <GetStoreList xmlns="http://www.iqmetrix.com"> <vendor> <VendorID>guid</VendorID> <Username>string</Username> <Password>string</Password> <Client> <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID> <Username>sampleusername</Username> <Password>samplepassword</Password> </Client> </vendor> </GetStoreList> </soap:Body> </soap:Envelope>
+```
+
+###### Code Example
+
+```java
+VendorIdentity vendor = new VendorIdentity();
+vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
+vendor.Username =  "sampleusername";
+vendor.Password = "samplepassword";
+vendor.Client = new ClientAgent();
+vendor.Client.ClientID = companyID;
+
+StoreInformation[] stores = vmiService.GetStoreList(vendor);
+
+```
+
+#### Response
+
+
+<a href='#storeinformation'>StoreInformation</a>
+
+###### Example
+
+```
+HTTP 200 Content-Type: application/xml
+```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
+            <GetStoreListResult>
+                <StoreInformation>
+                    <StoreID>36</StoreID>
+                    <Name>Cornwall West</Name>
+                    <Abbreviation>22222</Abbreviation>
+                    <Region>Regina</Region>
+                    <District>Regina</District>
+                    <Address>2102 11th Ave</Address>
+                    <City>Regina</City>
+                    <ProvinceState>SK</ProvinceState>
+                    <PostalZipCode>S2S 2S2</PostalZipCode>
+                    <Country>Canada</Country>
+                    <PhoneNumber>5555555555</PhoneNumber>
+                    <ShipToStoreID>55</ShipToStoreID>
+                    <BillToStoreID>55</BillToStoreID>
+                </StoreInformation>
+                ...
+            </GetStoreListResult>
+        </GetStoreListResponse>
+    </soap:Body>
+</soap:Envelope>              
+
+```
+
+## Getting a Geographic Inventory Report
+
+This method allows you to get an inventory report for a particular store. This includes data like minimum and maximum inventory, quantity on hand, quantity sold within a particular date range, product SKU etc
+
+Used in conjunction with the GetHierarchyInfo call, this method will gather the same information as the GetInventoryReportByVendorSKU() call, but will gather data based on a Channel, or a Region, or a District, or a Store. This allows consumers to get inventory data for a large number of stores at one time. Use throttling logic based on data from GetHierarchyInfo to determine which level of the hierarchy to gather data for. See Note below.
+
+GetGeographicInventoryReport() Apply logic to each level in the hierarchy to gather data for multiple stores. Example provided in the details for GetGeographicInventoryReport below.
+
+The payload and/or processing time for this call can be huge. Consider the number of locations multiplied by the number of products you supply for that store. The Hierarchy info has a store count for each level of the hierarchy. Use this value to allow your software to intelligently choose the appropriate level to request. The example below shows how this may be implemented. Consider using a configuration value instead of hard-coding the throttle value. Also note that if the HierarchyInfo contains a default Channel of Guid.Empty (00000000-0000-0000-0000-000000000000), you must get data at the Region level.
+
+
+#### Request
+
+#### Headers
+
+* `Content-Type: application/xml`
+
+#### Authorization Parameters
+ 
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Client specific username supplied by iQmetrix 
+* `Password` (**Required**) - Client specific password supplied by iQmetrix
+
+
+
+###### Example
+
+```xml
+<?xml version="1.0" encoding="utf-8"?> <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body> <GetGeographicInventoryReport xmlns="http://www.iqmetrix.com"> <vendor> <VendorID>guid</VendorID> <Username>string</Username> <Password>string</Password> <Client> <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID> <Username>sampleusername</Username> <Password>samplepassword</Password> </Client> </vendor> <channelId>guid</channelId> <regionId>int</regionId> <districtId>int</districtId> <storeId>int</storeId> <StartDate>string</StartDate> <EndDate>string</EndDate> </GetGeographicInventoryReport> </soap:Body> </soap:Envelope>
+```
+
+###### Code Example
+
+```java
+VendorIdentity vendor = new VendorIdentity();
+vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
+vendor.Username =  "sampleusername";
+vendor.Password = "samplepassword";
+vendor.Client = new ClientAgent();
+vendor.Client.ClientID = companyID;
+VMIServiceSoapClient vmiService = new VMIServiceSoapClient(); 
+HierarchyInfo hierarcy = vmiService.GetHierarchyInfo(vendor); 
+
+int lotsOfStores = 30; //throttle value 
+var result = new List<ProductAndStoreInformation>(); 
+var startDate = "07/01/2012"; 
+var endDate = "07/02/2012"; 
+
+foreach (var channel in hierarchy.Channels) 
+{ 
+    //default channel, or channel has lots of stores and has regions 
+    if (channel.ChannelID == Guid.Empty || 
+        channel.StoreCount > lotsOfStores && channel.Regions.Any()) 
+    { 
+        foreach (var region in channel.Regions) 
+        { 
+            //region has lots of stores and districts exist 
+            if (region.StoreCount > lotsOfStores && region.Districts.Any()) 
+            { 
+                foreach (var district in region.Districts) 
+                { 
+                    if (district.StoreCount > lotsOfStores) 
+                    { 
+                        //loop here for each store 
+                    } 
+                    else 
+                        {
+                        result.AddRange(vmiService.GetGeographicInventoryReport 
+                        (_vendor, Guid.Empty, -1, district.DistrictID,
+                        -1, startDate, endDate)); 
+                        } 
+                } 
+            } 
+            else //region has few stores or no districts exist 
+            { 
+                result.AddRange(vmiService.GetGeographicInventoryReport 
+                (_vendor, Guid.Empty, region.RegionID, 
+                -1, -1, startDate, endDate)); 
+            } 
+        } 
+    } 
+    else //channel has few stores or no regions exist 
+    { 
+        result.AddRange(vmiService.GetGeographicInventoryReport 
+            (_vendor, channel.ChannelID, -1, -1, -1, startDate, endDate)); 
+    } 
+}
+
+```
+
+#### Response
+
+
+<a href='#storeinformation'>StoreInformation</a>
+
+###### Example
+
+```
+HTTP 200 Content-Type: application/xml
+```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
+            <GetStoreListResult>
+                <StoreInformation>
+                    <StoreID>36</StoreID>
+                    <Name>Cornwall West</Name>
+                    <Abbreviation>22222</Abbreviation>
+                    <Region>Regina</Region>
+                    <District>Regina</District>
+                    <Address>2102 11th Ave</Address>
+                    <City>Regina</City>
+                    <ProvinceState>SK</ProvinceState>
+                    <PostalZipCode>S2S 2S2</PostalZipCode>
+                    <Country>Canada</Country>
+                    <PhoneNumber>5555555555</PhoneNumber>
+                    <ShipToStoreID>55</ShipToStoreID>
+                    <BillToStoreID>55</BillToStoreID>
+                </StoreInformation>
+                ...
+            </GetStoreListResult>
+        </GetStoreListResponse>
+    </soap:Body>
+</soap:Envelope>              
 
 ```
 
@@ -519,78 +823,4 @@ HTTP 200 Content-Type: application/xml
     </soap:Body>
 </soap:Envelope>              
 
-```
-
-## Getting All VMI Enabled Stores
-
-
-
-#### Request
-
-#### Headers
-
-* `Content-Type: application/xml`
-
-#### Authorization Parameters
- 
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
-
-
-
-###### Example
-
-```xml
-<?xml version="1.0" encoding="utf-8"?> <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body> <GetStoreList xmlns="http://www.iqmetrix.com"> <client> <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID> <Username>sampleusername</Username> <Password>samplepassword</Password> </client> </GetStoreList> </soap:Body> </soap:Envelope>
-```
-
-###### Code Example
-
-```java
-ClientIdentity client = new ClientIdentity();
-client.ClientID = new GUID("9DC6AA95-856B-42C9-8AAF-392A2A02AC77");
-client.Username = "sampleusername";
-client.Password = "samplepassword";
-
-StoreInformation[] stores = cmiService.GetStoreList(client);
-
-```
-
-#### Response
-
-
-<a href='#storeinformation'>StoreInformation</a>
-
-###### Example
-
-```
-HTTP 200 Content-Type: application/xml
-```
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
-            <GetStoreListResult>
-                <StoreInformation>
-                    <StoreID>36</StoreID>
-                    <Name>Cornwall West</Name>
-                    <Abbreviation>22222</Abbreviation>
-                    <Region>Regina</Region>
-                    <District>Regina</District>
-                    <Address>2102 11th Ave</Address>
-                    <City>Regina</City>
-                    <ProvinceState>SK</ProvinceState>
-                    <PostalZipCode>S2S 2S2</PostalZipCode>
-                    <Country>Canada</Country>
-                    <PhoneNumber>5555555555</PhoneNumber>
-                    <ShipToStoreID>55</ShipToStoreID>
-                    <BillToStoreID>55</BillToStoreID>
-                </StoreInformation>
-                ...
-            </GetStoreListResult>
-        </GetStoreListResponse>
-    </soap:Body>
-</soap:Envelope>
 ```
