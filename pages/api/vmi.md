@@ -506,7 +506,24 @@ GetHierarchyInfo() Get the company location structure, complete with store count
 ###### Example
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?> <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body> <GetStoreList xmlns="http://www.iqmetrix.com"> <vendor> <VendorID>guid</VendorID> <Username>string</Username> <Password>string</Password> <Client> <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID> <Username>sampleusername</Username> <Password>samplepassword</Password> </Client> </vendor> </GetStoreList> </soap:Body> </soap:Envelope>
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetStoreList xmlns="http://www.iqmetrix.com">
+      <vendor>
+        <VendorID>guid</VendorID>
+        <Username>string</Username>
+        <Password>string</Password>
+        <Client>
+          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
+          <Username>sampleusername</Username>
+          <Password>samplepassword</Password>
+        </Client>
+      </vendor>
+    </GetStoreList>
+  </soap:Body>
+</soap:Envelope>          
+
 ```
 
 ###### Code Example
@@ -590,7 +607,30 @@ The payload and/or processing time for this call can be huge. Consider the numbe
 ###### Example
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?> <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body> <GetGeographicInventoryReport xmlns="http://www.iqmetrix.com"> <vendor> <VendorID>guid</VendorID> <Username>string</Username> <Password>string</Password> <Client> <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID> <Username>sampleusername</Username> <Password>samplepassword</Password> </Client> </vendor> <channelId>guid</channelId> <regionId>int</regionId> <districtId>int</districtId> <storeId>int</storeId> <StartDate>string</StartDate> <EndDate>string</EndDate> </GetGeographicInventoryReport> </soap:Body> </soap:Envelope>
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetGeographicInventoryReport xmlns="http://www.iqmetrix.com">
+      <vendor>
+        <VendorID>guid</VendorID>
+        <Username>string</Username>
+        <Password>string</Password>
+        <Client>
+          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
+          <Username>sampleusername</Username>
+          <Password>samplepassword</Password>
+        </Client>
+      </vendor>
+      <channelId>guid</channelId>
+      <regionId>int</regionId>
+      <districtId>int</districtId>
+      <storeId>int</storeId>
+      <StartDate>string</StartDate>
+      <EndDate>string</EndDate>
+    </GetGeographicInventoryReport>
+  </soap:Body>
+</soap:Envelope>          
+
 ```
 
 ###### Code Example
@@ -686,6 +726,221 @@ HTTP 200 Content-Type: application/xml
                 ...
             </GetStoreListResult>
         </GetStoreListResponse>
+    </soap:Body>
+</soap:Envelope>              
+
+```
+
+## Creating a Purchase Order
+
+This method allows the vendor to create a purchase order for a particular store and a set of products. This allows RQ to properly account for products arriving at a store so that stock levels are updated correctly. You must be marked as the Primary Vendor in RQ to add a product to a Purchase Order.
+
+CreatePurchaseOrder() If it is determined in step 3 that inventory of a particular set of products need to be replenished, call this web method to create a purchase order in RQ
+
+
+#### Request
+
+#### Headers
+
+* `Content-Type: application/xml`
+
+#### Authorization Parameters
+ 
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Client specific username supplied by iQmetrix 
+* `Password` (**Required**) - Client specific password supplied by iQmetrix
+
+
+#### Request Parameters
+
+<ul><li><code>PurchaseOrderID</code> (Optional) </li><li><code>PurchaseOrderData</code> (Optional) </li><li><code>ProductsOrdered</code> (Optional) </li></ul>
+
+###### Example
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <CreatePurchaseOrder xmlns="http://www.iqmetrix.com">
+      <vendor>
+        <VendorID>guid</VendorID>
+        <Username>sampleusername</Username>
+        <Password>samplepassword</Password>
+          <Client>
+            <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
+            <Name>string</Name>
+            <StoreID>-1</StoreID>
+            <VendorAccountNumber>string</VendorAccountNumber>
+          </Client>
+      </vendor>
+      <PurchaseOrder>
+        <PurchaseOrderID>guid</PurchaseOrderID>
+        <PurchaseOrderData>
+          <PurchaseOrderID>guid</PurchaseOrderID>
+          <RetailiQPurchaseOrderID>int</RetailiQPurchaseOrderID>
+          <RetailiQPurchaseOrderNumber>string</RetailiQPurchaseOrderNumber>
+          <ShipToStoreID>int</ShipToStoreID>
+          <ShipToVendorAccountNumber>string</ShipToVendorAccountNumber>
+          <BillToStoreID>int</BillToStoreID>
+          <BillToVendorAccountNumber>string</BillToVendorAccountNumber>
+          <OrderTotal>decimal</OrderTotal>
+          <ShippingTotal>decimal</ShippingTotal>
+          <VendorInvoiceNumber>string</VendorInvoiceNumber>
+          <EstimatedArrivalDate>string</EstimatedArrivalDate>
+          <Comments>string</Comments>
+          <ShipToStoreName>string</ShipToStoreName>
+          <BillToStoreName>string</BillToStoreName>
+          <VendorName>string</VendorName>
+          <CreatedByVMI>boolean</CreatedByVMI>
+          <CreatedDate>string</CreatedDate>
+          <IsDeleted>boolean</IsDeleted>
+        </PurchaseOrderData>
+        <ProductsOrdered>
+          <ProductInformation>
+            <ProductID>guid</ProductID>
+            <ProductSKU>string</ProductSKU>
+            <VendorSKU>string</VendorSKU>
+            <ProductItemID>int</ProductItemID>
+            <CategoryPath>string</CategoryPath>
+            <ProductName>string</ProductName>
+            <MaximumLevel>int</MaximumLevel>
+            <MinimumLevel>int</MinimumLevel>
+            <ProductCost>decimal</ProductCost>
+            <QuantityInStock>int</QuantityInStock>
+            <QuantityOnOrder>int</QuantityOnOrder>
+            <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
+            <QuantityOnBackOrder>int</QuantityOnBackOrder>
+            <QuantityInTransfer>int</QuantityInTransfer>
+            <QuantityOnRMA>int</QuantityOnRMA>
+            <QuantityOnLoan>int</QuantityOnLoan>
+            <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
+            <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
+            <QuantitySold>int</QuantitySold>
+            <GrossQuantitySold>int</GrossQuantitySold>
+            <GrossQuantityReturned>int</GrossQuantityReturned>
+            <QuantityOrdered>int</QuantityOrdered>
+            <QuantityReceived>int</QuantityReceived>
+            <DateReceived>string</DateReceived>
+            <ProductReceived>boolean</ProductReceived>
+            <Enabled>boolean</Enabled>
+            <MinMaxLocked>boolean</MinMaxLocked>
+            <DoNotOrder>boolean</DoNotOrder>
+            <DateEOL>dateTime</DateEOL>
+            <RetailPrice>decimal</RetailPrice>
+            <SalePrice>decimal</SalePrice>
+            <SaleBegin>dateTime</SaleBegin>
+            <SaleEnd>dateTime</SaleEnd>
+          </ProductInformation>
+          <ProductInformation>
+            <ProductID>guid</ProductID>
+            <ProductSKU>string</ProductSKU>
+            <VendorSKU>string</VendorSKU>
+            <ProductItemID>int</ProductItemID>
+            <CategoryPath>string</CategoryPath>
+            <ProductName>string</ProductName>
+            <MaximumLevel>int</MaximumLevel>
+            <MinimumLevel>int</MinimumLevel>
+            <ProductCost>decimal</ProductCost>
+            <QuantityInStock>int</QuantityInStock>
+            <QuantityOnOrder>int</QuantityOnOrder>
+            <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
+            <QuantityOnBackOrder>int</QuantityOnBackOrder>
+            <QuantityInTransfer>int</QuantityInTransfer>
+            <QuantityOnRMA>int</QuantityOnRMA>
+            <QuantityOnLoan>int</QuantityOnLoan>
+            <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
+            <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
+            <QuantitySold>int</QuantitySold>
+            <GrossQuantitySold>int</GrossQuantitySold>
+            <GrossQuantityReturned>int</GrossQuantityReturned>
+            <QuantityOrdered>int</QuantityOrdered>
+            <QuantityReceived>int</QuantityReceived>
+            <DateReceived>string</DateReceived>
+            <ProductReceived>boolean</ProductReceived>
+            <Enabled>boolean</Enabled>
+            <MinMaxLocked>boolean</MinMaxLocked>
+            <DoNotOrder>boolean</DoNotOrder>
+            <DateEOL>dateTime</DateEOL>
+            <RetailPrice>decimal</RetailPrice>
+            <SalePrice>decimal</SalePrice>
+            <SaleBegin>dateTime</SaleBegin>
+            <SaleEnd>dateTime</SaleEnd>
+          </ProductInformation>
+        </ProductsOrdered>
+      </PurchaseOrder>
+    </CreatePurchaseOrder>
+  </soap:Body>
+</soap:Envelope>
+
+```
+
+###### Code Example
+
+```java
+VendorIdentity vendor = new VendorIdentity();
+vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
+vendor.Username =  "sampleusername";
+vendor.Password = "samplepassword";
+vendor.Client = new ClientAgent();
+vendor.Client.ClientID = companyID;
+vendor.Client.StoreID = 1;
+
+DateTime ead1 = DateTime.Today.AddDays(14);
+string eta = String.Format("{0:D2}/{1:D2}/{2:D4}", ead1.Month, ead1.Day, ead1.Year);
+PurchaseOrder po = new PurchaseOrder();
+po.PurchaseOrderID = new Guid();
+po.PurchaseOrderData = new PurchaseOrderData();
+po.PurchaseOrderData.BillToStoreID = stores[0].StoreID;
+po.PurchaseOrderData.Comments = "Test purchase order";
+po.PurchaseOrderData.ShipToStoreID = stores[0].StoreID;
+po.PurchaseOrderData.VendorInvoiceNumber = "123456789";
+po.PurchaseOrderData.EstimatedArrivalDate = eta;
+
+po.ProductsOrdered = new ProductInformation[1];
+po.ProductsOrdered[0] = new ProductInformation();
+po.ProductsOrdered[0].ProductItemID = productID;
+po.ProductsOrdered[0].ProductName = "Super Phone";
+po.ProductsOrdered[0].ProductSKU = "PSKU123";
+po.ProductsOrdered[0].VendorSKU = "VSKU123";
+po.ProductsOrdered[0].QuantityOrdered = 2;
+po.ProductsOrdered[0].ProductCost = 500.00;
+
+PurchaseOrder poCreated = vmiService.CreatePurchaseOrder(vendor, po);
+
+```
+
+#### Response
+
+
+<a href='#purchaseordershipmentnotice'>PurchaseOrderShipmentNotice</a>
+
+###### Example
+
+```
+HTTP 200 Content-Type: application/xml
+```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <CreatePurchaseOrderShipmentNoticeResponse xmlns="http://www.iqmetrix.com">
+            <CreatePurchaseOrderShipmentNoticeResult>
+                <PurchaseOrderShipmentNotice>
+                  <PurchaseOrderID>84DACFD3-4095-4D50-A02E-781B86B7408E</PurchaseOrderID>
+                  <ProductItemID>11142</ProductItemID>
+                  <Quantity>1</Quantity>
+                  <RQPurchaseOrderID>22073</RQPurchaseOrderID>
+                  <SerialNumbers>
+                    <string>97000012</string>
+                    ...
+                  </SerialNumbers>
+                  <ShipmentNumber>SHIP001</ShipmentNumber>
+                  <VendorInvoiceNumber>1002</VendorInvoiceNumber>
+                  <VendorSKU>ABC123</VendorSKU>
+                </PurchaseOrderShipmentNotice>
+                ...
+            </CreatePurchaseOrderShipmentNoticeResult>
+        </CreatePurchaseOrderShipmentNoticeResponse>
     </soap:Body>
 </soap:Envelope>              
 
@@ -823,4 +1078,103 @@ HTTP 200 Content-Type: application/xml
     </soap:Body>
 </soap:Envelope>              
 
+```
+
+## Getting Inventory List
+
+Retrieves an inventory of products for which the vendor is set as the primary vendor in RQ.
+
+
+#### Request
+
+#### Headers
+
+* `Content-Type: application/xml`
+
+#### Authorization Parameters
+ 
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Client specific username supplied by iQmetrix 
+* `Password` (**Required**) - Client specific password supplied by iQmetrix
+
+
+
+###### Example
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetInventoryList xmlns="http://www.iqmetrix.com">
+      <vendor>
+        <VendorID>guid</VendorID>
+        <Username>string</Username>
+        <Password>string</Password>
+        <Client>
+          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
+          <Username>sampleusername</Username>
+          <Password>samplepassword</Password>
+        </Client>
+      </vendor>
+    </GetInventoryList>
+  </soap:Body>
+</soap:Envelope>          
+
+```
+
+###### Code Example
+
+```java
+VendorIdentity vendor = new VendorIdentity();
+vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
+vendor.Username =  "sampleusername";
+vendor.Password = "samplepassword";
+vendor.Client = new ClientAgent();
+vendor.Client.ClientID = companyID;
+
+VMIServiceSoapClient vmiService = new VMIServiceSoapClient(); 
+HierarchyInfo hierarcy = vmiService.GetHierarchyInfo(vendor); 
+//note: see GetGeographicInventoryReport for an example of better hierarchy usage
+
+InventoryListingData[] data = vmiService.GetInventoryListingReport(vendor, 
+hierarchy.Channels[0].channelID, -1, -1, -1);
+
+```
+
+#### Response
+
+
+<a href='#storeinformation'>StoreInformation</a>
+
+###### Example
+
+```
+HTTP 200 Content-Type: application/xml
+```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
+            <GetStoreListResult>
+                <StoreInformation>
+                    <StoreID>36</StoreID>
+                    <Name>Cornwall West</Name>
+                    <Abbreviation>22222</Abbreviation>
+                    <Region>Regina</Region>
+                    <District>Regina</District>
+                    <Address>2102 11th Ave</Address>
+                    <City>Regina</City>
+                    <ProvinceState>SK</ProvinceState>
+                    <PostalZipCode>S2S 2S2</PostalZipCode>
+                    <Country>Canada</Country>
+                    <PhoneNumber>5555555555</PhoneNumber>
+                    <ShipToStoreID>55</ShipToStoreID>
+                    <BillToStoreID>55</BillToStoreID>
+                </StoreInformation>
+                ...
+            </GetStoreListResult>
+        </GetStoreListResponse>
+    </soap:Body>
+</soap:Envelope>           
 ```
