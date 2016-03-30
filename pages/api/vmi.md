@@ -256,7 +256,7 @@ CompanyInformation[] companies = vmiService.GetPendingCompanies(vendor);
 #### Response
 
 
-<a href='#storeinformation'>StoreInformation</a>
+<a href='#companyinformation'>CompanyInformation</a>
 
 ###### Example
 
@@ -267,26 +267,15 @@ HTTP 200 Content-Type: application/xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
-            <GetStoreListResult>
-                <StoreInformation>
-                    <StoreID>36</StoreID>
-                    <Name>Cornwall West</Name>
-                    <Abbreviation>22222</Abbreviation>
-                    <Region>Regina</Region>
-                    <District>Regina</District>
-                    <Address>2102 11th Ave</Address>
-                    <City>Regina</City>
-                    <ProvinceState>SK</ProvinceState>
-                    <PostalZipCode>S2S 2S2</PostalZipCode>
-                    <Country>Canada</Country>
-                    <PhoneNumber>5555555555</PhoneNumber>
-                    <ShipToStoreID>55</ShipToStoreID>
-                    <BillToStoreID>55</BillToStoreID>
-                </StoreInformation>
-                ...
-            </GetStoreListResult>
-        </GetStoreListResponse>
+        <GetPendingCompaniesResponse xmlns="http://www.iqmetrix.com">
+          <GetPendingCompaniesResult>
+            <CompanyInformation>
+              <CompanyID>guid</CompanyID>
+              <Name>string</Name>
+            </CompanyInformation>
+            ...
+          </GetPendingCompaniesResult>
+        </GetPendingCompaniesResponse>
     </soap:Body>
 </soap:Envelope>
 
@@ -295,6 +284,8 @@ HTTP 200 Content-Type: application/xml
 ## Enabling a Company
 
 Change the interaction status of a company. By enabling a company, it will be visible when GetCompanyList() is called. Disabling a company will remove it from that list and will only be accessible through a call to GetDisabledCompanies(). Only enabled companies may receive purchase orders through the VMI services.
+
+Use the CompanyID as value of Venor.Client.ClientID to enable a company.
 
 
 #### Request
@@ -351,7 +342,6 @@ vmiService.EnableCompany(vendor, true); // false to disable a company
 #### Response
 
 
-<a href='#storeinformation'>StoreInformation</a>
 
 ###### Example
 
@@ -362,26 +352,8 @@ HTTP 200 Content-Type: application/xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
-            <GetStoreListResult>
-                <StoreInformation>
-                    <StoreID>36</StoreID>
-                    <Name>Cornwall West</Name>
-                    <Abbreviation>22222</Abbreviation>
-                    <Region>Regina</Region>
-                    <District>Regina</District>
-                    <Address>2102 11th Ave</Address>
-                    <City>Regina</City>
-                    <ProvinceState>SK</ProvinceState>
-                    <PostalZipCode>S2S 2S2</PostalZipCode>
-                    <Country>Canada</Country>
-                    <PhoneNumber>5555555555</PhoneNumber>
-                    <ShipToStoreID>55</ShipToStoreID>
-                    <BillToStoreID>55</BillToStoreID>
-                </StoreInformation>
-                ...
-            </GetStoreListResult>
-        </GetStoreListResponse>
+        <EnableCompanyResponse xmlns="http://www.iqmetrix.com">
+        </EnableCompanyResponse>
     </soap:Body>
 </soap:Envelope>
 
@@ -446,7 +418,7 @@ CompanyInformation[] companies = vmiService.GetCompanyList(vendor);
 #### Response
 
 
-<a href='#storeinformation'>StoreInformation</a>
+<a href='#companyinformation'>CompanyInformation</a>
 
 ###### Example
 
@@ -457,26 +429,15 @@ HTTP 200 Content-Type: application/xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
-            <GetStoreListResult>
-                <StoreInformation>
-                    <StoreID>36</StoreID>
-                    <Name>Cornwall West</Name>
-                    <Abbreviation>22222</Abbreviation>
-                    <Region>Regina</Region>
-                    <District>Regina</District>
-                    <Address>2102 11th Ave</Address>
-                    <City>Regina</City>
-                    <ProvinceState>SK</ProvinceState>
-                    <PostalZipCode>S2S 2S2</PostalZipCode>
-                    <Country>Canada</Country>
-                    <PhoneNumber>5555555555</PhoneNumber>
-                    <ShipToStoreID>55</ShipToStoreID>
-                    <BillToStoreID>55</BillToStoreID>
-                </StoreInformation>
-                ...
-            </GetStoreListResult>
-        </GetStoreListResponse>
+        <GetCompanyListResponse xmlns="http://www.iqmetrix.com">
+          <GetCompanyListResult>
+            <CompanyInformation>
+              <CompanyID>guid</CompanyID>
+              <Name>string</Name>
+            </CompanyInformation>
+            ...
+          </GetCompanyListResult>
+        </GetCompanyListResponse>
     </soap:Body>
 </soap:Envelope>
 
@@ -570,6 +531,7 @@ HTTP 200 Content-Type: application/xml
                     <PhoneNumber>5555555555</PhoneNumber>
                     <ShipToStoreID>55</ShipToStoreID>
                     <BillToStoreID>55</BillToStoreID>
+                    <VendorAccountNumber>12345</VendorAccountNumber>
                 </StoreInformation>
                 ...
             </GetStoreListResult>
@@ -695,7 +657,7 @@ foreach (var channel in hierarchy.Channels)
 #### Response
 
 
-<a href='#storeinformation'>StoreInformation</a>
+<a href='#productandstoreinformation'>ProductAndStoreInformation</a>
 
 ###### Example
 
@@ -706,28 +668,23 @@ HTTP 200 Content-Type: application/xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
-            <GetStoreListResult>
-                <StoreInformation>
-                    <StoreID>36</StoreID>
-                    <Name>Cornwall West</Name>
-                    <Abbreviation>22222</Abbreviation>
-                    <Region>Regina</Region>
-                    <District>Regina</District>
-                    <Address>2102 11th Ave</Address>
-                    <City>Regina</City>
-                    <ProvinceState>SK</ProvinceState>
-                    <PostalZipCode>S2S 2S2</PostalZipCode>
-                    <Country>Canada</Country>
-                    <PhoneNumber>5555555555</PhoneNumber>
-                    <ShipToStoreID>55</ShipToStoreID>
-                    <BillToStoreID>55</BillToStoreID>
-                </StoreInformation>
-                ...
-            </GetStoreListResult>
-        </GetStoreListResponse>
+        <GetGeographicInventoryReportResponse xmlns="http://www.iqmetrix.com">
+          <GetGeographicInventoryReportResult>
+            <ProductAndStoreInformation>
+              <StoreID>36</StoreID>
+              <StoreName>Cornwall West</StoreName>
+              <ChannelName>string</ChannelName>
+              <ChannelID>guid</ChannelID>
+              <RegionName>Regina</RegionName>
+              <RegionID>15</RegionID>
+              <DistrictName>Regina</DistrictName>
+              <DistrictID>13</DistrictID>
+            </ProductAndStoreInformation>
+            ...
+          </GetGeographicInventoryReportResult>
+        </GetGeographicInventoryReportResponse>
     </soap:Body>
-</soap:Envelope>              
+</soap:Envelope>  
 
 ```
 
@@ -831,41 +788,7 @@ CreatePurchaseOrder() If it is determined in step 3 that inventory of a particul
             <SaleBegin>dateTime</SaleBegin>
             <SaleEnd>dateTime</SaleEnd>
           </ProductInformation>
-          <ProductInformation>
-            <ProductID>guid</ProductID>
-            <ProductSKU>string</ProductSKU>
-            <VendorSKU>string</VendorSKU>
-            <ProductItemID>int</ProductItemID>
-            <CategoryPath>string</CategoryPath>
-            <ProductName>string</ProductName>
-            <MaximumLevel>int</MaximumLevel>
-            <MinimumLevel>int</MinimumLevel>
-            <ProductCost>decimal</ProductCost>
-            <QuantityInStock>int</QuantityInStock>
-            <QuantityOnOrder>int</QuantityOnOrder>
-            <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
-            <QuantityOnBackOrder>int</QuantityOnBackOrder>
-            <QuantityInTransfer>int</QuantityInTransfer>
-            <QuantityOnRMA>int</QuantityOnRMA>
-            <QuantityOnLoan>int</QuantityOnLoan>
-            <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
-            <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
-            <QuantitySold>int</QuantitySold>
-            <GrossQuantitySold>int</GrossQuantitySold>
-            <GrossQuantityReturned>int</GrossQuantityReturned>
-            <QuantityOrdered>int</QuantityOrdered>
-            <QuantityReceived>int</QuantityReceived>
-            <DateReceived>string</DateReceived>
-            <ProductReceived>boolean</ProductReceived>
-            <Enabled>boolean</Enabled>
-            <MinMaxLocked>boolean</MinMaxLocked>
-            <DoNotOrder>boolean</DoNotOrder>
-            <DateEOL>dateTime</DateEOL>
-            <RetailPrice>decimal</RetailPrice>
-            <SalePrice>decimal</SalePrice>
-            <SaleBegin>dateTime</SaleBegin>
-            <SaleEnd>dateTime</SaleEnd>
-          </ProductInformation>
+          ...
         </ProductsOrdered>
       </PurchaseOrder>
     </CreatePurchaseOrder>
@@ -912,7 +835,7 @@ PurchaseOrder poCreated = vmiService.CreatePurchaseOrder(vendor, po);
 #### Response
 
 
-<a href='#purchaseordershipmentnotice'>PurchaseOrderShipmentNotice</a>
+<a href='#purchaseorder'>PurchaseOrder</a>
 
 ###### Example
 
@@ -923,26 +846,71 @@ HTTP 200 Content-Type: application/xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <CreatePurchaseOrderShipmentNoticeResponse xmlns="http://www.iqmetrix.com">
-            <CreatePurchaseOrderShipmentNoticeResult>
-                <PurchaseOrderShipmentNotice>
-                  <PurchaseOrderID>84DACFD3-4095-4D50-A02E-781B86B7408E</PurchaseOrderID>
-                  <ProductItemID>11142</ProductItemID>
-                  <Quantity>1</Quantity>
-                  <RQPurchaseOrderID>22073</RQPurchaseOrderID>
-                  <SerialNumbers>
-                    <string>97000012</string>
-                    ...
-                  </SerialNumbers>
-                  <ShipmentNumber>SHIP001</ShipmentNumber>
-                  <VendorInvoiceNumber>1002</VendorInvoiceNumber>
-                  <VendorSKU>ABC123</VendorSKU>
-                </PurchaseOrderShipmentNotice>
-                ...
-            </CreatePurchaseOrderShipmentNoticeResult>
-        </CreatePurchaseOrderShipmentNoticeResponse>
+        <CreatePurchaseOrderResponse xmlns="http://www.iqmetrix.com">
+          <CreatePurchaseOrderResult>
+            <PurchaseOrderID>guid</PurchaseOrderID>
+            <PurchaseOrderData>
+              <PurchaseOrderID>guid</PurchaseOrderID>
+              <RetailiQPurchaseOrderID>int</RetailiQPurchaseOrderID>
+              <RetailiQPurchaseOrderNumber>string</RetailiQPurchaseOrderNumber>
+              <ShipToStoreID>int</ShipToStoreID>
+              <ShipToVendorAccountNumber>string</ShipToVendorAccountNumber>
+              <BillToStoreID>int</BillToStoreID>
+              <BillToVendorAccountNumber>string</BillToVendorAccountNumber>
+              <OrderTotal>decimal</OrderTotal>
+              <ShippingTotal>decimal</ShippingTotal>
+              <VendorInvoiceNumber>string</VendorInvoiceNumber>
+              <EstimatedArrivalDate>string</EstimatedArrivalDate>
+              <Comments>string</Comments>
+              <ShipToStoreName>string</ShipToStoreName>
+              <BillToStoreName>string</BillToStoreName>
+              <VendorName>string</VendorName>
+              <CreatedByVMI>boolean</CreatedByVMI>
+              <CreatedDate>string</CreatedDate>
+              <IsDeleted>boolean</IsDeleted>
+            </PurchaseOrderData>
+            <ProductsOrdered>
+              <ProductInformation>
+                <ProductID>guid</ProductID>
+                <ProductSKU>string</ProductSKU>
+                <VendorSKU>string</VendorSKU>
+                <ProductItemID>int</ProductItemID>
+                <CategoryPath>string</CategoryPath>
+                <ProductName>string</ProductName>
+                <MaximumLevel>int</MaximumLevel>
+                <MinimumLevel>int</MinimumLevel>
+                <ProductCost>decimal</ProductCost>
+                <QuantityInStock>int</QuantityInStock>
+                <QuantityOnOrder>int</QuantityOnOrder>
+                <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
+                <QuantityOnBackOrder>int</QuantityOnBackOrder>
+                <QuantityInTransfer>int</QuantityInTransfer>
+                <QuantityOnRMA>int</QuantityOnRMA>
+                <QuantityOnLoan>int</QuantityOnLoan>
+                <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
+                <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
+                <QuantitySold>int</QuantitySold>
+                <GrossQuantitySold>int</GrossQuantitySold>
+                <GrossQuantityReturned>int</GrossQuantityReturned>
+                <QuantityOrdered>int</QuantityOrdered>
+                <QuantityReceived>int</QuantityReceived>
+                <DateReceived>string</DateReceived>
+                <ProductReceived>boolean</ProductReceived>
+                <Enabled>boolean</Enabled>
+                <MinMaxLocked>boolean</MinMaxLocked>
+                <DoNotOrder>boolean</DoNotOrder>
+                <DateEOL>dateTime</DateEOL>
+                <RetailPrice>decimal</RetailPrice>
+                <SalePrice>decimal</SalePrice>
+                <SaleBegin>dateTime</SaleBegin>
+                <SaleEnd>dateTime</SaleEnd>
+              </ProductInformation>
+             ...
+            </ProductsOrdered>
+          </CreatePurchaseOrderResult>
+        </CreatePurchaseOrderResponse>
     </soap:Body>
-</soap:Envelope>              
+</soap:Envelope>        
 
 ```
 
@@ -950,7 +918,7 @@ HTTP 200 Content-Type: application/xml
 
 This method allows the vendor to create a shipment notice for an existing purchase order. 
 
-### Notes
+#### Notes
 
 * The shipment notice will be used when receiving purchase order products with serial numbers
 * Multiple shipment notices can be created for a single purchase order
@@ -1076,7 +1044,7 @@ HTTP 200 Content-Type: application/xml
             </CreatePurchaseOrderShipmentNoticeResult>
         </CreatePurchaseOrderShipmentNoticeResponse>
     </soap:Body>
-</soap:Envelope>              
+</soap:Envelope>   
 
 ```
 
@@ -1144,7 +1112,7 @@ hierarchy.Channels[0].channelID, -1, -1, -1);
 #### Response
 
 
-<a href='#storeinformation'>StoreInformation</a>
+<a href='#productinformation'>ProductInformation</a>
 
 ###### Example
 
@@ -1155,26 +1123,47 @@ HTTP 200 Content-Type: application/xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <GetStoreListResponse xmlns="http://www.iqmetrix.com">
-            <GetStoreListResult>
-                <StoreInformation>
-                    <StoreID>36</StoreID>
-                    <Name>Cornwall West</Name>
-                    <Abbreviation>22222</Abbreviation>
-                    <Region>Regina</Region>
-                    <District>Regina</District>
-                    <Address>2102 11th Ave</Address>
-                    <City>Regina</City>
-                    <ProvinceState>SK</ProvinceState>
-                    <PostalZipCode>S2S 2S2</PostalZipCode>
-                    <Country>Canada</Country>
-                    <PhoneNumber>5555555555</PhoneNumber>
-                    <ShipToStoreID>55</ShipToStoreID>
-                    <BillToStoreID>55</BillToStoreID>
-                </StoreInformation>
-                ...
-            </GetStoreListResult>
-        </GetStoreListResponse>
+        <GetInventoryListResponse xmlns="http://www.iqmetrix.com">
+          <GetInventoryListResult>
+            <ProductInformation>
+              <ProductID>guid</ProductID>
+              <ProductSKU>string</ProductSKU>
+              <VendorSKU>string</VendorSKU>
+              <ProductItemID>int</ProductItemID>
+              <CategoryPath>string</CategoryPath>
+              <ProductName>string</ProductName>
+              <MaximumLevel>int</MaximumLevel>
+              <MinimumLevel>int</MinimumLevel>
+              <ProductCost>decimal</ProductCost>
+              <QuantityInStock>int</QuantityInStock>
+              <QuantityOnOrder>int</QuantityOnOrder>
+              <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
+              <QuantityOnBackOrder>int</QuantityOnBackOrder>
+              <QuantityInTransfer>int</QuantityInTransfer>
+              <QuantityOnRMA>int</QuantityOnRMA>
+              <QuantityOnLoan>int</QuantityOnLoan>
+              <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
+              <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
+              <QuantitySold>int</QuantitySold>
+              <GrossQuantitySold>int</GrossQuantitySold>
+              <GrossQuantityReturned>int</GrossQuantityReturned>
+              <QuantityOrdered>int</QuantityOrdered>
+              <QuantityReceived>int</QuantityReceived>
+              <DateReceived>string</DateReceived>
+              <ProductReceived>boolean</ProductReceived>
+              <Enabled>boolean</Enabled>
+              <MinMaxLocked>boolean</MinMaxLocked>
+              <DoNotOrder>boolean</DoNotOrder>
+              <DateEOL>dateTime</DateEOL>
+              <RetailPrice>decimal</RetailPrice>
+              <SalePrice>decimal</SalePrice>
+              <SaleBegin>dateTime</SaleBegin>
+              <SaleEnd>dateTime</SaleEnd>
+            </ProductInformation>
+            ...
+          </GetInventoryListResult>
+        </GetInventoryListResponse>
     </soap:Body>
 </soap:Envelope>           
+
 ```
