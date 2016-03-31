@@ -26,10 +26,10 @@ The Vendor Managed Inventory (VMI) API can be used to:
 
 ## Endpoints
 
-* Sandbox: <a href="https://vmidemo.iqmetrix.net/VMIClientService.asmx">https://vmidemo.iqmetrix.net/VMIClientService.asmx</a>
-* Production (Denver): <a href="https://vmi1.iqmetrix.net/VMIClientService.asmx">https://vmi1.iqmetrix.net/VMIClientService.asmx</a>
-* Production (Toronto): <a href="https://vmi3.iqmetrix.net/VMIClientService.asmx">https://vmi3.iqmetrix.net/VMIClientService.asmx</a>
-* Production (Philadelphia): <a href="https://vmi10.iqmetrix.net/VMIClientService.asmx">https://vmi10.iqmetrix.net/VMIClientService.asmx</a>
+* Sandbox: <a href="https://vmidemo.iqmetrix.net/VMIService.asmx">https://vmidemo.iqmetrix.net/VMIService.asmx</a>
+* Production (Denver): <a href="https://vmi1.iqmetrix.net/VMIService.asmx">https://vmi1.iqmetrix.net/VMIService.asmx</a>
+* Production (Toronto): <a href="https://vmi3.iqmetrix.net/VMIService.asmx">https://vmi3.iqmetrix.net/VMIService.asmx</a>
+* Production (Philadelphia): <a href="https://vmi10.iqmetrix.net/VMIService.asmx">https://vmi10.iqmetrix.net/VMIService.asmx</a>
 
 {{important}}
 You should choose a production endpoint that is geographically closest to your data center 
