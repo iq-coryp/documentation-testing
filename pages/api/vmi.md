@@ -4,7 +4,7 @@ permalink: /api/vmi/
 tags: []
 keywords: 
 audience:
-last_updated: 30-3-2016
+last_updated: 31-3-2016
 summary:
 ---
 
@@ -212,9 +212,13 @@ Vendors can only create POs for “Enabled” companies. A company can be enable
 
 #### Authorization Parameters
  
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
 
 
 
@@ -231,8 +235,9 @@ Vendors can only create POs for “Enabled” companies. A company can be enable
         <Password>string</Password>
         <Client>
           <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Username>sampleusername</Username>
-          <Password>samplepassword</Password>
+          <Name>string</Name>
+          <StoreID>-1</StoreID>
+          <VendorAccountNumber>string</VendorAccountNumber>
         </Client>
       </vendor>
     </GetPendingCompanies>
@@ -281,84 +286,6 @@ HTTP 200 Content-Type: application/xml
 
 ```
 
-## Enabling a Company
-
-Change the interaction status of a company. By enabling a company, it will be visible when GetCompanyList() is called. Disabling a company will remove it from that list and will only be accessible through a call to GetDisabledCompanies(). Only enabled companies may receive purchase orders through the VMI services.
-
-Use the CompanyID as value of Venor.Client.ClientID to enable a company.
-
-
-#### Request
-
-#### Headers
-
-* `Content-Type: application/xml`
-
-#### Authorization Parameters
- 
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
-
-
-
-###### Example
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <EnableCompany xmlns="http://www.iqmetrix.com">
-      <vendor>
-        <VendorID>guid</VendorID>
-        <Username>string</Username>
-        <Password>string</Password>
-        <Client>
-          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Username>sampleusername</Username>
-          <Password>samplepassword</Password>
-        </Client>
-      </vendor>
-      <isEnabled>true</isEnabled>
-    </EnableCompany>
-  </soap:Body>
-</soap:Envelope>          
-
-```
-
-###### Code Example
-
-```java
-VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username = "sampleusername";
-vendor.Password = "samplepassword";
-vendor.Client = new ClientAgent();
-vendor.Client.ClientID = companyID;
-vmiService.EnableCompany(vendor, true); // false to disable a company
-
-```
-
-#### Response
-
-
-
-###### Example
-
-```
-HTTP 200 Content-Type: application/xml
-```
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <EnableCompanyResponse xmlns="http://www.iqmetrix.com">
-        </EnableCompanyResponse>
-    </soap:Body>
-</soap:Envelope>
-
-```
-
 ## Getting All VMI Enabled Companies
 
 Retrieves a list of all companies that has VMI enabled for the vendor.
@@ -374,9 +301,13 @@ Get a list of VMI enabled companies. This list contains a unique identifier for 
 
 #### Authorization Parameters
  
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
 
 
 
@@ -393,8 +324,9 @@ Get a list of VMI enabled companies. This list contains a unique identifier for 
         <Password>string</Password>
         <Client>
           <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Username>sampleusername</Username>
-          <Password>samplepassword</Password>
+          <Name>string</Name>
+          <StoreID>-1</StoreID>
+          <VendorAccountNumber>string</VendorAccountNumber>
         </Client>
       </vendor>
     </GetCompanyList>
@@ -458,9 +390,13 @@ GetHierarchyInfo() Get the company location structure, complete with store count
 
 #### Authorization Parameters
  
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
 
 
 
@@ -477,8 +413,9 @@ GetHierarchyInfo() Get the company location structure, complete with store count
         <Password>string</Password>
         <Client>
           <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Username>sampleusername</Username>
-          <Password>samplepassword</Password>
+          <Name>string</Name>
+          <StoreID>-1</StoreID>
+          <VendorAccountNumber>string</VendorAccountNumber>
         </Client>
       </vendor>
     </GetStoreList>
@@ -560,9 +497,13 @@ The payload and/or processing time for this call can be huge. Consider the numbe
 
 #### Authorization Parameters
  
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
 
 
 
@@ -579,8 +520,9 @@ The payload and/or processing time for this call can be huge. Consider the numbe
         <Password>string</Password>
         <Client>
           <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Username>sampleusername</Username>
-          <Password>samplepassword</Password>
+          <Name>string</Name>
+          <StoreID>-1</StoreID>
+          <VendorAccountNumber>string</VendorAccountNumber>
         </Client>
       </vendor>
       <channelId>guid</channelId>
@@ -688,6 +630,131 @@ HTTP 200 Content-Type: application/xml
 
 ```
 
+## Getting an Inventory List
+
+Retrieves an inventory of products for which the vendor is set as the primary vendor in RQ.
+
+
+#### Request
+
+#### Headers
+
+* `Content-Type: application/xml`
+
+#### Authorization Parameters
+ 
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+
+
+
+###### Example
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetInventoryList xmlns="http://www.iqmetrix.com">
+      <vendor>
+        <VendorID>guid</VendorID>
+        <Username>string</Username>
+        <Password>string</Password>
+        <Client>
+          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
+          <Name>string</Name>
+          <StoreID>-1</StoreID>
+          <VendorAccountNumber>string</VendorAccountNumber>
+        </Client>
+      </vendor>
+    </GetInventoryList>
+  </soap:Body>
+</soap:Envelope>          
+
+```
+
+###### Code Example
+
+```java
+VendorIdentity vendor = new VendorIdentity();
+vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
+vendor.Username =  "sampleusername";
+vendor.Password = "samplepassword";
+vendor.Client = new ClientAgent();
+vendor.Client.ClientID = companyID;
+
+VMIServiceSoapClient vmiService = new VMIServiceSoapClient(); 
+HierarchyInfo hierarcy = vmiService.GetHierarchyInfo(vendor); 
+//note: see GetGeographicInventoryReport for an example of better hierarchy usage
+
+InventoryListingData[] data = vmiService.GetInventoryListingReport(vendor, 
+hierarchy.Channels[0].channelID, -1, -1, -1);
+
+```
+
+#### Response
+
+
+<a href='#productinformation'>ProductInformation</a>
+
+###### Example
+
+```
+HTTP 200 Content-Type: application/xml
+```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetInventoryListResponse xmlns="http://www.iqmetrix.com">
+          <GetInventoryListResult>
+            <ProductInformation>
+              <ProductID>guid</ProductID>
+              <ProductSKU>string</ProductSKU>
+              <VendorSKU>string</VendorSKU>
+              <ProductItemID>int</ProductItemID>
+              <CategoryPath>string</CategoryPath>
+              <ProductName>string</ProductName>
+              <MaximumLevel>int</MaximumLevel>
+              <MinimumLevel>int</MinimumLevel>
+              <ProductCost>decimal</ProductCost>
+              <QuantityInStock>int</QuantityInStock>
+              <QuantityOnOrder>int</QuantityOnOrder>
+              <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
+              <QuantityOnBackOrder>int</QuantityOnBackOrder>
+              <QuantityInTransfer>int</QuantityInTransfer>
+              <QuantityOnRMA>int</QuantityOnRMA>
+              <QuantityOnLoan>int</QuantityOnLoan>
+              <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
+              <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
+              <QuantitySold>int</QuantitySold>
+              <GrossQuantitySold>int</GrossQuantitySold>
+              <GrossQuantityReturned>int</GrossQuantityReturned>
+              <QuantityOrdered>int</QuantityOrdered>
+              <QuantityReceived>int</QuantityReceived>
+              <DateReceived>string</DateReceived>
+              <ProductReceived>boolean</ProductReceived>
+              <Enabled>boolean</Enabled>
+              <MinMaxLocked>boolean</MinMaxLocked>
+              <DoNotOrder>boolean</DoNotOrder>
+              <DateEOL>dateTime</DateEOL>
+              <RetailPrice>decimal</RetailPrice>
+              <SalePrice>decimal</SalePrice>
+              <SaleBegin>dateTime</SaleBegin>
+              <SaleEnd>dateTime</SaleEnd>
+            </ProductInformation>
+            ...
+          </GetInventoryListResult>
+        </GetInventoryListResponse>
+    </soap:Body>
+</soap:Envelope>           
+
+```
+
 ## Creating a Purchase Order
 
 This method allows the vendor to create a purchase order for a particular store and a set of products. This allows RQ to properly account for products arriving at a store so that stock levels are updated correctly. You must be marked as the Primary Vendor in RQ to add a product to a Purchase Order.
@@ -703,9 +770,13 @@ CreatePurchaseOrder() If it is determined in step 3 that inventory of a particul
 
 #### Authorization Parameters
  
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
 
 
 #### Request Parameters
@@ -938,9 +1009,13 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 
 #### Authorization Parameters
  
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
 
 
 #### Request Parameters
@@ -1048,9 +1123,11 @@ HTTP 200 Content-Type: application/xml
 
 ```
 
-## Getting Inventory List
+## Enabling a Company for VMI
 
-Retrieves an inventory of products for which the vendor is set as the primary vendor in RQ.
+Change the interaction status of a company. By enabling a company, it will be visible when GetCompanyList() is called. Disabling a company will remove it from that list and will only be accessible through a call to GetDisabledCompanies(). Only enabled companies may receive purchase orders through the VMI services.
+
+Use the CompanyID as value of Venor.Client.ClientID to enable a company.
 
 
 #### Request
@@ -1061,9 +1138,13 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
 
 #### Authorization Parameters
  
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Client specific username supplied by iQmetrix 
-* `Password` (**Required**) - Client specific password supplied by iQmetrix
+* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
+* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
+* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
+* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (**Required**) - Client specific name supplied by iQmetrix
+* `StoreID`  (**Required**) - Store specific identifier for the client
+* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
 
 
 
@@ -1073,18 +1154,20 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
-    <GetInventoryList xmlns="http://www.iqmetrix.com">
+    <EnableCompany xmlns="http://www.iqmetrix.com">
       <vendor>
         <VendorID>guid</VendorID>
         <Username>string</Username>
         <Password>string</Password>
         <Client>
           <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Username>sampleusername</Username>
-          <Password>samplepassword</Password>
+          <Name>string</Name>
+          <StoreID>-1</StoreID>
+          <VendorAccountNumber>string</VendorAccountNumber>
         </Client>
       </vendor>
-    </GetInventoryList>
+      <isEnabled>true</isEnabled>
+    </EnableCompany>
   </soap:Body>
 </soap:Envelope>          
 
@@ -1095,24 +1178,17 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
 ```java
 VendorIdentity vendor = new VendorIdentity();
 vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username =  "sampleusername";
+vendor.Username = "sampleusername";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
-
-VMIServiceSoapClient vmiService = new VMIServiceSoapClient(); 
-HierarchyInfo hierarcy = vmiService.GetHierarchyInfo(vendor); 
-//note: see GetGeographicInventoryReport for an example of better hierarchy usage
-
-InventoryListingData[] data = vmiService.GetInventoryListingReport(vendor, 
-hierarchy.Channels[0].channelID, -1, -1, -1);
+vmiService.EnableCompany(vendor, true); // false to disable a company
 
 ```
 
 #### Response
 
 
-<a href='#productinformation'>ProductInformation</a>
 
 ###### Example
 
@@ -1123,47 +1199,9 @@ HTTP 200 Content-Type: application/xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <GetInventoryListResponse xmlns="http://www.iqmetrix.com">
-          <GetInventoryListResult>
-            <ProductInformation>
-              <ProductID>guid</ProductID>
-              <ProductSKU>string</ProductSKU>
-              <VendorSKU>string</VendorSKU>
-              <ProductItemID>int</ProductItemID>
-              <CategoryPath>string</CategoryPath>
-              <ProductName>string</ProductName>
-              <MaximumLevel>int</MaximumLevel>
-              <MinimumLevel>int</MinimumLevel>
-              <ProductCost>decimal</ProductCost>
-              <QuantityInStock>int</QuantityInStock>
-              <QuantityOnOrder>int</QuantityOnOrder>
-              <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
-              <QuantityOnBackOrder>int</QuantityOnBackOrder>
-              <QuantityInTransfer>int</QuantityInTransfer>
-              <QuantityOnRMA>int</QuantityOnRMA>
-              <QuantityOnLoan>int</QuantityOnLoan>
-              <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
-              <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
-              <QuantitySold>int</QuantitySold>
-              <GrossQuantitySold>int</GrossQuantitySold>
-              <GrossQuantityReturned>int</GrossQuantityReturned>
-              <QuantityOrdered>int</QuantityOrdered>
-              <QuantityReceived>int</QuantityReceived>
-              <DateReceived>string</DateReceived>
-              <ProductReceived>boolean</ProductReceived>
-              <Enabled>boolean</Enabled>
-              <MinMaxLocked>boolean</MinMaxLocked>
-              <DoNotOrder>boolean</DoNotOrder>
-              <DateEOL>dateTime</DateEOL>
-              <RetailPrice>decimal</RetailPrice>
-              <SalePrice>decimal</SalePrice>
-              <SaleBegin>dateTime</SaleBegin>
-              <SaleEnd>dateTime</SaleEnd>
-            </ProductInformation>
-            ...
-          </GetInventoryListResult>
-        </GetInventoryListResponse>
+        <EnableCompanyResponse xmlns="http://www.iqmetrix.com">
+        </EnableCompanyResponse>
     </soap:Body>
-</soap:Envelope>           
+</soap:Envelope>
 
 ```
