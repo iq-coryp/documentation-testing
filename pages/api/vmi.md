@@ -4,7 +4,7 @@ permalink: /api/vmi/
 tags: []
 keywords: 
 audience:
-last_updated: 31-3-2016
+last_updated: 1-4-2016
 summary:
 ---
 
@@ -208,17 +208,17 @@ Vendors can only create POs for “Enabled” companies. A company can be enable
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 
@@ -230,14 +230,13 @@ Vendors can only create POs for “Enabled” companies. A company can be enable
   <soap:Body>
     <GetPendingCompanies xmlns="http://www.iqmetrix.com">
       <vendor>
-        <VendorID>guid</VendorID>
-        <Username>string</Username>
-        <Password>string</Password>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
         <Client>
-          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Name>string</Name>
-          <StoreID>-1</StoreID>
-          <VendorAccountNumber>string</VendorAccountNumber>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
         </Client>
       </vendor>
     </GetPendingCompanies>
@@ -250,8 +249,8 @@ Vendors can only create POs for “Enabled” companies. A company can be enable
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username = "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username = "danssupplies";
 vendor.Password = "samplepassword";
 VMIServiceSoapClient vmiService = new VMIServiceSoapClient();
 CompanyInformation[] companies = vmiService.GetPendingCompanies(vendor);
@@ -275,8 +274,8 @@ HTTP 200 Content-Type: application/xml
         <GetPendingCompaniesResponse xmlns="http://www.iqmetrix.com">
           <GetPendingCompaniesResult>
             <CompanyInformation>
-              <CompanyID>guid</CompanyID>
-              <Name>string</Name>
+              <CompanyID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</CompanyID>
+              <Name>DropshipTestDemo_DansSupplies</Name>
             </CompanyInformation>
             ...
           </GetPendingCompaniesResult>
@@ -297,17 +296,17 @@ Get a list of VMI enabled companies. This list contains a unique identifier for 
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 
@@ -318,17 +317,16 @@ Get a list of VMI enabled companies. This list contains a unique identifier for 
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
     <GetCompanyList xmlns="http://www.iqmetrix.com">
-      <vendor>
-        <VendorID>guid</VendorID>
-        <Username>string</Username>
-        <Password>string</Password>
+      <Vendor>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
         <Client>
-          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Name>string</Name>
-          <StoreID>-1</StoreID>
-          <VendorAccountNumber>string</VendorAccountNumber>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
         </Client>
-      </vendor>
+      </Vendor>
     </GetCompanyList>
   </soap:Body>
 </soap:Envelope>          
@@ -339,8 +337,8 @@ Get a list of VMI enabled companies. This list contains a unique identifier for 
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username = "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username = "danssupplies";
 vendor.Password = "samplepassword";
 VMIServiceSoapClient vmiService = new VMIServiceSoapClient();
 CompanyInformation[] companies = vmiService.GetCompanyList(vendor);
@@ -364,8 +362,8 @@ HTTP 200 Content-Type: application/xml
         <GetCompanyListResponse xmlns="http://www.iqmetrix.com">
           <GetCompanyListResult>
             <CompanyInformation>
-              <CompanyID>guid</CompanyID>
-              <Name>string</Name>
+              <CompanyID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</CompanyID>
+              <Name>DropshipTestDemo_DansSupplies</Name>
             </CompanyInformation>
             ...
           </GetCompanyListResult>
@@ -386,17 +384,17 @@ GetHierarchyInfo() Get the company location structure, complete with store count
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 
@@ -407,17 +405,16 @@ GetHierarchyInfo() Get the company location structure, complete with store count
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
     <GetStoreList xmlns="http://www.iqmetrix.com">
-      <vendor>
-        <VendorID>guid</VendorID>
-        <Username>string</Username>
-        <Password>string</Password>
+      <Vendor>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
         <Client>
-          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Name>string</Name>
-          <StoreID>-1</StoreID>
-          <VendorAccountNumber>string</VendorAccountNumber>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
         </Client>
-      </vendor>
+      </Vendor>
     </GetStoreList>
   </soap:Body>
 </soap:Envelope>          
@@ -428,8 +425,8 @@ GetHierarchyInfo() Get the company location structure, complete with store count
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username =  "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username =  "danssupplies";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
@@ -455,20 +452,20 @@ HTTP 200 Content-Type: application/xml
         <GetStoreListResponse xmlns="http://www.iqmetrix.com">
             <GetStoreListResult>
                 <StoreInformation>
-                    <StoreID>36</StoreID>
-                    <Name>Cornwall West</Name>
-                    <Abbreviation>22222</Abbreviation>
-                    <Region>Regina</Region>
-                    <District>Regina</District>
-                    <Address>2102 11th Ave</Address>
-                    <City>Regina</City>
-                    <ProvinceState>SK</ProvinceState>
-                    <PostalZipCode>S2S 2S2</PostalZipCode>
+                    <StoreID>4</StoreID>
+                    <Name>Tasha's Test Location</Name>
+                    <Abbreviation>TT101</Abbreviation>
+                    <Region>First Region</Region>
+                    <District>First District</District>
+                    <Address>845 Rue Sherbrooke O</Address>
+                    <City>Montréal</City>
+                    <ProvinceState>QC</ProvinceState>
+                    <PostalZipCode>H3A 0G4</PostalZipCode>
                     <Country>Canada</Country>
-                    <PhoneNumber>5555555555</PhoneNumber>
-                    <ShipToStoreID>55</ShipToStoreID>
-                    <BillToStoreID>55</BillToStoreID>
-                    <VendorAccountNumber>12345</VendorAccountNumber>
+                    <PhoneNumber>4215551234</PhoneNumber>
+                    <ShipToStoreID>4</ShipToStoreID>
+                    <BillToStoreID>4</BillToStoreID>
+                    <VendorAccountNumber>-</VendorAccountNumber>
                 </StoreInformation>
                 ...
             </GetStoreListResult>
@@ -493,17 +490,17 @@ The payload and/or processing time for this call can be huge. Consider the numbe
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 
@@ -515,14 +512,13 @@ The payload and/or processing time for this call can be huge. Consider the numbe
   <soap:Body>
     <GetGeographicInventoryReport xmlns="http://www.iqmetrix.com">
       <vendor>
-        <VendorID>guid</VendorID>
-        <Username>string</Username>
-        <Password>string</Password>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
         <Client>
-          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Name>string</Name>
-          <StoreID>-1</StoreID>
-          <VendorAccountNumber>string</VendorAccountNumber>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
         </Client>
       </vendor>
       <channelId>guid</channelId>
@@ -541,8 +537,8 @@ The payload and/or processing time for this call can be huge. Consider the numbe
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username =  "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username =  "danssupplies";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
@@ -639,17 +635,17 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 
@@ -660,17 +656,16 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
     <GetInventoryList xmlns="http://www.iqmetrix.com">
-      <vendor>
-        <VendorID>guid</VendorID>
-        <Username>string</Username>
-        <Password>string</Password>
+      <Vendor>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
         <Client>
-          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Name>string</Name>
-          <StoreID>-1</StoreID>
-          <VendorAccountNumber>string</VendorAccountNumber>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
         </Client>
-      </vendor>
+      </Vendor>
     </GetInventoryList>
   </soap:Body>
 </soap:Envelope>          
@@ -681,8 +676,8 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username =  "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username =  "danssupplies";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
@@ -766,17 +761,17 @@ CreatePurchaseOrder() If it is determined in step 3 that inventory of a particul
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 #### Request Parameters
@@ -791,15 +786,14 @@ CreatePurchaseOrder() If it is determined in step 3 that inventory of a particul
   <soap:Body>
     <CreatePurchaseOrder xmlns="http://www.iqmetrix.com">
       <vendor>
-        <VendorID>guid</VendorID>
-        <Username>sampleusername</Username>
-        <Password>samplepassword</Password>
-          <Client>
-            <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-            <Name>string</Name>
-            <StoreID>-1</StoreID>
-            <VendorAccountNumber>string</VendorAccountNumber>
-          </Client>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
+        <Client>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
+        </Client>
       </vendor>
       <PurchaseOrder>
         <PurchaseOrderID>guid</PurchaseOrderID>
@@ -872,8 +866,8 @@ CreatePurchaseOrder() If it is determined in step 3 that inventory of a particul
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username =  "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username =  "danssupplies";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
@@ -1005,17 +999,17 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 #### Request Parameters
@@ -1030,15 +1024,14 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
   <soap:Body>
     <CreatePurchaseOrderShipmentNotice xmlns="http://www.iqmetrix.com">
       <vendor>
-        <VendorID>guid</VendorID>
-        <Username>sampleusername</Username>
-        <Password>samplepassword</Password>
-          <Client>
-            <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-            <Name>string</Name>
-            <StoreID>-1</StoreID>
-            <VendorAccountNumber>string</VendorAccountNumber>
-          </Client>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
+        <Client>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
+        </Client>
       </vendor>
       <notice>
         <PurchaseOrderShipmentNotice>
@@ -1066,8 +1059,8 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username =  "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username =  "danssupplies";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
@@ -1134,17 +1127,17 @@ Use the CompanyID as value of Venor.Client.ClientID to enable a company.
 
 #### Headers
 
-* `Content-Type: application/xml`
+* `Content-Type: text/xml`
 
 #### Authorization Parameters
  
 * `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
 * `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
 * `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID  (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (**Required**) - Client specific name supplied by iQmetrix
-* `StoreID`  (**Required**) - Store specific identifier for the client
-* `VendorAccountNumber` (**Required**) - Client specific account number assigned by vendor.
+* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
+* `Name`     (Optional) - Client specific name supplied by iQmetrix
+* `StoreID`  (Optional) - Store specific identifier for the client
+* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
 
 
 
@@ -1156,14 +1149,13 @@ Use the CompanyID as value of Venor.Client.ClientID to enable a company.
   <soap:Body>
     <EnableCompany xmlns="http://www.iqmetrix.com">
       <vendor>
-        <VendorID>guid</VendorID>
-        <Username>string</Username>
-        <Password>string</Password>
+        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
+        <Username>danssupplies</Username>
+        <Password>QNA3bdvmeB</Password>
         <Client>
-          <ClientID>9DC6AA95-856B-42C9-8AAF-392A2A02AC77</ClientID>
-          <Name>string</Name>
-          <StoreID>-1</StoreID>
-          <VendorAccountNumber>string</VendorAccountNumber>
+          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
+          <Name>DropshipTestDemo</Name>
+          <StoreID>14070</StoreID>
         </Client>
       </vendor>
       <isEnabled>true</isEnabled>
@@ -1177,8 +1169,8 @@ Use the CompanyID as value of Venor.Client.ClientID to enable a company.
 
 ```java
 VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(9DC6AA95-856B-42C9-8AAF-392A2A02AC77);
-vendor.Username = "sampleusername";
+vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
+vendor.Username = "danssupplies";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
