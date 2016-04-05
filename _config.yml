@@ -10,7 +10,8 @@ baseurl: "/documentation-testing/"
 pagefileurl: "/documentation-testing/"
 api_baseurl: "/documentation-testing/api"
 fileurl: "../"
-url: "http://melissakendall.github.io/documentation-testing/"
+## url: "http://melissakendall.github.io/documentation-testing/"
+url: "http://localhost:4006/documentation-testing/"
 topnav_title: iQmetrix Developer Portal 
 homepage_title: iQmetrix Developer Portal 
 site_title: iQmetrix Developer Portal 
