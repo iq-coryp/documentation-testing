@@ -4,8 +4,9 @@ permalink: /api/catalog/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-03-2016
+last_updated: 5-4-2016
 summary: 
+rouge: false
 ---
 
 <link rel="stylesheet" type="text/css" href="../../css/prism.css">
@@ -16,9 +17,35 @@ summary:
 {% include linkrefs.html %}
 
 
+
+
 ## Overview
 
-Retailers can select products from the {{ProductLibrary_Concept}} to create a **Retailer Catalog**, a collection of products that can be sold. 
+Retailers can select products from the {{ProductLibrary_Concept}} to create a **Retailer Catalog**, a collection of products that can be sold.
+
+### Product Slug
+
+A **slug** is a generated identifier for a Product within the Product Library, determined using its {{ProductStructure_Concept}} and the following formula:
+
+```
+M{ProductDocumentId}-V{VariationId}-E{EntityId}-R{Region}
+```
+
+* ProductDocumentId - Identifier for a {{ProductDocument}}
+* VariationId - Identifier for a {{Variation}}
+* EntityId - Identifier for a {{Company}} or {{Carrier}} associated with a Revision, as described in [Creating a Revision](/api/product-structure/#creating-a-revision)
+* Region - Must contain 2 or 4 characters, either a Country Code, or Country Code plus a State Code, as described in [Creating a Revision](/api/product-structure/#creating-a-revision)
+
+##### Example
+
+    M1-V2-E3-RCABC
+
+Using the slug in the example above, we can determine the following:
+
+* The identifier for the {{ProductDocument}} for this Product is **1**
+* This Revision was made from a Variation, as there is a **V** present
+* The Company or Carrier that owns this Revision has an Id of `3`
+* This Revision is specific to British Columbia (`BC`), Canada (`CA`)
 
 
 ## Endpoints
@@ -48,14 +75,14 @@ A CatalogSearchResult resource is used to return information about Product resou
 |:-----|:----------|:------------|:--------|
 | Items | Array[object] | Products matching the search criteria |  |
 | Items.Name | String | Name | `Galaxy S6 edge+ 32GB - Black Sapphire` |
-| Items.CanonicalClassification | <a href='#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
+| Items.CanonicalClassification | <a href='/api/catalog/#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
 | Items.CatalogItemId | GUID | Unique identifier for the CatalogItem | `a183f1a9-c58f-426a-930a-9a6357db52ed` |
 | Items.ClassificationTreeId | Integer | Identifier for the [ClassificationTree](/api/classification-tree/#classificationtree) | `1` |
-| Items.ColorDefinition | <a href='#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
+| Items.ColorDefinition | <a href='/api/catalog/#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
 | Items.CompanyId | Integer | Identifier for the Company | `14146` |
 | Items.DateAddedUtc | DateTime | Date this Product was added to the catalog, in UTC | `2011-10-14T12:00:00.000` |
 | Items.HeroShotId | GUID | [Hero Shot](/api/glossary/#hero-shot) identifier | `44f60963-5515-44bc-9509-71aef6463580` |
-| Items.Identifiers | Array[<a href='#identifier'>Identifier</a>] | Identifiers |  |
+| Items.Identifiers | Array[<a href='/api/catalog/#identifier'>Identifier</a>] | Identifiers |  |
 | Items.IsLinkedToCuratedProduct | Boolean | A flag to indicate if this version of this Product is publicly accessible (true), or private (false) | `true` |
 | Items.IsDropShippable | Boolean | A flag to indicate if this Product can be shipped | `true` |
 | Items.Manufacturer | object | [Manufacturer](/api/entity-store/#manufacturer) information for the Product |  |
@@ -76,8 +103,8 @@ A CatalogSearchResult resource is used to return information about Product resou
 | Facets.ClassificationAndCategories | Array[object] | Count of Classification and Categories in results |  |
 | Facets.ClassificationAndCategories.Count | Integer | Number of items in the response with the Classification or Category specified in Item | `1` |
 | Facets.ClassificationAndCategories.Item | Integer | Identifier of a Classification or Category | `4` |
-| Facets.ClassificationAndCategories.Manufacturers | Array[<a href='#manufacturer'>Manufacturer</a>] | Manufacturer information for the Items |  |
-| Facets.ClassificationAndCategories.Vendors | Array[<a href='#manufacturer'>Manufacturer</a>] | Vendor information for the Items |  |
+| Facets.ClassificationAndCategories.Manufacturers | Array[<a href='/api/catalog/#manufacturer'>Manufacturer</a>] | Manufacturer information for the Items |  |
+| Facets.ClassificationAndCategories.Vendors | Array[<a href='/api/catalog/#manufacturer'>Manufacturer</a>] | Vendor information for the Items |  |
 | MetaData | object | Data representing pagination details |  |
 | MetaData.Page | Integer | Page of Items to be included in the resource | `1` |
 | MetaData.PageSize | Integer | Number of Items included in the resource | `20` |
@@ -101,9 +128,9 @@ A CatalogSearchResult resource is used to return information about Product resou
 |:-----|:----------|:------------|:--------|
 | Id | String | Identifier | `M1248-V1` |
 | Name | String | Name | `Galaxy S6 edge+ 32GB - Black Sapphire` |
-| ColorDefinition | <a href='#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
-| Assets | Array[<a href='#asset'>Asset</a>] | Asset information |  |
-| CanonicalClassification | <a href='#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
+| ColorDefinition | <a href='/api/catalog/#colordefinition'>ColorDefinition</a> | Information about the color of the Product |  |
+| Assets | Array[<a href='/api/catalog/#asset'>Asset</a>] | Asset information |  |
+| CanonicalClassification | <a href='/api/catalog/#canonicalclassification'>CanonicalClassification</a> | ClassificationTree details |  |
 | Entity | object | Entity information, used for Entity revisions |  |
 | Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
 | Entity.Name | String | Entity name | `Kentel Corp` |
@@ -115,7 +142,7 @@ A CatalogSearchResult resource is used to return information about Product resou
 | Manufacturer | object | [Manufacturer](/api/entity-store/#manufacturer) information for the Product |  |
 | Manufacturer.Id | Integer | Identifier for the [Manufacturer](/api/entity-store/#manufacturer) | `13149` |
 | Manufacturer.Name | String | Name of the [Manufacturer](/api/entity-store/#manufacturer) | `OtterBox` |
-| ManufacturerSkus | Array[<a href='#sku'>Sku</a>] | Manufacturer SKUs |  |
+| ManufacturerSkus | Array[<a href='/api/catalog/#sku'>Sku</a>] | Manufacturer SKUs |  |
 | MasterProductId | Integer | Identifier for the [Master Product](/api/product-structure/#masterproduct) | `1248` |
 | MSRP | object | Manufacturers suggested retail price information |  |
 | MSRP.Amount | Decimal | Manufacturers suggested retail price | `100` |
@@ -123,19 +150,19 @@ A CatalogSearchResult resource is used to return information about Product resou
 | Owner | object | Owner information used to designate if this is a public product (null) or private (not-null) |  |
 | Owner.Id | Integer | For private products, Identifier of the Company that owns this Product | `14146` |
 | Owner.Name | String | For private products, Name of the Company that owns this Product | `Kentel Corp` |
-| Region | <a href='#region'>Region</a> | Region information, for Regional Carrier Revisions |  |
+| Region | <a href='/api/catalog/#region'>Region</a> | Region information, for Regional Carrier Revisions |  |
 | ReleaseDate | DateTime | Release Date, in UTC | `2011-10-14T12:00:00.000` |
 | ShortDescription | String | Short Description | `Next is Now` |
 | Specifications | Array[object] | Details such as color, dimension, etc |  |
 | Specifications.Name | String | Name | `Color` |
-| Specifications.Fields | <a href='#field'>Field</a> | Group of ProductFields |  |
+| Specifications.Fields | <a href='/api/catalog/#field'>Field</a> | Group of ProductFields |  |
 | UpcCodes | Array[object] | UPC codes |  |
 | UpcCodes.Value | String | Name | `874688002478/16W` |
 | UpcCodes.Description | String | Description | `UPC` |
 | UpcCodes.Entity | Integer | Identifier of an Entity associated with this UPC code | `2` |
 | VariationId | Integer | Identifier for the Variation | `1` |
-| VariationInfo | Array[<a href='#variationinformation'>VariationInformation</a>] | [Variation](/concepts/product-structure/#variations) information for the Product |  |
-| VendorSkus | Array[<a href='#sku'>Sku</a>] | Vendor SKUs |  |
+| VariationInfo | Array[<a href='/api/catalog/#variationinformation'>VariationInformation</a>] | [Variation](/concepts/product-structure/#variations) information for the Product |  |
+| VendorSkus | Array[<a href='/api/catalog/#sku'>Sku</a>] | Vendor SKUs |  |
 | Version | Integer | Latest revision number | `1` |
 
 ### CanonicalClassification
@@ -156,11 +183,12 @@ A ColorDefinition allows you to define the available Colors for a Product
 |:-----|:----------|:------------|:--------|
 | Id | GUID | Unique identifier | `5c6e2779-79d1-4fbd-b6a8-36b81e851b15` |
 | Name | String | Name | `Black Sapphire` |
+| ColorTagIds | Array | List of [ColorTag](/api/product-structure/#colortag) Identifiers | `1` |
 | ColorTags | Array[object] | Color information |  |
 | ColorTags.Id | Integer | Identifier | `1` |
 | ColorTags.Name | String | Name | `Black` |
 | ColorTags.ColorCode | String | A valid Hex code representing this color | `#303232` |
-| Swatch | <a href='#swatch'>Swatch</a> | An icon to display on a screen next to a color showing the actual color of the product. Can be provided as an image Asset or hex code |  |
+| Swatch | <a href='/api/catalog/#swatch'>Swatch</a> | An icon to display on a screen next to a color showing the actual color of the product. Can be provided as an image Asset or hex code |  |
 
 
 ### Swatch
@@ -168,7 +196,7 @@ A ColorDefinition allows you to define the available Colors for a Product
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Type | String | Acceptable values are Asset, ColorCodes or Empty | `ColorCode` |
-| AssetId | GUID | If Type is Asset, an identifier for an Asset. Otherwise, this property is ignored | `7443d13e-dc14-4b30-833b-2919d765964e` |
+| AssetId | GUID | If Type is Asset, an identifier for an Asset. Otherwise, this property is ignored | `null` |
 | ColorCode | String | If Type is ColorCode, a valid hex code for a color. Otherwise, this propety is ignored | `#C0C8D0` |
 
 ### Asset
@@ -223,6 +251,7 @@ A ColorDefinition allows you to define the available Colors for a Product
 | Entity.Id | Integer | Identifier of an Entity used for Entity Revisions. See [Carrier Revisions](/concepts/product-structure/#carrier-revisions) for more information | `14146` |
 | Entity.Name | String | Entity name | `Kentel Corp` |
 | Description | String | Description | `Manufacturer SKU` |
+
 
 
 
@@ -325,6 +354,133 @@ public static CloseableHttpResponse GettingAllCatalogItems() throws IOException 
 response = RestClient.get 'https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ Array[<a href='#catalogitem'>CatalogItem</a>]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "CatalogItemId": "a183f1a9-c58f-426a-930a-9a6357db52ed",
+        "IsArchived": false,
+        "RmsId": "1",
+        "Slug": "M1248-V1"
+    }
+]</pre>
+
+<h2 id='adding-a-catalog-item-from-product-library' class='clickable-header top-level-header'>Adding a Catalog Item from Product Library</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Catalog/Items
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>Slug</code> (<strong>Required</strong>) - Unique identifier for a Product in Product Library</li></ul>
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-adding-a-catalog-item-from-product-library" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-adding-a-catalog-item-from-product-library" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-adding-a-catalog-item-from-product-library" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-adding-a-catalog-item-from-product-library" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-adding-a-catalog-item-from-product-library" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-adding-a-catalog-item-from-product-library" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-adding-a-catalog-item-from-product-library"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-adding-a-catalog-item-from-product-library">
+<pre id="http-code-adding-a-catalog-item-from-product-library"><code class="language-http">POST /Companies(14146)/Catalog/Items
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+</code><code class="language-csharp">{
+    "Slug": "M1248-V1"
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-adding-a-catalog-item-from-product-library">
+<pre id="curl-code-adding-a-catalog-item-from-product-library"><code class="language-http">curl -X POST "https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Slug": "M1248-V1"
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-adding-a-catalog-item-from-product-library">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-adding-a-catalog-item-from-product-library"><code class="language-csharp">static IRestResponse AddingACatalogItemFromProductLibrary()
+{
+    var client = new RestClient("https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Slug\":\"M1248-V1\"}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-adding-a-catalog-item-from-product-library">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-adding-a-catalog-item-from-product-library"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse AddingACatalogItemFromProductLibrary() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Slug\":\"M1248-V1\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-adding-a-catalog-item-from-product-library">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-adding-a-catalog-item-from-product-library"><code class="language-ruby">require 'rest-client'
+
+body = "{\"Slug\":\"M1248-V1\"}";
+
+response = RestClient.post 'https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Items', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
     } 
 
 puts response</code></pre>
@@ -916,7 +1072,7 @@ puts response</code></pre>
 <h4>Response</h4>
 
 
- <ul><li><code>Sku</code> (String) </li><li><code>VendorId</code> (Integer) </li><li><code>Items</code> (Array[<a href='#catalogitem'>CatalogItem</a>]) </li><ul><li><code>CatalogItemId</code> (Guid) </li><li><code>IsArchived</code> (Boolean) </li><li><code>RmsId</code> (String) </li><li><code>Slug</code> (String) </li></ul></ul>
+ <ul><li><code>Sku</code> (String) </li><li><code>VendorId</code> (Integer) </li><li><code>Items</code> (Array[<a href='/api/catalog/#catalogitem'>CatalogItem</a>]) </li><ul><li><code>CatalogItemId</code> (Guid) </li><li><code>IsArchived</code> (Boolean) </li><li><code>RmsId</code> (String) </li><li><code>Slug</code> (String) </li></ul></ul>
 
 <h5>Example</h5>
 
@@ -2194,4 +2350,5 @@ HTTP 200 Content-Type: application/json
 
 | HTTP Status Code | Description | How to Resolve |
 |:-----------------|:------------|:---------------|
+| `HTTP 400` | `Cannot add product to catalog` | Ensure {{Slug_Glossary}} is valid |
 | `HTTP 404` | `Catalog Item not found` | Ensure CatalogItem GUID is valid and the CatalogItem exists |
