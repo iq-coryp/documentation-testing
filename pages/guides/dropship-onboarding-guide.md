@@ -4,7 +4,7 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-03-2016
+last_updated: 29-02-2016
 summary: 
 ---
 
