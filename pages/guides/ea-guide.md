@@ -166,10 +166,13 @@ Any product added to your Catalog with a **Classification** of **Shoes** will au
 
 #### Creating a Product in Product Library
 
-Adding a new product to Endless Aisle involves creating a Master Product and any Variations and/or Revisions.
+Adding a new product to Endless Aisle involves creating a Product Structure consisting of a Master Product and any Variations and/or Revisions.
 
 {{tip}}
 To learn more about Master Products, Variations and Revisions see <a href="/concepts/product-structure/">Product Structure</a>
+{{end}}
+{{note}}
+The values used in this section will be different for each <a href="/api/environments/">Environment</a>
 {{end}}
 
 To create a product we need to...
@@ -180,7 +183,7 @@ To create a product we need to...
 4. Upload Assets
 5. (Optional) Select Colors
 6. (Optional) Create a Swatch
-7. Create a Product
+7. Create a Product Structure
 
 **Step 1 - Choose a Classification or Category**
 
@@ -428,9 +431,9 @@ Swatches can be described using either a valid hex code or an {{Asset}}.
 
 For simplicity, we will use the standard hex code for black, `#000000`. 
 
-**Step 7 - Create a Master Product**
+**Step 7 - Create a Product Structure**
 
-Finally, we can create a Master Product in Product Library.
+Finally, we can create a Product Structure, a Master Product in Product Library.
 
 ##### Example Request
 
@@ -457,6 +460,7 @@ Content-Type: application/json
   "Manufacturer": {
     "Id": 11706
   },
+  "OwnerEntityId": 14146,
   "RootRevision": {
     "Assets": [
         {
@@ -523,7 +527,10 @@ HTTP 201 Content-Type: application/json
       "Revisions": []
     }
   ],
-  "Owner": null,
+  "Owner": {
+    "Id": 14146,
+    "Name": "Kentel Corp"
+  },
   "ColorDefinitions": [
     {
       "Id": "2ad59553-4d62-447e-8385-eb347159b36a",
@@ -663,6 +670,8 @@ The following rules determine which value is displayed:
 #### Relevant API Reference
 
 * [Pricing](/api/pricing/)
+
+<hr/>
 
 ### Orders
 
