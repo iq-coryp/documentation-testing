@@ -116,19 +116,19 @@ GET /partners({PartnerId})/salesTransactions?startDate={StartDate}&endDate={EndD
 </ul>
 <div class="tab-content"> 
     <div role="tabpanel" class="tab-pane active" id="http-getting-sales-transactions">
-<pre id="http-code-getting-sales-transactions"><code class="language-http">GET /partners(36)/salesTransactions?startDate=2015-12-03T06:00:00.000Z&endDate=2015-12-30T06:00:00.000Z&$skip=0&$top=10
+<pre id="http-code-getting-sales-transactions"><code class="language-http">GET /partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="curl-getting-sales-transactions">
-<pre id="curl-code-getting-sales-transactions"><code class="language-http">curl -X GET "https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03T06:00:00.000Z&endDate=2015-12-30T06:00:00.000Z&$skip=0&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+<pre id="curl-code-getting-sales-transactions"><code class="language-http">curl -X GET "https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
     <div role="tabpanel" class="tab-pane" id="csharp-getting-sales-transactions">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
 <pre id="csharp-code-getting-sales-transactions"><code class="language-csharp">static IRestResponse GettingSalesTransactions()
 {
-    var client = new RestClient("https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03T06:00:00.000Z&endDate=2015-12-30T06:00:00.000Z&$skip=0&$top=10");
+    var client = new RestClient("https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10");
     var request = new RestRequest(Method.GET);
      
     request.AddHeader("Authorization", "Bearer (Access Token)"); 
@@ -150,7 +150,7 @@ import java.io.IOException;
 
 public static CloseableHttpResponse GettingSalesTransactions() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03T06:00:00.000Z&endDate=2015-12-30T06:00:00.000Z&$skip=0&$top=10");
+    HttpGet request = new HttpGet("https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10");
      
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
@@ -164,7 +164,7 @@ public static CloseableHttpResponse GettingSalesTransactions() throws IOExceptio
 
 
 
-response = RestClient.get 'https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03T06:00:00.000Z&endDate=2015-12-30T06:00:00.000Z&$skip=0&$top=10', {
+response = RestClient.get 'https://reportingdemo.iqmetrix.net/v1/partners(36)/salesTransactions?startDate=2015-12-03&endDate=2015-12-30&$skip=0&$top=10', {
      :'Authorization' => 'Bearer (Access Token)',
      :'Accept' => 'application/json',
     } 
