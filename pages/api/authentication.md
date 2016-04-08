@@ -8,6 +8,10 @@ last_updated: 23-03-2016
 summary: 
 ---
 
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
+
 {% include linkrefs.html %}
 
 ## Overview 
@@ -18,21 +22,8 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 
 ## Endpoints
 
-* Sandbox: https://accountsdemo.iqmetrix.net/v1
-* Production: https://accounts.iqmetrix.net/v1
-
-## Note
-
-The code samples below use the following `OAuth2TokenResponse` object,
-
-```csharp
-public class OAuth2TokenResponse
-{
-    public string access_token { get; set; }
-    public string expires_in { get; set; }
-    public string refresh_token { get; set; }
-}
-```
+* Sandbox: <a href="https://accountsdemo.iqmetrix.net/v1">https://accountsdemo.iqmetrix.net/v1</a>
+* Production: <a href="https://accounts.iqmetrix.net/v1">https://accounts.iqmetrix.net/v1</a>
 
 ## Obtaining an Access Token
 
@@ -47,6 +38,7 @@ As long as an access token is not expired, it can be used to authorize requests 
 #### Request
 
     POST /oauth2/token
+
     grant_type={grant_type}&
     username={username}&
     password={password}&
@@ -65,23 +57,33 @@ As long as an access token is not expired, it can be used to authorize requests 
 *  `client_id` (**Required**) The client ID provided by iQmetrix
 *  `client_secret` (**Required**) - The client secret
 
-###### Example
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-obtaining-an-access-token" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-obtaining-an-access-token" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-obtaining-an-access-token" data-toggle="tab">C# (RestSharp)</a></li>
+</ul>
 
-    POST /oauth2/token
-    Content-Type: application/x-www-form-urlencoded
-    grant_type=password&
-    username=email@example.com&
-    password=examplepassword&
-    client_id=exampleclient&
-    client_secret=examplesecret
+<div class="tab-content"> 
 
-###### Code Sample (C#)
+<div role="tabpanel" class="tab-pane active" id="http-obtaining-an-access-token">
+<pre id="http-code-obtaining-an-access-token"><code class="language-http">POST /oauth2/token
+Content-Type: application/x-www-form-urlencoded
 
-```csharp
-using RestSharp;
+grant_type=password&
+username=email@example.com&
+password=examplepassword&
+client_id=exampleclient&
+client_secret=examplesecret</code></pre></div>
+
+<div role="tabpanel" class="tab-pane" id="curl-obtaining-an-access-token"><pre id="curl-code-obtaining-an-access-token"><code class="language-http">curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&client_id=exampleclient&client_secret=examplesecret&username=example@example.com&password=examplepassword' "https://accountsdemo.iqmetrix.net/v1/oauth2/token"</code></pre></div>
+
+<div role="tabpanel" class="tab-pane" id="csharp-obtaining-an-access-token">
+This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+
+<pre id="csharp-code-obtaining-an-access-token"><code class="language-csharp">using RestSharp;
 using RestSharp.Contrib;
 
-public static OAuth2TokenResponse ObtainingAnAccessToken()
+public static IRestResponse ObtainingAnAccessToken()
 {
     var client = new RestClient("https://accountsdemo.iqmetrix.net/v1/oauth2");
     var request =
@@ -94,13 +96,11 @@ public static OAuth2TokenResponse ObtainingAnAccessToken()
 
     request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    var response = client.Execute<OAuth2TokenResponse>(request);
+    return client.Execute(request);
+}</code></pre></div>
+</div>
 
-    return response.Data;
-}
-```
-
-#### Response
+<h4>Response</h4>
 
 * `access_token` - The access token issued by the authorization server
 * `expires_in` - Seconds remaining until the access token expires, **12 hours** or less if revoked
@@ -145,39 +145,45 @@ The client credentials must be the same as those used in the request to acquire 
 * `client_secret` (**Required**) - The client secret, should not be shared
 * `refresh_token` (**Required**) - The refresh token we are exchanging 
 
-###### Example
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-refreshing-an-access-token" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-refreshing-an-access-token" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-refreshing-an-access-token" data-toggle="tab">C# (RestSharp)</a></li>
+</ul>
 
-    POST /oauth2/token 
-    Content-Type: application/x-www-form-urlencoded
-    grant_type=refresh_token& 
-    client_id=exampleclient& 
-    client_secret=examplesecret& 
-    refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h
+<div class="tab-content"> 
 
-###### Code Sample (C#)
+<div role="tabpanel" class="tab-pane active" id="http-refreshing-an-access-token">
+<pre id="http-code-refreshing-an-access-token"><code class="language-http">POST /oauth2/token 
+Content-Type: application/x-www-form-urlencoded
 
-```csharp
-using RestSharp;
+grant_type=refresh_token& 
+client_id=exampleclient& 
+client_secret=examplesecret& 
+refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h</code></pre></div>
+<div role="tabpanel" class="tab-pane" id="curl-refreshing-an-access-token"><pre id="curl-code-refreshing-an-access-token"><code class="language-http">curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=refresh_token&client_id=exampleclient&client_secret=examplesecret&refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h' "https://accountsdemo.iqmetrix.net/v1/oauth2/token"</code></pre></div>
+
+<div role="tabpanel" class="tab-pane" id="csharp-refreshing-an-access-token">
+This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+
+<pre id="csharp-code-refreshing-an-access-token"><code class="language-csharp">using RestSharp;
 using RestSharp.Contrib;
 
-public static OAuth2TokenResponse RefreshingAnAccessToken(string refreshToken)
+public static IRestResponse RefreshingAnAccessToken()
 {
-
     var client = new RestClient("https://accountsdemo.iqmetrix.net/v1/oauth2");
     var request =
         new RestRequest("token", Method.POST)
-            .AddParameter("refresh_token", refreshToken)
-            .AddParameter("grant_type", "refresh_token")
+            .AddParameter("grant_type", "password")
+            .AddParameter("refresh_token", "f8bk56n40f7gi34j49g7bh4n430gf874h")
             .AddParameter("client_id", "exampleclient")
             .AddParameter("client_secret", "examplesecret");
 
     request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    var response = client.Execute<OAuth2TokenResponse>(request);
-
-    return response.Data;
-}
-```
+    return client.Execute(request);
+}</code></pre></div>
+</div>
 
 #### Response
 
