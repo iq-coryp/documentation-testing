@@ -4,7 +4,7 @@ permalink: /api/authentication/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-03-2016
+last_updated: 15-04-2016
 summary: 
 ---
 
@@ -19,6 +19,27 @@ summary:
 iQmetrix APIs are protected by {{OAuth2_Glossary}}.
 
 In order to make authorized requests to iQmetrix APIs, your application must first obtain an {{AccessToken_Glossary}}.
+
+### Postman Example
+
+**New:** You can now run these calls in <a href="http://www.getpostman.com">Postman</a>. 
+
+{{note}}The link below is only supported in either a Chrome browser or using a Mac computer.{{end}}
+
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="334bc00c63a6a8866669"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
+
+<hr />
 
 ## Endpoints
 
@@ -39,10 +60,10 @@ As long as an access token is not expired, it can be used to authorize requests 
 
     POST /oauth2/token
 
-    grant_type={grant_type}&
-    username={username}&
-    password={password}&
-    client_id={client_id}&
+    grant_type={grant_type}&amp;
+    username={username}&&amp;
+    password={password}&&amp;
+    client_id={client_id}&&amp;
     client_secret={client_secret}
 
 #### Headers
@@ -69,13 +90,13 @@ As long as an access token is not expired, it can be used to authorize requests 
 <pre id="http-code-obtaining-an-access-token"><code class="language-http">POST /oauth2/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password&
-username=email@example.com&
-password=examplepassword&
-client_id=exampleclient&
+grant_type=password&amp;
+username=email@example.com&amp;
+password=examplepassword&amp;
+client_id=exampleclient&amp;
 client_secret=examplesecret</code></pre></div>
 
-<div role="tabpanel" class="tab-pane" id="curl-obtaining-an-access-token"><pre id="curl-code-obtaining-an-access-token"><code class="language-http">curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&client_id=exampleclient&client_secret=examplesecret&username=example@example.com&password=examplepassword' "https://accountsdemo.iqmetrix.net/v1/oauth2/token"</code></pre></div>
+<div role="tabpanel" class="tab-pane" id="curl-obtaining-an-access-token"><pre id="curl-code-obtaining-an-access-token"><code class="language-http">curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&amp;client_id=exampleclient&amp;client_secret=examplesecret&amp;username=example@example.com&amp;password=examplepassword' "https://accountsdemo.iqmetrix.net/v1/oauth2/token"</code></pre></div>
 
 <div role="tabpanel" class="tab-pane" id="csharp-obtaining-an-access-token">
 This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
@@ -157,11 +178,11 @@ The client credentials must be the same as those used in the request to acquire 
 <pre id="http-code-refreshing-an-access-token"><code class="language-http">POST /oauth2/token 
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=refresh_token& 
-client_id=exampleclient& 
-client_secret=examplesecret& 
+grant_type=refresh_token&amp;
+client_id=exampleclient&amp;
+client_secret=examplesecret&amp; 
 refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h</code></pre></div>
-<div role="tabpanel" class="tab-pane" id="curl-refreshing-an-access-token"><pre id="curl-code-refreshing-an-access-token"><code class="language-http">curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=refresh_token&client_id=exampleclient&client_secret=examplesecret&refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h' "https://accountsdemo.iqmetrix.net/v1/oauth2/token"</code></pre></div>
+<div role="tabpanel" class="tab-pane" id="curl-refreshing-an-access-token"><pre id="curl-code-refreshing-an-access-token"><code class="language-http">curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=refresh_token&amp;client_id=exampleclient&amp;client_secret=examplesecret&amp;refresh_token=f8bk56n40f7gi34j49g7bh4n430gf874h' "https://accountsdemo.iqmetrix.net/v1/oauth2/token"</code></pre></div>
 
 <div role="tabpanel" class="tab-pane" id="csharp-refreshing-an-access-token">
 This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
