@@ -22,9 +22,7 @@ In order to make authorized requests to iQmetrix APIs, your application must fir
 
 ### Postman Example
 
-**New:** You can now run these calls in <a href="http://www.getpostman.com">Postman</a>. 
-
-{{note}}The link below is only supported in either a Chrome browser or using a Mac computer.{{end}}
+You can now import collections directly into <a href="http://www.getpostman.com">Postman</a>. For Chrome or Mac users, click the button below.
 
 <div class="postman-run-button"
 data-postman-action="collection/import"
@@ -38,6 +36,9 @@ data-postman-var-1="334bc00c63a6a8866669"></div>
     ));
   }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
 </script>
+
+<br />
+Alternatively, you can import the collection by clicking <a href="https://www.getpostman.com/collections/334bc00c63a6a8866669">here</a> 
 
 <hr />
 
