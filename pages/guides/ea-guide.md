@@ -6,45 +6,57 @@ keywords:
 audience: 
 last_updated: 
 summary: 
+rouge: false
 ---
 
 {% include linkrefs.html %}
 
 ## Overview
 
-This guide is intended to demonstrate common integration scenarios between the iQmetrix Endless Aisle solution and external systems utilizing APIs.
+The following document outlines APIs and requests in common integration scenarios between the iQmetrix Endless Aisle solution and external systems utilizing APIs. 
 
-<hr/>
+The following APIs will be covered in this guide:
 
-## Who Is This Guide For? 
+* Authentication
+* Assets
+* Catalogs
+* Classification Tree
+* Entities
+* Orders
+* Pricing
+* Product Structure
 
-You may be interested in this guide if you are integrating an external system with Endless Aisle, such as...
+### Who Is This Guide For? 
+
+The intended audience for this guide are developers who are integrating an external system with Endless Aisle, such as...
 
 * eCommerce Solutions
 * Content Management Systems
 * Inventory Management Systems
 * Point of Sale Systems
 
-<hr/>
+### Onboarding Package
 
-## Prerequisites
+As part of the onboarding process, you will have received an onboarding package from the iQmetrix API team. This package provides you credentials and access details in order to perform the topics covered in this guide. 
 
-To use this guide, the following steps must be completed:
+Should you require information beyond the scope of this guide, or did not receive the onboarding package, contact {{contact_support}}.
 
-* You must have your **onboarding package** from iQmetrix, which includes your access credentials
-* Your {{CompanyTree_Concept}}, representing company structure (stores, groups, divisions, etc), must be created
+### Environment
 
-{{tip}}
-If the above steps are not complete or you are not sure, contact {{contact_support}}.
-{{end}}
+iQmetrix provides you with two environments: Sandbox and Production. 
+Use the Sandbox environment to test your API and to perform end-to-end testing. After completing this stage proceed to the Production environment.
 
-<hr/>
+For more information on environments, see {{Environment}}.
 
-## Before You Begin
+The iQmetrix API supports `JSON` and `JSON + HAL`. See [Supported Response Formats](/api/getting-started) for more information.
+
+## Authentication
 
 In order to make authorized requests to iQmetrix APIs, you need an {{AccessToken_Glossary}}.
 
 See the table below for different ways of getting an Access Token.
+
+**Table 5:** Methods for Obtaining an Access Token
 
 | If... | Then... |
 |:------|:--------|
@@ -57,8 +69,6 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 
     Authorization: Bearer (Access Token)
 
-<hr/>
-
 ## Integration Points
 
 This guide is organized by functional areas of an external system that you may wish to integrate with Endless Aisle.
@@ -67,7 +77,7 @@ Feel free to skip to any section you are interested in:
 
 <div id="page-selector">
   <div class="row">
-    <span class="col-md-3 text-center">
+    <span class="col-md-6 text-center">
       <a href="#corporate-hierarchy">
         <span class="col-md-12">
           <h4>Corporate Hierarchy</h4>
@@ -77,7 +87,7 @@ Feel free to skip to any section you are interested in:
         </span>
       </a>
     </span>
-    <span class="col-md-3 text-center">
+    <span class="col-md-6 text-center">
       <a href="#content">
         <span class="col-md-12">
           <h4>Content</h4><br/>
@@ -87,7 +97,9 @@ Feel free to skip to any section you are interested in:
         </span>
       </a>    
     </span> 
-    <span class="col-md-3 text-center">
+  </div> 
+  <div class="row">
+    <span class="col-md-6 text-center">
       <a href="#inventory">
         <span class="col-md-12">
           <h4>Inventory</h4><br/>
@@ -97,7 +109,7 @@ Feel free to skip to any section you are interested in:
         </span>
       </a>       
     </span>  
-    <span class="col-md-3 text-center">
+    <span class="col-md-6 text-center">
       <a href="#orders">
         <span class="col-md-12">
           <h4>Orders</h4><br/>
@@ -106,51 +118,288 @@ Feel free to skip to any section you are interested in:
           <i class="fa fa-file-text-o fa-4x"></i>
         </span>
       </a>   
-    </span>
-  </div> 
+    </span>  
+  </div>
 </div>
 
 <hr/>
 
-### Corporate Hierarchy
+## Corporate Hierarchy
 
-In Endless Aisle, {{Pricing}} and {{Availability}} are set at different levels in your Company Tree, which represents your corporate hierarchy. 
+In Endless Aisle, {{Pricing}} and {{Availability}} are set at different levels in your <a href="http://developers.iqmetrix.com/concepts/company-tree/">Company Tree</a>, which represents your corporate hierarchy. 
 
-Availability is set at the store level while Pricing can be set at the Company level.
-
-{{tip}}
-To learn more about your Company Tree, see <a href="/concepts/company-tree/">Company Tree</a>
-{{end}}
+Inventory Availability is set at the Location level while Pricing can be set at the <a href="http://developers.iqmetrix.com/api/pricing/#creating-or-updating-product-pricing-at-company-level">Company Tree</a> or <a href="http://developers.iqmetrix.com/api/pricing/#creating-or-updating-product-pricing-at-location-level">Location</a> level.
 
 Changes to your corporate hierarchy should be pushed to Endless Aisle to ensure Pricing and Availability are accurate.
 
-#### Relevant API Reference
+The table below describes common changes to corporate hierarchy and how to make the change in Endless Aisle.
 
-* [Company Tree](/api/company-tree/)
+**Table 2:** Methods for Updating Corporate Hierarchy
+
+| Change | How to Modify |
+|:-------|:--------------|
+| Changing a store's address or hours | See [Updating a Location](#updating-a-location) below |
+| Creating a new store | [Creating a Location](/api/company-tree/#creating-a-location) |
+| Reorganizing corporate hierarchy | [Creating a Division](/api/company-tree/#creating-a-division) or <br/> [Creating a Group](/api/company-tree/#creating-a-group) or <br/> [Deleting a Group or Division](/api/company-tree/#deleting-a-group-or-division) |
+
+### Updating a Location
+
+Updating a Location in Endless Aisle is a two-step process.
+
+1. Getting the Location Identifier
+2. Updating the Location
+
+#### Step 1 - Getting the Location Identifier
+
+Before we can update a Location, we must get its Identifier. If you already know the Identifier of the Location, you can skip this step.
+
+We can use [Getting All Locations for a Company](/api/company-tree/#getting-all-locations-for-a-company).
+
+In this example we will look for a Location in Chicago called Atrium Mall.
+
+##### Example Request
+
+```
+GET https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations
+Authorization: Bearer (Access Token)
+Accept: application/json
+```
+
+##### Example Response
+
+```
+HTTP 200 Content-Type: application/json
+[
+  {
+    "LocationType": null,
+    "LocationSubType": null,
+    "Address": {
+      "AddressLine1": "512 Broad Street",
+      "AddressLine2": null,
+      "City": "Chicago",
+      "StateCode": "IL",
+      "StateName": "Illinois",
+      "CountryCode": "US",
+      "CountryName": "United States",
+      "Zip": null
+    },
+    "Contacts": [],
+    "StorePhoneNumbers": [...],
+    "Area": null,
+    "StoreHours": {...},
+    "Geography": null,
+    "TimeZone": null,
+    "Id": 14239,
+    "Name": "Atrium Mall - Chicago",
+    "Description": "",
+    "Roles": [...],
+    "Role": "Location",
+    "SortName": "atrium mall - chicago",
+    "Attributes": {},
+    "Relationships": [...],
+    "Version": 2,
+    "CreatedUtc": "2015-11-20T19:54:18.613Z",
+    "LastModifiedUtc": "2016-04-19T19:12:29.19Z",
+    "CorrelationId": null,
+    "ClientEntityId": null,
+    "TypeId": 95,
+    "Logo": null
+  },
+  {
+    "LocationType": null,
+    "LocationSubType": null,
+    "Address": {
+      "AddressLine1": null,
+      "AddressLine2": null,
+      "City": "St. John's",
+      "StateCode": "NL",
+      "StateName": "Newfoundland and Labrador",
+      "CountryCode": "CA",
+      "CountryName": "Canada",
+      "Zip": null
+    },
+    "Contacts": [],
+    "StorePhoneNumbers": [...],
+    "Area": null,
+    "StoreHours": {...},
+    "Geography": null,
+    "TimeZone": null,
+    "Id": 14213,
+    "Name": "Avalon Mall",
+    "Description": "",
+    "Roles": [...],
+    "Role": "Location",
+    "SortName": "avalon mall",
+    "Attributes": {},
+    "Relationships": [...],
+    "Version": 1,
+    "CreatedUtc": "2015-11-20T19:10:30.445Z",
+    "LastModifiedUtc": "2015-11-20T19:10:30.445Z",
+    "CorrelationId": null,
+    "ClientEntityId": null,
+    "TypeId": null,
+    "Logo": null
+  },
+  ...
+]
+```
+
+From the response, we can see the `Id` of Atrium Mall is `14239`.
+
+#### Step 2 - Updating the Location
+
+Now that we know the `Id`, we can update the Location's address using [Updating a Location](/api/company-tree/#updating-a-location). Our new address will be 200 Atrium Street.
+
+##### Example Request
+
+```
+PUT https://entitymanagerdemo.iqmetrix.net/v1/Companies(14146)/Locations(14239)
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+  "LocationType": null,
+  "LocationSubType": null,
+  "Address": {
+    "AddressLine1": "200 Atrium Street",
+    "AddressLine2": null,
+    "City": "Chicago",
+    "StateCode": "IL",
+    "StateName": "Illinois",
+    "CountryCode": "US",
+    "CountryName": "United States",
+    "Zip": null
+  },
+  "Contacts": [],
+  "StorePhoneNumbers": [],
+  "Area": null,
+  "StoreHours": {
+    "Monday": null,
+    "Tuesday": null,
+    "Wednesday": null,
+    "Thursday": null,
+    "Friday": null,
+    "Saturday": null,
+    "Sunday": null
+  },
+  "Geography": null,
+  "TimeZone": null,
+  "Id": 14239,
+  "Name": "Atrium Mall - Chicago",
+  "Description": "",
+  "Roles": [
+    {
+      "Name": "Location"
+    }
+  ],
+  "Role": "Location",
+  "SortName": "atrium mall - chicago",
+  "Attributes": {},
+  "Relationships": [
+    {
+      "Id": 6357,
+      "Definition": 12,
+      "Source": 14178,
+      "Destination": 14239,
+      "CreatedUtc": "2015-11-20T19:54:18.628Z",
+      "Version": 1
+    }
+  ],
+  "Version": 1,
+  "CreatedUtc": "2015-11-20T19:54:18.613Z",
+  "LastModifiedUtc": "2016-04-19T19:12:29.19Z",
+  "CorrelationId": null,
+  "ClientEntityId": null,
+  "TypeId": 95,
+  "Logo": null
+}
+```
+
+##### Example Response
+
+```
+HTTP 200 Content-Type: application/json
+{
+  "LocationType": null,
+  "LocationSubType": null,
+  "Address": {
+    "AddressLine1": "200 Atrium Street",
+    "AddressLine2": null,
+    "City": "Chicago",
+    "StateCode": "IL",
+    "StateName": "Illinois",
+    "CountryCode": "US",
+    "CountryName": "United States",
+    "Zip": null
+  },
+  "Contacts": [],
+  "StorePhoneNumbers": [],
+  "Area": null,
+  "StoreHours": {
+    "Monday": null,
+    "Tuesday": null,
+    "Wednesday": null,
+    "Thursday": null,
+    "Friday": null,
+    "Saturday": null,
+    "Sunday": null
+  },
+  "Geography": null,
+  "TimeZone": null,
+  "Id": 14239,
+  "Name": "Atrium Mall - Chicago",
+  "Description": "",
+  "Roles": [
+    {
+      "Name": "Location"
+    }
+  ],
+  "Role": "Location",
+  "SortName": "atrium mall - chicago",
+  "Attributes": {},
+  "Relationships": [
+    {
+      "Id": 6357,
+      "Definition": 12,
+      "Source": 14178,
+      "Destination": 14239,
+      "CreatedUtc": "2015-11-20T19:54:18.628Z",
+      "Version": 1
+    }
+  ],
+  "Version": 2,
+  "CreatedUtc": "2015-11-20T19:54:18.613Z",
+  "LastModifiedUtc": "2016-04-20T19:12:29.19Z",
+  "CorrelationId": null,
+  "ClientEntityId": null,
+  "TypeId": 95,
+  "Logo": null
+}
+```
 
 <hr/>
 
-### Content
+## Content
 
-Products in Endless Aisle are displayed using your Catalog and Product Library.
+**Figure 1**: Illustrates Products in Endless Aisle
 
-{{tip}}
-To learn more about Product Library and your Catalog, see <a href="/concepts/product-library/">Product Library</a>
-{{end}}
+<img src="{{ "/images/ea-browse.png" | prepend: site.url }}" alt="Adding a Rule to Endless Aisle" />
+
+Products in Endless Aisle are displayed using your <a href="http://developers.iqmetrix.com/concepts/product-library/#retailer-catalog">Catalog and Product Library</a>.
 
 Pushing a new product to Endless Aisle involves:
 
-* Creating a Rule in Endless Aisle
-* Creating a Product in Product Library
+* Creating a Rule 
+* Creating a Product 
 * Adding a Product to your Catalog
 
-#### Creating a Rule in Endless Aisle
+### Creating a Rule 
 
 Products can be added to an Endless Aisle display **manually** or **automatically** through rules.
 
 **Manually** adding products must be done through [iQmetrix Hub](https://hub.iqmetrix.net/).
 
-**Automatically** adding products involves creating **rules** in [iQmetrix Hub](https://hub.iqmetrix.net/) using Classification, Manufacturer or Availability.
+**Automatically** adding products involves creating **rules** in [iQmetrix Hub](https://hub.iqmetrix.net/) using {{Classification}}, {{Manufacturer}} or {{Availability}}.
 
 Once these rules are set up, any products added to your Catalog matching the rule criteria will **automatically** be added to Endless Aisle in the configured category.
 
@@ -160,38 +409,35 @@ For more information on configuring rules, see [Shelf Configuration Creation and
 
 Using the following rule:
 
+**Figure 2**: Illustrates a rule in Endless Aisle
+
 <img src="{{ "/images/ea-rule-add.PNG" | prepend: site.url }}" alt="Adding a Rule to Endless Aisle" />
 
 Any product added to your Catalog with a **Classification** of **Shoes** will automatically be added to Endless Aisle.
 
-#### Creating a Product in Product Library
+### Creating a Product 
 
-Adding a new product to Endless Aisle involves creating a Product Structure consisting of a Master Product and any Variations and/or Revisions.
-
-{{tip}}
-To learn more about Master Products, Variations and Revisions see <a href="/concepts/product-structure/">Product Structure</a>
-{{end}}
-{{note}}
-The values used in this section will be different for each <a href="/api/environments/">Environment</a>
-{{end}}
-
-To create a product we need to...
+Adding a new product to Endless Aisle involves:
 
 1. Choose a Classification or Category
-2. Determine the Product Manufacturer
+2. Determine Product Manufacturer
 3. Get Field Definitions
 4. Upload Assets
 5. (Optional) Select Colors
 6. (Optional) Create a Swatch
 7. Create a Product Structure
 
-**Step 1 - Choose a Classification or Category**
+{{note}}
+The values used in this section will be different for each <a href="/api/environments/">Environment</a>
+{{end}}
+
+#### Step 1 - Choose a Classification or Category
 
 To get a list of Classifications, we can use [Getting a Classification Tree](/api/classification-tree/#getting-a-classification-tree).
 
 The URI parameter `ClassificationTreeId` will be provided in your **onboarding package**. 
 
-We can use `88`, which corresponds to the Apparel & Accessories Classification Tree.
+We can use `88`, which corresponds to the Apparel & Accessories Classification Tree. 
 
 ##### Example Request
 
@@ -244,10 +490,12 @@ HTTP 200 Content-Type: application/json
                     },
                     ...
                   ]
-                }
+                },
+                ...
               ],
               "Classifications": []
-            }
+            },
+            ...
           ],
           "Classifications": []
         },
@@ -268,11 +516,15 @@ As our product is a youth dress shoe, we can use the Classification **Dress**, w
 For a Product to be added to Endless Aisle, it must match a rule set up in <a href="#creating-a-rule-in-endless-aisle">Creating a Rule in Endless Aisle</a>. 
 {{end}}
 
-**Step 2 - Determine Product Manufacturer**
+#### Step 2 - Determine Product Manufacturer
 
 All Products in Product Library must have an associated {{Manufacturer}}.
 
 To find the appropriate {{Manufacturer}} for our product, we can use [Getting All Manufacturers](/api/entity-store/#getting-all-manufacturers).
+
+{{tip}}
+If you can't find a matching Manufacturer, contact <a href="mailto:{{site.support_email}}?subject=Support">API Support</a>
+{{end}}
 
 ##### Example Request
 
@@ -307,11 +559,7 @@ HTTP 200 Content-Type: application/json
 
 We know our product is manufactured by the company Rampage. From the results, we can see the matching Manufacturer has an Id of `11706`.
 
-{{tip}}
-If you can't find a matching Manufacturer, contact <a href="mailto:{{site.support_email}}?subject=Support">API Support</a> to have it added
-{{end}}
-
-**Step 3 - Get Field Definitions**
+#### Step 3 - Get Field Definitions
 
 Product properties such as name, short description, and material are defined using {{FieldDefinitions}}.
 
@@ -338,16 +586,41 @@ HTTP 200 Content-Type: application/json
         "DisplayName": "Product Name",
         "Options": [ ]
     },
+    {
+      "Id": 2,
+      "StringId": "Short Description",
+      "InputType": "TextSingleLine",
+      "IsRequired": false,
+      "LanguageInvariantUnit": "",
+      "DisplayName": "Short Description",
+      "Unit": "",
+      "Options": [],
+      "LanguageInvariantName": "Short Description"
+    },
+    {
+      "Id": 3,
+      "StringId": "Band Material",
+      "InputType": "TextSingleLine",
+      "IsRequired": false,
+      "LanguageInvariantUnit": "",
+      "DisplayName": "Band Material",
+      "Unit": "",
+      "Options": [],
+      "LanguageInvariantName": "Band Material"
+    },    
     ...
 ]
 ```
+
 From the result we can see the FieldDefinition for Product Name has an Id of `1`. 
 
-**Step 4 - Upload Assets**
+#### Step 4 - Upload Assets
 
 To ensure our Product has an image in Endless Aisle, we can upload an asset for the product using [Creating an Asset](/api/assets/#creating-an-asset).
 
 We will upload the following image of our product:
+
+**Figure 3**: Illustrates a Product Detail View in Endless Aisle
 
 <img src="{{ "/images/MJYouth.jpg" | prepend: site.url }}" alt="Mary Jane Youth Shoe" />
 
@@ -379,7 +652,7 @@ HTTP 201 Content-Type: application/json
 }
 ```
 
-**(Optional) Step 5 - Select Colors**
+#### (Optional) Step 5 - Select Colors
 
 ColorTags are used for filtering and sorting products.
 
@@ -421,9 +694,11 @@ HTTP 200 Content-Type: application/json
 
 As our product is primarily black, we can use the ColorTag with Id `1`. If our product had multiple colors, we could select multiple ColorTags. 
 
-**(Optional) Step 6 - Create a Swatch**
+#### (Optional) Step 6 - Create a Swatch
 
 Swatches can be used to create an icon to display on a screen next to a color name showing the actual color of the product, as shown below.
+
+**Figure 4**: Illustrates a Color Swatch in Endless Aisle
 
 <img src="{{ "/images/ea-color-swatch.png" | prepend: site.url }}" alt="Endless Aisle Color Swatch" />
 
@@ -431,9 +706,9 @@ Swatches can be described using either a valid hex code or an {{Asset}}.
 
 For simplicity, we will use the standard hex code for black, `#000000`. 
 
-**Step 7 - Create a Product Structure**
+#### Step 7 - Create a Product Structure
 
-Finally, we can create a Product Structure, a Master Product in Product Library.
+Finally, we can create a Product Structure.
 
 ##### Example Request
 
@@ -558,16 +833,9 @@ HTTP 201 Content-Type: application/json
 }
 ```
 
-#### Relevant API Reference
+### Adding a Product to your Catalog
 
-* [Product Structure](/api/product-structure/)
-* [Classification Tree](/api/classification-tree/)
-* [Entities](/api/entity-store/)
-* [Field Definitions](/api/field-definitions/)
-
-#### Adding a Product to your Catalog
-
-Once you have created a {{MasterProduct}}, you can add the Product to your Catalog.
+Once you have created a {{MasterProduct}}, you can add it to your Catalog.
 
 The **Slug** value for your Product can be determined using the [Product Slug Formula](/api/catalog/#product-slug).
 
@@ -599,65 +867,164 @@ HTTP 201 Content-Type: application/json
 }
 ```
 
-#### Relevant API Reference
-
-* [Catalog](/api/catalog/)
-* [Products](/api/product-library/)
-
 <hr/> 
 
-### Inventory
+## Inventory
 
 When a Customer selects a product in Endless Aisle their product details are displayed, as shown below.
 
+**Figure 5**: Illustrates a Product Detail View in Endless Aisle
+
 <img src="{{ "/images/ea-product-detail.png" | prepend: site.url }}" alt="Endless Aisle Product Detail" />
 
-The table below lists where each component comes from and how it can be modified, if possible:
+The table below lists where each component comes from and how to modify it, where possible:
+
+**Table 3:** Sources for items in Figure 5
 
 | Component | Source | Service | How to Modify |
 |:----------|:-------|:--------|:--------------|
-| Caitlin Mary Jane Shoe - Youth | [Product](/api/catalog/#product).Name | Product Library | [Updating A Product](#updating-a-product) |
+| Caitlin Mary Jane Shoe - Youth | [Product](/api/catalog/#product).Name | Product Library | [Updating a Product](#updating-a-product) |
 | [Hero Shot](/api/glossary/#hero-shot) | [Product](/api/catalog/#product).HeroShot | Product Library | |
-| $29.99 | [Pricing](/api/pricing/).OverridePrice **or** [Pricing](/api/pricing/).RegularPrice | Pricing | [Updating Pricing](#updating-pricing) |
-| IN STOCK | [Availability](/api/availability/#availability).Quantity | Availability | |
-| Navy | [ColorDefinition](/api/catalog/#colordefinition).Name | Product Library | [Updating A Product](#updating-a-product) |
-| Color Selector | [Swatch](/api/catalog/#swatch) | Product Library | [Updating A Product](#updating-a-product) |
+| $29.99 | [Pricing](/api/pricing/).OverridePrice **or** [Pricing](/api/pricing/).RegularPrice | Pricing | [Managing Pricing](#managing-pricing) |
+| IN STOCK | [Availability](/api/availability/#availability).Quantity | Availability | [Managing Availability](#managing-availability) |
+| Navy | [ColorDefinition](/api/catalog/#colordefinition).Name | Product Library | [Updating a Product](#updating-a-product) |
 
-#### Updating a Product
+### Updating a Product
 
-To update Products in Endless Aisle, you must update a Master Product, Variation or Revision, depending on the change.
+Updating a product in Endless Aisle involves:
 
-{{tip}}
-To learn more about Master Products, Variations and Revisions see <a href="/concepts/product-structure/">Product Structure</a>
-{{end}}
+1. Getting the Product Slug
+2. Determining the Product Type
+3. Updating the Product
 
-**Master Product** changes include: 
+#### Step 1 - Searching Your Catalog for the Product
 
-* Archiving a product (including all Variations and Revisions)
-* Adding or modifying inherited Identifiers, see [Extended Examples](/api/product-structure/#extended-examples)
-* Adding {{FieldDefinitions}} that child Variations and Revisions will inherit
-* Creating or removing Variations or Revisions
-* Adding Assets
-* Adding ColorDefinitions
+To update a Product, you must know the Product's Slug.
 
-**Variation** changes include:
+This value is not shown in Endless Aisle, so you will need to search your {{Catalog_Concept}}.
 
-* Archiving a Variation
-* Modifying {{FieldDefinitions}} that describe the Variation 
-* Adding or modifying Variation-level identifiers
-* Adding Variation-level Assets
+##### Example Request
 
-**Revision** changes include:
+```
+GET https://catalogsdemo.iqmetrix.net/v1/Companies(14146)/Catalog/Search?SearchTerms=Caitlin
+Authorization: Bearer (Access Token)
+Accept: application/json
+```
 
-* Archiving a Revision
-* Modifying {{FieldDefinitions}} that describe the Revision
-* Adding or modifying Revision-level identifiers
+##### Example Response
 
-#### Relevant API Reference
+```
+HTTP 200 Content-Type: application/json
+{
+  "Items": [
+    {
+      "Name": "Caitlin Mary Jane Shoe - Youth",
+      "CanonicalClassification": {
+        "Id": 88,
+        "Name": "Appare; & Accessories",
+        "ParentCategories": [
+          {
+            "Id": 166,
+            "Name": "Dress"
+          }
+        ]
+      },
+      "ClassificationTreeId": 88,
+      "ColorDefinition": null,
+      "HeroShotId": null,
+      "Msrp": null,
+      "Manufacturer": null,
+      "Vendors": [],
+      "Slug": "M1931",
+      "IsLinkedToCuratedProduct": false,
+      "ProductVersion": 1,
+      "IsDropShippable": false,
+      "ShortDescription": "",
+      "IsMasterProduct": true,
+      "VariationId": null,
+      "DateAddedUtc": "2016-04-19T16:09:56.69",
+      "Identifiers": [],
+      "CatalogItemId": "bb54cb25-e1df-4710-9e05-c2473192cc99",
+      "CompanyId": 14146
+    },
+    ...
+  ],
+  "Facets": {
+    "Manufacturers": [...],
+    "Vendors": [...],
+    "ClassificationAndCategories": [
+      {
+        "Count": 6,
+        "Item": 416
+      }
+    ]
+  },
+  "MetaData": {
+    "Page": 1,
+    "PageSize": 20,
+    "TotalResults": 10
+  }
+}
+```
 
-* [Product Structure](/api/product-structure/)
+#### Step 2 - Determining the Product Type
 
-#### Updating Pricing 
+Before we can update the Product, we must determine if it is a Master Product, Variation or Revision.
+
+With the Product Slug and the [Product Slug Formula](/api/catalog/#product-slug), we can determine which request to use to update the product.
+
+**Table 4:** Using Slug Format to Determine Product Type
+
+| Slug Format | Type | Request |
+|:------------|:-----|:--------|
+| M{X} | Master Product | [Updating a Master Product](/api/product-structure/#updating-a-master-product) |
+| M{X}-V{Y} | Variation | [Updating a Variation](/api/product-structure/#updating-a-variation) |
+| M{X}-E{Y} or <br/> M{X}-E{Y}-R{Z} or<br/> M{X}-V{Y}-E{Z} or<br/> M{X}-V{Y}-E{Z}-R{A} | Revision | [Updating a Revision](/api/product-structure/#updating-a-revision) |
+
+Using the table, we can see that our Product is a Master Product, so we will use [Updating a Master Product](/api/product-structure/#updating-a-master-product).
+
+#### Step 3 - Updating the Product
+
+Finally, we can update the product.
+
+In this example, we will change the Product's name to Caitlin Mary Jane Shoe.
+
+##### Example Request
+
+```
+PUT https://productlibrarydemo.iqmetrix.net/v1/ProductDocs(1931)
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+{
+    "IsArchived": false,
+    "FieldValues": [
+      {
+        "FieldDefinitionId": 1,
+        "LanguageInvariantValue": "Caitlin Mary Jane Shoe"
+      }
+    ],
+    "IdentifierGroups": [],
+    "ColorDefinitionId": null
+}
+```
+
+##### Example Response
+
+```
+HTTP 204 Content-Type: application/json
+```
+
+### Managing Availability
+
+Endless Aisle displays the availability of a product using the request [Getting Availability For a Catalog Item By Location](/api/availability/#getting-availability-for-a-catalog-item-by-location). 
+
+The following rules determine which value is displayed:
+
+1. If `Quantity` is greater than 0, display IN STOCK
+2. If `Quantity` is 0, display OUT OF STOCK
+
+### Managing Pricing 
 
 Endless Aisle displays the price of a product using the request [Getting Product Pricing for a Retail Location](/api/pricing/#getting-product-pricing-for-a-retail-location).
 
@@ -667,19 +1034,17 @@ The following rules determine which value is displayed:
 2. Otherwise, if `OverridePrice` has value, display it 
 3. Otherwise, display `RegularPrice`
 
-#### Relevant API Reference
-
-* [Pricing](/api/pricing/)
-
 <hr/>
 
-### Orders
+## Orders
 
 In Endless Aisle, after a Customer presses "Checkout" an {{Order}} is created, as shown below: 
 
+**Figure 6**: Illustrates Checking Out in Endless Aisle
+
 <img src="{{ "/images/ea-checkout-2.png" | prepend: site.url }}" alt="Endless Aisle Checkout" />
 
-#### Getting Orders
+### Getting Orders
 
 Orders created in Endless Aisle have the following specifications:
 
@@ -687,7 +1052,7 @@ Orders created in Endless Aisle have the following specifications:
 * Order `Status` is set to `Pending`
 * A {{Customer}} is created and associated with the Order
 
-Orders can be synched to an external system using [Getting Pending Orders by Location](/api/orders/#getting-pending-orders-by-location).
+Orders can be synced to an external system using [Getting Pending Orders by Location](/api/orders/#getting-pending-orders-by-location).
 
 Syncing Orders might be used to:
 
@@ -738,7 +1103,7 @@ HTTP 200 Content-Type: application/json
 ]
 ```
 
-#### Getting Order Items
+### Getting Items on the Order
 
 To get the Items for each Order, [Getting All Items on an Order](/api/orders/#getting-all-items-on-an-order) can be used.
 
@@ -776,6 +1141,7 @@ HTTP 200 Content-Type: application/json
     "SupplierReference": null,
     "TrackingInformation": [],
     "ShippingOptionId": null
-  }
+  },
+  ...
 ]
 ```

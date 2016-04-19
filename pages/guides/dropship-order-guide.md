@@ -4,7 +4,7 @@ permalink: /guides/dropship-order-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 12-02-2016
+last_updated: 18-04-2016
 summary: 
 ---
 
@@ -45,6 +45,33 @@ Use the Sandbox environment to test your API and to perform end-to-end testing. 
 For more information on environments, see {{Environment}}.
 
 The iQmetrix API supports JSON and JSON + HAL. See [Supported Response Formats](/api/getting-started) for more information.
+
+
+### Postman Example
+
+iQmetrix uses <a href="http://www.getpostman.com">Postman</a> when <a href="/api/#testing-and-debugging">testing and debugging</a> our APIs.
+
+For Chrome or Mac users, click the button below to import the collection directly into Postman.
+
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="b4dac96330fc93f34c3d"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
+
+<br />
+Alternatively, you can download the collection by clicking <a href="https://www.getpostman.com/collections/b4dac96330fc93f34c3d">here</a>.
+
+The Postman environment shared by all API references and guides can be found <a href="../../files/postmanEnv.postman_environment">here</a>.
+
+<hr />
 
 
 ## Step 1 - Authentication
@@ -200,7 +227,7 @@ There are two scenarios when updating the status of an order:
 Should your system statuses differ greatly from the ones provided by iQmetrix, you may use either the `Other` state or contact <a href="mailto:{{site.support_email}}?subject=Dropship Order States">API Support</a> to find an appropriate solution. 
 
 
-### Shipping an Order
+### 3.1 Shipping an Order
 
 It is recommended to hold the order (i.e. `BackOrdered`) until all items are available and in-stock to reduce any overhead involved with partial shipments.
 
@@ -257,7 +284,7 @@ You must update order status in the dropship order feed via [Updating Order Stat
     }
 
 
-### (Optional) Partially Shipping an Order
+### Optional: Partially Shipping an Order
 
 
 {{note}} It is <strong>highly recommended</strong> to only perform complete orders and mitigate the use of partial shipments. {{end}}
@@ -308,10 +335,10 @@ You must update item status in the dropship order feed via [Updating Item Status
         "Id": "0b05f9fb-1210-4494-b654-d051948716b4",
         "ItemInformation": [
             {
-                "Status": "Error",      
-                "ProductName": "SMS L720 BLU SPT RTD",
+                "Status": "BackOrdered",      
+                "ProductName": "BlackBerry ACC53785101 N-X1 Battery Q10",
                 "Message": "Error: Product dsf could not be found",
-                "Sku": "abc123",
+                "Sku": "802975857401",
                 "TrackingInfo": 23923408863,
                 "ShippingProvider": "UPS"
             },
@@ -327,10 +354,10 @@ You must update item status in the dropship order feed via [Updating Item Status
         "Id": "0b05f9fb-1210-4494-b654-d051948716b4",
         "ItemInformation": [
             {
-                "Sku": "abc123",
+                "Sku": "802975857401",
                 "CatalogId": "dbc2577a-021f-4bbf-8289-ff9cac593a8b",
                 "Quantity": 1,
-                "Status": "Error",
+                "Status": "BackOrdered",
                 "TrackingInfo": "23923408863",
                 "ShippingProvider": "UPS",
                 "Info": null,
@@ -341,7 +368,7 @@ You must update item status in the dropship order feed via [Updating Item Status
     }
 
 
-### Cancelling an Order
+### 3.2 Cancelling an Order
 
 Order cancellations require human interaction and are a manual process between a retailer and supplier to provider a refund to an end customer. 
 

@@ -4,7 +4,7 @@ permalink: /guides/dropship-onboarding-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 29-02-2016
+last_updated: 18-04-2016
 summary: 
 ---
 
@@ -38,9 +38,8 @@ The intended audience for this guide are developers who are integrating a suppli
 
 As part of the onboarding process, you will have received an onboarding package from the iQmetrix API team. This package provides you credentials and access details in order to perform the topics covered in this guide. 
 
-Should you require information beyond the scope of this guide, or did not receive the onboarding package, contact <a href ="mailto:{{site.support_email}}?subject=Support">API Support</a>.
+Should you require information beyond the scope of this guide, or did not receive the onboarding package, contact {{contact_support}}.
 
-If the above steps are not complete or you are not sure, contact {{contact_support}}.
 
 #### Environment
 
@@ -50,6 +49,33 @@ Use the Sandbox environment to test your API and to perform end-to-end testing. 
 For more information on environments, see {{Environment}}.
 
 The iQmetrix API supports JSON and JSON + HAL. See [Supported Response Formats](/api/getting-started) for more information.
+
+
+### Postman Example
+
+iQmetrix uses <a href="http://www.getpostman.com">Postman</a> when <a href="/api/#testing-and-debugging">testing and debugging</a> our APIs.
+
+For Chrome or Mac users, click the button below to import the collection directly into Postman.
+
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="361a16e02eb237721346"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
+
+<br />
+Alternatively, you can download the collection by clicking <a href="https://www.getpostman.com/collections/361a16e02eb237721346">here</a>.
+
+The Postman environment shared by all API references and guides can be found <a href="../../files/postmanEnv.postman_environment">here</a>.
+
+<hr />
 
 
 ## Step 1 - Authentication
@@ -139,7 +165,7 @@ To get a list of Classifications based on your provided Classification Tree ID, 
 
 A field definition contains all the metadata about a product's attributes, such as name, units, and how it should be displayed. A field is an instance of a field definition. Each product field has a definition and a value. Field definitions are agnostic of industry and are considered global attributes.
 
-To get all Field Definitions, see [Getting Field Definitions](/api/field-definitions/#getting-field-definitions)
+To get all Field Definitions, see [Getting Field Definitions](/api/field-definitions/#getting-all-field-definitions)
 
 --- 
 
@@ -282,7 +308,7 @@ To add a Product to your Product Feed, the API request requires the field defini
 
 Now that you have a list of Field Definitions and Classifications, there are also optional parameters to enter for your Products. Ensure your products have, at minimum, a ModelName as this field will be used to import your products into the iQmetrix platform.
 
-We can now combine the information gathered from the previous steps to [Adding a Product to your Product Feed](/api/product-feed/#addding-a-product-to-product-feed)
+We can now combine the information gathered from the previous steps to [Adding a Product to your Product Feed](/api/product-feed/#adding-a-product-to-a-feed)
 
 ---
 
@@ -362,13 +388,7 @@ The table below shows results from actual entries versus the expected entry.
                     "Id": 129,
                     "StringId": "Color Tags"
                 },
-                "Value": "Black"
-            },
-            {
-                "Definition": {
-                    "Id": 129,
-                },
-                "Value": "Red"
+                "Value": "Black, Red"
             },
             {
                 "Definition": {
@@ -437,7 +457,7 @@ Each Product entered into the Product Feed will have a corresponding ID from the
 Should a product have already been curated, then simply add the product to the Product feed again with the new changes. The curation team will update the curated product with the new details.
 
 * To **remove** products from the Product Feed, you must [remove each Product](/api/product-feed/#removing-a-product-from-a-feed) by providing their ProductId. 
-* To **update** products in the Product Feed, the products must be [deleted](/api/product-feed/#removing-a-product-from-a-feed) first, updated locally, and then [added again](/api/product-feed/#add-product-to-product-feed) (DELETE + POST).
+* To **update** products in the Product Feed, the products must be [deleted](/api/product-feed/#removing-a-product-from-a-feed) first, updated locally, and then [added again](/api/product-feed/#adding-a-product-to-a-feed) (DELETE + POST).
 
 ##### Example Request
 

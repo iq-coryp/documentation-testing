@@ -4,7 +4,7 @@ permalink: /guides/creating-a-user-for-rq/
 tags: []
 keywords: 
 audience: 
-last_updated: 24-03-2016
+last_updated: 11-04-2016
 summary: 
 ---
 
@@ -12,7 +12,9 @@ summary:
 
 ## Overview
 
-This guide is intended to walk you through the process of adding a User from your system into RQ and assigning it to a location with a security role. To learn more about the User Manager, see {{UserManager_Concept}}.
+This guide is intended to walk you through the process of adding a employee from your system into RQ as an employee (user) and assigning it to a location with a security role. 
+
+Users in the User Manager represent Employee accounts from the Entity Store that are used to access data within RQ. To learn more about this interaction, see {{UserManager_Concept}}.
 
 
 The following APIs will be covered in this guide:
@@ -25,18 +27,18 @@ The following APIs will be covered in this guide:
 
 #### Who Is This Guide For?
 
-The intended audience for this guide are developers who are integrating users within their system into the iQmetrix User Manager program.
+The intended audience for this guide are developers who are integrating employees within their system into the Entity Store program.
 
 #### Prerequisites
 
 To use this guide, the following steps must be completed:
 
-* You must have **RQ v5.12** or later
+* You must have **RQ v5.12** or later (supports two-way communication between APIs and RQ)
 * You must have your **onboarding package** from iQmetrix, which includes your access credentials and environments
 * Your Company Tree in RQ, representing company structure (stores, groups, divisions, etc.) must be created
 
 
-{{tip}}If the above steps are not complete or you are not sure, contact {{contact_support}}.{{end}}
+{{tip}}If the above steps are not complete or you are not sure, please contact <a href ="mailto:{{site.support_email}}?subject=RQ User Support">API Support</a>.{{end}}
 
 
 ### Before You Begin
@@ -69,18 +71,16 @@ The token is placed in the `Authorization` header of requests to iQmetrix APIs, 
 
 ## Step 2 - Creating the User
 
-The goal of this step is to create a User in user Manager that represents your employee. Our platform performs synchronizations to push these users into their respective companies in RQ.
+The goal of this step is to create an Employee profile in the Entity Store. Our platform performs synchronizations to push these users into their respective companies in RQ.
 
-The `ParentEntityId` (Company ID from iQmetrix) is required to import the employee.
+The `ParentEntityId` (Company ID from Entity Store) is required to import the employee.
 
 Ensure that you mark down the `Id` from the response, to be used in the later steps.
 
 
 ### 2.1 Adding a User 
 
-Should you omit the `password` field in this API call, you will need to force a temporary password. Otherwise, the user will not be able to log into RQ. Ensure there is a `ParentEntityId`, as this is the Company ID.
-
-If you plan to use third-party authentication, no password is necessary as it is stored in your identity provider. The `UserName` supplied must match the one from your identity provider. For more information on using third-party authentication, contact {{contact_support}}.
+Should you omit the `password` field in this API call (e.g. a brand new employee) you will need to force a [temporary password](#setting-up-a-temporary-password). Otherwise, the user will not be able to log into RQ. Ensure there is a `ParentEntityId`, as this is the Company ID.
 
 To import a user from your existing system, see [Importing an Existing User](/api/user-manager/#importing-an-existing-user).
 
@@ -184,7 +184,7 @@ To set a temporary password for your user, see [Setting a Temporary Password](/a
 
 ## Step 3 Assigning Locations
 
-Once you have created a user in the system, the next step is to assign it to a location within your company tree. For more information on Company Tree, see {{CompanyTree_Concept}}.
+Once you have created a user in the system, the next step is to assign it to a location within your company tree. This ensures that employeee visibility and activity is restricted to that particular location. For more information on Company Tree, see {{CompanyTree_Concept}}.
 
 ### 3.1 Getting Company Locations 
 
