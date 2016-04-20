@@ -1,0 +1,72 @@
+<span id="feedback">
+    <span id="feedbackQuestion">
+        Was this helpful? 
+        <i id="likeBtn" class="fa fa-thumbs-up fa-2x"></i>        
+    </span>
+    <span id="feedbackThank">
+        Thank you for your feedback!
+    </span>
+</span>
+<script>
+    $( document ).ready(function() {
+
+        var pageName = window.location.pathname;
+        var pageCookie = pageName + "_liked";
+
+        if(getCookie(pageCookie)) {
+            toggleFeedback(true);
+        } 
+        else {
+            toggleFeedback(false);            
+        }
+
+        $("#likeBtn").click(function() {
+            setCookie(pageCookie, "true");
+
+            toggleFeedback(true);
+
+            ga('send', {
+              hitType: 'event',
+              eventCategory: 'FeedbackButton',
+              eventAction: 'Click',
+              eventLabel: pageName
+            });
+        });
+
+        $("#likeBtn").mouseover(function() {
+            $("#likeBtn").removeClass("fa-thumbs-up");
+            $("#likeBtn").addClass("fa-thumbs-o-up");
+        });
+
+        $("#likeBtn").mouseout(function() {
+            $("#likeBtn").addClass("fa-thumbs-up");
+            $("#likeBtn").removeClass("fa-thumbs-o-up");
+        });        
+
+    });
+
+    function toggleFeedback(isEnabled) {
+
+        if(isEnabled) {
+            $("#feedbackQuestion").hide();
+            $("#feedbackThank").show();
+        }
+        else {
+            $("#feedbackQuestion").show();
+            $("#feedbackThank").hide();
+        }
+    }
+
+    function setCookie(key, value) {
+        var expires = new Date();
+        var numDays = 30;
+        expires.setTime(expires.getTime() + (numDays * 24 * 60 * 60 * 1000));
+        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+    }
+
+    function getCookie(key) {
+        var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+        return keyValue ? keyValue[2] : null;
+    }    
+</script>
+
