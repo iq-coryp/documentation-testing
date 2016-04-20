@@ -4,7 +4,7 @@ permalink: /guides/dropship-test-order-guide/
 tags: []
 keywords: 
 audience: 
-last_updated: 12-02-2016
+last_updated: 04-20-2016
 summary: 
 ---
 
@@ -27,11 +27,38 @@ To use this guide, the following steps must be completed:
 
 * You must have completed all requests from the [Dropship Order Management Guide](/guides/dropship-order-guide)
 * You will have been given **user credentials** for a test company.
-* You have filled in the environment data from the provided <a href="{{ "/files/create-test-order.zip" | prepend: site.url }}">Postman Collection</a>. See the screenshot below.
+* You have filled in the environment data from the provided <a href="{{ "/files/postmanEnv.postman_environment" | prepend: site.url }}">Postman Environment</a>.
 
 {{tip}}
 If the above steps are not complete or you are not sure, contact <a href="mailto:{{site.support_email}}?subject=Dropship Order Test Data">API Support</a>.
 {{end}}
+
+
+### Postman Example
+
+iQmetrix uses <a href="http://www.getpostman.com" target="_blank">Postman</a> when <a href="/api/#testing-and-debugging">testing and debugging</a> our APIs.
+
+For Chrome or Mac users, click the button below to import the collection directly into Postman.
+
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="56ce50e76203867bf3a5"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
+
+<br />
+Alternatively, you can download the collection by clicking <a href="https://www.getpostman.com/collections/56ce50e76203867bf3a5">here</a>.
+
+The Postman environment shared by all API references and guides can be found <a href="{{ "/files/postmanEnv.postman_environment" | prepend: site.url }}">here</a>.
+
+<hr />
 
 <br />
 **Figure 1:** Showcases which variables must be filled prior to creating the test orders. The remaining variables (not shown in figure) will be automatically populated based on the steps below.
@@ -51,7 +78,7 @@ If the above steps are not complete or you are not sure, contact <a href="mailto
 | AddressTypeId | [AddressType](/api/crm/#addresstype) | 2 (Home) |
 | CatalogItemId | [CatalogItem](/api/catalog/#catalogitem) | {catalog ID corresponding to your SKU } |
 | CustomerTypeId | [CustomerType](/api/crm/#customertype) | 2 (Person) |
-| LocationId | [Location](/api/company-tree/#location) | 14223 |
+| LocationId | [Location](/api/company-tree/#location) | {the location ID from section 2} |
 | ItemStatusId | [ItemStatus](/api/orders/#itemstatus)  | 1 (new dropship order), 15 (shipment) |
 | ItemTypeId | [ItemType](/api/orders/#itemtype) | 1 (dropship), 4 (shipping) |
 | OrderTypeId | [OrderType](/api/orders/#ordertype)  | 1 (Sales order placed by customer) |
@@ -60,6 +87,8 @@ If the above steps are not complete or you are not sure, contact <a href="mailto
 | SupplierId | Supplier identifier | {your supplier ID} |
 | VendorId | See SupplierId | {your supplier ID} |
 | VendorSku | See SKU | {your supplier SKU} |
+
+
 
 
 ## Step 1 - Authentication
