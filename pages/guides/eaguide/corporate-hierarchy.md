@@ -12,8 +12,51 @@ weight: 2.0
 ---
 
 {% include linkrefs.html %}
-{% include custom/series_acme.html %}
 
+<div id="page-selector">
+  <div class="row">
+    <span class="col-md-3 text-center">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/corporate-hierarchy">
+        <span class="col-md-12">
+          <h4>Corporate Hierarchy</h4>
+        </span>        
+        <span class="col-md-12">
+          <i class="fa fa-map-marker fa-3x"></i>
+        </span>
+      </a>
+    </span>
+    <span class="col-md-3 text-center">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/content">
+        <span class="col-md-12">
+          <h4>Content</h4><br/>
+        </span>             
+        <span class="col-md-12">
+          <i class="fa fa-list-alt fa-3x"></i>
+        </span>
+      </a>    
+    </span> 
+    <span class="col-md-3 text-center">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/inventory">
+        <span class="col-md-12">
+          <h4>Inventory</h4><br/>
+        </span>             
+        <span class="col-md-12">
+          <i class="fa fa-barcode fa-3x"></i>
+        </span>
+      </a>       
+    </span>  
+    <span class="col-md-3 text-center">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/orders">
+        <span class="col-md-12">
+          <h4>Orders</h4><br/>
+        </span>             
+        <span class="col-md-12">
+          <i class="fa fa-file-text-o fa-3x"></i>
+        </span>
+      </a>   
+    </span>  
+  </div>
+</div>
 ## Overview
 
 In Endless Aisle, corporate hierarchy is represented by your {{CompanyTree_Concept}}. Changes to your corporate hierarchy should be pushed to Endless Aisle to ensure pricing and inventory are accurate.

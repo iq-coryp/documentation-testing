@@ -50,7 +50,7 @@ For more information on environments, see {{Environment}}.
 
 The iQmetrix API supports `JSON` and `JSON + HAL`. See [Supported Response Formats](/api/getting-started) for more information.
 
-## Integration Points
+## Integration Options
 
 This guide is organized by functional areas of an external system that you may wish to integrate with Endless Aisle.
 
@@ -59,7 +59,7 @@ Feel free to skip to any section you are interested in:
 <div id="page-selector">
   <div class="row">
     <span class="col-md-6 text-center">
-      <a href="/guides/ea-guide/corporate-hierarchy">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/corporate-hierarchy">
         <span class="col-md-12">
           <h4>Corporate Hierarchy</h4>
         </span>        
@@ -69,7 +69,7 @@ Feel free to skip to any section you are interested in:
       </a>
     </span>
     <span class="col-md-6 text-center">
-      <a href="/guides/ea-guide/content">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/content">
         <span class="col-md-12">
           <h4>Content</h4><br/>
         </span>             
@@ -81,7 +81,7 @@ Feel free to skip to any section you are interested in:
   </div> 
   <div class="row">
     <span class="col-md-6 text-center">
-      <a href="/guides/ea-guide/inventory">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/inventory">
         <span class="col-md-12">
           <h4>Inventory</h4><br/>
         </span>             
@@ -91,7 +91,7 @@ Feel free to skip to any section you are interested in:
       </a>       
     </span>  
     <span class="col-md-6 text-center">
-      <a href="/guides/ea-guide/orders">
+      <a href="http://melissakendall.github.io/documentation-testing/guides/ea-guide/orders">
         <span class="col-md-12">
           <h4>Orders</h4><br/>
         </span>             
@@ -102,7 +102,3 @@ Feel free to skip to any section you are interested in:
     </span>  
   </div>
 </div>
-
-## Series
-
-{% include custom/series_acme.html %}
