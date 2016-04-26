@@ -1,342 +1,101 @@
-{% include alerts.html %}
-{% include callouts.html %}
-
-{% capture AccessToken_Glossary %}
-<a href="{{"/glossary/#access-token" | prepend: site.api_baseurl}}">Access Token</a>
-{% endcapture %}
-
-{% capture Account %}
-<a href="{{"/general-ledger/#account" | prepend: site.api_baseurl}}">Account</a>
-{% endcapture %}
-
-{% capture Address %}
-<a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Address</a>
-{% endcapture %}
-
-{% capture Addresses %}
-<a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Addresses</a>
-{% endcapture %}
-
-{% capture Asset %}
-<a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Asset</a>
-{% endcapture %}
-
-{% capture Assets %}
-<a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Assets</a>
-{% endcapture %}
-
-{% capture Asset_Glossary %}
-<a href="{{"/glossary/#asset" | prepend: site.api_baseurl}}">Asset</a>
-{% endcapture %}
-
-{% capture AssignedRole %}
-<a href="{{"/security-roles/#assignedrole" | prepend: site.api_baseurl}}">AssignedRole</a>
-{% endcapture %}
-
-{% capture Availability %}
-<a href="{{"/availability/#availability" | prepend: site.api_baseurl}}">Availability</a>
-{% endcapture %}
-
-{% capture Carrier %}
-<a href="{{"/entity-store/#carrier" | prepend: site.api_baseurl}}">Carrier</a>
-{% endcapture %}
-
-{% capture CatalogItem %}
-<a href="{{"/catalog/#catalogitem" | prepend: site.api_baseurl}}">CatalogItem</a>
-{% endcapture %}
-
-{% capture Catalog_Concept %}
-<a href="{{"/product-library/#retailer-catalog" | prepend: site.concepts_baseurl}}">Catalog</a>
-{% endcapture %}
-
-{% capture ClassificationTree_Concept %}
-<a href="{{"/classification-tree" | prepend: site.concepts_baseurl}}">Classification Tree</a>
-{% endcapture %}
-
-{% capture ClassificationTree %}
-<a href="{{"/classification-tree/#classificationtree" | prepend: site.api_baseurl}}">Classification Tree</a>
-{% endcapture %}
-
-{% capture Classification_Glossary %}
-<a href="{{"/glossary/#classification" | prepend: site.api_baseurl}}">Classification</a>
-{% endcapture %}
-
-{% capture CommissionEntry %}
-<a href="{{"/commissions/#commissionentry" | prepend: site.api_baseurl}}">CommissionEntry</a>
-{% endcapture %}
-
-{% capture Category %}
-<a href="{{"/classification-tree/#category" | prepend: site.api_baseurl}}">Category</a>
-{% endcapture %}
-
-{% capture Classification %}
-<a href="{{"/classification-tree/#classification" | prepend: site.api_baseurl}}">Classification</a>
-{% endcapture %}
-
-{% capture Company %}
-<a href="{{"/company-tree/#company" | prepend: site.api_baseurl}}">Company</a>
-{% endcapture %}
-
-{% capture Company_Glossary %}
-<a href="{{"/glossary/#company" | prepend: site.api_baseurl}}">Company</a>
-{% endcapture %}
-
-{% capture CompanyTree %}
-<a href="{{"/company-tree/#companytree" | prepend: site.api_baseurl}}">CompanyTree</a>
-{% endcapture %}
-
-{% capture CompanyTree_Glossary %}
-<a href="{{"/glossary/#companytree" | prepend: site.api_baseurl}}">Company Tree</a>
-{% endcapture %}
-
-{% capture CompanyTree_Concept %}
-<a href="{{"/company-tree/" | prepend: site.concepts_baseurl}}">Company Tree</a>
-{% endcapture %}
-
-{% capture CompanyTreeNode %}
-<a href="{{"/company-tree/#companytreenode" | prepend: site.api_baseurl}}">CompanyTreeNode</a>
-{% endcapture %}
-
-{% capture ContactMethod %}
-<a href="{{"/crm/#contactmethod" | prepend: site.api_baseurl}}">ContactMethod</a>
-{% endcapture %}
-
-{% capture contact_support %}
-<a href="mailto:{{site.support_email}}?subject=Support">Support</a>
-{% endcapture %}
-
-{% capture Cost %}
-<a href="{{"/cost-feed/#cost" | prepend: site.api_baseurl}}">Cost</a>
-{% endcapture %}
-
-{% capture Customer %}
-<a href="{{"/crm/#customer" | prepend: site.api_baseurl}}">Customer</a>
-{% endcapture %}
-
-{% capture Customers %}
-<a href="{{"/crm/#customer" | prepend: site.api_baseurl}}">Customers</a>
-{% endcapture %}
-
-{% capture CustomerFull %}
-<a href="{{"/crm/#customerfull" | prepend: site.api_baseurl}}">CustomerFull</a>
-{% endcapture %}
-
-{% capture Division %}
-<a href="{{"/company-tree/#division" | prepend: site.api_baseurl}}">Division</a>
-{% endcapture %}
-
-{% capture Divisions %}
-<a href="{{"/company-tree/#division" | prepend: site.api_baseurl}}">Divisions</a>
-{% endcapture %}
-
-{% capture Division_Glossary %}
-<a href="{{"/glossary/#division" | prepend: site.api_baseurl}}">Division</a>
-{% endcapture %}
-
-{% capture Division_Concept %}
-<a href="{{"/company-tree/#divisions-and-groups" | prepend: site.concepts_baseurl}}">Divisions</a>
-{% endcapture %}
-
-{% capture employeesconsoleoverview %}
-<a href="http://iqmetrix.helpdocsonline.com/employees-console-overview">Employees Console Overview</a>
-{% endcapture %}
-
-{% capture Environment %}
-<a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>
-{% endcapture %}
-
-{% capture FieldDefinition %}
-<a href="{{"/field-definitions/#fielddefinition" | prepend: site.api_baseurl}}">FieldDefinition</a>
-{% endcapture %}
-
-{% capture FieldDefinitions %}
-<a href="{{"/field-definitions/#fielddefinition" | prepend: site.api_baseurl}}">FieldDefinitions</a>
-{% endcapture %}
-
-{% capture Get_A_Customer %}
-<a href="{{"/crm/#getting-a-customer" | prepend: site.api_baseurl}}">Get a Customer</a>
-{% endcapture %}
-
-{% capture Getting_Field_Definitions %}
-<a href="{{"/field-definitions/#getting-all-field-definitions" | prepend: site.api_baseurl}}">Getting Field Definitions</a>
-{% endcapture %}
-
-{% capture Group %}
-<a href="{{"/company-tree/#group" | prepend: site.api_baseurl}}">Group</a>
-{% endcapture %}
-
-{% capture Groups %}
-<a href="{{"/company-tree/#group" | prepend: site.api_baseurl}}">Groups</a>
-{% endcapture %}
-
-{% capture Group_Concept %}
-<a href="{{"/company-tree/#divisions-and-groups" | prepend: site.concepts_baseurl}}">Group</a>
-{% endcapture %}
-
-{% capture Group_Glossary %}
-<a href="{{"/glossary/#group" | prepend: site.api_baseurl}}">Group</a>
-{% endcapture %}
-
-{% capture Inheritance %}
-<a href="{{"/glossary/#inheritance" | prepend: site.api_baseurl}}">Inheritance</a>
-{% endcapture %}
-
-{% capture ItemType %}
-<a href="{{"/orders/#itemtype" | prepend: site.api_baseurl}}">ItemType</a>
-{% endcapture %}
-
-{% capture ItemStatus %}
-<a href="{{"/orders/#itemstatus" | prepend: site.api_baseurl}}">ItemStatus</a>
-{% endcapture %}
-
-{% capture Location %}
-<a href="{{"/company-tree/#location" | prepend: site.api_baseurl}}">Location</a>
-{% endcapture %}
-
-{% capture Location_Glossary %}
-<a href="{{"/glossary/#location" | prepend: site.api_baseurl}}">Location</a>
-{% endcapture %}
-
-{% capture Locations %}
-<a href="{{"/company-tree/#location" | prepend: site.api_baseurl}}">Locations</a>
-{% endcapture %}
-
-{% capture Manufacturer %}
-<a href="{{"/entity-store/#manufacturer" | prepend: site.api_baseurl}}">Manufacturer</a>
-{% endcapture %}
-
-{% capture MasterProduct %}
-<a href="{{"/product-structure/#masterproduct" | prepend: site.api_baseurl}}">MasterProduct</a>
-{% endcapture %}
-
-{% capture OAuth2_Glossary %}
-<a href="{{"/glossary/#oauth-token" | prepend: site.api_baseurl}}">OAuth2</a>
-{% endcapture %}
-
-{% capture Order %}
-<a href="{{"/orders/#order" | prepend: site.api_baseurl}}">Order</a>
-{% endcapture %}
-
-{% capture OrderItem %}
-<a href="{{"/orders/#item" | prepend: site.api_baseurl}}">Item</a>
-{% endcapture %}
-
-{% capture OrderFull %}
-<a href="{{"/orders/#orderfull" | prepend: site.api_baseurl}}">OrderFull</a>
-{% endcapture %}
-
-{% capture OrderType %}
-<a href="{{"/orders/#ordertype" | prepend: site.api_baseurl}}">OrderType</a>
-{% endcapture %}
-
-{% capture Partner %}
-<a href="{{"/glossary/#partner" | prepend: site.api_baseurl}}">Partner</a>
-{% endcapture %}
-
-{% capture Permission %}
-<a href="{{"/security-roles/#permission" | prepend: site.api_baseurl}}">Permission</a>
-{% endcapture %}
-
-{% capture plcontentmanagement %}
-<a href="http://iqmetrix.helpdocsonline.com/product-library-content-management">Product Library Content Management</a>
-{% endcapture %}
-
-{% capture Pricing %}
-<a href="{{"/pricing/#pricing" | prepend: site.api_baseurl}}">Pricing</a>
-{% endcapture %}
-
-{% capture Product %}
-<a href="{{"/catalog/#product" | prepend: site.api_baseurl}}">Product</a>
-{% endcapture %}
-
-{% capture Products %}
-<a href="{{"/catalog/#product" | prepend: site.api_baseurl}}">Products</a>
-{% endcapture %}
-
-{% capture ProductLibrary_Concept %}
-<a href="{{"/product-library" | prepend: site.concepts_baseurl}}">Product Library</a>
-{% endcapture %}
-
-{% capture ProductStructure %}
-<a href="{{"/product-structure" | prepend: site.api_baseurl}}">Product Structure</a>
-{% endcapture %}
-
-{% capture ProductStructure_Concept %}
-<a href="{{"/product-structure" | prepend: site.concepts_baseurl}}">Product Structure</a>
-{% endcapture %}
-
-{% capture ProductDocument %}
-<a href="{{"/product-structure/#productdocument" | prepend: site.api_baseurl}}">ProductDocument</a>
-{% endcapture %}
-
-{% capture xqshelf %}
-<a href="http://www.iqmetrix.com/products/xq">XQ Shelf</a>
-{% endcapture %}
-
-{% capture RegularProduct %}
-<a href="{{"/epc/#regularproduct" | prepend: site.api_baseurl}}">RegularProduct</a>
-{% endcapture %}
-
-{% capture rq %}
-<a href="http://www.iqmetrix.com/products/rq">RQ</a>
-{% endcapture %}
-
-{% capture Sale %}
-<a href="{{"/pointofsale/#sale" | prepend: site.api_baseurl}}">Sale</a>
-{% endcapture %}
-
-{% capture SaleOverridePrice %}
-<a href="{{"/pricing/#saleoverrideprice" | prepend: site.api_baseurl}}">SaleOverridePrice</a>
-{% endcapture %}
-
-{% capture SecurityRole %}
-<a href="{{"/security-roles/#securityrole" | prepend: site.api_baseurl}}">SecurityRole</a>
-{% endcapture %}
-
-{% capture SecurityRole_Concept %}
-<a href="{{"/user-manager/#security-roles" | prepend: site.concepts_baseurl}}">Security Roles</a>
-{% endcapture %}
-
-{% capture securityrolesetup %}
-<a href="http://iqmetrix.helpdocsonline.com/security-role-setup">Security Role Setup</a>
-{% endcapture %}
-
-{% capture SerialNumber %}
-<a href="{{"/availability/#serialnumber" | prepend: site.api_baseurl}}">SerialNumber</a>
-{% endcapture %}
-
-{% capture SubscribableList %}
-<a href="{{"/product-subscription/#subscribablelist" | prepend: site.api_baseurl}}">Subscribable List</a>
-{% endcapture %}
-
-{% capture Supplier %}
-<a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>
-{% endcapture %}
-
-{% capture Transfer %}
-<a href="{{"/inventorytransfers/#transfer" | prepend: site.api_baseurl}}">Transfer</a>
-{% endcapture %}
-
-{% capture Update_A_Customer %}
-<a href="{{"/crm/#updating-a-customer" | prepend: site.api_baseurl}}">Update a Customer</a>
-{% endcapture %}
-
-{% capture User %}
-<a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">User</a>
-{% endcapture %} 
-
-{% capture Users %}
-<a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">Users</a>
-{% endcapture %} 
-
-{% capture UserManager_Concept %}
-<a href="{{"/user-manager/" | prepend: site.concepts_baseurl}}">User Manager</a>
-{% endcapture %}
-
-{% capture Variation %}
-<a href="{{"/product-structure/#variation" | prepend: site.api_baseurl}}">Variation</a>
-{% endcapture %}
-
-{% capture Supplier %}
-<a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>
-{% endcapture %}
+{% include alerts.html %}{% include callouts.html %}
+
+{% capture AccessToken_Glossary %}<a href="{{"/glossary/#access-token" | prepend: site.api_baseurl}}">Access Token</a>{% endcapture %}
+{% capture Account %}<a href="{{"/general-ledger/#account" | prepend: site.api_baseurl}}">Account</a>{% endcapture %}
+{% capture Address %}<a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Address</a>{% endcapture %}
+{% capture Addresses %}<a href="{{"/crm/#address" | prepend: site.api_baseurl}}">Addresses</a>{% endcapture %}
+{% capture Asset %}<a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Asset</a>{% endcapture %}
+{% capture Assets %}<a href="{{"/assets/#asset" | prepend: site.api_baseurl}}">Assets</a>{% endcapture %}
+{% capture Asset_Glossary %}<a href="{{"/glossary/#asset" | prepend: site.api_baseurl}}">Asset</a>{% endcapture %}
+{% capture AssignedRole %}<a href="{{"/security-roles/#assignedrole" | prepend: site.api_baseurl}}">AssignedRole</a>{% endcapture %}
+{% capture Availability %}<a href="{{"/availability/#availability" | prepend: site.api_baseurl}}">Availability</a>{% endcapture %}
+{% capture Carrier %}<a href="{{"/entity-store/#carrier" | prepend: site.api_baseurl}}">Carrier</a>{% endcapture %}
+{% capture CatalogItem %}<a href="{{"/catalog/#catalogitem" | prepend: site.api_baseurl}}">CatalogItem</a>{% endcapture %}
+{% capture Catalog_Concept %}<a href="{{"/product-library/#retailer-catalog" | prepend: site.concepts_baseurl}}">Catalog</a>{% endcapture %}
+{% capture ClassificationTree_Concept %}<a href="{{"/classification-tree" | prepend: site.concepts_baseurl}}">Classification Tree</a>{% endcapture %}
+{% capture ClassificationTree %}<a href="{{"/classification-tree/#classificationtree" | prepend: site.api_baseurl}}">Classification Tree</a>{% endcapture %}
+{% capture Classification_Glossary %}<a href="{{"/glossary/#classification" | prepend: site.api_baseurl}}">Classification</a>{% endcapture %}
+{% capture CommissionEntry %}<a href="{{"/commissions/#commissionentry" | prepend: site.api_baseurl}}">CommissionEntry</a>{% endcapture %}
+{% capture Category %}<a href="{{"/classification-tree/#category" | prepend: site.api_baseurl}}">Category</a>{% endcapture %}
+{% capture Classification %}<a href="{{"/classification-tree/#classification" | prepend: site.api_baseurl}}">Classification</a>{% endcapture %}
+{% capture ColorTag %}<a href="{{"/product-structure/#colortag" | prepend: site.api_baseurl}}">ColorTag</a>{% endcapture %}
+{% capture ColorTags %}<a href="{{"/product-structure/#colortag" | prepend: site.api_baseurl}}">ColorTags</a>{% endcapture %}
+{% capture ColorDefinition %}<a href="{{"/catalog/#colordefinition" | prepend: site.api_baseurl}}">ColorDefinition</a>{% endcapture %}
+{% capture ColorDefinitions %}<a href="{{"/catalog/#colordefinition" | prepend: site.api_baseurl}}">ColorDefinitions</a>{% endcapture %}
+{% capture Company %}<a href="{{"/company-tree/#company" | prepend: site.api_baseurl}}">Company</a>{% endcapture %}
+{% capture Company_Glossary %}<a href="{{"/glossary/#company" | prepend: site.api_baseurl}}">Company</a>{% endcapture %}
+{% capture CompanyTree %}<a href="{{"/company-tree/#companytree" | prepend: site.api_baseurl}}">CompanyTree</a>{% endcapture %}
+{% capture CompanyTree_Glossary %}<a href="{{"/glossary/#companytree" | prepend: site.api_baseurl}}">Company Tree</a>{% endcapture %}
+{% capture CompanyTree_Concept %}<a href="{{"/company-tree/" | prepend: site.concepts_baseurl}}">Company Tree</a>{% endcapture %}
+{% capture CompanyTreeNode %}<a href="{{"/company-tree/#companytreenode" | prepend: site.api_baseurl}}">CompanyTreeNode</a>{% endcapture %}
+{% capture ContactMethod %}<a href="{{"/crm/#contactmethod" | prepend: site.api_baseurl}}">ContactMethod</a>{% endcapture %}
+{% capture contact_support %}<a href="mailto:{{site.support_email}}?subject=Support">Support</a>{% endcapture %}
+{% capture Cost %}<a href="{{"/cost-feed/#cost" | prepend: site.api_baseurl}}">Cost</a>{% endcapture %}
+{% capture Customer %}<a href="{{"/crm/#customer" | prepend: site.api_baseurl}}">Customer</a>{% endcapture %}
+{% capture Customers %}<a href="{{"/crm/#customer" | prepend: site.api_baseurl}}">Customers</a>{% endcapture %}
+{% capture CustomerFull %}<a href="{{"/crm/#customerfull" | prepend: site.api_baseurl}}">CustomerFull</a>{% endcapture %}
+{% capture Division %}<a href="{{"/company-tree/#division" | prepend: site.api_baseurl}}">Division</a>{% endcapture %}
+{% capture Divisions %}<a href="{{"/company-tree/#division" | prepend: site.api_baseurl}}">Divisions</a>{% endcapture %}
+{% capture Division_Glossary %}<a href="{{"/glossary/#division" | prepend: site.api_baseurl}}">Division</a>{% endcapture %}
+{% capture Division_Concept %}<a href="{{"/company-tree/#divisions-and-groups" | prepend: site.concepts_baseurl}}">Divisions</a>{% endcapture %}
+{% capture employeesconsoleoverview %}<a href="http://iqmetrix.helpdocsonline.com/employees-console-overview">Employees Console Overview</a>{% endcapture %}
+{% capture Environment %}<a href="{{"/environments/" | prepend: site.api_baseurl}}">Environment</a>{% endcapture %}
+{% capture FieldDefinition %}<a href="{{"/field-definitions/#fielddefinition" | prepend: site.api_baseurl}}">FieldDefinition</a>{% endcapture %}
+{% capture FieldDefinitions %}<a href="{{"/field-definitions/#fielddefinition" | prepend: site.api_baseurl}}">FieldDefinitions</a>{% endcapture %}
+{% capture Get_A_Customer %}<a href="{{"/crm/#getting-a-customer" | prepend: site.api_baseurl}}">Get a Customer</a>{% endcapture %}
+{% capture Getting_Field_Definitions %}<a href="{{"/field-definitions/#getting-all-field-definitions" | prepend: site.api_baseurl}}">Getting Field Definitions</a>{% endcapture %}
+{% capture Group %}<a href="{{"/company-tree/#group" | prepend: site.api_baseurl}}">Group</a>{% endcapture %}
+{% capture Groups %}<a href="{{"/company-tree/#group" | prepend: site.api_baseurl}}">Groups</a>{% endcapture %}
+{% capture Group_Concept %}<a href="{{"/company-tree/#divisions-and-groups" | prepend: site.concepts_baseurl}}">Group</a>{% endcapture %}
+{% capture Group_Glossary %}<a href="{{"/glossary/#group" | prepend: site.api_baseurl}}">Group</a>{% endcapture %}
+{% capture HeroShot_Glossary %}<a href="{{"/glossary/#hero-shot" | prepend: site.api_baseurl}}">Hero Shot</a>{% endcapture %}
+{% capture iqmetrixhub %}<a href="https://hub.iqmetrix.net/">iQmetrix Hub</a>{% endcapture %}
+{% capture Inheritance %}<a href="{{"/glossary/#inheritance" | prepend: site.api_baseurl}}">Inheritance</a>{% endcapture %}
+{% capture Identifier %}<a href="{{"/product-structure/#identifier" | prepend: site.api_baseurl}}">Identifier</a>{% endcapture %}
+{% capture Identifiers %}<a href="{{"/product-structure/#identifier" | prepend: site.api_baseurl}}">Identifiers</a>{% endcapture %}
+{% capture ItemType %}<a href="{{"/orders/#itemtype" | prepend: site.api_baseurl}}">ItemType</a>{% endcapture %}
+{% capture ItemStatus %}<a href="{{"/orders/#itemstatus" | prepend: site.api_baseurl}}">ItemStatus</a>{% endcapture %}
+{% capture Location %}<a href="{{"/company-tree/#location" | prepend: site.api_baseurl}}">Location</a>{% endcapture %}
+{% capture Location_Glossary %}<a href="{{"/glossary/#location" | prepend: site.api_baseurl}}">Location</a>{% endcapture %}
+{% capture Locations %}<a href="{{"/company-tree/#location" | prepend: site.api_baseurl}}">Locations</a>{% endcapture %}
+{% capture LockReason %}<a href="{{"/user-manager/#lockreason" | prepend: site.api_baseurl}}">LockReason</a>{% endcapture %}
+{% capture Manufacturer %}<a href="{{"/entity-store/#manufacturer" | prepend: site.api_baseurl}}">Manufacturer</a>{% endcapture %}
+{% capture MasterProduct %}<a href="{{"/product-structure/#masterproduct" | prepend: site.api_baseurl}}">MasterProduct</a>{% endcapture %}
+{% capture OAuth2_Glossary %}<a href="{{"/glossary/#oauth-token" | prepend: site.api_baseurl}}">OAuth2</a>{% endcapture %}
+{% capture Order %}<a href="{{"/orders/#order" | prepend: site.api_baseurl}}">Order</a>{% endcapture %}
+{% capture Orders %}<a href="{{"/orders/#order" | prepend: site.api_baseurl}}">Orders</a>{% endcapture %}
+{% capture OrderItem %}<a href="{{"/orders/#item" | prepend: site.api_baseurl}}">Item</a>{% endcapture %}
+{% capture OrderFull %}<a href="{{"/orders/#orderfull" | prepend: site.api_baseurl}}">OrderFull</a>{% endcapture %}
+{% capture OrderType %}<a href="{{"/orders/#ordertype" | prepend: site.api_baseurl}}">OrderType</a>{% endcapture %}
+{% capture Partner %}<a href="{{"/glossary/#partner" | prepend: site.api_baseurl}}">Partner</a>{% endcapture %}
+{% capture Permission %}<a href="{{"/security-roles/#permission" | prepend: site.api_baseurl}}">Permission</a>{% endcapture %}
+{% capture plcontentmanagement %}<a href="http://iqmetrix.helpdocsonline.com/product-library-content-management">Product Library Content Management</a>{% endcapture %}
+{% capture Pricing %}<a href="{{"/pricing/#pricing" | prepend: site.api_baseurl}}">Pricing</a>{% endcapture %}
+{% capture Product %}<a href="{{"/catalog/#product" | prepend: site.api_baseurl}}">Product</a>{% endcapture %}
+{% capture Products %}<a href="{{"/catalog/#product" | prepend: site.api_baseurl}}">Products</a>{% endcapture %}
+{% capture ProductLibrary_Concept %}<a href="{{"/product-library" | prepend: site.concepts_baseurl}}">Product Library</a>{% endcapture %}
+{% capture ProductStructure %}<a href="{{"/product-structure" | prepend: site.api_baseurl}}">Product Structure</a>{% endcapture %}
+{% capture ProductStructure_Concept %}<a href="{{"/product-structure" | prepend: site.concepts_baseurl}}">Product Structure</a>{% endcapture %}
+{% capture ProductDocument %}<a href="{{"/product-structure/#productdocument" | prepend: site.api_baseurl}}">ProductDocument</a>{% endcapture %}
+{% capture xqshelf %}<a href="http://www.iqmetrix.com/products/xq">XQ Shelf</a>{% endcapture %}
+{% capture xqshelfconfiguration %}<a href="http://iqmetrix.helpdocsonline.com/shelf-configuration-creation-and-management">Shelf Configuration Creation and Management</a>{% endcapture %}
+{% capture RegularProduct %}<a href="{{"/epc/#regularproduct" | prepend: site.api_baseurl}}">RegularProduct</a>{% endcapture %}
+{% capture Revision %}<a href="{{"/product-structure/#revision" | prepend: site.api_baseurl}}">Revision</a>{% endcapture %}
+{% capture Revisions %}<a href="{{"/product-structure/#revision" | prepend: site.api_baseurl}}">Revisions</a>{% endcapture %}
+{% capture rq %}<a href="http://www.iqmetrix.com/products/rq">RQ</a>{% endcapture %}
+{% capture Sale %}<a href="{{"/pointofsale/#sale" | prepend: site.api_baseurl}}">Sale</a>{% endcapture %}
+{% capture SaleOverridePrice %}<a href="{{"/pricing/#saleoverrideprice" | prepend: site.api_baseurl}}">SaleOverridePrice</a>{% endcapture %}
+{% capture SecurityRole %}<a href="{{"/security-roles/#securityrole" | prepend: site.api_baseurl}}">SecurityRole</a>{% endcapture %}
+{% capture SecurityRole_Concept %}<a href="{{"/user-manager/#security-roles" | prepend: site.concepts_baseurl}}">Security Roles</a>{% endcapture %}
+{% capture securityrolesetup %}<a href="http://iqmetrix.helpdocsonline.com/security-role-setup">Security Role Setup</a>{% endcapture %}
+{% capture SerialNumber %}<a href="{{"/availability/#serialnumber" | prepend: site.api_baseurl}}">SerialNumber</a>{% endcapture %}
+{% capture SubscribableList %}<a href="{{"/product-subscription/#subscribablelist" | prepend: site.api_baseurl}}">Subscribable List</a>{% endcapture %}
+{% capture Supplier %}<a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>{% endcapture %}
+{% capture Transfer %}<a href="{{"/inventorytransfers/#transfer" | prepend: site.api_baseurl}}">Transfer</a>{% endcapture %}
+{% capture Update_A_Customer %}<a href="{{"/crm/#updating-a-customer" | prepend: site.api_baseurl}}">Update a Customer</a>{% endcapture %}
+{% capture User %}<a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">User</a>{% endcapture %} 
+{% capture Users %}<a href="{{"/user-manager/#user" | prepend: site.api_baseurl}}">Users</a>{% endcapture %} 
+{% capture UserManager_Concept %}<a href="{{"/user-manager/" | prepend: site.concepts_baseurl}}">User Manager</a>{% endcapture %}
+{% capture Variation %}<a href="{{"/product-structure/#variation" | prepend: site.api_baseurl}}">Variation</a>{% endcapture %}
+{% capture Variations %}<a href="{{"/product-structure/#variation" | prepend: site.api_baseurl}}">Variations</a>{% endcapture %}
+{% capture Supplier %}<a href="{{"/entity-store/#supplier" | prepend: site.api_baseurl}}">Supplier</a>{% endcapture %}
