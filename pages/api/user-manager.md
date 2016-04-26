@@ -85,6 +85,12 @@ A User represents an account that can be used to perform actions on your data wi
 
 ### LockReason
 
+A **LockReason** allows you to provide a reason when [Locking a User](/api/user-manager/#locking-a-user). Examples of reasons might include: 
+
+* Incomplete paperwork on a sale 
+ * Equiptment transfer Incomplete inventory count 
+ * Incomplete cash safe
+
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
 | Id | Integer | Identifier | `14` |
