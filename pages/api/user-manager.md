@@ -88,7 +88,7 @@ A User represents an account that can be used to perform actions on your data wi
 A **LockReason** allows you to provide a reason when [Locking a User](/api/user-manager/#locking-a-user). Examples of reasons might include: 
 
 * Incomplete paperwork on a sale 
- * Equiptment transfer Incomplete inventory count 
+ * Equipment transfer Incomplete inventory count 
  * Incomplete cash safe
 
 | Name | Data Type | Description | Example |
@@ -2204,6 +2204,244 @@ puts response</code></pre>
 HTTP 204 Content-Type: application/json
 </pre>
 
+<h2 id='getting-all-lock-reasons' class='clickable-header top-level-header'>Getting all Lock Reasons</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Entities({CompanyId})/lockReasons
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-lock-reasons" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-lock-reasons" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-lock-reasons" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-lock-reasons" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-lock-reasons" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-lock-reasons" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-lock-reasons"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-lock-reasons">
+<pre id="http-code-getting-all-lock-reasons"><code class="language-http">GET /Entities(14146)/lockReasons
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-lock-reasons">
+<pre id="curl-code-getting-all-lock-reasons"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-lock-reasons">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-all-lock-reasons"><code class="language-csharp">static IRestResponse GettingAllLockReasons()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-lock-reasons">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-all-lock-reasons"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllLockReasons() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-lock-reasons">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-all-lock-reasons"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ Array[<a href='#lockreason'>LockReason</a>]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": 14,
+        "Name": "PaperworkNotDone",
+        "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
+    }
+]</pre>
+
+<h2 id='creating-a-lock-reason' class='clickable-header top-level-header'>Creating a Lock Reason</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+POST /Entities({CompanyId})/lockReasons
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>Name</code> (<strong>Required</strong>) - Must be unique within the organization</li><li><code>Description</code> (<strong>Required</strong>) - Human readable description</li></ul>
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-a-lock-reason" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-a-lock-reason" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-a-lock-reason" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-a-lock-reason" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-a-lock-reason" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-a-lock-reason" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-lock-reason"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-a-lock-reason">
+<pre id="http-code-creating-a-lock-reason"><code class="language-http">POST /Entities(14146)/lockReasons
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+</code><code class="language-csharp">{
+    "Name": "PaperworkNotDone",
+    "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-a-lock-reason">
+<pre id="curl-code-creating-a-lock-reason"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Name": "PaperworkNotDone",
+    "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-lock-reason">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-creating-a-lock-reason"><code class="language-csharp">static IRestResponse CreatingALockReason()
+{
+    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Name\":\"PaperworkNotDone\",\"Description\":\"Your account has been locked because the paperwork hasn't been done. Please contact your supervisor.\"}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-a-lock-reason">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-creating-a-lock-reason"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingALockReason() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Name\":\"PaperworkNotDone\",\"Description\":\"Your account has been locked because the paperwork hasn't been done. Please contact your supervisor.\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-lock-reason">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-creating-a-lock-reason"><code class="language-ruby">require 'rest-client'
+
+body = "{\"Name\":\"PaperworkNotDone\",\"Description\":\"Your account has been locked because the paperwork hasn't been done. Please contact your supervisor.\"}";
+
+response = RestClient.post 'https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ <a href='#lockreason'>LockReason</a>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 201 Content-Type: application/json
+</pre><pre>{
+    "Id": 14,
+    "Name": "PaperworkNotDone",
+    "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
+}</pre>
+
 <h2 id='getting-a-lock-reason' class='clickable-header top-level-header'>Getting a Lock Reason</h2>
 
 
@@ -2554,244 +2792,6 @@ puts response</code></pre>
 <pre>
 HTTP 200 Content-Type: application/json
 </pre>
-
-<h2 id='creating-a-lock-reason' class='clickable-header top-level-header'>Creating a Lock Reason</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-POST /Entities({CompanyId})/lockReasons
-</pre>
-
-
-<h4>Headers</h4>
-<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
-
-
-
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    </ul>
-
-
-
-<h4>Request Parameters</h4>
-
-<ul><li><code>Name</code> (<strong>Required</strong>) - Must be unique within the organization</li><li><code>Description</code> (<strong>Required</strong>) - Human readable description</li></ul>
-
-<h5>Example</h5>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#http-creating-a-lock-reason" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-creating-a-lock-reason" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-creating-a-lock-reason" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-creating-a-lock-reason" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-creating-a-lock-reason" data-toggle="tab">Ruby (rest-client)</a></li>
-    <button id="copy-creating-a-lock-reason" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-a-lock-reason"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
-</ul>
-<div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-creating-a-lock-reason">
-<pre id="http-code-creating-a-lock-reason"><code class="language-http">POST /Entities(14146)/lockReasons
-Authorization: Bearer (Access Token)
-Accept: application/json
-Content-Type: application/json
-</code><code class="language-csharp">{
-    "Name": "PaperworkNotDone",
-    "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="curl-creating-a-lock-reason">
-<pre id="curl-code-creating-a-lock-reason"><code class="language-http">curl -X POST "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
-    "Name": "PaperworkNotDone",
-    "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
-}'</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-creating-a-lock-reason">
-        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre id="csharp-code-creating-a-lock-reason"><code class="language-csharp">static IRestResponse CreatingALockReason()
-{
-    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
-    var request = new RestRequest(Method.POST);
-     
-    request.AddHeader("Authorization", "Bearer (Access Token)"); 
-    request.AddHeader("Accept", "application/json"); 
-    request.AddHeader("Content-Type", "application/json"); 
-
-     request.AddParameter("application/json", "{\"Name\":\"PaperworkNotDone\",\"Description\":\"Your account has been locked because the paperwork hasn't been done. Please contact your supervisor.\"}", ParameterType.RequestBody);
-
-    return client.Execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="java-creating-a-lock-reason">
-        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre id="java-code-creating-a-lock-reason"><code class="language-java">import org.apache.http.entity.StringEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import java.io.IOException;
-
-public static CloseableHttpResponse CreatingALockReason() throws IOException {
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpPost request = new HttpPost("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
-     
-    request.addHeader("Authorization", "Bearer (Access Token)"); 
-    request.addHeader("Accept", "application/json"); 
-    request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Name\":\"PaperworkNotDone\",\"Description\":\"Your account has been locked because the paperwork hasn't been done. Please contact your supervisor.\"}");
-    request.setEntity(body);
-    
-    return httpClient.execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-creating-a-lock-reason">
-        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre id="ruby-code-creating-a-lock-reason"><code class="language-ruby">require 'rest-client'
-
-body = "{\"Name\":\"PaperworkNotDone\",\"Description\":\"Your account has been locked because the paperwork hasn't been done. Please contact your supervisor.\"}";
-
-response = RestClient.post 'https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons', body, {
-     :'Authorization' => 'Bearer (Access Token)',
-     :'Accept' => 'application/json',
-     :'Content-Type' => 'application/json',
-    } 
-
-puts response</code></pre>
-    </div>
-</div>
-
-<h4>Response</h4>
-
-
- <a href='#lockreason'>LockReason</a>
-
-<h5>Example</h5>
-
-<pre>
-HTTP 201 Content-Type: application/json
-</pre><pre>{
-    "Id": 14,
-    "Name": "PaperworkNotDone",
-    "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
-}</pre>
-
-<h2 id='getting-all-lock-reasons' class='clickable-header top-level-header'>Getting all Lock Reasons</h2>
-
-
-
-<h4>Request</h4>
-
-<pre>
-GET /Entities({CompanyId})/lockReasons
-</pre>
-
-
-<h4>Headers</h4>
-<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
-
-
-
-<h4>URI Parameters</h4>
-<ul>
-    
-    <li>
-        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
-    </li>
-    </ul>
-
-
-
-<h5>Example</h5>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#http-getting-all-lock-reasons" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-getting-all-lock-reasons" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-getting-all-lock-reasons" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-all-lock-reasons" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-getting-all-lock-reasons" data-toggle="tab">Ruby (rest-client)</a></li>
-    <button id="copy-getting-all-lock-reasons" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-lock-reasons"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
-</ul>
-<div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-getting-all-lock-reasons">
-<pre id="http-code-getting-all-lock-reasons"><code class="language-http">GET /Entities(14146)/lockReasons
-Authorization: Bearer (Access Token)
-Accept: application/json
-</code><code class="language-csharp"></code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="curl-getting-all-lock-reasons">
-<pre id="curl-code-getting-all-lock-reasons"><code class="language-http">curl -X GET "https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-lock-reasons">
-        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre id="csharp-code-getting-all-lock-reasons"><code class="language-csharp">static IRestResponse GettingAllLockReasons()
-{
-    var client = new RestClient("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
-    var request = new RestRequest(Method.GET);
-     
-    request.AddHeader("Authorization", "Bearer (Access Token)"); 
-    request.AddHeader("Accept", "application/json"); 
-
-    
-
-    return client.Execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="java-getting-all-lock-reasons">
-        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre id="java-code-getting-all-lock-reasons"><code class="language-java">
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import java.io.IOException;
-
-public static CloseableHttpResponse GettingAllLockReasons() throws IOException {
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    HttpGet request = new HttpGet("https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons");
-     
-    request.addHeader("Authorization", "Bearer (Access Token)"); 
-    request.addHeader("Accept", "application/json"); 
-    
-    return httpClient.execute(request);
-}</code></pre>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-lock-reasons">
-        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre id="ruby-code-getting-all-lock-reasons"><code class="language-ruby">require 'rest-client'
-
-
-
-response = RestClient.get 'https://usermanagerdemo.iqmetrix.net/v1/Entities(14146)/lockReasons', {
-     :'Authorization' => 'Bearer (Access Token)',
-     :'Accept' => 'application/json',
-    } 
-
-puts response</code></pre>
-    </div>
-</div>
-
-<h4>Response</h4>
-
-
- Array[<a href='#lockreason'>LockReason</a>]
-
-<h5>Example</h5>
-
-<pre>
-HTTP 200 Content-Type: application/json
-</pre><pre>[
-    {
-        "Id": 14,
-        "Name": "PaperworkNotDone",
-        "Description": "Your account has been locked because the paperwork hasn't been done. Please contact your supervisor."
-    }
-]</pre>
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
