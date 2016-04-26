@@ -4,7 +4,7 @@ permalink: /api/Trade-In-Reporting-Service/
 tags: []
 keywords: 
 audience: 
-last_updated: 13-4-2016
+last_updated: 26-4-2016
 summary: 
 rouge: false
 ---
@@ -100,7 +100,7 @@ POST /providers({ProviderId})/tradeData
 
 <h4>Request Parameters</h4>
 
-<ul><li><code>referenceNumber</code> (<strong>Required</strong>) </li><li><code>inspectedDate</code> (Optional) </li><li><code>invoiceNumber</code> (Optional) </li><li><code>originalcustomerInspectionValue</code> (Optional) </li><li><code>originalCustomerTradeInValue</code> (Optional) </li><li><code>paymentDate</code> (Optional) </li><li><code>postInspectionValue</code> (Optional) </li><li><code>processedDate</code> (Optional) </li><li><code>receivedDate</code> (Optional) </li><li><code>receivedImei</code> (Optional) </li><li><code>receivedProductDisplayName</code> (Optional) </li><li><code>serialNumber</code> (Optional) </li><li><code>shippedDate</code> (Optional) </li><li><code>shipmentId</code> (Optional) </li><li><code>tradeInStatus</code> (Optional) </li></ul>
+<ul><li><code>receivedImei</code> (<strong>Required</strong>) </li><li><code>referenceNumber</code> (<strong>Required</strong>) </li><li><code>inspectedDate</code> (Optional) </li><li><code>invoiceNumber</code> (Optional) </li><li><code>originalcustomerInspectionValue</code> (Optional) </li><li><code>originalCustomerTradeInValue</code> (Optional) </li><li><code>paymentDate</code> (Optional) </li><li><code>postInspectionValue</code> (Optional) </li><li><code>processedDate</code> (Optional) </li><li><code>receivedDate</code> (Optional) </li><li><code>receivedProductDisplayName</code> (Optional) </li><li><code>serialNumber</code> (Optional) </li><li><code>shippedDate</code> (Optional) </li><li><code>shipmentId</code> (Optional) </li><li><code>tradeInStatus</code> (Optional) </li></ul>
 
 <h5>Example</h5>
 
@@ -319,31 +319,29 @@ puts response</code></pre>
 <h4>Response</h4>
 
 
- Array[<a href='#phobioprovidertradeindata'>PhobioProviderTradeInData</a>]
+ <a href='#phobioprovidertradeindata'>PhobioProviderTradeInData</a>
 
 <h5>Example</h5>
 
 <pre>
 HTTP 200 Content-Type: application/json
-</pre><pre>[
-    {
-        "inspectedDate": "2016-03-16T12:00:00.000Z",
-        "invoiceNumber": "84WEAIN5703",
-        "originalcustomerInspectionValue": 310.5,
-        "originalCustomerTradeInValue": 310.5,
-        "paymentDate": "2016-03-16T12:00:00.000Z",
-        "postInspectionValue": 310.5,
-        "processedDate": "2016-03-17T12:00:00.000Z",
-        "receivedDate": "2016-03-16T12:00:00.000Z",
-        "receivedImei": "351756051523999",
-        "receivedProductDisplayName": "Galaxy S6 edge+ 32GB - Black Sapphire",
-        "referenceNumber": "123",
-        "serialNumber": "B7FQ-RANC",
-        "shippedDate": "2016-03-13T12:00:00.000Z",
-        "shipmentId": "123",
-        "tradeInStatus": "Quoted"
-    }
-]</pre>
+</pre><pre>{
+    "inspectedDate": "2016-03-16T12:00:00.000Z",
+    "invoiceNumber": "84WEAIN5703",
+    "originalcustomerInspectionValue": 310.5,
+    "originalCustomerTradeInValue": 310.5,
+    "paymentDate": "2016-03-16T12:00:00.000Z",
+    "postInspectionValue": 310.5,
+    "processedDate": "2016-03-17T12:00:00.000Z",
+    "receivedDate": "2016-03-16T12:00:00.000Z",
+    "receivedImei": "351756051523999",
+    "receivedProductDisplayName": "Galaxy S6 edge+ 32GB - Black Sapphire",
+    "referenceNumber": "123",
+    "serialNumber": "B7FQ-RANC",
+    "shippedDate": "2016-03-13T12:00:00.000Z",
+    "shipmentId": "123",
+    "tradeInStatus": "Quoted"
+}</pre>
 
 <h2 id="errors" class="clickable-header top-level-header">Errors</h2>
 
