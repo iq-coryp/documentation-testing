@@ -1,0 +1,63 @@
+<style>
+  table {
+    min-width: 100%;
+  }
+</style>
+
+<hr/>
+<div id="page-selector">
+  <div class="row">
+    <span class="col-md-2 col-md-offset-1 text-center {% if page.url contains "/guides/ea-guide/overview" %} selectedIcon {% endif %}">
+      <a href="{{"/guides/ea-guide/overview" | prepend: site.url}}">
+        <span class="col-md-12">
+          <h4>Overview</h4><br/>
+        </span>        
+        <span class="col-md-12">
+          <i class="fa fa-home fa-3x"></i>
+        </span>
+      </a>
+    </span>  
+    <span class="col-md-2 text-center {% if page.url contains "/guides/ea-guide/corporate-hierarchy" %} selectedIcon {% endif %}">
+      <a href="{{"/guides/ea-guide/corporate-hierarchy" | prepend: site.url}}">
+        <span class="col-md-12">
+          <h4>Corporate Hierarchy</h4>
+        </span>        
+        <span class="col-md-12">
+          <i class="fa fa-map-marker fa-3x" style="font-size:2.7em;"></i>
+        </span>
+      </a>
+    </span>
+    <span class="col-md-2 text-center {% if page.url contains "/guides/ea-guide/content" %} selectedIcon {% endif %}">
+      <a href="{{"/guides/ea-guide/content" | prepend: site.url}}">
+        <span class="col-md-12">
+          <h4>Content</h4><br/>
+        </span>             
+        <span class="col-md-12">
+          <i class="fa fa-list-alt fa-3x"></i>
+        </span>
+      </a>    
+    </span> 
+    <span class="col-md-2 text-center {% if page.url contains "/guides/ea-guide/inventory" %} selectedIcon {% endif %}">
+      <a href="{{"/guides/ea-guide/inventory" | prepend: site.url}}">
+        <span class="col-md-12">
+          <h4>Inventory</h4><br/>
+        </span>             
+        <span class="col-md-12">
+          <i class="fa fa-barcode fa-3x"></i>
+        </span>
+      </a>       
+    </span>  
+    <span class="col-md-2 text-center {% if page.url contains "/guides/ea-guide/orders" %} selectedIcon {% endif %}">
+      <a href="{{"/guides/ea-guide/orders" | prepend: site.url}}">
+        <span class="col-md-12">
+          <h4>Orders</h4><br/>
+        </span>             
+        <span class="col-md-12">
+          <i class="fa fa-file-text-o fa-3x" style="font-size:2.5em;"></i>
+        </span>
+      </a>   
+    </span>
+  </div>
+</div>
+<br/>
+<hr/>

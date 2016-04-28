@@ -853,3 +853,17 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 10px;
   margin-left: 23%;
 }
+
+#page-selector .selectedIcon a {
+  cursor: default;
+}
+
+#page-selector .selectedIcon h4 {
+  color: darkgrey;
+  cursor: default;
+}
+
+#page-selector .selectedIcon .fa-3x {
+  color: darkgrey;
+  cursor: default;
+}

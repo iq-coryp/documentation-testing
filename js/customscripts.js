@@ -29,6 +29,18 @@ $( document ).ready(function() {
 
     var clipboard = new Clipboard('.copy-button');
 
+
+    //Set entity cookie if there is a URL parameter
+    if(window.location.search != "" && window.location.search.indexOf("=") > -1) {
+        var entityValue = window.location.search.split("=")[1];
+        setCookie("entity", entityValue);
+    }
+
+    if(getCookie("entity") != "" && getCookie("entity") != null) {
+        var entityValue = getCookie("entity");
+        //hide anything that is hidden for that entity
+        $("." + entityValue).hide();
+    }
 });
 
 function setCopyTarget(methodName, methodHook) {

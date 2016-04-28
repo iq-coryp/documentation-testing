@@ -52,7 +52,13 @@
                         $(this).attr("href", url);
                     });
                 }
-               
+                
+                if(window.location.search != "" && window.location.search != null && window.location.search.indexOf("=") > -1) {
+
+                    var entityValue = window.location.search.split("=")[1];
+
+                    $("."+entityValue).hide();
+                }               
 
             });
              
@@ -60,36 +66,36 @@
 
         {% include custom/conditions.html %}
 
-        <ul id="mysidebar" class="nav affix">
+    <ul id="mysidebar" class="nav affix">
             {% for entry in sidebar %}
                 {% for subcategory in entry.subcategories %}
                     {% if subcategory.url != null %}
-                        <li><a href="{{ subcategory.url }}">{{ subcategory.title }}</a>
-                    {% elsif subcategory.audience contains audience and subcategory.product contains product and subcategory.platform contains platform and subcategory.version contains version and subcategory.web != false %}
-                        <li><a href="#">{{ subcategory.title }}</a>
+                        <li class="{{subcategory.hide}}"><a href="{{ subcategory.url }}">{{ subcategory.title }}</a>
+                    {% else %}
+                        <li class="{{subcategory.hide}}"><a href="#">{{ subcategory.title }}</a>
                             <ul style="display: none;">
                                 {% for item in subcategory.items %}
                                     {% if item.thirdLevelItems != null %}
-                                        <li class="thirdlevel"><a href="#">{{ item.title }}</a>
+                                        <li class="thirdlevel {{item.hide}}"><a href="#">{{ item.title }}</a>
                                             <ul>
                                                 {% for deepItem in item.thirdLevelItems %}
                                                     {% if deepItem.external_url %}
-                                                        <li><a href="{{deepItem.external_url}}" target="_blank">{{deepItem.title}}</a></li>
+                                                        <li class="{{deepItem.hide}}"><a href="{{deepItem.external_url}}" target="_blank">{{deepItem.title}}</a></li>
                                                     {% elsif page.url contains deepItem.url %}
-                                                        <li class="active"><a href="{{deepItem.url | prepend: site.suffix}}">{{deepItem.title}}</a></li>
+                                                        <li class="active {{deepItem.hide}}"><a href="{{deepItem.url | append: site.suffix}}">{{deepItem.title}}</a></li>
                                                     {% else %}
-                                                        <li><a href="{{deepItem.url | prepend: site.suffix}}">{{deepItem.title}}</a></li>
+                                                        <li class="{{deepItem.hide}}"><a href="{{deepItem.url | append: site.suffix}}">{{deepItem.title}}</a></li>
                                                     {% endif %}
                                                 {% endfor %}
                                             </ul>
                                         </li>
-                                    {% elsif item.audience contains audience and item.product contains product and item.platform contains platform and item.version contains version and item.web != false %}
+                                    {% else %}
                                         {% if item.external_url %}
-                                            <li><a href="{{item.external_url}}" target="_blank">{{subcategory.title}}</a></li>
+                                            <li class="{{item.hide}}"><a href="{{item.external_url}}" target="_blank">{{subcategory.title}}</a></li>
                                         {% elsif page.url contains item.url %}
-                                            <li class="active"><a href="{{item.url | v: site.suffix}}">{{item.title}}</a></li>
+                                            <li class="active {{item.hide}}"><a href="{{item.url | append: site.suffix}}">{{item.title}}</a></li>
                                         {% else %}
-                                            <li><a href="{{item.url | prepend: site.suffix}}">{{item.title}}</a></li>
+                                            <li class="{{item.hide}}"><a href="{{item.url | append: site.suffix}}">{{item.title}}</a></li>
                                         {% endif %}
                                     {% endif %}
                                 {% endfor %}

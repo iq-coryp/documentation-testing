@@ -1,418 +1,211 @@
-# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
-
-# Sidebar
 entries:
 - title: Sidebar
   subcategories:
-
     - title: Core Concepts
-      audience: writers, designers
-      platform: all
-      product: all
-      version: all
-
       items:
 
         - title: Classification Tree
           url: /concepts/classification-tree/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: Company Tree
           url: /concepts/company-tree/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: Product Library
           url: /concepts/product-library/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
+          
         - title: Product Structure
-          url: /concepts/product-structure/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /concepts/product-structure/  
 
         - title: User Manager
           url: /concepts/user-manager/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
+          
     - title: Getting Started
-      audience: writers, designers
-      platform: all
-      product: all
-      version: all
-
       items:      
 
         - title: Environments
-          url: /api/environments/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /api/environments/          
 
         - title: Rate Limiting
           url: /api/rate-limiting/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: Supported Response Formats
           url: /api/getting-started/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
+          
         - title: Glossary
           url: /api/glossary/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
+          
     - title: Guides
-      audience: writers, designers
-      platform: all
-      product: all
-      version: all
-
       items:
-
-        - title: Creating an In Store Order
-          url: /guides/creating-an-in-store-order/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: Dropship Onboarding Guide
           url: /guides/dropship-onboarding-guide/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-          print: true
-
+          hide: partner
+          audience: dropship
+        
         - title: Dropship Order Management Guide
           url: /guides/dropship-order-guide/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-          print: true
+          hide: partner
+          audience: dropship
 
         - title: Dropship Test Order Guide
-          url: /guides/dropship-test-order-guide/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-          print: true
+          url: /guides/dropship-test-order-guide/        
+          hide: partner
+          audience: dropship
+
+        - title: Creating an In Store Order
+          url: /guides/creating-an-in-store-order/
+
+        - title: Creating a User for RQ
+          url: /guides/creating-a-user-for-rq/
 
         - title: eCommerce Integration Guide
           url: /guides/commerce-guide/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+    
+        - title: Endless Aisle Integration Guide
+          thirdLevelItems:
 
-        - title: VMI Onboarding Guide
-          url: /guides/vmi-onboarding-guide/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-          print: true
+            - title: Overview
+              url: /guides/ea-guide/overview                 
+
+            - title: Corporate Hierarchy
+              url: /guides/ea-guide/corporate-hierarchy
+                         
+            - title: Content
+              url: /guides/ea-guide/content                
+
+            - title: Inventory
+              url: /guides/ea-guide/inventory                
+
+            - title: Orders
+              url: /guides/ea-guide/orders                                            
 
     - title: API Reference
-      audience: writers, designers
-      platform: all
-      product: all
-      version: all
-
       items:
 
         - title: Authentication
           url: /api/authentication/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: Assets
-          url: /api/assets/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /api/assets/          
 
         - title: Catalog
-          url: /api/catalog/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /api/catalog/          
 
         - title: Company Tree
           url: /api/company-tree/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: Customers
-          url: /api/crm/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /api/crm/         
 
         - title: Dropship
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all 
-
+          hide: partner
+          audience: dropship          
           thirdLevelItems:
 
             - title: Cost Feed
-              url: /api/cost-feed/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all 
+              url: /api/cost-feed/               
 
             - title: Product Feed
-              url: /api/product-feed/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all 
+              url: /api/product-feed/               
 
             - title: Product Subscription
               url: /api/product-subscription/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
 
             - title: Shipping Options
-              url: /api/shipping-options/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
+              url: /api/shipping-options/              
 
             - title: Supplier Availability
-              url: /api/supplier-availability/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
+              url: /api/supplier-availability/              
 
             - title: Supplier Orders
-              url: /api/supplier-orders/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
+              url: /api/supplier-orders/              
 
         - title: Entities
           url: /api/entity-store/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: General Ledger
+          hide: partner dropship
           url: /api/general-ledger/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
         - title: Inventory Availability
-          url: /api/availability/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /api/availability/          
 
         - title: Orders
           url: /api/orders/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
-        - title: Partners
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
+          
+        - title: Partners 
+          hide: dropship
+          audience: partner          
           thirdLevelItems:
 
             - title: Partner Reporting
               url: /api/partner-reporting/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all 
+              audience: partner          
+              hide: dropship
 
             - title: Relationships
-              url: /api/partner-relationships/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
+              url: /api/partner-relationships/          
+              audience: partner        
+              hide: dropship
+
+            - title: Trade-In Reporting
+              url: /api/Trade-In-Reporting-Service/  
+              audience: partner         
+              hide: dropship
 
         - title: Pricing
-          url: /api/pricing/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /api/pricing/          
 
         - title: Product Library
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
           thirdLevelItems:
 
             - title: Classification Tree
               url: /api/classification-tree/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
-
+              
             - title: Field Definitions
-              url: /api/field-definitions/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all          
+              url: /api/field-definitions/                        
 
             - title: Products
               url: /api/product-library/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
 
             - title: Product Structure
               url: /api/product-structure/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
 
         - title: Reference
-          url: /api/reference/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
+          url: /api/reference/   
 
         - title: RQ
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
-
+          hide: partner dropship
           thirdLevelItems:
 
             - title: Carrier Integration
               url: /api/carrier-integration/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
 
             - title: Customer Managed Inventory (CMI)
-              url: /api/cmi/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
+              url: /api/cmi/              
 
             - title: Commissions
               url: /api/commissions/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
 
             - title: Electronic Product Catalog (EPC)
               url: /api/epc/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
 
             - title: Punch Clock
               url: /api/punch-clock/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
-
-            - title: Vendor Managed Inventory (VMI)
-              url: /api/vmi/
-              audience: writers, designers
-              platform: all
-              product: all
-              version: all
 
         - title: Security Roles
           url: /api/security-roles/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all  
 
         - title: User Manager
           url: /api/user-manager/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
     - title: FAQ
-      audience: writers, designers
-      platform: all
-      product: all
-      version: all
-
+      hide: partner
+      audience: partner
       items:
 
         - title: Dropship FAQ
           url: /faq/dropship-faq/
-          audience: writers, designers
-          platform: all
-          product: all
-          version: all
 
     - title: Changelog
       url: /api/changelog/
-      audience: writers, designers
-      platform: all
-      product: all
-      version: all
