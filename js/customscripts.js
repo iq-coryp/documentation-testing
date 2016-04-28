@@ -39,7 +39,11 @@ $( document ).ready(function() {
     if(getCookie("entity") != "" && getCookie("entity") != null) {
         var entityValue = getCookie("entity");
         //hide anything that is hidden for that entity
-        $("." + entityValue).hide();
+
+        if(entityValue != "all") {
+            $("." + entityValue).hide();
+        }
+
     }
 });
 
