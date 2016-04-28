@@ -199,6 +199,9 @@ entries:
         - title: User Manager
           url: /api/user-manager/
 
+        - title: Vendor Managed Inventory (VMI)
+          url: /api/vmi/
+
     - title: FAQ
       hide: partner
       audience: partner
