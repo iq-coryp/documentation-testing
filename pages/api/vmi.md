@@ -1,10 +1,10 @@
 ---
-title: Vmi
+title: Vendor Managed Inventory
 permalink: /api/vmi/
 tags: []
 keywords: 
 audience:
-last_updated: 1-4-2016
+last_updated: 29-4-2016
 summary:
 ---
 
@@ -26,7 +26,7 @@ The Vendor Managed Inventory (VMI) API can be used to:
 
 ## Endpoints
 
-* Sandbox: <a href="https://vmidemo.iqmetrix.net/VMIService.asmx">https://vmidemo.iqmetrix.net/VMIService.asmx</a>
+* Sandbox: <a href="https://vmirc.iqmetrix.net/VMIService.asmx">https://vmirc.iqmetrix.net/VMIService.asmx</a>
 * Production (Denver): <a href="https://vmi1.iqmetrix.net/VMIService.asmx">https://vmi1.iqmetrix.net/VMIService.asmx</a>
 * Production (Toronto): <a href="https://vmi3.iqmetrix.net/VMIService.asmx">https://vmi3.iqmetrix.net/VMIService.asmx</a>
 * Production (Philadelphia): <a href="https://vmi10.iqmetrix.net/VMIService.asmx">https://vmi10.iqmetrix.net/VMIService.asmx</a>
@@ -61,9 +61,9 @@ VendorIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| ClientID | GUID | Client identifier the request is targeting | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
-| Name | String | Company name | `abc123` |
-| *StoreId* | *Integer* | *Reserved for future use. Use value of -1* | |
+| ClientID | GUID | Client identifier the request is targeting | `c46ccb4d-2d44-4289-950a-b9cb51d58ac4` |
+| Name | String | Company name | `DropshipTestDemo` |
+| StoreId | Integer | Store identifer the vendor is targeting | `4` |
 | VendorAccountNumber | String | Account number assigned by vendor. | `-1` |
 
 
@@ -128,52 +128,37 @@ VendorIdentitiy information is supplied by iQmetrix and used to authenticate req
 |:-----|:----------|:------------|:--------|
 | ProductID | GUID | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
 | ProductName | String | Name | `Samsung Galaxy S6` |
-| CategoryPath | String | ??? | `???` |
+| CategoryPath | String | Category location of product | `Activation >> Dropship` |
 | DateEOL | DateTime | End of life date | `1/01/2016 12:00:00 AM` |
-| DateReceived | String | Product receiving stauts in RQ | `abc` |
+| DateReceived | String | Product receiving stauts in RQ | `01/21/2016 16:58:23` |
 | DoNotOrder | Boolean | A flag to indicate if the product should not be ordered | `false` |
 | Enabled | Boolean | A flag to indicate if product is enabled | `true` |
-| GrossQuantitySold | Integer | Gross amount sold | `-1` |
-| GrossQuantityReturned | Integer | Gross amount returned | `-1` |
-| MaximumLevel | Integer | Maximum number of Products that can be added to the PurchaseOrder | `1` |
-| MinimumLevel | Integer | Minimum number of Products that can be added to the PurchaseOrder | `-1` |
-| MinMaxLocked | Boolean | A flag to indicate if the Min and Max values are locked (unchangeable) | `false` |
+| GrossQuantitySold | Integer | Gross amount sold | `10` |
+| GrossQuantityReturned | Integer | Gross amount returned | `11` |
+| MaximumLevel | Integer | Maximum number of Products that can be added to the PurchaseOrder | `100` |
+| MinimumLevel | Integer | Minimum number of Products that can be added to the PurchaseOrder | `10` |
+| MinMaxLocked | Boolean | A flag to indicate if the Min and Max values are locked (unchangeable) | `true` |
 | ProductCost | Decimal | Required for PO creation or default from RQ will be used | `99.99` |
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
 | ProductRecieved | Boolean | A flag to indicate if product was recieved | `false` |
 | ProductSKU | String | ProductIdentifier in RQ | `CECPSM000017` |
-| QuantityCommittedOnOrderEntry | Integer | Amount committed on an order entry | `-1` |
-| QuantityInStock | Integer | Amount in stock | `-1` |
-| QuantityInTransfer | Integer | Amount in transfer | `-1` |
-| QuantityOnBackOrder | Integer | Amount on back order | `-1` |
-| QuantityOnLoan | Integer | Amount on loan | `-1` |
-| QuantityOnOrder | Integer | Amount on order | `-1` |
-| QuantityOnRMA | Integer | Amount on RMA | `-1` |
-| QuantityOnUncommittedOrder | Integer | Amount on uncommitted order | `-1` |
+| QuantityCommittedOnOrderEntry | Integer | Amount committed on an order entry | `0` |
+| QuantityInStock | Integer | Amount in stock | `8` |
+| QuantityInTransfer | Integer | Amount in transfer | `3` |
+| QuantityOnBackOrder | Integer | Amount on back order | `0` |
+| QuantityOnLoan | Integer | Amount on loan | `5` |
+| QuantityOnOrder | Integer | Amount on order | `6` |
+| QuantityOnRMA | Integer | Amount on RMA | `9` |
+| QuantityOnUncommittedOrder | Integer | Amount on uncommitted order | `2` |
 | QuantityOrdered | Integer | Amount ordered | `4` |
 | QuantityReceived | Integer | Amount received | `4` |
-| QuantitySold | Integer | Amount sold | `-1` |
-| QuantitySuggestedByVendor | Integer | Amount suggested by vendor | `0` |
+| QuantitySold | Integer | Amount sold | `30` |
+| QuantitySuggestedByVendor | Integer | Amount suggested by vendor | `50` |
 | RetailPrice | Decimal | Retail price | `99.99` |
 | SaleBegin | DateTime | Sale begin date | `01/01/2014 12:00:00 AM` |
 | SaleEnd | DateTime | Sale end date | `01/10/2014 12:00:00 AM` |
 | SalePrice | Decimal | Sale price | `79.99` |
-| VendorSKU | String | Vendor SKU | `ABC123` |
-
-
-### ProductAndStoreInformation
-
-| Name | Data Type | Description | Example |
-|:-----|:----------|:------------|:--------|
-| ProductInformation | [ProductInformation](#productinformation) | Product information |  |
-| StoreID | Integer | Store identifier | `11142` |
-| StoreName | String | Name | `Cornwall West` |
-| ChannelName | String | Channel name | `abc123` |
-| ChannelID | GUID | Identifier | `abc123` |
-| DistrictID | Integer | District identifier | `123` |
-| DistrictName | String | District name | `Regina` |
-| RegionID | Integer | Region identifier | `123` |
-| RegionName | String | Region | `Regina` |
+| VendorSKU | String | Vendor SKU | `SSGS5CB` |
 
 
 ### StoreInformation
@@ -201,7 +186,7 @@ VendorIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 Retrieves a list of all companies that are in a Pending state for the Vendor. This means that the company has completed setup within RQ, chosen the vendor, added stores to the relationship, and configured product for replenishment. 
 
-Vendors can only create POs for “Enabled” companies. A company can be enabled or disabled through this interface by calling EnableCompany().
+Vendors can only create purchase orders for <strong>Enabled</strong> companies. To change the status of a company, use <a href="#enabling-or-disabling-a-company">Enabling or Disabling a Company</a> .
 
 
 #### Request
@@ -232,11 +217,11 @@ Vendors can only create POs for “Enabled” companies. A company can be enable
       <vendor>
         <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
         <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
+        <Password>samplepassword</Password>
         <Client>
           <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
           <Name>DropshipTestDemo</Name>
-          <StoreID>14070</StoreID>
+          <StoreID>4</StoreID>
         </Client>
       </vendor>
     </GetPendingCompanies>
@@ -285,11 +270,9 @@ HTTP 200 Content-Type: application/xml
 
 ```
 
-## Getting All VMI Enabled Companies
+## Getting Enabled Companies
 
-Retrieves a list of all companies that has VMI enabled for the vendor.
-
-Get a list of VMI enabled companies. This list contains a unique identifier for each company which is used in subsequent web method calls.
+Retrieves a list of VMI enabled companies.
 
 
 #### Request
@@ -320,11 +303,11 @@ Get a list of VMI enabled companies. This list contains a unique identifier for 
       <Vendor>
         <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
         <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
+        <Password>samplepassword</Password>
         <Client>
           <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
           <Name>DropshipTestDemo</Name>
-          <StoreID>14070</StoreID>
+          <StoreID>4</StoreID>
         </Client>
       </Vendor>
     </GetCompanyList>
@@ -373,11 +356,9 @@ HTTP 200 Content-Type: application/xml
 
 ```
 
-## Getting All VMI Enabled Stores
+## Getting Enabled Stores
 
-Retrieves a list of VMI enabled stores
-
-GetHierarchyInfo() Get the company location structure, complete with store counts
+Retrieves a list of VMI enabled stores.
 
 
 #### Request
@@ -408,11 +389,11 @@ GetHierarchyInfo() Get the company location structure, complete with store count
       <Vendor>
         <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
         <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
+        <Password>samplepassword</Password>
         <Client>
           <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
           <Name>DropshipTestDemo</Name>
-          <StoreID>14070</StoreID>
+          <StoreID>4</StoreID>
         </Client>
       </Vendor>
     </GetStoreList>
@@ -475,158 +456,7 @@ HTTP 200 Content-Type: application/xml
 
 ```
 
-## Getting a Geographic Inventory Report
-
-This method allows you to get an inventory report for a particular store. This includes data like minimum and maximum inventory, quantity on hand, quantity sold within a particular date range, product SKU etc
-
-Used in conjunction with the GetHierarchyInfo call, this method will gather the same information as the GetInventoryReportByVendorSKU() call, but will gather data based on a Channel, or a Region, or a District, or a Store. This allows consumers to get inventory data for a large number of stores at one time. Use throttling logic based on data from GetHierarchyInfo to determine which level of the hierarchy to gather data for. See Note below.
-
-GetGeographicInventoryReport() Apply logic to each level in the hierarchy to gather data for multiple stores. Example provided in the details for GetGeographicInventoryReport below.
-
-The payload and/or processing time for this call can be huge. Consider the number of locations multiplied by the number of products you supply for that store. The Hierarchy info has a store count for each level of the hierarchy. Use this value to allow your software to intelligently choose the appropriate level to request. The example below shows how this may be implemented. Consider using a configuration value instead of hard-coding the throttle value. Also note that if the HierarchyInfo contains a default Channel of Guid.Empty (00000000-0000-0000-0000-000000000000), you must get data at the Region level.
-
-
-#### Request
-
-#### Headers
-
-* `Content-Type: text/xml`
-
-#### Authorization Parameters
- 
-* `VendorID` (**Required**) - Vendor specific identifier supplied by iQmetrix 
-* `Username` (**Required**) - Vendor specific username supplied by iQmetrix 
-* `Password` (**Required**) - Vendor specific password supplied by iQmetrix
-* `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
-* `Name`     (Optional) - Client specific name supplied by iQmetrix
-* `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
-
-
-
-###### Example
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetGeographicInventoryReport xmlns="http://www.iqmetrix.com">
-      <vendor>
-        <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
-        <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
-        <Client>
-          <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
-          <Name>DropshipTestDemo</Name>
-          <StoreID>14070</StoreID>
-        </Client>
-      </vendor>
-      <channelId>guid</channelId>
-      <regionId>int</regionId>
-      <districtId>int</districtId>
-      <storeId>int</storeId>
-      <StartDate>string</StartDate>
-      <EndDate>string</EndDate>
-    </GetGeographicInventoryReport>
-  </soap:Body>
-</soap:Envelope>          
-
-```
-
-###### Code Example
-
-```java
-VendorIdentity vendor = new VendorIdentity();
-vendor.VendorID = new Guid(009E800D-10ED-4F4A-B86F-DFB3C2A18C09);
-vendor.Username =  "danssupplies";
-vendor.Password = "samplepassword";
-vendor.Client = new ClientAgent();
-vendor.Client.ClientID = companyID;
-VMIServiceSoapClient vmiService = new VMIServiceSoapClient(); 
-HierarchyInfo hierarcy = vmiService.GetHierarchyInfo(vendor); 
-
-int lotsOfStores = 30; //throttle value 
-var result = new List<ProductAndStoreInformation>(); 
-var startDate = "07/01/2012"; 
-var endDate = "07/02/2012"; 
-
-foreach (var channel in hierarchy.Channels) 
-{ 
-    //default channel, or channel has lots of stores and has regions 
-    if (channel.ChannelID == Guid.Empty || 
-        channel.StoreCount > lotsOfStores && channel.Regions.Any()) 
-    { 
-        foreach (var region in channel.Regions) 
-        { 
-            //region has lots of stores and districts exist 
-            if (region.StoreCount > lotsOfStores && region.Districts.Any()) 
-            { 
-                foreach (var district in region.Districts) 
-                { 
-                    if (district.StoreCount > lotsOfStores) 
-                    { 
-                        //loop here for each store 
-                    } 
-                    else 
-                        {
-                        result.AddRange(vmiService.GetGeographicInventoryReport 
-                        (_vendor, Guid.Empty, -1, district.DistrictID,
-                        -1, startDate, endDate)); 
-                        } 
-                } 
-            } 
-            else //region has few stores or no districts exist 
-            { 
-                result.AddRange(vmiService.GetGeographicInventoryReport 
-                (_vendor, Guid.Empty, region.RegionID, 
-                -1, -1, startDate, endDate)); 
-            } 
-        } 
-    } 
-    else //channel has few stores or no regions exist 
-    { 
-        result.AddRange(vmiService.GetGeographicInventoryReport 
-            (_vendor, channel.ChannelID, -1, -1, -1, startDate, endDate)); 
-    } 
-}
-
-```
-
-#### Response
-
-
-<a href='#productandstoreinformation'>ProductAndStoreInformation</a>
-
-###### Example
-
-```
-HTTP 200 Content-Type: application/xml
-```
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <GetGeographicInventoryReportResponse xmlns="http://www.iqmetrix.com">
-          <GetGeographicInventoryReportResult>
-            <ProductAndStoreInformation>
-              <StoreID>36</StoreID>
-              <StoreName>Cornwall West</StoreName>
-              <ChannelName>string</ChannelName>
-              <ChannelID>guid</ChannelID>
-              <RegionName>Regina</RegionName>
-              <RegionID>15</RegionID>
-              <DistrictName>Regina</DistrictName>
-              <DistrictID>13</DistrictID>
-            </ProductAndStoreInformation>
-            ...
-          </GetGeographicInventoryReportResult>
-        </GetGeographicInventoryReportResponse>
-    </soap:Body>
-</soap:Envelope>  
-
-```
-
-## Getting an Inventory List
+## Getting an Inventory Report
 
 Retrieves an inventory of products for which the vendor is set as the primary vendor in RQ.
 
@@ -659,13 +489,15 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
       <Vendor>
         <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
         <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
+        <Password>samplepassword</Password>
         <Client>
           <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
           <Name>DropshipTestDemo</Name>
-          <StoreID>14070</StoreID>
+          <StoreID>4</StoreID>
         </Client>
       </Vendor>
+      <StartDate>01/01/2016</StartDate>
+      <EndDate>10/31/2016</EndDate>
     </GetInventoryList>
   </soap:Body>
 </soap:Envelope>          
@@ -682,12 +514,8 @@ vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
 
-VMIServiceSoapClient vmiService = new VMIServiceSoapClient(); 
-HierarchyInfo hierarcy = vmiService.GetHierarchyInfo(vendor); 
-//note: see GetGeographicInventoryReport for an example of better hierarchy usage
-
-InventoryListingData[] data = vmiService.GetInventoryListingReport(vendor, 
-hierarchy.Channels[0].channelID, -1, -1, -1);
+vendor.Client.StoreID = 4;
+ProductInformation[] productReport = vmiService.GetInventoryReport(vendor, startDate, endDate);
 
 ```
 
@@ -708,39 +536,40 @@ HTTP 200 Content-Type: application/xml
         <GetInventoryListResponse xmlns="http://www.iqmetrix.com">
           <GetInventoryListResult>
             <ProductInformation>
-              <ProductID>guid</ProductID>
-              <ProductSKU>string</ProductSKU>
-              <VendorSKU>string</VendorSKU>
-              <ProductItemID>int</ProductItemID>
-              <CategoryPath>string</CategoryPath>
-              <ProductName>string</ProductName>
-              <MaximumLevel>int</MaximumLevel>
-              <MinimumLevel>int</MinimumLevel>
-              <ProductCost>decimal</ProductCost>
-              <QuantityInStock>int</QuantityInStock>
-              <QuantityOnOrder>int</QuantityOnOrder>
-              <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
-              <QuantityOnBackOrder>int</QuantityOnBackOrder>
-              <QuantityInTransfer>int</QuantityInTransfer>
-              <QuantityOnRMA>int</QuantityOnRMA>
-              <QuantityOnLoan>int</QuantityOnLoan>
-              <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
-              <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
-              <QuantitySold>int</QuantitySold>
-              <GrossQuantitySold>int</GrossQuantitySold>
-              <GrossQuantityReturned>int</GrossQuantityReturned>
-              <QuantityOrdered>int</QuantityOrdered>
-              <QuantityReceived>int</QuantityReceived>
-              <DateReceived>string</DateReceived>
-              <ProductReceived>boolean</ProductReceived>
-              <Enabled>boolean</Enabled>
-              <MinMaxLocked>boolean</MinMaxLocked>
-              <DoNotOrder>boolean</DoNotOrder>
-              <DateEOL>dateTime</DateEOL>
-              <RetailPrice>decimal</RetailPrice>
-              <SalePrice>decimal</SalePrice>
-              <SaleBegin>dateTime</SaleBegin>
-              <SaleEnd>dateTime</SaleEnd>
+            <ProductInformation>
+              <ProductID>00000000-0000-0000-0000-000000000000</ProductID>
+              <ProductSKU>ACCRTM000001</ProductSKU>
+              <VendorSKU>SSGS5CB</VendorSKU>
+              <ProductItemID>17</ProductItemID>
+              <CategoryPath>Activations >> Samsung</CategoryPath>
+              <ProductName>Samsung Galaxy S5 - Charcoal Black</ProductName>
+              <MaximumLevel>100</MaximumLevel>
+              <MinimumLevel>10</MinimumLevel>
+              <ProductCost>100</ProductCost>
+              <QuantityInStock>8</QuantityInStock>
+              <QuantityOnOrder>3</QuantityOnOrder>
+              <QuantityOnUncommittedOrder>0</QuantityOnUncommittedOrder>
+              <QuantityOnBackOrder>0</QuantityOnBackOrder>
+              <QuantityInTransfer>1</QuantityInTransfer>
+              <QuantityOnRMA>1</QuantityOnRMA>
+              <QuantityOnLoan>0</QuantityOnLoan>
+              <QuantityCommittedOnOrderEntry>0</QuantityCommittedOnOrderEntry>
+              <QuantitySuggestedByVendor>-1</QuantitySuggestedByVendor>
+              <QuantitySold>8</QuantitySold>
+              <GrossQuantitySold>0</GrossQuantitySold>
+              <GrossQuantityReturned>0</GrossQuantityReturned>
+              <QuantityOrdered>3</QuantityOrdered>
+              <QuantityReceived>2</QuantityReceived>
+              <DateReceived>01/21/2016 16:58:23</DateReceived>
+              <ProductReceived>false</ProductReceived>
+              <Enabled>false</Enabled>
+              <MinMaxLocked>true</MinMaxLocked>
+              <DoNotOrder>false</DoNotOrder>
+              <DateEOL>2016-06-01T00:00:00</DateEOL>
+              <RetailPrice>685</RetailPrice>
+              <SalePrice>550</SalePrice>
+              <SaleBegin>2016-04-11T00:00:00</SaleBegin>
+              <SaleEnd>2016-04-15T00:00:00</SaleEnd>
             </ProductInformation>
             ...
           </GetInventoryListResult>
@@ -752,9 +581,7 @@ HTTP 200 Content-Type: application/xml
 
 ## Creating a Purchase Order
 
-This method allows the vendor to create a purchase order for a particular store and a set of products. This allows RQ to properly account for products arriving at a store so that stock levels are updated correctly. You must be marked as the Primary Vendor in RQ to add a product to a Purchase Order.
-
-CreatePurchaseOrder() If it is determined in step 3 that inventory of a particular set of products need to be replenished, call this web method to create a purchase order in RQ
+Allows the vendor to create a purchase order for a particular store and a set of products. This allows RQ to properly account for products arriving at a store so that stock levels are updated correctly. You must be marked as the Primary Vendor in RQ to add a product to a Purchase Order.
 
 
 #### Request
@@ -788,7 +615,7 @@ CreatePurchaseOrder() If it is determined in step 3 that inventory of a particul
       <vendor>
         <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
         <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
+        <Password>samplepassword</Password>
         <Client>
           <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
           <Name>DropshipTestDemo</Name>
@@ -981,7 +808,7 @@ HTTP 200 Content-Type: application/xml
 
 ## Creating a Purchase Order Shipment Notice
 
-This method allows the vendor to create a shipment notice for an existing purchase order. 
+Allows the vendor to create a shipment notice for an existing purchase order. 
 
 #### Notes
 
@@ -1026,7 +853,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
       <vendor>
         <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
         <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
+        <Password>samplepassword</Password>
         <Client>
           <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
           <Name>DropshipTestDemo</Name>
@@ -1116,11 +943,11 @@ HTTP 200 Content-Type: application/xml
 
 ```
 
-## Enabling a Company for VMI
+## Enabling or Disabling a Company
 
-Change the interaction status of a company. By enabling a company, it will be visible when GetCompanyList() is called. Disabling a company will remove it from that list and will only be accessible through a call to GetDisabledCompanies(). Only enabled companies may receive purchase orders through the VMI services.
+Change the interaction status of a company. By enabling a company, it will be visible when <a href="#getting-enabled-companies">Getting Enabled Companies</a> is called. 
 
-Use the CompanyID as value of Venor.Client.ClientID to enable a company.
+Only enabled companies may receive purchase orders through the VMI service.
 
 
 #### Request
@@ -1151,7 +978,7 @@ Use the CompanyID as value of Venor.Client.ClientID to enable a company.
       <vendor>
         <VendorID>009E800D-10ED-4F4A-B86F-DFB3C2A18C09</VendorID>
         <Username>danssupplies</Username>
-        <Password>QNA3bdvmeB</Password>
+        <Password>samplepassword</Password>
         <Client>
           <ClientID>c46ccb4d-2d44-4289-950a-b9cb51d58ac4</ClientID>
           <Name>DropshipTestDemo</Name>
