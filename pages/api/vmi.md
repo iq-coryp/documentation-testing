@@ -623,62 +623,62 @@ Allows the vendor to create a purchase order for a particular store and a set of
         </Client>
       </vendor>
       <PurchaseOrder>
-        <PurchaseOrderID>guid</PurchaseOrderID>
+        <PurchaseOrderID>4aca5c49-7efd-4ff3-8bbc-70e2fb5e1cf6</PurchaseOrderID>
         <PurchaseOrderData>
-          <PurchaseOrderID>guid</PurchaseOrderID>
-          <RetailiQPurchaseOrderID>int</RetailiQPurchaseOrderID>
-          <RetailiQPurchaseOrderNumber>string</RetailiQPurchaseOrderNumber>
-          <ShipToStoreID>int</ShipToStoreID>
-          <ShipToVendorAccountNumber>string</ShipToVendorAccountNumber>
-          <BillToStoreID>int</BillToStoreID>
-          <BillToVendorAccountNumber>string</BillToVendorAccountNumber>
-          <OrderTotal>decimal</OrderTotal>
-          <ShippingTotal>decimal</ShippingTotal>
-          <VendorInvoiceNumber>string</VendorInvoiceNumber>
-          <EstimatedArrivalDate>string</EstimatedArrivalDate>
-          <Comments>string</Comments>
-          <ShipToStoreName>string</ShipToStoreName>
-          <BillToStoreName>string</BillToStoreName>
-          <VendorName>string</VendorName>
-          <CreatedByVMI>boolean</CreatedByVMI>
-          <CreatedDate>string</CreatedDate>
-          <IsDeleted>boolean</IsDeleted>
+          <PurchaseOrderID>4aca5c49-7efd-4ff3-8bbc-70e2fb5e1cf6</PurchaseOrderID>
+          <RetailiQPurchaseOrderID>5</RetailiQPurchaseOrderID>
+          <RetailiQPurchaseOrderNumber>TT101PO4</RetailiQPurchaseOrderNumber>
+          <ShipToStoreID>4</ShipToStoreID>
+          <ShipToVendorAccountNumber />
+          <BillToStoreID>4</BillToStoreID>
+          <BillToVendorAccountNumber>BTTTL101</BillToVendorAccountNumber>
+          <OrderTotal>110.90</OrderTotal>
+          <ShippingTotal>100.60</ShippingTotal>
+          <VendorInvoiceNumber>BDP123</VendorInvoiceNumber>
+          <EstimatedArrivalDate>05/10/2016</EstimatedArrivalDate>
+          <Comments>Vendor Invoice Number #: BDP123</Comments>
+          <ShipToStoreName>Tasha's Test Location</ShipToStoreName>
+          <BillToStoreName>Tasha's Test Location</BillToStoreName>
+          <VendorName>Dan's Supplies</VendorName>
+          <CreatedByVMI>true</CreatedByVMI>
+          <CreatedDate>2016-04-07T00:00:00</CreatedDate>
+          <IsDeleted>false</IsDeleted>
         </PurchaseOrderData>
         <ProductsOrdered>
           <ProductInformation>
-            <ProductID>guid</ProductID>
-            <ProductSKU>string</ProductSKU>
-            <VendorSKU>string</VendorSKU>
-            <ProductItemID>int</ProductItemID>
-            <CategoryPath>string</CategoryPath>
-            <ProductName>string</ProductName>
-            <MaximumLevel>int</MaximumLevel>
-            <MinimumLevel>int</MinimumLevel>
-            <ProductCost>decimal</ProductCost>
-            <QuantityInStock>int</QuantityInStock>
-            <QuantityOnOrder>int</QuantityOnOrder>
-            <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
-            <QuantityOnBackOrder>int</QuantityOnBackOrder>
-            <QuantityInTransfer>int</QuantityInTransfer>
-            <QuantityOnRMA>int</QuantityOnRMA>
-            <QuantityOnLoan>int</QuantityOnLoan>
-            <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
-            <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
-            <QuantitySold>int</QuantitySold>
-            <GrossQuantitySold>int</GrossQuantitySold>
-            <GrossQuantityReturned>int</GrossQuantityReturned>
-            <QuantityOrdered>int</QuantityOrdered>
-            <QuantityReceived>int</QuantityReceived>
-            <DateReceived>string</DateReceived>
-            <ProductReceived>boolean</ProductReceived>
-            <Enabled>boolean</Enabled>
-            <MinMaxLocked>boolean</MinMaxLocked>
-            <DoNotOrder>boolean</DoNotOrder>
-            <DateEOL>dateTime</DateEOL>
-            <RetailPrice>decimal</RetailPrice>
-            <SalePrice>decimal</SalePrice>
-            <SaleBegin>dateTime</SaleBegin>
-            <SaleEnd>dateTime</SaleEnd>
+          <ProductInformation>
+            <ProductID>00000000-0000-0000-0000-000000000000</ProductID>
+            <ProductSKU>SSSATM000002</ProductSKU>
+            <VendorSKU>SSGS5CB</VendorSKU>
+            <ProductItemID>28</ProductItemID>
+            <ProductName>Samsung Galaxy S5 - Charcoal Black</ProductName>
+            <MaximumLevel>100</MaximumLevel>
+            <MinimumLevel>10</MinimumLevel>
+            <ProductCost>130.00</ProductCost>
+            <QuantityInStock>1</QuantityInStock>
+            <QuantityOnOrder>2</QuantityOnOrder>
+            <QuantityOnUncommittedOrder>2</QuantityOnUncommittedOrder>
+            <QuantityOnBackOrder>0</QuantityOnBackOrder>
+            <QuantityInTransfer>1</QuantityInTransfer>
+            <QuantityOnRMA>1</QuantityOnRMA>
+            <QuantityOnLoan>0</QuantityOnLoan>
+            <QuantityCommittedOnOrderEntry>0</QuantityCommittedOnOrderEntry>
+            <QuantitySuggestedByVendor>10</QuantitySuggestedByVendor>
+            <QuantitySold>20</QuantitySold>
+            <GrossQuantitySold>50</GrossQuantitySold>
+            <GrossQuantityReturned>2</GrossQuantityReturned>
+            <QuantityOrdered>11</QuantityOrdered>
+            <QuantityReceived>12</QuantityReceived>
+            <DateReceived>2016-04-07T00:00:00</DateReceived>
+            <ProductReceived>false</ProductReceived>
+            <Enabled>true</Enabled>
+            <MinMaxLocked>true</MinMaxLocked>
+            <DoNotOrder>false</DoNotOrder>
+            <DateEOL>2016-06-01T00:00:00</DateEOL>
+            <RetailPrice>685</RetailPrice>
+            <SalePrice>550</SalePrice>
+            <SaleBegin>2016-05-11T00:00:00</SaleBegin>
+            <SaleEnd>2016-05-15T00:00:00</SaleEnd>
           </ProductInformation>
           ...
         </ProductsOrdered>
@@ -698,7 +698,7 @@ vendor.Username =  "danssupplies";
 vendor.Password = "samplepassword";
 vendor.Client = new ClientAgent();
 vendor.Client.ClientID = companyID;
-vendor.Client.StoreID = 1;
+vendor.Client.StoreID = 4;
 
 DateTime ead1 = DateTime.Today.AddDays(14);
 string eta = String.Format("{0:D2}/{1:D2}/{2:D4}", ead1.Month, ead1.Day, ead1.Year);
@@ -706,19 +706,19 @@ PurchaseOrder po = new PurchaseOrder();
 po.PurchaseOrderID = new Guid();
 po.PurchaseOrderData = new PurchaseOrderData();
 po.PurchaseOrderData.BillToStoreID = stores[0].StoreID;
-po.PurchaseOrderData.Comments = "Test purchase order";
+po.PurchaseOrderData.Comments = "Vendor Invoice Number #: BDP123";
 po.PurchaseOrderData.ShipToStoreID = stores[0].StoreID;
-po.PurchaseOrderData.VendorInvoiceNumber = "123456789";
+po.PurchaseOrderData.VendorInvoiceNumber = "BDP123";
 po.PurchaseOrderData.EstimatedArrivalDate = eta;
 
 po.ProductsOrdered = new ProductInformation[1];
 po.ProductsOrdered[0] = new ProductInformation();
 po.ProductsOrdered[0].ProductItemID = productID;
-po.ProductsOrdered[0].ProductName = "Super Phone";
-po.ProductsOrdered[0].ProductSKU = "PSKU123";
-po.ProductsOrdered[0].VendorSKU = "VSKU123";
-po.ProductsOrdered[0].QuantityOrdered = 2;
-po.ProductsOrdered[0].ProductCost = 500.00;
+po.ProductsOrdered[0].ProductName = "Samsung Galaxy S5 - Charcoal Black";
+po.ProductsOrdered[0].ProductSKU = "SSSATM000002";
+po.ProductsOrdered[0].VendorSKU = "SSGS5CB";
+po.ProductsOrdered[0].QuantityOrdered = 1;
+po.ProductsOrdered[0].ProductCost = 130.00;
 
 PurchaseOrder poCreated = vmiService.CreatePurchaseOrder(vendor, po);
 
@@ -740,62 +740,61 @@ HTTP 200 Content-Type: application/xml
     <soap:Body>
         <CreatePurchaseOrderResponse xmlns="http://www.iqmetrix.com">
           <CreatePurchaseOrderResult>
-            <PurchaseOrderID>guid</PurchaseOrderID>
+            <PurchaseOrderID>4aca5c49-7efd-4ff3-8bbc-70e2fb5e1cf6</PurchaseOrderID>
             <PurchaseOrderData>
-              <PurchaseOrderID>guid</PurchaseOrderID>
-              <RetailiQPurchaseOrderID>int</RetailiQPurchaseOrderID>
-              <RetailiQPurchaseOrderNumber>string</RetailiQPurchaseOrderNumber>
-              <ShipToStoreID>int</ShipToStoreID>
-              <ShipToVendorAccountNumber>string</ShipToVendorAccountNumber>
-              <BillToStoreID>int</BillToStoreID>
-              <BillToVendorAccountNumber>string</BillToVendorAccountNumber>
-              <OrderTotal>decimal</OrderTotal>
-              <ShippingTotal>decimal</ShippingTotal>
-              <VendorInvoiceNumber>string</VendorInvoiceNumber>
-              <EstimatedArrivalDate>string</EstimatedArrivalDate>
-              <Comments>string</Comments>
-              <ShipToStoreName>string</ShipToStoreName>
-              <BillToStoreName>string</BillToStoreName>
-              <VendorName>string</VendorName>
-              <CreatedByVMI>boolean</CreatedByVMI>
-              <CreatedDate>string</CreatedDate>
-              <IsDeleted>boolean</IsDeleted>
+              <PurchaseOrderID>3be54cae-b132-4995-b32b-67e6d46d9633</PurchaseOrderID>
+              <RetailiQPurchaseOrderID>6</RetailiQPurchaseOrderID>
+              <RetailiQPurchaseOrderNumber>TT101PO5</RetailiQPurchaseOrderNumber>
+              <ShipToStoreID>4</ShipToStoreID>
+              <ShipToVendorAccountNumber />
+              <BillToStoreID>4</BillToStoreID>
+              <BillToVendorAccountNumber />
+              <OrderTotal>110.90</OrderTotal>
+              <ShippingTotal>100.90</ShippingTotal>
+              <VendorInvoiceNumber>DDS123</VendorInvoiceNumber>
+              <EstimatedArrivalDate>05/10/2016</EstimatedArrivalDate>
+              <Comments>Vendor Invoice Number #: DDS123</Comments>
+              <ShipToStoreName />
+              <BillToStoreName />
+              <VendorName />
+              <CreatedByVMI>true</CreatedByVMI>
+              <CreatedDate>04/29/2016 14:54:22</CreatedDate>
+              <IsDeleted>false</IsDeleted>
             </PurchaseOrderData>
             <ProductsOrdered>
               <ProductInformation>
-                <ProductID>guid</ProductID>
-                <ProductSKU>string</ProductSKU>
-                <VendorSKU>string</VendorSKU>
-                <ProductItemID>int</ProductItemID>
-                <CategoryPath>string</CategoryPath>
-                <ProductName>string</ProductName>
-                <MaximumLevel>int</MaximumLevel>
-                <MinimumLevel>int</MinimumLevel>
-                <ProductCost>decimal</ProductCost>
-                <QuantityInStock>int</QuantityInStock>
-                <QuantityOnOrder>int</QuantityOnOrder>
-                <QuantityOnUncommittedOrder>int</QuantityOnUncommittedOrder>
-                <QuantityOnBackOrder>int</QuantityOnBackOrder>
-                <QuantityInTransfer>int</QuantityInTransfer>
-                <QuantityOnRMA>int</QuantityOnRMA>
-                <QuantityOnLoan>int</QuantityOnLoan>
-                <QuantityCommittedOnOrderEntry>int</QuantityCommittedOnOrderEntry>
-                <QuantitySuggestedByVendor>int</QuantitySuggestedByVendor>
-                <QuantitySold>int</QuantitySold>
-                <GrossQuantitySold>int</GrossQuantitySold>
-                <GrossQuantityReturned>int</GrossQuantityReturned>
-                <QuantityOrdered>int</QuantityOrdered>
-                <QuantityReceived>int</QuantityReceived>
-                <DateReceived>string</DateReceived>
-                <ProductReceived>boolean</ProductReceived>
-                <Enabled>boolean</Enabled>
-                <MinMaxLocked>boolean</MinMaxLocked>
-                <DoNotOrder>boolean</DoNotOrder>
-                <DateEOL>dateTime</DateEOL>
-                <RetailPrice>decimal</RetailPrice>
-                <SalePrice>decimal</SalePrice>
-                <SaleBegin>dateTime</SaleBegin>
-                <SaleEnd>dateTime</SaleEnd>
+                <ProductID>00000000-0000-0000-0000-000000000000</ProductID>
+                <ProductSKU>SSSATM000002</ProductSKU>
+                <VendorSKU>SSGS5CB</VendorSKU>
+                <ProductItemID>28</ProductItemID>
+                <ProductName>Samsung Galaxy S5 - Charcoal Black</ProductName>
+                <MaximumLevel>100</MaximumLevel>
+                <MinimumLevel>10</MinimumLevel>
+                <ProductCost>130.00</ProductCost>
+                <QuantityInStock>1</QuantityInStock>
+                <QuantityOnOrder>2</QuantityOnOrder>
+                <QuantityOnUncommittedOrder>-1</QuantityOnUncommittedOrder>
+                <QuantityOnBackOrder>0</QuantityOnBackOrder>
+                <QuantityInTransfer>1</QuantityInTransfer>
+                <QuantityOnRMA>1</QuantityOnRMA>
+                <QuantityOnLoan>0</QuantityOnLoan>
+                <QuantityCommittedOnOrderEntry>0</QuantityCommittedOnOrderEntry>
+                <QuantitySuggestedByVendor>-1</QuantitySuggestedByVendor>
+                <QuantitySold>20</QuantitySold>
+                <GrossQuantitySold>-1</GrossQuantitySold>
+                <GrossQuantityReturned>-1</GrossQuantityReturned>
+                <QuantityOrdered>11</QuantityOrdered>
+                <QuantityReceived>12</QuantityReceived>
+                <DateReceived>2016-04-07T00:00:00</DateReceived>
+                <ProductReceived>false</ProductReceived>
+                <Enabled>true</Enabled>
+                <MinMaxLocked>false</MinMaxLocked>
+                <DoNotOrder>false</DoNotOrder>
+                <DateEOL xsi:nil="true" />
+                <RetailPrice>0</RetailPrice>
+                <SalePrice xsi:nil="true" />
+                <SaleBegin xsi:nil="true" />
+                <SaleEnd xsi:nil="true" />
               </ProductInformation>
              ...
             </ProductsOrdered>
