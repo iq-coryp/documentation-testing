@@ -844,7 +844,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 
 #### Request Parameters
 
-<ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>RQPurchaseOrderID</code> (<strong>Required</strong>) </li><li><code>SerialNumbers</code> (<strong>Required</strong>) </li><li><code>VendorInvoiceNumber</code> (<strong>Required</strong>) - Either this value <strong>OR</strong> PurchaseOrderID must be provided</li><li><code>PurchaseOrderID</code> (Optional) - Either this value or VendorInvoiceNumber must be provided</li><li><code>ProductItemID</code> (Optional) - Either this value or VendorSKU must be provided</li><li><code>ShipmentNumber</code> (Optional) - If this value is not provided, the service will automatically assign one</li><li><code>VendorSKU</code> (Optional) - Either this value or ProductItemId must be provided</li></ul>
+<ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>RQPurchaseOrderID</code> (<strong>Required</strong>) </li><li><code>VendorInvoiceNumber</code> (<strong>Required</strong>) - Either this value <strong>OR</strong> PurchaseOrderID must be provided</li><li><code>PurchaseOrderID</code> (Optional) - Either this value or VendorInvoiceNumber must be provided</li><li><code>ProductItemID</code> (Optional) - Either this value or VendorSKU must be provided</li><li><code>SerialNumbers</code> (Optional) </li><li><code>ShipmentNumber</code> (Optional) - If this value is not provided, the service will automatically assign one</li><li><code>VendorSKU</code> (Optional) - Either this value or ProductItemId must be provided</li></ul>
 
 ###### Example
 
@@ -870,7 +870,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
           <Quantity>1</Quantity>
           <RQPurchaseOrderID>22073</RQPurchaseOrderID>
           <SerialNumbers>
-            <string>97000012</string>
+            <string>490154203237518</string>
             ...
           </SerialNumbers>
           <ShipmentNumber>DSSPOSN1234</ShipmentNumber>
@@ -902,7 +902,7 @@ sn.PurchaseOrderID = new GUID(84DACFD3-4095-4D50-A02E-781B86B7408E);
 sn.ShipmentNumber = "SHIP001 ";
 sn.ProductItemID = 11142;
 sn.Quantity = 2;
-sn.SerialNumber = {"97000012", "12321324"};
+sn.SerialNumber = {"490154203237518", "12321324"};
 
 PurchaseOrderShipmentNotice snReturn = 
     vmiService.CreatePurchaseOrderShipmentNotice(vendor, new[] { sn });
@@ -931,7 +931,7 @@ HTTP 200 Content-Type: application/xml
                   <Quantity>1</Quantity>
                   <RQPurchaseOrderID>22073</RQPurchaseOrderID>
                   <SerialNumbers>
-                    <string>97000012</string>
+                    <string>490154203237518</string>
                     ...
                   </SerialNumbers>
                   <ShipmentNumber>DSSPOSN1234</ShipmentNumber>
