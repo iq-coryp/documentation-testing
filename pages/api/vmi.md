@@ -87,7 +87,7 @@ VendorIdentitiy information is supplied by iQmetrix and used to authenticate req
 | ProductItemID | Integer | GlobalProductId from RQ | `11142` |
 | Quantity | Integer | Number of items shipped | `1` |
 | RQPurchaseOrderID | Integer | Identifier for the Purchase Order in RQ | `22073` |
-| SerialNumbers | Array[string] | Serial numbers. Must match Quantity |  |
+| SerialNumbers | Array[string] | Serial numbers from serialized products (e.g. Phone or SIM card) | `490154203237518` |
 | ShipmentNumber | String | Vendor defined identifier for the shipment | `SHIP001` |
 | VendorInvoiceNumber | String | Value supplied by the vendor when creating the purchase order | `1002` |
 | VendorSKU | String | The vendor part number/sku | `SSGS5CB` |
@@ -450,7 +450,7 @@ HTTP 200 Content-Type: application/xml
                     <PhoneNumber>4215551234</PhoneNumber>
                     <ShipToStoreID>4</ShipToStoreID>
                     <BillToStoreID>4</BillToStoreID>
-                    <VendorAccountNumber>-</VendorAccountNumber>
+                    <VendorAccountNumber>-1</VendorAccountNumber>
                 </StoreInformation>
                 ...
             </GetStoreListResult>
@@ -865,16 +865,16 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
       </vendor>
       <notice>
         <PurchaseOrderShipmentNotice>
-          <PurchaseOrderID>84DACFD3-4095-4D50-A02E-781B86B7408E</PurchaseOrderID>
-          <ProductItemID>11142</ProductItemID>
+          <PurchaseOrderID>bcaeea15-5a6d-4515-ba0c-70032da67e8d</PurchaseOrderID>
+          <ProductItemID>28</ProductItemID>
           <Quantity>1</Quantity>
           <RQPurchaseOrderID>22073</RQPurchaseOrderID>
           <SerialNumbers>
             <string>97000012</string>
             ...
           </SerialNumbers>
-          <ShipmentNumber>SHIP001</ShipmentNumber>
-          <VendorInvoiceNumber>1002</VendorInvoiceNumber>
+          <ShipmentNumber>DSSPOSN1234</ShipmentNumber>
+          <VendorInvoiceNumber>POSN1234</VendorInvoiceNumber>
           <VendorSKU>SSGS5CB</VendorSKU>
         </PurchaseOrderShipmentNotice>
         ...
@@ -926,16 +926,16 @@ HTTP 200 Content-Type: application/xml
         <CreatePurchaseOrderShipmentNoticeResponse xmlns="http://www.iqmetrix.com">
             <CreatePurchaseOrderShipmentNoticeResult>
                 <PurchaseOrderShipmentNotice>
-                  <PurchaseOrderID>84DACFD3-4095-4D50-A02E-781B86B7408E</PurchaseOrderID>
-                  <ProductItemID>11142</ProductItemID>
+                  <PurchaseOrderID>bcaeea15-5a6d-4515-ba0c-70032da67e8d</PurchaseOrderID>
+                  <ProductItemID>28</ProductItemID>
                   <Quantity>1</Quantity>
                   <RQPurchaseOrderID>22073</RQPurchaseOrderID>
                   <SerialNumbers>
                     <string>97000012</string>
                     ...
                   </SerialNumbers>
-                  <ShipmentNumber>SHIP001</ShipmentNumber>
-                  <VendorInvoiceNumber>1002</VendorInvoiceNumber>
+                  <ShipmentNumber>DSSPOSN1234</ShipmentNumber>
+                  <VendorInvoiceNumber>POSN1234</VendorInvoiceNumber>
                   <VendorSKU>SSGS5CB</VendorSKU>
                 </PurchaseOrderShipmentNotice>
                 ...
