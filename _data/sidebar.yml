@@ -207,6 +207,9 @@ entries:
       audience: partner
       items:
 
+        - title: Authentication FAQ
+          url: /faq/auth-faq/
+
         - title: Dropship FAQ
           url: /faq/dropship-faq/
 
