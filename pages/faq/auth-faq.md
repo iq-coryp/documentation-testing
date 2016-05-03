@@ -46,4 +46,15 @@ Below are the most commonly asked questions from clients around authentication. 
       <div class="panel-body"><p>Please verify that the media (content) type is set to <code>application/x-www-form-urlencoded</code>, and that the request parameters are in the <strong>body</strong> of the request; not in the header.</p></div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#authentication" href="#auth4">I'm locked out. Who do I call?</a>
+      </h4>
+    </div>
+    <div id="auth4" class="panel-collapse collapse">
+      <div class="panel-body"><p>Should you be locked out of your account. Please contact <a href="mailto:support@iqmetrix.com?subject=User Account Locked Out">iQmetrix Support</a></p></div>
+    </div>
+  </div>
 </div>
