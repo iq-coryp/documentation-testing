@@ -4,9 +4,13 @@ permalink: /api/vmi/
 tags: []
 keywords: 
 audience:
-last_updated: 29-4-2016
+last_updated: 3-5-2016
 summary:
 ---
+
+<link rel="stylesheet" type="text/css" href="../../css/prism.css">
+
+<script src="../../js/prism.js"></script>
 
 {% include linkrefs.html %}
 
@@ -71,8 +75,8 @@ VendorIdentitiy information is supplied by iQmetrix and used to authenticate req
 
 | Name | Data Type | Description | Example |
 |:-----|:----------|:------------|:--------|
-| CompanyID | GUID | Unique identifier | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
-| Name | String | Company name | `abc123` |
+| CompanyID | GUID | Unique identifier provided by iQmetrix | `9DC6AA95-856B-42C9-8AAF-392A2A02AC77` |
+| Name | String | Company name | `DropshipTestDemo` |
 
 
 ### PurchaseOrderShipmentNotice
@@ -86,7 +90,7 @@ VendorIdentitiy information is supplied by iQmetrix and used to authenticate req
 | SerialNumbers | Array[string] | Serial numbers. Must match Quantity |  |
 | ShipmentNumber | String | Vendor defined identifier for the shipment | `SHIP001` |
 | VendorInvoiceNumber | String | Value supplied by the vendor when creating the purchase order | `1002` |
-| VendorSKU | String | The vendor part number/sku | `ABC123` |
+| VendorSKU | String | The vendor part number/sku | `SSGS5CB` |
 
 
 ### PurchaseOrder
@@ -128,7 +132,7 @@ VendorIdentitiy information is supplied by iQmetrix and used to authenticate req
 |:-----|:----------|:------------|:--------|
 | ProductID | GUID | Unique identifier | `86EE477F-C6B7-48FA-AA0A-105662D9A3ED` |
 | ProductName | String | Name | `Samsung Galaxy S6` |
-| CategoryPath | String | Category location of product | `Activation >> Dropship` |
+| CategoryPath | String | Category location of product. path of category delimited by '>>' | `Activation >> Dropship` |
 | DateEOL | DateTime | End of life date | `1/01/2016 12:00:00 AM` |
 | DateReceived | String | Product receiving stauts in RQ | `01/21/2016 16:58:23` |
 | DoNotOrder | Boolean | A flag to indicate if the product should not be ordered | `false` |
@@ -203,7 +207,7 @@ Vendors can only create purchase orders for <strong>Enabled</strong> companies. 
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
 * `Name`     (Optional) - Client specific name supplied by iQmetrix
 * `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
+* `VendorAccountNumber` (Optional) - Can be used instead of `StoreID`. Omit or set `StoreID` to -1 if using `VendorAccountNumber`
 
 
 
@@ -289,7 +293,7 @@ Retrieves a list of VMI enabled companies.
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
 * `Name`     (Optional) - Client specific name supplied by iQmetrix
 * `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
+* `VendorAccountNumber` (Optional) - Can be used instead of `StoreID`. Omit or set `StoreID` to -1 if using `VendorAccountNumber`
 
 
 
@@ -375,7 +379,7 @@ Retrieves a list of VMI enabled stores.
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
 * `Name`     (Optional) - Client specific name supplied by iQmetrix
 * `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
+* `VendorAccountNumber` (Optional) - Can be used instead of `StoreID`. Omit or set `StoreID` to -1 if using `VendorAccountNumber`
 
 
 
@@ -475,7 +479,7 @@ Retrieves an inventory of products for which the vendor is set as the primary ve
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
 * `Name`     (Optional) - Client specific name supplied by iQmetrix
 * `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
+* `VendorAccountNumber` (Optional) - Can be used instead of `StoreID`. Omit or set `StoreID` to -1 if using `VendorAccountNumber`
 
 
 
@@ -598,7 +602,7 @@ Allows the vendor to create a purchase order for a particular store and a set of
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
 * `Name`     (Optional) - Client specific name supplied by iQmetrix
 * `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
+* `VendorAccountNumber` (Optional) - Can be used instead of `StoreID`. Omit or set `StoreID` to -1 if using `VendorAccountNumber`
 
 
 #### Request Parameters
@@ -835,12 +839,12 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
 * `Name`     (Optional) - Client specific name supplied by iQmetrix
 * `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
+* `VendorAccountNumber` (Optional) - Can be used instead of `StoreID`. Omit or set `StoreID` to -1 if using `VendorAccountNumber`
 
 
 #### Request Parameters
 
-<ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>RQPurchaseOrderID</code> (<strong>Required</strong>) </li><li><code>SerialNumbers</code> (<strong>Required</strong>) </li><li><code>VendorInvoiceNumber</code> (<strong>Required</strong>) - Either this value **OR** PurchaseOrderID must be provided</li><li><code>PurchaseOrderID</code> (Optional) - Either this value or VendorInvoiceNumber must be provided</li><li><code>ProductItemID</code> (Optional) - Either this value or VendorSKU must be provided</li><li><code>ShipmentNumber</code> (Optional) - If this value is not provided, the service will automatically assign one</li><li><code>VendorSKU</code> (Optional) - Either this value or ProductItemId must be provided</li></ul>
+<ul><li><code>Quantity</code> (<strong>Required</strong>) </li><li><code>RQPurchaseOrderID</code> (<strong>Required</strong>) </li><li><code>SerialNumbers</code> (<strong>Required</strong>) </li><li><code>VendorInvoiceNumber</code> (<strong>Required</strong>) - Either this value <strong>OR</strong> PurchaseOrderID must be provided</li><li><code>PurchaseOrderID</code> (Optional) - Either this value or VendorInvoiceNumber must be provided</li><li><code>ProductItemID</code> (Optional) - Either this value or VendorSKU must be provided</li><li><code>ShipmentNumber</code> (Optional) - If this value is not provided, the service will automatically assign one</li><li><code>VendorSKU</code> (Optional) - Either this value or ProductItemId must be provided</li></ul>
 
 ###### Example
 
@@ -871,7 +875,7 @@ This request accepts an array of PurchaseOrderShipmentNotices, so you do not nee
           </SerialNumbers>
           <ShipmentNumber>SHIP001</ShipmentNumber>
           <VendorInvoiceNumber>1002</VendorInvoiceNumber>
-          <VendorSKU>ABC123</VendorSKU>
+          <VendorSKU>SSGS5CB</VendorSKU>
         </PurchaseOrderShipmentNotice>
         ...
       </notice>
@@ -932,7 +936,7 @@ HTTP 200 Content-Type: application/xml
                   </SerialNumbers>
                   <ShipmentNumber>SHIP001</ShipmentNumber>
                   <VendorInvoiceNumber>1002</VendorInvoiceNumber>
-                  <VendorSKU>ABC123</VendorSKU>
+                  <VendorSKU>SSGS5CB</VendorSKU>
                 </PurchaseOrderShipmentNotice>
                 ...
             </CreatePurchaseOrderShipmentNoticeResult>
@@ -963,7 +967,7 @@ Only enabled companies may receive purchase orders through the VMI service.
 * `ClientID` (**Required**) - Client specific identifier supplied by iQmetrix
 * `Name`     (Optional) - Client specific name supplied by iQmetrix
 * `StoreID`  (Optional) - Store specific identifier for the client
-* `VendorAccountNumber` (Optional) - Client specific account number assigned by vendor.
+* `VendorAccountNumber` (Optional) - Can be used instead of `StoreID`. Omit or set `StoreID` to -1 if using `VendorAccountNumber`
 
 
 
