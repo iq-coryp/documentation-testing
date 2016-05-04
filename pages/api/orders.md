@@ -4,8 +4,9 @@ permalink: /api/orders/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-03-2016
+last_updated: 4-5-2016
 summary: 
+rouge: false
 ---
 
 <link rel="stylesheet" type="text/css" href="../../css/prism.css">
@@ -16,11 +17,11 @@ summary:
 {% include linkrefs.html %}
 
 
+
+
 ## Overview
 
 The Order service is a centralized location for interacting with orders and their items. Each order is assigned an OrderType and OrderStatus, as are the items in the order. For example, an order could have an `InStock` item that has been `Processed`.
-
-Orders are typically created in an application, such as RQ, Endless Aisle, or eCommerce, and completed in another (e.g. RQ). Each order could be filled and consumed by another service for further processing. For example, Endless Aisle may make use of the order, filling it with Retailer Catalog items, and that same order may be accessed through RQ where the sale could be completed.
 
 The state flow illustrated below shows the process from creating an order to its completion. An order can only be cancelled when in the `Pending` state, and cannot be cancelled otherwise.
 <img src="{{ "/images/order-state-flow.png" | prepend: site.url }}" style="height: 80%; width: 80%" />
@@ -57,8 +58,10 @@ The state flow illustrated below shows the process from creating an order to its
 | ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `659c2a38-d083-4421-9330-46d779702f85` |
 | ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `14202` |
 | State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
-| *CustomerId* | *String* | *This is a legacy property that should not be used* | |
 | TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `TT101IN18` |
+| *CustomerId* | *String* | *This is a legacy property that should not be used* | |
+| *SourceId* | *String* | *Reserved for future use* | |
+| *SourceName* | *String* | *Reserved for future use* | |
 | *TenderOrigin* | *String* | *Reserved for future use* | |
 
 
@@ -69,6 +72,7 @@ The state flow illustrated below shows the process from creating an order to its
 | Id | GUID | Unique identifier for this Item | `8592718e-bcca-468c-8009-38678929b693` |
 | Cost | Decimal | Cost of this Item, defaults to 0 | `5.99` |
 | Description | String | Description of this Item | `Samsung Galaxy S4 Standard Battery` |
+| ItemExtensions | Array[<a href='/api/orders/#itemextension'>ItemExtension</a>] | [ItemExtensions](#itemextension) on the Item |  |
 | ItemStatus | String | Name of the [ItemStatus](#itemstatus) | `New` |
 | ItemStatusId | Integer | See [ItemStatus](#itemstatus) for a list of acceptable values | `1` |
 | ItemType | String | Name of the [ItemType](#itemtype) | `DropShip` |
@@ -88,6 +92,26 @@ The state flow illustrated below shows the process from creating an order to its
 | TrackingInformation | Array[object] | Tracking information in the form of key-value pairs |  |
 | TrackingInformation.Quantity | Integer | Number of items being tracked | `1` |
 | TrackingInformation.TrackingNumber | String | Tracking number | `1TTTTN4421` |
+
+### ItemExtension
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | GUID | Unique identifier | `063c3712-eb08-44f9-8a13-8537c6276a72` |
+| ItemId | String | Identifier for a [Item](/api/orders/#item) | `8592718e-bcca-468c-8009-38678929b693` |
+| ExtensionTypeId | Integer | Identifier for a [ItemExtensionType](/api/orders/#itemextensiontype) | `2` |
+| ExtensionType | String | Name of the associated [ItemExtensionType](/api/orders/#itemextensiontype) | `eCommerce_PricingChanged` |
+| Value | String | Value of the extension | `True` |
+
+
+### ItemExtensionType
+
+| Name | Data Type | Description | Example |
+|:-----|:----------|:------------|:--------|
+| Id | Integer | Identifier | `2` |
+| Name | String | Name | `eCommerce_PricingChanged` |
+| Enabled | Boolean | A flag to indicate if this ItemExtensionType is Enabled | `true` |
+
 
 
 
@@ -116,10 +140,12 @@ The state flow illustrated below shows the process from creating an order to its
 | ShippingCustomerId | GUID | Unique identifier for the shipping [Customer](/api/crm/#customer). If this value is provided, ShippingEntityId must be excluded | `659c2a38-d083-4421-9330-46d779702f85` |
 | ShippingEntityId | Integer | Identifier for the Location this Order will be shipped to. | `14202` |
 | State | String | See [OrderState](#orderstate) for a list of acceptable values | `Created` |
-| *CustomerId* | *String* | *This is a legacy property that should not be used* | |
 | TenderId | String | An invoice number from the system that created the Order, Invoice Number in RQ | `INV112` |
+| Items | Array[<a href='/api/orders/#item'>Item</a>] | The Items in the [Order](#order) |  |
+| *CustomerId* | *String* | *This is a legacy property that should not be used* | |
+| *SourceId* | *String* | *Reserved for future use* | |
+| *SourceName* | *String* | *Reserved for future use* | |
 | *TenderOrigin* | *String* | *Reserved for future use* | |
-| Items | Array[<a href='#item'>Item</a>] | The Items in the [Order](#order) |  |
 
 
 
@@ -346,7 +372,7 @@ HTTP 201 Content-Type: application/json
     "TenderId": "TT101IN18"
 }</pre>
 
-<h2 id='getting-a-single-order' class='clickable-header top-level-header'>Getting a Single Order</h2>
+<h2 id='getting-all-order-summaries-for-a-company' class='clickable-header top-level-header'>Getting All Order Summaries for a Company</h2>
 
 
 
@@ -375,26 +401,26 @@ GET /Companies({CompanyId})/Orders
 <h5>Example</h5>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#http-getting-a-single-order" data-toggle="tab">HTTP</a></li>
-    <li><a href="#curl-getting-a-single-order" data-toggle="tab">cURL</a></li>
-    <li><a href="#csharp-getting-a-single-order" data-toggle="tab">C# (RestSharp)</a></li>
-    <li><a href="#java-getting-a-single-order" data-toggle="tab">Java (HttpComponents)</a></li>
-    <li><a href="#ruby-getting-a-single-order" data-toggle="tab">Ruby (rest-client)</a></li>
-    <button id="copy-getting-a-single-order" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-a-single-order"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+    <li class="active"><a href="#http-getting-all-order-summaries-for-a-company" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-order-summaries-for-a-company" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-order-summaries-for-a-company" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-order-summaries-for-a-company" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-order-summaries-for-a-company" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-order-summaries-for-a-company" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-order-summaries-for-a-company"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
 </ul>
 <div class="tab-content"> 
-    <div role="tabpanel" class="tab-pane active" id="http-getting-a-single-order">
-<pre id="http-code-getting-a-single-order"><code class="language-http">GET /Companies(14146)/Orders
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-order-summaries-for-a-company">
+<pre id="http-code-getting-all-order-summaries-for-a-company"><code class="language-http">GET /Companies(14146)/Orders
 Authorization: Bearer (Access Token)
 Accept: application/json
 </code><code class="language-csharp"></code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="curl-getting-a-single-order">
-<pre id="curl-code-getting-a-single-order"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-order-summaries-for-a-company">
+<pre id="curl-code-getting-all-order-summaries-for-a-company"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="csharp-getting-a-single-order">
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-order-summaries-for-a-company">
         This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
-<pre id="csharp-code-getting-a-single-order"><code class="language-csharp">static IRestResponse GettingASingleOrder()
+<pre id="csharp-code-getting-all-order-summaries-for-a-company"><code class="language-csharp">static IRestResponse GettingAllOrderSummariesForACompany()
 {
     var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders");
     var request = new RestRequest(Method.GET);
@@ -407,16 +433,16 @@ Accept: application/json
     return client.Execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="java-getting-a-single-order">
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-order-summaries-for-a-company">
         This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
-<pre id="java-code-getting-a-single-order"><code class="language-java">
+<pre id="java-code-getting-all-order-summaries-for-a-company"><code class="language-java">
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import java.io.IOException;
 
-public static CloseableHttpResponse GettingASingleOrder() throws IOException {
+public static CloseableHttpResponse GettingAllOrderSummariesForACompany() throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
     HttpGet request = new HttpGet("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders");
      
@@ -426,9 +452,9 @@ public static CloseableHttpResponse GettingASingleOrder() throws IOException {
     return httpClient.execute(request);
 }</code></pre>
     </div>
-    <div role="tabpanel" class="tab-pane" id="ruby-getting-a-single-order">
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-order-summaries-for-a-company">
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
-<pre id="ruby-code-getting-a-single-order"><code class="language-ruby">require 'rest-client'
+<pre id="ruby-code-getting-all-order-summaries-for-a-company"><code class="language-ruby">require 'rest-client'
 
 
 
@@ -645,6 +671,15 @@ HTTP 201 Content-Type: application/json
     "Id": "8592718e-bcca-468c-8009-38678929b693",
     "Cost": 5.99,
     "Description": "Samsung Galaxy S4 Standard Battery",
+    "ItemExtensions": [
+        {
+            "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+            "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+            "ExtensionTypeId": 2,
+            "ExtensionType": "eCommerce_PricingChanged",
+            "Value": "True"
+        }
+    ],
     "ItemStatus": "New",
     "ItemStatusId": 1,
     "ItemType": "DropShip",
@@ -784,6 +819,15 @@ HTTP 200 Content-Type: application/json
         "Id": "8592718e-bcca-468c-8009-38678929b693",
         "Cost": 5.99,
         "Description": "Samsung Galaxy S4 Standard Battery",
+        "ItemExtensions": [
+            {
+                "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+                "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+                "ExtensionTypeId": 2,
+                "ExtensionType": "eCommerce_PricingChanged",
+                "Value": "True"
+            }
+        ],
         "ItemStatus": "New",
         "ItemStatusId": 1,
         "ItemType": "DropShip",
@@ -808,6 +852,759 @@ HTTP 200 Content-Type: application/json
                 "TrackingNumber": "1TTTTN4421"
             }
         ]
+    }
+]</pre>
+
+<h2 id='creating-an-item-extension-on-an-item' class='clickable-header top-level-header'>Creating an Item Extension on an Item</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+POST /Companies({CompanyId})/Orders({OrderId})/Items({ItemId})/ItemExtensions
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}} being updated
+    </li>
+    
+    <li>
+        <code>ItemId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItem}} being updated
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) - Identifier for a {{ItemExtensionType}}</li><li><code>Value</code> (Optional) </li></ul>
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-creating-an-item-extension-on-an-item" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-creating-an-item-extension-on-an-item" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-creating-an-item-extension-on-an-item" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-creating-an-item-extension-on-an-item" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-creating-an-item-extension-on-an-item" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-creating-an-item-extension-on-an-item" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-creating-an-item-extension-on-an-item"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-creating-an-item-extension-on-an-item">
+<pre id="http-code-creating-an-item-extension-on-an-item"><code class="language-http">POST /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+</code><code class="language-csharp">{
+    "ExtensionTypeId": 2,
+    "Value": "True"
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-creating-an-item-extension-on-an-item">
+<pre id="curl-code-creating-an-item-extension-on-an-item"><code class="language-http">curl -X POST "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "ExtensionTypeId": 2,
+    "Value": "True"
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-creating-an-item-extension-on-an-item">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-creating-an-item-extension-on-an-item"><code class="language-csharp">static IRestResponse CreatingAnItemExtensionOnAnItem()
+{
+    var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions");
+    var request = new RestRequest(Method.POST);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"ExtensionTypeId\":2,\"Value\":\"True\"}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-creating-an-item-extension-on-an-item">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-creating-an-item-extension-on-an-item"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse CreatingAnItemExtensionOnAnItem() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPost request = new HttpPost("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"ExtensionTypeId\":2,\"Value\":\"True\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-creating-an-item-extension-on-an-item">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-creating-an-item-extension-on-an-item"><code class="language-ruby">require 'rest-client'
+
+body = "{\"ExtensionTypeId\":2,\"Value\":\"True\"}";
+
+response = RestClient.post 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ <a href='#itemextension'>ItemExtension</a>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 201 Content-Type: application/json
+</pre><pre>{
+    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+    "ExtensionTypeId": 2,
+    "ExtensionType": "eCommerce_PricingChanged",
+    "Value": "True"
+}</pre>
+
+<h2 id='getting-all-item-extensions-on-an-item' class='clickable-header top-level-header'>Getting All Item Extensions on an Item</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders({OrderId})/Items({ItemId})/ItemExtensions
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}} being updated
+    </li>
+    
+    <li>
+        <code>ItemId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItem}} being updated
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-item-extensions-on-an-item" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-item-extensions-on-an-item" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-item-extensions-on-an-item" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-item-extensions-on-an-item" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-item-extensions-on-an-item" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-item-extensions-on-an-item" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-item-extensions-on-an-item"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-item-extensions-on-an-item">
+<pre id="http-code-getting-all-item-extensions-on-an-item"><code class="language-http">GET /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-item-extensions-on-an-item">
+<pre id="curl-code-getting-all-item-extensions-on-an-item"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-item-extensions-on-an-item">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-all-item-extensions-on-an-item"><code class="language-csharp">static IRestResponse GettingAllItemExtensionsOnAnItem()
+{
+    var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-item-extensions-on-an-item">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-all-item-extensions-on-an-item"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllItemExtensionsOnAnItem() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-item-extensions-on-an-item">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-all-item-extensions-on-an-item"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ Array[<a href='#itemextension'>ItemExtension</a>]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+        "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+        "ExtensionTypeId": 2,
+        "ExtensionType": "eCommerce_PricingChanged",
+        "Value": "True"
+    }
+]</pre>
+
+<h2 id='getting-an-item-extension-on-an-item' class='clickable-header top-level-header'>Getting an Item Extension on an Item</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/Orders({OrderId})/Items({ItemId})/ItemExtensions({ItemExtensionId})
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}}
+    </li>
+    
+    <li>
+        <code>ItemId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItem}} being updated
+    </li>
+    
+    <li>
+        <code>ItemExtensionId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItemExtension}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-an-item-extension-on-an-item" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-an-item-extension-on-an-item" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-an-item-extension-on-an-item" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-an-item-extension-on-an-item" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-an-item-extension-on-an-item" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-an-item-extension-on-an-item" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-an-item-extension-on-an-item"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-an-item-extension-on-an-item">
+<pre id="http-code-getting-an-item-extension-on-an-item"><code class="language-http">GET /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-an-item-extension-on-an-item">
+<pre id="curl-code-getting-an-item-extension-on-an-item"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-an-item-extension-on-an-item">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-an-item-extension-on-an-item"><code class="language-csharp">static IRestResponse GettingAnItemExtensionOnAnItem()
+{
+    var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-an-item-extension-on-an-item">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-an-item-extension-on-an-item"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAnItemExtensionOnAnItem() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-an-item-extension-on-an-item">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-an-item-extension-on-an-item"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ <a href='#itemextension'>ItemExtension</a>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+    "ExtensionTypeId": 2,
+    "ExtensionType": "eCommerce_PricingChanged",
+    "Value": "True"
+}</pre>
+
+<h2 id='updating-an-item-extension-on-an-item' class='clickable-header top-level-header'>Updating an Item Extension on an Item</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+PUT /Companies({CompanyId})/Orders({OrderId})/Items({ItemId})/ItemExtensions({ItemExtensionId})
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li><li><code>Content-Type: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}}
+    </li>
+    
+    <li>
+        <code>ItemId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItem}} being updated
+    </li>
+    
+    <li>
+        <code>ItemExtensionId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItemExtension}}
+    </li>
+    </ul>
+
+
+
+<h4>Request Parameters</h4>
+
+<ul><li><code>ExtensionTypeId</code> (<strong>Required</strong>) - Identifier for a {{ItemExtensionType}}</li><li><code>Value</code> (Optional) </li></ul>
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-updating-an-item-extension-on-an-item" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-updating-an-item-extension-on-an-item" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-updating-an-item-extension-on-an-item" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-updating-an-item-extension-on-an-item" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-updating-an-item-extension-on-an-item" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-updating-an-item-extension-on-an-item" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-updating-an-item-extension-on-an-item"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-updating-an-item-extension-on-an-item">
+<pre id="http-code-updating-an-item-extension-on-an-item"><code class="language-http">PUT /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)
+Authorization: Bearer (Access Token)
+Accept: application/json
+Content-Type: application/json
+</code><code class="language-csharp">{
+    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+    "ExtensionTypeId": 2,
+    "ExtensionType": "eCommerce_PricingChanged",
+    "Value": "True"
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-updating-an-item-extension-on-an-item">
+<pre id="curl-code-updating-an-item-extension-on-an-item"><code class="language-http">curl -X PUT "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json" -H "Content-Type: application/json" -d '{
+    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+    "ExtensionTypeId": 2,
+    "ExtensionType": "eCommerce_PricingChanged",
+    "Value": "True"
+}'</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-updating-an-item-extension-on-an-item">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-updating-an-item-extension-on-an-item"><code class="language-csharp">static IRestResponse UpdatingAnItemExtensionOnAnItem()
+{
+    var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)");
+    var request = new RestRequest(Method.PUT);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+    request.AddHeader("Content-Type", "application/json"); 
+
+     request.AddParameter("application/json", "{\"Id\":\"063c3712-eb08-44f9-8a13-8537c6276a72\",\"ItemId\":\"8592718e-bcca-468c-8009-38678929b693\",\"ExtensionTypeId\":2,\"ExtensionType\":\"eCommerce_PricingChanged\",\"Value\":\"True\"}", ParameterType.RequestBody);
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-updating-an-item-extension-on-an-item">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-updating-an-item-extension-on-an-item"><code class="language-java">import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse UpdatingAnItemExtensionOnAnItem() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpPut request = new HttpPut("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    request.addHeader("Content-Type", "application/json"); 
+    StringEntity body = new StringEntity("{\"Id\":\"063c3712-eb08-44f9-8a13-8537c6276a72\",\"ItemId\":\"8592718e-bcca-468c-8009-38678929b693\",\"ExtensionTypeId\":2,\"ExtensionType\":\"eCommerce_PricingChanged\",\"Value\":\"True\"}");
+    request.setEntity(body);
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-updating-an-item-extension-on-an-item">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-updating-an-item-extension-on-an-item"><code class="language-ruby">require 'rest-client'
+
+body = "{\"Id\":\"063c3712-eb08-44f9-8a13-8537c6276a72\",\"ItemId\":\"8592718e-bcca-468c-8009-38678929b693\",\"ExtensionTypeId\":2,\"ExtensionType\":\"eCommerce_PricingChanged\",\"Value\":\"True\"}";
+
+response = RestClient.put 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)', body, {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+     :'Content-Type' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ <a href='#itemextension'>ItemExtension</a>
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>{
+    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+    "ExtensionTypeId": 2,
+    "ExtensionType": "eCommerce_PricingChanged",
+    "Value": "True"
+}</pre>
+
+<h2 id='deleting-an-item-extension-on-an-item' class='clickable-header top-level-header'>Deleting an Item Extension on an Item</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+DELETE /Companies({CompanyId})/Orders({OrderId})/Items({ItemId})/ItemExtensions({ItemExtensionId})
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    
+    <li>
+        <code>OrderId</code> (<strong>Required</strong>)  - Identifier for the {{Order}}
+    </li>
+    
+    <li>
+        <code>ItemId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItem}} being updated
+    </li>
+    
+    <li>
+        <code>ItemExtensionId</code> (<strong>Required</strong>)  - Identifier for the {{OrderItemExtension}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-deleting-an-item-extension-on-an-item" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-deleting-an-item-extension-on-an-item" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-deleting-an-item-extension-on-an-item" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-deleting-an-item-extension-on-an-item" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-deleting-an-item-extension-on-an-item" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-deleting-an-item-extension-on-an-item" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-deleting-an-item-extension-on-an-item"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-deleting-an-item-extension-on-an-item">
+<pre id="http-code-deleting-an-item-extension-on-an-item"><code class="language-http">DELETE /Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)
+Authorization: Bearer (Access Token)
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-deleting-an-item-extension-on-an-item">
+<pre id="curl-code-deleting-an-item-extension-on-an-item"><code class="language-http">curl -X DELETE "https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)" -H "Authorization: Bearer (Access Token)"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-deleting-an-item-extension-on-an-item">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-deleting-an-item-extension-on-an-item"><code class="language-csharp">static IRestResponse DeletingAnItemExtensionOnAnItem()
+{
+    var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)");
+    var request = new RestRequest(Method.DELETE);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-deleting-an-item-extension-on-an-item">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-deleting-an-item-extension-on-an-item"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse DeletingAnItemExtensionOnAnItem() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpDelete request = new HttpDelete("https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-deleting-an-item-extension-on-an-item">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-deleting-an-item-extension-on-an-item"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.delete 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/Orders(2ad88692-7757-4a72-915b-dfe8f2539279)/Items(8592718e-bcca-468c-8009-38678929b693)/ItemExtensions(063c3712-eb08-44f9-8a13-8537c6276a72)', {
+     :'Authorization' => 'Bearer (Access Token)',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre>
+
+<h2 id='getting-all-item-extension-types' class='clickable-header top-level-header'>Getting All Item Extension Types</h2>
+
+
+
+<h4>Request</h4>
+
+<pre>
+GET /Companies({CompanyId})/ItemExtensionTypes
+</pre>
+
+
+<h4>Headers</h4>
+<ul><li><code>Authorization: Bearer (Access Token)</code></li><li><code>Accept: application/json</code></li></ul>
+
+
+
+<h4>URI Parameters</h4>
+<ul>
+    
+    <li>
+        <code>CompanyId</code> (<strong>Required</strong>)  - Identifier for the {{Company}}
+    </li>
+    </ul>
+
+
+
+<h5>Example</h5>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#http-getting-all-item-extension-types" data-toggle="tab">HTTP</a></li>
+    <li><a href="#curl-getting-all-item-extension-types" data-toggle="tab">cURL</a></li>
+    <li><a href="#csharp-getting-all-item-extension-types" data-toggle="tab">C# (RestSharp)</a></li>
+    <li><a href="#java-getting-all-item-extension-types" data-toggle="tab">Java (HttpComponents)</a></li>
+    <li><a href="#ruby-getting-all-item-extension-types" data-toggle="tab">Ruby (rest-client)</a></li>
+    <button id="copy-getting-all-item-extension-types" class="copy-button btn btn-default btn-sm" data-clipboard-action="copy" data-clipboard-target="#http-code-getting-all-item-extension-types"><i class="fa fa-clipboard" title="Copy to Clipboard"></i></button>
+</ul>
+<div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="http-getting-all-item-extension-types">
+<pre id="http-code-getting-all-item-extension-types"><code class="language-http">GET /Companies(14146)/ItemExtensionTypes
+Authorization: Bearer (Access Token)
+Accept: application/json
+</code><code class="language-csharp"></code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="curl-getting-all-item-extension-types">
+<pre id="curl-code-getting-all-item-extension-types"><code class="language-http">curl -X GET "https://orderdemo.iqmetrix.net/v1/Companies(14146)/ItemExtensionTypes" -H "Authorization: Bearer (Access Token)" -H "Accept: application/json"</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="csharp-getting-all-item-extension-types">
+        This code sample uses <a href="http://restsharp.org/">RestSharp</a>, ensure you install the nuget package and include <code>Using RestSharp;</code> at the top of your file.
+<pre id="csharp-code-getting-all-item-extension-types"><code class="language-csharp">static IRestResponse GettingAllItemExtensionTypes()
+{
+    var client = new RestClient("https://orderdemo.iqmetrix.net/v1/Companies(14146)/ItemExtensionTypes");
+    var request = new RestRequest(Method.GET);
+     
+    request.AddHeader("Authorization", "Bearer (Access Token)"); 
+    request.AddHeader("Accept", "application/json"); 
+
+    
+
+    return client.Execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="java-getting-all-item-extension-types">
+        This code sample uses <a href="https://hc.apache.org/">Apache HttpComponents</a>, ensure you download and include the required Jars.
+<pre id="java-code-getting-all-item-extension-types"><code class="language-java">
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import java.io.IOException;
+
+public static CloseableHttpResponse GettingAllItemExtensionTypes() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet request = new HttpGet("https://orderdemo.iqmetrix.net/v1/Companies(14146)/ItemExtensionTypes");
+     
+    request.addHeader("Authorization", "Bearer (Access Token)"); 
+    request.addHeader("Accept", "application/json"); 
+    
+    return httpClient.execute(request);
+}</code></pre>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruby-getting-all-item-extension-types">
+        This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
+<pre id="ruby-code-getting-all-item-extension-types"><code class="language-ruby">require 'rest-client'
+
+
+
+response = RestClient.get 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/ItemExtensionTypes', {
+     :'Authorization' => 'Bearer (Access Token)',
+     :'Accept' => 'application/json',
+    } 
+
+puts response</code></pre>
+    </div>
+</div>
+
+<h4>Response</h4>
+
+
+ Array[<a href='#itemextensiontype'>ItemExtensionType</a>]
+
+<h5>Example</h5>
+
+<pre>
+HTTP 200 Content-Type: application/json
+</pre><pre>[
+    {
+        "Id": 2,
+        "Name": "eCommerce_PricingChanged",
+        "Enabled": true
     }
 ]</pre>
 
@@ -1495,6 +2292,15 @@ HTTP 201 Content-Type: application/json
             "Id": "8592718e-bcca-468c-8009-38678929b693",
             "Cost": 5.99,
             "Description": "Samsung Galaxy S4 Standard Battery",
+            "ItemExtensions": [
+                {
+                    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+                    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+                    "ExtensionTypeId": 2,
+                    "ExtensionType": "eCommerce_PricingChanged",
+                    "Value": "True"
+                }
+            ],
             "ItemStatus": "New",
             "ItemStatusId": 1,
             "ItemType": "DropShip",
@@ -1654,6 +2460,15 @@ HTTP 200 Content-Type: application/json
                 "Id": "8592718e-bcca-468c-8009-38678929b693",
                 "Cost": 5.99,
                 "Description": "Samsung Galaxy S4 Standard Battery",
+                "ItemExtensions": [
+                    {
+                        "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+                        "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+                        "ExtensionTypeId": 2,
+                        "ExtensionType": "eCommerce_PricingChanged",
+                        "Value": "True"
+                    }
+                ],
                 "ItemStatus": "New",
                 "ItemStatusId": 1,
                 "ItemType": "DropShip",
@@ -1817,6 +2632,15 @@ HTTP 200 Content-Type: application/json
             "Id": "8592718e-bcca-468c-8009-38678929b693",
             "Cost": 5.99,
             "Description": "Samsung Galaxy S4 Standard Battery",
+            "ItemExtensions": [
+                {
+                    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+                    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+                    "ExtensionTypeId": 2,
+                    "ExtensionType": "eCommerce_PricingChanged",
+                    "Value": "True"
+                }
+            ],
             "ItemStatus": "New",
             "ItemStatusId": 1,
             "ItemType": "DropShip",
@@ -1922,6 +2746,15 @@ Content-Type: application/json
             "Id": "8592718e-bcca-468c-8009-38678929b693",
             "Cost": 5.99,
             "Description": "Samsung Galaxy S4 Standard Battery",
+            "ItemExtensions": [
+                {
+                    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+                    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+                    "ExtensionTypeId": 2,
+                    "ExtensionType": "eCommerce_PricingChanged",
+                    "Value": "True"
+                }
+            ],
             "ItemStatus": "New",
             "ItemStatusId": 1,
             "ItemType": "DropShip",
@@ -1977,6 +2810,15 @@ Content-Type: application/json
             "Id": "8592718e-bcca-468c-8009-38678929b693",
             "Cost": 5.99,
             "Description": "Samsung Galaxy S4 Standard Battery",
+            "ItemExtensions": [
+                {
+                    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+                    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+                    "ExtensionTypeId": 2,
+                    "ExtensionType": "eCommerce_PricingChanged",
+                    "Value": "True"
+                }
+            ],
             "ItemStatus": "New",
             "ItemStatusId": 1,
             "ItemType": "DropShip",
@@ -2016,7 +2858,7 @@ Content-Type: application/json
     request.AddHeader("Accept", "application/json"); 
     request.AddHeader("Content-Type", "application/json"); 
 
-     request.AddParameter("application/json", "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}", ParameterType.RequestBody);
+     request.AddParameter("application/json", "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemExtensions\":[{\"Id\":\"063c3712-eb08-44f9-8a13-8537c6276a72\",\"ItemId\":\"8592718e-bcca-468c-8009-38678929b693\",\"ExtensionTypeId\":2,\"ExtensionType\":\"eCommerce_PricingChanged\",\"Value\":\"True\"}],\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}", ParameterType.RequestBody);
 
     return client.Execute(request);
 }</code></pre>
@@ -2037,7 +2879,7 @@ public static CloseableHttpResponse UpdatingAnOrderWithItems() throws IOExceptio
     request.addHeader("Authorization", "Bearer (Access Token)"); 
     request.addHeader("Accept", "application/json"); 
     request.addHeader("Content-Type", "application/json"); 
-    StringEntity body = new StringEntity("{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}");
+    StringEntity body = new StringEntity("{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemExtensions\":[{\"Id\":\"063c3712-eb08-44f9-8a13-8537c6276a72\",\"ItemId\":\"8592718e-bcca-468c-8009-38678929b693\",\"ExtensionTypeId\":2,\"ExtensionType\":\"eCommerce_PricingChanged\",\"Value\":\"True\"}],\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}");
     request.setEntity(body);
     
     return httpClient.execute(request);
@@ -2047,7 +2889,7 @@ public static CloseableHttpResponse UpdatingAnOrderWithItems() throws IOExceptio
         This code sample uses <a href="https://github.com/rest-client/rest-client">rest-client</a>, ensure you <code>gem install rest-client</code>.
 <pre id="ruby-code-updating-an-order-with-items"><code class="language-ruby">require 'rest-client'
 
-body = "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}";
+body = "{\"Id\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"Name\":\"iPhone 5 Order\",\"BillingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"BillingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"CreatedDateUtc\":\"2015-03-27T18:47:29.9012402+00:00\",\"DiscountAmount\":15,\"DiscountCode\":\"MTRY-15\",\"DiscountDescription\":\"Military discount\",\"EmployeeId\":\"15\",\"EntityId\":14202,\"OrderExpiryDate\":\"2015-05-05T14:32:05.9140188+00:00\",\"OrderExpiryHours\":20,\"OrderType\":\"Sales\",\"OrderTypeId\":3,\"PrintableId\":\"8765-1234-987\",\"ShippingAddressId\":\"a08b0640-606a-41f0-901a-facaf50e75dd\",\"ShippingCustomerId\":\"659c2a38-d083-4421-9330-46d779702f85\",\"ShippingEntityId\":14202,\"State\":\"Created\",\"TenderId\":\"INV112\",\"Items\":[{\"Id\":\"8592718e-bcca-468c-8009-38678929b693\",\"Cost\":5.99,\"Description\":\"Samsung Galaxy S4 Standard Battery\",\"ItemExtensions\":[{\"Id\":\"063c3712-eb08-44f9-8a13-8537c6276a72\",\"ItemId\":\"8592718e-bcca-468c-8009-38678929b693\",\"ExtensionTypeId\":2,\"ExtensionType\":\"eCommerce_PricingChanged\",\"Value\":\"True\"}],\"ItemStatus\":\"New\",\"ItemStatusId\":1,\"ItemType\":\"DropShip\",\"ItemTypeId\":\"1\",\"Index\":0,\"ListPrice\":12.99,\"Notes\":\"Dented corner\",\"OrderId\":\"cdd26b8f-4ed1-409d-9984-982e081c425e\",\"ProductId\":\"a183f1a9-c58f-426a-930a-9a6357db52ed\",\"Quantity\":2,\"SellingPrice\":9.99,\"SerialNumbers\":[\"abc321\"],\"SKU\":\"00001\",\"ShippingOptionId\":\"1\",\"SupplierEntityId\":14107,\"SupplierReference\":\"10\",\"TrackingInformation\":[{\"Quantity\":1,\"TrackingNumber\":\"1TTTTN4421\"}]}]}";
 
 response = RestClient.put 'https://orderdemo.iqmetrix.net/v1/Companies(14146)/OrderFull(2ad88692-7757-4a72-915b-dfe8f2539279)', body, {
      :'Authorization' => 'Bearer (Access Token)',
@@ -2094,6 +2936,15 @@ HTTP 200 Content-Type: application/json
             "Id": "8592718e-bcca-468c-8009-38678929b693",
             "Cost": 5.99,
             "Description": "Samsung Galaxy S4 Standard Battery",
+            "ItemExtensions": [
+                {
+                    "Id": "063c3712-eb08-44f9-8a13-8537c6276a72",
+                    "ItemId": "8592718e-bcca-468c-8009-38678929b693",
+                    "ExtensionTypeId": 2,
+                    "ExtensionType": "eCommerce_PricingChanged",
+                    "Value": "True"
+                }
+            ],
             "ItemStatus": "New",
             "ItemStatusId": 1,
             "ItemType": "DropShip",
