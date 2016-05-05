@@ -47,7 +47,7 @@ If System B does not agree, it tells System A not to allow Sarah access and an e
 
 ### Technical Flow
 
-<img src="{{ "/images/3PAflow.png" | prepend: site.url }}" alt="Authentication Flow" />
+<img src="{{ "images/3PAflow.png" | prepend: site.url }}" alt="Authentication Flow" />
 
 1. A user from your organization enters their credentials into an iQmetrix product, such as RQ
 2. The application sends a request to iQmetrix's Single Sign On (SSO) service
