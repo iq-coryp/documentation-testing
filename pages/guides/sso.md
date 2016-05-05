@@ -13,24 +13,23 @@ rouge: false
 
 ## Overview
 
-This guide is intended to demonstrate how **Single Sign On** can be used with iQmetrix products, such as RQ.
+This guide is intended to explain how **Single Sign On** can be used with iQmetrix products, such as RQ.
 
-### What is Single Sign On?
-
-**Single Sign On (SSO)** permits a user to enter one name and password to access multiple applications. <br/>
-
+{{callout_info}}
+<strong>Single Sign On (SSO)</strong> permits a user to enter one name and password to access multiple applications. <br/>
 One popular example of SSO is the "Log In With Facebook" button used by many websites to allow users access to a website without creating an account.
+{{end}}
 
-### Who Is This Guide For? 
+## Who Is This Guide For? 
 
 You may be interested in this guide if you want to...
 
 * Allow your users to log into RQ with their domain credentials
 * Manage your users in a single place 
 
-## How Does SSO Work?
+## How Does Single Sign On Work?
 
-SSO works by creating a **trusted relationship** between two systems which can enable your users to log into iQmetrix products with their identity provider credentials. This is referred to at iQmetrix as **Third Party Authentication (3PA)**.
+Single Sign On involves creating a **trusted relationship** between two systems which can enable your users to log into iQmetrix products with their identity provider credentials. This is referred to at iQmetrix as **Third Party Authentication**.
 
 {{callout_info}}
 <strong>Third Party Authentication (3PA)</strong> is an iQmetrix term referring to the ability of a user to access an iQmetrix product using an external mechanism.
@@ -38,7 +37,7 @@ SSO works by creating a **trusted relationship** between two systems which can e
 
 ### Example
 
-Sarah enters her domain username and password into an iQmetrix product (System A), which has 3PA enabled using System B. 
+Sarah enters her domain username and password into an iQmetrix product (System A), which has Third Party Authentication enabled using System B. 
 
 System A asks System B "is this name/password valid?" 
 
@@ -46,25 +45,25 @@ If System B agrees, System A **trusts** System B and allows Sarah to log in succ
 
 If System B does not agree, it tells System A not to allow Sarah access and an error is displayed.
 
-### Technical Explanation
+### Technical Flow
 
 <img src="{{ "/images/3PAflow.png" | prepend: site.url }}" alt="Authentication Flow" />
 
 1. A user from your organization enters their credentials into an iQmetrix product, such as RQ
-2. The application sends a request to iQmetrix's SSO service
-3. The SSO service determines if your organization has 3PA enabled
+2. The application sends a request to iQmetrix's Single Sign On (SSO) service
+3. The SSO service determines if your organization has Third Party Authentication (3PA) enabled
 4. The SSO service sends a POST [WS-Security UsernameToken Profile 1.1](http://docs.oasis-open.org/wss/v1.1/wss-v1.1-spec-os-UsernameTokenProfile.pdf) request using the `#PasswordText` extension to the URL you supplied
-5. Your Identity Provider will respond with a [WS-Security SAML Token Profile 1.1](http://docs.oasis-open.org/wss/v1.1/wss-v1.1-spec-os-SAMLTokenProfile.pdf) response with a SAML 2.0 token in the `RequestedSecurityToken` element
+5. Your Identity Provider responds with a [WS-Security SAML Token Profile 1.1](http://docs.oasis-open.org/wss/v1.1/wss-v1.1-spec-os-SAMLTokenProfile.pdf) response with a SAML 2.0 token in the `RequestedSecurityToken` element
 5. iQmetrix's Authentication service accepts the response and generates an {{AccessToken_Glossary}}
 6. The user is able to access the iQmetrix product
 
-## Managing Users and SSO
+## Managing Users and Single Sign On
 
-Single Sign On can be used to allow a user to access an iQmetrix system using domain credentials, 
+While SSO can provide your users access to iQmetrix products, it does not have the ability to manage what those users can see or do once they are logged in. 
 
-Users can be managed using...
+Manging users can be done through...
 
-* iQmetrix products such as {{rq}}
+* {{rq}}
 * [User Manager](/api/user-manager/) for an automated solution
 * [Hub](https://hub.iqmetrix.net/) for a web-based solution 
 * [Automated Provisioning](#automated-provisioning)
@@ -89,7 +88,7 @@ System B agrees and says "also, Sarah now has a manager security role". System A
 
 Your organization must provide access to an Identity Provider with...
 
-* SAML Active Profile using WS-Trust over HTTPS Enabled
+* SAML Active Profile using WS-Trust over HTTPS
 * SSL Protection with a publicly available certificate
 * High Availability
 * Acceptable User Names
@@ -149,7 +148,7 @@ For example, a user "john.smith@yvr.kentel.local" could be mapped to "john.smith
 
 ### High Availability
 
-High availability is a characteristic of a system that aims to ensure an agreed level of operational performance for a higher than normal period.
+High availability means a system is capable of maintaining a high level of operational performance for a period of time. 
 
 It is your organization's responsibility to ensure your Identity Provider is highly available. If you are unsure what that requires or if you anticipate problems, please let us know and we can discuss ways to mitigate these.
 
