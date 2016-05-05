@@ -4,7 +4,7 @@ permalink: /faq/auth-faq/
 tags: []
 keywords: 
 audience: 
-last_updated: 04-05-2016
+last_updated: 05-05-2016
 summary: 
 ---
 {% include linkrefs.html %}
@@ -50,16 +50,19 @@ Below are the most commonly asked questions from clients around authentication. 
       </h4>
     </div>
     <div id="auth3" class="panel-collapse collapse">
-      <div class="panel-body"><p>Please ensure that the correct Access Token is passed into the request and that you use a variable length data type without a specific maximum size to store access tokens.</p>
-      <p>The most common occurences of an <code>invalid token</code> are when: </p>
-        <ul>
-          <li>the access token has expired</li>
-          <li>the wrong access token was used (from a different client)</li>
-          <li>the access token was incorrect</li>
-        </ul>
-        <p>If you see an <code>invalid token</code>, first make sure you are in the correct environment when performing your request. Then make sure the token belongs to the correct end-user. Each end-user may have different permissions assigned to them, and may not have access to certain APIs.</p>
-
-        <p>If your Access Token has expired, then have your application <a href="/api/authentication/#refreshing-an-access-token">refresh the token </a>. Otherwise, have your application <a href="../../api/authentication/#obtaining-an-access-token">obtain a new Access Token</a>.</p></div>
+      <div class="panel-body"><p>There are multiple reasons as to why an <code>invalid token</code> could occur when requesting data from an API. The <code>invalid token</code> error returns in a HTTP 401 Unauthorized response in plain text format.</p>
+      <p>The most common occurences and remedies for an <code>invalid token</code> are below: </p>
+        <dl>
+          <dt>The access token has expired</dt>
+            <dd>If your Access Token has expired, then you must <a href="/api/authentication/#refreshing-an-access-token">refresh the token</a></dd>
+          <dt>The request is in the wrong environment</dt>
+            <dd>When testing your application in the sandbox environment, please remember to obtain a separate access token for the Production environment.</dd>
+          <dt>The wrong access token was used (from a different client)</dt>
+            <dd>Ensure that the access token used to access an API belongs to the correct end-user account.</dd>
+          <dt>The access token was incorrect</dt>
+            <dd>Ensure that the correct access token was entered and is in the correct format (e.g. <code>Bearer 3dae10c05e894011b5b3ae15972ffbf4</code> )</dd>
+        </dl>
+      </div>
     </div>
   </div>
   
@@ -77,11 +80,11 @@ Below are the most commonly asked questions from clients around authentication. 
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#authentication" href="#auth5">I'm locked out when obtaining an Access Token. Who do I call?</a>
+        <a data-toggle="collapse" data-parent="#authentication" href="#auth5">My end-user account is locked out when obtaining an Access Token. Who do I contact?</a>
       </h4>
     </div>
     <div id="auth5" class="panel-collapse collapse">
-      <div class="panel-body"><p>If you are locked out of your account, contact your company administrator to be unlocked.</p></div>
+      <div class="panel-body"><p>If the end-user credentials used to obtain an access token are currently locked, contact your company administrator to unlock that end-user account.</p></div>
     </div>
   </div>
 </div>
