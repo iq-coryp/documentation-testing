@@ -462,8 +462,8 @@ dl dt p {
 
 
 dl dd {
-  margin-top:12px;
-  margin-bottom:12px;
+  margin-top:5px;
+  margin-bottom:5px;
 }
 
 @media (max-width: 990px) {
@@ -719,6 +719,11 @@ a[data-toggle]{
 a.image-link {
   outline: none;
 }
+
+dd {
+  margin-left: 40px;
+}
+
 
 /* -------------------------- */
 
