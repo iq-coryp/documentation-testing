@@ -28,7 +28,7 @@ The Vendor Managed Inventory (VMI) API can be used to:
 * See a list of all VMI enabled stores in RQ
 
 {{note}}
-Please be aware of the subtle difference between `<vendor>` and `<Vendor>` in the various requests. This API is case-sensitive and will cause an error should the incorrect tag be used.
+Please be aware of the subtle difference between <code>&lt;vendor&gt;</code> and <code>&lt;Vendor&gt;</code> in the various requests. This API is case-sensitive and will cause an error should the incorrect tag be used.
 {{end}}
 
 
