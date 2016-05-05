@@ -1,6 +1,6 @@
 ---
-title:  Single Sign On
-permalink: /guides/sso/
+title:  Third Party Authentication
+permalink: /guides/3pa/
 tags: []
 keywords: 
 audience: 
@@ -13,26 +13,26 @@ rouge: false
 
 ## Overview
 
-This guide describes how you can integrate your existing domain logins with iQmetrix products using **Single Sign On**.
+This guide describes how you can integrate your existing domain logins with iQmetrix products using **Third Party Authentication (3PA)**.
 
 {{callout_info}}
-<strong>Single Sign On (SSO)</strong> permits a user to enter one name and password to access multiple applications. <br/>
-One popular example of SSO is the "Log In With Facebook" button used by many websites to allow users access to a website without creating an account.
+<strong>Third Party Authentication (3PA)</strong> is an iQmetrix term referring to the ability of a user to access an iQmetrix product using an external mechanism.
 {{end}}
 
 ## Who Is This Guide For? 
 
 You may be interested in this guide if you want to...
 
-* Allow your users to log into RQ with their domain credentials
+* Allow your users to log into RQ with their Identity Provider credentials
 * Manage your users in a single place 
 
-## How Does Single Sign On Work?
+## How Does Third Party Authentication Work?
 
-Single Sign On involves creating a **trusted relationship** between two systems which can enable your users to log into iQmetrix products with their identity provider credentials. This is referred to at iQmetrix as **Third Party Authentication**.
+3PA involves creating a **trusted relationship** between two systems which can enable your users to log into iQmetrix products with their Identity Provider credentials. This is commonly known as **Single Sign On**.
 
 {{callout_info}}
-<strong>Third Party Authentication (3PA)</strong> is an iQmetrix term referring to the ability of a user to access an iQmetrix product using an external mechanism.
+<strong>Single Sign On (SSO)</strong> permits a user to enter one name and password to access multiple applications. <br/>
+One popular example of SSO is the "Log In With Facebook" button used by many websites to allow users access to a website without creating an account.
 {{end}}
 
 ##### Example
@@ -57,33 +57,6 @@ If System B does not agree, it tells System A not to allow Sarah access and an e
 5. iQmetrix's Authentication service accepts the response and generates an {{AccessToken_Glossary}}
 6. The user is able to access the iQmetrix product
 
-## Managing Users and Single Sign On
-
-While SSO can provide your users access to iQmetrix products, it does not have the ability to manage what those users can see or do once they are logged in. 
-
-Manging users can be done through...
-
-* iQmetrix applications such as {{rq}}
-* [User Manager API](/api/user-manager/) for an automated solution or
-* [Hub](https://hub.iqmetrix.net/) for a web-based solution or
-* [Automated Provisioning](#automated-provisioning)
-
-### Automated Provisioning
-
-**Automated Provisioning** is a process that involves managing a service in one or more systems automatically. 
-
-When combined with SSO, Automated Provisioning allows you to manage user accounts, permissions and more in a central system.
-
-##### Example 
-
-System A is configured for Auto Provisioning with System B.
-
-Sarah gets a promotion and is given a manager security role in System B.
-
-She enters her domain credentials in System A, which asks System B "is this name/password valid?". 
-
-System B agrees and says "also, Sarah now has a manager security role". System A can then update the security for Sarah.
-
 ## Requirements
 
 Your organization must provide access to an Identity Provider with...
@@ -104,7 +77,7 @@ If you are using ADFS, you would need an ADFS Web Application Proxy with iQmetri
 
 ### SAML
 
-**SAML** (Security Assertion Markup Language) is an XML-based data format for exchanging data between systems that can be used to implement SSO. 
+**SAML** (Security Assertion Markup Language) is an XML-based data format for exchanging data between systems. 
 
 There are many different versions of SAML, but iQmetrix only supports SAML using **WS-Trust**.
 
@@ -130,7 +103,7 @@ In order to maintain the best possible experience and allow sales reps to quickl
 
 The SAML 2.0 protocol supports two profiles,
 
-* The **Passive** SAML profile redirects the browser to the identity provider's sign in page for authentication and then redirects the browser back to the application passing it a SAML token. The passive SAML profile is incompatible with RQ because it is not browser based
+* The **Passive** SAML profile redirects the browser to the Identity Provider's sign in page for authentication and then redirects the browser back to the application passing it a SAML token. The passive SAML profile is incompatible with RQ because it is not browser based
 * The **Active** SAML profile is compatible with RQ but relies on the identity of the user that was authenticated on the host operating system. As RQ is generally installed on shared workstations with a generic user account, the identity of the user cannot be determined using the active SAML profile
 
 Given that neither of the SAML 2.0 profiles are suitable for use with RQ, we have implemented an SSO solution based on WS-Trust.
@@ -324,3 +297,68 @@ The following is a list of claims that will be requested:
             </trust:RequestSecurityTokenResponseCollection>
         </s:Body>
     </s:Envelope>
+
+## Managing Users
+
+While Third Party Authentication can provide your users access to iQmetrix products, it does not have the ability to manage what those users can see or do once they are logged in. 
+
+Manging users can be done through...
+
+* iQmetrix applications such as {{rq}}
+* [User Manager API](/api/user-manager/) for an automated solution or
+* [Hub](https://hub.iqmetrix.net/) for a web-based solution or
+* [Automated Provisioning](#automated-provisioning)
+
+## Automated Provisioning
+
+**Automated Provisioning** or auto-provisioning is a process that involves managing a service in one or more systems automatically. 
+
+When combined with 3PA, Automated Provisioning allows you to manage users in iQmetrix services by auto-provisioning them from your existing Identity Provider.
+
+##### Example 
+
+System A is configured for Auto Provisioning with System B.
+
+Sarah gets a promotion and is given a manager security role in System B.
+
+She enters her Identity Provider credentials in System A, which asks System B "is this name/password valid?". 
+
+System B agrees and says "also, Sarah now has a manager security role". System A can then update the security for Sarah.
+
+### Technical Flow
+
+When added to 3PA, Automated Provisioning changes the technical flow by sending user information along with the POST request sent to the supplied URL. (Step 4 of [Technical Flow](#technical-flow)).
+
+### Requirements
+
+Automated Provisioning requires your organization to have...
+
+* Third Party Authentication enabled
+* A domain name that is unique within iQmetrix's systems
+
+You will also need to coordinate with your account manager to map your Identity Provider roles to [Security Roles](/api/security-roles/#securityrole).
+
+All user information that is supplied with authentication should be maintained in your Identity Provider. This information will not be editable within Hub.
+
+### Claims
+
+The following is a list of claims that will be requested.
+
+{{note}}
+We strongly recommend you include a ClientUserId, a user identifier, to avoid creating duplicate user accounts
+{{end}}
+
+It may be possible to support custom claims if further user information is required.
+
+| ClaimType | Required in RQ? | Required in Hub? | Populates Field | Example |
+|:----------|:----------------|:-----------------|:----------------|:--------|
+| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn` | Required | Required | [User](/api/user-manager/#user).UserName | Nicola.Tesla@retaillabs.com |
+| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname` | Required | Optional | [User](/api/user-manager/#user)FirstName | Nicola |
+| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname` | Required | Optional | [User](/api/user-manager/#user)LastName | Tesla |
+| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` | Optional | Optional | [User](/api/user-manager/#user)Email | ntesla@retaillabs.com |
+| `http://iqmetrix.net/claims/telephoneNumbers/home` | Optional | Optional | [User](/api/user-manager/#user).PhoneNumbers | 604-123-4567x1000 |
+| `http://iqmetrix.net/claims/telephoneNumbers/work` | Optional | Optional | [User](/api/user-manager/#user).PhoneNumbers | 604-654-3210x1234 |
+| `http://iqmetrix.net/claims/telephoneNumbers/cell` | Optional | Optional | [User](/api/user-manager/#user).PhoneNumbers | 604-654-6543 |
+| `http://iqmetrix.net/claims/securityGroupName` | Required | Optional | [AssignedRole](/api/security-roles/#assignedrole) | StoreManagers |
+| `http://iqmetrix.net/claims/assignedEntityClientEntityId` | Optional | Optional  | Assigned [Location](/api/company-tree/#location) | TheMarketCode |
+| `http://iqmetrix.net/claims/clientUserId` | Optional | Optional | [User](/api/user-manager/#user).ClientUserID | 22323 |
