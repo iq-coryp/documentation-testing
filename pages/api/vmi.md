@@ -4,7 +4,7 @@ permalink: /api/vmi/
 tags: []
 keywords: 
 audience:
-last_updated: 3-5-2016
+last_updated: 5-5-2016
 summary:
 ---
 
@@ -26,6 +26,10 @@ The Vendor Managed Inventory (VMI) API can be used to:
 * Retrieve Purchase Orders (POs) created in RQ
 * Create shipping notices for POs
 * See a list of all VMI enabled stores in RQ
+
+{{note}}
+Please be aware of the subtle difference between `<vendor>` and `<Vendor>` in the various requests. This API is case-sensitive and will cause an error should the incorrect tag be used.
+{{end}}
 
 
 ## Endpoints
