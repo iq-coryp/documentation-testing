@@ -13,7 +13,7 @@ rouge: false
 
 ## Overview
 
-This guide is intended to explain how **Single Sign On** can be used with iQmetrix products, such as RQ.
+This guide describes how you can integrate your existing domain logins with iQmetrix products using **Single Sign On**.
 
 {{callout_info}}
 <strong>Single Sign On (SSO)</strong> permits a user to enter one name and password to access multiple applications. <br/>
@@ -35,7 +35,7 @@ Single Sign On involves creating a **trusted relationship** between two systems 
 <strong>Third Party Authentication (3PA)</strong> is an iQmetrix term referring to the ability of a user to access an iQmetrix product using an external mechanism.
 {{end}}
 
-### Example
+##### Example
 
 Sarah enters her domain username and password into an iQmetrix product (System A), which has Third Party Authentication enabled using System B. 
 
@@ -47,7 +47,7 @@ If System B does not agree, it tells System A not to allow Sarah access and an e
 
 ### Technical Flow
 
-<img src="{{ "images/3PAflow.png" | prepend: site.url }}" alt="Authentication Flow" />
+<img src="{{ "/images/3PAflow.png" | prepend: site.url }}" alt="Authentication Flow" />
 
 1. A user from your organization enters their credentials into an iQmetrix product, such as RQ
 2. The application sends a request to iQmetrix's Single Sign On (SSO) service
@@ -63,9 +63,9 @@ While SSO can provide your users access to iQmetrix products, it does not have t
 
 Manging users can be done through...
 
-* {{rq}}
-* [User Manager](/api/user-manager/) for an automated solution
-* [Hub](https://hub.iqmetrix.net/) for a web-based solution 
+* iQmetrix applications such as {{rq}}
+* [User Manager API](/api/user-manager/) for an automated solution or
+* [Hub](https://hub.iqmetrix.net/) for a web-based solution or
 * [Automated Provisioning](#automated-provisioning)
 
 ### Automated Provisioning
@@ -84,7 +84,7 @@ She enters her domain credentials in System A, which asks System B "is this name
 
 System B agrees and says "also, Sarah now has a manager security role". System A can then update the security for Sarah.
 
-## Identity Provider Requirements
+## Requirements
 
 Your organization must provide access to an Identity Provider with...
 
@@ -92,6 +92,11 @@ Your organization must provide access to an Identity Provider with...
 * SSL Protection with a publicly available certificate
 * High Availability
 * Acceptable User Names
+
+Your Account Manager will need the following information to configure Single Sign On:
+
+* URL of your Identity Provider
+* An Active Directory account created for RQ support personnel
 
 ##### Example
 
@@ -142,9 +147,11 @@ Your organization is responsible for providing an Identity Provider that is prot
 
 We strongly recommend you create publicly-accessible domains and map your users to them, rather than using your internal domains. This will ensure that your user names are unique within our system. 
 
-For example, a user "john.smith@yvr.kentel.local" could be mapped to "john.smith@kentel.com". 
-
 **Email addresses** are an excellent alternative to domain user names.
+
+##### Example
+
+A user "john.smith@yvr.kentel.local" could be mapped to "john.smith@kentel.com". 
 
 ### High Availability
 
