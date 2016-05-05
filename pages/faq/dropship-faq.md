@@ -4,12 +4,12 @@ permalink: /faq/dropship-faq/
 tags: []
 keywords: 
 audience: 
-last_updated: 23-03-2016
+last_updated: 04-05-2016
 summary: 
 ---
 {% include linkrefs.html %}
 
-Below are the most commonly asked questions from suppliers around the Dropship program. If you do not find a suitable answer to your question, then send an email to the <a href="mailto:{{site.support_email}}?subject=Dropship Question">API Support Team</a>. 
+Below are the most commonly asked questions from suppliers around the Dropship program. If you do not find a suitable answer to your question, contact the <a href="mailto:{{site.support_email}}?subject=Dropship Question">API Support Team</a>. 
 
 ### Product Subscription
 
