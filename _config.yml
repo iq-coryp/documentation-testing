@@ -1,8 +1,8 @@
 ## This content is duplicated here from configs/config_designers.yml because I'm building this site through Github Pages, and Github Pages just looks for the _config.yml file in the root directory to create the build.
 # project definitions
-project: doc_designers
-audience: designers
-product: all
+project: POS Documentation
+audience: POS Clients
+product: POS
 platform: all
 version: all
 destination: ../doc_designers
@@ -10,12 +10,12 @@ baseurl: "/documentation-testing/"
 pagefileurl: "/documentation-testing/"
 api_baseurl: "/documentation-testing/api"
 fileurl: "../"
-url: "http://melissakendall.github.io/documentation-testing/"
-topnav_title: iQmetrix Developer Portal 
-homepage_title: iQmetrix Developer Portal 
-site_title: iQmetrix Developer Portal 
-disqus_shortname: iqmetrixdeveloperportal
-google_analytics: UA-408430-5
+url: 
+topnav_title: iQmetrix POS 
+homepage_title: iQmetrix POS
+site_title: iQmetrix POS Documentation
+disqus_shortname: 
+google_analytics: 
 github_editme_path: 
 
 sidebar_tagline: 
@@ -32,7 +32,7 @@ exclude:
 
 # same for all
 host: 127.0.0.1
-feedback_email: apidesign@iqmetrix.com
+feedback_email: 
 sidebar_accordion: true
 markdown: kramdown
 print: false
