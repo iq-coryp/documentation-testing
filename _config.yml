@@ -5,11 +5,11 @@ audience: POS Clients
 product: POS
 platform: all
 version: all
-destination: ../doc_designers
-baseurl: "/documentation-testing/"
-pagefileurl: "/documentation-testing/"
-api_baseurl: "/documentation-testing/api"
-fileurl: "../"
+destination: 
+baseurl: 
+pagefileurl:
+api_baseurl: 
+fileurl: 
 url: 
 topnav_title: iQmetrix POS 
 homepage_title: iQmetrix POS
